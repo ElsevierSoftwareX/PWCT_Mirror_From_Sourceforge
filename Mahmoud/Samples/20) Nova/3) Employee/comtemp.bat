@@ -1,0 +1,1 @@
+CALL sscom2.bat  "AMINE"  /X  /l calldll  > _temp.txt
