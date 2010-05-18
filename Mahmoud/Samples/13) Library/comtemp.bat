@@ -1,0 +1,1 @@
+CALL sscom2.bat  "LIBCALL"  /X /C /l calldll  > _temp.txt
