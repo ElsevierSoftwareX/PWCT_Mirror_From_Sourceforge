@@ -1,0 +1,1 @@
+CALL sscom2.bat  "DEMO"  /X /l calldll  /CG > _temp.txt
