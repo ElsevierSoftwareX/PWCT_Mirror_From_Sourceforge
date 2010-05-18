@@ -1,0 +1,251 @@
+#line 54 "c:\SSBUILD\minigui\include\i_var.ch"
+  MEMVAR _HMG_SYSDATA
+  MEMVAR _HMG_SCRSAVERDATA
+#line 109 "c:\SSBUILD\xharbour\include\hbclass.ch"
+   DYNAMIC DivertConstructorCall
+
+
+
+
+
+
+
+
+
+
+
+DECLARE HBClass  New( cName AS String, OPTIONAL SuperParams ) AS CLASS HBClass  Create() AS Object  Instance() AS Object  AddClsMethod( cName AS String, @MethodName(), nScope AS Numeric, n2 AS Numeric, n3 AS Numeric )  AddMultiClsData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String )  AddMultiData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String, x AS LOGICAL, lPer AS LOGICAL )  AddMethod( cName AS String, @MethodName(), nScope AS Numeric, lPersistent AS LOGICAL )  AddInLine( cName AS String, bBlock AS CodeBlock, nScope AS Numeric, lPersistent AS LOGICAL )  AddVirtual( cName AS String )
+#line 4 "SOUNDSAMPLE.prg"
+Function Main
+
+
+
+
+
+
+
+
+
+
+
+
+
+Public True,False
+True = .T.
+False = .F.
+SS_NEWSERVER("Server1","Slave","000")
+
+
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+    SS_FLAG3 = 1 ; SS_FLAG = 1 ; SS_FLAG2 = 1
+    SS_FLAG = 4 ; SS_FLAG2 = 3 ; SS_FLAG3 = 2
+            SS_NEWCIRCUIT( "Main" )
+                SS_NEWBRANCH( "Main" )
+                    SS_NRESIS( "Main" )
+    SS_FLAG3 = 3
+
+
+    SS_NEWR( "WIN32EVENTS()" , "WIN32EVENTS" )
+
+  SS_ADDRES("WIN32EVENTS")
+
+
+SS_NEWR( "R880944269_1()" , "Circuits\Main\Main\Main" )
+
+
+ss_callr( "Circuits\Main\Main\Main" )
+Return
+
+  FUNCTION STARTSERVER()
+       SS_FIREON()
+  RETURN
+
+  function WIN32EVENTS()
+       ProcessMessages()
+  RETURN
+
+
+function R880944269_1()
+
+
+
+
+
+
+
+
+
+
+ _DefineWindow ( "win1", "Sound Sample", 10, 10, 523, 324, .T., .T., .T., .F., .F., {,}, {,},, ,, , ,, {0,0,0} , , .F. , .F. , .T. , "PWCTICON" , .F. , ,, , , ,, , , , , , , , , , .F. , , , , .F. , , , , , .F. , .F. )
+
+
+
+
+
+
+
+_DefineOwnerButton ( "btnOpen",, 28, 71, "(1) - Open (test.mp3)", {|| myopen()}, 210, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,, {128,128,192}, .F., .F., .F. )
+
+
+
+
+
+
+_DefineOwnerButton ( "btnPlay",, 28, 116, "(2) - Play", {|| myplay()}, 210, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,, {128,128,192}, .F., .F., .F. )
+
+
+
+
+
+
+_DefineOwnerButton ( "btnPause",, 28, 156, "(3) - Pause", {|| mypause()}, 210, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,, {128,128,192}, .F., .F., .F. )
+
+
+
+
+
+
+_DefineOwnerButton ( "btnClose",, 27, 241, "(5) - Close", {|| myclose()}, 210, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,, {128,128,192}, .F., .F., .F. )
+
+
+
+
+
+
+_DefineOwnerButton ( "btnResume",, 27, 196, "(4) - Resume", {|| myresume()}, 210, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,, {128,128,192}, .F., .F., .F. )
+
+
+
+
+
+
+_DefineOwnerButton ( "btnRecord",, 280, 70, "(1) - Record", {|| myrecord()}, 206, 28,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,, {255,128,64}, .F., .F., .F. )
+
+
+
+
+
+
+_DefineOwnerButton ( "btnSave",, 280, 110, "(2) - Save (wow.wav)", {|| mysave()}, 206, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,, {255,128,64}, .F., .F., .F. )
+
+
+
+
+
+
+_DefineLabel ( "lblPlayer",, 28, 13, "Player", 210, 39, "Arial" , 18 , .F., .F. , .F. , .F. , .F. , .F. , {0,64,0}, {0,255,64},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+
+
+
+
+
+
+_DefineLabel ( "lblRecorder",, 280, 12, "Recorder", 206, 40, "Arial" , 18 , .F., .F. , .F. , .F. , .F. , .F. , {0,64,0}, {0,255,64},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+_EndWindow ()
+
+_ActivateWindow( {"win1"}, .F. )
+
+Proc myopen
+CALLDLL32("mciSendString","winmm.dll",'open "test.mp3" type mpegvideo alias MediaFile',nil,0,0)
+Return Nil
+Proc myplay
+CALLDLL32("mciSendString","winmm.dll","play MediaFile",nil,0,0)
+Return Nil
+Proc mypause
+CALLDLL32("mciSendString","winmm.dll","pause MediaFile",nil,0,0)
+Return Nil
+Proc myclose
+CALLDLL32("mciSendString","winmm.dll","close MediaFile",nil,0,0)
+Return Nil
+Proc myresume
+CALLDLL32("mciSendString","winmm.dll","resume MediaFile",nil,0,0)
+Return Nil
+Proc myrecord
+CALLDLL32("mciSendString","winmm.dll","open new Type waveaudio Alias recsound","",0,0)
+CALLDLL32("mciSendString","winmm.dll","record recsound","",0,0)
+Return Nil
+Proc mysave
+CALLDLL32("mciSendString","winmm.dll","save recsound wow.wav","",0,0)
+CALLDLL32("mciSendString","winmm.dll","close recsound","",0,0)
+Return Nil
+
+
+return
+
+INIT PROCEDURE Init_SOUNDSAMPLE
+SS_ON()
+SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnOpen )",13,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",16,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",17,19)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnPlay )",20,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",23,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",24,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnPause )",27,29)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",31,33)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnClose )",34,36)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",38,40)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnResume )",41,43)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",44,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",45,47)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnRecord )",48,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",52,54)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnSave )",55,57)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",59,61)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblPlayer )",62,63)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",64,68)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblRecorder )",69,70)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",71,75)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",76,77)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",78,79)
+SS_ESASTEP("Circuits\Main\Main\Main","Sound Procedures",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myopen",80,80)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'open 'test.mp3' type mpegvideo alias M",81,81)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",82,82)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myplay",83,83)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'play MediaFile',nil,0,0",84,84)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mypause",86,86)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'pause MediaFile',nil,0,0",87,87)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",88,88)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose",89,89)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'close MediaFile',nil,0,0",90,90)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",91,91)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myresume",92,92)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'resume MediaFile',nil,0,0",93,93)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",94,94)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myrecord",95,95)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'open new Type waveaudio Alias recsound','',0,0",96,96)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'record recsound','',0,0",97,97)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",98,98)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mysave",99,99)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'save recsound wow.wav','',0,0",100,100)
+SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'close recsound','',0,0",101,101)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",102,102)
+Return
