@@ -1,0 +1,29 @@
+DEFINE CLASS TR_TEXTBOX AS TextBox
+PROCEDURE LOSTFOCUS
+APPLICATION.ActiveForm.REFRESH
+RETURN
+PROCEDURE rightclick
+DEFINE POPUP mencontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF mencontex PROMPT  sysmsg(1508)
+DEFINE BAR 2 OF mencontex PROMPT  sysmsg(1509)
+ON SELECTION BAR 1 OF mencontex _selec=1
+ON SELECTION BAR 2 OF mencontex _selec=2
+_selec=0
+ACTIVATE POPUP mencontex
+DO case
+   CASE _selec = 1 
+   mycolor = GETCOLOR()
+   myg = INT(BITand(mycolor,RGB(0,255,0))/256) 
+   myr = INT(BITand(mycolor,RGB(255,0,0))) 
+   myb = INT(BITand(mycolor,RGB(0,0,255))/(256*256)) 
+   this.value = "{"+ALLTRIM(STR(myr)) + ;
+   "," + ALLTRIM(STR(myg)) + "," + ALLTRIM(STR(myb)) + "}"
+   CASE _selec = 2
+   myfont = GETFONT()
+   IF .not. EMPTY(myfont)
+      x = AT(",",myfont)
+      this.value = '"' + SUBSTR(myfont,1,x-1) + '"'
+   ENDIF
+ENDCASE
+RETURN
+ENDDEFINE
