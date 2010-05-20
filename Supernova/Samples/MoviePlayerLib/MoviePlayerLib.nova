@@ -1,0 +1,83 @@
+Procedure MyMovieOpen.
+
+	:note: " [input] = filename.avi  [input2] = Alias  [input3] = window handle"
+
+	"(winmm.dll)" Dll Library to use
+
+	[temparray]. = (4).
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(open ")[input](" type AVIvideo  alias ) [input2] ( style child parent ) [input3]'
+	[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(0)'
+	[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(128)'
+	[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+	"mciSendString" dll function to call with parameters "temparray"
+
+end procedure
+
+Procedure MyMoviePlay.
+
+	:note: " [input] = Alias  [input2] = movie region entered as left top width height"
+
+	"(winmm.dll)" Dll Library to use
+
+	[temparray]. = (4).
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(put ) [input] ( window client at ) [input2]'
+	[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(0)'
+	[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(128)'
+	[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+	"mciSendString" dll function to call with parameters "temparray"
+
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(play ) [input]'
+	"mciSendString" dll function to call with parameters "temparray"
+
+End procedure
+
+Procedure MyMoviePause.
+
+	:note: " [input] = Alias "
+
+	"(winmm.dll)" Dll Library to use
+
+	[temparray]. = (4).
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(pause ) [input]'
+	[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(0)'
+	[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(128)'
+	[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+	"mciSendString" dll function to call with parameters "temparray"
+
+End procedure
+
+Procedure MyMovieResume.
+
+	:note: " [input] = Alias "
+
+	"(winmm.dll)" Dll Library to use
+
+	[temparray]. = (4).
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(resume ) [input]'
+	[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(0)'
+	[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(128)'
+	[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+	"mciSendString" dll function to call with parameters "temparray"
+
+
+End procedure
+
+Procedure MyMovieClose.
+
+	:note: " [input] = Alias "
+
+	"(winmm.dll)" Dll Library to use
+
+	[temparray]. = (4).
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(close ) [input]'
+	[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(0)'
+	[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(128)'
+	[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+	"mciSendString" dll function to call with parameters "temparray"
+
+End procedure

@@ -1,0 +1,90 @@
+The application title is "Delivery2"
+Set window auto show off
+Set window resize off
+
+[myarray]. = (3).
+[myarray]\(1). = (Tea).
+[myarray]\(2). = (Cafe).
+[myarray]\(3). = (Sandwich).
+
+I want window and the window title is "Delivery"
+Window width = 730. and window height = 530.
+
+I want label 
+The label width is 700. and label height is 120.
+The label font size is 20. 
+The label back color = white.
+The label caption is 
+"	
+	What do you want ?
+"
+
+I want label and label top is 140.
+label caption is Title :.
+label font name is "arial"
+label font size is "14"
+
+I want textbox
+textbox left is 80.
+textbox top is 140.
+textbox width is 500.
+textbox font name is arial.
+textbox font size is 14.
+textbox name is text1.
+
+I want listbox and listbox top is 180.
+Listbox width is 700. and listbox height is 250.
+The listbox font name is arial.
+The listbox font size is 14.
+
+[x]. = (1). and do while [x] <= [myarray].
+The listbox must add from [myarray]\[x].
+[x]. = [x] + (1).
+end while
+
+I want button and the button top is 450.
+The button left is 240. and button caption = "Ok"
+The button name is btn1.
+The button back color is white.
+
+I want button and the button top is 450.
+The button left is 360. and button caption = "Close"
+The button name is btnclose.
+The button fore color is white.
+The button back color is red.
+btnclose mouseclick. instructions are you close application ok
+
+listbox value is 1.
+
+You centre window and You show window
+
+btn1 mouseclick. instructions are
+	The listbox value to [x].
+	do if not [x] == (0).
+		"(
+			Delivery Application 
+-------------------------------------------------------------------
+Date  :) thedate  (
+Time  :) thetime  (
+Month :) themonth (
+Day   :) theday   (
+Item  :---------------> ) [myarray]\[x] (
+-------------------------------------------------------------------)"
+		memory to file "(delivery.txt)"
+		execute file "delivery.txt"
+	end if
+end of instructions
+
+text1 change. instructions are
+	textbox value to [mystr].
+	[mystr]. = lower [mystr].
+	[x]. = (1). 
+	do while [x] <= [myarray].
+		[myitem]. = lower [myarray]\[x].
+		[check]. = [mystr] at [myitem].
+		do if not [check] == (0).
+			listbox value from [x].
+		end if
+		[x]. = [x] + (1).
+	end while
+end of instructions

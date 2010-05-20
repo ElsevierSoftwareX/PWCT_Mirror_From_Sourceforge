@@ -1,0 +1,22 @@
+I want window and the window title is COM Test.
+I want button and button caption is Open Word Application. button width = 150.
+button name = btn1.
+I want button and button caption is Hide Word.
+button name = btn2. and button left = 200.
+I want button and button caption is Show Word.
+button name = btn3. and button left = 350.
+
+procedure btn1 mouse click.
+	[myobj]. COM Object to create of type "(Word.Application)"
+	[myobj]. COM Object to use
+	"(Documents:Add)" COM method to call with parameters nothing.
+	(visible). COM Property to set (1).
+endprocedure
+
+procedure btn2 mouse click.
+	[myobj]. COM Object to use and (visible). COM Property to set (0).
+endprocedure
+
+procedure btn3 mouse click.
+	[myobj]. COM Object to use and (visible). COM Property to set (1).
+endprocedure
