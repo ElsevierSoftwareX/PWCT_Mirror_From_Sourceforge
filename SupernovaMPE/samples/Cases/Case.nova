@@ -1,0 +1,42 @@
+:note: "application settings"
+set window auto show off
+set label transparent on
+The application title is "Case Sample"
+:note: "application window"
+I want window and the window title is "Counter Sensitive to number 3"
+window width = 370. and window height = 360.
+
+:note: "window controls"
+i want label and label caption is "From"
+i want textbox and textbox left is 50. and the textbox name is text1.
+the textbox value is 1.
+i want label and label caption is "To" and the label top is 50.
+i want textbox and textbox left is 50. and the textbox name is text2.
+the textbox value is 10.
+the textbox top is 50.
+i want listbox and listbox top is 100.
+i want button and button caption is "Count Forward"
+the button top is 100. and the button left is 230.
+the button name is btn1.
+
+:note: "application task"
+btn1 mouseclick. instructions are
+	i want counter 
+	text1. textbox selected and textbox value to [num1].
+	text2. textbox selected and textbox value to [num2].
+	get the counter start from [num1].
+	get the counter end from [num2].
+	the counter step is 1.
+	the counter name is mycount1.
+	you use counter 
+	mycount1 change. instructions are
+		counter value to [myvalue]. 
+		listbox must add from [myvalue].
+		[mytest]. = [myvalue] isequal (3).
+		mytest true. instructions are
+			listbox must add item "this is number three"
+		end of instructions
+	end of instructions
+end of instructions
+
+You Show Window

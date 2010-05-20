@@ -1,0 +1,21 @@
+Application title = Recursive.
+
+I want window contains textbox and window title = Recursive.
+Window height = 130.
+
+I want label and label top is 50.
+
+I want button and button name is btn1. and button left = 300.
+button caption = DoFunction. and button width = 150.
+btn1 mouseclick. instructions are
+	textbox value to [input].
+	label caption from do function (myfunc). 
+end of instructions
+
+function myfunc.
+	[output]. = [output] x [input].
+	[input]. = [input] - (1).
+	do if [input] > (1).
+		do function myfunc.
+	end if
+end function
