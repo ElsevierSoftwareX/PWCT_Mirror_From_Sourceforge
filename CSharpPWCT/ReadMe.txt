@@ -18,9 +18,11 @@ Components in this project are classified into three types :-
  		RPWI Components inside CSharpPWCT Package
 -------------------------------------------------------------------
 Index		Type		Name		    Files	
-1)		Pure           p Using   	ISF,IDF & TRF	
-2)		Common         c Using   	ISF,IDF & TRF	
-3)		Quick	       q Using		TRF Only
+1)		Pure            Using 	  	ISF,IDF & TRF	
+2)		Common          c Using   	ISF,IDF & TRF	
+3)		Quick	        q Using		TRF Only
+4)		Pure		Namespace	ISF,IDF & TRF
+5)		Pure		Class		ISF,IDF & TRF
 -------------------------------------------------------------------
 
 
