@@ -1,0 +1,55 @@
+set window resize off
+set window auto show off
+
+i want window contains editbox
+the window title is Format CSharp Code.
+the window back color is purple.
+
+i want button and the button caption is "Get Source File"
+the button top is 450. and the button left is 20.
+the button width is 300. and the button name is btn1.
+the button back color is white.
+
+window width = 700. window height = 530.
+editbox width = 660. editbox height = 420.
+
+Btn1 MouseClick. instructions are
+editbox value is .
+[myfile]. file to open
+[myfile]. file to memory [x].
+[TABCOUNT]. = (0).
+[lineend]. = (
+).
+	[mymax]. = len [x].
+	[myline]. = .
+	[y]. = (1). 
+	do while [y] <= [mymax].
+		[myadd]. = [y] inside [x].
+		[myline]. = [myline] [myadd].
+		[mycheck]. = (2) right [myline].
+		do if  [mycheck] == [lineend] or [y] == [mymax].
+			[mycheck]. = alltrim [myline].
+			[mycheck]. = (1) left [mycheck].
+			do if  [mycheck] == (}).
+				[TABCOUNT]. = [TABCOUNT] - (1).
+			end if
+			[T]. = [TABCOUNT].
+			Do While [T] > (0).
+				[MYLINE]. = (          ) [MYLINE].
+				[T]. = [T] - (1).
+			End While
+			EDITBOX value to [tvalue].
+			[tvalue]. = [tvalue] [myline].
+			editbox value from [tvalue].			
+			do if  [mycheck] == ({).
+				[TABCOUNT]. = [TABCOUNT] + (1).
+			end if
+			[myline]. = .
+		end if
+		[y]. = [y] + (1).
+	end while
+editbox value to [myresult].
+[myresult]. memory to file [myfile].
+end of instructions
+
+you show window and you centre window
