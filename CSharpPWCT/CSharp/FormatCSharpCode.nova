@@ -13,7 +13,7 @@ the button back color is white.
 window width = 700. window height = 530.
 editbox width = 660. editbox height = 420.
 
-Btn1 MouseClick. instructions are
+procedure Btn1 MouseClick.
 editbox value is .
 [myfile]. file to open
 [myfile]. file to memory [x].
@@ -23,33 +23,33 @@ editbox value is .
 	[mymax]. = len [x].
 	[myline]. = .
 	[y]. = (1). 
-	do while [y] <= [mymax].
+	dowhile [y] <= [mymax].
 		[myadd]. = [y] inside [x].
 		[myline]. = [myline] [myadd].
 		[mycheck]. = (2) right [myline].
-		do if  [mycheck] == [lineend] or [y] == [mymax].
+		doif  [mycheck] == [lineend] or [y] == [mymax].
 			[mycheck]. = alltrim [myline].
 			[mycheck]. = (1) left [mycheck].
-			do if  [mycheck] == (}).
+			doif  [mycheck] == (}).
 				[TABCOUNT]. = [TABCOUNT] - (1).
-			end if
+			endif
 			[T]. = [TABCOUNT].
-			Do While [T] > (0).
+			DoWhile [T] > (0).
 				[MYLINE]. = (          ) [MYLINE].
 				[T]. = [T] - (1).
-			End While
+			EndWhile
 			EDITBOX value to [tvalue].
 			[tvalue]. = [tvalue] [myline].
 			editbox value from [tvalue].			
-			do if  [mycheck] == ({).
+			doif  [mycheck] == ({).
 				[TABCOUNT]. = [TABCOUNT] + (1).
-			end if
+			endif
 			[myline]. = .
-		end if
+		endif
 		[y]. = [y] + (1).
-	end while
+	endwhile
 editbox value to [myresult].
 [myresult]. memory to file [myfile].
-end of instructions
+endprocedure
 
 you show window and you centre window
