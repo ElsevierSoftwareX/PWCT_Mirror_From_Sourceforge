@@ -1,1 +1,1 @@
-mybuild DoWhileLoop
+..\..\batch\mybuild.bat DoWhileLoop

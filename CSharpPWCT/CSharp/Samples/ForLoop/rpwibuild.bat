@@ -1,1 +1,1 @@
-mybuild ForLoop
+..\..\batch\mybuild.bat ForLoop

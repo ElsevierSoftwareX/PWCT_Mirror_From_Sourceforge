@@ -1,1 +1,1 @@
-mybuild.bat HelloWorld
+..\..\batch\mybuild.bat HelloWorld

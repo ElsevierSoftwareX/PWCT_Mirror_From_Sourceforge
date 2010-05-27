@@ -1,1 +1,1 @@
-mybuild ContinueTest
+..\..\batch\mybuild.bat ContinueTest

@@ -1,1 +1,1 @@
-mybuild Addition
+..\..\batch\mybuild.bat Addition

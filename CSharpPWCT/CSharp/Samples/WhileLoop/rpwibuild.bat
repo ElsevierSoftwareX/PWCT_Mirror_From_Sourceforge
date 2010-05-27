@@ -1,1 +1,1 @@
-mybuild WhileLoop
+..\..\batch\mybuild.bat WhileLoop

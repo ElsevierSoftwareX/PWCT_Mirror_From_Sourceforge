@@ -1,1 +1,1 @@
-mybuild grade
+..\..\batch\mybuild.bat grade

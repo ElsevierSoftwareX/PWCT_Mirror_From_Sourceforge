@@ -1,1 +1,1 @@
-mybuild BreakTest
+..\..\batch\mybuild.bat BreakTest

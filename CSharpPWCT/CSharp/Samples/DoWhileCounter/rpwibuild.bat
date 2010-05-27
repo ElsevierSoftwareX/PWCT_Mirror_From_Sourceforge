@@ -1,1 +1,1 @@
-mybuild DoWhileCounter
+..\..\batch\mybuild.bat DoWhileCounter

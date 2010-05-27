@@ -1,1 +1,1 @@
-mybuild Welcome
+..\..\batch\mybuild.bat Welcome
