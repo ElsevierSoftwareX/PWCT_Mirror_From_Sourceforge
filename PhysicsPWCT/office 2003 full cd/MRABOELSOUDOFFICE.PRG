@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:02:23    Date : 05/28/2010
+* Time : 14:52:56    Date : 05/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -249,35 +249,35 @@ FONTCOLOR {0,0,0}
 @ 397 ,58 TEXTBOX text1;
 HEIGHT 37 ;
 WIDTH 96 ;
-VALUE "GWH28" ;
+VALUE "" ;
 FONT "Arial" SIZE 18 ;
 BACKCOLOR {255,198,198} ;
 FONTCOLOR {255,0,128}
 @ 397 ,157 TEXTBOX text2;
 HEIGHT 37 ;
 WIDTH 96 ;
-VALUE "DGCMP" ;
+VALUE "" ;
 FONT "Arial" SIZE 17 ;
 BACKCOLOR {255,198,198} ;
 FONTCOLOR {0,0,255}
 @ 397 ,256 TEXTBOX text3;
 HEIGHT 37 ;
 WIDTH 96 ;
-VALUE "P6RC4" ;
+VALUE "" ;
 FONT "Arial" SIZE 18 ;
 BACKCOLOR {255,198,198} ;
 FONTCOLOR {185,92,0}
 @ 397 ,355 TEXTBOX text4;
 HEIGHT 37 ;
 WIDTH 96 ;
-VALUE "6J4MT" ;
+VALUE "" ;
 FONT "Arial" SIZE 18 ;
 BACKCOLOR {255,198,198} ;
 FONTCOLOR {128,0,255}
 @ 397 ,454 TEXTBOX text5;
 HEIGHT 37 ;
 WIDTH 96 ;
-VALUE "3HFDY" ;
+VALUE "" ;
 FONT "Arial" SIZE 18 ;
 BACKCOLOR {255,198,198} ;
 FONTCOLOR {53,106,106}
