@@ -1,0 +1,334 @@
+#line 54 "c:\SSBUILD\minigui\include\i_var.ch"
+  MEMVAR _HMG_SYSDATA
+  MEMVAR _HMG_SCRSAVERDATA
+#line 109 "c:\SSBUILD\xharbour\include\hbclass.ch"
+   DYNAMIC DivertConstructorCall
+
+
+
+
+
+
+
+
+
+
+
+DECLARE HBClass  New( cName AS String, OPTIONAL SuperParams ) AS CLASS HBClass  Create() AS Object  Instance() AS Object  AddClsMethod( cName AS String, @MethodName(), nScope AS Numeric, n2 AS Numeric, n3 AS Numeric )  AddMultiClsData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String )  AddMultiData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String, x AS LOGICAL, lPer AS LOGICAL )  AddMethod( cName AS String, @MethodName(), nScope AS Numeric, lPersistent AS LOGICAL )  AddInLine( cName AS String, bBlock AS CodeBlock, nScope AS Numeric, lPersistent AS LOGICAL )  AddVirtual( cName AS String )
+#line 4 "TELEPHONENOTE.prg"
+Function Main
+
+
+
+
+
+
+
+
+
+
+
+
+
+Public True,False
+True = .T.
+False = .F.
+SS_NEWSERVER("Server1","Slave","000")
+
+
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+    SS_FLAG3 = 1 ; SS_FLAG = 1 ; SS_FLAG2 = 1
+    SS_FLAG = 4 ; SS_FLAG2 = 3 ; SS_FLAG3 = 2
+            SS_NEWCIRCUIT( "Main" )
+                SS_NEWBRANCH( "Main" )
+                    SS_NRESIS( "Main" )
+    SS_FLAG3 = 3
+
+
+    SS_NEWR( "WIN32EVENTS()" , "WIN32EVENTS" )
+
+  SS_ADDRES("WIN32EVENTS")
+
+
+SS_NEWR( "R3081896592_1()" , "Circuits\Main\Main\Main" )
+
+
+ss_callr( "Circuits\Main\Main\Main" )
+Return
+
+  FUNCTION STARTSERVER()
+       SS_FIREON()
+  RETURN
+
+  function WIN32EVENTS()
+       ProcessMessages()
+  RETURN
+
+
+function R3081896592_1()
+
+
+
+
+
+
+
+
+
+
+
+ _DefineWindow ( "phone", "Telephone Note", 10, 10, 637, 391, .F., .T., .T., .F., .F., {,}, {,}, {|| opendb()}, ,, , ,, {255,128,64} , , .F. , .F. , .T. , "PWCTICON" , .F. , ,, "MrAbOeLsOuD/MRABN.ICO" , , ,, , , , , , , , , , .F. , , , , .F. , , , , , .F. , .F. )
+
+DoMethod ( "phone", "Center" )
+TRANS_TEMP = "tel"
+
+
+
+
+
+
+
+
+
+
+
+
+
+_DefineBrowse ( "browse1" , , 3 , 105 , 618 , 204 , {"Name","Adress","Telephone","Age","Mobile"} , {170,170,100,50,100} , {"tel->name","tel->telephone","tel->adress","tel->age","tel->mobile"} , , "Arial" , 11 , , , , , ,, TRANS_TEMP , .F., .F. , "" , , , .T. , .F. , .F. , .F. , .F. , {255,255,255} , {82,0,164} , .F. , .T. , .F. , .F. , , , , .T. , , ,,,, .F. , , )
+
+
+
+
+
+
+
+
+
+
+
+_DefineOwnerButton ( "btn1add",, 491, 313, "Add", {|| myadd()}, 130, 30, "MrAbOeLsOuD/ADD.BMP", "ÇÖÛØ áÇÖÇÝÉ ÚäÕÑ ÌÏíÏ",,, .F., .F.,, .F., .F., .F.,, "Tahoma", 18, .T., .F., .F., .F., .F., .T., .F., {236,233,216}, {0,98,49}, .F., .F., .F. )
+
+
+
+
+
+
+
+
+
+
+_DefineOwnerButton ( "btn2del",, 234, 313, "Delete", {|| mydel()}, 130, 30, "MrAbOeLsOuD/DEL.BMP", "ÇÖÛØ áÇÖÇÝÉ áÍÐÝ ÚäÕÑ",,, .F., .F.,, .F., .F., .F.,, "Tahoma", 18, .T., .F., .F., .F., .F., .T., .F., {236,233,216}, {255,0,128}, .F., .F., .F. )
+
+
+
+
+
+
+
+
+
+
+_DefineOwnerButton ( "btn3Close",, 3, 313, "Close", {|| myclose()}, 130, 30, "MrAbOeLsOuD/CLOSE.BMP", "ÇÖÛØ áÇÖÇÝÉ áÇÛáÇÞ ÇáäÇÝÐÉ",,, .F., .F.,, .F., .F., .F.,, "Arial", 18, .T., .F., .F., .F., .F., .T., .F., {236,233,216}, {255,0,0}, .F., .F., .F. )
+
+
+
+
+
+
+
+_BeginToolBar ( "Toolbar1",, , , 310, 45,,, "Arial", 18 , , .T. , .F. , .F. , .T. , .T., .F., .F., .F. , .T. )
+
+
+
+
+
+
+_DefineToolButton ( "toolbarbtn1", _HMG_SYSDATA[27], , , "Add Data" , {|| myadd()} , , , "MrAbOeLsOuD/ADD.BMP" , "" , , , .F. , .T. , .F. , .F. , .F. , .F. , .F. , .F., -1 )
+
+
+
+
+
+
+_DefineToolButton ( "toolbarbtn2", _HMG_SYSDATA[27], , , "Delete Data" , {|| mydel()} , , , "MrAbOeLsOuD/DEL.BMP" , "" , , , .F. , .T. , .F. , .F. , .F. , .F. , .F. , .F., -1 )
+
+_EndToolBar ()
+
+_DefineContextMenu( "phone" )
+_NewMenuStyle ( .T. )
+_DefineMenuItem ( "Add Data" , {|| MYADD()} , , "MrAbOeLsOuD/ADD.BMP" , .F. , .F. ,,, )
+_DefineSeparator ()
+_DefineMenuItem ( "Delete Data" , {|| MYdel()} , , "MrAbOeLsOuD/del.BMP" , .F. , .F. ,,, )
+_DefineSeparator ()
+_DefineMenuItem ( "Designer" , {|| MSGINFO( "ÈÑãÌÉ Ã/ÃÈæÇáÓÚæÏ ÚÈÏÇáÑÄÝ" )} , , , .F. , .F. ,,, )
+_DefineSeparator ()
+_DefineMenuItem ( "Exit" , {|| MYclose()} , , "MrAbOeLsOuD/close.BMP" , .F. , .F. ,,, )
+_EndMenu()
+
+
+
+
+
+
+
+_DefineLabel ( "lbl1PHONE",, 202, 77, "ÈÑãÌÉ Ã/ÃÈæÇáÓÚæÏ ÚÈÏ ÇáÑÄÝ", 205, 23, "Arial" , 16 , .F., .F. , .F. , .F. , .F. , .T. , {236,233,216}, {255,255,255},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+_EndWindow ()
+
+_ActivateWindow( {"phone"}, .F. )
+
+Proc myadd
+SS_SAREA( "tel" )
+dbAppend()
+myrec := Recno()
+SetProperty ( "phone", "browse1" , "Value" , myrec )
+Domethod ( "phone", "browse1" , "SetFocus" )
+Return Nil
+Proc mydel
+SS_SAREA( "tel" )
+myrec := GetProperty ( "phone", "browse1" , "Value" )
+dbGoto(myrec)
+dbDelete()
+__dbPack()
+myrec := myrec -1
+SetProperty ( "phone", "browse1" , "Value" , myrec )
+Domethod ( "phone", "browse1" , "Refresh" )
+Return Nil
+Proc opendb
+CheckFile := File("tel.dbf")
+IF CheckFile = false
+__dbCreate( "TempStru",,, .F.,,,)
+dbAppend()
+
+
+
+_FIELD->Field_name := "name" ; _FIELD->Field_type := "c" ; _FIELD->Field_len := 50 ; _FIELD->Field_dec := 0
+dbAppend()
+
+
+
+_FIELD->Field_name := "adress" ; _FIELD->Field_type := "c" ; _FIELD->Field_len := 50 ; _FIELD->Field_dec := 0
+dbAppend()
+
+
+
+_FIELD->Field_name := "telephone" ; _FIELD->Field_type := "c" ; _FIELD->Field_len := 50 ; _FIELD->Field_dec := 0
+dbAppend()
+
+
+
+_FIELD->Field_name := "age" ; _FIELD->Field_type := "c" ; _FIELD->Field_len := 50 ; _FIELD->Field_dec := 0
+dbAppend()
+
+
+
+_FIELD->Field_name := "mobile" ; _FIELD->Field_type := "c" ; _FIELD->Field_len := 50 ; _FIELD->Field_dec := 0
+dbCloseArea()
+__dbCreate( "tel", "TempStru",, .F.,,,)
+ENDIF
+dbUseArea( .F.,, "tel",, if(.F. .OR. .F., !.F., NIL), .F.,, )
+Return Nil
+Proc myclose
+DoMethod ( "phone", "Release" )
+Return Nil
+Proc designed
+Return Nil
+
+
+return
+
+INIT PROCEDURE Init_TELEPHONENOTE
+SS_ON()
+SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( phone )",1,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",5,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
+SS_ESASTEP("Circuits\Main\Main\Main","phone.Center ( )",14,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Browse ( browse1 )",15,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Browse Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Browse Properties",28,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1add )",31,36)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",38,41)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2del )",42,47)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",48,48)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",49,52)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3Close )",53,58)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",60,63)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Toolbar ( Toolbar1 )",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",65,72)
+SS_ESASTEP("Circuits\Main\Main\Main","Buttons",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Button ( toolbarbtn1 )",73,75)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",76,76)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",77,79)
+SS_ESASTEP("Circuits\Main\Main\Main","Button ( toolbarbtn2 )",80,82)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",83,83)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",84,86)
+SS_ESASTEP("Circuits\Main\Main\Main","End Toolbar",87,88)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Context Menu Of Parent Window : phone",89,89)
+SS_ESASTEP("Circuits\Main\Main\Main","Menu Items",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Set Menu Style EXTENDED",90,90)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Add Data' )  IMAGE 'MrAbOeLsOuD/ADD.BMP'    SEPARATOR",91,92)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Delete Data' )  IMAGE 'MrAbOeLsOuD/del.BMP'    SEPARATOR",93,94)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Designer' )      SEPARATOR",95,96)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Exit' )  IMAGE 'MrAbOeLsOuD/close.BMP'",97,97)
+SS_ESASTEP("Circuits\Main\Main\Main","End of menu",98,98)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1PHONE )",99,100)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",101,106)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",107,108)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",109,110)
+SS_ESASTEP("Circuits\Main\Main\Main","procedure",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myadd",111,111)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Select Area tel",112,112)
+SS_ESASTEP("Circuits\Main\Main\Main","Add New Record",113,113)
+SS_ESASTEP("Circuits\Main\Main\Main","myrec = Get Record Number",114,114)
+SS_ESASTEP("Circuits\Main\Main\Main","phone.browse1.Value := myrec",115,115)
+SS_ESASTEP("Circuits\Main\Main\Main","phone.browse1.SetFocus ( )",116,116)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",117,117)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydel",118,118)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Select Area tel",119,119)
+SS_ESASTEP("Circuits\Main\Main\Main","myrec = phone.browse1.Value",120,120)
+SS_ESASTEP("Circuits\Main\Main\Main","Goto Record Number myrec",121,121)
+SS_ESASTEP("Circuits\Main\Main\Main","Delete Record (Mark for deletion)",122,122)
+SS_ESASTEP("Circuits\Main\Main\Main","Pack",123,123)
+SS_ESASTEP("Circuits\Main\Main\Main","myrec = myrec -1",124,124)
+SS_ESASTEP("Circuits\Main\Main\Main","phone.browse1.Value := myrec",125,125)
+SS_ESASTEP("Circuits\Main\Main\Main","phone.browse1.Refresh ( )",126,126)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",127,127)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure opendb",128,128)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File 'tel.dbf'",129,129)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( CheckFile = false )",130,130)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Table 'tel'",131,131)
+SS_ESASTEP("Circuits\Main\Main\Main","Table Fields",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Field 'name'",132,136)
+SS_ESASTEP("Circuits\Main\Main\Main","Field 'adress'",137,141)
+SS_ESASTEP("Circuits\Main\Main\Main","Field 'telephone'",142,146)
+SS_ESASTEP("Circuits\Main\Main\Main","Field 'age'",147,151)
+SS_ESASTEP("Circuits\Main\Main\Main","Field 'mobile'",152,156)
+SS_ESASTEP("Circuits\Main\Main\Main","Create Table",157,158)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",159,159)
+SS_ESASTEP("Circuits\Main\Main\Main","Open Table tel",160,160)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",161,161)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose",162,162)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","phone.Release ( )",163,163)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",164,164)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure designed",165,165)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",166,166)
+Return
