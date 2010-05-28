@@ -1,1 +1,1 @@
-CALL sscom2.bat  "SOUNDSAMPLE"  /X  /l calldll  > _temp.txt
+CALL sscom2.bat  "SOUNDSAMPLE"  /X /l calldll  > _temp.txt
