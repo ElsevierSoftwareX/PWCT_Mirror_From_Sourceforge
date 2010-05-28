@@ -1,0 +1,1 @@
+..\..\Batch\MyBuild.bat GotoTest
