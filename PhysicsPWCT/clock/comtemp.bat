@@ -1,0 +1,1 @@
+CALL sscom2.bat  "PWCT CLOCK"  /X  > _temp.txt

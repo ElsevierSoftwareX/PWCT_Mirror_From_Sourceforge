@@ -1,0 +1,154 @@
+#line 54 "c:\SSBUILD\minigui\include\i_var.ch"
+  MEMVAR _HMG_SYSDATA
+  MEMVAR _HMG_SCRSAVERDATA
+#line 109 "c:\SSBUILD\xharbour\include\hbclass.ch"
+   DYNAMIC DivertConstructorCall
+
+
+
+
+
+
+
+
+
+
+
+DECLARE HBClass  New( cName AS String, OPTIONAL SuperParams ) AS CLASS HBClass  Create() AS Object  Instance() AS Object  AddClsMethod( cName AS String, @MethodName(), nScope AS Numeric, n2 AS Numeric, n3 AS Numeric )  AddMultiClsData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String )  AddMultiData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String, x AS LOGICAL, lPer AS LOGICAL )  AddMethod( cName AS String, @MethodName(), nScope AS Numeric, lPersistent AS LOGICAL )  AddInLine( cName AS String, bBlock AS CodeBlock, nScope AS Numeric, lPersistent AS LOGICAL )  AddVirtual( cName AS String )
+#line 4 "PWCT CLOCK.prg"
+Function Main
+
+
+
+
+
+
+
+
+
+
+
+
+
+Public True,False
+True = .T.
+False = .F.
+SS_NEWSERVER("Server1","Slave","000")
+
+
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+    SS_FLAG3 = 1 ; SS_FLAG = 1 ; SS_FLAG2 = 1
+    SS_FLAG = 4 ; SS_FLAG2 = 3 ; SS_FLAG3 = 2
+            SS_NEWCIRCUIT( "Main" )
+                SS_NEWBRANCH( "Main" )
+                    SS_NRESIS( "Main" )
+    SS_FLAG3 = 3
+
+
+    SS_NEWR( "WIN32EVENTS()" , "WIN32EVENTS" )
+
+  SS_ADDRES("WIN32EVENTS")
+
+
+SS_NEWR( "R3367408220_1()" , "Circuits\Main\Main\Main" )
+
+
+ss_callr( "Circuits\Main\Main\Main" )
+Return
+
+  FUNCTION STARTSERVER()
+       SS_FIREON()
+  RETURN
+
+  function WIN32EVENTS()
+       ProcessMessages()
+  RETURN
+
+
+function R3367408220_1()
+
+
+
+
+
+
+
+
+
+ _DefineWindow ( "winclock", "PWCT Clock", 10, 10, 539, 223, .F., .T., .T., .F., .F., {,}, {,},, ,, , ,, {255,128,0} , , .F. , .F. , .T. , "PWCTICON" , .F. , ,, , , ,, , , , , , , , , , .F. , , , , .F. , , , , , .F. , .F. )
+
+DoMethod ( "winclock", "Center" )
+
+
+
+
+
+
+
+
+
+
+_DefineTextBox( "text1",, 2, 4, 522, 156,, "Arial", 85, "«·Êﬁ  «·¬‰",, .T., .F., .F., .F.,,,,, .F.,, .T. ,.T., .F., .F., .F. , , {255,255,255} , {215,0,215} , .F. , .T. ,)
+
+_DefineTimer ( "Timer1" , ,1000 , {|| clock()} )
+
+_BeginMessageBar( "StatusBar",, .F.,,, .T., .F., .F., .F. )
+
+
+_DefineItemMessage( "STATUSITEM", , 0, 0, Dtoc(Date()),, if ( .T. == .F. , if ( lower ( left ( set ( 4 ) , 4 ) ) == "yyyy" .OR. lower ( right ( set ( 4 ) , 4 ) ) == "yyyy", 84 , 70 ) , 100 ) , 0, "",)
+
+
+
+_SetStatusClock( _HMG_SYSDATA[201] , _HMG_SYSDATA[33] , 100 , , , .T. )
+
+
+_SetStatusKeybrd( _HMG_SYSDATA[201] , _HMG_SYSDATA[33] , 100 , , )
+
+_EndMessageBar ()
+
+_EndWindow ()
+
+_ActivateWindow( {"winclock"}, .F. )
+
+Proc clock
+mrabn = TIME()
+SetProperty ( "winclock", "text1" , "Value" , mrabn )
+Return Nil
+
+
+return
+
+INIT PROCEDURE Init_PWCT_CLOCK
+SS_ON()
+SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( winclock )",1,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,11)
+SS_ESASTEP("Circuits\Main\Main\Main","winclock.Center ( )",12,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",13,13)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",14,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",24,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Statusbar",26,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Items",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Date",29,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Clock",32,33)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",34,35)
+SS_ESASTEP("Circuits\Main\Main\Main","Keyboard",36,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",39,40)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",41,42)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",43,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure clock",45,45)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","mrabn = System Time",46,46)
+SS_ESASTEP("Circuits\Main\Main\Main","winclock.text1.Value := mrabn",47,47)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",48,48)
+Return
