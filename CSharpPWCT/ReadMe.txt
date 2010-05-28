@@ -43,6 +43,9 @@
 	23)		Pure		For Each			ISF,IDF & TRF
 	24)		Pure		Code Label			ISF,IDF & TRF
 	25)		Pure		Goto Code Label			ISF,IDF & TRF
+	26)		Pure		Field (Class Attribute)		ISF,IDF & TRF
+	27)		Pure		Enumeration			ISF,IDF & TRF
+	28)		Pure		Enumeration Member		ISF,IDF & TRF
 ------------------------------------------------------------------------------------------
 		        Samples inside CSharpPWCT Package
 ------------------------------------------------------------------------------------------
@@ -62,5 +65,7 @@
 	13)		Call Method
 	14)		For Each
 	15)		Goto Test
+	16)		Mix1
+	17)		Enum Test
 ------------------------------------------------------------------------------------------
 
