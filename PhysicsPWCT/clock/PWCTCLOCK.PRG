@@ -1,7 +1,7 @@
 *---------------------------------------------------------------------------*
-* Time : 07:23:55    Date : 05/28/2010
+* Time : 22:20:07    Date : 05/28/2010
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.5 (Speed) [2006-2010]  
+* Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Programming Language    : Mahmoud Programming Language 
@@ -35,7 +35,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_PWCT_CLOCK_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_PWCTCLOCK_15speed1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +50,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_PWCT_CLOCK_15speed1() code
+Resistance R_PWCTCLOCK_15speed1() code
 DEFINE WINDOW winclock ;
 AT 10 ,10 ;
 WIDTH 539 ;
@@ -103,7 +103,7 @@ Return Nil
 
 End Of Resistance
 
-INIT PROCEDURE Init_PWCT_CLOCK
+INIT PROCEDURE Init_PWCTCLOCK
 START DOUBLES
 Return
 *-------------------------------------------------------------------*

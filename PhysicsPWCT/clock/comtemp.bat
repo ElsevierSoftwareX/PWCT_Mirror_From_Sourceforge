@@ -1,1 +1,1 @@
-CALL sscom2.bat  "PWCT CLOCK"  /X  > _temp.txt
+CALL sscom2.bat  "PWCTCLOCK"  /X /l calldll  > _temp.txt

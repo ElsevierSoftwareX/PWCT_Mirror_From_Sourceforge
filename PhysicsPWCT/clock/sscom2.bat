@@ -4,13 +4,16 @@ rem ===========================================================================
 rem
 rem Compile.bat
 rem
-rem Kevin Carmody - 2007.10.14
+rem Kevin Carmody - 2008.01.07
 rem
 rem Revised by Grigory Filatov
 rem
-rem Changes for Programming without coding technology by Mahmoud Fayed
 rem ===========================================================================
 
+rem If no parameters, display command syntax.
+if "%1"==""   goto SYNTAX
+if "%1"=="?"  goto SYNTAX
+if "%1"=="/?" goto SYNTAX
 goto PARPARSE
 
 :SYNTAX
@@ -119,14 +122,15 @@ goto PARPARSE
   set MV_ARG=
   rem Set default paths to BCC, Harbour, xHarbour, MiniGui
   if "%MG_CMP%"=="XHARBOUR" set MV_USEXHRB=Y
-  set MG_BCC=c:\SSBUILD\borland\bcc55
-  if "%MG_ROOT%"== "" set MG_ROOT=c:\SSBUILD\minigui
-  set MG_HRB=%MG_ROOT%\harbour
-  set MG_LIB=%MG_ROOT%\lib
-  if "%MG_XHRB%"== "" set MG_XHRB=c:\SSBUILD\xharbour
+  if "%MG_BCC%"==""  set MG_BCC=c:\ssbuild\borland\bcc55
+  if "%MG_ROOT%"=="" set MG_ROOT=c:\ssbuild\minigui
+  if "%MG_HRB%"==""  set MG_HRB=%MG_ROOT%\harbour
+  if "%MG_LIB%"==""  set MG_LIB=%MG_ROOT%\lib
+  if "%MG_XHRB%"=="" set MG_XHRB=c:\ssbuild\xharbour
+  if "%MG_XLIB%"=="" set MG_XLIB=%MG_ROOT%\xlib
   set MG_SSLIB=c:\SSBUILD\SSLIB\LIB
   set MG_XSSLIB=c:\SSBUILD\SSLIB\XLIB
-  set MG_XLIB=%MG_ROOT%\xlib
+
   rem Initialize local variables.
   if %MV_USEXHRB%==N set MV_HRB=%MG_HRB%
   if %MV_USEXHRB%==N set MV_LIB=%MG_LIB%
@@ -299,7 +303,12 @@ goto PARPARSE
   goto PARMORE
 
 :ZIPLIB
+  if %MV_USEXHRB%==Y goto XZIPLIB
   echo %MV_HRB%\lib\ziparchive.lib + >> _templib.rsp
+  goto PARMORE
+
+:XZIPLIB
+  echo %MV_HRB%\lib\hbzip.lib + >> _templib.rsp
   goto PARMORE
 
 :ADSLIB
@@ -384,7 +393,7 @@ goto PARPARSE
   echo Close it and compile again.
   echo.
   set MV_PAUSE=Y
-  goto end
+  goto END
 
 :COMPCHECK
   rem Check for compile options
@@ -395,39 +404,39 @@ goto PARPARSE
 
 :NCOMP
   rem Non-debug compile
-  if %MV_ERRFILE%==N %MV_HRB%\bin\harbour %MV_SRC%.prg -n  -i%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_ROOT%\include; %MV_SWITCH%
-  if %MV_ERRFILE%==Y %MV_HRB%\bin\harbour %MV_SRC%.prg -n  -i%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_ROOT%\include; %MV_SWITCH% >%MV_SRC%.err
+  if %MV_ERRFILE%==N %MV_HRB%\bin\harbour %MV_SRC%.prg -n -i%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_ROOT%\include; %MV_SWITCH%
+  if %MV_ERRFILE%==Y %MV_HRB%\bin\harbour %MV_SRC%.prg -n -w -i%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_ROOT%\include; %MV_SWITCH% >%MV_SRC%.err
   if not errorlevel 1 goto CCOMP
   echo.
   echo Compile error.
   echo.
   set MV_PAUSE=Y
-  goto end
+  goto END
 
 :DCOMP
   rem Debug compile
   echo OPTIONS NORUNATSTARTUP > init.cld
-  if %MV_ERRFILE%==N %MV_HRB%\bin\harbour %MV_SRC%.prg -n  -b -i%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_ROOT%\include; %MV_SWITCH%
-  if %MV_ERRFILE%==Y %MV_HRB%\bin\harbour %MV_SRC%.prg -n  -b -i%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_ROOT%\include; %MV_SWITCH% >%MV_SRC%.err
+  if %MV_ERRFILE%==N %MV_HRB%\bin\harbour %MV_SRC%.prg -n -b -i%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_ROOT%\include; %MV_SWITCH%
+  if %MV_ERRFILE%==Y %MV_HRB%\bin\harbour %MV_SRC%.prg -n -b -i%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_ROOT%\include; %MV_SWITCH% >%MV_SRC%.err
   if not errorlevel 1 goto CCOMP
   echo.
   echo Compile error.
   echo.
   set MV_PAUSE=Y
-  goto end
+  goto END
 
 :CCOMP
   rem BCC compile of Harbour output
   if %MV_DOCCOMP%==N goto CLEANUP
   if %MV_USETASM%==Y goto TASMCHECK
-  if %MV_ERRFILE%==N %MG_BCC%\bin\bcc32 -c -O2 -tW -M -I%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_BCC%\include; -L%MG_BCC%\lib; %MV_SRC%.c
-  if %MV_ERRFILE%==Y %MG_BCC%\bin\bcc32 -c -O2 -tW -M -I%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_BCC%\include; -L%MG_BCC%\lib; %MV_SRC%.c >>%MV_SRC%.err
+  if %MV_ERRFILE%==N %MG_BCC%\bin\bcc32 -c -O2 -tW -M -I%MV_HRB%\include;%MG_BCC%\include; -L%MG_BCC%\lib; %MV_SRC%.c
+  if %MV_ERRFILE%==Y %MG_BCC%\bin\bcc32 -c -O2 -tW -M -I%MV_HRB%\include;%MG_BCC%\include; -L%MG_BCC%\lib; %MV_SRC%.c >>%MV_SRC%.err
   if not errorlevel 1 goto RCCOMP
   echo.
   echo C compile error.
   echo.
   set MV_PAUSE=Y
-  goto end
+  goto END
 
 :TASMCHECK
   if exist %MG_BCC%\bin\tasm32.exe goto TCCOMP
@@ -439,14 +448,14 @@ goto PARPARSE
 
 :TCCOMP
   rem BCC compile with Turbo Assembler of Harbour output
-  if %MV_ERRFILE%==N %MG_BCC%\bin\bcc32 -c -O2 -tW -M -I%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_BCC%\include; -L%MG_BCC%\lib; -E%MG_BCC%\bin\tasm32.exe %MV_SRC%.c
-  if %MV_ERRFILE%==Y %MG_BCC%\bin\bcc32 -c -O2 -tW -M -I%MV_HRB%\include;c:\SSBUILD\sslib\include;%MG_BCC%\include; -L%MG_BCC%\lib; -E%MG_BCC%\bin\tasm32.exe %MV_SRC%.c >>%MV_SRC%.err
+  if %MV_ERRFILE%==N %MG_BCC%\bin\bcc32 -c -O2 -tW -M -I%MV_HRB%\include;%MG_BCC%\include; -L%MG_BCC%\lib; -E%MG_BCC%\bin\tasm32.exe %MV_SRC%.c
+  if %MV_ERRFILE%==Y %MG_BCC%\bin\bcc32 -c -O2 -tW -M -I%MV_HRB%\include;%MG_BCC%\include; -L%MG_BCC%\lib; -E%MG_BCC%\bin\tasm32.exe %MV_SRC%.c >>%MV_SRC%.err
   if not errorlevel 1 goto RCCOMP
   echo.
   echo C compile error.
   echo.
   set MV_PAUSE=Y
-  goto end
+  goto END
 
 :RCCOMP
   rem Call resource compiler if needed
@@ -458,7 +467,7 @@ goto PARPARSE
   echo Resource compile error.
   echo.
   set MV_PAUSE=Y
-  goto end
+  goto END
 
 :RSPCHECK
   rem Check for custom RSP file
@@ -474,7 +483,7 @@ goto PARPARSE
 :RSPSTART
   rem Constuct RSP file for link
   if exist _temp.rsp del _temp.rsp
-  echo c0w32.obj + > _temp.rsp
+  echo c0w32.obj + >> _temp.rsp
   echo %MV_SRC%.obj + >> _temp.rsp
   if exist _tempobj.rsp type _tempobj.rsp >> _temp.rsp
   echo , + >> _temp.rsp
@@ -496,34 +505,27 @@ goto PARPARSE
   rem Add to RSP file for Harbour GUI EXE
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
+  echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
   echo %MG_SSLIB%\taxprg.lib + >> _temp.rsp
-  echo %MV_LIB%\alleg.lib + >> _temp.rsp
-  echo %MV_LIB%\minigui.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\calldll.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
   goto HRSPREST
 
 :HCRSP
   rem Add to RSP file for Harbour console EXE
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
-  echo %MG_SSLIB%\taxprg.lib + >> _temp.rsp
-  echo %MV_LIB%\alleg.lib + >> _temp.rsp
-  echo %MV_LIB%\minigui.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\calldll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
   goto HRSPREST
 
 :HMRSP
   rem Add to RSP file for Harbour mixed mode EXE
-  echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\calldll.lib + >> _temp.rsp
-  echo %MG_SSLIB%\taxprg.lib + >> _temp.rsp
-  echo %MV_LIB%\alleg.lib + >> _temp.rsp
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\calldll.lib + >> _temp.rsp
+  echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
+  echo %MG_SSLIB%\taxprg.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
   goto HRSPREST
@@ -539,70 +541,69 @@ goto PARPARSE
 
 :XGRSP
   rem Add to RSP file for xHarbour GUI EXE
-  echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
-  echo %MV_LIB%\alleg.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\gdlib.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\libbgd.lib + >> _temp.rsp
-  echo %MV_LIB%\calldll.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\alleg.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\alld.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\allp.lib + >> _temp.rsp
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
+  echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
+  echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
   goto XRSPREST
 
 :XCRSP
   rem Add to RSP file for xHarbour console EXE
   echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
-  echo %MV_LIB%\alleg.lib + >> _temp.rsp
-  echo %MV_LIB%\minigui.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\gdlib.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\libbgd.lib + >> _temp.rsp
-  echo %MV_LIB%\calldll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
+  echo c0x32.obj + >> _temp.rsp
   goto XRSPREST
 
 :XMRSP
   rem Add to RSP file for xHarbour mixed mode EXE
-  echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
-  echo %MV_LIB%\alleg.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\gdlib.lib + >> _temp.rsp
-  echo %MG_XSSLIB%\libbgd.lib + >> _temp.rsp
-  echo %MV_LIB%\calldll.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\alleg.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\alld.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\allp.lib + >> _temp.rsp
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
+  echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
+  echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
+  echo c0x32.obj + >> _temp.rsp
   goto XRSPREST
+
 
 :HRSPREST
   rem Continue RSP file for Harbour EXE
-  echo %MV_HRB%\lib\compiler.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\rtl.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\vm.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\lang.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\codepage.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\macro.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\rdd.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\hsx.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\dbfntx.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\dbfcdx.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\dbffpt.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbcplr.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbrtl.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbvm.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hblang.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbcpage.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbmacro.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbrdd.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbhsx.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\rddntx.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\rddcdx.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\rddfpt.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbsix.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\common.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\debug.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\pp.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbcommon.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbdebug.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbpp.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbpcre.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\libct.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\libmisc.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbct.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\hbmisc.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbole.lib + >> _temp.rsp
+  if %MV_INTMODE%==C goto RSPEND
   echo %MV_HRB%\lib\hbprinter.lib + >> _temp.rsp
   echo %MV_HRB%\lib\miniprint.lib + >> _temp.rsp
   echo %MV_HRB%\lib\socket.lib + >> _temp.rsp
-  goto RESPEND
+  goto RSPEND
+
 
 :XRSPREST
   rem Continue RSP file for xHarbour EXE
@@ -622,12 +623,12 @@ goto PARPARSE
   echo %MV_HRB%\lib\pcrepos.lib + >> _temp.rsp
   echo %MV_HRB%\lib\ct.lib + >> _temp.rsp
   echo %MV_HRB%\lib\libmisc.lib + >> _temp.rsp
-  echo %MV_LIB%\hbprinter.lib + >> _temp.rsp
-  echo %MV_LIB%\miniprint.lib + >> _temp.rsp
-  echo %MV_LIB%\socket.lib + >> _temp.rsp
-  goto RESPEND
+  if %MV_INTMODE%==C goto RSPEND
+  echo %MV_HRB%\lib\hbprinter.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\miniprint.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\socket.lib + >> _temp.rsp
 
-:RESPEND
+:RSPEND
   rem Finish RSP file
   if exist _templib.rsp type _templib.rsp >> _temp.rsp
   echo cw32.lib + >> _temp.rsp
@@ -653,7 +654,7 @@ goto PARPARSE
   echo Link error.
   echo.
   set MV_PAUSE=Y
-  goto end
+  goto END
 
 :CLINK
   rem Link for console or mixed mode EXE
@@ -664,7 +665,7 @@ goto PARPARSE
   echo Link error.
   echo.
   set MV_PAUSE=Y
-  goto end
+  goto END
 
 :CLEANUP
   rem Delete temporary files
@@ -681,17 +682,10 @@ goto PARPARSE
   if %MV_DOLINK%==Y if %MV_DOLONLY%==N                    if exist %MV_SRC%.obj del %MV_SRC%.obj
 
 :EXESTART
-  rem Start EXE
-  if %MV_DOCONLY%==Y goto END
-  if %MV_DOCCOMP%==N goto END
-  if %MV_DORONLY%==Y goto END
-  if %MV_DOLINK%==N  goto END
-  if %MV_DOEXE%==N   goto END
-  if %MV_DODONLY%==Y goto END
 
 :END
   rem Delete local variables
-  rem if %MV_PAUSE%==Y pause
+rem  if %MV_PAUSE%==Y pause
   set MV_USEXHRB=
   set MV_INTMODE=
   set MV_DEBUG=
