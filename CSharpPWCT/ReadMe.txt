@@ -46,6 +46,9 @@
 	26)		Pure		Field (Class Attribute)		ISF,IDF & TRF
 	27)		Pure		Enumeration			ISF,IDF & TRF
 	28)		Pure		Enumeration Member		ISF,IDF & TRF
+	29)		Pure		Application Exit		TRF Only
+	30)		Pure		Application Run			ISF,IDF & TRF
+	31)		Pure		Window				ISF,IDF & TRF
 ------------------------------------------------------------------------------------------
 		        Samples inside CSharpPWCT Package
 ------------------------------------------------------------------------------------------
@@ -67,5 +70,10 @@
 	15)		Goto Test
 	16)		Mix1
 	17)		Enum Test
+	18)		Form Way 1 
+	19)		Form Way 2  (Using Form Designer)
+	20)		Form Events
+	21)		Two Forms
+	22)		Many Forms
 ------------------------------------------------------------------------------------------
 
