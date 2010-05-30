@@ -50,6 +50,8 @@
 	30)		Pure		Application Run			ISF,IDF & TRF
 	31)		Pure		Window				ISF,IDF & TRF
 	32)		Pure		Button				ISF,IDF & TRF
+	33)		Pure		Label				IDF & TRF
+	34)		Pure		Textbox				IDF & TRF
 ------------------------------------------------------------------------------------------
 		        Samples inside CSharpPWCT Package
 ------------------------------------------------------------------------------------------
@@ -77,6 +79,13 @@
 	21)		Two Forms
 	22)		Many Forms
 	23)		Many Forms 2
-	23)		Button 1
+	24)		Button 1
+	25)		Label 1
+	26)		LabelButton
+	27)		LabelTwoButtons
+	28)		Textbox 1
+	29)		Textbox Events
+	30)		Welcome 2
+	31)		Sum
 ------------------------------------------------------------------------------------------
 
