@@ -6,14 +6,14 @@ using System.Windows.Forms ;
 using System.Data ;
 public class win1 : Form
 {
+          public static void Main ( string[] argc )
+          {
+                    Application.Run(  new win1() );
+          }
           public win1 (  )
           {
                     this.Load += new System.EventHandler( this.win1_Load );
                     this.Click += new System.EventHandler( this.win1_Click );
-          }
-          public static void Main ( string[] argc )
-          {
-                    Application.Run(  new win1() );
           }
           private void win1_Click( object sender, System.EventArgs e )
           {

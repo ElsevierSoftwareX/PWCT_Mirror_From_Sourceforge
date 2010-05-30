@@ -49,6 +49,7 @@
 	29)		Pure		Application Exit		TRF Only
 	30)		Pure		Application Run			ISF,IDF & TRF
 	31)		Pure		Window				ISF,IDF & TRF
+	32)		Pure		Button				ISF,IDF & TRF
 ------------------------------------------------------------------------------------------
 		        Samples inside CSharpPWCT Package
 ------------------------------------------------------------------------------------------
@@ -75,5 +76,7 @@
 	20)		Form Events
 	21)		Two Forms
 	22)		Many Forms
+	23)		Many Forms 2
+	23)		Button 1
 ------------------------------------------------------------------------------------------
 
