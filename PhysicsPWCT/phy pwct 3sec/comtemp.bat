@@ -1,0 +1,1 @@
+CALL sscom2.bat  "MR ABOELSOUD_3SEC"  /X  > _temp.txt
