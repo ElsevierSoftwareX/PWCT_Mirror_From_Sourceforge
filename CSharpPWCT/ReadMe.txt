@@ -52,6 +52,12 @@
 	32)		Pure		Button				ISF,IDF & TRF
 	33)		Pure		Label				IDF & TRF
 	34)		Pure		Textbox				IDF & TRF
+	35)		Pure		Editbox				IDF & TRF
+	36)		Pure		Listbox				IDF & TRF
+	37)		Quick		Label				IDF & TRF
+	38)		Quick		Textbox				IDF & TRF
+	39)		Quick		Editbox				IDF & TRF
+	40)		Quick		Listbox				IDF & TRF
 ------------------------------------------------------------------------------------------
 		        Samples inside CSharpPWCT Package
 ------------------------------------------------------------------------------------------
@@ -87,5 +93,15 @@
 	29)		Textbox Events
 	30)		Welcome 2
 	31)		Sum
+	32)		Editbox 1
+	33)		Editbox Button
+	34)		Listbox 1
+	35)		Listbox Button
+	36)		Counter
+	37)		Label 2   - Uses Quick Label   Component (q Label)
+	38)		Button 2  - Uses Quick Button  Component (q Button) 
+	39)		Textbox 2 - Uses Quick Textbox Component (q Textbox) 
+	40)		Editbox 2 - Uses Quick Editbox Component (q Editbox) 
+	41)		Listbox 2 - Uses Quick Listbox Component (q Listbox) 
 ------------------------------------------------------------------------------------------
 

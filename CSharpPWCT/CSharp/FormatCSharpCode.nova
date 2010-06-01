@@ -16,7 +16,7 @@ window width = 700. window height = 530.
 editbox width = 660. editbox height = 420.
 
 procedure Btn1 MouseClick.
-editbox value is .
+editbox value is Please wait.
 [myfile]. file to open
 [myfile]. file to memory [x].
 [TABCOUNT]. = (0).
@@ -24,6 +24,7 @@ editbox value is .
 ).
 	[mymax]. = len [x].
 	[myline]. = .
+	[myoutput]. = .
 	[y]. = (1). 
 	dowhile [y] <= [mymax].
 		[myadd]. = [y] inside [x].
@@ -40,9 +41,7 @@ editbox value is .
 				[MYLINE]. = (          ) [MYLINE].
 				[T]. = [T] - (1).
 			EndWhile
-			EDITBOX value to [tvalue].
-			[tvalue]. = [tvalue] [myline].
-			editbox value from [tvalue].			
+			[myoutput]. = [myoutput] [myline].
 			doif  [mycheck] == ({).
 				[TABCOUNT]. = [TABCOUNT] + (1).
 			endif
@@ -50,8 +49,8 @@ editbox value is .
 		endif
 		[y]. = [y] + (1).
 	endwhile
-editbox value to [myresult].
-[myresult]. memory to file [myfile].
+[myoutput]. memory to file [myfile].
+editbox value from [myoutput].
 endprocedure
 
 you show window and you centre window

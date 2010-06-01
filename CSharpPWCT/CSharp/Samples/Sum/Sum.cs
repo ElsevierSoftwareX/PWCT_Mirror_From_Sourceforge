@@ -8,12 +8,12 @@ public class win1 : Form
 {
           private System.Windows.Forms.Label lbl1 ;
           private System.Windows.Forms.Label lbl2 ;
+          private System.Windows.Forms.Label lbl3 ;
           private System.Windows.Forms.TextBox text1 ;
           private System.Windows.Forms.TextBox text2 ;
+          private System.Windows.Forms.TextBox text3 ;
           private System.Windows.Forms.Button btn1 ;
           private System.Windows.Forms.Button btn2 ;
-          private System.Windows.Forms.Label lbl3 ;
-          private System.Windows.Forms.TextBox text3 ;
           public static void Main ( string[] argc )
           {
                     Application.Run(  new win1() );
@@ -48,6 +48,19 @@ public class win1 : Form
                     int[] lbl2acolorsbc = {41,208,222} ;
                     this.lbl2.BackColor = System.Drawing.Color.FromArgb (lbl2acolorsbc[0],lbl2acolorsbc[1],lbl2acolorsbc[2]);
                     this.lbl2.Font = new Font( "Arial" , 14) ;
+                    this.lbl3 = new System.Windows.Forms.Label ( );
+                    this.Controls.Add (lbl3);
+                    lbl3.Click += new System.EventHandler (this.lbl3_Click);
+                    this.lbl3.Top = 130 ;
+                    this.lbl3.Left = 72 ;
+                    this.lbl3.Width = 90 ;
+                    this.lbl3.Height = 30 ;
+                    this.lbl3.Text = "Result" ;
+                    int[] lbl3acolorsfc = {0,0,0} ;
+                    this.lbl3.ForeColor = System.Drawing.Color.FromArgb (lbl3acolorsfc[0],lbl3acolorsfc[1],lbl3acolorsfc[2]);
+                    int[] lbl3acolorsbc = {41,208,222} ;
+                    this.lbl3.BackColor = System.Drawing.Color.FromArgb (lbl3acolorsbc[0],lbl3acolorsbc[1],lbl3acolorsbc[2]);
+                    this.lbl3.Font = new Font( "Arial" , 14) ;
                     this.text1 = new System.Windows.Forms.TextBox ( );
                     this.Controls.Add (text1);
                     text1.Click += new System.EventHandler (this.text1_Click);
@@ -78,6 +91,21 @@ public class win1 : Form
                     int[] text2acolorsbc = {0,255,128} ;
                     this.text2.BackColor = System.Drawing.Color.FromArgb (text2acolorsbc[0],text2acolorsbc[1],text2acolorsbc[2]);
                     this.text2.Font = new Font( "Arial" , 14) ;
+                    this.text3 = new System.Windows.Forms.TextBox ( );
+                    this.Controls.Add (text3);
+                    text3.Click += new System.EventHandler (this.text3_Click);
+                    text3.GotFocus += new System.EventHandler (this.text3_GotFocus);
+                    text3.LostFocus += new System.EventHandler (this.text3_LostFocus);
+                    this.text3.Top = 128 ;
+                    this.text3.Left = 194 ;
+                    this.text3.Width = 200 ;
+                    this.text3.Height = 30 ;
+                    this.text3.Text = " " ;
+                    int[] text3acolorsfc = {0,0,0} ;
+                    this.text3.ForeColor = System.Drawing.Color.FromArgb (text3acolorsfc[0],text3acolorsfc[1],text3acolorsfc[2]);
+                    int[] text3acolorsbc = {0,255,128} ;
+                    this.text3.BackColor = System.Drawing.Color.FromArgb (text3acolorsbc[0],text3acolorsbc[1],text3acolorsbc[2]);
+                    this.text3.Font = new Font( "Arial" , 14) ;
                     this.btn1 = new System.Windows.Forms.Button ( );
                     this.Controls.Add (btn1);
                     btn1.Click += new System.EventHandler (this.btn1_Click);
@@ -104,34 +132,6 @@ public class win1 : Form
                     int[] btn2acolorsbc = {72,249,231} ;
                     this.btn2.BackColor = System.Drawing.Color.FromArgb (btn2acolorsbc[0],btn2acolorsbc[1],btn2acolorsbc[2]);
                     this.btn2.Font = new Font( "Arial" , 14) ;
-                    this.text3 = new System.Windows.Forms.TextBox ( );
-                    this.Controls.Add (text3);
-                    text3.Click += new System.EventHandler (this.text3_Click);
-                    text3.GotFocus += new System.EventHandler (this.text3_GotFocus);
-                    text3.LostFocus += new System.EventHandler (this.text3_LostFocus);
-                    this.text3.Top = 128 ;
-                    this.text3.Left = 194 ;
-                    this.text3.Width = 200 ;
-                    this.text3.Height = 30 ;
-                    this.text3.Text = " " ;
-                    int[] text3acolorsfc = {0,0,0} ;
-                    this.text3.ForeColor = System.Drawing.Color.FromArgb (text3acolorsfc[0],text3acolorsfc[1],text3acolorsfc[2]);
-                    int[] text3acolorsbc = {0,255,128} ;
-                    this.text3.BackColor = System.Drawing.Color.FromArgb (text3acolorsbc[0],text3acolorsbc[1],text3acolorsbc[2]);
-                    this.text3.Font = new Font( "Arial" , 14) ;
-                    this.lbl3 = new System.Windows.Forms.Label ( );
-                    this.Controls.Add (lbl3);
-                    lbl3.Click += new System.EventHandler (this.lbl3_Click);
-                    this.lbl3.Top = 130 ;
-                    this.lbl3.Left = 72 ;
-                    this.lbl3.Width = 90 ;
-                    this.lbl3.Height = 30 ;
-                    this.lbl3.Text = "Result" ;
-                    int[] lbl3acolorsfc = {0,0,0} ;
-                    this.lbl3.ForeColor = System.Drawing.Color.FromArgb (lbl3acolorsfc[0],lbl3acolorsfc[1],lbl3acolorsfc[2]);
-                    int[] lbl3acolorsbc = {41,208,222} ;
-                    this.lbl3.BackColor = System.Drawing.Color.FromArgb (lbl3acolorsbc[0],lbl3acolorsbc[1],lbl3acolorsbc[2]);
-                    this.lbl3.Font = new Font( "Arial" , 14) ;
           }
           private void win1_Click( object sender, System.EventArgs e )
           {
@@ -152,6 +152,9 @@ public class win1 : Form
           protected void lbl2_Click (  object sender, System.EventArgs e)
           {
           }
+          protected void lbl3_Click (  object sender, System.EventArgs e)
+          {
+          }
           protected void text1_Click (  object sender, System.EventArgs e)
           {
           }
@@ -170,6 +173,15 @@ public class win1 : Form
           protected void text2_LostFocus (  object sender, System.EventArgs e)
           {
           }
+          protected void text3_Click (  object sender, System.EventArgs e)
+          {
+          }
+          protected void text3_GotFocus (  object sender, System.EventArgs e)
+          {
+          }
+          protected void text3_LostFocus (  object sender, System.EventArgs e)
+          {
+          }
           protected void btn1_Click (  object sender, System.EventArgs e)
           {
                     int num1 ;
@@ -183,18 +195,6 @@ public class win1 : Form
           protected void btn2_Click (  object sender, System.EventArgs e)
           {
                     this.Close(  ) ;
-          }
-          protected void lbl3_Click (  object sender, System.EventArgs e)
-          {
-          }
-          protected void text3_Click (  object sender, System.EventArgs e)
-          {
-          }
-          protected void text3_GotFocus (  object sender, System.EventArgs e)
-          {
-          }
-          protected void text3_LostFocus (  object sender, System.EventArgs e)
-          {
           }
 }
 
