@@ -1,1 +1,1 @@
-CALL sscom2.bat  "MR ABOELSOUD_3SEC"  /X  > _temp.txt
+CALL sscom2.bat  "MRABOELSOUD_3SEC"  /X /l calldll  > _temp.txt
