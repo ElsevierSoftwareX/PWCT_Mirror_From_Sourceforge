@@ -24,7 +24,6 @@ public class win1 : Form
 		this.list1.Left = 11 ;
 		this.list1.Width = 349 ;
 		this.list1.Height = 317 ;
-		this.list1.Text = " " ;
 		int[] list1acolorsfc = {0,0,0} ;
 		this.list1.ForeColor = System.Drawing.Color.FromArgb (list1acolorsfc[0],list1acolorsfc[1],list1acolorsfc[2]);
 		int[] list1acolorsbc = {255,255,255} ;

@@ -24,11 +24,11 @@ public class win1 : Form
 		this.list1.Left = 34 ;
 		this.list1.Width = 336 ;
 		this.list1.Height = 292 ;
-		this.list1.Text = " " ;
 		int[] list1acolorsfc = {0,0,0} ;
 		this.list1.ForeColor = System.Drawing.Color.FromArgb (list1acolorsfc[0],list1acolorsfc[1],list1acolorsfc[2]);
 		int[] list1acolorsbc = {255,255,255} ;
 		this.list1.BackColor = System.Drawing.Color.FromArgb (list1acolorsbc[0],list1acolorsbc[1],list1acolorsbc[2]);
+		this.list1.Font = new Font( "Arial" , 10) ;
 		this.list1.Font = new Font( "Arial" , 10) ;
 	}
 	private void win1_Click( object sender, System.EventArgs e )
