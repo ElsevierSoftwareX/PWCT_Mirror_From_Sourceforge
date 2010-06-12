@@ -6,14 +6,14 @@ using System.Windows.Forms ;
 using System.Data ;
 public class myForm : Form
 {
-                    public static void Main ( string[] argc )
-                    {
-                                        Application.Run(  new myForm() );
-                    }
-                    public myForm (  )
-                    {
-                                        this.Text = "Hello World" ;
-                    }
+	public static void Main ( string[] argc )
+	{
+		Application.Run(  new myForm() );
+	}
+	public myForm (  )
+	{
+		this.Text = "Hello World" ;
+	}
 }
 
 

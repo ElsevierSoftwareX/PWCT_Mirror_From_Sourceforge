@@ -1,7 +1,7 @@
 switch ( grade / 10 )
 {
-          default:
-          break;
+	default:
+	break;
 }
 
 

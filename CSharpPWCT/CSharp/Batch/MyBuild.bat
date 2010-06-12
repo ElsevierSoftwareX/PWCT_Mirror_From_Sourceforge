@@ -1,4 +1,4 @@
-call "D:\Program Files\Microsoft Visual Studio 9.0\VC\vcvarsall.bat"
+set path=%path%;C:\WINDOWS\Microsoft.NET\Framework\v3.5
 csc /target:exe  %1.cs
 pause
 cls

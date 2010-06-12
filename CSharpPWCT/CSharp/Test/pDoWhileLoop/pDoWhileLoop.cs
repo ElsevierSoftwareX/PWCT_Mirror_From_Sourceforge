@@ -1,8 +1,8 @@
 do
 {
-          do
-          {
-          } while ( true ) ;
+	do
+	{
+	} while ( true ) ;
 } while ( x < 5 ) ;
 
 
