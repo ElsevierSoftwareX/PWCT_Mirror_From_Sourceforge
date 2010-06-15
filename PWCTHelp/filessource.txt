@@ -1,0 +1,130 @@
+Samples
+---------
+
+	1 - ExecuteFile.nova
+	2 - MemoryToFile.nova
+	3 - FileToMemory.nova
+	4 - FileToMemory2.nova
+	5 - FileToOpen.nova
+	6 - FileToSave.nova
+	7 - FileToOpen2.nova
+ 
+ExecuteFile.nova
+------------------
+
+i want window and the window title is Execute file.
+the window back color is {255,0,0}.
+
+i want button and the button caption is Run "welcome2.nova"
+the button top is 60. and the button left is 20.
+the button width is 300. and the button name is btn1.
+
+i want button and the button caption is Run "open test.jpg"
+the button top is 100. and the button left is 20.
+the button width is 300. and the button name is btn2.
+
+Btn1 MouseClick. instructions are
+	:note: " execute file command parameter is data as value"
+	execute file "..\..\test\welcome2.nova"
+end of instructions
+
+Btn2 MouseClick. instructions are
+	:note: " execute from command parameter is data as expression"
+	execute from "(..\..\test\test.jpg)"
+end of instructions
+
+MemoryToFile.nova
+-------------------
+
+i want window and the window title is memory to file.
+the window back color is purple.
+
+i want button and the button caption is Run "create test.txt"
+the button top is 60. and the button left is 20.
+the button width is 300. and the button name is btn1.
+the button back color is white.
+
+Btn1 MouseClick. instructions are
+[mystr]. = "(Hello
+How are you ?
+I hope that you are fine.
+bye.)"
+[mystr]. memory to file "(test.txt)"
+end of instructions
+
+FileToMemory.nova
+-------------------
+
+i want window contains editBOX
+the window title is file to memory.
+the window back color is purple.
+
+i want button and the button caption is Run "read test2.txt"
+the button top is 260. and the button left is 20.
+the button width is 300. and the button name is btn1.
+the button back color is white.
+
+Btn1 MouseClick. instructions are
+	"(test2.txt)" file to memory [x].
+	editbox value FROM [x].
+end of instructions
+
+FileToMemory2.nova
+-------------------
+
+i want window contains listbox
+the window title is file to memory2.
+the window back color is purple.
+
+i want button and the button caption is Run "read test2.txt"
+the button top is 260. and the button left is 20.
+the button width is 300. and the button name is btn1.
+the button back color is white.
+
+Btn1 MouseClick. instructions are
+"(test2.txt)" file to memory [x].
+[lineend]. = (
+).
+	[mymax]. = len [x].
+	[myline]. = .
+	[y]. = (1). 
+	do while [y] <= [mymax].
+		[myadd]. = [y] inside [x].
+		[myline]. = [myline] [myadd].
+		[mycheck]. = (2) right [myline].
+		do if  [mycheck] == [lineend] or [y] == [mymax].
+			listbox must add from [myline].					
+			[myline]. = .
+		end if
+		[y]. = [y] + (1).
+	end while
+end of instructions
+
+
+FileToOpen.nova
+-----------------
+
+i want window and the window title is file to open.
+[x]. file to open
+the window title from [x].
+
+FileToSave.nova
+-----------------
+
+i want window and the window title is file to save.
+[x]. file to save
+the window title from [x].
+
+FileToOpen2.nova
+------------------
+
+i want window and the window title is file to open2.
+[x]. file to open
+
+[check]. = [x] == ().
+do if [check].
+	the window title is no file selected.
+end if
+do if not [check].
+	the window title from [x].
+end if

@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="keywords" content="online documentation, web online help, web help, chm2web" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="generator" content="chm2web Pro 2.85 (unicode)" />
+
+<meta name="Generator" content="Microsoft Word 10 (filtered)">
+<title>Structure Programming</title>
+<link rel="stylesheet" href="files/helpindex.css" type="text/css">
+<link rel="stylesheet" href="default.css" type="text/css">
+
+<script type="text/JavaScript" src="files/supply.js"></script>
+<script type="text/JavaScript">
+chmtop.c2wtopf.pageid = "d24.htm";
+</script>
+
+</head>
+<body lang="EN-US" link="blue" vlink="purple"><script type="text/JavaScript"> 
+if (window.name != "content") 
+  document.write(" <table width=\"100%\" bgcolor=\"#e1e1e1\"cellspacing=\"2\" cellpadding=\"0\" style=\"border-collapse: collapse; font-family: sans-serif; font-size: 14px; color: #000000; text-decoration: none;  \"> <tr> <td align=\"center\" style=\"border-bottom: 2px solid gray\" > <br>&nbsp;Click <a href=\"index.html?page=d24.htm\">here</a> to show toolbars of the Web Online Help System: <a href=\"index.html?page=d24.htm\">show toolbars</a><br>&nbsp;</td></tr></table><br> "); 
+</script>
+<!-- !chm2web! -->
+
+<div class="Section1" dir="rtl">
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><span style=
+'font-size:18.0pt'>Structure Programming</span>
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Components</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<ul style='margin-top:0cm' type="disc">
+<li class="MsoNormal" dir="ltr" style=
+'margin-right:0cm;margin-left:36.0pt; text-align:left;direction:ltr;unicode-bidi:embed'>
+Define Procedure</li>
+
+<li class="MsoNormal" dir="ltr" style=
+'margin-right:0cm;margin-left:36.0pt; text-align:left;direction:ltr;unicode-bidi:embed'>
+Define Function</li>
+
+<li class="MsoNormal" dir="ltr" style=
+'margin-right:0cm;margin-left:36.0pt; text-align:left;direction:ltr;unicode-bidi:embed'>
+Scope of variables</li>
+
+<li class="MsoNormal" dir="ltr" style=
+'margin-right:0cm;margin-left:36.0pt; text-align:left;direction:ltr;unicode-bidi:embed'>
+Return Value</li>
+
+<li class="MsoNormal" dir="ltr" style=
+'margin-right:0cm;margin-left:36.0pt; text-align:left;direction:ltr;unicode-bidi:embed'>
+Call Procedure</li>
+
+<li class="MsoNormal" dir="ltr" style=
+'margin-right:0cm;margin-left:36.0pt; text-align:left;direction:ltr;unicode-bidi:embed'>
+Call Function</li>
+
+<li class="MsoNormal" dir="ltr" style=
+'margin-right:0cm;margin-left:36.0pt; text-align:left;direction:ltr;unicode-bidi:embed'>
+Release Variable</li>
+</ul>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Procedure may
+be a generated server file (*.prg) or inline procedure.</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Procedure does
+not return a value.</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Scope of
+variables:</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'margin-bottom:12.0pt;text-align:left; text-indent:17.0pt;direction:ltr;unicode-bidi:embed'>
+<span style='font-size: 10.0pt;font-family:Arial'>Variables may
+have the following scope:</span>
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'margin-top:0cm;margin-right:0cm;margin-bottom: 12.0pt;margin-left:36.85pt;text-align:justify;text-indent:-36.85pt;direction: ltr;unicode-bidi:embed'>
+LOCAL: Visible only within the routine which declared it. Value is
+lost upon exit of the routine.</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'margin-top:0cm;margin-right:0cm;margin-bottom: 12.0pt;margin-left:36.85pt;text-align:justify;text-indent:-36.85pt;direction: ltr;unicode-bidi:embed'>
+STATIC: Visible only within the routine which declared it. Value is
+preserved for subsequent invocations of the routine. If a STATIC
+variable is declared before any Procedure/Function/Method is
+defined, it has a MODULE scope, and is visible within any routine
+defined within that same source file, it will maintain its life for
+the duration of the application life time.</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'margin-top:0cm;margin-right:0cm;margin-bottom: 12.0pt;margin-left:36.85pt;text-align:justify;text-indent:-36.85pt;direction: ltr;unicode-bidi:embed'>
+PRIVATE: Visible within the routine which declared it, and all
+routines called by that routine.</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'margin-top:0cm;margin-right:0cm;margin-bottom: 12.0pt;margin-left:36.85pt;text-align:justify;text-indent:-36.85pt;direction: ltr;unicode-bidi:embed'>
+PUBLIC: Visible by all routines in the same application.</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'margin-left:36.85pt;text-align:justify; text-indent:17.0pt;direction:ltr;unicode-bidi:embed'>
+Due to the dynamic nature of PRIVATE and PUBLIC variables, they can
+be created and destroyed at Run-time</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><span style=
+'font-size:14.0pt'>Example - Screen shots:-</span>
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="312" src="d24_files/image002.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Domain
+(Structure Programming) Component (Call Procedure)</p>
+
+<p class="MsoNormal" align="center" dir="ltr" style=
+'text-align:center;direction: ltr;unicode-bidi:embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="316" src="d24_files/image003.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Interaction
+Page</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="316" src="d24_files/image004.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Domain
+(Structure Programming) Component (Call Function)</p>
+
+<p class="MsoNormal" align="center" dir="ltr" style=
+'text-align:center;direction: ltr;unicode-bidi:embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="310" src="d24_files/image005.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Interaction
+Page</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="314" src="d24_files/image006.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Domain
+(Structure Programming) Component (Define Procedure)</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="313" src="d24_files/image007.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Interaction
+Page</p>
+
+<p class="MsoNormal" align="center" dir="ltr" style=
+'text-align:center;direction: ltr;unicode-bidi:embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="202" src="d24_files/image008.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Steps Tree</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="312" src="d24_files/image009.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Interaction
+Page</p>
+
+<p class="MsoNormal" align="center" dir="ltr" style=
+'text-align:center;direction: ltr;unicode-bidi:embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="314" src="d24_files/image010.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Domain
+(Structure Programming) Component (Define Function)</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="315" src="d24_files/image011.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Interaction
+Page</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="309" src="d24_files/image012.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Interaction
+Page</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="262" src="d24_files/image013.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Steps Tree</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"553" height="203" src="d24_files/image014.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Final Steps
+Tree</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>&nbsp;</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'><img width=
+"554" height="282" src="d24_files/image015.jpg">
+</p>
+
+<p class="MsoNormal" dir="ltr" style=
+'text-align:left;direction:ltr;unicode-bidi: embed'>Final
+Application</p>
+</div>
+
+<script type="text/JavaScript">
+var fe = FindFrame("toc", top);
+if ((fe != null) && (chmtop.c2wtopf.jstree != null)) {
+  if (chmtop.c2wtopf.FITEMS[chmtop.c2wtopf.pagenum] != chmtop.c2wtopf.pageid)
+    chmtop.c2wtopf.jstree.OpenTreeNode("" + chmtop.c2wtopf.pageid);
+}
+</script>
+
+<!-- CHM2WEB -->
+<!-- DO NOT DELETE OR MODIFY THIS CODE WITHOUT 
+     WRITTEN PERMISSION OF A!K RESEARCH LABS -->
+<table width="100%" cellspacing="0" cellpadding="0" 
+style="margin-top: 0pt; border-collapse: collapse;"> 
+<tr> <td align="right" style="background-color:white; border-top: 1px solid gray;"> 
+<a href="http://chm2web.aklabs.com" target="_blank" style="font-family: sans-serif;  font-size: 11px; text-decoration: none;"><font color="gray">Converted from CHM to HTML with <b>chm2web Pro 2.85 (unicode)</b></font></a>
+</td></tr></table> 
+<!-- /CHM2WEB -->
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+The Basic Context Controlling Rules
+-------------------------------------
+
+S -> SI         Rule 1
+S -> SPVC       Rule 2
+S -> SCAVD	Rule 3	
+S -> SDI	Rule 4
+S -> SDVD	Rule 5
+
+Since the token is one Character classification ( I, P, V, C, A & D)
+is used to manage them
+
+Also there are switches determine the next class
+i.e. Classes are context sensitive
+
+1 - I may comes only after S or D  (See Rules 1 and 4)
+2 - P may comes only after S (See Rule 2)
+3 - V may comes only after P, A or D (See Rules 2,3 and 5)
+4 - C may comes only after V or S (See Rules 2 and 3)
+5 - A may comes only after C (See Rule 3)
+
+i.e. In the start of tokens classification, the expected token class
+is I,P,C or D.
+
+Last accepted class	    	  Next class must be
+	S			     I,P,C OR D
+	I				 S
+	P				 V
+	C			       S OR A
+	A				 V
+	D			      S, I OR V
+	V			       C OR D			

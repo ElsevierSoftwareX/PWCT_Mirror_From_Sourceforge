@@ -1,0 +1,39 @@
+----------------------------------------------------------------
+      Reasons of low performance of Supernova applications
+----------------------------------------------------------------
+
+There are work in progress to increase performance.
+This low performance comes from :-
+
+[1] Language Implementation Tools
+
+Supernova developed using a software development environment
+called PWCT (Programming Without Coding Technology).
+and PWCT are based on very high level programming
+language called xHarbour.
+xHarbour uses a Compiler + VM (Virtual Machine)
+And Supernova Interpreter are based on hybrid implementation
+Using a Compiler + VM (Virtual Machine)
+So we have this architecture
+
+   ----------------------------
+       Supernova Application
+   ----------------------------
+	Supernova Compiler ||     Supernova Interpreter 
+	   Supernova VM    ||	 (Hybrid Implementation)
+   ----------------------------
+           xHarbour VM 	
+   ----------------------------
+
+	It's clear when you run a Supernova Application
+	You run a Compiler + 2 Virtual Machines
+
+[2] Some Language features :-
+
+    2.1) - Source code not Case/Space/Line/Tab Sensitive.
+    2.2) - No Need for Variable/Array declaration.
+    2.3) - No Need for initial variable value before using it.
+    2.4) - No Variable type.
+    2.5) - Support for Events Based on variable value (State Events).
+    2.6) - Multi-Language Source Code Support (Arabic/English/Mixed).
+
