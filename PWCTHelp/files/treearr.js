@@ -32,6 +32,9 @@ var TITEMS = [
   ["Form Designer", "d28.htm", "11"],
   ["Language Extension", "d29.htm", "11"]
  ],
+ ["Using ADO (ActiveX Data Object)", "ado.txt", "1",
+  ["Lesson [1]", "harbourpwctado1.htm", "11"]
+ ],
  ["Customers Application", "d47.htm", "1",
   ["Customers", "d50.htm", "11"]
  ],
