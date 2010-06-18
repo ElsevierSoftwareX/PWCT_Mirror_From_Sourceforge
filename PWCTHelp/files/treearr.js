@@ -33,7 +33,8 @@ var TITEMS = [
   ["Language Extension", "d29.htm", "11"]
  ],
  ["Using ADO (ActiveX Data Object)", "ado.txt", "1",
-  ["Lesson [1]", "harbourpwctado1.htm", "11"]
+  ["Lesson [1]", "HarbourPWCTAdo1.htm", "11"],
+  ["Lesson [2]", "HarbourPWCTAdo2.htm", "11"]
  ],
  ["Customers Application", "d47.htm", "1",
   ["Customers", "d50.htm", "11"]
@@ -42,8 +43,8 @@ var TITEMS = [
   ["Cover", "cover.jpg", "11"],
   ["Welcome", "main.htm", "11"],
   ["Using the Interpreter", "using.htm", "11"],
-  ["Message from Supernova Creator", "authormessage.htm", "11"],
-  ["Distributing Applications as Executable (*.exe) Files", "distapp.htm", "11"],
+  ["Message from Supernova Creator", "AuthorMessage.htm", "11"],
+  ["Distributing Applications as Executable (*.exe) Files", "DistApp.htm", "11"],
   ["What is new ?", "changelog.txt", "11"],
   ["License", "license.txt", "11"],
   ["Using Notepad++", "notepad++.txt", "1",
@@ -168,7 +169,7 @@ var TITEMS = [
     ["Checkbox", "checkbox.txt", "11"],
     ["Progressbar", "progressbar.txt", "11"],
     ["Slider", "slider.txt", "11"],
-    ["Picture", "picture.txt", "11"],
+    ["Picture", "Picture.txt", "11"],
     ["DatePicker", "datepicker.txt", "11"],
     ["HyperLink", "hyperlink.txt", "11"],
     ["Spinner", "spinner.txt", "11"],
@@ -277,8 +278,8 @@ var TITEMS = [
    ["Screen Shot 16", "shot82.jpg", "11"],
    ["Screen Shot 17", "shot83.jpg", "11"]
   ],
-  ["Date And Time", "datetime.txt", "1",
-   ["Source Code", "datetimecode.txt", "11"],
+  ["Date And Time", "DateTime.txt", "1",
+   ["Source Code", "DateTimeCode.txt", "11"],
    ["Screen Shot 1", "shot84.jpg", "11"],
    ["Screen Shot 2", "shot85.jpg", "11"],
    ["Screen Shot 3", "shot86.jpg", "11"],
@@ -290,8 +291,8 @@ var TITEMS = [
    ["Screen Shot 9", "shot92.jpg", "11"],
    ["Screen Shot 10", "shot93.jpg", "11"]
   ],
-  ["Looking To The Future", "looktofuture.txt", "1",
-   ["Source Code", "looktofuturecode.txt", "11"],
+  ["Looking To The Future", "LookToFuture.txt", "1",
+   ["Source Code", "LookToFutureCode.txt", "11"],
    ["Screen Shot 1", "shot94.jpg", "11"],
    ["Screen Shot 2", "shot95.jpg", "11"],
    ["Screen Shot 3", "shot96.jpg", "11"],
@@ -299,8 +300,8 @@ var TITEMS = [
    ["Screen Shot 5", "shot98.jpg", "11"],
    ["Screen Shot 6", "shot99.jpg", "11"]
   ],
-  ["Macro", "macro.txt", "1",
-   ["Source Code", "macrocode.txt", "11"],
+  ["Macro", "Macro.txt", "1",
+   ["Source Code", "MacroCode.txt", "11"],
    ["Screen Shot 1", "shot100.jpg", "11"],
    ["Screen Shot 2", "shot101.jpg", "11"],
    ["Screen Shot 3", "shot102.jpg", "11"],
@@ -310,8 +311,8 @@ var TITEMS = [
    ["Screen Shot 7", "shot106.jpg", "11"],
    ["Screen Shot 8", "shot107.jpg", "11"]
   ],
-  ["Arrays", "arrays.txt", "1",
-   ["Source Code", "arrayssource.txt", "11"],
+  ["Arrays", "Arrays.txt", "1",
+   ["Source Code", "ArraysSource.txt", "11"],
    ["Screen Shot 1", "shot115.jpg", "11"],
    ["Screen Shot 2", "shot116.jpg", "11"]
   ],
@@ -358,8 +359,8 @@ var TITEMS = [
    ["Source Code", "adodb.htm", "11"],
    ["Screen Shot", "shot148.jpg", "11"]
   ],
-  ["MultiLanguage Source Code", "multilang.txt", "1",
-   ["Source Code", "multilanguage.htm", "11"],
+  ["MultiLanguage Source Code", "Multilang.txt", "1",
+   ["Source Code", "Multilanguage.htm", "11"],
    ["Screen Shot 1", "shot112.jpg", "11"],
    ["Screen Shot 2", "shot114.jpg", "11"],
    ["Screen Shot 3", "shot113.jpg", "11"],
@@ -368,14 +369,14 @@ var TITEMS = [
    ["Screen Shot 6", "shot109.jpg", "11"],
    ["Screen Shot 7", "shot110.jpg", "11"]
   ],
-  ["Performance", "performance.txt", "1",
-   ["Source Code", "performancesource.txt", "11"]
+  ["Performance", "Performance.txt", "1",
+   ["Source Code", "PerformanceSource.txt", "11"]
   ],
-  ["Errors", "errors.txt", "1",
-   ["Source Code", "errorssource.txt", "11"]
+  ["Errors", "Errors.txt", "1",
+   ["Source Code", "ErrorsSource.txt", "11"]
   ],
   ["Language Grammer (Context Sensitive)", "grammer.txt", "1",
-   ["The Basic Context Controlling Rules", "englishgrammer.txt", "11"]
+   ["The Basic Context Controlling Rules", "EnglishGrammer.txt", "11"]
   ]
  ],
  ["RPWI Environment", "d31.htm", "1",
