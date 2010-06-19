@@ -1,0 +1,45 @@
+The First Step
+	Define Window  ( win1 )
+		Window Events
+		Window Properties
+		Window Controls
+			Define Label ( lbl1 )
+				Label Events
+				Label Properties
+			Define TextBox  ( textName  )
+				TextBox EVENTS
+				TextBox Properties
+			Define New Button ( btn1 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define New ListBox ( list1 )
+				ListBox Event
+				ListBox Properties
+		End Of Window
+		Activate window
+Procedure
+	Define Procedure search
+		Code Block
+			cName = win1.textName.Value
+			oCon = Create New ADODB Connection
+			Open ADODB Connection oCon , Connection String : 'Provider=MSDASQL.1;Persist Security Info=False;Extended Properties="dsn=MS Access Database;uid=";Initial Catalog=data.mdb'
+			oRS = Create New ADODB RecordSet Object
+			Open Recordset oRS , Connection oCon , CursorType 1 , SQL Statement "Select * from tel where name like '" + cName + "%'"
+			mymax := ADODB RecordSet (oRS) , Get Records Count
+			win1.list1.DeleteAllItems ( )
+			IF ( mymax > 0 )
+				Code Block
+					FOR LOOP ( From x = 1 To mymax Step 1)
+						Code Block
+							vname = ADODB RecordSet (oRS) Get Field ("name") Value
+							vaddress = ADODB RecordSet (oRS) Get Field ("address") Value
+							vphone = ADODB RecordSet (oRS) Get Field ("phone") Value
+							win1.list1.AddItem ( vName + " - " + vAddress + " - " + vPhone )
+							ADODB RecordSet oRS - Goto Next Record
+						End of For Loop
+				ELSE
+					Code Block
+						Show Message "Record not found" Title "Sorry" Type: Message Box
+				END OF IF STATEMENT
+		End of Procedure

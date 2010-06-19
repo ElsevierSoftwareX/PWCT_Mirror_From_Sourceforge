@@ -34,7 +34,9 @@ var TITEMS = [
  ],
  ["Using ADO (ActiveX Data Object)", "ado.txt", "1",
   ["Lesson [1]", "HarbourPWCTAdo1.htm", "11"],
-  ["Lesson [2]", "HarbourPWCTAdo2.htm", "11"]
+  ["Lesson [2]", "HarbourPWCTAdo2.htm", "11"],
+  ["Lesson [3]", "HarbourPWCTAdo3.htm", "11"],
+  ["Lesson [4]", "HarbourPWCTAdo4.htm", "11"]
  ],
  ["Customers Application", "d47.htm", "1",
   ["Customers", "d50.htm", "11"]
