@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:59:47    Date : 06/23/2010
+* Time : 21:46:52    Date : 06/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -52,11 +52,11 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_TEST_15speed1() code
 myheaders := {}
-FOR x = 1 TO 10 STEP 1
+FOR x = 1 TO 20 STEP 1
 AADD( myheaders , "Header " + str(x))
 Next
 mywidths := {}
-FOR x = 1 TO 10 STEP 1
+FOR x = 1 TO 20 STEP 1
 AADD( mywidths , 100)
 Next
 if !iswindowdefined( win1 )
@@ -74,12 +74,13 @@ WIDTH 500 ;
 HEIGHT 500 ;
 HEADERS myheaders;
 WIDTHS mywidths ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 EDIT INPLACE {} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
+win1.grid1.Width := win1.grid1.width + 1
 ACTIVATE WINDOW win1
 EndIF
 
