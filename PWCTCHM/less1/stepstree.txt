@@ -1,0 +1,83 @@
+The First Step
+	Define Window  ( win1 )
+		Window Events
+		Window Properties
+		Window Controls
+			Define Label ( lbl1 )
+				Label Events
+				Label Properties
+			Define Label ( lbl2 )
+				Label Events
+				Label Properties
+			Define Label ( lbl3 )
+				Label Events
+				Label Properties
+			Define TextBox  ( text1  )
+				TextBox EVENTS
+				TextBox Properties
+			Define TextBox  ( text2  )
+				TextBox EVENTS
+				TextBox Properties
+			Define TextBox  ( text3  )
+				TextBox EVENTS
+				TextBox Properties
+			Define New Button ( btn1 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define New Button ( btn2 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define New Grid ( Grid1 )
+				Events
+				Properties
+			Define New Button ( btn3 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+		End Of Window
+		Activate window
+Procedures
+	Define Procedure saverecord
+		Code Block
+			Call Procedure connect
+			ADODB RecordSet oRS - Add New Record
+			cname = win1.text1.Value
+			caddress = win1.text2.Value
+			cphone = win1.text3.Value
+			ADODB RecordSet (oRS) Set Field ("name") Value To (cname)
+			ADODB RecordSet (oRS) Set Field ("address") Value To (caddress)
+			ADODB RecordSet (oRS) Set Field ("phone") Value To (cphone)
+			ADODB RecordSet oRS - Update Record
+			Close ADODB RecordSet oRS
+			Close ADODB Connection oCon
+			Show Message "Operation Done" Title "Ok" Type: Message Box
+		End of Procedure
+	Define Procedure closewindow
+		Code Block
+			win1.Release ( )
+		End of Procedure
+	Define Procedure showrecords
+		Code Block
+			Call Procedure connect
+			mymax := ADODB RecordSet (oRS) , Get Records Count
+			ADODB RecordSet oRS - Goto First Record
+			win1.grid1.DeleteAllItems ( )
+			FOR LOOP ( From x = 1 To mymax Step 1)
+				Code Block
+					cname = ADODB RecordSet (oRS) Get Field ("name") Value
+					caddress = ADODB RecordSet (oRS) Get Field ("address") Value
+					cphone = ADODB RecordSet (oRS) Get Field ("phone") Value
+					win1.grid1.AddItem ( {cname,caddress,cphone} )
+					ADODB RecordSet oRS - Goto Next Record
+				End of For Loop
+		End of Procedure
+	Define Procedure connect
+		Code Block
+			Public oCon,oRS
+			oCon = Create New ADODB Connection
+			Open ADODB Connection oCon , Connection String : 'Provider=MSDASQL.1;Persist Security Info=False;Ext
+			oRS = Create New ADODB RecordSet Object
+			Open Recordset oRS , Connection oCon , CursorType 1 , SQL Statement "Select * from tel"
+		End of Procedure

@@ -1,0 +1,1448 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1256">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+@page Section1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<p class=MsoNormal><span style='font-size:18.0pt;line-height:115%'>PWCT &amp;
+ADO (ActiveX Data Object) - Lesson [1] </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'> This 
+lesson include :-</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR></span>Create access database</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR></span>Create PWCT application &amp; Design a data
+entry form</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR></span>Connect to access database using ADO </p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR></span>Add a new record </p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR></span>Show all records in a Grid control</p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'><img
+width=711 height=398 src="HarbourPWCTAdo1_files/image001.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'><b><span
+style='font-size:14.0pt;line-height:115%'>Final Steps Tree</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle><img width=834 height=1810
+src="HarbourPWCTAdo1_files/image002.gif"
+alt="Text Box: The First Step&#13;&#10;	Define Window  ( win1 )&#13;&#10;		Window Events&#13;&#10;		Window Properties&#13;&#10;		Window Controls&#13;&#10;			Define Label ( lbl1 )&#13;&#10;				Label Events&#13;&#10;				Label Properties&#13;&#10;			Define Label ( lbl2 )&#13;&#10;				Label Events&#13;&#10;				Label Properties&#13;&#10;			Define Label ( lbl3 )&#13;&#10;				Label Events&#13;&#10;				Label Properties&#13;&#10;			Define TextBox  ( text1  )&#13;&#10;				TextBox EVENTS&#13;&#10;				TextBox Properties&#13;&#10;			Define TextBox  ( text2  )&#13;&#10;				TextBox EVENTS&#13;&#10;				TextBox Properties&#13;&#10;			Define TextBox  ( text3  )&#13;&#10;				TextBox EVENTS&#13;&#10;				TextBox Properties&#13;&#10;			Define New Button ( btn1 )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;			Define New Button ( btn2 )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;			Define New Grid ( Grid1 )&#13;&#10;				Events&#13;&#10;				Properties&#13;&#10;			Define New Button ( btn3 )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;		End Of Window&#13;&#10;		Activate window&#13;&#10;Procedures&#13;&#10;	Define Procedure saverecord&#13;&#10;		Code Block&#13;&#10;			Call Procedure connect&#13;&#10;			ADODB RecordSet oRS - Add New Record&#13;&#10;			cname = win1.text1.Value&#13;&#10;			caddress = win1.text2.Value&#13;&#10;			cphone = win1.text3.Value&#13;&#10;			ADODB RecordSet (oRS) Set Field (&quot;name&quot;) Value To (cname)&#13;&#10;			ADODB RecordSet (oRS) Set Field (&quot;address&quot;) Value To (caddress)&#13;&#10;			ADODB RecordSet (oRS) Set Field (&quot;phone&quot;) Value To (cphone)&#13;&#10;			ADODB RecordSet oRS - Update Record&#13;&#10;			Close ADODB RecordSet oRS&#13;&#10;			Close ADODB Connection oCon&#13;&#10;			Show Message &quot;Operation Done&quot; Title &quot;Ok&quot; Type: Message Box&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure closewindow&#13;&#10;		Code Block&#13;&#10;			win1.Release ( )&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure showrecords&#13;&#10;		Code Block&#13;&#10;			Call Procedure connect&#13;&#10;			mymax := ADODB RecordSet (oRS) , Get Records Count&#13;&#10;			ADODB RecordSet oRS - Goto First Record&#13;&#10;			win1.grid1.DeleteAllItems ( )&#13;&#10;			FOR LOOP ( From x = 1 To mymax Step 1)&#13;&#10;				Code Block&#13;&#10;					cname = ADODB RecordSet (oRS) Get Field (&quot;name&quot;) Value&#13;&#10;					caddress = ADODB RecordSet (oRS) Get Field (&quot;address&quot;) Value&#13;&#10;					cphone = ADODB RecordSet (oRS) Get Field (&quot;phone&quot;) Value&#13;&#10;					win1.grid1.AddItem ( {cname,caddress,cphone} )&#13;&#10;					ADODB RecordSet oRS - Goto Next Record&#13;&#10;				End of For Loop&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure connect&#13;&#10;		Code Block&#13;&#10;			Public oCon,oRS&#13;&#10;			oCon = Create New ADODB Connection&#13;&#10;			Open ADODB Connection oCon , Connection String&#13;&#10;			oRS = Create New ADODB RecordSet Object&#13;&#10;			Open Recordset oRS , Connection oCon , CursorType 1 , SQL Statement &quot;Select * from tel&quot;&#13;&#10;		End of Procedure&#13;&#10;&#13;&#10;&#13;&#10;"></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'><b><span
+style='font-size:14.0pt;line-height:115%'>Implementation Steps</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=377 height=384
+src="HarbourPWCTAdo1_files/image003.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Create new folder</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=103 height=96
+src="HarbourPWCTAdo1_files/image004.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>The folder name is database</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=782 height=487
+src="HarbourPWCTAdo1_files/image005.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Create new Microsoft Access database</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=204 height=67
+src="HarbourPWCTAdo1_files/image006.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>The  database name is data</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=514 height=434
+src="HarbourPWCTAdo1_files/image007.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Create table in design view</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=749 height=457
+src="HarbourPWCTAdo1_files/image008.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Table contains three fields (name,address &amp; phone)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=369 height=105
+src="HarbourPWCTAdo1_files/image009.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=331 height=104
+src="HarbourPWCTAdo1_files/image010.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=491 height=152
+src="HarbourPWCTAdo1_files/image011.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=470 height=337
+src="HarbourPWCTAdo1_files/image012.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=745 height=459
+src="HarbourPWCTAdo1_files/image013.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=789 height=589
+src="HarbourPWCTAdo1_files/image014.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Create new GUI Application Without Coding</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=557 height=455
+src="HarbourPWCTAdo1_files/image015.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>File name = test.SSF</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=786 height=592
+src="HarbourPWCTAdo1_files/image016.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Select the first step, then press “d”</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=732 height=440
+src="HarbourPWCTAdo1_files/image017.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Press enter or select “ok”</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=692 height=433
+src="HarbourPWCTAdo1_files/image018.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Determne the window title “test” then press CTRL+W</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=685 height=434
+src="HarbourPWCTAdo1_files/image019.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Select the step window controls then press “L”</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=731 height=439
+src="HarbourPWCTAdo1_files/image020.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Press enter or CTRL+W to use the label component</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=691 height=433
+src="HarbourPWCTAdo1_files/image021.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set Label caption = “Name” and set label name = lbl1 then
+press ALT+A (Again)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=689 height=433
+src="HarbourPWCTAdo1_files/image022.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set label caption = “Address” and set label name = lbl2 then
+press ALT+A</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>L</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=689 height=434
+src="HarbourPWCTAdo1_files/image023.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set label caption = “Phone” and set label name = lbl3 then
+press CTRL+W (OK)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=680 height=205
+src="HarbourPWCTAdo1_files/image024.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Press “T” to open components browser with the letter “T” in
+search line</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=721 height=330
+src="HarbourPWCTAdo1_files/image025.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Press enter to select the textbox component</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=685 height=315
+src="HarbourPWCTAdo1_files/image026.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set the control name = text1 then press ALT+A (Again)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=666 height=121
+src="HarbourPWCTAdo1_files/image027.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set the control name = text2 then press ALT+A (Again)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=667 height=120
+src="HarbourPWCTAdo1_files/image028.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set the control name = text3 then press CTRL+W (OK)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=676 height=205
+src="HarbourPWCTAdo1_files/image029.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Press “b” to open components browser with letter “b” in
+search line</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=718 height=325
+src="HarbourPWCTAdo1_files/image030.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Press enter or CTRL+W to use Button component</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=684 height=316
+src="HarbourPWCTAdo1_files/image031.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set name = btn1 and caption = “Save Record” then press ALT+A
+(Again)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=681 height=314
+src="HarbourPWCTAdo1_files/image032.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set name = btn2 and caption = “Close Window” then press
+CTRL+W (OK)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=678 height=204
+src="HarbourPWCTAdo1_files/image033.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=679 height=206
+src="HarbourPWCTAdo1_files/image034.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Press CTRL+N or Click “New Step” button then set step name =
+Procedures</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=719 height=325
+src="HarbourPWCTAdo1_files/image035.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Select “define procedure” component</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=685 height=316
+src="HarbourPWCTAdo1_files/image036.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set procedure name = “saverecord” then press ALT+A (Again)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=685 height=316
+src="HarbourPWCTAdo1_files/image037.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set procedure name = “closewindow” then press CTRL+W (OK)</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=677 height=206
+src="HarbourPWCTAdo1_files/image038.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=718 height=326
+src="HarbourPWCTAdo1_files/image039.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Press CTRL+W or Enter to use  the “Button Events” Component </p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=685 height=319
+src="HarbourPWCTAdo1_files/image040.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=749 height=417
+src="HarbourPWCTAdo1_files/image041.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Copy the step </p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=752 height=412
+src="HarbourPWCTAdo1_files/image042.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Paste the step</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=686 height=285
+src="HarbourPWCTAdo1_files/image043.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Modify the step</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=683 height=315
+src="HarbourPWCTAdo1_files/image044.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=682 height=207
+src="HarbourPWCTAdo1_files/image045.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=681 height=283
+src="HarbourPWCTAdo1_files/image046.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Select the step “Window Controls” then click the button
+“form designer”</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=788 height=594
+src="HarbourPWCTAdo1_files/image047.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=677 height=203
+src="HarbourPWCTAdo1_files/image048.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=720 height=326
+src="HarbourPWCTAdo1_files/image049.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Use “Window Class” Component</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=689 height=360
+src="HarbourPWCTAdo1_files/image050.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Goto page “Invoke Method” and select the method “release” </p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=678 height=200
+src="HarbourPWCTAdo1_files/image051.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=720 height=325
+src="HarbourPWCTAdo1_files/image052.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Use the component “ADO New Connection”</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=685 height=317
+src="HarbourPWCTAdo1_files/image053.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=680 height=203
+src="HarbourPWCTAdo1_files/image054.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=719 height=325
+src="HarbourPWCTAdo1_files/image055.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=685 height=317
+src="HarbourPWCTAdo1_files/image056.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Modify the connection string to determine the database name
+= data.mdb</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=677 height=203
+src="HarbourPWCTAdo1_files/image057.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=716 height=324
+src="HarbourPWCTAdo1_files/image058.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Use ADO new RecordSet component</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=684 height=316
+src="HarbourPWCTAdo1_files/image059.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=677 height=201
+src="HarbourPWCTAdo1_files/image060.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=719 height=325
+src="HarbourPWCTAdo1_files/image061.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Use ADO Open RecordSet Component</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=686 height=315
+src="HarbourPWCTAdo1_files/image062.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=677 height=204
+src="HarbourPWCTAdo1_files/image063.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=719 height=324
+src="HarbourPWCTAdo1_files/image064.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=686 height=318
+src="HarbourPWCTAdo1_files/image065.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=679 height=204
+src="HarbourPWCTAdo1_files/image066.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=735 height=392
+src="HarbourPWCTAdo1_files/image067.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=742 height=393
+src="HarbourPWCTAdo1_files/image068.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=742 height=392
+src="HarbourPWCTAdo1_files/image069.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=392
+src="HarbourPWCTAdo1_files/image070.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=742 height=286
+src="HarbourPWCTAdo1_files/image071.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=736 height=395
+src="HarbourPWCTAdo1_files/image072.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=395
+src="HarbourPWCTAdo1_files/image073.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=393
+src="HarbourPWCTAdo1_files/image074.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=742 height=394
+src="HarbourPWCTAdo1_files/image075.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=742 height=289
+src="HarbourPWCTAdo1_files/image076.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=734 height=392
+src="HarbourPWCTAdo1_files/image077.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=392
+src="HarbourPWCTAdo1_files/image078.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=736 height=396
+src="HarbourPWCTAdo1_files/image079.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=745 height=392
+src="HarbourPWCTAdo1_files/image080.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=736 height=397
+src="HarbourPWCTAdo1_files/image081.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=742 height=391
+src="HarbourPWCTAdo1_files/image082.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=740 height=288
+src="HarbourPWCTAdo1_files/image083.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=737 height=395
+src="HarbourPWCTAdo1_files/image084.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=392
+src="HarbourPWCTAdo1_files/image085.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=741 height=292
+src="HarbourPWCTAdo1_files/image086.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=553 height=348
+src="HarbourPWCTAdo1_files/image087.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=491 height=392
+src="HarbourPWCTAdo1_files/image088.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=490 height=391
+src="HarbourPWCTAdo1_files/image089.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=737 height=395
+src="HarbourPWCTAdo1_files/image090.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=741 height=392
+src="HarbourPWCTAdo1_files/image091.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Set headers = {“name”,”address”,”phone”}  and set widths =
+{100,100,100}</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=740 height=393
+src="HarbourPWCTAdo1_files/image092.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=395
+src="HarbourPWCTAdo1_files/image093.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=780 height=592
+src="HarbourPWCTAdo1_files/image094.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=292
+src="HarbourPWCTAdo1_files/image095.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=738 height=394
+src="HarbourPWCTAdo1_files/image096.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=715 height=332
+src="HarbourPWCTAdo1_files/image097.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=740 height=289
+src="HarbourPWCTAdo1_files/image098.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=737 height=394
+src="HarbourPWCTAdo1_files/image099.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=391
+src="HarbourPWCTAdo1_files/image100.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=288
+src="HarbourPWCTAdo1_files/image101.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=738 height=290
+src="HarbourPWCTAdo1_files/image102.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=739 height=395
+src="HarbourPWCTAdo1_files/image103.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=741 height=389
+src="HarbourPWCTAdo1_files/image104.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=290
+src="HarbourPWCTAdo1_files/image105.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=736 height=396
+src="HarbourPWCTAdo1_files/image106.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=745 height=392
+src="HarbourPWCTAdo1_files/image107.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=745 height=293
+src="HarbourPWCTAdo1_files/image108.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=736 height=392
+src="HarbourPWCTAdo1_files/image109.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=394
+src="HarbourPWCTAdo1_files/image110.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=367
+src="HarbourPWCTAdo1_files/image111.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=294
+src="HarbourPWCTAdo1_files/image112.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=738 height=394
+src="HarbourPWCTAdo1_files/image113.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=745 height=391
+src="HarbourPWCTAdo1_files/image114.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=390
+src="HarbourPWCTAdo1_files/image115.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=745 height=394
+src="HarbourPWCTAdo1_files/image116.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=739 height=287
+src="HarbourPWCTAdo1_files/image117.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=736 height=396
+src="HarbourPWCTAdo1_files/image118.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=746 height=392
+src="HarbourPWCTAdo1_files/image119.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=741 height=290
+src="HarbourPWCTAdo1_files/image120.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=735 height=395
+src="HarbourPWCTAdo1_files/image121.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=395
+src="HarbourPWCTAdo1_files/image122.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=742 height=289
+src="HarbourPWCTAdo1_files/image123.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=554 height=350
+src="HarbourPWCTAdo1_files/image124.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Error: procedure “showrecord” not defined</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=367
+src="HarbourPWCTAdo1_files/image125.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=392
+src="HarbourPWCTAdo1_files/image126.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Change the procedure name from showrecord() to showrecords()</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=395
+src="HarbourPWCTAdo1_files/image127.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=552 height=348
+src="HarbourPWCTAdo1_files/image128.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=698 height=392
+src="HarbourPWCTAdo1_files/image129.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=701 height=391
+src="HarbourPWCTAdo1_files/image130.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=700 height=393
+src="HarbourPWCTAdo1_files/image131.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Pressing the button “show records” multiple times duplicate
+the results</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=290
+src="HarbourPWCTAdo1_files/image132.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=738 height=394
+src="HarbourPWCTAdo1_files/image133.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=746 height=394
+src="HarbourPWCTAdo1_files/image134.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=367
+src="HarbourPWCTAdo1_files/image135.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=742 height=293
+src="HarbourPWCTAdo1_files/image136.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=699 height=389
+src="HarbourPWCTAdo1_files/image137.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>Pressing the button “show records” multiple times don’t
+duplicate the results</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=290
+src="HarbourPWCTAdo1_files/image138.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=738 height=400
+src="HarbourPWCTAdo1_files/image139.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=745 height=390
+src="HarbourPWCTAdo1_files/image140.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=293
+src="HarbourPWCTAdo1_files/image141.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=290
+src="HarbourPWCTAdo1_files/image142.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=737 height=397
+src="HarbourPWCTAdo1_files/image143.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=741 height=392
+src="HarbourPWCTAdo1_files/image144.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=744 height=367
+src="HarbourPWCTAdo1_files/image145.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=291
+src="HarbourPWCTAdo1_files/image146.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=741 height=289
+src="HarbourPWCTAdo1_files/image147.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=738 height=396
+src="HarbourPWCTAdo1_files/image148.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=392
+src="HarbourPWCTAdo1_files/image149.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=739 height=359
+src="HarbourPWCTAdo1_files/image150.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=746 height=294
+src="HarbourPWCTAdo1_files/image151.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=743 height=292
+src="HarbourPWCTAdo1_files/image152.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><img width=698 height=390
+src="HarbourPWCTAdo1_files/image153.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpLast align=center style='margin-left:0cm;
+text-align:center'>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

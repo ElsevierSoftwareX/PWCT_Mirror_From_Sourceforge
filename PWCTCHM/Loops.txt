@@ -1,0 +1,80 @@
+Sample Files
+--------------
+
+	1 - InfiniteLoop.nova
+	2 - UnderControl.nova
+	3 - Processing.nova
+
+InfiniteLoop.nova
+-------------------
+
+The application title is "Infinite Loop"
+I want window contains listbox and the window title is "Infinite Loop"
+the window name is mywin.
+
+I want button and button caption is "Close"
+the button name is "myclose" and the button left is 300.
+myclose mouseclick. instructions are 
+	you close window
+end of instructions
+
+[y]. = (0).
+[x]. = (0).
+
+[test]. = [y] isequal (1).
+test false. instructions are
+	[x]. = [x]+(1).
+	listbox must add from [x].
+	do windows events
+	[test]. = [y] isequal (1).
+end of instructions
+
+
+
+UnderControl.nova
+-------------------
+
+The application title is "Loop Under Control"
+I want window contains listbox and the window title is "Loop Under Control"
+the window name is mywin.
+
+I want button and button caption is "Close"
+the button name is "myclose" and the button left is 300.
+myclose mouseclick. instructions are 
+	you close window
+end of instructions
+
+I want button and button caption is "Stop"
+the button name is "mystop" and the button left is 300.
+the button top is 80.
+mystop mouseclick. instructions are 
+	[y]. = (10000).
+end of instructions
+
+
+[y]. = (0).
+
+[test]. = [y] isequal (10000).
+test false. instructions are
+	[y]. = [y]+(1).
+	listbox must add from [y].
+	do windows events
+	[test]. = [y] isequal (10000).
+end of instructions
+
+
+Processing.nova
+-----------------
+
+The application title is "Application will end after some processing"
+
+[y]. = (0).
+
+myloop. instructions must done
+myloop. instructions are
+	do windows events
+	[y]. = [y]+(1).
+	myloop. instructions must done
+end of instructions
+
+y 100000. instructions are You close application ok

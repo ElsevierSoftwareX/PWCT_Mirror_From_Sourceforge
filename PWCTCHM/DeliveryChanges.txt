@@ -1,0 +1,30 @@
+What is new in Delivery2.nova ?
+
+1 - Interactive search (NO SEARCH BUTTON)
+
+2 - Report Generation code changed  
+    From :-
+		[myitem]. = [myarray]\[x].
+		[mystr]. = "(
+			Delivery Application 
+-------------------------------------------------------------------
+Date  :) thedate  (
+Time  :) thetime  (
+Month :) themonth (
+Day   :) theday   (
+Item  :---------------> ) [myitem] (
+-------------------------------------------------------------------)"
+		[mystr]. memory to file "(delivery.txt)"
+
+   To :-
+
+	"(
+			Delivery Application 
+-------------------------------------------------------------------
+Date  :) thedate  (
+Time  :) thetime  (
+Month :) themonth (
+Day   :) theday   (
+Item  :---------------> ) [myarray]\[x] (
+-------------------------------------------------------------------)"
+		memory to file "(delivery.txt)"

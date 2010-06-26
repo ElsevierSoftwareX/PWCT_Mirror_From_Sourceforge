@@ -1,0 +1,368 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1256">
+<meta name=Generator content="Microsoft Word 10 (filtered)">
+<title>GUI – Controls (Objects, Events &amp; Classes)‎</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:TimesNewRoman;
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	line-height:normal;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	page-break-after:avoid;
+	text-autospace:none;
+	font-size:18.0pt;
+	font-family:TimesNewRoman;
+	font-weight:bold;}
+h2
+	{margin-top:1.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	line-height:normal;
+	page-break-after:avoid;
+	text-autospace:none;
+	font-size:18.0pt;
+	font-family:TimesNewRoman;
+	font-weight:bold;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	line-height:normal;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	line-height:normal;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-top:4.8pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	line-height:18.0pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+pre
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:13.2pt;
+	background:#F9F9F9;
+	border:none;
+	padding:0cm;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	color:black;}
+span.Char1
+	{font-family:"Courier New";
+	color:black;
+	background:#F9F9F9;}
+ /* Page Definitions */
+ @page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1 dir=RTL>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><span style='font-size:18.0pt'>GUI – Controls (Objects, Events &amp;
+Classes)</span></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><span style='font-size:14.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Label</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>TextBox</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Button</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>EditBox</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Listbox</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>CheckBox</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>ComboBox</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>RadioGroup</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Image</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Spinner</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>DatePicker</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>CheckButton</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>ProgressBar</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Timer</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>RichEditBox</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Grid</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Tab</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Tab Page</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Tree</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Slider</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Frame</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>HyperLink</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>AnimateBox</li>
+ <li class=MsoNormal dir=LTR style='margin-right:0cm;margin-left:36.0pt;
+     text-align:left;direction:ltr;unicode-bidi:embed'>Browse</li>
+</ul>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><span style='font-size:16.0pt'>Adding Control</span></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=261 src="d27_files/image002.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Steps Tree</p>
+
+<p class=MsoNormal align=center dir=LTR style='text-align:center;direction:
+ltr;unicode-bidi:embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=316 src="d27_files/image003.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Domain (Controls) Component (Label)</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=353 src="d27_files/image004.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Interaction Page</p>
+
+<p class=MsoNormal align=center dir=LTR style='text-align:center;direction:
+ltr;unicode-bidi:embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=243 src="d27_files/image005.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Final Steps Tree</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=503 height=408 src="d27_files/image006.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>The Final Application</p>
+
+<p class=MsoNormal align=center dir=LTR style='text-align:center;direction:
+ltr;unicode-bidi:embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><span style='font-size:16.0pt'>Control Events &amp; Control Class</span></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><span style='font-size:16.0pt'>&nbsp;</span></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><span style='font-size:16.0pt'><img width=553 height=293
+src="d27_files/image007.jpg"></span></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Steps Tree</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><span style='font-size:16.0pt'><img width=554 height=358
+src="d27_files/image008.jpg"></span></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Domain (Events) Component (Label Events)</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=352 src="d27_files/image009.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Interaction Page</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=355 src="d27_files/image010.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Domain (Structure Programming) Component (Define Procedure)</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=349 src="d27_files/image011.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Interaction Page</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=298 src="d27_files/image012.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Steps Tree</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=355 src="d27_files/image013.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Domain (GUI Application) Component (Show Message)</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=355 src="d27_files/image014.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Interaction Page</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=298 src="d27_files/image015.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Steps Tree</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=352 src="d27_files/image016.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Domain (Classes) Component (Label Class)</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=356 src="d27_files/image017.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Interaction Page</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=244 src="d27_files/image018.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>Steps Tree</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=553 height=365 src="d27_files/image019.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>The Final Application</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>&nbsp;</p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'><img width=502 height=402 src="d27_files/image020.jpg"></p>
+
+<p class=MsoNormal dir=LTR style='text-align:left;direction:ltr;unicode-bidi:
+embed'>The Final Application</p>
+
+</div>
+
+</body>
+
+</html>

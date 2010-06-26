@@ -1,0 +1,118 @@
+Sound Player Library Source
+-----------------------------
+
+	1 - SoundPlayerLib.nova
+	2 - SoundPlayerLibDemo.nova
+
+SoundPlayerLib.nova
+---------------------
+
+Procedure MySoundOpen.
+[temparray]. = (4).
+[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(open ")[input](" type mpegvideo alias MediaFile)'
+[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(nil)'
+[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(0)'
+[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+"(winmm.dll)" Dll Library to use
+"mciSendString" dll function to call with parameters "temparray"
+end procedure
+
+Procedure MySoundPlay.
+
+[temparray]. = (4).
+[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(play MediaFile)'
+[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(nil)'
+[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(0)'
+[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+"(winmm.dll)" Dll Library to use
+"mciSendString" dll function to call with parameters "temparray"
+
+end procedure
+
+Procedure MySoundPause.
+
+[temparray]. = (4).
+[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(pause MediaFile)'
+[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(nil)'
+[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(0)'
+[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+"(winmm.dll)" Dll Library to use
+"mciSendString" dll function to call with parameters "temparray"
+
+end procedure
+
+Procedure MySoundClose.
+
+[temparray]. = (4).
+[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(close MediaFile)'
+[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(nil)'
+[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(0)'
+[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+"(winmm.dll)" Dll Library to use
+"mciSendString" dll function to call with parameters "temparray"
+
+end procedure
+
+Procedure MySoundResume.
+
+[temparray]. = (4).
+[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(resume MediaFile)'
+[temparray]\(2)\(1). = (number). [temparray]\(2)\(2). = '(nil)'
+[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(0)'
+[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+
+"(winmm.dll)" Dll Library to use
+"mciSendString" dll function to call with parameters "temparray"
+
+end procedure
+
+
+SoundPlayerLibDemo.nova
+-------------------------
+
+Application title is Sound Player Library Demo. 
+
+do file "SoundPlayerLib.nova"
+
+I want window 
+The window title is "Sound Player Library Demo"
+
+i want button and button caption is "open test.mp3" and button top is 50.
+button name is btn1.
+
+i want button and button caption is play. and button top is 100.
+button name is btn2.
+
+i want button and button caption is pause. and button top is 150.
+button name is btn3.
+
+i want button and button caption is resume. and button top is 200.
+button name is btn4.
+
+i want button and button caption is close. and button top is 250.
+button name is btn5.
+
+btn1 mouse click. instructions are
+	[input]. = "(test.mp3)" and do procedure MySoundOpen.
+end of instructions
+
+btn2 mouse click. instructions are
+	do procedure MySoundPlay.
+end of instructions
+
+btn3 mouse click. instructions are
+	do procedure MySoundPause.
+end of instructions
+
+btn4 mouse click. instructions are
+	do procedure MySoundResume.
+end of instructions
+
+btn5 mouse click. instructions are
+	do procedure MySoundClose.
+end of instructions
+

@@ -1,0 +1,392 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1256">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+@page Section1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<p class=MsoNormal><span style='font-size:18.0pt;line-height:115%'>PWCT &amp;
+ADO (ActiveX Data Object) - Lesson [4] </span></p>
+
+<p class=MsoNormal><span style='font-size:14.0pt;line-height:115%'> This 
+lesson include :-</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR></span>Adjust the application to be ready for empty
+table (No Records)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR></span>Show a messagebox (OK/Cancel) before
+deleting a record</p>
+
+<p class=MsoListParagraphCxSpMiddle style='text-indent:-18.0pt'><span
+style='font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span dir=LTR></span>Delete record</p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='text-align:center'><img
+width=467 height=321 src="HarbourPWCTAdo4_files/image001.jpg"></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'><b><span
+style='font-size:14.0pt;line-height:115%'>Final Steps Tree</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle><img width=846 height=1862
+src="HarbourPWCTAdo4_files/image002.gif"
+alt="Text Box: The First Step&#13;&#10;	Call Procedure connect&#13;&#10;	Define Window  ( win1 )&#13;&#10;		Window Events&#13;&#10;		Window Properties&#13;&#10;		Window Controls&#13;&#10;			Define Label ( lbl1 )&#13;&#10;				Label Events&#13;&#10;				Label Properties&#13;&#10;			Define Label ( lbl2 )&#13;&#10;				Label Events&#13;&#10;				Label Properties&#13;&#10;			Define Label ( lbl3 )&#13;&#10;				Label Events&#13;&#10;				Label Properties&#13;&#10;			Define TextBox  ( textName  )&#13;&#10;				TextBox EVENTS&#13;&#10;				TextBox Properties&#13;&#10;			Define TextBox  ( textAddress  )&#13;&#10;				TextBox EVENTS&#13;&#10;				TextBox Properties&#13;&#10;			Define TextBox  ( textPhone  )&#13;&#10;				TextBox EVENTS&#13;&#10;				TextBox Properties&#13;&#10;			Define New Button ( btnFirst )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;			Define New Button ( btnNext )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;			Define New Button ( btnLast )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;			Define New Button ( btnClose )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;			Define New Button ( btnPrev )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;			Define New Button ( btnDel )&#13;&#10;				Button Events&#13;&#10;					Event: ON CLICK&#13;&#10;				Button Properties&#13;&#10;		End Of Window&#13;&#10;		Call Procedure showrecord&#13;&#10;		Activate window&#13;&#10;Procedures&#13;&#10;	Define Procedure connect&#13;&#10;		Code Block&#13;&#10;			Public oCon,oRS&#13;&#10;			oCon = Create New ADODB Connection&#13;&#10;			Open ADODB Connection oCon , Connection String : Initial Catalog=data.mdb'&#13;&#10;			oRS = Create New ADODB RecordSet Object&#13;&#10;			Open Recordset oRS , Connection oCon , CursorType 1 , SQL Statement &quot;Select * from tel&quot;&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure disconnect&#13;&#10;		Code Block&#13;&#10;			Close ADODB RecordSet oRS&#13;&#10;			Close ADODB Connection oCon&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure closesystem&#13;&#10;		Code Block&#13;&#10;			Call Procedure disconnect&#13;&#10;			win1.Release ( )&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure showrecord&#13;&#10;		Code Block&#13;&#10;			mymax := ADODB RecordSet (oRS) , Get Records Count&#13;&#10;			IF ( mymax &gt; 0 )&#13;&#10;				Code Block&#13;&#10;					cname = ADODB RecordSet (oRS) Get Field (&quot;name&quot;) Value&#13;&#10;					caddress = ADODB RecordSet (oRS) Get Field (&quot;address&quot;) Value&#13;&#10;					cphone = ADODB RecordSet (oRS) Get Field (&quot;phone&quot;) Value&#13;&#10;				ELSE&#13;&#10;					Code Block&#13;&#10;						cname = &quot;&quot;&#13;&#10;						caddress = &quot;&quot;&#13;&#10;						cphone = &quot;&quot;&#13;&#10;				END OF IF STATEMENT&#13;&#10;			win1.textName.Value := cname&#13;&#10;			win1.textAddress.Value := cAddress&#13;&#10;			win1.textPhone.Value := cPhone&#13;&#10;		End of Procedure	&#13;&#10;&#13;&#10;"></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle><img width=846 height=1718
+src="HarbourPWCTAdo4_files/image003.gif"
+alt="Text Box: 	&#13;&#10;Define Procedure firstrecord&#13;&#10;		Code Block&#13;&#10;			mymax := ADODB RecordSet (oRS) , Get Records Count&#13;&#10;			IF ( mymax &gt; 0 )&#13;&#10;				Code Block&#13;&#10;					ADODB RecordSet oRS - Goto First Record&#13;&#10;					Call Procedure showrecord&#13;&#10;				END OF IF STATEMENT&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure lastrecord&#13;&#10;		Code Block&#13;&#10;			mymax := ADODB RecordSet (oRS) , Get Records Count&#13;&#10;			IF ( mymax &gt; 0 )&#13;&#10;				Code Block&#13;&#10;					ADODB RecordSet oRS - Goto Last Record&#13;&#10;					Call Procedure showrecord&#13;&#10;				END OF IF STATEMENT&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure nextrecord&#13;&#10;		Code Block&#13;&#10;			mymax := ADODB RecordSet (oRS) , Get Records Count&#13;&#10;			IF ( mymax &gt; 0 )&#13;&#10;				Code Block&#13;&#10;					ADODB RecordSet oRS - Goto Next Record&#13;&#10;					mycheck = ADODB RecordSet oRS , Check EOF&#13;&#10;					IF ( mycheck )&#13;&#10;						Code Block&#13;&#10;							ADODB RecordSet oRS - Goto Previous Record&#13;&#10;							Show Message &quot;End of File&quot; Title &quot;Sorry&quot; Type: Message Box&#13;&#10;						ELSE&#13;&#10;							Code Block&#13;&#10;								Call Procedure showrecord&#13;&#10;						END OF IF STATEMENT&#13;&#10;				END OF IF STATEMENT&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure prevrecord&#13;&#10;		Code Block&#13;&#10;			mymax := ADODB RecordSet (oRS) , Get Records Count&#13;&#10;			IF ( mymax &gt; 0 )&#13;&#10;				Code Block&#13;&#10;					ADODB RecordSet oRS - Goto Previous Record&#13;&#10;					mycheck = ADODB RecordSet oRS , Check BOF&#13;&#10;					IF ( mycheck )&#13;&#10;						Code Block&#13;&#10;							ADODB RecordSet oRS - Goto Next Record&#13;&#10;							Show Message &quot;Begin of File&quot; Title &quot;Sorry&quot; Type: Message Box&#13;&#10;						ELSE&#13;&#10;							Code Block&#13;&#10;								Call Procedure showrecord&#13;&#10;						END OF IF STATEMENT&#13;&#10;				END OF IF STATEMENT&#13;&#10;		End of Procedure&#13;&#10;	Define Procedure delrecord&#13;&#10;		Code Block&#13;&#10;			mymax := ADODB RecordSet (oRS) , Get Records Count&#13;&#10;			IF ( mymax &gt; 0 )&#13;&#10;				Code Block&#13;&#10;					Show Message &quot;Are you sure ?&quot; Title &quot;Delete&quot; Type: Message Ok/Cancel&#13;&#10;					IF ( myout = false )&#13;&#10;						Code Block&#13;&#10;							Return 0&#13;&#10;						END OF IF STATEMENT&#13;&#10;					ADODB RecordSet oRS - Delete Record&#13;&#10;					ADODB RecordSet oRS - Update Record&#13;&#10;					mymax := ADODB RecordSet (oRS) , Get Records Count&#13;&#10;					IF ( mymax &gt; 0 )&#13;&#10;						Code Block&#13;&#10;							ADODB RecordSet oRS - Goto Previous Record&#13;&#10;							mycheck = ADODB RecordSet oRS , Check BOF&#13;&#10;							IF ( mycheck )&#13;&#10;								Code Block&#13;&#10;									ADODB RecordSet oRS - Goto Next Record&#13;&#10;								END OF IF STATEMENT&#13;&#10;						END OF IF STATEMENT&#13;&#10;					Call Procedure showrecord&#13;&#10;				ELSE&#13;&#10;					Code Block&#13;&#10;						Show Message &quot;No record to delete&quot; Title &quot;Sorry&quot; Type: Message Box&#13;&#10;				END OF IF STATEMENT&#13;&#10;		End of Procedure&#13;&#10;&#13;&#10;"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'><b><span
+style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:0cm'><b><span
+style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>Implementation
+Steps</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=981 height=734 src="HarbourPWCTAdo4_files/image004.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=831 height=540 src="HarbourPWCTAdo4_files/image005.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=924 height=362 src="HarbourPWCTAdo4_files/image006.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=928 height=360 src="HarbourPWCTAdo4_files/image007.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=930 height=362 src="HarbourPWCTAdo4_files/image008.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=930 height=489 src="HarbourPWCTAdo4_files/image009.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=925 height=363 src="HarbourPWCTAdo4_files/image010.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=930 height=490 src="HarbourPWCTAdo4_files/image011.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=929 height=487 src="HarbourPWCTAdo4_files/image012.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=929 height=360 src="HarbourPWCTAdo4_files/image013.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=928 height=361 src="HarbourPWCTAdo4_files/image014.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=930 height=362 src="HarbourPWCTAdo4_files/image015.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=856 height=498 src="HarbourPWCTAdo4_files/image016.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=855 height=498 src="HarbourPWCTAdo4_files/image017.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=851 height=362 src="HarbourPWCTAdo4_files/image018.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=932 height=489 src="HarbourPWCTAdo4_files/image019.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=926 height=363 src="HarbourPWCTAdo4_files/image020.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=927 height=360 src="HarbourPWCTAdo4_files/image021.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=926 height=502 src="HarbourPWCTAdo4_files/image022.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=929 height=493 src="HarbourPWCTAdo4_files/image023.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=927 height=367 src="HarbourPWCTAdo4_files/image024.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=933 height=491 src="HarbourPWCTAdo4_files/image025.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=978 height=662 src="HarbourPWCTAdo4_files/image026.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=932 height=493 src="HarbourPWCTAdo4_files/image027.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=928 height=489 src="HarbourPWCTAdo4_files/image028.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=933 height=491 src="HarbourPWCTAdo4_files/image029.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=930 height=492 src="HarbourPWCTAdo4_files/image030.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=929 height=362 src="HarbourPWCTAdo4_files/image031.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=932 height=361 src="HarbourPWCTAdo4_files/image032.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=931 height=491 src="HarbourPWCTAdo4_files/image033.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=927 height=360 src="HarbourPWCTAdo4_files/image034.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'><img
+width=587 height=447 src="HarbourPWCTAdo4_files/image035.jpg"></span></b></p>
+
+<p class=MsoListParagraphCxSpLast align=center style='margin-left:0cm;
+text-align:center'><b><span style='font-size:14.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+</div>
+
+</body>
+
+</html>
