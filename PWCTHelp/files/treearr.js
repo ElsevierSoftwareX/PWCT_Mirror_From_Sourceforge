@@ -2,7 +2,7 @@ var TITEMS = [
  ["Cover", "cover.htm", "11"],
  ["Resources (Downloads,Forums...etc)", "resources.htm", "11"],
  ["Abstract and Introduction", "d1.htm", "11"],
- ["Mahmoud IPL or HarbourPWCT", "d2.htm", "1",
+ ["Introduction to Mahmoud IPL or HarbourPWCT", "d2.htm", "1",
   ["Samples Location", "d30.htm", "11"],
   ["Hello World Program", "d3.htm", "11"],
   ["Setting Colors &amp; Clearing Screen", "d4.htm", "11"],
@@ -32,17 +32,17 @@ var TITEMS = [
   ["Form Designer", "d28.htm", "11"],
   ["Language Extension", "d29.htm", "11"]
  ],
- ["Using ADO (ActiveX Data Object)", "ado.txt", "1",
+ ["Developing Database Applications using HarbourPWCT", "ado.txt", "1",
   ["Lesson [1]", "HarbourPWCTAdo1.htm", "11"],
   ["Lesson [2]", "HarbourPWCTAdo2.htm", "11"],
   ["Lesson [3]", "HarbourPWCTAdo3.htm", "11"],
   ["Lesson [4]", "HarbourPWCTAdo4.htm", "11"],
-  ["Lesson [5]", "HarbourPWCTAdo5.htm", "11"]
+  ["Lesson [5]", "HarbourPWCTAdo5.htm", "11"],
+  ["Customers Application", "d47.htm", "1",
+   ["Customers", "d50.htm", "11"]
+  ]
  ],
- ["Customers Application", "d47.htm", "1",
-  ["Customers", "d50.htm", "11"]
- ],
- ["Supernova Programming Language", "cover.jpg", "1",
+ ["Supernova Programming Language (Developed using HarbourPWCT)", "cover.jpg", "1",
   ["Cover", "cover.jpg", "11"],
   ["Welcome", "main.htm", "11"],
   ["Using the Interpreter", "using.htm", "11"],
