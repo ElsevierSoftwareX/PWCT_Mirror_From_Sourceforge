@@ -38,6 +38,7 @@ var TITEMS = [
   ["Lesson [3]", "HarbourPWCTAdo3.htm", "11"],
   ["Lesson [4]", "HarbourPWCTAdo4.htm", "11"],
   ["Lesson [5]", "HarbourPWCTAdo5.htm", "11"],
+  ["Lesson [6]", "HarbourPWCTAdo6.htm", "11"],
   ["Customers Application", "d47.htm", "1",
    ["Customers", "d50.htm", "11"]
   ]

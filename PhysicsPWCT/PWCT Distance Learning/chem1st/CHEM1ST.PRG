@@ -1,7 +1,7 @@
 *---------------------------------------------------------------------------*
-* Time : 13:06:41    Date : 06/28/2010
+* Time : 16:27:18    Date : 06/28/2010
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Programming Language    : Mahmoud Programming Language 
