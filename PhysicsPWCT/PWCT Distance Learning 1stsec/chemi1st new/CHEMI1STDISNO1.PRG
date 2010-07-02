@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:35:01    Date : 07/02/2010
+* Time : 02:41:46    Date : 07/03/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -515,7 +515,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 195,362 HYPERLINK Hyperwmg;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/mg.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -551,7 +551,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 345,362 HYPERLINK Hyperws;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/s.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -563,7 +563,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 195,211 HYPERLINK Hyperwcu;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/cu.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -575,7 +575,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 246,211 HYPERLINK Hyperwcl;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/cl.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -587,7 +587,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 293,211 HYPERLINK Hyperwpb;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/pb.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -599,7 +599,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 345,211 HYPERLINK Hyperwk;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/k.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -611,7 +611,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 196,62 HYPERLINK Hyperwfe;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/fe.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -623,7 +623,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 247,61 HYPERLINK Hyperwal;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/al.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -635,7 +635,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 294,61 HYPERLINK Hyperwag;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/ag.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -647,7 +647,7 @@ TRANSPARENT ;
 HANDCURSOR 
 
 @ 346,61 HYPERLINK Hyperwna;
-ADDRESS "mrabn/w/o.pdf";
+ADDRESS "mrabn/w/na.pdf";
 WIDTH 89 ;
 HEIGHT 29 ;
 FONT "Arial" ;
@@ -1325,7 +1325,7 @@ Return Nil
 Proc myon
 Return Nil
 Proc myweb
-win1.Hide ( )
+win1.Minimize ( )
 if !iswindowdefined( web )
 DEFINE WINDOW web ;
 AT 10 ,10 ;
@@ -1337,8 +1337,7 @@ ICON "PWCTICON" ;
 TITLE "«· ›«⁄· „⁄ „⁄·„ﬂ ⁄»— «·«‰ —‰    ..........”·”·… «· ⁄·„ ⁄‰ »⁄œ" ;
 CHILD ;
 TOPMOST ;
-NOSYSMENU ;
-BACKCOLOR {255,255,204} 
+BACKCOLOR {236,233,216} 
 
 Public oActiveX
 oActiveX := TActiveX():New( "web", "Shell.Explorer.2" , 84 , 4 , 831 , 478)
@@ -1346,6 +1345,7 @@ oActiveX:Load()
 @ 40 ,108 TEXTBOX text1web;
 HEIGHT 33 ;
 WIDTH 548 ;
+VALUE "÷⁄ —«»ÿ „œ—” ﬂ Â‰«" ;
 BOLD ;
 TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
 BACKCOLOR {255,255,255} ;
@@ -1363,7 +1363,7 @@ WIDTH 100 HEIGHT 35 ;
 FONT "Arial" SIZE 18 ;
 BOLD ;
 TOOLTIP "«÷€ÿ Â‰«"
-@ 40 ,689 BUTTONEX btn2web;
+@ 40 ,719 BUTTONEX btn2web;
 CAPTION "Œ—ÊÃ";
 FONTCOLOR {255,255,128};
 BACKCOLOR {255,0,128};
@@ -1399,6 +1399,12 @@ ON CLICK myonwebref()  ;
 TOOLTIP "" ;
 SEPARATOR 
 
+BUTTON toolbarbtn5;
+CAPTION "Minimize" ;
+ON CLICK webmin()  ;
+TOOLTIP "" ;
+SEPARATOR 
+
 BUTTON toolbarbtn3;
 CAPTION "Exit" ;
 ON CLICK webexit()  ;
@@ -1410,6 +1416,7 @@ END TOOLBAR
 END WINDOW
 
 web.Center ( )
+web.Maximize ( )
 ACTIVATE WINDOW web
 EndIF
 
@@ -1443,10 +1450,13 @@ oactivex:Refresh ( )
 Return Nil
 Proc webexit
 web.Release ( )
-win1.Show ( )
+win1.Restore ( )
 Return Nil
 Proc myonwebref
 oactivex:Refresh ( )
+Return Nil
+Proc webmin
+web.Minimize ( )
 Return Nil
 
 
