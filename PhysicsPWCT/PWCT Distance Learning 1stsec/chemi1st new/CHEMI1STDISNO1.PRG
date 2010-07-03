@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:41:46    Date : 07/03/2010
+* Time : 23:31:55    Date : 07/03/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -1330,22 +1330,34 @@ if !iswindowdefined( web )
 DEFINE WINDOW web ;
 AT 10 ,10 ;
 WIDTH 848 ;
-HEIGHT 574 ;
+HEIGHT 573 ;
 ON SIZE myonweb()  ;
 ON MAXIMIZE myonweb()  ;
 ICON "PWCTICON" ;
 TITLE "«· ›«⁄· „⁄ „⁄·„ﬂ ⁄»— «·«‰ —‰    ..........”·”·… «· ⁄·„ ⁄‰ »⁄œ" ;
 CHILD ;
 TOPMOST ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSYSMENU ;
 BACKCOLOR {236,233,216} 
 
 Public oActiveX
 oActiveX := TActiveX():New( "web", "Shell.Explorer.2" , 84 , 4 , 831 , 478)
 oActiveX:Load()
+@ 98 ,937 TEXTBOX text4web;
+HEIGHT 4 ;
+WIDTH 5 ;
+VALUE "http://taalmnashet.ahlamontada.net/forum.htm" ;
+BOLD ;
+TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,206} ;
+INPUTMASK ""
 @ 40 ,108 TEXTBOX text1web;
 HEIGHT 33 ;
-WIDTH 548 ;
-VALUE "÷⁄ —«»ÿ „œ—” ﬂ Â‰«" ;
+WIDTH 428 ;
+FONT "Tahoma" SIZE 12 ;
 BOLD ;
 TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
 BACKCOLOR {255,255,255} ;
@@ -1363,7 +1375,7 @@ WIDTH 100 HEIGHT 35 ;
 FONT "Arial" SIZE 18 ;
 BOLD ;
 TOOLTIP "«÷€ÿ Â‰«"
-@ 40 ,719 BUTTONEX btn2web;
+@ 38 ,699 BUTTONEX btn2web;
 CAPTION "Œ—ÊÃ";
 FONTCOLOR {255,255,128};
 BACKCOLOR {255,0,128};
@@ -1375,9 +1387,9 @@ BOLD ;
 NOXPSTYLE ;
 TOOLTIP "«÷€ÿ Â‰« ·«€·«ﬁ Â–Â «·‰«›–…"
 DEFINE TOOLBAR Toolbar1;
-BUTTONSIZE 70 , 15 ;
+BUTTONSIZE 85 , 15 ;
 FONT "Times New Roman" ;
-SIZE 12 ;
+SIZE 10 ;
 BOLD ;
 BORDER 
 
@@ -1393,15 +1405,33 @@ ON CLICK mygo()  ;
 TOOLTIP "" ;
 SEPARATOR 
 
-BUTTON toolbarbtn2;
-CAPTION "Refresh" ;
-ON CLICK myonwebref()  ;
+BUTTON toolbarbtn7;
+CAPTION "PWCT Forum" ;
+ON CLICK myforum()  ;
+TOOLTIP "" ;
+SEPARATOR 
+
+BUTTON toolbarbtn8;
+CAPTION "TaalmNashet" ;
+ON CLICK mynashet()  ;
+TOOLTIP "" ;
+SEPARATOR 
+
+BUTTON toolbarbtn6;
+CAPTION "Google" ;
+ON CLICK mygoogle()  ;
 TOOLTIP "" ;
 SEPARATOR 
 
 BUTTON toolbarbtn5;
 CAPTION "Minimize" ;
 ON CLICK webmin()  ;
+TOOLTIP "" ;
+SEPARATOR 
+
+BUTTON toolbarbtn2;
+CAPTION "Refresh" ;
+ON CLICK myonwebref()  ;
 TOOLTIP "" ;
 SEPARATOR 
 
@@ -1413,6 +1443,45 @@ SEPARATOR
 
 END TOOLBAR
 
+@ 98 ,937 TEXTBOX text2web;
+HEIGHT 4 ;
+WIDTH 5 ;
+VALUE "http://www.google.com.eg/" ;
+BOLD ;
+TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,206} ;
+INPUTMASK ""
+@ 38 ,542 BUTTONEX btn3web;
+CAPTION "Google »ÕÀ ›Ì";
+FONTCOLOR {0,255,0};
+BACKCOLOR {0,128,64};
+PICTURE "mrabn/x.BMP";
+ON CLICK mygoogle()  ;
+WIDTH 150 HEIGHT 35 ;
+FONT "Tahoma" SIZE 14 ;
+BOLD ;
+NOXPSTYLE ;
+TOOLTIP "«÷€ÿ Â‰« ··»ÕÀ"
+@ 98 ,937 TEXTBOX text3web;
+HEIGHT 4 ;
+WIDTH 5 ;
+VALUE "http://doublesvsoop.sourceforge.net/forum/" ;
+BOLD ;
+TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,206} ;
+INPUTMASK ""
+@ 43 ,141 LABEL lbl1web ;
+VALUE "÷⁄ —«»ÿ „œ—” ﬂ .....(ﬂ«„·«).....Â‰«" ;
+WIDTH 364 ;
+HEIGHT 31 ;
+FONT "Tahoma" SIZE 14  ;
+BOLD ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+CENTERALIGN ;
+FONTCOLOR {128,0,255}
 END WINDOW
 
 web.Center ( )
@@ -1442,6 +1511,18 @@ ENDIF
 RPWI_TH = FCREATE(PutFile,0)
 FWRITE(RPWI_TH,mystr)
 FCLOSE(RPWI_TH)
+Return Nil
+Proc mygoogle
+abng := web.text2web.Value
+abng := oactivex:OOLE:navigate ( abng )
+Return Nil
+Proc myforum
+abnf := web.text3web.Value
+abnf := oactivex:OOLE:navigate ( abnf )
+Return Nil
+Proc mynashet
+abnn := web.text4web.Value
+abnn := oactivex:OOLE:navigate ( abnn )
 Return Nil
 Proc myonweb
 oactivex:nWidth := web.width - 30
