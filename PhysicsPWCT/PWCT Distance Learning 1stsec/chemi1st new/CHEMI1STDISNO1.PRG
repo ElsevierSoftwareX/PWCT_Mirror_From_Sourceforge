@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:31:55    Date : 07/03/2010
+* Time : 22:19:42    Date : 07/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -51,6 +51,7 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_CHEMI1STDISNO1_15speed1() code
+set decimals to 4
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 646 ;
