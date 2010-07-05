@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:19:42    Date : 07/04/2010
+* Time : 03:25:26    Date : 07/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -1365,7 +1365,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,206} ;
 INPUTMASK ""
 @ 40 ,5 BUTTONEX btn1web;
-CAPTION "Go";
+CAPTION "Go(Url)";
 FONTCOLOR {128,0,255};
 BACKCOLOR {236,233,216};
 PICTURE "mrabn/web.BMP";
@@ -1373,7 +1373,7 @@ VERTICAL ;
 UPPERTEXT ;
 ON CLICK mygo()  ;
 WIDTH 100 HEIGHT 35 ;
-FONT "Arial" SIZE 18 ;
+FONT "arial" SIZE 16 ;
 BOLD ;
 TOOLTIP "«÷€ÿ Â‰«"
 @ 38 ,699 BUTTONEX btn2web;
@@ -1388,57 +1388,52 @@ BOLD ;
 NOXPSTYLE ;
 TOOLTIP "«÷€ÿ Â‰« ·«€·«ﬁ Â–Â «·‰«›–…"
 DEFINE TOOLBAR Toolbar1;
-BUTTONSIZE 85 , 15 ;
+BUTTONSIZE 110 , 15 ;
 FONT "Times New Roman" ;
-SIZE 10 ;
+SIZE 11 ;
 BOLD ;
+RIGHTTEXT ;
 BORDER 
 
-BUTTON toolbarbtn4;
-CAPTION "Save As" ;
-ON CLICK mysave()  ;
-TOOLTIP "" ;
-SEPARATOR 
-
-BUTTON toolbarbtn1;
-CAPTION "Go" ;
-ON CLICK mygo()  ;
-TOOLTIP "" ;
-SEPARATOR 
-
-BUTTON toolbarbtn7;
-CAPTION "PWCT Forum" ;
-ON CLICK myforum()  ;
-TOOLTIP "" ;
-SEPARATOR 
-
-BUTTON toolbarbtn8;
-CAPTION "TaalmNashet" ;
-ON CLICK mynashet()  ;
-TOOLTIP "" ;
-SEPARATOR 
-
-BUTTON toolbarbtn6;
-CAPTION "Google" ;
-ON CLICK mygoogle()  ;
+BUTTON toolbarbtn3;
+CAPTION "Œ—ÊÃ" ;
+ON CLICK webexit()  ;
 TOOLTIP "" ;
 SEPARATOR 
 
 BUTTON toolbarbtn5;
-CAPTION "Minimize" ;
+CAPTION " ’€Ì—" ;
 ON CLICK webmin()  ;
 TOOLTIP "" ;
 SEPARATOR 
 
 BUTTON toolbarbtn2;
-CAPTION "Refresh" ;
+CAPTION " ÕœÌÀ" ;
 ON CLICK myonwebref()  ;
 TOOLTIP "" ;
 SEPARATOR 
 
-BUTTON toolbarbtn3;
-CAPTION "Exit" ;
-ON CLICK webexit()  ;
+BUTTON toolbarbtn6;
+CAPTION "ÃÊÃ·" ;
+ON CLICK mygoogle()  ;
+TOOLTIP "" ;
+SEPARATOR 
+
+BUTTON toolbarbtn8;
+CAPTION "„Êﬁ⁄ «· ⁄·„ «·‰‘ÿ" ;
+ON CLICK mynashet()  ;
+TOOLTIP "" ;
+SEPARATOR 
+
+BUTTON toolbarbtn7;
+CAPTION "PWCT „Êﬁ⁄" ;
+ON CLICK myforum()  ;
+TOOLTIP "" ;
+SEPARATOR 
+
+BUTTON toolbarbtn4;
+CAPTION "Õ›Ÿ" ;
+ON CLICK mysave()  ;
 TOOLTIP "" ;
 SEPARATOR 
 
