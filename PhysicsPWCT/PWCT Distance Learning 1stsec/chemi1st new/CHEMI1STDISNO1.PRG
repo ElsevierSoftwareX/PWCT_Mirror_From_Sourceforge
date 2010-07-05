@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:25:26    Date : 07/05/2010
+* Time : 01:06:53    Date : 07/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -1331,7 +1331,7 @@ if !iswindowdefined( web )
 DEFINE WINDOW web ;
 AT 10 ,10 ;
 WIDTH 848 ;
-HEIGHT 573 ;
+HEIGHT 578 ;
 ON SIZE myonweb()  ;
 ON MAXIMIZE myonweb()  ;
 ICON "PWCTICON" ;
@@ -1340,11 +1340,12 @@ CHILD ;
 TOPMOST ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
+NOSIZE ;
 NOSYSMENU ;
 BACKCOLOR {236,233,216} 
 
 Public oActiveX
-oActiveX := TActiveX():New( "web", "Shell.Explorer.2" , 84 , 4 , 831 , 478)
+oActiveX := TActiveX():New( "web", "Shell.Explorer.2" , 109 , 1 , 828 , 303)
 oActiveX:Load()
 @ 98 ,937 TEXTBOX text4web;
 HEIGHT 4 ;
@@ -1355,7 +1356,7 @@ TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,206} ;
 INPUTMASK ""
-@ 40 ,108 TEXTBOX text1web;
+@ 68 ,108 TEXTBOX text1web;
 HEIGHT 33 ;
 WIDTH 428 ;
 FONT "Tahoma" SIZE 12 ;
@@ -1364,7 +1365,7 @@ TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,206} ;
 INPUTMASK ""
-@ 40 ,5 BUTTONEX btn1web;
+@ 66 ,3 BUTTONEX btn1web;
 CAPTION "Go(Url)";
 FONTCOLOR {128,0,255};
 BACKCOLOR {236,233,216};
@@ -1373,10 +1374,10 @@ VERTICAL ;
 UPPERTEXT ;
 ON CLICK mygo()  ;
 WIDTH 100 HEIGHT 35 ;
-FONT "arial" SIZE 16 ;
+FONT "Arial" SIZE 16 ;
 BOLD ;
 TOOLTIP "«÷€ÿ Â‰«"
-@ 38 ,699 BUTTONEX btn2web;
+@ 66 ,699 BUTTONEX btn2web;
 CAPTION "Œ—ÊÃ";
 FONTCOLOR {255,255,128};
 BACKCOLOR {255,0,128};
@@ -1448,7 +1449,7 @@ TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,206} ;
 INPUTMASK ""
-@ 38 ,542 BUTTONEX btn3web;
+@ 66 ,542 BUTTONEX btn3web;
 CAPTION "Google »ÕÀ ›Ì";
 FONTCOLOR {0,255,0};
 BACKCOLOR {0,128,64};
@@ -1468,9 +1469,9 @@ TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,206} ;
 INPUTMASK ""
-@ 43 ,141 LABEL lbl1web ;
+@ 35 ,153 LABEL lbl1web ;
 VALUE "÷⁄ —«»ÿ „œ—” ﬂ .....(ﬂ«„·«).....Â‰«" ;
-WIDTH 364 ;
+WIDTH 382 ;
 HEIGHT 31 ;
 FONT "Tahoma" SIZE 14  ;
 BOLD ;
@@ -1478,6 +1479,36 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 CENTERALIGN ;
 FONTCOLOR {128,0,255}
+DEFINE STATUSBAR ;
+FONT "Tahoma" SIZE 12 ;
+BOLD 
+
+STATUSITEM "Designed By Mr AbOeLsOuD";
+Action mystat()  ;
+RAISED;
+TOOLTIP "»—„Ã… √/√»Ê«·”⁄Êœ ⁄»œ «·—ƒ›"
+
+DATE;
+WIDTH 140 ;
+Action myday()  ;
+TOOLTIP " «—ÌŒ «·ÌÊ„" 
+
+CLOCK;
+WIDTH 150;
+TOOLTIP "«·Êﬁ  «·¬‰";
+AMPM 
+
+END STATUSBAR
+
+@ 98 ,937 TEXTBOX text7web;
+HEIGHT 4 ;
+WIDTH 5 ;
+VALUE "mrabn/w/w/ww.htm" ;
+BOLD ;
+TOOLTIP "«œŒ· —«»ÿ „œ—” ﬂ Â‰«" ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,206} ;
+INPUTMASK ""
 END WINDOW
 
 web.Center ( )
@@ -1520,9 +1551,12 @@ Proc mynashet
 abnn := web.text4web.Value
 abnn := oactivex:OOLE:navigate ( abnn )
 Return Nil
+Proc mystat
+MyOut := MSGBOX("PWCT  „ «· ’„Ì„ Ê«·»—„Ã… » ﬁ‰Ì… «·»—„Ã… »œÊ‰ ﬂÊœ","Mr AbOeLsOuD Information")
+Return Nil
 Proc myonweb
-oactivex:nWidth := web.width - 30
-oactivex:nHeight := web.height - 50
+oactivex:nWidth := web.width - 15
+oactivex:nHeight := web.height - 167
 oactivex:Refresh ( )
 Return Nil
 Proc webexit
@@ -1534,6 +1568,33 @@ oactivex:Refresh ( )
 Return Nil
 Proc webmin
 web.Minimize ( )
+Return Nil
+Proc myday
+if !iswindowdefined( day )
+DEFINE WINDOW day ;
+AT 10 ,10 ;
+WIDTH 507 ;
+HEIGHT 174 ;
+ICON "PWCTICON" ;
+TITLE " «—ÌŒ «·ÌÊ„" ;
+CHILD ;
+TOPMOST ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+BACKCOLOR {0,0,0} 
+
+day.Center ( )
+@ 48 ,8 DATEPICKER datepicker;
+WIDTH 471 ;
+FONT "Times New Roman" SIZE 16 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+END WINDOW
+
+ACTIVATE WINDOW day
+EndIF
+
 Return Nil
 
 
