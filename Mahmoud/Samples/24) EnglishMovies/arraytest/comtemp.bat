@@ -1,0 +1,1 @@
+CALL sscom2.bat  "ARRAYTEST"  /X /l calldll  /C > _temp.txt
