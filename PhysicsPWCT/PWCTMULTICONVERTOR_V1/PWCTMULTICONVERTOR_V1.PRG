@@ -1,7 +1,7 @@
 *---------------------------------------------------------------------------*
-* Time : 01:49:06    Date : 07/17/2010
+* Time : 03:50:39    Date : 07/19/2010
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Programming Language    : Mahmoud Programming Language 
@@ -3911,7 +3911,7 @@ Proc win1exit
 win1.Release ( )
 Return Nil
 Proc myhow
-Execute File "mrabn/explane/how.pdf" MAXIMIZE
+Execute File "mrabn\explane\how.pdf" MAXIMIZE
 Return Nil
 Proc myguide
 if !iswindowdefined( win1g )
