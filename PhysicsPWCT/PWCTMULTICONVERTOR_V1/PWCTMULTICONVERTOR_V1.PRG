@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:50:39    Date : 07/19/2010
+* Time : 07:50:56    Date : 07/19/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -1345,7 +1345,7 @@ DEFINE WINDOW win1intro ;
 AT 10 ,10 ;
 WIDTH 578 ;
 HEIGHT 402 ;
-ON INIT drawchart()  ;
+ON PAINT drawchart()  ;
 ON MOUSEMOVE myonfo()  ;
 ICON "PWCTICON" ;
 TITLE "" ;
