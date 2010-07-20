@@ -1,0 +1,52 @@
+The First Step
+	Define Window  ( win1 )
+		Window Events
+		Window Properties
+		Window Controls
+			Define New Image ( image1 )
+				Events
+				Properties
+			Define Label ( lbl1 )
+				Label Events
+				Label Properties
+			Define New Button ( btn1 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define New Button ( btn2 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define New ListBox ( list1 )
+				ListBox Event
+				ListBox Properties
+			Define Combobox ( combo1 )
+				Combobox Events
+				Combobox Properties
+		End Of Window
+		Activate window
+		Define Procedure close
+			Code Block
+				win1.Release ( )
+			End of Procedure
+		New Procedure
+			Define Procedure Details
+				Code Block
+					part = CONVERT win1.list1.value TO STRING
+					IF ( part= 4 )
+						Code Block
+							Show Message "In Put" Title "Details" Type: Message Box
+						END OF IF STATEMENT
+					IF ( part= 2 )
+						Code Block
+							Show Message "In Put" Title "Details" Type: Message Box
+						END OF IF STATEMENT
+					IF ( part=5 )
+						Code Block
+							Show Message "Out Put" Title "Details" Type: Message Box
+						END OF IF STATEMENT
+					IF ( part= 6 )
+						Code Block
+							Show Message "In Put" Title "Details" Type: Message Box
+						END OF IF STATEMENT
+				End of Procedure
