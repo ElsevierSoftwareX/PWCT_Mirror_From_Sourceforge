@@ -1,0 +1,1 @@
+CALL sscom2.bat  "ATTRIBUTES"  /X /l calldll  /C > _temp.txt
