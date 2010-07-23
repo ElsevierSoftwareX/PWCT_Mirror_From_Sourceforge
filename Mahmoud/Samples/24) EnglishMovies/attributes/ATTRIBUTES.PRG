@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:46:38    Date : 07/23/2010
+* Time : 17:14:26    Date : 07/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -44,20 +44,20 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_ATTRIBUTES_15speed1() code
 myObj = myClass()
-myObj:Message := "hello"
-OUT = myObj:ShowMessage()
-myObj:Message := "HOW ARE YOU ?"
-OUT = myObj:ShowMessage()
+myObj:cMessage := "Hello"
+out = myObj:ShowMessage()
+myObj:cMessage := "How are you ?"
+out = myObj:ShowMessage()
 myObj2 = myClass()
-myObj2:Message := "Are you fine ?"
-OUT = myObj2:ShowMessage()
+myObj2:cMessage := "Are you fine ?"
+out = myObj2:ShowMessage()
 INKEY(3)
 Class myClass
-Data Message init 0
+Data cMessage init 0
 Method ShowMessage
 EndClass
 Method ShowMessage Class myClass
-? SELF:MESSAGE
+? Self:cMessage
 Return 0
 
 
