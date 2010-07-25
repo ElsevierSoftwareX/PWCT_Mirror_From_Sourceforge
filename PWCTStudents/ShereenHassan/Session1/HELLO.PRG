@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:51:30    Date : 07/24/2010
+* Time : 10:20:57    Date : 07/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -64,15 +64,19 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {255,128,128} 
 
-@ 290 ,361 BUTTONEX btn1;
+@ 290 ,336 BUTTONEX btn1;
 CAPTION "Close";
-FONTCOLOR {0,0,0};
+FONTCOLOR {0,0,255};
 BACKCOLOR {255,128,192};
 ON CLICK myclose()  ;
-WIDTH 97 HEIGHT 35 ;
+WIDTH 113 HEIGHT 43 ;
+FONT "Arial" SIZE 24 ;
+BOLD ;
+NOXPSTYLE ;
 TOOLTIP ""
 @ 93 ,91 IMAGE image;
 PICTURE "my smile.jpg";
+STRETCH ;
 WIDTH 232 HEIGHT 201
 @ 15 ,55 LABEL lbl1 ;
 VALUE "Hello World" ;
