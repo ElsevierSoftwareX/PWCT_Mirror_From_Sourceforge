@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:24:25    Date : 07/29/2010
+* Time : 02:22:41    Date : 07/29/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.6 (Ready) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -64,7 +64,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {192,192,192} 
 
-@ 27 ,439 LABEL lbl1 ;
+@ 27 ,454 LABEL lbl1 ;
 VALUE "«·„Ã„Ê⁄" ;
 ON CLICK calc()  ;
 WIDTH 81 ;
@@ -74,7 +74,7 @@ BOLD ;
 ITALIC ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {255,0,128}
-@ 70 ,411 LABEL lbl2 ;
+@ 70 ,424 LABEL lbl2 ;
 VALUE "«·„Ã„Ê⁄ «·ﬂ·Ì" ;
 WIDTH 111 ;
 HEIGHT 32 ;
@@ -83,7 +83,7 @@ BOLD ;
 ITALIC ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {255,0,128}
-@ 198 ,415 LABEL lbl3 ;
+@ 113 ,427 LABEL lbl3 ;
 VALUE "«·‰”»Â «·„∆ÊÌÂ" ;
 WIDTH 108 ;
 HEIGHT 33 ;
@@ -92,7 +92,7 @@ BOLD ;
 ITALIC ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {255,0,128}
-@ 110 ,420 LABEL lbl5 ;
+@ 258 ,465 LABEL lbl5 ;
 VALUE "Õ«’· «·Ã„⁄" ;
 WIDTH 94 ;
 HEIGHT 30 ;
@@ -101,7 +101,7 @@ BOLD ;
 ITALIC ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {255,0,128}
-@ 152 ,416 LABEL lbl6 ;
+@ 308 ,448 LABEL lbl6 ;
 VALUE "Õ«’· «·ÿ—Õ" ;
 WIDTH 111 ;
 HEIGHT 27 ;
@@ -110,7 +110,7 @@ BOLD ;
 ITALIC ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {255,0,128}
-@ 349 ,436 BUTTONEX btn1;
+@ 171 ,278 BUTTONEX btn1;
 CAPTION "«·‰”»Â «·„∆ÊÌÂ";
 FONTCOLOR {0,0,255};
 BACKCOLOR {255,255,255};
@@ -120,7 +120,7 @@ FONT "Arial" SIZE 14 ;
 BOLD ;
 ITALIC ;
 TOOLTIP ""
-@ 248 ,436 BUTTONEX btn2;
+@ 251 ,84 BUTTONEX btn2;
 CAPTION "Õ«’· «·Ã„⁄";
 FONTCOLOR {0,0,255};
 BACKCOLOR {255,255,255};
@@ -130,7 +130,7 @@ FONT "Arial" SIZE 16 ;
 BOLD ;
 ITALIC ;
 TOOLTIP ""
-@ 298 ,436 BUTTONEX btn4;
+@ 303 ,84 BUTTONEX btn4;
 CAPTION "Õ«’· «·ÿ—Õ";
 FONTCOLOR {0,0,255};
 BACKCOLOR {255,255,255};
@@ -140,7 +140,7 @@ FONT "Arial" SIZE 16 ;
 BOLD ;
 ITALIC ;
 TOOLTIP ""
-@ 341 ,7 BUTTONEX btn5;
+@ 346 ,299 BUTTONEX btn5;
 CAPTION "Œ—ÊÃ";
 FONTCOLOR {128,0,255};
 BACKCOLOR {255,255,255};
@@ -148,31 +148,31 @@ ON CLICK myclose()  ;
 WIDTH 79 HEIGHT 35 ;
 FONT "Arial" SIZE 18 ;
 TOOLTIP ""
-@ 27 ,164 TEXTBOX text1;
+@ 28 ,178 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,255} ;
 INPUTMASK ""
-@ 63 ,165 TEXTBOX text2;
+@ 64 ,178 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,255} ;
 INPUTMASK ""
-@ 102 ,164 TEXTBOX text3;
+@ 250 ,203 TEXTBOX text3;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,255} ;
 INPUTMASK ""
-@ 143 ,164 TEXTBOX text4;
+@ 299 ,203 TEXTBOX text4;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,255} ;
 INPUTMASK ""
-@ 196 ,164 TEXTBOX text6;
+@ 107 ,178 TEXTBOX text6;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
