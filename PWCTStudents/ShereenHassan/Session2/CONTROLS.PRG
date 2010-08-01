@@ -1,0 +1,171 @@
+*---------------------------------------------------------------------------*
+* Time : 12:49:11    Date : 08/01/2010
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Programming Language    : Mahmoud Programming Language 
+* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
+* Programming Paradigm    : DoubleS (Super Server)
+*---------------------------------------------------------------------------*
+* Compilers               : Borland C/C++ & Harbour/xHarbour
+* GUI Framework           : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
+New Server Server1 Type Slave Server Eigen Value 000
+ Details :
+ * (Noun) *
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance Main                          
+	VetoUnit :
+End Of Server 
+
+	Resistance WIN32EVENTS() Address Code Unit : WIN32EVENTS
+
+  ADD RESISTANCE WIN32EVENTS 
+
+
+Resistance R_CONTROLS_15speed1() address Code Unit : Circuits\Main\Main\Main
+
+
+CALL RESISTANCE Circuits\Main\Main\Main
+Return 
+
+  FUNCTION STARTSERVER()
+   	Server FireON
+  RETURN
+
+  RESISTANCE WIN32EVENTS() CODE
+	   DO EVENTS
+  RETURN
+
+* Resistance Code Unit : Circuits\Main\Main\Main
+Resistance R_CONTROLS_15speed1() code
+if !iswindowdefined( win1 )
+DEFINE WINDOW win1 ;
+AT 10 ,10 ;
+WIDTH 413 ;
+HEIGHT 489 ;
+ICON "PWCTICON" ;
+TITLE "Shereen Hssan" ;
+MAIN ;
+BACKCOLOR {128,255,255} 
+
+@ 3 ,73 LABEL lbl1 ;
+VALUE "baby form" ;
+WIDTH 171 ;
+HEIGHT 34 ;
+FONT "Arial" SIZE 18  ;
+BACKCOLOR {128,255,255} ;
+FONTCOLOR {0,0,0}
+@ 26 ,310 IMAGE image1;
+PICTURE "baby.jpg";
+WIDTH 82 HEIGHT 92
+@ 391 ,244 BUTTONEX btn1;
+CAPTION "Close";
+FONTCOLOR {0,0,0};
+BACKCOLOR {255,128,255};
+ON CLICK Myclose()  ;
+WIDTH 107 HEIGHT 30 ;
+FONT "Arial" SIZE 16 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 300 ,69 COMBOBOX combo1;
+WIDTH 100 ;
+ITEMS {"Egypt","France","Itay"} ;
+DISPLAYEDIT ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 46 ,72 TEXTBOX text1;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0} ;
+INPUTMASK ""
+@ 40 ,7 LABEL lbl4 ;
+VALUE "Name" ;
+WIDTH 41 ;
+HEIGHT 33 ;
+FONT "Arial" SIZE 9  ;
+BACKCOLOR {128,255,255} ;
+FONTCOLOR {0,0,0}
+@ 299 ,1 LABEL lbl5 ;
+VALUE "Nationality" ;
+WIDTH 66 ;
+HEIGHT 28 ;
+FONT "Arial" SIZE 9  ;
+BACKCOLOR {128,255,255} ;
+FONTCOLOR {0,0,0}
+@ 210 ,4 LABEL lbl3 ;
+VALUE "Gender" ;
+WIDTH 49 ;
+HEIGHT 28 ;
+FONT "Arial" SIZE 9  ;
+BACKCOLOR {128,255,255} ;
+FONTCOLOR {0,0,0}
+@ 202 ,68 RADIOGROUP radio1;
+OPTIONS {"Femail","Mail"};
+WIDTH 200 ;
+FONT "Arial" SIZE 9 ;
+BACKCOLOR {128,255,255} ;
+FONTCOLOR {0,0,0}
+@ 166 ,70 DATEPICKER datepicker;
+WIDTH 100 ;
+FONT "Arial" SIZE 9 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 166 ,7 LABEL lbl9 ;
+VALUE "Birth Date" ;
+WIDTH 59 ;
+HEIGHT 20 ;
+FONT "Arial" SIZE 9  ;
+BACKCOLOR {128,255,255} ;
+FONTCOLOR {0,0,0}
+@ 113 ,11 LABEL lbl10 ;
+VALUE "Code" ;
+WIDTH 39 ;
+HEIGHT 23 ;
+FONT "Arial" SIZE 9  ;
+BACKCOLOR {128,255,255} ;
+FONTCOLOR {0,0,0}
+@ 105 ,70 TEXTBOX text2;
+HEIGHT 31 ;
+WIDTH 62 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0} ;
+INPUTMASK "99999"
+@ 389 ,63 BUTTONEX btn2;
+CAPTION "Instructions";
+FONTCOLOR {0,0,0};
+BACKCOLOR {128,255,128};
+WIDTH 115 HEIGHT 32 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+END WINDOW
+
+ACTIVATE WINDOW win1
+EndIF
+
+Proc Myclose
+win1.Release ( )
+Return Nil
+
+
+End Of Resistance
+
+INIT PROCEDURE Init_CONTROLS
+START DOUBLES
+Return
+*-------------------------------------------------------------------*
