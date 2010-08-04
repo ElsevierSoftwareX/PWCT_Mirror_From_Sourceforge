@@ -1,0 +1,1 @@
+CALL sscom2.bat  "CALCULATOR"  /X /l calldll  > _temp.txt
