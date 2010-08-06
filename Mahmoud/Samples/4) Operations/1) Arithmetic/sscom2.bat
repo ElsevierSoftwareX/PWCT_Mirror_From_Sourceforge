@@ -541,6 +541,9 @@ goto PARPARSE
 
 :XGRSP
   rem Add to RSP file for xHarbour GUI EXE
+  echo C:\SSBUILD\allegro\lib\alleg.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\alld.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\allp.lib + >> _temp.rsp
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
@@ -559,6 +562,9 @@ goto PARPARSE
 
 :XMRSP
   rem Add to RSP file for xHarbour mixed mode EXE
+  echo C:\SSBUILD\allegro\lib\alleg.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\alld.lib + >> _temp.rsp
+  echo C:\SSBUILD\allegro\lib\allp.lib + >> _temp.rsp
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp

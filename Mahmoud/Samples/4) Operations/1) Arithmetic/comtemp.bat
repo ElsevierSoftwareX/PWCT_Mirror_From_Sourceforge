@@ -1,1 +1,1 @@
-CALL sscom2.bat  "demo" /c /X /l calldll  > _temp.txt
+CALL sscom2.bat  "DEMO" /C > _temp.txt
