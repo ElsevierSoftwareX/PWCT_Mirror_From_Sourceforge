@@ -1,0 +1,170 @@
+The First Step
+	Call Procedure open_database
+	WHILE ( .T. )
+		Code Block
+			Set Color Standard( White , Blue ) Enhanced ( Yellow , Black ) Unselected ( Black , Black )
+			Clear Screen
+			Print Text "Telephone Database" - AT ROW 3 & COLUMN 3
+			Draw Box from 2 , 2 to 4 , 23
+			Draw Box from 6 , 2 to 8 , 50
+			Draw Box from 9 , 2 to 21 , 50
+			mycount = Get Records Count
+			mycount = CONVERT mycount TO STRING
+			Print Text "Records Count" + mycount - AT ROW 7 & COLUMN 5
+			PROMPT "Add New Record" - AT ROW 12 & COLUMN 15
+			PROMPT "List Records" - AT ROW 14 & COLUMN 15
+			PROMPT "Search" - AT ROW 16 & COLUMN 15
+			PROMPT "Exit" - AT ROW 18 & COLUMN 15
+			Activate Menu mymenu
+			IF ( mymenu == 1 )
+				Code Block
+					Call Procedure add_proc
+				ELSEIF ( mymenu == 2 )
+					Code Block
+						Call Procedure list_proc
+				ELSEIF ( mymenu == 3 )
+					Code Block
+						Call Procedure search_proc
+				ELSEIF ( mymenu == 4 )
+					Code Block
+						Exit
+				END OF IF STATEMENT
+		END OF While Loop
+	Call Procedure close_database
+Procedures
+	Define Procedure open_database
+		Code Block
+			SELECT AREA 0
+			Open Table Tel
+		End of Procedure
+	Define Procedure add_proc
+		Code Block
+			Clear Screen
+			Print Text "Add New Record" - AT ROW 3 & COLUMN 28
+			Draw Box from 2 , 25 to 4 , 48
+			Draw Box from 9 , 2 to 21 , 77
+			v_name = String, length = 50
+			v_address = String, length = 50
+			v_phone = String, length = 20
+			Print Text "Name" - AT ROW 12 & COLUMN 10
+			Get Input v_name - AT ROW 12 & COLUMN 20
+			Print Text "Address" - AT ROW 14 & COLUMN 10
+			Get Input v_address - AT ROW 14 & COLUMN 20
+			Print Text "Phone" - AT ROW 16 & COLUMN 10
+			Get Input v_phone - AT ROW 16 & COLUMN 20
+			READ INPUT
+			PROMPT "Save" - AT ROW 19 & COLUMN 54
+			PROMPT "Cancel" - AT ROW 19 & COLUMN 64
+			Draw Box from 18 , 3 to 18 , 76
+			Print Text "" - AT ROW 0 & COLUMN 0
+			Activate Menu mymenu2
+			IF ( mymenu2 == 1 )
+				Code Block
+					Add New Record
+					Replace Field name with v_name
+					Replace Field address with v_address
+					Replace Field phone with v_phone
+				END OF IF STATEMENT
+		End of Procedure
+	Define Procedure list_proc
+		Code Block
+			mymax = Get Records Count
+			Clear Screen
+			FOR LOOP ( From x = 1 To mymax Step 1)
+				Code Block
+					Goto Record Number x
+					Print text ("Name : " + name) to console
+					Print text ("Address : " + address) to console
+					Print text ("Phone : " + phone) to console
+					Wait (KEY) Message : "Press any key to continue..."
+				End of For Loop
+			IF ( mymax == 0 )
+				Code Block
+					Clear Screen
+					Print text ("No records") to console
+					WAIT ( 3 SECONDS)
+				END OF IF STATEMENT
+		End of Procedure
+	Define Procedure search_proc
+		Code Block
+			mymax = Get Records Count
+			IF ( mymax == 0 )
+				Code Block
+					Clear Screen
+					Print text ("No records") to console
+					WAIT ( 3 SECONDS)
+					Return .F.
+				END OF IF STATEMENT
+			Clear Screen
+			v_name = String, length = 50
+			Draw Box from 9 , 2 to 21 , 77
+			Print Text "Name" - AT ROW 12 & COLUMN 10
+			Get Input v_name - AT ROW 12 & COLUMN 20
+			READ INPUT
+			v_name = All Trim v_name
+			Locate For name = v_name
+			myresult = Check- Record Found (Locate)
+			IF ( myresult )
+				Code Block
+					Clear Screen
+					Show record
+						Print text ("Name : " + name) to console
+						Print text ("Address : " + address) to console
+						Print text ("Phone : " + phone) to console
+					show menu
+						PROMPT " Ok " - AT ROW 10 & COLUMN 10
+						PROMPT " Edit " - AT ROW 12 & COLUMN 10
+						PROMPT " Delete " - AT ROW 14 & COLUMN 10
+						Activate Menu mymenu3
+						IF ( mymenu3 == 2 )
+							Code Block
+								Call Procedure edit_proc
+							ELSEIF ( mymenu3 == 3 )
+								Code Block
+									Call Procedure del_proc
+							END OF IF STATEMENT
+				ELSE
+					Code Block
+						Clear Screen
+						Print text ("Record not found") to console
+						WAIT ( 3 SECONDS)
+				END OF IF STATEMENT
+		End of Procedure
+	Define Procedure close_database
+		Code Block
+			SELECT AREA Tel
+			Close Table
+		End of Procedure
+	Define Procedure edit_proc
+		Code Block
+			Clear Screen
+			Print Text "Edit Record" - AT ROW 3 & COLUMN 28
+			Draw Box from 2 , 25 to 4 , 48
+			Draw Box from 9 , 2 to 21 , 77
+			v_name = name
+			v_address = address
+			v_phone = phone
+			Print Text "Name" - AT ROW 12 & COLUMN 10
+			Get Input v_name - AT ROW 12 & COLUMN 20
+			Print Text "Address" - AT ROW 14 & COLUMN 10
+			Get Input v_address - AT ROW 14 & COLUMN 20
+			Print Text "Phone" - AT ROW 16 & COLUMN 10
+			Get Input v_phone - AT ROW 16 & COLUMN 20
+			READ INPUT
+			PROMPT "Save" - AT ROW 19 & COLUMN 54
+			PROMPT "Cancel" - AT ROW 19 & COLUMN 64
+			Draw Box from 18 , 3 to 18 , 76
+			Print Text "" - AT ROW 0 & COLUMN 0
+			Activate Menu mymenu2
+			IF ( mymenu2 == 1 )
+				Code Block
+					Replace Field name with v_name
+					Replace Field address with v_address
+					Replace Field phone with v_phone
+				END OF IF STATEMENT
+		End of Procedure
+	Define Procedure del_proc
+		Code Block
+			Delete Record (Mark for deletion)
+			Pack
+		End of Procedure
