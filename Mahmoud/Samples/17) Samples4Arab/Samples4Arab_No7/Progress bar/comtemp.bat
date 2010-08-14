@@ -1,1 +1,0 @@
-CALL sscom2.bat  "PROGRESS BAR"  /X /l calldll  > _temp.txt
