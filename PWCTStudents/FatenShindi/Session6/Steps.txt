@@ -1,0 +1,43 @@
+The First Step
+	Define Window  ( win1 )
+		Window Events
+		Window Properties
+		Window Controls
+			Define New Image ( image1 )
+				Events
+				Properties
+			Define Label ( lbl1 )
+				Label Events
+				Label Properties
+			Define Label ( lbl2 )
+				Label Events
+				Label Properties
+			Define TextBox  ( text1  )
+				TextBox EVENTS
+				TextBox Properties
+			Define TextBox  ( text2  )
+				TextBox EVENTS
+				TextBox Properties
+			Define New Button ( btn1 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define New Editbox ( edit1 )
+				Editbox Events
+				Editbox Properties
+		End Of Window
+		Activate window
+PROCEDURES
+	Define Procedure MYCOUNTER
+		Code Block
+			NUM1 = WIN1.TEXT1.Value
+			NUM2 = WIN1.TEXT2.Value
+			num1 = CONVERT num1 TO Numeric
+			num2 = CONVERT num2 TO Numeric
+			FOR LOOP ( From x = NUM1 To NUM2 Step 1)
+				Code Block
+					X2 = CONVERT X TO STRING
+						X2 = All Trim X2
+					Print text (X2) to Editbox (Edit1) of Window (Win1)
+				End of For Loop
+		End of Procedure

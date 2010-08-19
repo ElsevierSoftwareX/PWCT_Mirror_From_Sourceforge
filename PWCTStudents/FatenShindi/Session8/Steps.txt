@@ -1,0 +1,57 @@
+The First Step
+	Define Window  ( win1 )
+		Window Events
+		Window Properties
+		Window Controls
+			Define New Image ( image1 )
+				Events
+				Properties
+			Define TextBox  ( text1  )
+				TextBox EVENTS
+				TextBox Properties
+			Define New Button ( btn1 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define New Button ( btn2 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define New ListBox ( list1 )
+				ListBox Event
+				ListBox Properties
+		End Of Window
+		Activate window
+	procedures
+		Define Procedure myadd
+			Code Block
+				mytext = win1.text1.Value
+				win1.list1.AddItem ( mytext )
+			End of Procedure
+		Define Procedure mymax
+			Code Block
+				mycount = win1.list1.ItemCount
+				IF ( mycount==0 )
+					Code Block
+						Show Message "ÇáÞÇÆãÉ ÊÎáæ ãä ÇáÇÚÏÇÏ" Title "ÚÝæÇ" Type: Message Box
+						Return 0
+					END OF IF STATEMENT
+				mymax = win1.list1.item(1)
+				IF ( mycount==1 )
+					Code Block
+						Show Message mymax Title "ÇßÈÑ ÑÞã" Type: Message Box
+						Return 0
+					END OF IF STATEMENT
+				mymax = CONVERT mymax TO Numeric
+				FOR LOOP ( From x = 2 To mycount Step 1)
+					Code Block
+						myitem = win1.list1.item(x)
+						myitem = CONVERT myitem TO Numeric
+						IF ( myitem>mymax )
+							Code Block
+								mymax = myitem
+							END OF IF STATEMENT
+					End of For Loop
+				mymax = CONVERT mymax TO STRING
+				Show Message mymax Title "ÇßÈÑ ÑÞã" Type: Message Box
+			End of Procedure

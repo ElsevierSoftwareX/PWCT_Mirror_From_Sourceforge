@@ -1,0 +1,43 @@
+The First Step
+	Define Window  ( win1 )
+		Window Events
+		Window Properties
+		Window Controls
+			Define New Image ( image1 )
+				Events
+				Properties
+			Define New Button ( btn1 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+		End Of Window
+		Activate window
+	procedures
+		Define Procedure myprint
+			Code Block
+				Init Print System
+					Code Block
+						vPrinter = Select Printer by Dialog , Preview
+						IF ( vprinter=="" )
+							Code Block
+								Return 0
+							END OF IF STATEMENT
+						Set Units (MM)
+						Start Document
+							Code Block
+								Start Page
+									Code Block
+										FOR LOOP ( From x = 1 To 10 Step 1)
+											Code Block
+												Draw Text x , Y(10), X(10*x) , Font("arial",25,100) , Color ({0,0,0}) to Print
+											End of For Loop
+									End of Page
+								Start Page
+									Code Block
+										Draw Picture "JJ.JPG" (Top 10 Left 10 Height 150 Width 150 ) TO PRINT
+										Draw Text "»Ì  «·«Õ·«„" , Y(100), X(190) , Font("arial",25,100) , Color ({0,0,0}) to Print
+										Rectangle (Y 80, X 170, Height 120, Width 240 ) PenWidth (2) Color ({136,136,255}) to Print
+									End of Page
+							End of Document
+					Release Print System
+			End of Procedure
