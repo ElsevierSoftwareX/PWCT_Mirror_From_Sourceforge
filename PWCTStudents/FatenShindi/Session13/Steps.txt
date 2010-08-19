@@ -1,0 +1,88 @@
+The First Step
+	Define Window  ( win1 )
+		Window Events
+		Window Properties
+		Window Controls
+			Define New Image ( image1 )
+				Events
+				Properties
+			Define Label ( lbl1 )
+				Label Events
+				Label Properties
+			Define TextBox  ( text1  )
+				TextBox EVENTS
+				TextBox Properties
+			Define New Button ( btn1 )
+				Button Events
+					Event: ON CLICK
+				Button Properties
+			Define Label ( lbl2 )
+				Label Events
+				Label Properties
+			Define TextBox  ( text2  )
+				TextBox EVENTS
+				TextBox Properties
+			START OF MAIN MENU
+				MENU POPUPS
+					DEFINE POPUP "FILE"
+						POPUP ITEMS
+							Define ITEM ( "EXIT" )
+						END OF POPUP
+				END OF MAIN MENU
+			Define New Statusbar
+				Items
+					Define New StatusItem ( "ready" )
+						Events
+						Properties
+					Date
+						Events
+						Properties
+					Clock
+						Events
+						Properties
+				End Statusbar
+		End Of Window
+		Activate window
+	PROCEDURES
+		Define Procedure mylogin
+			Code Block
+				user = win1.text1.Value
+				MESSAGE = WIN1.TEXT2.Value
+				IF ( user=="" )
+					Code Block
+						Show Message "PLEASE ENTER USER NAME" Title "ERROR" Type: Message Exclamation
+					ELSE
+						Code Block
+							Define Window  ( win2 )
+								Window Events
+								Window Properties
+								Window Controls
+									Define New Image ( image1 )
+										Events
+										Properties
+									Define Label ( lbl1 )
+										Label Events
+										Label Properties
+									Define New Button ( btn1 )
+										Button Events
+											Event: ON CLICK
+										Button Properties
+								End Of Window
+								Activate window
+					END OF IF STATEMENT
+			End of Procedure
+		Define Procedure CLOSE
+			Code Block
+				Show Message "DO YOU WANT TO CLOSE APP ?" Title "CLOSE APP" Type: Message Ok/Cancel
+				IF ( MYOUT==TRUE )
+					Code Block
+						WIN1.Release ( )
+					ELSE
+						Code Block
+							Return 0
+					END OF IF STATEMENT
+			End of Procedure
+		Define Procedure CLOSEWIN2
+			Code Block
+				WIN2.Release ( )
+			End of Procedure
