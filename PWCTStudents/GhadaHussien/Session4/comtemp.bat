@@ -1,0 +1,1 @@
+CALL sscom2.bat  "GHCONSOLE"  /X /l calldll  /C > _temp.txt
