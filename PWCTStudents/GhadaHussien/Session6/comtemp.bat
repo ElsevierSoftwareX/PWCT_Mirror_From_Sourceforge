@@ -1,0 +1,1 @@
+CALL sscom2.bat  "GHADACOUNT"  /X /l calldll  > _temp.txt
