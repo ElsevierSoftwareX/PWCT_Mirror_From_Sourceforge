@@ -1,0 +1,133 @@
+*---------------------------------------------------------------------------*
+* Time : 06:14:30    Date : 09/04/2010
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Programming Language    : Mahmoud Programming Language 
+* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
+* Programming Paradigm    : DoubleS (Super Server)
+*---------------------------------------------------------------------------*
+* Compilers               : Borland C/C++ & Harbour/xHarbour
+* GUI Framework           : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function ITEMS_REPORT
+Public True,False 
+True = .T. 
+False = .F. 
+ Details :
+ * (Noun) *
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance Main                          
+	VetoUnit :
+
+Resistance R_ITEMS_REPORT_15speed1() address Code Unit : Circuits\Main\Main\Main
+
+
+Return 
+
+* Resistance Code Unit : Circuits\Main\Main\Main
+Resistance R_ITEMS_REPORT_15speed1() code
+class ITEMSReportClass From Report_Base
+Data ReportName init "ITEMS"
+Method showwindow
+Method closewindow
+Method SizeReport
+Method CheckChange
+EndClass
+Method ShowWindow Class ITEMSReportClass
+if !iswindowdefined( ITEMSReportWindow )
+DEFINE WINDOW ITEMSReportWindow ;
+AT 10 ,10 ;
+WIDTH 743 ;
+HEIGHT 541 ;
+ON INIT self:ShowReport()  ;
+ON SIZE self:SizeReport()  ;
+ON MAXIMIZE self:SizeReport()  ;
+ICON "PWCTICON" ;
+TITLE " ﬁ—Ì— «·«’‰«›" ;
+CHILD ;
+BACKCOLOR {64,0,64}
+
+@ 452 ,286 BUTTONEX btn1;
+CAPTION "«€·«ﬁ";
+ON CLICK self:CloseWindow()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 452 ,395 BUTTONEX btn2;
+CAPTION "ÿ»«⁄…";
+ON CLICK self:PrintReport()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 452 ,507 BUTTONEX btn3;
+CAPTION "⁄—÷";
+ON CLICK self:ShowReport()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+self:oActiveX := TActiveX():New( "ITEMSReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 659 , 417)
+self:oActiveX:Load()
+@ 452 ,117 CHECKBOX check1;
+CAPTION "«·ﬂ„Ì… «·„ Ê›—… «ﬁ· „‰ «Ê  ”«ÊÏ";
+ON CHANGE self:checkchange()  ;
+WIDTH 160;
+Height 30;
+FONT "Arial" SIZE 10 ;
+BACKCOLOR {236,233,216} ;
+FONTCOLOR {0,0,0}
+@ 452 ,35 TEXTBOX text1;
+ON CHANGE self:checkchange()  ;
+HEIGHT 30 ;
+WIDTH 70 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+END WINDOW
+
+ITEMSReportWindow.Maximize ( )
+ACTIVATE WINDOW ITEMSReportWindow
+EndIF
+
+Return 0
+Method CloseWindow Class ITEMSReportClass
+ITEMSReportWindow.Release ( )
+Return 0
+Method SizeReport Class ITEMSReportClass
+Local tempvar1,tempvar2
+tempvar1 := ITEMSReportWindow.Width
+tempvar2 := ITEMSReportWindow.Height
+self:oactivex:nWidth := tempvar1 - 84
+self:oactivex:nHeight := tempvar2 - 125
+ITEMSReportWindow.btn1.Row := tempvar2-88
+ITEMSReportWindow.btn2.Row := tempvar2-88
+ITEMSReportWindow.btn3.Row := tempvar2-88
+self:oactivex:Show ( )
+ITEMSReportWindow.Check1.Row := tempvar2 - 88
+ITEMSReportWindow.text1.Row := tempvar2 - 88
+Return 0
+Method CheckChange Class ITEMSReportClass
+Local tvalue
+tvalue := ITEMSReportWindow.Check1.Value
+IF tvalue = true
+tvalue2 := ITEMSReportWindow.text1.Value
+tvalue2 = ALLTRIM ( tvalue2 )
+self:filter := "val(itemvalue) < " + tvalue2
+ELSE
+self:filter := "1 = 1"
+ENDIF
+Return 0
+
+
+
+End Of Resistance
+
+*-------------------------------------------------------------------*
