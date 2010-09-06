@@ -1,0 +1,817 @@
+*---------------------------------------------------------------------------*
+* Time : 00:41:04    Date : 08/26/2010
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Programming Language    : Mahmoud Programming Language 
+* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
+* Programming Paradigm    : DoubleS (Super Server)
+*---------------------------------------------------------------------------*
+* Compilers               : Borland C/C++ & Harbour/xHarbour
+* GUI Framework           : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
+New Server Server1 Type Slave Server Eigen Value 000
+ Details :
+ * (Noun) *
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance Main                          
+	VetoUnit :
+End Of Server 
+
+	Resistance WIN32EVENTS() Address Code Unit : WIN32EVENTS
+
+  ADD RESISTANCE WIN32EVENTS 
+
+
+Resistance R_ALJABREEN_15speed1() address Code Unit : Circuits\Main\Main\Main
+
+
+CALL RESISTANCE Circuits\Main\Main\Main
+Return 
+
+  FUNCTION STARTSERVER()
+   	Server FireON
+  RETURN
+
+  RESISTANCE WIN32EVENTS() CODE
+	   DO EVENTS
+  RETURN
+
+* Resistance Code Unit : Circuits\Main\Main\Main
+Resistance R_ALJABREEN_15speed1() code
+DO datesettings
+Set MenuStyle EXTENDED
+SET PROGRAMMATICCHANGE OFF
+Set Procedure to "Customers_Data.PRG"
+Set Procedure to "Gender_Data.PRG"
+Set Procedure to "Country_Data.PRG"
+Set Procedure to "Customers_Browse.PRG"
+Set Procedure to "Customers_Report.PRG"
+Set Procedure to "ItemsClasses_Data.PRG"
+Set Procedure to "ItemsUnits_Data.PRG"
+Set Procedure to "ItemsGroups_Data.PRG"
+Set Procedure to "ItemsGrades_Data.PRG"
+Set Procedure to "ItemsSizes_Data.PRG"
+Set Procedure to "ItemsColors_Data.PRG"
+Set Procedure to "ItemsSources_Data.PRG"
+Set Procedure to "ItemsStores_Data.PRG"
+Set Procedure to "Employees_Data.PRG"
+Set Procedure to "Employees_Browse.PRG"
+Set Procedure to "Employees_Report.PRG"
+Set Procedure to "Suppliers_Data.PRG"
+Set Procedure to "Suppliers_Browse.PRG"
+Set Procedure to "Suppliers_Report.PRG"
+Set Procedure to "Items_Data.PRG"
+Set Procedure to "ItemsEnter_Data.PRG"
+Set Procedure to "Users_Data.PRG"
+Set Procedure to "OrdersEnter_Data.PRG"
+Set Procedure to "Agreement.PRG"
+Set Procedure to "Quality_Data.PRG"
+Set Procedure to "Scheduling_Data.PRG"
+Set Procedure to "Warehouse_Data.PRG"
+Set Procedure to "Finance_Data.PRG"
+Set Procedure to "ReserveItems_Data.PRG"
+Set Procedure to "Processes_Data.PRG"
+Set Procedure to "ProcessStatus_Data.PRG"
+Set Procedure to "Production_Data.PRG"
+Set Procedure to "OrderProcesses_Data.PRG"
+Set Procedure to "Dispose_Data.PRG"
+Set Procedure to "ListOfCustomers_Report.PRG"
+Set Procedure to "ListOfEmployees_Report.PRG"
+Set Procedure to "ListOfSuppliers_Report.PRG"
+Set Procedure to "ITEMCLASSES_Report.PRG"
+Set Procedure to "ITEMUNITS_Report.PRG"
+Set Procedure to "ITEMGROUPS_Report.PRG"
+Set Procedure to "ITEMGRADES_Report.PRG"
+Set Procedure to "ITEMSIZES_Report.PRG"
+Set Procedure to "ITEMCOLORS_Report.PRG"
+Set Procedure to "ITEMSOURCES_Report.PRG"
+Set Procedure to "ITEMS_Report.PRG"
+Set Procedure to "STORES_Report.PRG"
+Set Procedure to "ITEMSENTEREDTOSTORES_Report.PRG"
+Set Procedure to "ReservedItems_Report.PRG"
+Set Procedure to "ListOfOrders_Report.PRG"
+Set Procedure to "OrderDetails_Report.PRG"
+Set Procedure to "QualityOpinions_Report.PRG"
+Set Procedure to "SchedulingOpinions_Report.PRG"
+Set Procedure to "WarehouseOpinions_Report.PRG"
+Set Procedure to "FinanceOpinions_Report.PRG"
+Set Procedure to "Agreement_Report.PRG"
+Set Procedure to "Processes_Report.PRG"
+Set Procedure to "ProcessStatus_Report.PRG"
+Set Procedure to "OrderProcesses_Report.PRG"
+Set Procedure to "EmployeesProduction_Report.PRG"
+Set Procedure to "OrdersDispose_Report.PRG"
+Set Procedure to "ReportBase.PRG"
+CustomersDataObject = CustomersDataClass()
+GenderDataObject = GenderDataClass()
+CountryDataObject = CountryDataClass()
+CustomersBrowseObject = CustomersBrowseClass()
+CustomersReportObject = CustomersReportClass()
+ItemsClassesObject = ItemsClassesClass()
+ItemsUnitsObject = ItemsUnitsClass()
+ItemsGroupsObject = ItemsGroupsClass()
+ItemsGradesObject = ItemsGradesClass()
+ItemsSizesObject = ItemsSizesClass()
+ItemsColorsObject = ItemsColorsClass()
+ItemsSourcesObject = ItemsSourcesClass()
+ItemsStoresObject = ItemsStoresClass()
+EmployeesDataObject = EmployeesDataClass()
+EmployeesBrowseObject = EmployeesBrowseClass()
+EmployeesReportObject = EmployeesReportClass()
+SuppliersDataObject = SuppliersDataClass()
+SuppliersBrowseObject = SuppliersBrowseClass()
+SuppliersReportObject = SuppliersReportClass()
+ItemsObject = ItemsClass()
+ItemsEnterObject = ItemsEnterClass()
+UsersDataObject = UsersClass()
+OrdersEnterObject = OrdersEnterClass()
+AgreementObject = AgreementClass()
+QualityObject = QualityClass()
+SchedulingObject = SchedulingClass()
+WarehouseObject = WarehouseClass()
+FinanceObject = FinanceClass()
+ReserveItemsObject = ReserveItemsClass()
+ProcessesObject = ProcessesClass()
+ProcessStatusObject = ProcessStatusClass()
+ProductionObject = ProductionClass()
+OrderProcessesObject = OrderProcessesClass()
+DisposeObject = DisposeClass()
+ListofCustomersReportObject = ListofCustomersReportClass()
+ListofEmployeesReportObject = ListofEmployeesReportClass()
+ListofSuppliersReportObject = ListofSuppliersReportClass()
+ItemClassesReportObject = ItemClassesReportClass()
+ItemUnitsReportObject = ItemUnitsReportClass()
+ItemGROUPSReportObject = ItemGROUPSReportClass()
+ItemGRADESReportObject = ItemGRADESReportClass()
+ItemSIZESReportObject = ItemSIZESReportClass()
+ItemCOLORSReportObject = ItemCOLORSReportClass()
+ItemSOURCESReportObject = ItemSOURCESReportClass()
+ItemsReportObject = ItemsReportClass()
+StoresReportObject = StoresReportClass()
+ITEMSENTEREDTOSTORESReportObject = ITEMSENTEREDTOSTORESReportClass()
+ReservedItemsReportObject = ReservedItemsReportClass()
+ListOfOrdersReportObject = ListOfOrdersReportClass()
+OrderDetailsReportObject = OrderDetailsReportClass()
+QualityOpinionsReportObject = QualityOpinionsReportClass()
+SchedulingOpinionsReportObject = SchedulingOpinionsReportClass()
+FinanceOpinionsReportObject = FinanceOpinionsReportClass()
+WarehouseOpinionsReportObject = WarehouseOpinionsReportClass()
+AgreementReportObject = AgreementReportClass()
+ProcessesReportObject = ProcessesReportClass()
+ProcessStatusReportObject = ProcessStatusReportClass()
+OrderProcessesReportObject = OrderProcessesReportClass()
+EmployeesProductionReportObject = EmployeesProductionReportClass()
+OrdersDisposeReportObject = OrdersDisposeReportClass()
+if !iswindowdefined( win1 )
+DEFINE WINDOW win1 ;
+AT 10 ,10 ;
+WIDTH 907 ;
+HEIGHT 718 ;
+ON INIT systemlogin()  ;
+ICON "PWCTICON" ;
+TITLE "AL-JABREEN LEATHER IND. FACTORY - Production Follow up System" ;
+MAIN ;
+NOSHOW ;
+BACKCOLOR {255,255,255} 
+
+DEFINE STATUSBAR 
+
+STATUSITEM "Ready"
+
+KEYBOARD
+
+CLOCK;
+WIDTH 100;
+AMPM 
+
+END STATUSBAR
+
+DEFINE TOOLBAR Toolbar1;
+BUTTONSIZE 40 , 40 ;
+BOLD ;
+FLAT ;
+BORDER ;
+BREAK 
+
+BUTTON toolbaremployeebtn1;
+PICTURE "image\EmployeesIcon.bmp" ;
+ADJUST ;
+ON CLICK EmployeesDataObject:showwindow()  ;
+TOOLTIP "Employees" ;
+AUTOSIZE 
+
+BUTTON toolbaremployeebtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK EmployeesBrowseObject:showwindow()  ;
+TOOLTIP "Search in Employees" ;
+AUTOSIZE 
+
+BUTTON toolbaremployeebtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Employeesreport()  ;
+TOOLTIP "Employees  Report" ;
+SEPARATOR ;
+AUTOSIZE 
+
+BUTTON toolbarsupplierbtn1;
+PICTURE "image\suppliersicon.bmp" ;
+ADJUST ;
+ON CLICK SuppliersDataObject:showwindow()  ;
+TOOLTIP "Suppliers" ;
+AUTOSIZE 
+
+BUTTON toolbarSuppliersbtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK SuppliersBrowseObject:showwindow()  ;
+TOOLTIP "Search in Suppliers" ;
+AUTOSIZE 
+
+BUTTON toolbarSuppliersbtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Suppliersreport()  ;
+TOOLTIP "Suppliers Report" ;
+SEPARATOR ;
+AUTOSIZE 
+
+BUTTON toolbarcustomersbtn1;
+PICTURE "image\customersicon.bmp" ;
+ADJUST ;
+ON CLICK CustomersDataObject:showwindow()  ;
+TOOLTIP "Customers" ;
+AUTOSIZE 
+
+BUTTON toolbarcustomersbtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK CustomersBrowseObject:showwindow()  ;
+TOOLTIP "Search in Customers" ;
+AUTOSIZE 
+
+BUTTON toolbarcustomersbtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Customersreport()  ;
+TOOLTIP "Customers Report" ;
+SEPARATOR ;
+AUTOSIZE 
+
+BUTTON toolbarshutdown;
+PICTURE "image\shutdown.bmp" ;
+ADJUST ;
+ON CLICK closesystem()  ;
+TOOLTIP "Close" ;
+SEPARATOR ;
+AUTOSIZE 
+
+END TOOLBAR
+
+@ 79 ,24 IMAGE image1;
+PICTURE "image\CUSTOMERS.JPG";
+ON CLICK customers()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 316 ,71 LABEL lbl1 ;
+VALUE "Customers" ;
+ACTION customers()  ;
+WIDTH 100 ;
+HEIGHT 20 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 356 ,23 IMAGE image2;
+PICTURE "image\LEATHER.JPG";
+ON CLICK ItemsObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 607 ,65 LABEL lbl2 ;
+VALUE "Warehouse" ;
+ACTION ItemsObject:ShowWindow()  ;
+WIDTH 120 ;
+HEIGHT 40 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 79 ,225 IMAGE image3;
+PICTURE "image\ORDER.JPG";
+ON CLICK OrdersEnterObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 316 ,294 LABEL lbl3 ;
+VALUE "Orders" ;
+ACTION OrdersEnterObject:ShowWindow()  ;
+WIDTH 60 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 356 ,225 IMAGE image4;
+PICTURE "image\AGREEMENT.JPG";
+ON CLICK AgreementObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 607 ,274 LABEL lbl4 ;
+VALUE "Agreement" ;
+ACTION AgreementObject:ShowWindow()  ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 79 ,430 IMAGE image5;
+PICTURE "image\FACTORY.JPG";
+ON CLICK OrderProcessesObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 316 ,470 LABEL lbl5 ;
+VALUE "Manufacturing" ;
+ACTION OrderProcessesObject:ShowWindow()  ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 83 ,644 IMAGE image6;
+PICTURE "image\REPORTS.JPG";
+ON CLICK sysreports()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 316 ,706 LABEL lbl6 ;
+VALUE "Reports" ;
+ACTION sysreports()  ;
+WIDTH 80 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 356 ,430 IMAGE image7;
+PICTURE "image\DISPOSE.JPG";
+ON CLICK DisposeObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 607 ,484 LABEL lbl7 ;
+VALUE "Dispose" ;
+ACTION DisposeObject:ShowWindow()  ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+END WINDOW
+
+ACTIVATE WINDOW win1
+EndIF
+
+Proc closesystem
+win1.statusbar.item(1) := "Click Yes to Close the System or Click No to Cancel"
+MyOut := MSGYESNO("Are you sure ?","Close System")
+IF myout = true
+win1.Release ( )
+ENDIF
+win1.statusbar.item(1) := "Ready"
+Return Nil
+Proc mylogo
+if !iswindowdefined( winlogo )
+DEFINE WINDOW winlogo ;
+AT 10 ,10 ;
+WIDTH 206 ;
+HEIGHT 196 ;
+ICON "PWCTICON" ;
+TITLE "Window Title" ;
+CHILD ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+NOSYSMENU ;
+NOCAPTION ;
+BACKCOLOR {255,255,255} 
+
+@ 8 ,5 IMAGE image1;
+PICTURE "LOGOALONE";
+WHITEBACKGROUND ;
+WIDTH 196 HEIGHT 135
+@ 149 ,4 LABEL lbl1 ;
+VALUE "AL-JABREEN System" ;
+WIDTH 196 ;
+HEIGHT 32 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {0,0,0} ;
+FONTCOLOR {0,255,128}
+END WINDOW
+EndIF
+
+HPARENT := GetFormHandle("win1")
+HCHILD := GetFormHandle("winLOGO")
+myout = CALLDLL32("SetParent","USER32.DLL",HCHILD,HPARENT)
+winlogo.Center ( )
+winlogo.Col := (win1.width) - (winlogo.width) - (50 )
+winlogo.Row := 450
+Activate Window winlogo nowait
+Return Nil
+Proc customers
+myout = CustomersDataObject:ShowWindow()
+Return Nil
+Proc sysmenu
+POPUP "File"
+MENUITEM "Close System" Action closesystem()  IMAGE "image\wzclose.bmp"
+END POPUP
+IF UserCan_Admin = 2
+POPUP "System"
+MENUITEM "Users" Action UsersDataObject:ShowWindow()
+END POPUP
+ENDIF
+POPUP "Person"
+POPUP "Employees"
+MENUITEM "Employees Data" Action EmployeesDataObject:showwindow()
+MENUITEM "Employees Search/Browse By Name" Action EmployeesBrowseObject:showwindow()
+MENUITEM "Employees Report" Action Employeesreport()
+END POPUP
+POPUP "Suppliers"
+MENUITEM "Suppliers Data" Action SuppliersDataObject:showwindow()
+MENUITEM "Suppliers Search/Browse By Name" Action SuppliersBrowseObject:showwindow()
+MENUITEM "Suppliers Report" Action Suppliersreport()
+END POPUP
+POPUP "Customers"
+MENUITEM "Customers Data" Action CustomersDataObject:showwindow()
+MENUITEM "Customers Search/Browse By Name" Action CustomersBrowseObject:showwindow()
+MENUITEM "Customers Report" Action Customersreport()
+END POPUP
+MENUITEM "Lookup Table : Country" Action Countrydataobject:showwindow()
+MENUITEM "Lookup Table : Gender" Action genderdataobject:showwindow()
+END POPUP
+POPUP "Warehouse"
+MENUITEM "Set Items Classes" Action ItemsClassesObject:ShowWindow()
+MENUITEM "Set Items Units" Action ItemsUnitsObject:ShowWindow()
+MENUITEM "Set Items Groups" Action ItemsGroupsObject:ShowWindow()
+MENUITEM "Set Items Grades" Action ItemsGradesObject:ShowWindow()
+MENUITEM "Set Items Sizes" Action ItemsSizesObject:ShowWindow()
+MENUITEM "Set Items Colors" Action ItemsColorsObject:ShowWindow()
+MENUITEM "Set Items Sources" Action ItemsSourcesObject:ShowWindow()
+SEPARATOR
+MENUITEM "Define Items" Action ItemsObject:ShowWindow()
+SEPARATOR
+MENUITEM "Set Items Stores" Action ItemsStoresObject:ShowWindow()
+MENUITEM "Enter Items to Store" Action ItemsEnterObject:ShowWindow()
+SEPARATOR
+MENUITEM "Reserve Items For Order" Action ReserveItemsObject:ShowWindow()
+END POPUP
+POPUP "Orders"
+MENUITEM "Enter Order" Action OrdersEnterObject:ShowWindow()
+SEPARATOR
+MENUITEM "Quality Manager Opinions" Action QualityObject:ShowWindow()
+MENUITEM "Scheduling Manager Opinions" Action SchedulingObject:ShowWindow()
+MENUITEM "Warehouse Manager Opinions" Action WarehouseObject:ShowWindow()
+MENUITEM "Finance Manager Opinions" Action FinanceObject:ShowWindow()
+MENUITEM "Agreement" Action AgreementObject:ShowWindow()
+END POPUP
+POPUP "Manufacturing"
+MENUITEM "Define Processes" Action ProcessesObject:ShowWindow()
+MENUITEM "Define Processes Status" Action ProcessStatusObject:ShowWindow()
+SEPARATOR
+MENUITEM "Order Processes" Action OrderProcessesObject:ShowWindow()
+SEPARATOR
+MENUITEM "Employees Production" Action ProductionObject:ShowWindow()
+END POPUP
+POPUP "Dispose"
+MENUITEM "Dispose and Quality Manager Opinion" Action DisposeObject:ShowWindow()
+END POPUP
+POPUP "Reports"
+MENUITEM "List of Employees Report" Action ListOfEmployeesreport()
+MENUITEM "List of Suppliers Report" Action ListOfSuppliersreport()
+MENUITEM "List of Customers Report" Action ListOfCustomersreport()
+SEPARATOR
+MENUITEM "Items Classes Report" Action ItemClassesReportObject:ShowWindow()
+MENUITEM "Items Units Report" Action ItemUnitsReportObject:ShowWindow()
+MENUITEM "Items Groups Report" Action ItemGroupsReportObject:ShowWindow()
+MENUITEM "Items Grades Report" Action ItemGradesReportObject:ShowWindow()
+MENUITEM "Items Sizes Report" Action ItemSizesReportObject:ShowWindow()
+MENUITEM "Items Colors Report" Action ItemColorsReportObject:ShowWindow()
+MENUITEM "Items Sources Report" Action ItemSourcesReportObject:ShowWindow()
+MENUITEM "Items Report" Action ItemsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "Stores Report" Action StoresReportObject:ShowWindow()
+MENUITEM "Items Entered to Stores Report" Action ITEMSENTEREDTOSTORESReportObject:ShowWindow()
+MENUITEM "Reserved Items Report" Action ReservedItemsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "List Of Orders Report" Action ListOfOrdersReportObject:ShowWindow()
+MENUITEM "Order Details Report" Action OrderDetailsReportObject:ShowWindow()
+MENUITEM "Quality Manager Opinions Report" Action QualityOpinionsReportObject:ShowWindow()
+MENUITEM "Scheduling Manager Opinions Report" Action SchedulingOpinionsReportObject:ShowWindow()
+MENUITEM "Warehouse Manager Opinions Report" Action WarehouseOpinionsReportObject:ShowWindow()
+MENUITEM "Finance Manager Opinions Report" Action FinanceOpinionsReportObject:ShowWindow()
+MENUITEM "Agreement Report" Action AgreementReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "Processes Report" Action ProcessesReportObject:ShowWindow()
+MENUITEM "Process Status Report" Action ProcessStatusReportObject:ShowWindow()
+MENUITEM "Order Processes Report" Action OrderProcessesReportObject:ShowWindow()
+MENUITEM "Employees Production Report" Action EmployeesProductionReportObject:ShowWindow()
+MENUITEM "Orders Dispose Report" Action OrdersDisposeReportObject:ShowWindow()
+END POPUP
+Return Nil
+Proc customersreport
+customersreportobject:filter := ""
+myout = customersreportobject:ShowWindow()
+Return Nil
+Proc Employeesreport
+Employeesreportobject:filter := ""
+myout = Employeesreportobject:ShowWindow()
+Return Nil
+Proc Suppliersreport
+Suppliersreportobject:filter := ""
+myout = Suppliersreportobject:ShowWindow()
+Return Nil
+Proc datesettings
+set date japan
+set cent on
+Return Nil
+Proc systemlogin
+win1.Hide ( )
+DO LOGOSTART
+myhandle = getcontrolhandle ( "image1","win1" )
+DO sethandcursor WITH myhandle
+myhandle = getcontrolhandle ( "image2","win1" )
+DO sethandcursor WITH myhandle
+myhandle = getcontrolhandle ( "image3","win1" )
+DO sethandcursor WITH myhandle
+myhandle = getcontrolhandle ( "image4","win1" )
+DO sethandcursor WITH myhandle
+myhandle = getcontrolhandle ( "image5","win1" )
+DO sethandcursor WITH myhandle
+myhandle = getcontrolhandle ( "image6","win1" )
+DO sethandcursor WITH myhandle
+myhandle = getcontrolhandle ( "image7","win1" )
+DO sethandcursor WITH myhandle
+win1.Maximize ( )
+win1.Show ( )
+DO mylogo
+if !iswindowdefined( winlogin )
+DEFINE WINDOW winlogin ;
+AT 10 ,10 ;
+WIDTH 532 ;
+HEIGHT 267 ;
+ICON "PWCTICON" ;
+TITLE "Login" ;
+MODAL ;
+NOAUTORELEASE ;
+NOSIZE ;
+NOSYSMENU ;
+BACKCOLOR {255,255,255} 
+
+@ 40 ,0 IMAGE image1;
+PICTURE "Image\back.jpg";
+STRETCH ;
+WIDTH 530 HEIGHT 120
+@ 36 ,90 LABEL lbl1 ;
+VALUE "User Name : " ;
+WIDTH 120 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 93 ,90 LABEL lbl2 ;
+VALUE "Password : " ;
+WIDTH 120 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 33 ,232 TEXTBOX text1;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0} ;
+INPUTMASK ""
+@ 91 ,232 TEXTBOX text2;
+ON ENTER OpenSystem()  ;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0} ;
+PASSWORD 
+
+@ 182 ,153 BUTTONEX btn1;
+CAPTION "Ok";
+ON CLICK OpenSystem()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "arial" SIZE 14 ;
+DEFAULT ;
+TOOLTIP ""
+@ 181 ,269 BUTTONEX btn2;
+CAPTION "Close";
+ON CLICK closesystem()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "arial" SIZE 14 ;
+TOOLTIP ""
+END WINDOW
+
+winlogin.Center ( )
+ACTIVATE WINDOW winlogin
+EndIF
+
+Return Nil
+Proc closelogin
+winlogin.Release ( )
+Return Nil
+Proc entersystem
+DEFINE MAIN MENU of win1
+DO sysmenu
+END MENU
+winlogin.Release ( )
+Return Nil
+Proc OpenSystem
+Local oCon,oRS,OpenWorld,mymax,x,cName,cPassword
+oCon := TOLEAUTO():NEW( "ADODB.Connection" )
+oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=FACTORYDATA;uid=systemdatabase;pwd=systemdatabase123";Initial Catalog=' )
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := oCon
+oRS:open ( "Select * from Users",oCon,3,3 )
+mymax := oRS:RecordCount
+openworld := false
+Public EnteredUserName,EnteredPassword,UserCan_Admin,UserCan_AgreementRole
+EnteredUserName := winlogin.text1.Value
+EnteredPassword := winlogin.text2.Value
+IF mymax > 0
+oRS:MOVEFIRST()
+FOR x = 1 TO MYMAX STEP 1
+cName := oRS:fields:item("UserName"):value
+cName = ALLTRIM ( cName )
+IF cName = EnteredUserName
+cPassword := oRS:fields:item("Password"):value
+cPassword = ALLTRIM ( cPassword )
+IF cPassword == EnteredPassWord
+openworld := true
+UserCan_Admin := oRS:fields:item("SystemAdmin"):value
+UserCan_AgreementRole := oRS:fields:item("AgreementRole"):value
+ELSE
+MyOut := MSGBOX("Invalid Password","Error")
+Return 0
+ENDIF
+ENDIF
+oRS:MOVENEXT()
+Next
+ELSE
+MyOut := MSGINFO("No Users in System Database","Error")
+Return 0
+ENDIF
+IF openworld = true
+DO EnterSystem
+ELSE
+MyOut := MSGBOX("Invalid Username","Error")
+ENDIF
+Return Nil
+Proc LOGOSTART
+if !iswindowdefined( winLOGOSTART )
+DEFINE WINDOW winLOGOSTART ;
+AT 10 ,10 ;
+WIDTH 530 ;
+HEIGHT 336 ;
+ICON "PWCTICON" ;
+TITLE "Window Title" ;
+CHILD ;
+TOPMOST ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+NOSYSMENU ;
+NOCAPTION ;
+BACKCOLOR {236,233,216} 
+
+@ 0 ,0 IMAGE image1;
+PICTURE "LOGO";
+STRETCH ;
+WIDTH 530 HEIGHT 336
+DEFINE TIMER Timer1 INTERVAL 1500 ;
+Action WINLOGOSTART.RELEASE()
+@ 13 ,17 LABEL lbl1 ;
+VALUE "System Vesion Date :  2010/08/26" ;
+WIDTH 200 ;
+HEIGHT 20 ;
+FONT "Arial" SIZE 9  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+END WINDOW
+
+WINLOGOSTART.Center ( )
+ACTIVATE WINDOW winLOGOSTART
+EndIF
+
+Return Nil
+Proc listofcustomersreport
+ListofCustomersReportObject:filter := ""
+myout = ListofCustomersReportObject:ShowWindow()
+Return Nil
+Proc listofemployeesreport
+ListofEmployeesReportObject:filter := ""
+myout = ListofEmployeesReportObject:ShowWindow()
+Return Nil
+Proc listofsuppliersreport
+ListofSuppliersReportObject:filter := ""
+myout = ListofSuppliersReportObject:ShowWindow()
+Return Nil
+Proc sysreports
+if !iswindowdefined( winsysreports )
+DEFINE WINDOW winsysreports ;
+AT 10 ,10 ;
+WIDTH 690 ;
+HEIGHT 481 ;
+ICON "PWCTICON" ;
+TITLE "Common Reports" ;
+CHILD ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+BACKCOLOR {236,233,216} 
+
+@ -9 ,-8 IMAGE image1;
+PICTURE "Image\back.jpg";
+STRETCH ;
+WIDTH 706 HEIGHT 488
+@ 17 ,180 BUTTONEX btn1;
+CAPTION "Items Report";
+ON CLICK ItemsReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 64 ,180 BUTTONEX btn2;
+CAPTION "Items Entered to Store";
+ON CLICK ITEMSENTEREDTOSTORESReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 111 ,180 BUTTONEX btn3;
+CAPTION "Reserved Items";
+ON CLICK ReservedItemsReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 158 ,180 BUTTONEX btn4;
+CAPTION "Order Details";
+ON CLICK OrderDetailsReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 205 ,180 BUTTONEX btn5;
+CAPTION "Order Agreement";
+ON CLICK AgreementReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 252 ,180 BUTTONEX btn6;
+CAPTION "Order Processes";
+ON CLICK OrderProcessesReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 299 ,180 BUTTONEX btn7;
+CAPTION "Employees Production";
+ON CLICK EmployeesProductionReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 346 ,180 BUTTONEX btn8;
+CAPTION "Order Dispose";
+ON CLICK OrdersDisposeReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 393 ,180 BUTTONEX btnClose;
+CAPTION "Close Window";
+ON CLICK winsysreports.release()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+END WINDOW
+
+winsysreports.Center ( )
+ACTIVATE WINDOW winsysreports
+EndIF
+
+Return Nil
+
+
+End Of Resistance
+
+INIT PROCEDURE Init_ALJABREEN
+START DOUBLES
+Return
+*-------------------------------------------------------------------*
