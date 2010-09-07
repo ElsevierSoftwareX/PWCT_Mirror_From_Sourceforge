@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:40:13    Date : 09/08/2010
+* Time : 01:15:25    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,10 @@ Method OnBeforeDelete
 Method OnAfterAddEdit
 Method OnBeforeEdit
 Method OnAddClick
+Method beforesearch
+Method setTimer
+Method searchadd
+Method getsearchvalue
 EndClass
 Method ShowRecord Class SYSTEMDATABASE
 mymax := self:oRS:RecordCount
@@ -265,6 +269,14 @@ Method OnAfterAddEdit Class SystemDatabase
 Return 0
 Method onAddClick Class SystemDatabase
 Return 0
+Method BeforeSearch Class SystemDatabase
+Return 0
+Method SearchAdd(p1) Class SystemDatabase
+Return 0
+Method SetTimer Class SystemDatabase
+Return 0
+Method GetSearchValue Class SystemDatabase
+Return ""
 
 
 End Of Resistance

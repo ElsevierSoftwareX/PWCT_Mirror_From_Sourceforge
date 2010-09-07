@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:26:16    Date : 08/27/2010
+* Time : 01:13:07    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -76,10 +76,6 @@ Method Class2UserInterface
 Method ClearRecord
 Method AutoGotoRecord
 Method printdata
-Method BeforeSearch
-Method SearchAdd
-Method GetSearchValue
-Method settimer
 EndClass
 Method showwindow Class EmployeesDataClass
 myout = self:connect()
@@ -630,18 +626,6 @@ ENDIF
 ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
-Return 0
-Method GetSearchValue Class EmployeesDataClass
-cName := EmployeesDataWindow.textNamebrowse.Value
-Return cName
-Method SetTimer(p1) Class EmployeesDataClass
-Return 0
-Method SearchAdd(temp_array) Class EmployeesDataClass
-EmployeesDataWindow.grid1browse.AddItem ( temp_array )
-Return 0
-Method BeforeSearch Class EmployeesDataClass
-EmployeesDataWindow.grid1browse.DeleteAllItems ( )
-EmployeesDataWindow.grid1browse.Value := 0
 Return 0
 
 
