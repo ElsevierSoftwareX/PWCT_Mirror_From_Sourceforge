@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:41:04    Date : 08/26/2010
+* Time : 00:36:48    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -115,6 +115,7 @@ Set Procedure to "OrderProcesses_Report.PRG"
 Set Procedure to "EmployeesProduction_Report.PRG"
 Set Procedure to "OrdersDispose_Report.PRG"
 Set Procedure to "ReportBase.PRG"
+Set Procedure to "SystemDatabase_Base.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
