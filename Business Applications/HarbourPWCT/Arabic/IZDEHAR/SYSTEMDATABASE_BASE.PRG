@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:09:59    Date : 09/01/2010
+* Time : 00:40:13    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -45,6 +45,7 @@ Data OperationMode init 2
 Data ResultPrimaryKeys init {}
 Data username init "systemdatabase"
 Data password init "systemdatabase123"
+Data DataSourceName init "IZDEHARDATA"
 Method ShowRecord
 Method EditRecord
 Method LoadLookupTable
@@ -94,7 +95,7 @@ Return myindex
 Method LoadLookupTable(cTableName,cColumnName,aArrayNameRef,cColumnName2,aArrayNameRef2) Class SYSTEMDATABASE
 Local x,nMax,temp_value,temp_value2,oCon,oRS
 oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=IZDEHARDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
+oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn='+self:DataSourceName+';uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := oCon
@@ -118,7 +119,7 @@ oCon:CLOSE()
 Return 0
 Method connect Class SYSTEMDATABASE
 self:oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=IZDEHARDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
+self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn='+self:DataSourceName+';uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
 self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 self:oRS:CursorType := 1
 self:oRS:ActiveConnection := self:oCon
@@ -184,7 +185,7 @@ Method search Class SYSTEMDATABASE
 Local oCon,oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
 cName = self:getsearchvalue()
 oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=IZDEHARDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
+oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn='+self:DataSourceName+';uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := oCon
