@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:59:47    Date : 08/24/2010
+* Time : 21:46:29    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,21 +35,22 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_CUSTOMERS_BROWSE_15speed1() code
-Class CustomersBrowseClass
+class CustomersBrowseClass From SystemDatabase
 Data databasename init ""
-Data table init "Customers_All"
+Data tablename init "Customers_All"
 Data column init "f_name"
 Data PrimaryKey init "id"
 Data columns init {"f_name","country","f_city","f_address","f_company"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Data ResultPrimaryKeys init {}
 Method showwindow
 Method closewindow
-Method search
 Method OpenDataWindow
 Method showdatawindow
 Method print
+Method BeforeSearch
+Method SearchAdd
+Method settimer
+Method GetSearchValue
 EndClass
 Method showwindow Class CustomersBrowseClass
 if !iswindowdefined( CustomersBrowseWindow )
@@ -136,44 +137,6 @@ Return 0
 Method closewindow Class CustomersBrowseClass
 CustomersBrowseWindow.Release ( )
 Return 0
-Method search Class CustomersBrowseClass
-Local oCon,oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
-cName := CustomersBrowseWindow.textName.Value
-oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=FACTORYDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
-oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-oRS:CursorType := 1
-oRS:ActiveConnection := oCon
-oRS:open ( "Select * from "+self:table+" where "+self:column+" like '" + cName + "%'",oCon,3,3 )
-mymax := oRS:RecordCount
-CustomersBrowseWindow.grid1.DeleteAllItems ( )
-self:ResultPrimaryKeys := {}
-CustomersBrowseWindow.grid1.Value := 0
-IF mymax > 0
-FOR x = 1 TO mymax STEP 1
-vname := oRS:fields:item(self:column):value
-temp_array := {}
-mymax2  = LEN(self:columns)
-FOR x2 = 1 TO mymax2 STEP 1
-vname2 := oRS:fields:item(self:columns[x2]):value
-IF valtype(vname2) = "N"
-VNAME2 = STR ( VNAME2 )
-VNAME2 = ALLTRIM ( VNAME2 )
-ENDIF
-AADD( temp_array , vname2)
-Next
-CustomersBrowseWindow.grid1.AddItem ( temp_array )
-vid := oRS:fields:item(self:PrimaryKey):value
-vid = STR ( vid )
-AADD( self:ResultPrimaryKeys , vid)
-oRS:MOVENEXT()
-Next
-ELSE
-MyOut := MSGBOX("Record not found","Sorry")
-ENDIF
-oRS:Close()
-oCon:CLOSE()
-Return 0
 Method OpenDataWindow Class CustomersBrowseClass
 Local nvalue,myout
 nvalue := CustomersBrowseWindow.grid1.Value
@@ -181,6 +144,19 @@ IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
 ENDIF
 Return 0
+Method BeforeSearch Class CustomersBrowseClass
+CustomersBrowseWindow.grid1.DeleteAllItems ( )
+CustomersBrowseWindow.grid1.Value := 0
+Return 0
+Method SearchAdd(temp_array) Class CustomersBrowseClass
+CustomersBrowseWindow.grid1.AddItem ( temp_array )
+Return 0
+Method SetTimer(p1) Class CustomersBrowseClass
+CustomersBrowseWindow.Timer1.Enabled := p1
+Return 0
+Method GetSearchValue Class CustomersBrowseClass
+cName := CustomersBrowseWindow.textName.Value
+Return cName
 
 
 
