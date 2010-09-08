@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:02:02    Date : 08/30/2010
+* Time : 06:08:29    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,8 +41,6 @@ Data tablename init "Customers_All"
 Data column init "f_mobile"
 Data PrimaryKey init "id"
 Data columns init {"custtype","custclass","paymethod","f_mobile","f_name"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Data ResultPrimaryKeys init {}
 Method showwindow
 Method closewindow
