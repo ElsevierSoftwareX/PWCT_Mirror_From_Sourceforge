@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:53:07    Date : 08/29/2010
+* Time : 22:06:58    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -50,8 +50,6 @@ Data cItemName init ""
 Data column init "ItemName"
 Data PrimaryKey init "id"
 Data columns init {"ID","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Data cItemCompleteName init ""
 Data nItemClass init 0
 Data itemGroupitems init {}

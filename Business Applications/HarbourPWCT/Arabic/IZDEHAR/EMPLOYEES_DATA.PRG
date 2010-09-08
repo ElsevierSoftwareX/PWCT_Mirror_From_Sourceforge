@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:13:07    Date : 09/08/2010
+* Time : 22:05:20    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -64,8 +64,6 @@ Data genderitemsids init {}
 Data genderitems init {}
 Data countryitemsids init {}
 Data countryitems init {}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
 Method SetMode

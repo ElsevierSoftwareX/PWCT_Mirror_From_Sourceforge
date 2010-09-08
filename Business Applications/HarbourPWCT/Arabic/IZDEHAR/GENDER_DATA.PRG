@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:36:58    Date : 08/30/2010
+* Time : 22:06:21    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -50,8 +50,6 @@ Data cCountry init ""
 Data column init "Gender"
 Data PrimaryKey init "id"
 Data columns init {"ID","Gender"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
 Method SetMode

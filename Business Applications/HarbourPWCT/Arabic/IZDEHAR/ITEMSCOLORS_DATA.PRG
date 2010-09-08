@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:52:47    Date : 08/30/2010
+* Time : 22:07:37    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -51,8 +51,6 @@ Data column init "ColorName"
 Data PrimaryKey init "id"
 Data columns init {"ID","ColorName"}
 Data nColorNumber init {0,0,0}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
 Method SetMode

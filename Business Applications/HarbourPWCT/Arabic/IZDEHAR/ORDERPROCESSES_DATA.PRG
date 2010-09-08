@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:47:31    Date : 09/02/2010
+* Time : 22:10:25    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -49,8 +49,6 @@ Data nID init 0
 Data column init "OrderNumber"
 Data PrimaryKey init "id"
 Data columns init {"Notes","RealFinishDate","RealStartDate","PlannedFinishDate","PlannedStartDate","ProcessStatus","ProcessName","OrderName","orderNumber"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Data nOrderNumber init 0
 Data OrderNumberitems init {}
 Data OrderNumberitemsids init {}

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:12:54    Date : 09/08/2010
+* Time : 22:03:51    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -44,8 +44,6 @@ Data CFindExpr init ""
 Data OperationMode init 2
 Data DatabaseName init ""
 Data TableName init "Customers"
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Data cName init ""
 Data cMobile init ""
 Data ceMail init ""
