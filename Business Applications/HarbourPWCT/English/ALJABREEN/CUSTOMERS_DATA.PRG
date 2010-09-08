@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:25:39    Date : 08/26/2010
+* Time : 05:41:59    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,7 +35,7 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_CUSTOMERS_DATA_15speed1() code
-Class CustomersDataClass
+class CustomersDataClass From SystemDatabase
 Data oCon init 0
 Data oRS init 0
 Data addrec init false
@@ -68,27 +68,13 @@ Data username init "systemdatabase"
 Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
-Method ShowRecord
-Method connect
-Method disconnect
-Method firstrecord
-Method lastrecord
-Method nextrecord
-Method prevrecord
-Method delrecord
 Method SetMode
-Method EditRecord
-Method SaveRecord
-Method CancelRecord
 Method UserInterface2Class
 Method Class2ADO
 Method ADO2Class
 Method Class2UserInterface
-Method addrecord
 Method ClearRecord
 Method AutoGotoRecord
-Method loadlookuptable
-Method lookupidtoindex
 Method printdata
 EndClass
 Method showwindow Class CustomersDataClass
@@ -538,38 +524,6 @@ self:cMobile2 := ""
 self:cCompany := ""
 self:cNotes := ""
 Return 0
-Method LoadLookupTable(cTableName,cColumnName,aArrayNameRef,cColumnName2,aArrayNameRef2) Class CustomersDataClass
-Local x,nMax,temp_value,temp_value2,oCon,oRS
-oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=FACTORYDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
-oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-oRS:CursorType := 1
-oRS:ActiveConnection := oCon
-oRS:open ( "Select * from " + cTableName,oCon,3,3 )
-nMAX := oRS:RecordCount
-aArrayNameRef := {}
-aArrayNameRef2 := {}
-FOR x = 1 TO nMax STEP 1
-temp_value := oRS:fields:item(cColumnName):value
-temp_value2 := oRS:fields:item(cColumnName2):value
-AADD( aArrayNameRef , temp_value)
-AADD( aArrayNameRef2 , temp_value2)
-oRS:MOVENEXT()
-Next
-oRS:Close()
-oCon:CLOSE()
-Return 0
-Method LookupIDtoIndex(IDVar,ArrayRef) Class CustomersDataClass
-Local nMax,x
-myindex := 1
-nMax  = LEN(ArrayRef)
-FOR x = 1 TO nMax STEP 1
-IF ArrayRef[x]= IDVar
-myindex := x
-Exit
-ENDIF
-Next
-Return myindex
 Method PrintData Class CustomersDataClass
 Local myid,myout
 mymax := self:oRS:RecordCount
@@ -586,89 +540,6 @@ Return 0
 Method closewindow Class CustomersDataClass
 myout = self:disconnect()
 CustomersDataWindow.Release ( )
-Return 0
-Method ShowRecord Class CustomersDataClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-myout = self:ADO2Class()
-ELSE
-myout = self:ClearRecord()
-ENDIF
-myout = self:Class2UserInterface()
-Return 0
-Method connect Class CustomersDataClass
-self:oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=FACTORYDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
-self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-self:oRS:CursorType := 1
-self:oRS:ActiveConnection := self:oCon
-self:oRS:open ( "Select * from " + self:TableName,self:oCon,3,3 )
-Return 0
-Method disconnect Class CustomersDataClass
-self:oRS:Close()
-self:oCon:CLOSE()
-Return 0
-Method firstrecord Class CustomersDataClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEFIRST()
-myout = self:showrecord()
-ENDIF
-Return 0
-Method lastrecord Class CustomersDataClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVELAST()
-myout = self:showrecord()
-ENDIF
-Return 0
-Method nextrecord Class CustomersDataClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVENEXT()
-mycheck := self:oRS:EOF()
-IF mycheck
-self:oRS:MOVEPREVIOUS()
-MyOut := MSGBOX("End of File","Sorry")
-ELSE
-myout = self:showrecord()
-ENDIF
-ENDIF
-Return 0
-Method prevrecord Class CustomersDataClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEPREVIOUS()
-mycheck := self:oRS:BOF()
-IF mycheck
-self:oRS:MOVENEXT()
-MyOut := MSGBOX("Begin of File","Sorry")
-ELSE
-myout = self:showrecord()
-ENDIF
-ENDIF
-Return 0
-Method delrecord Class CustomersDataClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-MyOut := MSGOKCANCEL("Are you sure ?","Delete")
-IF myout = false
-Return 0
-ENDIF
-self:oRS:DELETE()
-self:oRS:UPDATE()
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEPREVIOUS()
-mycheck := self:oRS:BOF()
-IF mycheck
-self:oRS:MOVENEXT()
-ENDIF
-ENDIF
-myout = self:showrecord()
-ELSE
-MyOut := MSGBOX("No record to delete","Sorry")
-ENDIF
 Return 0
 Method setmode(p1) Class CustomersDataClass
 IF p1 = 1
@@ -728,36 +599,6 @@ CustomersDataWindow.comboCountry.Enabled := false
 CustomersDataWindow.editNotes.Enabled := false
 ENDIF
 self:OperationMode := p1
-Return 0
-Method EditRecord Class CustomersDataClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-myout = self:setmode(1)
-ENDIF
-Return 0
-Method SaveRecord Class CustomersDataClass
-IF self:addrec = true
-self:oRS:ADDNEW()
-ENDIF
-myout = self:setmode(2)
-myout = self:UserInterface2Class()
-myout = self:Class2ADO()
-self:oRS:UPDATE()
-IF self:addrec = true
-self:oRS:MOVELAST()
-ENDIF
-self:addrec := false
-Return 0
-Method CancelRecord Class CustomersDataClass
-myout = self:setmode(2)
-myout = self:ShowRecord()
-self:addrec := false
-Return 0
-Method AddRecord Class CustomersDataClass
-self:addrec := true
-myout = self:setmode(1)
-myout = self:ClearRecord()
-myout = self:Class2UserInterface()
 Return 0
 Method AutoGotoRecord Class CustomersDataClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
