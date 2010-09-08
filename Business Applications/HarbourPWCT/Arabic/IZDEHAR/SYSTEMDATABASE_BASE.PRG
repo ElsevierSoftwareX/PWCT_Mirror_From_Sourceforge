@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:15:25    Date : 09/08/2010
+* Time : 05:53:43    Date : 09/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -241,7 +241,7 @@ ENDIF
 myout = self:showrecord()
 myout = self:setTimer(true)
 ELSE
-MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","Sorry")
+MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
 ENDIF
 Return 0
 Method SaveRecord Class SYSTEMDATABASE
