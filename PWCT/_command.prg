@@ -1,1 +1,1 @@
-MODIFY FORM d:\doublesvsoop\pwct\form\doubles.scx
+MODIFY FORM d:\doublesvsoop\pwct\form\doubles.scxMODIFY COMMAND d:\doublesvsoop\pwct\serverbrain.prg AS 1256

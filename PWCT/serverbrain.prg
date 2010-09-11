@@ -656,27 +656,27 @@ RETURN
 ENDIF
 
 * SS SYSTEM EVENTS
-IF S_MENU == "New SS System"
-  S_MENU = "0_0"
-  SELECT t27
-  DELETE ALL
-  PACK
-  APPEND BLANK 
-  replace netid WITH "1"
-  replace netname WITH "Mother Network"
-  SELECT t28
-  DELETE ALL
-  PACK
-	GOTO bottom
-	DO FORM sssystem.scx
-ENDIF
-IF S_MENU == "Open SS System"
-  S_MENU = "0_0"
-  SET PROCEDURE TO MAHLIB.PRG
-  MYOBJ = CREATEOBJECT("SYSTEM_FILES")
-  MYOBJ.SYSTEM_READ()
-	DO FORM sssystem.scx
-ENDIF
+*!*	IF S_MENU == "New SS System"
+*!*	  S_MENU = "0_0"
+*!*	  SELECT t27
+*!*	  DELETE ALL
+*!*	  PACK
+*!*	  APPEND BLANK 
+*!*	  replace netid WITH "1"
+*!*	  replace netname WITH "Mother Network"
+*!*	  SELECT t28
+*!*	  DELETE ALL
+*!*	  PACK
+*!*		GOTO bottom
+*!*		DO FORM sssystem.scx
+*!*	ENDIF
+*!*	IF S_MENU == "Open SS System"
+*!*	  S_MENU = "0_0"
+*!*	  SET PROCEDURE TO MAHLIB.PRG
+*!*	  MYOBJ = CREATEOBJECT("SYSTEM_FILES")
+*!*	  MYOBJ.SYSTEM_READ()
+*!*		DO FORM sssystem.scx
+*!*	ENDIF
 	
 * menu bar events
 	
@@ -3013,10 +3013,10 @@ myswform.command1.Click
 ENDIF
 myswform.Pageframe1.activepage = 10
 endif
-if s_menu == "File Finder"
-s_menu = "1_0"
-do form filer
-endif
+*!*	if s_menu == "File Finder"
+*!*	s_menu = "1_0"
+*!*	do form filer
+*!*	endif
 if s_menu = "Color"
 s_menu = "1_0"
 myswform.Pageframe1.Page10.Rtfcontrols1.cmdColor.click()
@@ -3060,18 +3060,18 @@ if s_menu = "kill"
 s_menu = "1_0"
 myswform.oletree.nodes.remove(alltrim(s_mem))
 endif
-if s_menu = "Procedure"
-s_menu = "1_0"
-do form procsyntx
-endif
-if s_menu = "Class"
-s_menu = "1_0"
-do form classsyntx
-endif
-if s_menu = "Server"
-s_menu = "1_0"
-do form serversyntx
-endif
+*!*	if s_menu = "Procedure"
+*!*	s_menu = "1_0"
+*!*	do form procsyntx
+*!*	endif
+*!*	if s_menu = "Class"
+*!*	s_menu = "1_0"
+*!*	do form classsyntx
+*!*	endif
+*!*	if s_menu = "Server"
+*!*	s_menu = "1_0"
+*!*	do form serversyntx
+*!*	endif
 if s_menu == "1_6"
 S_Menu = "1_0" 
 S_TOOL = "CLOSE"
