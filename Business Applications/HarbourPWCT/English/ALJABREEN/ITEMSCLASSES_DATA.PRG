@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:01:56    Date : 09/12/2010
+* Time : 10:29:13    Date : 09/12/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,22 +36,12 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_ITEMSCLASSES_DATA_15speed1() code
 class ItemsClassesClass From SystemDatabase
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
 Data TableName init "ItemClasses"
 Data nID init 0
 Data cItemClass init ""
 Data column init "ItemClass"
 Data PrimaryKey init "id"
 Data columns init {"ID","ItemClass"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
 Method SetMode

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:06:52    Date : 09/12/2010
+* Time : 10:29:41    Date : 09/12/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,22 +36,12 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_ITEMSGROUPS_DATA_15speed1() code
 class ItemsGroupsClass From SystemDatabase
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
 Data TableName init "ItemsGroups"
 Data nID init 0
 Data cGroupName init ""
 Data column init "GroupName"
 Data PrimaryKey init "id"
 Data columns init {"ID","GroupName"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
 Method SetMode

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:26:09    Date : 08/11/2010
+* Time : 10:36:56    Date : 09/12/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,48 +35,29 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_ITEMSSIZES_DATA_15speed1() code
-Class ItemsSizesClass
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
+class ItemsSizesClass From SystemDatabase
 Data TableName init "ItemsSizes"
 Data nID init 0
 Data cSizeName init ""
 Data column init "SizeName"
 Data PrimaryKey init "id"
 Data columns init {"ID","SizeName"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
-Method ShowRecord
-Method connect
-Method disconnect
-Method firstrecord
-Method lastrecord
-Method nextrecord
-Method prevrecord
-Method delrecord
 Method SetMode
-Method EditRecord
-Method SaveRecord
-Method CancelRecord
 Method UserInterface2Class
 Method Class2ADO
 Method ADO2Class
 Method Class2UserInterface
-Method addrecord
 Method ClearRecord
 Method AutoGotoRecord
-Method search
 Method OpenDataWindow
 Method showdatawindow
 Method myTimer
+Method BeforeSearch
+Method SearchAdd
+Method settimer
+Method GetSearchValue
 EndClass
 Method showwindow Class ItemsSizesClass
 myout = self:connect()
@@ -253,44 +234,6 @@ Return 0
 Method ClearRecord Class ItemsSizesClass
 self:cSizeName := ""
 Return 0
-Method search Class ItemsSizesClass
-Local oCon,oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
-cName := ItemsSizesWindow.textNamebrowse.Value
-oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=FACTORYDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
-oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-oRS:CursorType := 1
-oRS:ActiveConnection := oCon
-oRS:open ( "Select * from "+self:tableName +" where "+self:column+" like '" + cName + "%'",oCon,3,3 )
-mymax := oRS:RecordCount
-ItemsSizesWindow.grid1browse.DeleteAllItems ( )
-self:ResultPrimaryKeys := {}
-ItemsSizesWindow.grid1browse.Value := 0
-IF mymax > 0
-FOR x = 1 TO mymax STEP 1
-vname := oRS:fields:item(self:column):value
-temp_array := {}
-mymax2  = LEN(self:columns)
-FOR x2 = 1 TO mymax2 STEP 1
-vname2 := oRS:fields:item(self:columns[x2]):value
-IF valtype(vname2) = "N"
-VNAME2 = STR ( VNAME2 )
-VNAME2 = ALLTRIM ( VNAME2 )
-ENDIF
-AADD( temp_array , vname2)
-Next
-ItemsSizesWindow.grid1browse.AddItem ( temp_array )
-vid := oRS:fields:item(self:PrimaryKey):value
-vid = STR ( vid )
-AADD( self:ResultPrimaryKeys , vid)
-oRS:MOVENEXT()
-Next
-ELSE
-MyOut := MSGBOX("Record not found","Sorry")
-ENDIF
-oRS:Close()
-oCon:CLOSE()
-Return 0
 Method OpenDataWindow Class ItemsSizesClass
 Local nvalue,myout
 nvalue := ItemsSizesWindow.grid1browse.Value
@@ -340,118 +283,6 @@ Method closewindow Class ItemsSizesClass
 myout = self:disconnect()
 ItemsSizesWindow.Release ( )
 Return 0
-Method ShowRecord Class ItemsSizesClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-myout = self:ADO2Class()
-ELSE
-myout = self:ClearRecord()
-ENDIF
-myout = self:Class2UserInterface()
-Return 0
-Method connect Class ItemsSizesClass
-self:oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=FACTORYDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
-self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-self:oRS:CursorType := 1
-self:oRS:ActiveConnection := self:oCon
-self:oRS:open ( "Select * from " + self:TableName,self:oCon,3,3 )
-Return 0
-Method disconnect Class ItemsSizesClass
-self:oRS:Close()
-self:oCon:CLOSE()
-Return 0
-Method firstrecord Class ItemsSizesClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEFIRST()
-myout = self:showrecord()
-ENDIF
-Return 0
-Method lastrecord Class ItemsSizesClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVELAST()
-myout = self:showrecord()
-ENDIF
-Return 0
-Method nextrecord Class ItemsSizesClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVENEXT()
-mycheck := self:oRS:EOF()
-IF mycheck
-self:oRS:MOVEPREVIOUS()
-MyOut := MSGBOX("End of File","Sorry")
-ELSE
-myout = self:showrecord()
-ENDIF
-ENDIF
-Return 0
-Method prevrecord Class ItemsSizesClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEPREVIOUS()
-mycheck := self:oRS:BOF()
-IF mycheck
-self:oRS:MOVENEXT()
-MyOut := MSGBOX("Begin of File","Sorry")
-ELSE
-myout = self:showrecord()
-ENDIF
-ENDIF
-Return 0
-Method delrecord Class ItemsSizesClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-MyOut := MSGOKCANCEL("Are you sure ?","Delete")
-IF myout = false
-Return 0
-ENDIF
-self:oRS:DELETE()
-self:oRS:UPDATE()
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEPREVIOUS()
-mycheck := self:oRS:BOF()
-IF mycheck
-self:oRS:MOVENEXT()
-ENDIF
-ENDIF
-myout = self:showrecord()
-ItemsSizesWindow.Timer1.Enabled := true
-ELSE
-MyOut := MSGBOX("No record to delete","Sorry")
-ENDIF
-Return 0
-Method EditRecord Class ItemsSizesClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-myout = self:setmode(1)
-ENDIF
-Return 0
-Method SaveRecord Class ItemsSizesClass
-IF self:addrec = true
-self:oRS:ADDNEW()
-ENDIF
-myout = self:setmode(2)
-myout = self:UserInterface2Class()
-myout = self:Class2ADO()
-self:oRS:UPDATE()
-self:addrec := false
-ItemsSizesWindow.Timer1.Enabled := true
-Return 0
-Method CancelRecord Class ItemsSizesClass
-myout = self:setmode(2)
-myout = self:ShowRecord()
-self:addrec := false
-Return 0
-Method AddRecord Class ItemsSizesClass
-self:addrec := true
-myout = self:setmode(1)
-myout = self:ClearRecord()
-myout = self:Class2UserInterface()
-Return 0
 Method AutoGotoRecord Class ItemsSizesClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
 self:oRS:Find(self:CFindExpr)
@@ -467,6 +298,19 @@ ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
 Return 0
+Method BeforeSearch Class ItemsSizesClass
+ItemsSizesWindow.grid1Browse.DeleteAllItems ( )
+ItemsSizesWindow.grid1Browse.Value := 0
+Return 0
+Method SearchAdd(temp_array) Class ItemsSizesClass
+ItemsSizesWindow.grid1Browse.AddItem ( temp_array )
+Return 0
+Method SetTimer(p1) Class ItemsSizesClass
+ItemsSizesWindow.Timer1.Enabled := p1
+Return 0
+Method GetSearchValue Class ItemsSizesClass
+cName := ItemsSizesWindow.textNameBrowse.Value
+Return cName
 
 
 

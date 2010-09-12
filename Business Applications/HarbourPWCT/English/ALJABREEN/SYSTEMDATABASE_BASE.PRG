@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:52:25    Date : 09/08/2010
+* Time : 10:27:13    Date : 09/12/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -46,6 +46,7 @@ Data ResultPrimaryKeys init {}
 Data username init "systemdatabase"
 Data password init "systemdatabase123"
 Data DataSourceName init "FACTORYDATA"
+Data databasename init ""
 Method ShowRecord
 Method EditRecord
 Method LoadLookupTable
