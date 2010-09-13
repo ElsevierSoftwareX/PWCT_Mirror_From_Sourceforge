@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:46:29    Date : 09/08/2010
+* Time : 12:27:11    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,12 +36,10 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_CUSTOMERS_BROWSE_15speed1() code
 class CustomersBrowseClass From SystemDatabase
-Data databasename init ""
 Data tablename init "Customers_All"
 Data column init "f_name"
 Data PrimaryKey init "id"
 Data columns init {"f_name","country","f_city","f_address","f_company"}
-Data ResultPrimaryKeys init {}
 Method showwindow
 Method closewindow
 Method OpenDataWindow
