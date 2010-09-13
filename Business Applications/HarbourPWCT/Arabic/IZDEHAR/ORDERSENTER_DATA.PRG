@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:41:22    Date : 09/01/2010
+* Time : 17:37:01    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,7 +36,6 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_ORDERSENTER_DATA_15speed1() code
 class OrdersEnterClass From SYSTEMDATABASE
-Data DatabaseName init ""
 Data TableName init "Orders_All"
 Data nID init 0
 Data column init "ordernumber"
