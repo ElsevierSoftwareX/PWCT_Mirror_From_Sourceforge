@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:40:16    Date : 09/02/2010
+* Time : 17:40:03    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,7 +36,6 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_PRODUCTION_DATA_15speed1() code
 class ProductionClass From SystemDatabase
-Data DatabaseName init ""
 Data TableName init "Production_All"
 Data nID init 0
 Data column init "OrderNumber"
