@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:30:04    Date : 09/04/2010
+* Time : 17:45:44    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,7 +36,6 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_USERS_DATA_15speed1() code
 class UsersClass From SYSTEMDATABASE
-Data DatabaseName init ""
 Data TableName init "Users"
 Data nID init 0
 Data column init "UserName"
