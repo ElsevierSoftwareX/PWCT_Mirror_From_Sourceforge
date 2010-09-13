@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:57:43    Date : 08/17/2010
+* Time : 06:25:58    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,48 +35,29 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_FINANCE_DATA_15speed1() code
-Class FinanceClass
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
+class FinanceClass From SystemDatabase
 Data TableName init "Finance"
 Data nID init 0
 Data cOpinion init ""
 Data column init "Financeopinion"
 Data PrimaryKey init "id"
 Data columns init {"ID","Financeopinion"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
-Method ShowRecord
-Method connect
-Method disconnect
-Method firstrecord
-Method lastrecord
-Method nextrecord
-Method prevrecord
-Method delrecord
 Method SetMode
-Method EditRecord
-Method SaveRecord
-Method CancelRecord
 Method UserInterface2Class
 Method Class2ADO
 Method ADO2Class
 Method Class2UserInterface
-Method addrecord
 Method ClearRecord
 Method AutoGotoRecord
-Method search
 Method OpenDataWindow
 Method showdatawindow
 Method myTimer
+Method BeforeSearch
+Method SearchAdd
+Method settimer
+Method GetSearchValue
 EndClass
 Method showwindow Class FinanceClass
 myout = self:connect()
@@ -253,44 +234,6 @@ Return 0
 Method ClearRecord Class FinanceClass
 self:cOpinion := ""
 Return 0
-Method search Class FinanceClass
-Local oCon,oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
-cName := FinanceWindow.textNamebrowse.Value
-oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=FACTORYDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
-oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-oRS:CursorType := 1
-oRS:ActiveConnection := oCon
-oRS:open ( "Select * from "+self:tableName +" where "+self:column+" like '" + cName + "%'",oCon,3,3 )
-mymax := oRS:RecordCount
-FinanceWindow.grid1browse.DeleteAllItems ( )
-self:ResultPrimaryKeys := {}
-FinanceWindow.grid1browse.Value := 0
-IF mymax > 0
-FOR x = 1 TO mymax STEP 1
-vname := oRS:fields:item(self:column):value
-temp_array := {}
-mymax2  = LEN(self:columns)
-FOR x2 = 1 TO mymax2 STEP 1
-vname2 := oRS:fields:item(self:columns[x2]):value
-IF valtype(vname2) = "N"
-VNAME2 = STR ( VNAME2 )
-VNAME2 = ALLTRIM ( VNAME2 )
-ENDIF
-AADD( temp_array , vname2)
-Next
-FinanceWindow.grid1browse.AddItem ( temp_array )
-vid := oRS:fields:item(self:PrimaryKey):value
-vid = STR ( vid )
-AADD( self:ResultPrimaryKeys , vid)
-oRS:MOVENEXT()
-Next
-ELSE
-MyOut := MSGBOX("Record not found","Sorry")
-ENDIF
-oRS:Close()
-oCon:CLOSE()
-Return 0
 Method OpenDataWindow Class FinanceClass
 Local nvalue,myout
 nvalue := FinanceWindow.grid1browse.Value
@@ -340,118 +283,6 @@ Method closewindow Class FinanceClass
 myout = self:disconnect()
 FinanceWindow.Release ( )
 Return 0
-Method ShowRecord Class FinanceClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-myout = self:ADO2Class()
-ELSE
-myout = self:ClearRecord()
-ENDIF
-myout = self:Class2UserInterface()
-Return 0
-Method connect Class FinanceClass
-self:oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=FACTORYDATA;uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
-self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-self:oRS:CursorType := 1
-self:oRS:ActiveConnection := self:oCon
-self:oRS:open ( "Select * from " + self:TableName,self:oCon,3,3 )
-Return 0
-Method disconnect Class FinanceClass
-self:oRS:Close()
-self:oCon:CLOSE()
-Return 0
-Method firstrecord Class FinanceClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEFIRST()
-myout = self:showrecord()
-ENDIF
-Return 0
-Method lastrecord Class FinanceClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVELAST()
-myout = self:showrecord()
-ENDIF
-Return 0
-Method nextrecord Class FinanceClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVENEXT()
-mycheck := self:oRS:EOF()
-IF mycheck
-self:oRS:MOVEPREVIOUS()
-MyOut := MSGBOX("End of File","Sorry")
-ELSE
-myout = self:showrecord()
-ENDIF
-ENDIF
-Return 0
-Method prevrecord Class FinanceClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEPREVIOUS()
-mycheck := self:oRS:BOF()
-IF mycheck
-self:oRS:MOVENEXT()
-MyOut := MSGBOX("Begin of File","Sorry")
-ELSE
-myout = self:showrecord()
-ENDIF
-ENDIF
-Return 0
-Method delrecord Class FinanceClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-MyOut := MSGOKCANCEL("Are you sure ?","Delete")
-IF myout = false
-Return 0
-ENDIF
-self:oRS:DELETE()
-self:oRS:UPDATE()
-mymax := self:oRS:RecordCount
-IF mymax > 0
-self:oRS:MOVEPREVIOUS()
-mycheck := self:oRS:BOF()
-IF mycheck
-self:oRS:MOVENEXT()
-ENDIF
-ENDIF
-myout = self:showrecord()
-FinanceWindow.Timer1.Enabled := true
-ELSE
-MyOut := MSGBOX("No record to delete","Sorry")
-ENDIF
-Return 0
-Method EditRecord Class FinanceClass
-mymax := self:oRS:RecordCount
-IF mymax > 0
-myout = self:setmode(1)
-ENDIF
-Return 0
-Method SaveRecord Class FinanceClass
-IF self:addrec = true
-self:oRS:ADDNEW()
-ENDIF
-myout = self:setmode(2)
-myout = self:UserInterface2Class()
-myout = self:Class2ADO()
-self:oRS:UPDATE()
-self:addrec := false
-FinanceWindow.Timer1.Enabled := true
-Return 0
-Method CancelRecord Class FinanceClass
-myout = self:setmode(2)
-myout = self:ShowRecord()
-self:addrec := false
-Return 0
-Method AddRecord Class FinanceClass
-self:addrec := true
-myout = self:setmode(1)
-myout = self:ClearRecord()
-myout = self:Class2UserInterface()
-Return 0
 Method AutoGotoRecord Class FinanceClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
 self:oRS:Find(self:CFindExpr)
@@ -467,6 +298,19 @@ ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
 Return 0
+Method BeforeSearch Class FinanceClass
+FinanceWindow.grid1Browse.DeleteAllItems ( )
+FinanceWindow.grid1Browse.Value := 0
+Return 0
+Method SearchAdd(temp_array) Class FinanceClass
+FinanceWindow.grid1Browse.AddItem ( temp_array )
+Return 0
+Method SetTimer(p1) Class FinanceClass
+FinanceWindow.Timer1.Enabled := p1
+Return 0
+Method GetSearchValue Class FinanceClass
+cName := FinanceWindow.textNameBrowse.Value
+Return cName
 
 
 
