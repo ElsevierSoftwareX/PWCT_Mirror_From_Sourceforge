@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:04:25    Date : 09/08/2010
+* Time : 16:56:21    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,14 +36,6 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_CUSTTYPE_DATA_15speed1() code
 class CustTypeDataClass From SYSTEMDATABASE
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
 Data TableName init "CustType"
 Data cid init ""
 Data cCountry init ""
