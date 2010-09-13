@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:24:59    Date : 09/08/2010
+* Time : 07:41:06    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,21 +36,11 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_USERS_DATA_15speed1() code
 class UsersClass From SYSTEMDATABASE
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
 Data TableName init "Users"
 Data nID init 0
 Data column init "UserName"
 Data PrimaryKey init "id"
 Data columns init {"ID","UserName"}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Data nAgreementRole init 0
 Data AgreementRoleitems init {}
 Data AgreementRoleitemsids init {}
