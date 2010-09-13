@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:04:45    Date : 09/08/2010
+* Time : 16:57:18    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,14 +36,6 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_DISPOSE_DATA_15speed1() code
 class DisposeClass From SystemDatabase
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
 Data TableName init "Orders_All"
 Data nID init 0
 Data column init "ordernumber"
