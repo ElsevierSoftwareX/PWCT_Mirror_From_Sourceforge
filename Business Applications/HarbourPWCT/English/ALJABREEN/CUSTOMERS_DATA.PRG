@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:41:59    Date : 09/08/2010
+* Time : 07:44:10    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,13 +36,6 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_CUSTOMERS_DATA_15speed1() code
 class CustomersDataClass From SystemDatabase
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data DatabaseName init ""
 Data TableName init "customers"
 Data cname init ""
 Data cgender init ""
@@ -64,8 +57,6 @@ Data genderitemsids init {}
 Data genderitems init {}
 Data countryitemsids init {}
 Data countryitems init {}
-Data username init "systemdatabase"
-Data password init "systemdatabase123"
 Method showwindow
 Method closewindow
 Method SetMode
