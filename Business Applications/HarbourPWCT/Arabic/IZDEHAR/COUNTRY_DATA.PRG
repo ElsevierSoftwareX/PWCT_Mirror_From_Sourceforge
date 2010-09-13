@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:02:21    Date : 09/08/2010
+* Time : 16:52:28    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,14 +36,6 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_COUNTRY_DATA_15speed1() code
 class CountryDataClass From SYSTEMDATABASE
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
 Data TableName init "COUNTRY"
 Data cid init ""
 Data cCountry init ""
