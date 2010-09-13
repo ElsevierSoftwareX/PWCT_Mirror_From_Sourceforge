@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:05:20    Date : 09/08/2010
+* Time : 17:23:51    Date : 09/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,13 +36,6 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_EMPLOYEES_DATA_15speed1() code
 class EmployeesDataClass From SYSTEMDATABASE
-Data oCon init 0
-Data oRS init 0
-Data addrec init false
-Data LFindRecord init false
-Data CFindExpr init ""
-Data OperationMode init 2
-Data DatabaseName init ""
 Data TableName init "Employees"
 Data cname init ""
 Data cgender init ""
