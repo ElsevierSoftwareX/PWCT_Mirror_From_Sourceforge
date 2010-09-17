@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:46:23    Date : 09/13/2010
+* Time : 10:13:23    Date : 09/17/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -122,6 +122,8 @@ Set Procedure to "CustClass_Data.PRG"
 Set Procedure to "Customers_Browse2.PRG"
 Set Procedure to "HowKnow_Data.PRG"
 Set Procedure to "OrderCards_Report.PRG"
+Set Procedure to "CustDispose_Data.PRG"
+Set Procedure to "CustDispose_Report.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -188,6 +190,8 @@ CustClassDataObject = CustClassDataClass()
 CustomersBrowse2Object = CustomersBrowse2Class()
 HowKnowDataObject = HowKnowDataClass()
 OrderCardsReportObject = OrderCardsReportClass()
+CustDisposeObject = CustDisposeClass()
+CustDisposeReportObject = CustDisposeReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -510,6 +514,7 @@ MENUITEM "„ «»⁄… «·„ÊŸ›Ì‰" Action ProductionObject:ShowWindow()
 END POPUP
 POPUP " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡"
 MENUITEM "«· ﬁÌÌ„ „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action DisposeObject:ShowWindow()
+MENUITEM "«· ﬁÌÌ„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
 END POPUP
 POPUP " ﬁ«—Ì—"
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListOfEmployeesreport()
@@ -542,7 +547,8 @@ MENUITEM " ﬁ—Ì— »«Ã—«¡«   «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—…" Action ProcessesReportObject:S
 MENUITEM " ﬁ—Ì— »Õ«·«  «Ã—«¡  ‰›Ì–Ï " Action ProcessStatusReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »„—«Õ· «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—… „Õœœ…" Action OrderProcessesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰" Action EmployeesProductionReportObject:ShowWindow()
-MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—…" Action OrdersDisposeReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—… „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action OrdersDisposeReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeReportObject:ShowWindow()
 END POPUP
 Return Nil
 Proc customersreport
