@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:13:23    Date : 09/17/2010
+* Time : 13:42:31    Date : 09/17/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -124,6 +124,7 @@ Set Procedure to "HowKnow_Data.PRG"
 Set Procedure to "OrderCards_Report.PRG"
 Set Procedure to "CustDispose_Data.PRG"
 Set Procedure to "CustDispose_Report.PRG"
+Set Procedure to "CustOpinion_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -192,6 +193,7 @@ HowKnowDataObject = HowKnowDataClass()
 OrderCardsReportObject = OrderCardsReportClass()
 CustDisposeObject = CustDisposeClass()
 CustDisposeReportObject = CustDisposeReportClass()
+CustOpinionObject = CustOpinionClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -514,6 +516,8 @@ MENUITEM "„ «»⁄… «·„ÊŸ›Ì‰" Action ProductionObject:ShowWindow()
 END POPUP
 POPUP " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡"
 MENUITEM "«· ﬁÌÌ„ „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action DisposeObject:ShowWindow()
+SEPARATOR
+MENUITEM "«—«¡ «·„ œ—»Ì‰" Action CustOpinionObject:ShowWindow()
 MENUITEM "«· ﬁÌÌ„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
 END POPUP
 POPUP " ﬁ«—Ì—"
@@ -776,63 +780,69 @@ BACKCOLOR {236,233,216}
 PICTURE "Image\back.jpg";
 STRETCH ;
 WIDTH 706 HEIGHT 528
-@ 31 ,180 BUTTONEX btn1;
+@ 38 ,180 BUTTONEX btn1;
 CAPTION " ﬁ—Ì— »«·«’‰«› Ê«·„ Ê›— „‰Â«";
 ON CLICK ItemsReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 77 ,180 BUTTONEX btn2;
+@ 78 ,180 BUTTONEX btn2;
 CAPTION " ﬁ—Ì— »«·«’‰«› «· Ï œŒ·  «·„Œ«“‰";
 ON CLICK ITEMSENTEREDTOSTORESReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 123 ,180 BUTTONEX btn3;
+@ 118 ,180 BUTTONEX btn3;
 CAPTION " ﬁ—Ì— »«·«’‰«› «·„’—Ê›… ·’«·Õ œÊ—…";
 ON CLICK ReservedItemsReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 169 ,180 BUTTONEX btn4;
+@ 158 ,180 BUTTONEX btn4;
 CAPTION " ›«’Ì· œÊ—…";
 ON CLICK OrderDetailsReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 261 ,180 BUTTONEX btn5;
+@ 238 ,180 BUTTONEX btn5;
 CAPTION "«·„Ê«›ﬁ… ⁄·Ï œÊ—…";
 ON CLICK AgreementReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 307 ,180 BUTTONEX btn6;
+@ 278 ,180 BUTTONEX btn6;
 CAPTION "«Ã—«¡«   ‰›Ì– œÊ—…";
 ON CLICK OrderProcessesReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 353 ,180 BUTTONEX btn7;
+@ 318 ,180 BUTTONEX btn7;
 CAPTION "„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰";
 ON CLICK EmployeesProductionReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 399 ,180 BUTTONEX btn8;
+@ 358 ,180 BUTTONEX btn8;
 CAPTION " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡ „‰ ﬁ»· „”∆Ê· «·ÃÊœ… ";
 ON CLICK OrdersDisposeReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 445 ,180 BUTTONEX btnClose;
+@ 438 ,180 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 ON CLICK winsysreports.release()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 215 ,180 BUTTONEX btn9;
+@ 198 ,180 BUTTONEX btn9;
 CAPTION "ﬂ—Ê  œÊ—…";
 ON CLICK OrderCardsReportObject:ShowWindow()  ;
+WIDTH 320 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 398 ,180 BUTTONEX btn10;
+CAPTION " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡ „‰ ﬁ»· «·„ œ—»Ì‰";
+ON CLICK CustDisposeReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
