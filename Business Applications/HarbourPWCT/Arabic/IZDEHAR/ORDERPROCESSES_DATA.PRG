@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:10:25    Date : 09/08/2010
+* Time : 13:31:36    Date : 09/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -48,7 +48,7 @@ Data TableName init "OrderProcesses_All"
 Data nID init 0
 Data column init "OrderNumber"
 Data PrimaryKey init "id"
-Data columns init {"Notes","RealFinishDate","RealStartDate","PlannedFinishDate","PlannedStartDate","ProcessStatus","ProcessName","OrderName","orderNumber"}
+Data columns init {"Notes","ProcessCost","RealFinishDate","RealStartDate","PlannedFinishDate","PlannedStartDate","ProcessStatus","ProcessName","OrderName","orderNumber"}
 Data nOrderNumber init 0
 Data OrderNumberitems init {}
 Data OrderNumberitemsids init {}
@@ -63,6 +63,7 @@ Data cNotes init ""
 Data nProcessStatus init 0
 Data ProcessStatusitems init {}
 Data ProcessStatusitemsids init {}
+Data cProcessCost init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -87,7 +88,7 @@ if !iswindowdefined( OrderProcessesWindow )
 DEFINE WINDOW OrderProcessesWindow ;
 AT 10 ,10 ;
 WIDTH 893 ;
-HEIGHT 601 ;
+HEIGHT 628 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
 TITLE "„ «»⁄… «Ã—«¡«  œÊ—…" ;
@@ -100,8 +101,8 @@ BACKCOLOR {64,0,64}
 @ 42 ,3 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 870 HEIGHT 470
-@ 519 ,437 BUTTONEX btnFirst;
+WIDTH 870 HEIGHT 500
+@ 549 ,437 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -110,7 +111,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 519 ,312 BUTTONEX btnNext;
+@ 549 ,312 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -119,7 +120,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 519 ,249 BUTTONEX btnLast;
+@ 549 ,249 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -128,7 +129,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 519 ,65 BUTTONEX btnClose;
+@ 549 ,65 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -137,7 +138,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 519 ,376 BUTTONEX btnPrev;
+@ 549 ,376 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -146,7 +147,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 519 ,161 BUTTONEX btnDel;
+@ 549 ,161 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -155,25 +156,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 519 ,598 BUTTONEX btnsave;
+@ 549 ,598 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 519 ,515 BUTTONEX btncancel;
+@ 549 ,515 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 519 ,679 BUTTONEX btnedit;
+@ 549 ,679 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 519 ,748 BUTTONEX btnadd;
+@ 549 ,748 BUTTONEX btnadd;
 CAPTION "«÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -196,8 +197,9 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 383 ,463 DATEPICKER dateplannedstartdate;
 WIDTH 150 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
 @ 52 ,724 LABEL lbl1browse ;
@@ -223,11 +225,11 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
 HEIGHT 160 ;
-HEADERS {"„·«ÕŸ« ","„Ê⁄œ «·«‰ Â«¡ «·›⁄·Ï","„Ê⁄œ «·»œ¡ «·›⁄·Ï","„Ê⁄œ «·«‰ Â«¡ «·„Œÿÿ","„Ê⁄œ «·»œ¡ «·„Œÿÿ","Õ«·… «·«Ã—«¡","«·«Ã—«¡","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,200,200,200,150,150,150,200,150} ;
+HEADERS {"„·«ÕŸ« ","«· ﬂ·›…","„Ê⁄œ «·«‰ Â«¡ «·›⁄·Ï","„Ê⁄œ «·»œ¡ «·›⁄·Ï","„Ê⁄œ «·«‰ Â«¡ «·„Œÿÿ","„Ê⁄œ «·»œ¡ «·„Œÿÿ","Õ«·… «·«Ã—«¡","«·«Ã—«¡","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
+WIDTHS {100,100,200,200,200,150,150,150,200,150} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
@@ -241,8 +243,9 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 387 ,143 DATEPICKER daterealstartdate;
 WIDTH 150 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Orders","OrderNumber",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
@@ -279,7 +282,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 472 ,627 LABEL lblNotes ;
+@ 512 ,627 LABEL lblNotes ;
 VALUE "„·«ÕŸ« " ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -287,11 +290,12 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 467 ,143 TEXTBOX textNotes;
+@ 508 ,143 TEXTBOX textNotes;
 HEIGHT 30 ;
 WIDTH 470 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 @ 428 ,308 LABEL lblRealFinishDate ;
@@ -304,8 +308,9 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 427 ,143 DATEPICKER daterealfinishdate;
 WIDTH 150 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
 @ 341 ,627 LABEL lblDateofInput ;
@@ -335,10 +340,27 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 424 ,463 DATEPICKER dateplannedfinishdate;
 WIDTH 150 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
+@ 474 ,627 LABEL lblProcessCost ;
+VALUE "«· ﬂ·›…" ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 467 ,143 TEXTBOX textProcessCost;
+HEIGHT 30 ;
+WIDTH 470 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
 END WINDOW
 
 OrderProcessesWindow.Center ( )
@@ -365,6 +387,7 @@ self:cRealStartDate := OrderProcessesWindow.dateRealStartDate.Value
 self:cRealStartDate := dtoc(self:cRealStartDate)
 self:cRealFinishDate := OrderProcessesWindow.dateRealFinishDate.Value
 self:cRealFinishDate := dtoc(self:cRealFinishDate)
+self:cProcessCost := OrderProcessesWindow.textProcessCost.Value
 Return 0
 Method Class2ADO Class OrderProcessesClass
 self:oRS:fields:item("processid"):value := self:nprocess
@@ -375,6 +398,7 @@ self:oRS:fields:item("Notes"):value := self:cNotes
 self:oRS:fields:item("RealStartDate"):value := self:cRealStartDate
 self:oRS:fields:item("RealFinishDate"):value := self:cRealFinishDate
 self:oRS:fields:item("processstatusid"):value := self:nprocessstatus
+self:oRS:fields:item("ProcessCost"):value := self:cProcessCost
 Return 0
 Method ADO2Class Class OrderProcessesClass
 self:nProcess := self:oRS:fields:item("ProcessID"):value
@@ -385,6 +409,7 @@ self:cRealStartDate := self:oRS:fields:item("RealStartDate"):value
 self:cRealFinishDate := self:oRS:fields:item("RealFinishDate"):value
 self:nProcessStatus := self:oRS:fields:item("ProcessStatusID"):value
 self:cNotes := self:oRS:fields:item("Notes"):value
+self:cProcessCost := self:oRS:fields:item("ProcessCost"):value
 Return 0
 Method Class2UserInterface Class OrderProcessesClass
 self:nOrderNumber = self:LookupIDToIndex(self:nOrderNumber,@self:OrderNumberItemsids)
@@ -398,6 +423,7 @@ OrderProcessesWindow.datePlannedStartDate.Value := ctod(self:cPlannedStartDate)
 OrderProcessesWindow.datePlannedFinishDate.Value := ctod(self:cPlannedFinishDate)
 OrderProcessesWindow.dateRealStartDate.Value := ctod(self:cRealStartDate)
 OrderProcessesWindow.dateRealFinishDate.Value := ctod(self:cRealFinishDate)
+OrderProcessesWindow.textProcessCost.Value := self:cProcessCost
 Return 0
 Method ClearRecord Class OrderProcessesClass
 self:nOrderNumber := 0
@@ -408,6 +434,7 @@ self:nProcessStatus := 0
 self:cPlannedFinishDate := ""
 self:cRealStartDate := ""
 self:cRealFinishDate := ""
+self:cProcessCost := ""
 Return 0
 Method OpenDataWindow Class OrderProcessesClass
 Local nvalue,myout
@@ -445,6 +472,7 @@ OrderProcessesWindow.comboProcessStatus.Enabled := true
 OrderProcessesWindow.dateplannedFinishDate.Enabled := true
 OrderProcessesWindow.dateRealStartDate.Enabled := true
 OrderProcessesWindow.dateRealFinishDate.Enabled := true
+OrderProcessesWindow.textProcessCost.Enabled := true
 ENDIF
 IF p1 = 2
 OrderProcessesWindow.btnfirst.Enabled := true
@@ -465,6 +493,7 @@ OrderProcessesWindow.datePlannedStartDate.Enabled := false
 OrderProcessesWindow.datePlannedFinishDate.Enabled := false
 OrderProcessesWindow.dateRealStartDate.Enabled := false
 OrderProcessesWindow.dateRealFinishDate.Enabled := false
+OrderProcessesWindow.textProcessCost.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
