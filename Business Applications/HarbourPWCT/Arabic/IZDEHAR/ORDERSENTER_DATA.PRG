@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:37:01    Date : 09/13/2010
+* Time : 10:32:04    Date : 09/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -60,6 +60,10 @@ Data cOrderName init ""
 Data nhowknow init 0
 Data howknowitems init {}
 Data howknowitemsids init {}
+Data nLocation init 0
+Data Locationitems init {}
+Data Locationitemsids init {}
+Data cHayaRecord init ""
 Method showwindow
 Method closewindow
 Method ShowRecord
@@ -97,7 +101,7 @@ if !iswindowdefined( OrdersEnterWindow )
 DEFINE WINDOW OrdersEnterWindow ;
 AT 10 ,10 ;
 WIDTH 933 ;
-HEIGHT 701 ;
+HEIGHT 704 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
 TITLE " ”ÃÌ· œÊ—…" ;
@@ -110,11 +114,11 @@ BACKCOLOR {64,0,64}
 @ 43 ,4 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 910 HEIGHT 260
-@ 424 ,4 IMAGE image2;
+WIDTH 910 HEIGHT 300
+@ 464 ,4 IMAGE image2;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 910 HEIGHT 230
+WIDTH 910 HEIGHT 200
 @ 7 ,387 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
@@ -200,7 +204,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 126 ,696 LABEL lbl1browse ;
+@ 166 ,696 LABEL lbl1browse ;
 VALUE "—ﬁ„ «·œÊ—…" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -208,20 +212,20 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 127 ,253 TEXTBOX textnamebrowse;
+@ 167 ,253 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 420 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 127 ,119 BUTTONEX btn1browse;
+@ 167 ,119 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 163 ,16 GRID Grid1browse;
+@ 203 ,16 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 890 ;
 HEIGHT 130 ;
@@ -233,7 +237,7 @@ JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 349 ,241 TEXTBOX textcustomerwant2;
+@ 389 ,241 TEXTBOX textcustomerwant2;
 HEIGHT 31 ;
 WIDTH 248 ;
 FONT "Arial" SIZE 14 ;
@@ -259,7 +263,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("customers","f_name",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 311 ,762 LABEL lblitems ;
+@ 351 ,762 LABEL lblitems ;
 VALUE "«”„ «·⁄„Ì·" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -267,7 +271,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 312 ,241 COMBOBOX comboitem;
+@ 352 ,241 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
 WIDTH 510 ;
 HEIGHT 100;
@@ -276,7 +280,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 309 ,187 LABEL lblItemUnit ;
+@ 349 ,187 LABEL lblItemUnit ;
 VALUE "ÃÊ«·" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -284,7 +288,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 309 ,8 TEXTBOX textCustomerMobile;
+@ 349 ,8 TEXTBOX textCustomerMobile;
 ON ENTER self:mobilechange()  ;
 HEIGHT 30 ;
 WIDTH 160 ;
@@ -293,7 +297,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 352 ,762 LABEL lblItemUnit2 ;
+@ 392 ,762 LABEL lblItemUnit2 ;
 VALUE "«Â„ À·«À… „Õ«Ê—" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -301,7 +305,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 350 ,502 TEXTBOX textcustomerwant1;
+@ 390 ,502 TEXTBOX textcustomerwant1;
 HEIGHT 30 ;
 WIDTH 250 ;
 FONT "Arial" SIZE 14 ;
@@ -338,7 +342,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 349 ,8 TEXTBOX textcustomerwant3;
+@ 389 ,8 TEXTBOX textcustomerwant3;
 HEIGHT 30 ;
 WIDTH 210 ;
 FONT "Arial" SIZE 14 ;
@@ -360,36 +364,36 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 435 ,762 LABEL lbl1browse2 ;
+@ 475 ,762 LABEL lbl1browse2 ;
 VALUE "«”„ «·⁄„Ì·" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 435 ,502 TEXTBOX textNamebrowse2;
+@ 475 ,502 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 250 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 435 ,388 BUTTONEX btn1browse2;
+@ 475 ,388 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 475 ,8 GRID Grid1browse2;
+@ 515 ,8 GRID Grid1browse2;
 WIDTH 890 ;
-HEIGHT 170 ;
+HEIGHT 140 ;
 HEADERS {"„ÕÊ— 3","„ÕÊ— 2 ","„ÕÊ— 1 "," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
 WIDTHS {100,100,100,150,150,250} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 435 ,8 BUTTONEX btnDel2;
+@ 475 ,8 BUTTONEX btnDel2;
 CAPTION "Õ–› «·⁄„Ì· „‰ «·œÊ—…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -398,7 +402,7 @@ WIDTH 230 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 391 ,8 BUTTONEX btnadd2;
+@ 431 ,8 BUTTONEX btnadd2;
 CAPTION "«÷«›… «·⁄„Ì· «·Ï «·œÊ—…";
 ON CLICK self:addrecord2()  ;
 WIDTH 480 HEIGHT 30 ;
@@ -421,7 +425,7 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("howknow","howknow",@self:howknowItems,"id",@self:howknowItemsIDS)
-@ 391 ,762 LABEL lblhowknow ;
+@ 431 ,762 LABEL lblhowknow ;
 VALUE "ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…" ;
 WIDTH 150 ;
 HEIGHT 30 ;
@@ -429,11 +433,42 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 391 ,502 COMBOBOX combohowknow;
+@ 431 ,502 COMBOBOX combohowknow;
 ON CHANGE self:itemchange()  ;
 WIDTH 250 ;
 HEIGHT 100;
 ITEMS self:howknowitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 130 ,696 LABEL lblhaya ;
+VALUE "—ﬁ„ ”Ã· «·œÊ—… ›Ï ÂÌ∆… «· œ—Ì»" ;
+WIDTH 210 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 130 ,474 TEXTBOX texthayaRecord;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+myout = self:LoadLookupTable("locations","location",@self:locationItems,"id",@self:locationItemsIDS)
+@ 130 ,421 LABEL lbllocation ;
+VALUE "«·„ﬂ«‰" ;
+WIDTH 40 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 130 ,24 COMBOBOX combolocation;
+WIDTH 380 ;
+HEIGHT 100;
+ITEMS self:locationitems ;
 VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -457,6 +492,9 @@ self:cOrderDate := dtoc(self:cOrderDate)
 self:cOrderFinishDate := OrdersEnterWindow.dateFinishDate.Value
 self:cOrderFinishDate := dtoc(self:cOrderFinishDate)
 self:cOrderName := OrdersEnterWindow.textOrderName.Value
+self:cHayaRecord := OrdersEnterWindow.textHayaRecord.Value
+self:nLocation := OrdersEnterWindow.ComboLocation.Value
+self:nLocation := self:LocationItemsids[self:nLocation]
 Return 0
 Method Class2ADO Class OrdersEnterClass
 self:oRS:fields:item("Customerid"):value := self:nCustomer
@@ -464,6 +502,8 @@ self:oRS:fields:item("OrderDate"):value := self:cOrderDate
 self:oRS:fields:item("FinishDate"):value := self:cOrderFinishDate
 self:oRS:fields:item("OrderNumber"):value := self:nOrderNumber
 self:oRS:fields:item("OrderName"):value := self:cOrderName
+self:oRS:fields:item("HayaRecord"):value := self:cHayaRecord
+self:oRS:fields:item("Locationid"):value := self:nLocation
 Return 0
 Method ADO2Class Class OrdersEnterClass
 self:nCustomer := self:oRS:fields:item("CustomerID"):value
@@ -471,6 +511,8 @@ self:cOrderDate := self:oRS:fields:item("OrderDate"):value
 self:cOrderFinishDate := self:oRS:fields:item("FinishDate"):value
 self:nOrderNumber := self:oRS:fields:item("OrderNumber"):value
 self:cOrderName := self:oRS:fields:item("OrderName"):value
+self:nLocation := self:oRS:fields:item("LocationID"):value
+self:cHayaRecord := self:oRS:fields:item("HayaRecord"):value
 Return 0
 Method Class2UserInterface Class OrdersEnterClass
 self:nCustomer = self:LookupIDToIndex(self:nCustomer,@self:CustomerItemsids)
@@ -479,6 +521,9 @@ OrdersEnterWindow.dateOrderDate.Value := ctod(self:cOrderDate)
 OrdersEnterWindow.dateFinishDate.Value := ctod(self:cOrderFinishDate )
 OrdersEnterWindow.textOrderNumber.Value := alltrim(str(self:nOrderNumber))
 OrdersEnterWindow.textOrderName.Value := self:cOrderName
+self:nLocation = self:LookupIDToIndex(self:nLocation,@self:LocationItemsids)
+OrdersEnterWindow.ComboLocation.Value := self:nLocation
+OrdersEnterWindow.textHayaRecord.Value := self:cHayaRecord
 myout = self:search2()
 Return 0
 Method ClearRecord Class OrdersEnterClass
@@ -486,6 +531,8 @@ self:nCustomer := 0
 self:cOrderDate := ""
 self:cOrderFinishDate := ""
 self:cOrderName := ""
+self:nLocation := 0
+self:cHayaRecord := ""
 IF self:addrec = false
 self:nOrderNumber := 0
 ENDIF
@@ -571,6 +618,8 @@ OrdersEnterWindow.btnadd2.Enabled := false
 OrdersEnterWindow.btndel2.Enabled := false
 OrdersEnterWindow.textOrderName.Enabled := false
 OrdersEnterWindow.textOrderName.Enabled := true
+OrdersEnterWindow.comboLocation.Enabled := true
+OrdersEnterWindow.textHayaRecord.Enabled := true
 ENDIF
 IF p1 = 2
 OrdersEnterWindow.btnfirst.Enabled := true
@@ -589,6 +638,8 @@ OrdersEnterWindow.dateFinishDate.Enabled := false
 OrdersEnterWindow.btnadd2.Enabled := true
 OrdersEnterWindow.btndel2.Enabled := true
 OrdersEnterWindow.textOrderName.Enabled := false
+OrdersEnterWindow.comboLocation.Enabled := False
+OrdersEnterWindow.textHayaRecord.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0

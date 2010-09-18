@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:42:31    Date : 09/17/2010
+* Time : 10:35:48    Date : 09/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -125,6 +125,7 @@ Set Procedure to "OrderCards_Report.PRG"
 Set Procedure to "CustDispose_Data.PRG"
 Set Procedure to "CustDispose_Report.PRG"
 Set Procedure to "CustOpinion_Data.PRG"
+Set Procedure to "Locations_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -194,6 +195,7 @@ OrderCardsReportObject = OrderCardsReportClass()
 CustDisposeObject = CustDisposeClass()
 CustDisposeReportObject = CustDisposeReportClass()
 CustOpinionObject = CustOpinionClass()
+LocationsObject = LocationsClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -498,6 +500,7 @@ MENUITEM "ÕÃ“ ﬂ„Ì… „‰ ’‰› ·’«·Õ œÊ—…" Action ReserveItemsObject:ShowWindow()
 END POPUP
 POPUP "œÊ—« "
 MENUITEM "ÃœÊ· Ê”«∆· „⁄—›… «·⁄„Ì· »«·œÊ—…" Action HowKnowDataObject:ShowWindow()
+MENUITEM "«„«ﬂ‰ «·œÊ—« " Action LocationsObject:ShowWindow()
 MENUITEM " ”ÃÌ· œÊ—…" Action OrdersEnterObject:ShowWindow()
 SEPARATOR
 MENUITEM "«—«¡ „œÌ— «·ÃÊœ…" Action QualityObject:ShowWindow()
