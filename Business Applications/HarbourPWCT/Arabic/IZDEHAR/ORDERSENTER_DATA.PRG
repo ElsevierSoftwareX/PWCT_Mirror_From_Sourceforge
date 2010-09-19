@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:05:07    Date : 09/19/2010
+* Time : 11:31:37    Date : 09/19/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -757,13 +757,23 @@ MyOut := MSGBOX("кнцЧ сЧэцЬЯ Чгу уЭЯЯ сэЪу Эанх","кнцЧ")
 ENDIF
 Return 0
 Method AddRecord2 Class OrdersEnterClass
-Local oRS,nValue
+Local oRS,nValue,nMax
 IF self:nOrderNumber > 0
 self:nItem := OrdersEnterWindow.ComboItem.Value
 self:nItem := self:ItemItemsids[self:nItem]
 self:nhowknow := OrdersEnterWindow.Combohowknow.Value
 self:nhowknow := self:howknowItemsids[self:nhowknow]
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from OrderItems where orderid = " + str(self:nOrderNumber) + " and customerid = " + str(self:nItem),self:oCon,3,3 )
+nMax := oRS:RecordCount
+IF nMax > 0
+MyOut := MSGBOX("Ъу ЪгЬэс хаЧ Чскуэс гЧШоЧ","кнцЧ")
+oRS:Close()
+Return 0
+ENDIF
+oRS:Close()
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from OrderItems",self:oCon,3,3 )
