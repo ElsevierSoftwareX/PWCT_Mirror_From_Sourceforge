@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:31:45    Date : 09/19/2010
+* Time : 23:15:45    Date : 09/19/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -126,6 +126,7 @@ Set Procedure to "CustDispose_Data.PRG"
 Set Procedure to "CustDispose_Report.PRG"
 Set Procedure to "CustOpinion_Data.PRG"
 Set Procedure to "Locations_Data.PRG"
+Set Procedure to "CustFriends_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -196,6 +197,7 @@ CustDisposeObject = CustDisposeClass()
 CustDisposeReportObject = CustDisposeReportClass()
 CustOpinionObject = CustOpinionClass()
 LocationsObject = LocationsClass()
+CustFriendsObject = CustFriendsClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -508,6 +510,8 @@ MENUITEM "«—«¡ „œÌ— «·„ «»⁄…" Action SchedulingObject:ShowWindow()
 MENUITEM "«—«¡ „œÌ— «·„Œ«“‰" Action WarehouseObject:ShowWindow()
 MENUITEM "«—«¡ „œÌ— «·„«·Ì…" Action FinanceObject:ShowWindow()
 MENUITEM "«·„Ê«›ﬁ… ⁄·Ï œÊ—…" Action AgreementObject:ShowWindow()
+SEPARATOR
+MENUITEM "„—‘ÕÌ‰ «·⁄„Ì·" Action CustFriendsObject:ShowWindow()
 END POPUP
 POPUP "„ «»⁄… ”Ì— œÊ—…"
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:ShowWindow()
