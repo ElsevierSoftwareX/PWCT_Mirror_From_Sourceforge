@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:32:04    Date : 09/18/2010
+* Time : 11:05:07    Date : 09/19/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -786,7 +786,7 @@ Method SetOrderStatus Class OrdersEnterClass
 self:oRS:fields:item("orderstatusID"):value := 2
 self:oRS:UPDATE()
 myitem := OrdersEnterWindow.Grid1Browse.item(OrdersEnterWindow.Grid1Browse.value)
-myitem[5] := "Wait For Agreement"
+myitem[1] := "»«‰ Ÿ«— «·«⁄ „«œ"
 OrdersEnterWindow.Grid1Browse.item(OrdersEnterWindow.Grid1Browse.Value) := myitem
 Return 0
 Method mobilechange Class OrdersEnterClass
