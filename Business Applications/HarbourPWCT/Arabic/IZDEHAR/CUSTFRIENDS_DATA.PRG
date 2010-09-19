@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:15:38    Date : 09/19/2010
+* Time : 23:35:08    Date : 09/19/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -276,11 +276,6 @@ myout = self:showrecord()
 myout = self:setmode(2)
 CustFriendsWindow.Timer1.Enabled := false
 myout = self:search2()
-mymax := self:oRS:RecordCount
-IF mymax = 0
-CustFriendsWindow.comboQuality.Enabled := false
-CustFriendsWindow.btnQualityNotes.Enabled := false
-ENDIF
 ACTIVATE WINDOW CustFriendsWindow
 EndIF
 
@@ -329,6 +324,7 @@ oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from "+self:tableName2 +" where orderid = "+str(self:nOrderNumber)+"  and "+self:column2+" like '" + cName + "%'",self:oCon,3,3 )
 mymax := oRS:RecordCount
 CustFriendsWindow.grid1browse2.DeleteAllItems ( )
+CustFriendsWindow.grid1browse3.DeleteAllItems ( )
 self:ResultPrimaryKeys2 := {}
 CustFriendsWindow.grid1browse2.Value := 0
 IF mymax > 0
@@ -350,6 +346,8 @@ vid = STR ( vid )
 AADD( self:ResultPrimaryKeys2 , vid)
 oRS:MOVENEXT()
 Next
+CustFriendsWindow.grid1browse2.Value := 1
+myout = self:search3()
 ELSE
 ENDIF
 oRS:Close()
@@ -528,11 +526,14 @@ oRS:Close()
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from CustFriends_All",self:oCon,3,3 )
+IF self:nItem = mycustid
+MyOut := MSGBOX("áÇíãßä ááÚãíá Çä íÑÔÍ äÝÓå ÝåÐÇ ÛíÑ ãäØÞì","ÚÝæÇ")
+Return 0
+ENDIF
 oRS:ADDNEW()
 oRS:fields:item("customerid"):value := mycustid
 oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("Friendid"):value := self:nItem
-oRS:fields:item("friendid"):value := self:nItem
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search3()
@@ -544,6 +545,7 @@ Method search3 Class CustFriendsClass
 Local oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
 cName := CustFriendsWindow.textNamebrowse2.Value
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+CustFriendsWindow.grid1browse3.DeleteAllItems ( )
 nvalue := CustFriendsWindow.grid1browse2.Value
 IF nvalue = 0
 MyOut := MSGBOX("íÌÈ ÊÍÏíÏ ÇáÚãíá ÇæáÇ ÞÈá ÇáãÑÔÍ","ÚÝæÇ")
@@ -559,7 +561,6 @@ oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from "+self:tableName3 +" where orderid = "+str(self:nOrderNumber)+" and customerid = "+ str(mycustid) +"  and "+self:column3+" like '" + cName + "%'",self:oCon,3,3 )
 mymax := oRS:RecordCount
-CustFriendsWindow.grid1browse3.DeleteAllItems ( )
 self:ResultPrimaryKeys3 := {}
 CustFriendsWindow.grid1browse3.Value := 0
 IF mymax > 0
