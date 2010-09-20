@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:35:13    Date : 09/19/2010
+* Time : 17:32:22    Date : 09/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -127,6 +127,7 @@ Set Procedure to "CustDispose_Report.PRG"
 Set Procedure to "CustOpinion_Data.PRG"
 Set Procedure to "Locations_Data.PRG"
 Set Procedure to "CustFriends_Data.PRG"
+Set Procedure to "CustFriends_Report.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -198,6 +199,7 @@ CustDisposeReportObject = CustDisposeReportClass()
 CustOpinionObject = CustOpinionClass()
 LocationsObject = LocationsClass()
 CustFriendsObject = CustFriendsClass()
+CustFriendsReportObject = CustFriendsReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -560,6 +562,7 @@ MENUITEM " ﬁ—Ì— »„—«Õ· «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—… „Õœœ…" Action OrderProcessesReport
 MENUITEM " ﬁ—Ì— »„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰" Action EmployeesProductionReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—… „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action OrdersDisposeReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— »«·œÊ—«  Ê«·„ œ—»Ì‰ Ê„—‘ÕÌ‰ «·⁄„·«¡" Action CustFriendsReportObject:ShowWindow()
 END POPUP
 Return Nil
 Proc customersreport
