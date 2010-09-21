@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:46:54    Date : 09/21/2010
+* Time : 20:27:03    Date : 09/21/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -519,6 +519,16 @@ oRS:open ( "Select * from CustFriends_All where orderid = " + str(self:nOrderNum
 nMax := oRS:RecordCount
 IF nMax > 0
 MyOut := MSGBOX("Ъу ЪгЬэс хаЧ ЧсубдЭ гЧШоЧ","кнцЧ")
+oRS:Close()
+Return 0
+ENDIF
+oRS:Close()
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from orderitems_All where orderid = " + str(self:nOrderNumber) +" and customerid = " + str(self:nItem),self:oCon,3,3 )
+nMax := oRS:RecordCount
+IF nMax > 0
+MyOut := MSGBOX("ЧсубдЭ оЧу угШоЧ ШЧсЪгЬэс нь ЧсЯцбЩ","кнцЧ")
 oRS:Close()
 Return 0
 ENDIF
