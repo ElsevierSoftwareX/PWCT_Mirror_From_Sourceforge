@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:35:08    Date : 09/19/2010
+* Time : 19:46:54    Date : 09/21/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -57,7 +57,7 @@ Data TableName3 init "CustFriends_All"
 Data column3 init "f_name"
 Data PrimaryKey3 init "id"
 Data ResultPrimaryKeys3 init {}
-Data columns3 init {"f_mobile","f_name"}
+Data columns3 init {"recordstatus","f_mobile","f_name"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -248,11 +248,11 @@ TOOLTIP ""
 @ 525 ,328 GRID Grid1browse3;
 WIDTH 560 ;
 HEIGHT 130 ;
-HEADERS {"ÃÊ«·","«”„ «·„—‘Õ"};
-WIDTHS {150,250} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„—‘Õ"};
+WIDTHS {150,150,250} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1} ;
+JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 526 ,31 BUTTONEX btnDel2;
 CAPTION "Õ–› «·„—‘Õ „‰ „—‘ÕÌ‰ «·⁄„Ì·";
@@ -534,6 +534,7 @@ oRS:ADDNEW()
 oRS:fields:item("customerid"):value := mycustid
 oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("Friendid"):value := self:nItem
+oRS:fields:item("recordstatus"):value := 2
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search3()
