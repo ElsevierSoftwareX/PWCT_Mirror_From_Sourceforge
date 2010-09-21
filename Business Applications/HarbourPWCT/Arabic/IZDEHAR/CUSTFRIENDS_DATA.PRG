@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:27:03    Date : 09/21/2010
+* Time : 20:35:01    Date : 09/21/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -523,6 +523,10 @@ oRS:Close()
 Return 0
 ENDIF
 oRS:Close()
+IF self:nItem = mycustid
+MyOut := MSGBOX("·«Ì„ﬂ‰ ··⁄„Ì· «‰ Ì—‘Õ ‰›”Â ›Â–« €Ì— „‰ÿﬁÏ","⁄›Ê«")
+Return 0
+ENDIF
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from orderitems_All where orderid = " + str(self:nOrderNumber) +" and customerid = " + str(self:nItem),self:oCon,3,3 )
@@ -536,15 +540,11 @@ oRS:Close()
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from CustFriends_All",self:oCon,3,3 )
-IF self:nItem = mycustid
-MyOut := MSGBOX("·«Ì„ﬂ‰ ··⁄„Ì· «‰ Ì—‘Õ ‰›”Â ›Â–« €Ì— „‰ÿﬁÏ","⁄›Ê«")
-Return 0
-ENDIF
 oRS:ADDNEW()
 oRS:fields:item("customerid"):value := mycustid
 oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("Friendid"):value := self:nItem
-oRS:fields:item("recordstatus"):value := 2
+oRS:fields:item("recordstatusid"):value := 2
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search3()
