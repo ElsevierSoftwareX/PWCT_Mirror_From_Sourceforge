@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:35:06    Date : 09/21/2010
+* Time : 20:59:56    Date : 09/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -862,6 +862,12 @@ winsysreports.Center ( )
 ACTIVATE WINDOW winsysreports
 EndIF
 
+Return Nil
+Proc RightToLeftControl( p1,p2 )
+Local v1,myhandle
+myhandle = GetControlHandle ( p2,p1 )
+v1 = CALLDLL32("GetWindowLong","USER32.DLL",myhandle,-20)
+myout = CALLDLL32("SetWindowLong","USER32.DLL",myhandle,-20,NUMOR(v1,0x400000,0x100000))
 Return Nil
 
 
