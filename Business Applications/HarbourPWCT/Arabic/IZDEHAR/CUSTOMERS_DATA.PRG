@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:55:11    Date : 09/13/2010
+* Time : 07:48:20    Date : 09/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -529,6 +529,10 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+DO RightToLeftControl WITH "CustomersDataWindow","combocusttype"
+DO RightToLeftControl WITH "CustomersDataWindow","combocustclass"
+DO RightToLeftControl WITH "CustomersDataWindow","combocountry"
+DO RightToLeftControl WITH "CustomersDataWindow","combopaymethod"
 END WINDOW
 
 CustomersDataWindow.Center ( )
