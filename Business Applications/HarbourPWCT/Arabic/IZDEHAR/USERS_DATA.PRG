@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:45:44    Date : 09/13/2010
+* Time : 11:59:19    Date : 09/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -271,6 +271,8 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+DO RightToLeftControl WITH "UsersWindow","comboAgreementRole"
+DO RightToLeftControl WITH "UsersWindow","comboSystemAdmin"
 END WINDOW
 
 UsersWindow.Center ( )
