@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:44:10    Date : 09/13/2010
+* Time : 02:16:05    Date : 09/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -425,6 +425,9 @@ WIDTH 203 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
+myout = RightToLeftControl ( "SuppliersDataWindow","combogender" )
+myout = RightToLeftControl ( "SuppliersDataWindow","combocountry" )
+myout = RightToLeftControl ( "SuppliersDataWindow","EditNotes" )
 END WINDOW
 
 SuppliersDataWindow.Center ( )
