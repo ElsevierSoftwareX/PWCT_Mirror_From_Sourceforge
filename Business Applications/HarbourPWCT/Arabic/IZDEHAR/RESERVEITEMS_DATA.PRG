@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:42:16    Date : 09/13/2010
+* Time : 03:53:44    Date : 09/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -398,6 +398,8 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+myout = RightToLeftControl ( "ReserveItemsWindow","comboordernumber" )
+myout = RightToLeftControl ( "ReserveItemsWindow","comboitem" )
 END WINDOW
 
 ReserveItemsWindow.Center ( )
