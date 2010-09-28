@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:11:59    Date : 09/17/2010
+* Time : 04:48:54    Date : 09/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -204,6 +204,7 @@ ON CLICK self:QualityNotes()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+myout = RightToLeftControl ( "CustDisposeWindow","comboQuality" )
 END WINDOW
 
 CustDisposeWindow.Center ( )
