@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:31:36    Date : 09/18/2010
+* Time : 04:15:13    Date : 09/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -361,6 +361,9 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+myout = RightToLeftControl ( "OrderProcessesWindow","comboOrderNumber" )
+myout = RightToLeftControl ( "OrderProcessesWindow","comboProcess" )
+myout = RightToLeftControl ( "OrderProcessesWindow","comboProcessStatus" )
 END WINDOW
 
 OrderProcessesWindow.Center ( )
