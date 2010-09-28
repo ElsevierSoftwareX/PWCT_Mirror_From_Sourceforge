@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:40:03    Date : 09/13/2010
+* Time : 04:22:37    Date : 09/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -320,6 +320,8 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+myout = RightToLeftControl ( "ProductionWindow","comboOrderNumber" )
+myout = RightToLeftControl ( "ProductionWindow","comboEmployee" )
 END WINDOW
 
 ProductionWindow.Center ( )
