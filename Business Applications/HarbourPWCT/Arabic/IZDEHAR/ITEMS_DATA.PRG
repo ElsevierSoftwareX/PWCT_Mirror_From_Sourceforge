@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:27:05    Date : 09/13/2010
+* Time : 03:29:55    Date : 09/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -424,6 +424,14 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+myout = RightToLeftControl ( "ItemsWindow","comboitemclass" )
+myout = RightToLeftControl ( "ItemsWindow","comboitemgroup" )
+myout = RightToLeftControl ( "ItemsWindow","comboitemgrade" )
+myout = RightToLeftControl ( "ItemsWindow","comboitemsize" )
+myout = RightToLeftControl ( "ItemsWindow","comboitemcolor" )
+myout = RightToLeftControl ( "ItemsWindow","comboitemsource" )
+myout = RightToLeftControl ( "ItemsWindow","comboitemunit" )
+myout = RightToLeftControl ( "ItemsWindow","comboitemsecunit" )
 END WINDOW
 
 ItemsWindow.Center ( )
