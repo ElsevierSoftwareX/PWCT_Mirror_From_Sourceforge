@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:31:37    Date : 09/19/2010
+* Time : 04:00:36    Date : 09/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -473,6 +473,10 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+myout = RightToLeftControl ( "OrdersEnterWindow","comboCustomer" )
+myout = RightToLeftControl ( "OrdersEnterWindow","comboLocation" )
+myout = RightToLeftControl ( "OrdersEnterWindow","comboItem" )
+myout = RightToLeftControl ( "OrdersEnterWindow","comboHowKnow" )
 END WINDOW
 
 OrdersEnterWindow.Center ( )
