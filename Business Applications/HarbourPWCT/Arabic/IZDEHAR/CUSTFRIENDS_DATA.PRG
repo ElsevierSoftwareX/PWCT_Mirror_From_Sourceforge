@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:35:01    Date : 09/21/2010
+* Time : 04:07:24    Date : 09/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -269,6 +269,7 @@ ON CLICK self:addrecord2()  ;
 WIDTH 280 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+myout = RightToLeftControl ( "CustFriendsWindow","comboItem" )
 END WINDOW
 
 CustFriendsWindow.Center ( )
