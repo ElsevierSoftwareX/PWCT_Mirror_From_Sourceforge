@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:48:59    Date : 09/28/2010
+* Time : 01:18:44    Date : 10/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -128,6 +128,7 @@ Set Procedure to "CustOpinion_Data.PRG"
 Set Procedure to "Locations_Data.PRG"
 Set Procedure to "CustFriends_Data.PRG"
 Set Procedure to "CustFriends_Report.PRG"
+Set Procedure to "SendMail.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -564,6 +565,9 @@ MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—… „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action OrdersDisposeReportObject
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«·œÊ—«  Ê«·„ œ—»Ì‰ Ê„—‘ÕÌ‰ «·⁄„·«¡" Action CustFriendsReportObject:ShowWindow()
 END POPUP
+POPUP "«·»—Ìœ «·«·ﬂ —Ê‰Ï"
+MENUITEM "«—”«· —”«·…" Action sendmsg()
+END POPUP
 Return Nil
 Proc customersreport
 customersreportobject:filter := ""
@@ -868,6 +872,151 @@ Local v1,myhandle
 myhandle = GetControlHandle ( p2,p1 )
 v1 = CALLDLL32("GetWindowLong","USER32.DLL",myhandle,-20)
 myout = CALLDLL32("SetWindowLong","USER32.DLL",myhandle,-20,NUMOR(v1,0x400000,0x100000))
+Return Nil
+Proc sendmsg
+if !iswindowdefined( winSendMsg )
+DEFINE WINDOW winSendMsg ;
+AT 10 ,10 ;
+WIDTH 664 ;
+HEIGHT 448 ;
+ICON "PWCTICON" ;
+TITLE "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
+CHILD ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+BACKCOLOR {236,233,216} 
+
+@ 364 ,216 BUTTONEX btn1;
+CAPTION "«—”«· «·—”«·… «·Ï «·⁄„Ì·";
+ON CLICK mysendproc()  ;
+WIDTH 200 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 0 ,0 IMAGE image1;
+PICTURE GetStartUpFolder()+"\Image\back.jpg";
+STRETCH ;
+WIDTH 656 HEIGHT 352
+@ 10 ,497 LABEL lbl1 ;
+VALUE "«·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 46 ,496 LABEL lbl2 ;
+VALUE "ﬂ·„… «·”—" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 88 ,493 LABEL lbl4 ;
+VALUE "«·—”«·… «·Ï" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 139 ,493 LABEL lbl6 ;
+VALUE "⁄‰Ê«‰ «·—”«·…" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 186 ,492 LABEL lbl7 ;
+VALUE "„Õ ÊÏ «·—”«·…" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 9 ,75 TEXTBOX text1;
+HEIGHT 30 ;
+WIDTH 410 ;
+VALUE "msfclipper@yahoo.com" ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0} 
+
+@ 46 ,75 TEXTBOX text2;
+HEIGHT 30 ;
+WIDTH 410 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0} ;
+PASSWORD 
+
+@ 91 ,75 TEXTBOX text4;
+HEIGHT 30 ;
+WIDTH 410 ;
+VALUE "msfclipper@yahoo.com" ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0} 
+
+@ 135 ,75 TEXTBOX text5;
+HEIGHT 30 ;
+WIDTH 410 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0} 
+
+@ 222 ,75 EDITBOX edit1;
+WIDTH 410 ;
+HEIGHT 120;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 185 ,77 BUTTONEX btnLoad;
+CAPTION "htm  Õ„Ì· «·—”«·… „‰ „·› ";
+ON CLICK MSGLOAD()  ;
+WIDTH 230 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+END WINDOW
+
+winSendMsg.Center ( )
+ACTIVATE WINDOW winSendMsg
+EndIF
+
+Return Nil
+Proc mysendproc
+cSMTP := "smtp.mail.yahoo.com"
+nPort := 25
+cUserID := winSendMsg.text1.value
+cPassword := winSendMsg.text2.value
+cFrom := "<" + alltrim(winSendMsg.text1.value) + ">"
+cTO := "<" + alltrim(winSendMsg.text4.value) + ">"
+cSubject := winSendMsg.text5.value
+cMsgBody := winSendMsg.edit1.value
+TRY
+DO sendmailtoclient WITH cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody
+CATCH
+MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«·… ","⁄›Ê«")
+END
+Return Nil
+Proc MSGLOAD
+GetFile := GetFile ( { {"Html","*.htm"}, {"Html","*.html" } } , ;
+, ;
+, ;
+, ;
+)
+CheckFile := File(getfile)
+IF checkfile
+mystr := FILESTR( getfile )
+if .not. empty(winSendMsg.Edit1.VALUE)
+winSendMsg.Edit1.VALUE := winSendMsg.Edit1.VALUE + CHR(13) + CHR(10) + mystr
+else
+winSendMsg.Edit1.VALUE := mystr
+endif
+ENDIF
 Return Nil
 
 
