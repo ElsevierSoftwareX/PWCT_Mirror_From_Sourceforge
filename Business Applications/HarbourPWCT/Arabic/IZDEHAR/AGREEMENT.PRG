@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:23:23    Date : 10/04/2010
+* Time : 01:39:09    Date : 10/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -497,7 +497,7 @@ NOSYSMENU ;
 BACKCOLOR {236,233,216}
 
 @ 1 ,2 IMAGE image1;
-PICTURE "Image\back.jpg";
+PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 760 HEIGHT 390
 @ 12 ,666 LABEL lbl1 ;
@@ -556,7 +556,7 @@ NOSYSMENU ;
 BACKCOLOR {236,233,216}
 
 @ 1 ,2 IMAGE image1;
-PICTURE "Image\back.jpg";
+PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 760 HEIGHT 390
 @ 13 ,653 LABEL lbl1 ;
@@ -615,7 +615,7 @@ NOSYSMENU ;
 BACKCOLOR {236,233,216}
 
 @ 1 ,2 IMAGE image1;
-PICTURE "Image\back.jpg";
+PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 760 HEIGHT 390
 @ 12 ,651 LABEL lbl1 ;
@@ -674,7 +674,7 @@ NOSYSMENU ;
 BACKCOLOR {236,233,216}
 
 @ 1 ,2 IMAGE image1;
-PICTURE "Image\back.jpg";
+PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 760 HEIGHT 390
 @ 11 ,651 LABEL lbl1 ;
@@ -733,7 +733,7 @@ NOSYSMENU ;
 BACKCOLOR {236,233,216}
 
 @ 1 ,2 IMAGE image1;
-PICTURE "Image\back.jpg";
+PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 760 HEIGHT 390
 @ 12 ,651 LABEL lbl1 ;
