@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:56:39    Date : 10/04/2010
+* Time : 01:20:49    Date : 10/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -878,7 +878,7 @@ if !iswindowdefined( winSendMsg )
 DEFINE WINDOW winSendMsg ;
 AT 10 ,10 ;
 WIDTH 664 ;
-HEIGHT 448 ;
+HEIGHT 494 ;
 ICON "PWCTICON" ;
 TITLE "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
 CHILD ;
@@ -887,7 +887,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
 
-@ 364 ,216 BUTTONEX btn1;
+@ 414 ,284 BUTTONEX btn1;
 CAPTION "«—”«· «·—”«·… «·Ï «·⁄„Ì·";
 ON CLICK mysendproc()  ;
 WIDTH 200 HEIGHT 30 ;
@@ -896,7 +896,7 @@ TOOLTIP ""
 @ 0 ,0 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 656 HEIGHT 352
+WIDTH 656 HEIGHT 402
 @ 10 ,497 LABEL lbl1 ;
 VALUE "«·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
 WIDTH 130 ;
@@ -980,6 +980,32 @@ ON CLICK MSGLOAD()  ;
 WIDTH 230 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 350 ,492 LABEL lbl8 ;
+VALUE "«·„—›ﬁ« " ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 350 ,124 TEXTBOX text8;
+HEIGHT 30 ;
+WIDTH 360 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0} 
+
+@ 351 ,76 BUTTONEX btnattach;
+CAPTION "::";
+ON CLICK msgattach()  ;
+WIDTH 40 HEIGHT 30 ;
+FONT "Arial" SIZE 9 ;
+TOOLTIP ""
+@ 414 ,76 BUTTONEX btnClose;
+CAPTION "«€·«ﬁ";
+ON CLICK winSendMsg.Release()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 winSendMsg.Center ( )
@@ -996,10 +1022,11 @@ cFrom := "<" + alltrim(winSendMsg.text1.value) + ">"
 cTO := "<" + alltrim(winSendMsg.text4.value) + ">"
 cSubject := winSendMsg.text5.value
 cMsgBody := winSendMsg.edit1.value
+cAttach := winSendMsg.text8.value
 TRY
-DO sendmailtoclient WITH cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody
+DO sendmailtoclient WITH cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody,cAttach
 CATCH
-MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«·… ","⁄›Ê«")
+MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«· ","⁄›Ê«")
 END
 Return Nil
 Proc MSGLOAD
@@ -1010,12 +1037,24 @@ GetFile := GetFile ( { {"Html","*.htm"}, {"Html","*.html" } } , ;
 )
 CheckFile := File(getfile)
 IF checkfile
+winSendMSG.Edit1.Value := ""
 mystr := FILESTR( getfile )
 if .not. empty(winSendMsg.Edit1.VALUE)
 winSendMsg.Edit1.VALUE := winSendMsg.Edit1.VALUE + CHR(13) + CHR(10) + mystr
 else
 winSendMsg.Edit1.VALUE := mystr
 endif
+ENDIF
+Return Nil
+Proc MsgAttach
+GetFile := GetFile (  , ;
+, ;
+, ;
+, ;
+)
+CheckFile := File(getfile)
+IF checkfile
+winSendMsg.text8.Value := getfile
 ENDIF
 Return Nil
 

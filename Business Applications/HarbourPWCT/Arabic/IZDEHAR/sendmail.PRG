@@ -1,9 +1,13 @@
-Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody)
+Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody,cAttach)
 
    nPriority = 1
    lHTML = .T.
    Silent = .f.
+
    aattachment = {}
+   if file ( cattach ) 
+   aadd(aattachment,cAttach)
+   endif
    ccc = ""
    cbcc = ""
    lLogin = .t.
@@ -95,7 +99,7 @@ Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody
       If Silent
         //LogFile( cLogFile, {"Mail sent to " + cTo + " successfully"} )
       Else
-         MsgInfo( " „ «—”«· «·—”«·… «·Ï " + cTo + " »‰Ã«Õ!", PROGRAM )
+         MsgInfo( " „ «—”«· «·—”«·… »‰Ã«Õ «·Ï " + cTo , PROGRAM )
       EndIf
 
    ELSE
