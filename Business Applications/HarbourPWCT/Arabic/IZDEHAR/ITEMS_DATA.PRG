@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:41:21    Date : 10/04/2010
+* Time : 16:39:53    Date : 10/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -107,7 +107,7 @@ BACKCOLOR {64,0,64}
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 870 HEIGHT 520
-@ 570 ,247 BUTTONEX btnFirst;
+@ 570 ,437 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -125,7 +125,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,437 BUTTONEX btnLast;
+@ 570 ,247 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -234,7 +234,7 @@ WIDTH 740 ;
 HEIGHT 160 ;
 HEADERS {"ﬂÊœ","«”„ «·’‰›","«”„ «·’‰› »«· ›’Ì·","›∆… «·’‰›","„Ã„Ê⁄… «·’‰›","„’œ— «·’‰›","„” ÊÏ «·’‰›","·Ê‰ «·’‰›","ÕÃ„ «·’‰›"};
 WIDTHS {50,150,150,150,150,150,150,150,150} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
