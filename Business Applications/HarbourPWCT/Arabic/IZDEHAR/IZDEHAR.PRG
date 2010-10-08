@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:21:47    Date : 10/08/2010
+* Time : 09:31:51    Date : 10/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -132,6 +132,7 @@ Set Procedure to "SendMail.PRG"
 Set Procedure to "SendMailToOne.PRG"
 Set Procedure to "SendMailToAllCustomers.PRG"
 Set Procedure to "SendMailToAllEmployees.PRG"
+Set Procedure to "SendMailToAllSuppliers.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -207,6 +208,7 @@ CustFriendsReportObject = CustFriendsReportClass()
 SendMailToOneObject = SendMailToOneClass()
 SendMailToAllCustomersObject = SendMailToAllCustomersClass()
 SendMailToAllEmployeesObject = SendMailToAllEmployeesClass()
+SendMailToAllSuppliersObject = SendMailToAllSuppliersClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -575,6 +577,7 @@ POPUP "«·»—Ìœ «·«·ﬂ —Ê‰Ï"
 MENUITEM "«—”«· —”«·…" Action sendmailtooneobject:showwindow()
 MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ œ—»Ì‰" Action sendmailtoallcustomersobject:showwindow()
 MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ÊŸ›Ì‰" Action sendmailtoallemployeesobject:showwindow()
+MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„Ê—œÌ‰" Action sendmailtoallSuppliersobject:showwindow()
 END POPUP
 Return Nil
 Proc customersreport
