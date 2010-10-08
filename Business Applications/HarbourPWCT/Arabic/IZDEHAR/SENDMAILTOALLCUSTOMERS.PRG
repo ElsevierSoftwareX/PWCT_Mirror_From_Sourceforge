@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:15:25    Date : 10/08/2010
+* Time : 09:28:53    Date : 10/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -175,7 +175,7 @@ WIDTH 410 ;
 HEIGHT 120 ;
 HEADERS self:gridheader;
 WIDTHS {200,200} ;
-FONT "arial" SIZE 14 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 EDIT INPLACE {} ;
 JUSTIFY {1,1} ;
