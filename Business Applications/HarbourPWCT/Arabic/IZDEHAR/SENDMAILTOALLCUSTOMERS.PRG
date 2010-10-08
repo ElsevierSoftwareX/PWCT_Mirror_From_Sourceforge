@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:03:02    Date : 10/08/2010
+* Time : 09:15:25    Date : 10/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -37,6 +37,9 @@ Return
 Resistance R_SENDMAILTOALLCUSTOMERS_15speed1() code
 class SendMailtoAllCustomersClass From SystemDatabase
 Data TableName init "Customers"
+Data windowtitle init "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï «·Ï ﬂ· «·„ œ—»Ì‰"
+Data gridheader init {"«·»—Ìœ «·«·ﬂ —Ê‰Ï","«”„ «·„ œ—»"}
+Data btncaption init "«—”«· «·—”«·… «·Ï ﬂ· «·„ œ—»Ì‰"
 Method ShowWindow
 Method msgSend
 Method msgAttach
@@ -49,7 +52,7 @@ AT 10 ,10 ;
 WIDTH 664 ;
 HEIGHT 560 ;
 ICON "PWCTICON" ;
-TITLE "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï «·Ï ﬂ· «·„ œ—»Ì‰" ;
+TITLE self:windowtitle ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
@@ -57,10 +60,10 @@ NOSIZE ;
 BACKCOLOR {236,233,216}
 
 @ 484 ,274 BUTTONEX btn1;
-CAPTION "«—”«· «·—”«·… «·Ï ﬂ· «·„ œ—»Ì‰";
+CAPTION self:btncaption;
 ON CLICK self:msgsend()  ;
 WIDTH 210 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 @ 0 ,0 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
@@ -159,12 +162,6 @@ ON CLICK SendMailToAllCustomersWindow.Release()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 340 ,75 EDITBOX edit2;
-WIDTH 410 ;
-HEIGHT 120;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
 @ 344 ,492 LABEL lbl9 ;
 VALUE "Õ«·… «·«—”«·" ;
 WIDTH 100 ;
@@ -172,6 +169,16 @@ HEIGHT 40 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 341 ,76 GRID Grid1;
+WIDTH 410 ;
+HEIGHT 120 ;
+HEADERS self:gridheader;
+WIDTHS {200,200} ;
+FONT "arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+EDIT INPLACE {} ;
+JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
@@ -190,9 +197,10 @@ self:oRS:MOVEFIRST()
 FOR x = 1 TO nMax STEP 1
 myemail := self:oRS:fields:item("f_email"):value
 myemail = ALLTRIM ( myemail )
+myname := self:oRS:fields:item("f_name"):value
 IF .not. empty(myemail)
 myemail := "<" + myemail + ">"
-AADD( emailslist , myemail)
+AADD( emailslist , {myemail,myname})
 ENDIF
 self:oRS:MOVENEXT()
 Next
@@ -213,13 +221,9 @@ cFrom := "<" + alltrim(SendMailToAllCustomersWindow.text1.value) + ">"
 cSubject := SendMailToAllCustomersWindow.text5.value
 cMsgBody := SendMailToAllCustomersWindow.edit1.value
 cAttach := SendMailToAllCustomersWindow.text8.value
-cTo := emailsList[x]
+cTo := emailsList[x][1]
 DO sendmailtoclient WITH cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody,cAttach,false
-if .not. empty(SendMailToAllCustomersWindow.Edit2.VALUE)
-SendMailToAllCustomersWindow.Edit2.VALUE := SendMailToAllCustomersWindow.Edit2.VALUE + CHR(13) + CHR(10) + cTo
-else
-SendMailToAllCustomersWindow.Edit2.VALUE := cTo
-endif
+SendMailToAllCustomersWindow.Grid1.AddItem ( {emailslist[x][1],emailslist[x][2]} )
 DO EVENTS
 CATCH
 MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«· ","⁄›Ê«")
