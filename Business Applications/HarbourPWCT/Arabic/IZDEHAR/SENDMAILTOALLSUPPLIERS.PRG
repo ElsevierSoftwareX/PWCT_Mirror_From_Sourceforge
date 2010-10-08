@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:30:50    Date : 10/08/2010
+* Time : 09:36:51    Date : 10/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -233,6 +233,7 @@ ELSE
 MyOut := MSGBOX("·«ÌÊÃœ »—Ìœ «·ﬂ —Ê‰Ï ·„—«”·… «·⁄„Ì· „‰ Œ·«·Â","⁄›Ê«")
 ENDIF
 myout = self:DisConnect()
+MyOut := MSGBOX("«‰ Â  ⁄„·Ì… «·«—”«·","Õ”‰«")
 Return 0
 Method msgAttach Class SendMailtoAllSuppliersClass
 GetFile := GetFile (  , ;
