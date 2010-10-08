@@ -1,12 +1,20 @@
-Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody,cAttach)
+Proc sendmailtoclient( pcSMTP,pnPort,pcUserID,pcPassword,pcFrom,pcTo,pcSubject,pcMsgBody,pcAttach,lshowmsg)
+
+   local nPriority,lHTML,Silent,cUser,i,aattachment,ccc,cbcc,llogin,lloginMD5,oSocket
+
+   if pcount() < 10
+	lshowmsg = .t.
+   endif
 
    nPriority = 1
    lHTML = .T.
    Silent = .f.
 
+   
+
    aattachment = {}
-   if file ( cattach ) 
-   aadd(aattachment,cAttach)
+   if file ( pcAttach ) 
+   aadd(aattachment,pcAttach)
    endif
    ccc = ""
    cbcc = ""
@@ -18,17 +26,17 @@ Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody
 
    oSocket := TSMTP():New()
 
-   IF oSocket:Connect( cSMTP, nPort )
+   IF oSocket:Connect( pcSMTP, pnPort )
 
-      i := At("<", cFrom)
+      i := At("<", pcFrom)
       IF i > 0
-         cUser := Chr(34) + Alltrim(Left(cFrom, i-1)) + Chr(34)
-         cFrom := Substr(cFrom, i+1, Len(cFrom)-i-1)
+         cUser := Chr(34) + Alltrim(Left(pcFrom, i-1)) + Chr(34)
+         pcFrom := Substr(pcFrom, i+1, Len(pcFrom)-i-1)
       ENDIF
 
-      i := At("<", cTo)
+      i := At("<", pcTo)
       IF i > 0
-         cTo := Substr(cTo, i+1, Len(cTo)-i-1)
+         pcTo := Substr(pcTo, i+1, Len(pcTo)-i-1)
       ENDIF
 
       i := At("<", cCC)
@@ -43,9 +51,9 @@ Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody
       oSocket:ClearData()
       oSocket:SetPriority( nPriority )
 
-      oSocket:SetFrom( cUser, "<"+ cFrom +">")
+      oSocket:SetFrom( cUser, "<"+ pcFrom +">")
 
-      oSocket:AddTo( cUser, "<"+ cTo +">" )
+      oSocket:AddTo( cUser, "<"+ pcTo +">" )
 
       IF ! Empty( cCC )
          oSocket:AddCc( cUser,"<"+ cCC +">")
@@ -54,17 +62,17 @@ Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody
          oSocket:AddBcc( cUser, "<"+ cBCC +">" )
       ENDIF
 
-      oSocket:SetSubject( cSubject )
+      oSocket:SetSubject( pcSubject )
 
       IF Len( aAttachment ) > 0
          aeval( aAttachment, { |x| oSocket:AddAttach(x) } )
       ENDIF
 
-      oSocket:SetData( cMsgBody, lHTML )
+      oSocket:SetData( pcMsgBody, lHTML )
 
       IF lLogin
          IF lLoginMD5
-            IF ! oSocket:LoginMD5( cUserID, cPassWord )
+            IF ! oSocket:LoginMD5( pcUserID, pcPassword )
                If Silent
                  // LogFile( cLogFile, {oSocket:GetLastError()+" While trying to login got an error messages from server"} )
                Else
@@ -73,7 +81,7 @@ Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody
                oSocket:Close()
                RETURN
             ENDIF
-         ELSEIF ! oSocket:Login( cUserID, cPassWord )
+         ELSEIF ! oSocket:Login( pcUserID, pcPassword )
             If Silent
              //  LogFile( cLogFile, {oSocket:GetLastError()+" While trying to login got an error messages from server"} )
             Else
@@ -97,17 +105,19 @@ Proc sendmailtoclient( cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody
       oSocket:Close()
 
       If Silent
-        //LogFile( cLogFile, {"Mail sent to " + cTo + " successfully"} )
+        //LogFile( cLogFile, {"Mail sent to " + pcTo + " successfully"} )
       Else
-         MsgInfo( " „ «—”«· «·—”«·… »‰Ã«Õ «·Ï " + cTo , PROGRAM )
+		if lshowmsg = .t.
+       		  MsgInfo( " „ «—”«· «·—”«·… »‰Ã«Õ «·Ï " + pcTo , PROGRAM )
+		endif
       EndIf
 
    ELSE
 
       If Silent
-       //  LogFile( cLogFile, {"·«Ì„ﬂ‰ «·« ’«· »«·Œ«œ„: " + cSMTP} )
+       //  LogFile( cLogFile, {"·«Ì„ﬂ‰ «·« ’«· »«·Œ«œ„: " + pcSMTP} )
       Else
-         MsgStop( "·«Ì„ﬂ‰ «·« ’«· »«·Œ«œ„: " + cSMTP, "Œÿ« «À‰«¡ „Õ«Ê·… «·« ’«· »«·Œ«œ„" )
+         MsgStop( "·«Ì„ﬂ‰ «·« ’«· »«·Œ«œ„: " + pcSMTP, "Œÿ« «À‰«¡ „Õ«Ê·… «·« ’«· »«·Œ«œ„" )
       EndIf
 
    ENDIF
