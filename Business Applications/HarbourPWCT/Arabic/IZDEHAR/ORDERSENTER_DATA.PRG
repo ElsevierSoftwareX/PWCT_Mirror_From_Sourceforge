@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:45:43    Date : 10/04/2010
+* Time : 13:04:11    Date : 10/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -792,6 +792,16 @@ oRS:UPDATE()
 oRS:Close()
 myout = self:Search2()
 myout = self:SetOrderStatus()
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from CustFriends_All where orderid = " + str(self:nOrderNumber) + " and Friendid = " + str(self:nItem),self:oCon,3,3 )
+nMax := oRS:RecordCount
+IF nMax > 0
+oRS:fields:item("RecordStatusid"):value := 3
+oRS:UPDATE()
+ENDIF
+oRS:Close()
 ELSE
 MyOut := MSGBOX("You should Create/Select Order First","Sorry")
 ENDIF
