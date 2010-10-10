@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:39:36    Date : 10/10/2010
+* Time : 14:47:00    Date : 10/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -391,8 +391,8 @@ Proc mylogo
 if !iswindowdefined( winlogo )
 DEFINE WINDOW winlogo ;
 AT 10 ,10 ;
-WIDTH 206 ;
-HEIGHT 196 ;
+WIDTH 333 ;
+HEIGHT 319 ;
 ICON "PWCTICON" ;
 TITLE "Window Title" ;
 CHILD ;
@@ -403,15 +403,23 @@ NOSYSMENU ;
 NOCAPTION ;
 BACKCOLOR {255,255,255} 
 
-@ 8 ,5 IMAGE image1;
+@ 52 ,51 IMAGE image1;
 PICTURE "LOGOALONE";
+STRETCH ;
 WHITEBACKGROUND ;
-WIDTH 196 HEIGHT 135
-@ 149 ,4 LABEL lbl1 ;
-VALUE "AL-JABREEN System" ;
-WIDTH 196 ;
-HEIGHT 32 ;
-FONT "Arial" SIZE 14  ;
+WIDTH 232 HEIGHT 198
+@ 262 ,23 LABEL lbl1 ;
+VALUE "AL-JABREEN Factory" ;
+WIDTH 291 ;
+HEIGHT 45 ;
+FONT "Arial" SIZE 22  ;
+BACKCOLOR {0,0,0} ;
+FONTCOLOR {0,255,128}
+@ 2 ,24 LABEL lbl2 ;
+VALUE "        „’‰⁄ «·Ã»—Ì‰" ;
+WIDTH 291 ;
+HEIGHT 45 ;
+FONT "Arial" SIZE 22  ;
 BACKCOLOR {0,0,0} ;
 FONTCOLOR {0,255,128}
 END WINDOW
@@ -421,8 +429,8 @@ HPARENT := GetFormHandle("win1")
 HCHILD := GetFormHandle("winLOGO")
 myout = CALLDLL32("SetParent","USER32.DLL",HCHILD,HPARENT)
 winlogo.Center ( )
-winlogo.Col := (win1.width) - (winlogo.width) - (50 )
-winlogo.Row := 450
+winlogo.Col := (win1.width) - (winlogo.width) - (100 )
+winlogo.Row := 200
 Activate Window winlogo nowait
 Return Nil
 Proc customers
