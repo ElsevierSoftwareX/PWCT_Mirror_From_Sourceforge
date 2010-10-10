@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:47:00    Date : 10/10/2010
+* Time : 16:13:14    Date : 10/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -446,7 +446,7 @@ POPUP "System"
 MENUITEM "Users" Action UsersDataObject:ShowWindow()
 END POPUP
 ENDIF
-POPUP "Person"
+POPUP "Human Resource"
 POPUP "Employees"
 MENUITEM "Employees Data" Action EmployeesDataObject:showwindow()
 MENUITEM "Employees Search/Browse By Name" Action EmployeesBrowseObject:showwindow()
