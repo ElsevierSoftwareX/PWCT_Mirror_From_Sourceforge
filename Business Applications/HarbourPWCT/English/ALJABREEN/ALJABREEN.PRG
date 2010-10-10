@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:59:05    Date : 09/08/2010
+* Time : 14:39:36    Date : 10/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -430,6 +430,7 @@ myout = CustomersDataObject:ShowWindow()
 Return Nil
 Proc sysmenu
 POPUP "File"
+MENUITEM "About" Action aboutsystem()
 MENUITEM "Close System" Action closesystem()  IMAGE "image\wzclose.bmp"
 END POPUP
 IF UserCan_Admin = 2
@@ -805,6 +806,53 @@ END WINDOW
 
 winsysreports.Center ( )
 ACTIVATE WINDOW winsysreports
+EndIF
+
+Return Nil
+Proc aboutsystem
+if !iswindowdefined( winAbout )
+DEFINE WINDOW winAbout ;
+AT 10 ,10 ;
+WIDTH 419 ;
+HEIGHT 197 ;
+ICON "PWCTICON" ;
+TITLE "About" ;
+CHILD ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+BACKCOLOR {236,233,216} 
+
+winabout.Center ( )
+@ -10 ,-10 IMAGE image1;
+PICTURE getstartupfolder()+"\Image\back.jpg";
+STRETCH ;
+WIDTH 440 HEIGHT 120
+@ 57 ,54 LABEL lbl1 ;
+VALUE "Programmer/Eng.Mahmoud Fayed" ;
+WIDTH 300 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 17 ,54 LABEL lbl2 ;
+VALUE "System Analyst/Eng.Nasr M. Hibah" ;
+WIDTH 300 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 120 ,150 BUTTONEX btn1;
+CAPTION "Ok";
+ON CLICK winAbout.Release()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+END WINDOW
+
+ACTIVATE WINDOW winAbout
 EndIF
 
 Return Nil
