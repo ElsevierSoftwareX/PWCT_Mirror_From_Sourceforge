@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:13:14    Date : 10/10/2010
+* Time : 16:32:08    Date : 10/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -403,24 +403,24 @@ NOSYSMENU ;
 NOCAPTION ;
 BACKCOLOR {255,255,255} 
 
-@ 52 ,51 IMAGE image1;
+@ 83 ,96 IMAGE image1;
 PICTURE "LOGOALONE";
 STRETCH ;
 WHITEBACKGROUND ;
-WIDTH 232 HEIGHT 198
+WIDTH 141 HEIGHT 153
 @ 262 ,23 LABEL lbl1 ;
 VALUE "AL-JABREEN Factory" ;
 WIDTH 291 ;
 HEIGHT 45 ;
 FONT "Arial" SIZE 22  ;
-BACKCOLOR {0,0,0} ;
+BACKCOLOR {64,0,64} ;
 FONTCOLOR {0,255,128}
 @ 2 ,24 LABEL lbl2 ;
 VALUE "        „’‰⁄ «·Ã»—Ì‰" ;
 WIDTH 291 ;
 HEIGHT 45 ;
 FONT "Arial" SIZE 22  ;
-BACKCOLOR {0,0,0} ;
+BACKCOLOR {64,0,64} ;
 FONTCOLOR {0,255,128}
 END WINDOW
 EndIF
