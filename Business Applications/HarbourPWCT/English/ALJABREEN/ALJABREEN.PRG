@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:32:08    Date : 10/10/2010
+* Time : 10:02:07    Date : 10/12/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -116,6 +116,7 @@ Set Procedure to "EmployeesProduction_Report.PRG"
 Set Procedure to "OrdersDispose_Report.PRG"
 Set Procedure to "ReportBase.PRG"
 Set Procedure to "SystemDatabase_Base.PRG"
+Set Procedure to "EmpDetails_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -176,6 +177,7 @@ ProcessStatusReportObject = ProcessStatusReportClass()
 OrderProcessesReportObject = OrderProcessesReportClass()
 EmployeesProductionReportObject = EmployeesProductionReportClass()
 OrdersDisposeReportObject = OrdersDisposeReportClass()
+EmpDetailsDataObject = EmpDetailsDataClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -451,6 +453,7 @@ POPUP "Employees"
 MENUITEM "Employees Data" Action EmployeesDataObject:showwindow()
 MENUITEM "Employees Search/Browse By Name" Action EmployeesBrowseObject:showwindow()
 MENUITEM "Employees Report" Action Employeesreport()
+MENUITEM "Employee Details" Action EmpDetailsDataObject:ShowWindow()
 END POPUP
 POPUP "Suppliers"
 MENUITEM "Suppliers Data" Action SuppliersDataObject:showwindow()
