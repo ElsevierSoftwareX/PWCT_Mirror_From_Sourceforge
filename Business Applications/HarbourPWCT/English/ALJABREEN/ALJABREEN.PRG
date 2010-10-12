@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:02:07    Date : 10/12/2010
+* Time : 13:16:56    Date : 10/12/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -117,6 +117,7 @@ Set Procedure to "OrdersDispose_Report.PRG"
 Set Procedure to "ReportBase.PRG"
 Set Procedure to "SystemDatabase_Base.PRG"
 Set Procedure to "EmpDetails_Data.PRG"
+Set Procedure to "EmpDetailsValues_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -178,6 +179,7 @@ OrderProcessesReportObject = OrderProcessesReportClass()
 EmployeesProductionReportObject = EmployeesProductionReportClass()
 OrdersDisposeReportObject = OrdersDisposeReportClass()
 EmpDetailsDataObject = EmpDetailsDataClass()
+EmpDetailsValuesDataBrowseObject = EmpDetailsValuesDataBrowseClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;

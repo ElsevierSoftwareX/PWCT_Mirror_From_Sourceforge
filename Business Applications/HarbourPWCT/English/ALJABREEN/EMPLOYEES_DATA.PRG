@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:46:44    Date : 09/13/2010
+* Time : 13:16:48    Date : 10/12/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -67,6 +67,7 @@ Method Class2UserInterface
 Method ClearRecord
 Method AutoGotoRecord
 Method printdata
+Method EmpDetails
 EndClass
 Method showwindow Class EmployeesDataClass
 myout = self:connect()
@@ -168,7 +169,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 8 ,6 LABEL lblTitle ;
 VALUE "    Employees Data" ;
-WIDTH 480 ;
+WIDTH 350 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -185,8 +186,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 510 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 myout = self:LoadLookupTable("Gender","Gender",@self:GenderItems,"id",@self:GenderItemsIDS)
 @ 118 ,74 LABEL lblGender ;
 VALUE "Gender" ;
@@ -216,8 +217,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 159 ,74 LABEL lblAddress ;
 VALUE "Address" ;
 WIDTH 100 ;
@@ -230,8 +231,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 510 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 200 ,74 LABEL lblCity ;
 VALUE "City" ;
 WIDTH 100 ;
@@ -244,8 +245,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 197 ,401 LABEL lblWebsite ;
 VALUE "Website" ;
 WIDTH 80 ;
@@ -258,8 +259,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 myout = self:LoadLookupTable("Country","Country",@self:CountryItems,"id",@self:CountryItemsIDS)
 @ 239 ,74 LABEL lblCountry ;
 VALUE "Country" ;
@@ -289,8 +290,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 280 ,74 LABEL lbleMail ;
 VALUE "eMail" ;
 WIDTH 100 ;
@@ -303,8 +304,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 280 ,401 LABEL lblPhone2 ;
 VALUE "Phone2" ;
 WIDTH 80 ;
@@ -317,8 +318,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 319 ,74 LABEL lblFax ;
 VALUE "Fax" ;
 WIDTH 100 ;
@@ -331,8 +332,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 319 ,401 LABEL lblMobile ;
 VALUE "Mobile" ;
 WIDTH 80 ;
@@ -345,8 +346,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 362 ,74 LABEL lblZip ;
 VALUE "Zip" ;
 WIDTH 100 ;
@@ -359,8 +360,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 362 ,401 LABEL lblMobile2 ;
 VALUE "Mobile2" ;
 WIDTH 80 ;
@@ -373,8 +374,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 408 ,74 LABEL lblCompany ;
 VALUE "Company" ;
 WIDTH 100 ;
@@ -387,8 +388,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 510 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 448 ,74 LABEL lblNotes ;
 VALUE "Notes" ;
 WIDTH 100 ;
@@ -403,12 +404,21 @@ HEIGHT 70;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 7 ,490 BUTTONEX btnPrint;
+@ 7 ,553 BUTTONEX btnPrint;
 CAPTION "Print Employee Data";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
 ON CLICK self:printdata()  ;
 WIDTH 203 HEIGHT 34 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 7 ,366 BUTTONEX btnDetails;
+CAPTION "Details";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:empdetails()  ;
+WIDTH 180 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
@@ -526,6 +536,48 @@ myid := self:oRS:fields:item("id"):value
 myid = STR ( myid )
 Employeesreportobject:filter := "id = "+myid
 myout = Employeesreportobject:ShowWindow()
+Return 0
+Method EmpDetails Class EmployeesDataClass
+Local myid,myout,myrs,empdetailsids
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("No Record in Employees Table","Sorry")
+Return 0
+ENDIF
+myid := self:oRS:fields:item("id"):value
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from EmpDetails",self:oCon,3,3 )
+mymax := myRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("No Records in details table","Sorry")
+Return 0
+ENDIF
+myRS:MOVEFIRST()
+empdetailsids := {}
+FOR x = 1 TO mymax STEP 1
+MYDETAILID := myRS:fields:item("ID"):value
+AADD( EMPDETAILSIDS , MYDETAILID)
+MYRS:MOVENEXT()
+Next
+myRS:Close()
+FOR x = 1 TO mymax STEP 1
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from EmpDetailsValues where empid = " + str(myid) + " and detailID = " + str(empdetailsids[x]),self:oCon,3,3 )
+mymax2 := myRS:RecordCount
+IF mymax2 = 0
+myRS:ADDNEW()
+myRS:fields:item("empid"):value := myid
+myRS:fields:item("Detailid"):value := empdetailsids[x]
+myRS:UPDATE()
+ENDIF
+myRS:Close()
+Next
+EmpDetailsValuesDataBrowseObject:EmpID := myid
+myout = EmpDetailsValuesDataBrowseObject:ShowWindow()
 Return 0
 Method closewindow Class EmployeesDataClass
 myout = self:disconnect()

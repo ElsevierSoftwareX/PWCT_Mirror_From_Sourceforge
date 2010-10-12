@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:27:13    Date : 09/12/2010
+* Time : 13:12:58    Date : 10/12/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -47,6 +47,7 @@ Data username init "systemdatabase"
 Data password init "systemdatabase123"
 Data DataSourceName init "FACTORYDATA"
 Data databasename init ""
+Data complexsearch init ""
 Method ShowRecord
 Method EditRecord
 Method LoadLookupTable
@@ -128,7 +129,7 @@ self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Propert
 self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 self:oRS:CursorType := 1
 self:oRS:ActiveConnection := self:oCon
-self:oRS:open ( "Select * from " + self:TableName,self:oCon,3,3 )
+self:oRS:open ( "Select * from " + self:TableName + " where 1 = 1 " + self:complexsearch,self:oCon,3,3 )
 Return 0
 Method disconnect Class SYSTEMDATABASE
 self:oRS:Close()
@@ -194,7 +195,7 @@ oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := oCon
-oRS:open ( "Select * from "+self:tableName +" where "+self:column+" like '" + cName + "%'",oCon,3,3 )
+oRS:open ( "Select * from "+self:tableName +" where "+self:column+" like '" + cName + "%'" + self:complexsearch,oCon,3,3 )
 mymax := oRS:RecordCount
 self:ResultPrimaryKeys := {}
 myout = self:BeforeSearch()
