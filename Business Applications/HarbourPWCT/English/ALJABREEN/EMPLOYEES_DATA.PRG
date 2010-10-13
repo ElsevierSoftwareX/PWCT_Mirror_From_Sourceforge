@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:16:48    Date : 10/12/2010
+* Time : 13:07:00    Date : 10/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -68,6 +68,7 @@ Method ClearRecord
 Method AutoGotoRecord
 Method printdata
 Method EmpDetails
+Method empvacations
 EndClass
 Method showwindow Class EmployeesDataClass
 myout = self:connect()
@@ -169,7 +170,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 8 ,6 LABEL lblTitle ;
 VALUE "    Employees Data" ;
-WIDTH 350 ;
+WIDTH 300 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -413,12 +414,21 @@ WIDTH 203 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 7 ,366 BUTTONEX btnDetails;
+@ 7 ,438 BUTTONEX btnDetails;
 CAPTION "Details";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
 ON CLICK self:empdetails()  ;
-WIDTH 180 HEIGHT 34 ;
+WIDTH 110 HEIGHT 34 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 7 ,311 BUTTONEX btnVacations;
+CAPTION "Vacations";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:empvacations()  ;
+WIDTH 120 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
@@ -578,6 +588,12 @@ myRS:Close()
 Next
 EmpDetailsValuesDataBrowseObject:EmpID := myid
 myout = EmpDetailsValuesDataBrowseObject:ShowWindow()
+Return 0
+Method EmpVacations Class EmployeesDataClass
+myid := self:oRS:fields:item("id"):value
+VacationsDataBrowseObject:nEmpID := myID
+VacationsDataBrowseObject:ComplexSearch := " and EmpID = " + alltrim(str(myID))
+myout = VacationsDataBrowseObject:ShowWindow()
 Return 0
 Method closewindow Class EmployeesDataClass
 myout = self:disconnect()
