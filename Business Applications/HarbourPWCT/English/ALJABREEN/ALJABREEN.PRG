@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:16:56    Date : 10/12/2010
+* Time : 23:11:18    Date : 10/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -118,6 +118,9 @@ Set Procedure to "ReportBase.PRG"
 Set Procedure to "SystemDatabase_Base.PRG"
 Set Procedure to "EmpDetails_Data.PRG"
 Set Procedure to "EmpDetailsValues_Data.PRG"
+Set Procedure to "Vacations_Data.PRG"
+Set Procedure to "ItemDetails_Data.PRG"
+Set Procedure to "ItemsDetailsValues_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -180,6 +183,9 @@ EmployeesProductionReportObject = EmployeesProductionReportClass()
 OrdersDisposeReportObject = OrdersDisposeReportClass()
 EmpDetailsDataObject = EmpDetailsDataClass()
 EmpDetailsValuesDataBrowseObject = EmpDetailsValuesDataBrowseClass()
+VacationsDataBrowseObject = VacationsDataBrowseClass()
+ItemDetailsDataObject = ItemDetailsDataClass()
+ItemDetailsValuesDataBrowseObject = ItemDetailsValuesDataBrowseClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -461,6 +467,7 @@ POPUP "Suppliers"
 MENUITEM "Suppliers Data" Action SuppliersDataObject:showwindow()
 MENUITEM "Suppliers Search/Browse By Name" Action SuppliersBrowseObject:showwindow()
 MENUITEM "Suppliers Report" Action Suppliersreport()
+MENUITEM "Set Items Groups" Action ItemsGroupsObject:ShowWindow()
 END POPUP
 POPUP "Customers"
 MENUITEM "Customers Data" Action CustomersDataObject:showwindow()
@@ -479,6 +486,7 @@ MENUITEM "Set Items Sizes" Action ItemsSizesObject:ShowWindow()
 MENUITEM "Set Items Colors" Action ItemsColorsObject:ShowWindow()
 MENUITEM "Set Items Sources" Action ItemsSourcesObject:ShowWindow()
 SEPARATOR
+MENUITEM "Item Details" Action ItemDetailsDataObject:ShowWindow()
 MENUITEM "Define Items" Action ItemsObject:ShowWindow()
 SEPARATOR
 MENUITEM "Set Items Stores" Action ItemsStoresObject:ShowWindow()
