@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:59:41    Date : 10/12/2010
+* Time : 13:24:56    Date : 10/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -212,7 +212,7 @@ WIDTH 490 ;
 HEIGHT 310 ;
 HEADERS self:ColTitles;
 WIDTHS self:ColWidths ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
