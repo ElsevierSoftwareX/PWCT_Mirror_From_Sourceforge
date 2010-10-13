@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:40:41    Date : 09/12/2010
+* Time : 23:11:12    Date : 10/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -85,6 +85,7 @@ Method BeforeSearch
 Method SearchAdd
 Method settimer
 Method GetSearchValue
+Method ItemDetails
 EndClass
 Method showwindow Class ItemsClass
 myout = self:connect()
@@ -187,7 +188,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
 VALUE "                                                                               Items" ;
-WIDTH 870 ;
+WIDTH 760 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -205,8 +206,8 @@ HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 52 ,68 LABEL lbl1browse ;
 VALUE "Item Name" ;
 WIDTH 100 ;
@@ -218,8 +219,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 530 ;
 BACKCOLOR {0,255,128} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 52 ,715 BUTTONEX btn1browse;
 CAPTION "Search";
 ON CLICK self:search()  ;
@@ -250,8 +251,8 @@ HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 myout = self:LoadLookupTable("ItemClasses","ItemClass",@self:ItemClassItems,"id",@self:ItemClassItemsIDS)
 @ 266 ,73 LABEL lblItemClass ;
 VALUE "Item Class" ;
@@ -401,8 +402,8 @@ HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 425 ,566 LABEL lblSecUnitValue ;
 VALUE "Value" ;
 WIDTH 50 ;
@@ -416,8 +417,14 @@ HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
+@ 6 ,774 BUTTONEX btnDetails;
+CAPTION "Details";
+ON CLICK self:ItemDetails()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 ItemsWindow.Center ( )
@@ -580,6 +587,48 @@ ItemsWindow.textUnitValue.Enabled := false
 ItemsWindow.textSecUnitValue.Enabled := false
 ENDIF
 self:OperationMode := p1
+Return 0
+Method ItemDetails Class ItemsClass
+Local myid,myout,myrs,empdetailsids
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("No Record in Items Table","Sorry")
+Return 0
+ENDIF
+myid := self:oRS:fields:item("id"):value
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from ItemDetails",self:oCon,3,3 )
+mymax := myRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("No Records in details table","Sorry")
+Return 0
+ENDIF
+myRS:MOVEFIRST()
+empdetailsids := {}
+FOR x = 1 TO mymax STEP 1
+MYDETAILID := myRS:fields:item("ID"):value
+AADD( EMPDETAILSIDS , MYDETAILID)
+MYRS:MOVENEXT()
+Next
+myRS:Close()
+FOR x = 1 TO mymax STEP 1
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from ItemDetailsValues where itemid = " + str(myid) + " and detailID = " + str(empdetailsids[x]),self:oCon,3,3 )
+mymax2 := myRS:RecordCount
+IF mymax2 = 0
+myRS:ADDNEW()
+myRS:fields:item("itemid"):value := myid
+myRS:fields:item("Detailid"):value := empdetailsids[x]
+myRS:UPDATE()
+ENDIF
+myRS:Close()
+Next
+ItemDetailsValuesDataBrowseObject:ItemID := myid
+myout = ItemDetailsValuesDataBrowseObject:ShowWindow()
 Return 0
 Method closewindow Class ItemsClass
 myout = self:disconnect()
