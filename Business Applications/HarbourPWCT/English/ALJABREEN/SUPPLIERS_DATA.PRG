@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:48:02    Date : 09/13/2010
+* Time : 14:22:30    Date : 10/13/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -57,6 +57,9 @@ Data genderitemsids init {}
 Data genderitems init {}
 Data countryitemsids init {}
 Data countryitems init {}
+Data nItemGroup init 0
+Data ItemGroupItems init {}
+Data ItemGroupItemsIDs init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -74,8 +77,8 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( SuppliersDataWindow )
 DEFINE WINDOW SuppliersDataWindow ;
 AT 10 ,10 ;
-WIDTH 770 ;
-HEIGHT 644 ;
+WIDTH 772 ;
+HEIGHT 685 ;
 ICON "PWCTICON" ;
 TITLE "Suppliers - Data Window" ;
 CHILD ;
@@ -87,8 +90,8 @@ BACKCOLOR {64,0,64}
 @ 49 ,6 IMAGE image1;
 PICTURE "image\Back.jpg";
 STRETCH ;
-WIDTH 750 HEIGHT 495
-@ 556 ,326 BUTTONEX btnFirst;
+WIDTH 750 HEIGHT 535
+@ 596 ,326 BUTTONEX btnFirst;
 CAPTION "First";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -97,7 +100,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 556 ,389 BUTTONEX btnNext;
+@ 596 ,389 BUTTONEX btnNext;
 CAPTION "Next";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -106,7 +109,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 556 ,518 BUTTONEX btnLast;
+@ 596 ,518 BUTTONEX btnLast;
 CAPTION "Last";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -115,7 +118,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 556 ,673 BUTTONEX btnClose;
+@ 596 ,673 BUTTONEX btnClose;
 CAPTION "Close";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -124,7 +127,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 556 ,455 BUTTONEX btnPrev;
+@ 596 ,455 BUTTONEX btnPrev;
 CAPTION "Prev ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -133,7 +136,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 556 ,587 BUTTONEX btnDel;
+@ 596 ,587 BUTTONEX btnDel;
 CAPTION "Delete";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -142,25 +145,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 556 ,162 BUTTONEX btnsave;
+@ 596 ,162 BUTTONEX btnsave;
 CAPTION "Save";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 556 ,234 BUTTONEX btncancel;
+@ 596 ,234 BUTTONEX btncancel;
 CAPTION "Cancel";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 556 ,91 BUTTONEX btnedit;
+@ 596 ,91 BUTTONEX btnedit;
 CAPTION "Edit";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 556 ,8 BUTTONEX btnadd;
+@ 596 ,8 BUTTONEX btnadd;
 CAPTION "Add";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -173,9 +176,9 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {128,128,0}
-@ 77 ,73 LABEL lblname ;
+@ 77 ,43 LABEL lblname ;
 VALUE "Name" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -185,12 +188,12 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 510 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 myout = self:LoadLookupTable("Gender","Gender",@self:GenderItems,"id",@self:GenderItemsIDS)
-@ 118 ,74 LABEL lblGender ;
+@ 118 ,44 LABEL lblGender ;
 VALUE "Gender" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -216,37 +219,37 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 159 ,74 LABEL lblAddress ;
+FONTCOLOR {0,0,0}
+
+@ 249 ,44 LABEL lblAddress ;
 VALUE "Address" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 157 ,179 TEXTBOX textAddress;
+@ 247 ,179 TEXTBOX textAddress;
 HEIGHT 30 ;
 WIDTH 510 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 200 ,74 LABEL lblCity ;
+FONTCOLOR {0,0,0}
+
+@ 290 ,44 LABEL lblCity ;
 VALUE "City" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 197 ,179 TEXTBOX textCity;
+@ 287 ,179 TEXTBOX textCity;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 197 ,401 LABEL lblWebsite ;
+FONTCOLOR {0,0,0}
+
+@ 287 ,401 LABEL lblWebsite ;
 VALUE "Website" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -254,22 +257,22 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 197 ,488 TEXTBOX textWebsite;
+@ 287 ,488 TEXTBOX textWebsite;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 myout = self:LoadLookupTable("Country","Country",@self:CountryItems,"id",@self:CountryItemsIDS)
-@ 239 ,74 LABEL lblCountry ;
+@ 329 ,44 LABEL lblCountry ;
 VALUE "Country" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 239 ,180 COMBOBOX combocountry;
+@ 329 ,180 COMBOBOX combocountry;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:countryitems ;
@@ -277,7 +280,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 239 ,401 LABEL lblPhone ;
+@ 329 ,401 LABEL lblPhone ;
 VALUE "Phone" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -285,27 +288,27 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 239 ,488 TEXTBOX textPhone;
+@ 329 ,488 TEXTBOX textPhone;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 280 ,74 LABEL lbleMail ;
+FONTCOLOR {0,0,0}
+
+@ 370 ,44 LABEL lbleMail ;
 VALUE "eMail" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 280 ,179 TEXTBOX textEMAIL;
+@ 370 ,179 TEXTBOX textEMAIL;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 280 ,401 LABEL lblPhone2 ;
+FONTCOLOR {0,0,0}
+
+@ 370 ,401 LABEL lblPhone2 ;
 VALUE "Phone2" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -313,27 +316,27 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 280 ,488 TEXTBOX textPhone2;
+@ 370 ,488 TEXTBOX textPhone2;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 319 ,74 LABEL lblFax ;
+FONTCOLOR {0,0,0}
+
+@ 409 ,44 LABEL lblFax ;
 VALUE "Fax" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 319 ,179 TEXTBOX textFax;
+@ 409 ,179 TEXTBOX textFax;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 319 ,401 LABEL lblMobile ;
+FONTCOLOR {0,0,0}
+
+@ 409 ,401 LABEL lblMobile ;
 VALUE "Mobile" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -341,27 +344,27 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 319 ,488 TEXTBOX textMobile;
+@ 409 ,488 TEXTBOX textMobile;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 362 ,74 LABEL lblZip ;
+FONTCOLOR {0,0,0}
+
+@ 452 ,44 LABEL lblZip ;
 VALUE "Zip" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 362 ,179 TEXTBOX textZip;
+@ 452 ,179 TEXTBOX textZip;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 362 ,401 LABEL lblMobile2 ;
+FONTCOLOR {0,0,0}
+
+@ 452 ,401 LABEL lblMobile2 ;
 VALUE "Mobile2" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -369,35 +372,35 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 363 ,488 TEXTBOX textMobile2;
+@ 453 ,488 TEXTBOX textMobile2;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 408 ,74 LABEL lblCompany ;
+FONTCOLOR {0,0,0}
+
+@ 158 ,44 LABEL lblCompany ;
 VALUE "Company" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 406 ,179 TEXTBOX textCompany;
+@ 156 ,179 TEXTBOX textCompany;
 HEIGHT 30 ;
 WIDTH 510 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 448 ,74 LABEL lblNotes ;
+FONTCOLOR {0,0,0}
+
+@ 498 ,44 LABEL lblNotes ;
 VALUE "Notes" ;
-WIDTH 100 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 449 ,179 EDITBOX EditNotes;
+@ 499 ,179 EDITBOX EditNotes;
 WIDTH 510 ;
 HEIGHT 70;
 FONT "Arial" SIZE 14 ;
@@ -412,6 +415,23 @@ WIDTH 203 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
+myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
+@ 208 ,44 LABEL lblItemGroup ;
+VALUE "Item Supplied" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 206 ,180 COMBOBOX comboitemGroup;
+WIDTH 200 ;
+HEIGHT 100;
+ITEMS self:itemGroupItems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 SuppliersDataWindow.Center ( )
@@ -440,6 +460,8 @@ self:cCompany := SuppliersDataWindow.textCompany.Value
 self:cNotes := SuppliersDataWindow.editNotes.Value
 self:cGender := self:GenderItemsids[self:cGender]
 self:cCountry := self:CountryItemsIDS[self:cCountry]
+self:nItemGroup := SuppliersDataWindow.ComboItemGroup.Value
+self:nItemGroup := self:ItemGroupItemsids[self:nItemGroup]
 Return 0
 Method Class2ADO Class SuppliersDataClass
 self:oRS:fields:item("f_name"):value := self:cName
@@ -458,6 +480,7 @@ self:oRS:fields:item("f_zip"):value := self:czip
 self:oRS:fields:item("f_Mobile2"):value := self:cMobile2
 self:oRS:fields:item("f_company"):value := self:cCompany
 self:oRS:fields:item("f_notes"):value := self:cNotes
+self:oRS:fields:item("ItemGroup"):value := self:nItemGroup
 Return 0
 Method ADO2Class Class SuppliersDataClass
 self:cname := self:oRS:fields:item("f_name"):value
@@ -476,6 +499,7 @@ self:czip := self:oRS:fields:item("f_zip"):value
 self:cmobile2 := self:oRS:fields:item("f_mobile2"):value
 self:ccompany := self:oRS:fields:item("f_company"):value
 self:cNotes := self:oRS:fields:item("f_notes"):value
+self:nItemGroup := self:oRS:fields:item("ItemGroup"):value
 Return 0
 Method Class2UserInterface Class SuppliersDataClass
 SuppliersDataWindow.textName.Value := self:cname
@@ -496,6 +520,8 @@ SuppliersDataWindow.textZip.Value := self:cZip
 SuppliersDataWindow.textMobile2.Value := self:cMobile2
 SuppliersDataWindow.textCompany.Value := self:cCompany
 SuppliersDataWindow.editNotes.Value := self:cNotes
+self:nItemGroup = self:LookupIDToIndex(self:nItemGroup,@self:ItemGroupItemsids)
+SuppliersDataWindow.comboItemGroup.Value := self:nItemGroup
 Return 0
 Method ClearRecord Class SuppliersDataClass
 self:cname := ""
@@ -514,6 +540,7 @@ self:cZip := ""
 self:cMobile2 := ""
 self:cCompany := ""
 self:cNotes := ""
+self:nItemGroup := 0
 Return 0
 Method PrintData Class SuppliersDataClass
 Local myid,myout
@@ -559,6 +586,7 @@ SuppliersDataWindow.textmobile2.Enabled := true
 SuppliersDataWindow.comboGender.Enabled := true
 SuppliersDataWindow.comboCountry.Enabled := true
 SuppliersDataWindow.editNotes.Enabled := true
+SuppliersDataWindow.comboItemGroup.Enabled := true
 ENDIF
 IF p1 = 2
 SuppliersDataWindow.btnfirst.Enabled := true
@@ -587,6 +615,7 @@ SuppliersDataWindow.textmobile2.Enabled := false
 SuppliersDataWindow.comboGender.Enabled := false
 SuppliersDataWindow.comboCountry.Enabled := false
 SuppliersDataWindow.editNotes.Enabled := false
+SuppliersDataWindow.comboItemGroup.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
