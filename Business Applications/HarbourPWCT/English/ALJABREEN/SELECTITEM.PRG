@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:52:37    Date : 10/16/2010
+* Time : 16:34:41    Date : 10/16/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -46,7 +46,7 @@ Data itemitems init {}
 Data itemitemsids init {}
 Data nOrderNumber init ""
 Data TableName2 init "ItemDetailsValues_All"
-Data column2 init "InfValue"
+Data column2 init "Itemdetails"
 Data PrimaryKey2 init "id"
 Data columns2 init {"itemdetails","InfValue"}
 Data ResultPrimaryKeys2 init {}
@@ -86,44 +86,21 @@ if !iswindowdefined( SelectItemMasterDetailsWindow )
 DEFINE WINDOW SelectItemMasterDetailsWindow ;
 AT 10 ,10 ;
 WIDTH 779 ;
-HEIGHT 657 ;
+HEIGHT 585 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE "Enter Orders" ;
+TITLE "Select Item" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 270 ,328 BUTTONEX btnFirst;
-CAPTION "First";
-FONTCOLOR {255,255,255};
-BACKCOLOR {64,0,64};
-ON CLICK self:firstrecord()  ;
-WIDTH 60 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-NOXPSTYLE ;
-TOOLTIP ""
-@ 270 ,391 BUTTONEX btnNext;
-CAPTION "Next";
-FONTCOLOR {255,255,255};
-BACKCOLOR {64,0,64};
-ON CLICK self:nextrecord()  ;
-WIDTH 60 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-NOXPSTYLE ;
-TOOLTIP ""
-@ 270 ,518 BUTTONEX btnLast;
-CAPTION "Last";
-FONTCOLOR {255,255,255};
-BACKCOLOR {64,0,64};
-ON CLICK self:lastrecord()  ;
-WIDTH 60 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-NOXPSTYLE ;
-TOOLTIP ""
-@ 270 ,674 BUTTONEX btnClose;
+@ 39 ,5 IMAGE image1;
+PICTURE "Image\back.jpg";
+STRETCH ;
+WIDTH 760 HEIGHT 490
+@ 493 ,651 BUTTONEX btnClose;
 CAPTION "Close";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -132,50 +109,8 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 270 ,455 BUTTONEX btnPrev;
-CAPTION "Prev ";
-FONTCOLOR {255,255,255};
-BACKCOLOR {64,0,64};
-ON CLICK self:prevrecord()  ;
-WIDTH 60 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-NOXPSTYLE ;
-TOOLTIP ""
-@ 270 ,587 BUTTONEX btnDel;
-CAPTION "Delete";
-FONTCOLOR {255,255,255};
-BACKCOLOR {255,0,0};
-ON CLICK self:delrecord()  ;
-WIDTH 70 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-NOXPSTYLE ;
-TOOLTIP ""
-@ 270 ,164 BUTTONEX btnsave;
-CAPTION "Save";
-ON CLICK self:saverecord()  ;
-WIDTH 70 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-TOOLTIP ""
-@ 270 ,236 BUTTONEX btncancel;
-CAPTION "Cancel";
-ON CLICK self:cancelrecord()  ;
-WIDTH 80 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-TOOLTIP ""
-@ 270 ,92 BUTTONEX btnedit;
-CAPTION "Edit";
-ON CLICK self:editrecord()  ;
-WIDTH 60 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-TOOLTIP ""
-@ 270 ,9 BUTTONEX btnadd;
-CAPTION "Add";
-ON CLICK self:addrecord()  ;
-WIDTH 70 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                            Master/Details" ;
+VALUE "                                                            Select Item" ;
 WIDTH 760 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
@@ -188,7 +123,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
-FONTCOLOR {255,255,255}
+FONTCOLOR {0,0,0}
 @ 53 ,196 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
@@ -207,84 +142,38 @@ WIDTH 730 ;
 HEIGHT 130 ;
 HEADERS {"ID","Item Name"};
 WIDTHS {100,200} ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = self:LoadLookupTable("ItemsAndUnits_ALL","ItemCompleteName",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 316 ,133 LABEL lblitems ;
-VALUE "Inf Value" ;
-WIDTH 90 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {255,255,255}
-@ 316 ,230 COMBOBOX comboitem;
-ON CHANGE self:itemchange()  ;
-WIDTH 280 ;
-HEIGHT 100;
-ITEMS self:itemitems ;
-VALUE 1 ;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 232 ,199 LABEL lblOrdernumber ;
-VALUE "Item Name" ;
-WIDTH 130 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {255,255,255}
-@ 231 ,333 TEXTBOX textOrderNumber;
-HEIGHT 30 ;
-WIDTH 190 ;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-
-@ 572 ,231 LABEL lbl1browse2 ;
-VALUE "Inf Value" ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 572 ,338 TEXTBOX textNamebrowse2;
-HEIGHT 30 ;
-WIDTH 160 ;
-BACKCOLOR {0,255,128} ;
-FONTCOLOR {0,0,0}
-
-@ 572 ,507 BUTTONEX btn1browse2;
-CAPTION "Search";
-ON CLICK self:search2()  ;
-WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-TOOLTIP ""
-@ 356 ,11 GRID Grid1browse2;
+@ 286 ,11 GRID Grid1browse2;
 WIDTH 750 ;
 HEIGHT 200 ;
 HEADERS {"Information","Value"};
 WIDTHS {200,200} ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 573 ,13 BUTTONEX btnDel2;
-CAPTION "Delete Item";
-FONTCOLOR {255,255,255};
-BACKCOLOR {255,0,0};
-ON CLICK self:delrecord2()  ;
-WIDTH 140 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-NOXPSTYLE ;
-TOOLTIP ""
-@ 315 ,525 BUTTONEX btnadd2;
-CAPTION "Add Item";
-ON CLICK self:addrecord2()  ;
-WIDTH 140 HEIGHT 30 ;
+@ 232 ,59 LABEL lbl2browse ;
+VALUE "Information" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 233 ,196 TEXTBOX textnamebrowse2;
+HEIGHT 30 ;
+WIDTH 400 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
+@ 233 ,612 BUTTONEX btn2browse;
+CAPTION "Search";
+ON CLICK self:search2()  ;
+WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
@@ -293,7 +182,6 @@ SelectItemMasterDetailsWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
 SelectItemMasterDetailsWindow.Timer1.Enabled := false
-SelectItemMasterDetailsWindow.textOrderNumber.Enabled := false
 ACTIVATE WINDOW SelectItemMasterDetailsWindow
 EndIF
 
@@ -307,7 +195,6 @@ Method ADO2Class Class SelectItemMasterDetailsClass
 self:nOrderNumber := self:oRS:fields:item("id"):value
 Return 0
 Method Class2UserInterface Class SelectItemMasterDetailsClass
-SelectItemMasterDetailsWindow.textOrderNumber.Value := alltrim(str(self:nOrderNumber))
 myout = self:search2()
 Return 0
 Method ClearRecord Class SelectItemMasterDetailsClass
@@ -317,32 +204,8 @@ ENDIF
 Return 0
 Method setmode(p1) Class SelectItemMasterDetailsClass
 IF p1 = 1
-SelectItemMasterDetailsWindow.btnfirst.Enabled := false
-SelectItemMasterDetailsWindow.btnnext.Enabled := false
-SelectItemMasterDetailsWindow.btnprev.Enabled := false
-SelectItemMasterDetailsWindow.btnlast.Enabled := false
-SelectItemMasterDetailsWindow.btndel.Enabled := false
-SelectItemMasterDetailsWindow.btnclose.Enabled := false
-SelectItemMasterDetailsWindow.btnsave.Enabled := true
-SelectItemMasterDetailsWindow.btncancel.Enabled := true
-SelectItemMasterDetailsWindow.btnedit.Enabled := false
-SelectItemMasterDetailsWindow.btnadd.Enabled := false
-SelectItemMasterDetailsWindow.btnadd2.Enabled := false
-SelectItemMasterDetailsWindow.btndel2.Enabled := false
 ENDIF
 IF p1 = 2
-SelectItemMasterDetailsWindow.btnfirst.Enabled := true
-SelectItemMasterDetailsWindow.btnnext.Enabled := true
-SelectItemMasterDetailsWindow.btnprev.Enabled := true
-SelectItemMasterDetailsWindow.btnlast.Enabled := true
-SelectItemMasterDetailsWindow.btndel.Enabled := true
-SelectItemMasterDetailsWindow.btnclose.Enabled := true
-SelectItemMasterDetailsWindow.btnsave.Enabled := false
-SelectItemMasterDetailsWindow.btncancel.Enabled := false
-SelectItemMasterDetailsWindow.btnedit.Enabled := true
-SelectItemMasterDetailsWindow.btnadd.Enabled := true
-SelectItemMasterDetailsWindow.btnadd2.Enabled := true
-SelectItemMasterDetailsWindow.btndel2.Enabled := true
 ENDIF
 self:OperationMode := p1
 Return 0
