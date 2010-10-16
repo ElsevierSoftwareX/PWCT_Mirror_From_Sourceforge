@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:34:41    Date : 10/16/2010
+* Time : 16:48:43    Date : 10/16/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -86,9 +86,8 @@ if !iswindowdefined( SelectItemMasterDetailsWindow )
 DEFINE WINDOW SelectItemMasterDetailsWindow ;
 AT 10 ,10 ;
 WIDTH 779 ;
-HEIGHT 585 ;
+HEIGHT 574 ;
 ON INIT self:Search()  ;
-ICON "PWCTICON" ;
 TITLE "Select Item" ;
 CHILD ;
 NOMINIMIZE ;
@@ -96,16 +95,16 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 39 ,5 IMAGE image1;
+@ 39 ,4 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 760 HEIGHT 490
-@ 493 ,651 BUTTONEX btnClose;
-CAPTION "Close";
+WIDTH 760 HEIGHT 510
+@ 493 ,309 BUTTONEX btnClose;
+CAPTION "Ok";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
 ON CLICK self:closewindow()  ;
-WIDTH 80 HEIGHT 30 ;
+WIDTH 150 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""

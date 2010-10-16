@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:16:34    Date : 10/15/2010
+* Time : 16:56:29    Date : 10/16/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -121,6 +121,7 @@ Set Procedure to "EmpDetailsValues_Data.PRG"
 Set Procedure to "Vacations_Data.PRG"
 Set Procedure to "ItemDetails_Data.PRG"
 Set Procedure to "ItemsDetailsValues_Data.PRG"
+Set Procedure to "SelectItem.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -186,6 +187,7 @@ EmpDetailsValuesDataBrowseObject = EmpDetailsValuesDataBrowseClass()
 VacationsDataBrowseObject = VacationsDataBrowseClass()
 ItemDetailsDataObject = ItemDetailsDataClass()
 ItemDetailsValuesDataBrowseObject = ItemDetailsValuesDataBrowseClass()
+SelectItemMasterDetailsObject = SelectItemMasterDetailsClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;

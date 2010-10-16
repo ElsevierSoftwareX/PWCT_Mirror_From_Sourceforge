@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:16:13    Date : 10/15/2010
+* Time : 16:56:22    Date : 10/16/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -85,6 +85,7 @@ Method BeforeSearch
 Method SearchAdd
 Method settimer
 Method GetSearchValue
+Method selectitem
 EndClass
 Method showwindow Class OrdersEnterClass
 myout = self:connect()
@@ -237,7 +238,7 @@ WIDTH 1080 ;
 HEIGHT 130 ;
 HEADERS {"Order Number","Order Date","Customer Name","Finish Date","Order Status"};
 WIDTHS {150,200,300,200,200} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
@@ -285,7 +286,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 366 ,90 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
-WIDTH 280 ;
+WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:itemitems ;
 VALUE 1 ;
@@ -439,6 +440,12 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 366 ,333 BUTTONEX btnSelItem;
+CAPTION ":::";
+ON CLICK self:SelectItem()  ;
+WIDTH 40 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 OrdersEnterWindow.Center ( )
@@ -694,6 +701,12 @@ self:oRS:UPDATE()
 myitem := OrdersEnterWindow.Grid1Browse.item(OrdersEnterWindow.Grid1Browse.value)
 myitem[5] := "Wait For Agreement"
 OrdersEnterWindow.Grid1Browse.item(OrdersEnterWindow.Grid1Browse.Value) := myitem
+Return 0
+Method SelectItem Class OrdersEnterClass
+Local myindex,myout
+myout = SelectItemMasterDetailsObject:ShowWindow()
+myindex = self:LookupIDToIndex(SelectItemMasterDetailsObject:nOrderNumber,@self:ItemItemsids)
+OrdersEnterWindow.ComboItem.Value := myindex
 Return 0
 Method closewindow Class OrdersEnterClass
 myout = self:disconnect()
