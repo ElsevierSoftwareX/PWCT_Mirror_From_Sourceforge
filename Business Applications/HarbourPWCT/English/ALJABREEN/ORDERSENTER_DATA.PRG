@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:56:22    Date : 10/16/2010
+* Time : 18:52:30    Date : 10/16/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -707,6 +707,7 @@ Local myindex,myout
 myout = SelectItemMasterDetailsObject:ShowWindow()
 myindex = self:LookupIDToIndex(SelectItemMasterDetailsObject:nOrderNumber,@self:ItemItemsids)
 OrdersEnterWindow.ComboItem.Value := myindex
+myout = self:ItemChange()
 Return 0
 Method closewindow Class OrdersEnterClass
 myout = self:disconnect()
