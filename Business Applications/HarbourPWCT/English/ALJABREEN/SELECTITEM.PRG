@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:48:43    Date : 10/16/2010
+* Time : 17:39:53    Date : 10/16/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -88,8 +88,10 @@ AT 10 ,10 ;
 WIDTH 779 ;
 HEIGHT 574 ;
 ON INIT self:Search()  ;
+ON LOSTFOCUS SelectItemMasterDetailsWindow.release()  ;
 TITLE "Select Item" ;
 CHILD ;
+TOPMOST ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
@@ -315,6 +317,12 @@ SelectItemMasterDetailsWindow.grid1Browse.Value := 0
 Return 0
 Method SearchAdd(temp_array) Class SelectItemMasterDetailsClass
 SelectItemMasterDetailsWindow.grid1Browse.AddItem ( temp_array )
+mymax := SelectItemMasterDetailsWindow.Grid1Browse.ItemCount
+IF mymax = 1
+SelectItemMasterDetailsWindow.Grid1Browse.Value := 1
+self:nOrderNumber := val(temp_array[1])
+myout = self:search2()
+ENDIF
 Return 0
 Method SetTimer(p1) Class SelectItemMasterDetailsClass
 SelectItemMasterDetailsWindow.Timer1.Enabled := p1
