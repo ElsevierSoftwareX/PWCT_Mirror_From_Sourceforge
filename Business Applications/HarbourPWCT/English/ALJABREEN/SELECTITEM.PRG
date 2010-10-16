@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:00:25    Date : 10/16/2010
+* Time : 19:27:53    Date : 10/16/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,6 +54,9 @@ Data TableName3 init "ItemDetailsValues_All"
 Data PrimaryKey3 init "id"
 Data linkmasterkey init "ID"
 Data linkchildkey init "ItemID"
+Data nitemGroup init 0
+Data itemGroupItems init {}
+Data itemGroupItemsIDs init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -78,6 +81,7 @@ Method BeforeSearch
 Method SearchAdd
 Method settimer
 Method GetSearchValue
+Method GroupFilter
 EndClass
 Method showwindow Class SelectItemMasterDetailsClass
 myout = self:connect()
@@ -86,7 +90,7 @@ if !iswindowdefined( SelectItemMasterDetailsWindow )
 DEFINE WINDOW SelectItemMasterDetailsWindow ;
 AT 10 ,10 ;
 WIDTH 779 ;
-HEIGHT 574 ;
+HEIGHT 595 ;
 ON INIT self:Search()  ;
 ON LOSTFOCUS SelectItemMasterDetailsWindow.release()  ;
 TITLE "Select Item" ;
@@ -100,8 +104,8 @@ BACKCOLOR {64,0,64}
 @ 39 ,4 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 760 HEIGHT 510
-@ 493 ,309 BUTTONEX btnClose;
+WIDTH 760 HEIGHT 520
+@ 513 ,309 BUTTONEX btnClose;
 CAPTION "Ok";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -117,7 +121,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 52 ,59 LABEL lbl1browse ;
+@ 82 ,59 LABEL lbl1browse ;
 VALUE "Item Name" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -125,31 +129,31 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 53 ,196 TEXTBOX textnamebrowse;
+@ 83 ,196 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 53 ,612 BUTTONEX btn1browse;
+@ 83 ,612 BUTTONEX btn1browse;
 CAPTION "Search";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 93 ,23 GRID Grid1browse;
+@ 123 ,23 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 730 ;
 HEIGHT 130 ;
 HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size"};
 WIDTHS {50,150,150,100,100,100,100,100,100} ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = self:LoadLookupTable("ItemsAndUnits_ALL","ItemCompleteName",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 286 ,11 GRID Grid1browse2;
+@ 306 ,11 GRID Grid1browse2;
 WIDTH 750 ;
 HEIGHT 200 ;
 HEADERS {"Information","Value"};
@@ -157,7 +161,7 @@ WIDTHS {200,200} ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 232 ,59 LABEL lbl2browse ;
+@ 262 ,59 LABEL lbl2browse ;
 VALUE "Information" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -165,15 +169,38 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 233 ,196 TEXTBOX textnamebrowse2;
+@ 263 ,196 TEXTBOX textnamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 233 ,612 BUTTONEX btn2browse;
+@ 263 ,612 BUTTONEX btn2browse;
 CAPTION "Search";
 ON CLICK self:search2()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+myout = self:LoadLookupTable("Itemsgroups","groupname",@self:ItemgroupItems,"id",@self:ItemgroupItemsIDS)
+@ 50 ,59 LABEL lblFilter ;
+VALUE "Item Group" ;
+WIDTH 100 ;
+HEIGHT 20 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 50 ,195 COMBOBOX comboItemGroupFilter;
+WIDTH 400 ;
+HEIGHT 100;
+ITEMS self:itemgroupitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 50 ,612 BUTTONEX btnFilter;
+CAPTION "Filter";
+ON CLICK self:GroupFilter()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
@@ -291,6 +318,12 @@ ENDIF
 MYVALUE := self:ItemItemsids[TVALUE]
 myrs := TOLEAUTO():NEW( "ADODB.Recordset" )
 MYVALUE = STR ( MYVALUE )
+Return 0
+Method GroupFilter Class SelectItemMasterDetailsClass
+tvalue := SelectItemMasterDetailsWindow.ComboitemGroupFilter.Value
+tvalue := self:ItemGroupItemsids[tvalue]
+self:complexsearch := " and itemgroupid = " + alltrim(Str(tvalue))
+myout = self:search()
 Return 0
 Method closewindow Class SelectItemMasterDetailsClass
 myout = self:disconnect()
