@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:39:53    Date : 10/16/2010
+* Time : 18:00:25    Date : 10/16/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,11 +36,11 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_SELECTITEM_15speed1() code
 class SelectItemMasterDetailsClass From SystemDatabase
-Data TableName init "Items"
+Data TableName init "Items_All"
 Data nID init 0
 Data column init "ItemName"
 Data PrimaryKey init "id"
-Data columns init {"ID","ItemName"}
+Data columns init {"ID","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
 Data nItem init 0
 Data itemitems init {}
 Data itemitemsids init {}
@@ -141,9 +141,9 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 730 ;
 HEIGHT 130 ;
-HEADERS {"ID","Item Name"};
-WIDTHS {100,200} ;
-FONT "Arial" SIZE 9 ;
+HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size"};
+WIDTHS {50,150,150,100,100,100,100,100,100} ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
