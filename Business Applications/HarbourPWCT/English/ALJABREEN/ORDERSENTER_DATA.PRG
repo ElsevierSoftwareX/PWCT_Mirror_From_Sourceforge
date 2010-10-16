@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:02:45    Date : 09/13/2010
+* Time : 16:16:13    Date : 10/15/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -56,6 +56,9 @@ Data column2 init "itemname"
 Data PrimaryKey2 init "id"
 Data columns2 init {"ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName","u1name","u1value","u2name","u2value","theamount"}
 Data ResultPrimaryKeys2 init {}
+Data nItemGroup init 0
+Data itemgroupitems init {}
+Data itemgroupitemsids init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -89,7 +92,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( OrdersEnterWindow )
 DEFINE WINDOW OrdersEnterWindow ;
 AT 10 ,10 ;
-WIDTH 779 ;
+WIDTH 1132 ;
 HEIGHT 701 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -103,12 +106,12 @@ BACKCOLOR {64,0,64}
 @ 43 ,4 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 760 HEIGHT 260
+WIDTH 1110 HEIGHT 260
 @ 353 ,4 IMAGE image2;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 760 HEIGHT 260
-@ 310 ,328 BUTTONEX btnFirst;
+WIDTH 1110 HEIGHT 260
+@ 310 ,507 BUTTONEX btnFirst;
 CAPTION "First";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -117,7 +120,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 310 ,391 BUTTONEX btnNext;
+@ 310 ,570 BUTTONEX btnNext;
 CAPTION "Next";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -126,7 +129,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 310 ,518 BUTTONEX btnLast;
+@ 310 ,697 BUTTONEX btnLast;
 CAPTION "Last";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -135,7 +138,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 310 ,674 BUTTONEX btnClose;
+@ 310 ,853 BUTTONEX btnClose;
 CAPTION "Close";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -144,7 +147,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 310 ,455 BUTTONEX btnPrev;
+@ 310 ,634 BUTTONEX btnPrev;
 CAPTION "Prev ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -153,7 +156,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 310 ,587 BUTTONEX btnDel;
+@ 310 ,766 BUTTONEX btnDel;
 CAPTION "Delete";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -162,33 +165,33 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 310 ,164 BUTTONEX btnsave;
+@ 310 ,343 BUTTONEX btnsave;
 CAPTION "Save";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 310 ,236 BUTTONEX btncancel;
+@ 310 ,415 BUTTONEX btncancel;
 CAPTION "Cancel";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 310 ,92 BUTTONEX btnedit;
+@ 310 ,271 BUTTONEX btnedit;
 CAPTION "Edit";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 310 ,9 BUTTONEX btnadd;
+@ 310 ,188 BUTTONEX btnadd;
 CAPTION "Add";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                            Enter Orders" ;
-WIDTH 760 ;
+VALUE "                                                                                              Enter Orders" ;
+WIDTH 1110 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -206,9 +209,9 @@ HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 52 ,59 LABEL lbl1browse ;
+FONTCOLOR {0,0,0}
+
+@ 52 ,234 LABEL lbl1browse ;
 VALUE "Order Number" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -216,13 +219,13 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 53 ,196 TEXTBOX textnamebrowse;
+@ 53 ,371 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 53 ,612 BUTTONEX btn1browse;
+FONTCOLOR {0,0,0}
+
+@ 53 ,787 BUTTONEX btn1browse;
 CAPTION "Search";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -230,11 +233,11 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 93 ,23 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 730 ;
+WIDTH 1080 ;
 HEIGHT 130 ;
 HEADERS {"Order Number","Order Date","Customer Name","Finish Date","Order Status"};
-WIDTHS {100,100,200,100,200} ;
-FONT "arial" SIZE 9 ;
+WIDTHS {150,200,300,200,200} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
@@ -252,10 +255,10 @@ HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 myout = self:LoadLookupTable("Customers","f_name",@self:CustomerItems,"id",@self:CustomerItemsIDS)
-@ 235 ,363 LABEL lblSupplier ;
+@ 233 ,730 LABEL lblSupplier ;
 VALUE "Customer" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -263,7 +266,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 234 ,469 COMBOBOX combocustomer;
+@ 232 ,826 COMBOBOX combocustomer;
 WIDTH 280 ;
 HEIGHT 100;
 ITEMS self:Customeritems ;
@@ -302,8 +305,8 @@ HEIGHT 30 ;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 494 ,23 LABEL lblItemUnit2 ;
 VALUE "Item Unit (Secondary)" ;
 WIDTH 190 ;
@@ -317,9 +320,9 @@ HEIGHT 30 ;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 232 ,29 LABEL lblOrdernumber ;
+FONTCOLOR {0,0,0}
+
+@ 230 ,417 LABEL lblOrdernumber ;
 VALUE "Order Number" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -327,14 +330,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 231 ,163 TEXTBOX textOrderNumber;
+@ 229 ,550 TEXTBOX textOrderNumber;
 HEIGHT 30 ;
-WIDTH 190 ;
+WIDTH 170 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 270 ,53 LABEL lblOrderDate ;
+FONTCOLOR {0,0,0}
+
+@ 270 ,73 LABEL lblOrderDate ;
 VALUE "Order Date" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -342,8 +345,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 270 ,163 DATEPICKER dateOrderDate;
-WIDTH 190 ;
+@ 270 ,182 DATEPICKER dateOrderDate;
+WIDTH 210 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
@@ -361,50 +364,50 @@ HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 270 ,363 LABEL lblFinishDate ;
+FONTCOLOR {0,0,0}
+
+@ 270 ,442 LABEL lblFinishDate ;
 VALUE "Finish Date" ;
-WIDTH 110 ;
+WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 270 ,469 DATEPICKER dateFinishDate;
-WIDTH 280 ;
+@ 270 ,548 DATEPICKER dateFinishDate;
+WIDTH 170 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 366 ,379 LABEL lbl1browse2 ;
+@ 366 ,539 LABEL lbl1browse2 ;
 VALUE "Item Name" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 366 ,486 TEXTBOX textNamebrowse2;
+@ 366 ,646 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
-WIDTH 160 ;
+WIDTH 230 ;
 BACKCOLOR {0,255,128} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
-@ 366 ,655 BUTTONEX btn1browse2;
+FONTCOLOR {0,0,0}
+
+@ 366 ,885 BUTTONEX btn1browse2;
 CAPTION "Search";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 406 ,381 GRID Grid1browse2;
-WIDTH 380 ;
+WIDTH 720 ;
 HEIGHT 200 ;
 HEADERS {"Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size","Unit","Value","Secondary Unit","value","Amount"};
 WIDTHS {100,200,100,100,100,100,100,100,100,100,100,100,100} ;
-FONT "Arial" SIZE 9 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 618 ,381 BUTTONEX btnDel2;
+@ 618 ,721 BUTTONEX btnDel2;
 CAPTION "Delete Item From Order";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -419,6 +422,23 @@ ON CLICK self:addrecord2()  ;
 WIDTH 360 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
+@ 227 ,23 LABEL lblItemGroup ;
+VALUE "Order Item Group" ;
+WIDTH 170 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 227 ,182 COMBOBOX comboitemGroup;
+WIDTH 210 ;
+HEIGHT 100;
+ITEMS self:ItemGroupitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 OrdersEnterWindow.Center ( )
@@ -437,18 +457,22 @@ self:cOrderDate := OrdersEnterWindow.dateOrderDate.Value
 self:cOrderDate := dtoc(self:cOrderDate)
 self:cOrderFinishDate := OrdersEnterWindow.dateFinishDate.Value
 self:cOrderFinishDate := dtoc(self:cOrderFinishDate)
+self:nitemGroup := OrdersEnterWindow.ComboitemGroup.Value
+self:nitemGroup := self:ItemGroupItemsids[self:nitemGroup]
 Return 0
 Method Class2ADO Class OrdersEnterClass
 self:oRS:fields:item("Customerid"):value := self:nCustomer
 self:oRS:fields:item("OrderDate"):value := self:cOrderDate
 self:oRS:fields:item("FinishDate"):value := self:cOrderFinishDate
 self:oRS:fields:item("OrderNumber"):value := self:nOrderNumber
+self:oRS:fields:item("OrderitemGroupid"):value := self:nitemGroup
 Return 0
 Method ADO2Class Class OrdersEnterClass
 self:nCustomer := self:oRS:fields:item("CustomerID"):value
 self:cOrderDate := self:oRS:fields:item("OrderDate"):value
 self:cOrderFinishDate := self:oRS:fields:item("FinishDate"):value
 self:nOrderNumber := self:oRS:fields:item("OrderNumber"):value
+self:nitemGroup := self:oRS:fields:item("OrderitemGroupid"):value
 Return 0
 Method Class2UserInterface Class OrdersEnterClass
 self:nCustomer = self:LookupIDToIndex(self:nCustomer,@self:CustomerItemsids)
@@ -457,6 +481,8 @@ OrdersEnterWindow.dateOrderDate.Value := ctod(self:cOrderDate)
 OrdersEnterWindow.dateFinishDate.Value := ctod(self:cOrderFinishDate )
 OrdersEnterWindow.textOrderNumber.Value := alltrim(str(self:nOrderNumber))
 myout = self:search2()
+self:nItemGroup = self:LookupIDToIndex(self:nItemGroup,@self:ItemGroupItemsids)
+OrdersEnterWindow.ComboitemGroup.Value := self:nItemGroup
 Return 0
 Method ClearRecord Class OrdersEnterClass
 self:nCustomer := 0
@@ -465,6 +491,7 @@ self:cOrderFinishDate := ""
 IF self:addrec = false
 self:nOrderNumber := 0
 ENDIF
+self:nItemGroup := 0
 Return 0
 Method OpenDataWindow Class OrdersEnterClass
 Local nvalue,myout
@@ -499,6 +526,7 @@ OrdersEnterWindow.dateOrderDate.Enabled := true
 OrdersEnterWindow.dateFinishDate.Enabled := true
 OrdersEnterWindow.btnadd2.Enabled := false
 OrdersEnterWindow.btndel2.Enabled := false
+OrdersEnterWindow.comboItemGroup.Enabled := true
 ENDIF
 IF p1 = 2
 OrdersEnterWindow.btnfirst.Enabled := true
@@ -516,6 +544,7 @@ OrdersEnterWindow.dateOrderDate.Enabled := false
 OrdersEnterWindow.dateFinishDate.Enabled := false
 OrdersEnterWindow.btnadd2.Enabled := true
 OrdersEnterWindow.btndel2.Enabled := true
+OrdersEnterWindow.comboItemGroup.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
