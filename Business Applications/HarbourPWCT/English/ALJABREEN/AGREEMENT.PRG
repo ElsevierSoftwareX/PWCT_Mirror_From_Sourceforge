@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:00:49    Date : 10/17/2010
+* Time : 19:38:53    Date : 10/17/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,9 @@ Data Financeitemsids init {}
 Data nOrderStatus init 0
 Data OrderStatusitems init {}
 Data OrderStatusitemsids init {}
+Data nProductionMan init 0
+Data ProductionManitems init {}
+Data ProductionManitemsids init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -99,6 +102,8 @@ Method BeforeSearch
 Method SearchAdd
 Method settimer
 Method GetSearchValue
+Method ProductionManNotes
+Method ProductionManNotesSave
 EndClass
 Method showwindow Class AgreementClass
 myout = self:connect()
@@ -107,7 +112,7 @@ if !iswindowdefined( AgreementWindow )
 DEFINE WINDOW AgreementWindow ;
 AT 10 ,10 ;
 WIDTH 779 ;
-HEIGHT 710 ;
+HEIGHT 768 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
 TITLE "Agreement" ;
@@ -124,8 +129,8 @@ WIDTH 760 HEIGHT 190
 @ 244 ,4 IMAGE image2;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 760 HEIGHT 390
-@ 638 ,674 BUTTONEX btnClose;
+WIDTH 760 HEIGHT 430
+@ 688 ,674 BUTTONEX btnClose;
 CAPTION "Close";
 FONTCOLOR {0,0,0};
 BACKCOLOR {255,255,255};
@@ -273,7 +278,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("OrderStatus","OrderStatus",@self:OrderStatusItems,"id",@self:OrderStatusItemsIDS)
-@ 592 ,25 LABEL lblOrderStatus ;
+@ 632 ,25 LABEL lblOrderStatus ;
 VALUE "Change Order Status" ;
 WIDTH 220 ;
 HEIGHT 30 ;
@@ -281,7 +286,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 590 ,291 COMBOBOX comboOrderStatus;
+@ 630 ,291 COMBOBOX comboOrderStatus;
 ON CHANGE self:saverecord2()  ;
 WIDTH 370 ;
 HEIGHT 100;
@@ -314,9 +319,33 @@ ON CLICK self:FinanceNotes()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 588 ,674 BUTTONEX btnOrderStatusNotes;
+@ 628 ,674 BUTTONEX btnOrderStatusNotes;
 CAPTION "Notes";
 ON CLICK self:OrderStatusNotes()  ;
+WIDTH 80 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+myout = self:LoadLookupTable("ProductionMan","ProductionManOpinion",@self:ProductionManItems,"id",@self:ProductionManItemsIDS)
+@ 593 ,25 LABEL lblProductionMan ;
+VALUE "Production Manager Decision" ;
+WIDTH 260 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 594 ,291 COMBOBOX comboProductionMan;
+ON CHANGE self:saverecord2()  ;
+WIDTH 370 ;
+HEIGHT 100;
+ITEMS self:ProductionManitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 590 ,674 BUTTONEX btnProductionManNotes;
+CAPTION "Notes";
+ON CLICK self:ProductionManNotes()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
@@ -349,6 +378,11 @@ ELSE
 AgreementWindow.comboFinance.Enabled := false
 AgreementWindow.comboOrderStatus.Enabled := false
 ENDIF
+IF UserCan_AgreementRole = 7
+AgreementWindow.comboProductionMan.Enabled := true
+ELSE
+AgreementWindow.comboProductionMan.Enabled := false
+ENDIF
 mymax := self:oRS:RecordCount
 IF mymax = 0
 AgreementWindow.comboQuality.Enabled := false
@@ -361,6 +395,8 @@ AgreementWindow.btnSchedulingNotes.Enabled := false
 AgreementWindow.btnWarehouseNotes.Enabled := false
 AgreementWindow.btnFinanceNotes.Enabled := false
 AgreementWindow.btnOrderStatusNotes.Enabled := false
+AgreementWindow.btnProductionManNotes.Enabled := false
+AgreementWindow.comboProductionMan.Enabled := false
 ENDIF
 ACTIVATE WINDOW AgreementWindow
 EndIF
@@ -377,6 +413,8 @@ self:nFinance := AgreementWindow.ComboFinance.Value
 self:nFinance := self:FinanceItemsids[self:nFinance]
 self:nOrderStatus := AgreementWindow.ComboOrderStatus.Value
 self:nOrderStatus := self:OrderStatusItemsids[self:nOrderStatus]
+self:nProductionMan := AgreementWindow.ComboProductionMan.Value
+self:nProductionMan := self:ProductionManItemsids[self:nProductionMan]
 Return 0
 Method Class2ADO Class AgreementClass
 self:oRS:fields:item("Qualityid"):value := self:nQuality
@@ -384,6 +422,7 @@ self:oRS:fields:item("Schedulingid"):value := self:nScheduling
 self:oRS:fields:item("Warehouseid"):value := self:nWarehouse
 self:oRS:fields:item("Financeid"):value := self:nFinance
 self:oRS:fields:item("OrderStatusid"):value := self:nOrderStatus
+self:oRS:fields:item("ProductionManid"):value := self:nProductionMan
 Return 0
 Method ADO2Class Class AgreementClass
 self:nOrderNumber := self:oRS:fields:item("ordernumber"):value
@@ -392,6 +431,7 @@ self:nWarehouse := self:oRS:fields:item("WarehouseID"):value
 self:nFinance := self:oRS:fields:item("FinanceID"):value
 self:nScheduling := self:oRS:fields:item("SchedulingID"):value
 self:nOrderStatus := self:oRS:fields:item("OrderStatusID"):value
+self:nProductionMan := self:oRS:fields:item("ProductionManID"):value
 Return 0
 Method Class2UserInterface Class AgreementClass
 self:nQuality = self:LookupIDToIndex(self:nQuality,@self:QualityItemsids)
@@ -404,6 +444,8 @@ self:nFinance = self:LookupIDToIndex(self:nFinance,@self:FinanceItemsids)
 AgreementWindow.ComboFinance.Value := self:nFinance
 self:nOrderStatus = self:LookupIDToIndex(self:nOrderStatus,@self:OrderStatusItemsids)
 AgreementWindow.ComboOrderStatus.Value := self:nOrderStatus
+self:nProductionMan = self:LookupIDToIndex(self:nProductionMan,@self:ProductionManItemsids)
+AgreementWindow.ComboQuality.Value := self:nQuality
 Return 0
 Method ClearRecord Class AgreementClass
 self:nQuality := 0
@@ -411,6 +453,7 @@ self:nScheduling := 0
 self:nWarehouse := 0
 self:nFinance := 0
 self:nOrderStatus := 0
+self:nProductionMan := 0
 Return 0
 Method OpenDataWindow Class AgreementClass
 Local nvalue,myout
@@ -819,6 +862,65 @@ self:oRS:fields:item("OrderStatusNotes"):value := cNotes
 self:oRS:UPDATE()
 ENDIF
 winOrderStatusNotes.Release ( )
+Return 0
+Method ProductionManNotes Class AgreementClass
+cNotes := self:oRS:fields:item("ProductionManNotes"):value
+if !iswindowdefined( winProductionManNotes )
+DEFINE WINDOW winProductionManNotes ;
+AT 10 ,10 ;
+WIDTH 772 ;
+HEIGHT 483 ;
+ICON "PWCTICON" ;
+TITLE "Production Manager - Notes" ;
+MODAL ;
+NOSIZE ;
+NOSYSMENU ;
+BACKCOLOR {236,233,216}
+
+@ 1 ,2 IMAGE image1;
+PICTURE "Image\back.jpg";
+STRETCH ;
+WIDTH 760 HEIGHT 390
+@ 12 ,17 LABEL lbl1 ;
+VALUE "Notes" ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 13 ,111 EDITBOX edit1;
+WIDTH 630 ;
+HEIGHT 370;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 401 ,643 BUTTONEX btn1;
+CAPTION "Close";
+FONTCOLOR {0,0,0};
+BACKCOLOR {0,255,128};
+ON CLICK self:ProductionManNotesSave()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+END WINDOW
+
+winProductionManNotes.Edit1.Value := cNotes
+WinProductionManNotes.Center ( )
+IF .not. UserCan_AgreementRole = 7
+WinProductionManNotes.Edit1.Enabled := false
+ENDIF
+ACTIVATE WINDOW winProductionManNotes
+EndIF
+
+Return 0
+Method ProductionManNotesSave Class AgreementClass
+IF UserCan_AgreementRole = 7
+cNotes := WinProductionManNotes.Edit1.Value
+self:oRS:fields:item("ProductionManNotes"):value := cNotes
+self:oRS:UPDATE()
+ENDIF
+winProductionManNotes.Release ( )
 Return 0
 Method closewindow Class AgreementClass
 myout = self:disconnect()
