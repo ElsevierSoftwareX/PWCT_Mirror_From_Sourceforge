@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:38:53    Date : 10/17/2010
+* Time : 19:47:56    Date : 10/17/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -112,7 +112,7 @@ if !iswindowdefined( AgreementWindow )
 DEFINE WINDOW AgreementWindow ;
 AT 10 ,10 ;
 WIDTH 779 ;
-HEIGHT 768 ;
+HEIGHT 744 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
 TITLE "Agreement" ;
@@ -129,8 +129,8 @@ WIDTH 760 HEIGHT 190
 @ 244 ,4 IMAGE image2;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 760 HEIGHT 430
-@ 688 ,674 BUTTONEX btnClose;
+WIDTH 760 HEIGHT 420
+@ 668 ,674 BUTTONEX btnClose;
 CAPTION "Close";
 FONTCOLOR {0,0,0};
 BACKCOLOR {255,255,255};
@@ -445,7 +445,7 @@ AgreementWindow.ComboFinance.Value := self:nFinance
 self:nOrderStatus = self:LookupIDToIndex(self:nOrderStatus,@self:OrderStatusItemsids)
 AgreementWindow.ComboOrderStatus.Value := self:nOrderStatus
 self:nProductionMan = self:LookupIDToIndex(self:nProductionMan,@self:ProductionManItemsids)
-AgreementWindow.ComboQuality.Value := self:nQuality
+AgreementWindow.ComboProductionMan.Value := self:nProductionMan
 Return 0
 Method ClearRecord Class AgreementClass
 self:nQuality := 0
