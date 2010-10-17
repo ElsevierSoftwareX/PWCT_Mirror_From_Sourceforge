@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:31:20    Date : 09/13/2010
+* Time : 19:00:49    Date : 10/17/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -202,8 +202,8 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Quality","QualityOpinion",@self:QualityItems,"id",@self:QualityItemsIDS)
 @ 448 ,25 LABEL lblQuality ;
-VALUE "Quality Manager Opinion" ;
-WIDTH 210 ;
+VALUE "Quality Manager Decision" ;
+WIDTH 240 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -220,8 +220,8 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Scheduling","SchedulingOpinion",@self:SchedulingItems,"id",@self:SchedulingItemsIDS)
 @ 484 ,25 LABEL lblScheduling ;
-VALUE "Scheduling Manager Opinion" ;
-WIDTH 250 ;
+VALUE "Scheduling Manager Decision" ;
+WIDTH 260 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -238,7 +238,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Warehouse","WarehouseOpinion",@self:WarehouseItems,"id",@self:WarehouseItemsIDS)
 @ 520 ,25 LABEL lblWarehouse ;
-VALUE "Warehouse Manager Opinion" ;
+VALUE "Warehouse Manager Decision" ;
 WIDTH 260 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
@@ -256,8 +256,8 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Finance","FinanceOpinion",@self:FinanceItems,"id",@self:FinanceItemsIDS)
 @ 556 ,25 LABEL lblFinance ;
-VALUE "Finance Manager Opinion" ;
-WIDTH 220 ;
+VALUE "Finance Manager Decision" ;
+WIDTH 250 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
