@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:39:14    Date : 09/12/2010
+* Time : 01:09:31    Date : 10/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -247,7 +247,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-myout = self:LoadLookupTable("Orders","OrderNumber",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
+myout = self:LoadLookupTable("ReadyOrders","OrderNumber",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
 @ 266 ,153 LABEL lblOrderNumber ;
 VALUE "Order Number" ;
 WIDTH 130 ;

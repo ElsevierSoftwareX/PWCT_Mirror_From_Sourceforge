@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:48:03    Date : 10/17/2010
+* Time : 01:09:37    Date : 10/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -122,6 +122,7 @@ Set Procedure to "Vacations_Data.PRG"
 Set Procedure to "ItemDetails_Data.PRG"
 Set Procedure to "ItemsDetailsValues_Data.PRG"
 Set Procedure to "SelectItem.PRG"
+Set Procedure to "ProductionMan_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -188,6 +189,7 @@ VacationsDataBrowseObject = VacationsDataBrowseClass()
 ItemDetailsDataObject = ItemDetailsDataClass()
 ItemDetailsValuesDataBrowseObject = ItemDetailsValuesDataBrowseClass()
 SelectItemMasterDetailsObject = SelectItemMasterDetailsClass()
+ProductionManObject = ProductionManClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -503,6 +505,7 @@ MENUITEM "Quality Manager Opinions" Action QualityObject:ShowWindow()
 MENUITEM "Scheduling Manager Opinions" Action SchedulingObject:ShowWindow()
 MENUITEM "Warehouse Manager Opinions" Action WarehouseObject:ShowWindow()
 MENUITEM "Finance Manager Opinions" Action FinanceObject:ShowWindow()
+MENUITEM "Production Manager Opinions" Action ProductionManObject:ShowWindow()
 MENUITEM "Agreement" Action AgreementObject:ShowWindow()
 END POPUP
 POPUP "Manufacturing"
