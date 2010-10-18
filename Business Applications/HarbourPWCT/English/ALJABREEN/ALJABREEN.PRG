@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:09:37    Date : 10/18/2010
+* Time : 19:33:25    Date : 10/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -355,7 +355,7 @@ ON CLICK OrderProcessesObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
 @ 316 ,470 LABEL lbl5 ;
-VALUE "Manufacturing" ;
+VALUE "Production" ;
 ACTION OrderProcessesObject:ShowWindow()  ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -508,7 +508,7 @@ MENUITEM "Finance Manager Opinions" Action FinanceObject:ShowWindow()
 MENUITEM "Production Manager Opinions" Action ProductionManObject:ShowWindow()
 MENUITEM "Agreement" Action AgreementObject:ShowWindow()
 END POPUP
-POPUP "Manufacturing"
+POPUP "Production"
 MENUITEM "Define Processes" Action ProcessesObject:ShowWindow()
 MENUITEM "Define Processes Status" Action ProcessStatusObject:ShowWindow()
 SEPARATOR
@@ -730,7 +730,7 @@ WIDTH 530 HEIGHT 336
 DEFINE TIMER Timer1 INTERVAL 1500 ;
 Action WINLOGOSTART.RELEASE()
 @ 13 ,17 LABEL lbl1 ;
-VALUE "System Vesion Date :  2010/08/26" ;
+VALUE "System Vesion Date :  2010/10/18" ;
 WIDTH 200 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;

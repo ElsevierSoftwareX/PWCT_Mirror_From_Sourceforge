@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:41:06    Date : 09/13/2010
+* Time : 19:18:44    Date : 10/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,8 @@ Method BeforeSearch
 Method settimer
 Method SearchAdd
 Method GetSearchValue
+Method SetMore
+Method MoreSave
 EndClass
 Method showwindow Class UsersClass
 myout = self:connect()
@@ -167,7 +169,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
 VALUE "                                                                               Users" ;
-WIDTH 870 ;
+WIDTH 760 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -185,8 +187,8 @@ HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 52 ,68 LABEL lbl1browse ;
 VALUE "User Name" ;
 WIDTH 100 ;
@@ -198,8 +200,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 530 ;
 BACKCOLOR {0,255,128} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0}
+
 @ 52 ,715 BUTTONEX btn1browse;
 CAPTION "Search";
 ON CLICK self:search()  ;
@@ -229,9 +231,10 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
-PASSWORD ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} ;
+PASSWORD
+
 myout = self:LoadLookupTable("AgreementRoles","AgreementRole",@self:AgreementRoleItems,"id",@self:AgreementRoleItemsIDS)
 @ 266 ,73 LABEL lblAgreementRole ;
 VALUE "Agreement Role" ;
@@ -266,6 +269,12 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 7 ,775 BUTTONEX btnMore;
+CAPTION "More";
+ON CLICK self:setmore()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 UsersWindow.Center ( )
@@ -360,6 +369,96 @@ UsersWindow.comboAgreementRole.Enabled := false
 UsersWindow.comboSystemAdmin.Enabled := false
 ENDIF
 self:OperationMode := p1
+Return 0
+Method SetMore Class UsersClass
+if !iswindowdefined( winMore )
+DEFINE WINDOW winMore ;
+AT 10 ,10 ;
+WIDTH 485 ;
+HEIGHT 535 ;
+ICON "PWCTICON" ;
+TITLE "More" ;
+MODAL ;
+BACKCOLOR {236,233,216}
+
+@ 458 ,385 BUTTONEX btnClose;
+CAPTION "Ok";
+FONTCOLOR {0,0,0};
+BACKCOLOR {132,242,179};
+ON CLICK Self:MoreSave()  ;
+WIDTH 80 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ -2 ,-4 IMAGE image1;
+PICTURE "Image\back.jpg";
+STRETCH ;
+WIDTH 481 HEIGHT 451
+@ 24 ,38 CHECKBOX check1;
+CAPTION "Employees";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 76 ,38 CHECKBOX check2;
+CAPTION "Suppliers";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 128 ,38 CHECKBOX check3;
+CAPTION "Customers";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 180 ,38 CHECKBOX check4;
+CAPTION "Warehouse";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 232 ,38 CHECKBOX check5;
+CAPTION "Orders";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 284 ,38 CHECKBOX check6;
+CAPTION "Agreement";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 336 ,38 CHECKBOX check7;
+CAPTION "Production";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 388 ,38 CHECKBOX check8;
+CAPTION "Dispose";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+END WINDOW
+
+winMore.Center ( )
+ACTIVATE WINDOW winMore
+EndIF
+
+Return 0
+Method MoreSave Class UsersClass
+winMore.Release ( )
 Return 0
 Method closewindow Class UsersClass
 myout = self:disconnect()
