@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:18:44    Date : 10/18/2010
+* Time : 20:13:38    Date : 10/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -453,6 +453,54 @@ FONTCOLOR {0,0,0}
 END WINDOW
 
 winMore.Center ( )
+vw1 := self:oRS:fields:item("WinEmployees"):value
+vw2 := self:oRS:fields:item("WinSuppliers"):value
+vw3 := self:oRS:fields:item("WinCustomers"):value
+vw4 := self:oRS:fields:item("WinWarehouse"):value
+vw5 := self:oRS:fields:item("WinOrders"):value
+vw6 := self:oRS:fields:item("WinAgreement"):value
+vw7 := self:oRS:fields:item("WinProduction"):value
+vw8 := self:oRS:fields:item("WinDispose"):value
+IF vw1 = 2
+winMore.check1.Value := 1
+ELSE
+winMore.check1.Value := 0
+ENDIF
+IF vw2 = 2
+winMore.check2.Value := 1
+ELSE
+winMore.check2.Value := 0
+ENDIF
+IF vw3 = 2
+winMore.check3.Value := 1
+ELSE
+winMore.check3.Value := 0
+ENDIF
+IF vw4 = 2
+winMore.check4.Value := 1
+ELSE
+winMore.check4.Value := 0
+ENDIF
+IF vw5 = 2
+winMore.check5.Value := 1
+ELSE
+winMore.check5.Value := 1
+ENDIF
+IF vw6 = 2
+winMore.check6.Value := 1
+ELSE
+winMore.check6.Value := 0
+ENDIF
+IF vw7 = 2
+winMore.check7.Value := 1
+ELSE
+winMore.check7.Value := 0
+ENDIF
+IF vw8 = 2
+winMore.check8.Value := 1
+ELSE
+winMore.check8.Value := 0
+ENDIF
 ACTIVATE WINDOW winMore
 EndIF
 
