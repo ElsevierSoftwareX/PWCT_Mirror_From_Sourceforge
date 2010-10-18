@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:13:38    Date : 10/18/2010
+* Time : 21:32:37    Date : 10/18/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -462,50 +462,91 @@ vw6 := self:oRS:fields:item("WinAgreement"):value
 vw7 := self:oRS:fields:item("WinProduction"):value
 vw8 := self:oRS:fields:item("WinDispose"):value
 IF vw1 = 2
-winMore.check1.Value := 1
+winMore.check1.Value := true
 ELSE
-winMore.check1.Value := 0
+winMore.check1.Value := false
 ENDIF
 IF vw2 = 2
-winMore.check2.Value := 1
+winMore.check2.Value := true
 ELSE
-winMore.check2.Value := 0
+winMore.check2.Value := false
 ENDIF
 IF vw3 = 2
-winMore.check3.Value := 1
+winMore.check3.Value := true
 ELSE
-winMore.check3.Value := 0
+winMore.check3.Value := false
 ENDIF
 IF vw4 = 2
-winMore.check4.Value := 1
+winMore.check4.Value := true
 ELSE
-winMore.check4.Value := 0
+winMore.check4.Value := false
 ENDIF
 IF vw5 = 2
-winMore.check5.Value := 1
+winMore.check5.Value := true
 ELSE
-winMore.check5.Value := 1
+winMore.check5.Value := false
 ENDIF
 IF vw6 = 2
-winMore.check6.Value := 1
+winMore.check6.Value := true
 ELSE
-winMore.check6.Value := 0
+winMore.check6.Value := false
 ENDIF
 IF vw7 = 2
-winMore.check7.Value := 1
+winMore.check7.Value := true
 ELSE
-winMore.check7.Value := 0
+winMore.check7.Value := false
 ENDIF
 IF vw8 = 2
-winMore.check8.Value := 1
+winMore.check8.Value := true
 ELSE
-winMore.check8.Value := 0
+winMore.check8.Value := false
 ENDIF
 ACTIVATE WINDOW winMore
 EndIF
 
 Return 0
 Method MoreSave Class UsersClass
+IF winMore.check1.value = true
+self:oRS:fields:item("WinEmployees"):value := 2
+ELSE
+self:oRS:fields:item("WinEmployees"):value := 3
+ENDIF
+IF winMore.check2.value = true
+self:oRS:fields:item("WinSuppliers"):value := 2
+ELSE
+self:oRS:fields:item("WinSuppliers"):value := 3
+ENDIF
+IF winMore.check3.value = true
+self:oRS:fields:item("WinCustomers"):value := 2
+ELSE
+self:oRS:fields:item("WinCustomers"):value := 3
+ENDIF
+IF winMore.check4.value = true
+self:oRS:fields:item("WinWarehouse"):value := 2
+ELSE
+self:oRS:fields:item("WinWarehouse"):value := 3
+ENDIF
+IF winMore.check5.value = true
+self:oRS:fields:item("WinOrders"):value := 2
+ELSE
+self:oRS:fields:item("WinOrders"):value := 3
+ENDIF
+IF winMore.check6.value = true
+self:oRS:fields:item("WinAgreement"):value := 2
+ELSE
+self:oRS:fields:item("WinAgreement"):value := 3
+ENDIF
+IF winMore.check7.value = true
+self:oRS:fields:item("WinProduction"):value := 2
+ELSE
+self:oRS:fields:item("WinProduction"):value := 3
+ENDIF
+IF winMore.check8.value = true
+self:oRS:fields:item("WinDispose"):value := 2
+ELSE
+self:oRS:fields:item("WinDispose"):value := 3
+ENDIF
+self:oRS:UPDATE()
 winMore.Release ( )
 Return 0
 Method closewindow Class UsersClass
