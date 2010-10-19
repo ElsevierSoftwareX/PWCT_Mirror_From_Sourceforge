@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:28:08    Date : 08/24/2010
+* Time : 01:15:21    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -42,6 +42,10 @@ Method closewindow
 Method SizeReport
 EndClass
 Method ShowWindow Class CustomersReportClass
+IF .not. UserCan_WinCustomers = 2
+MyOut := MSGBOX("Access is denied","Sorry")
+Return 0
+ENDIF
 if !iswindowdefined( CustomersReportWindow )
 DEFINE WINDOW CustomersReportWindow ;
 AT 10 ,10 ;

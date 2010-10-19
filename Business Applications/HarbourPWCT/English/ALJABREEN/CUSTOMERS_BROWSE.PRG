@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:27:11    Date : 09/13/2010
+* Time : 01:15:02    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -51,6 +51,10 @@ Method settimer
 Method GetSearchValue
 EndClass
 Method showwindow Class CustomersBrowseClass
+IF .not. UserCan_WinCustomers = 2
+MyOut := MSGBOX("Access is denied","Sorry")
+Return 0
+ENDIF
 if !iswindowdefined( CustomersBrowseWindow )
 DEFINE WINDOW CustomersBrowseWindow ;
 AT 10 ,10 ;
