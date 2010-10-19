@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:24:22    Date : 08/24/2010
+* Time : 01:39:45    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,6 +43,10 @@ Method SizeReport
 Method checkchange
 EndClass
 Method ShowWindow Class ReservedItemsReportClass
+IF .not. UserCan_WinWarehouse = 2
+MyOut := MSGBOX("Access is denied","Sorry")
+Return 0
+ENDIF
 if !iswindowdefined( ReservedItemsReportWindow )
 DEFINE WINDOW ReservedItemsReportWindow ;
 AT 10 ,10 ;

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:17:47    Date : 09/12/2010
+* Time : 01:40:19    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -83,6 +83,10 @@ Method settimer
 Method GetSearchValue
 EndClass
 Method showwindow Class ItemsEnterClass
+IF .not. UserCan_WinWarehouse = 2
+MyOut := MSGBOX("Access is denied","Sorry")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( ItemsEnterWindow )

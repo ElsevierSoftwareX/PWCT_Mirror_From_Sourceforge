@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:11:55    Date : 10/14/2010
+* Time : 01:38:38    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -89,6 +89,10 @@ Method ItemDetails
 Method GroupFilter
 EndClass
 Method showwindow Class ItemsClass
+IF .not. UserCan_WinWarehouse = 2
+MyOut := MSGBOX("Access is denied","Sorry")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 self:complexsearch := ""

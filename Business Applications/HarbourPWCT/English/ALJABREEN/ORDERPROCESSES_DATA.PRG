@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:05:53    Date : 09/13/2010
+* Time : 01:35:33    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -76,6 +76,10 @@ Method settimer
 Method GetSearchValue
 EndClass
 Method showwindow Class OrderProcessesClass
+IF .not. UserCan_WinProduction = 2
+MyOut := MSGBOX("Access is denied","Sorry")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( OrderProcessesWindow )
