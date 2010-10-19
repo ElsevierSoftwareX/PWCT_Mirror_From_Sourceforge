@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:48:06    Date : 10/19/2010
+* Time : 22:08:29    Date : 10/19/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -461,26 +461,35 @@ MENUITEM "Users" Action UsersDataObject:ShowWindow()
 END POPUP
 ENDIF
 POPUP "Human Resource"
+IF UserCan_WinEmployees = 2
 POPUP "Employees"
 MENUITEM "Employees Data" Action EmployeesDataObject:showwindow()
 MENUITEM "Employees Search/Browse By Name" Action EmployeesBrowseObject:showwindow()
 MENUITEM "Employees Report" Action Employeesreport()
 MENUITEM "Employee Details" Action EmpDetailsDataObject:ShowWindow()
 END POPUP
+ENDIF
+IF UserCan_WinSuppliers = 2
 POPUP "Suppliers"
 MENUITEM "Suppliers Data" Action SuppliersDataObject:showwindow()
 MENUITEM "Suppliers Search/Browse By Name" Action SuppliersBrowseObject:showwindow()
 MENUITEM "Suppliers Report" Action Suppliersreport()
 MENUITEM "Set Items Groups" Action ItemsGroupsObject:ShowWindow()
 END POPUP
+ENDIF
+IF UserCan_WinCustomers = 2
 POPUP "Customers"
 MENUITEM "Customers Data" Action CustomersDataObject:showwindow()
 MENUITEM "Customers Search/Browse By Name" Action CustomersBrowseObject:showwindow()
 MENUITEM "Customers Report" Action Customersreport()
 END POPUP
+ENDIF
+IF UserCan_WinEmployees = 2 .or. UserCan_WinSuppliers = 2 .or. UserCan_WinCustomers = 2
 MENUITEM "Lookup Table : Country" Action Countrydataobject:showwindow()
 MENUITEM "Lookup Table : Gender" Action genderdataobject:showwindow()
+ENDIF
 END POPUP
+IF UserCan_WinWarehouse = 2
 POPUP "Warehouse"
 MENUITEM "Set Items Classes" Action ItemsClassesObject:ShowWindow()
 MENUITEM "Set Items Units" Action ItemsUnitsObject:ShowWindow()
@@ -498,16 +507,24 @@ MENUITEM "Enter Items to Store" Action ItemsEnterObject:ShowWindow()
 SEPARATOR
 MENUITEM "Reserve Items For Order" Action ReserveItemsObject:ShowWindow()
 END POPUP
+ENDIF
+IF UserCan_WinOrders = 2 .or. UserCan_WinAgreement = 2
 POPUP "Orders"
+IF UserCan_WinOrders = 2
 MENUITEM "Enter Order" Action OrdersEnterObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UserCan_WinAgreement = 2
 MENUITEM "Quality Manager Opinions" Action QualityObject:ShowWindow()
 MENUITEM "Scheduling Manager Opinions" Action SchedulingObject:ShowWindow()
 MENUITEM "Warehouse Manager Opinions" Action WarehouseObject:ShowWindow()
 MENUITEM "Finance Manager Opinions" Action FinanceObject:ShowWindow()
 MENUITEM "Production Manager Opinions" Action ProductionManObject:ShowWindow()
 MENUITEM "Agreement" Action AgreementObject:ShowWindow()
+ENDIF
 END POPUP
+ENDIF
+IF UserCan_WinProduction = 2
 POPUP "Production"
 MENUITEM "Define Processes" Action ProcessesObject:ShowWindow()
 MENUITEM "Define Processes Status" Action ProcessStatusObject:ShowWindow()
@@ -516,14 +533,24 @@ MENUITEM "Order Processes" Action OrderProcessesObject:ShowWindow()
 SEPARATOR
 MENUITEM "Employees Production" Action ProductionObject:ShowWindow()
 END POPUP
+ENDIF
+IF UserCan_WinDispose = 2
 POPUP "Dispose"
 MENUITEM "Dispose and Quality Manager Opinion" Action DisposeObject:ShowWindow()
 END POPUP
+ENDIF
 POPUP "Reports"
+IF UserCan_WinEmployees = 2
 MENUITEM "List of Employees Report" Action ListOfEmployeesreport()
+ENDIF
+IF UserCan_WinSuppliers = 2
 MENUITEM "List of Suppliers Report" Action ListOfSuppliersreport()
+ENDIF
+IF UserCan_WinCustomers = 2
 MENUITEM "List of Customers Report" Action ListOfCustomersreport()
 SEPARATOR
+ENDIF
+IF UserCan_WinWarehouse = 2
 MENUITEM "Items Classes Report" Action ItemClassesReportObject:ShowWindow()
 MENUITEM "Items Units Report" Action ItemUnitsReportObject:ShowWindow()
 MENUITEM "Items Groups Report" Action ItemGroupsReportObject:ShowWindow()
@@ -537,19 +564,28 @@ MENUITEM "Stores Report" Action StoresReportObject:ShowWindow()
 MENUITEM "Items Entered to Stores Report" Action ITEMSENTEREDTOSTORESReportObject:ShowWindow()
 MENUITEM "Reserved Items Report" Action ReservedItemsReportObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UserCan_WinOrders = 2
 MENUITEM "List Of Orders Report" Action ListOfOrdersReportObject:ShowWindow()
 MENUITEM "Order Details Report" Action OrderDetailsReportObject:ShowWindow()
+ENDIF
+IF UserCan_WinAgreement = 2
 MENUITEM "Quality Manager Opinions Report" Action QualityOpinionsReportObject:ShowWindow()
 MENUITEM "Scheduling Manager Opinions Report" Action SchedulingOpinionsReportObject:ShowWindow()
 MENUITEM "Warehouse Manager Opinions Report" Action WarehouseOpinionsReportObject:ShowWindow()
 MENUITEM "Finance Manager Opinions Report" Action FinanceOpinionsReportObject:ShowWindow()
 MENUITEM "Agreement Report" Action AgreementReportObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UserCan_WinProduction = 2
 MENUITEM "Processes Report" Action ProcessesReportObject:ShowWindow()
 MENUITEM "Process Status Report" Action ProcessStatusReportObject:ShowWindow()
 MENUITEM "Order Processes Report" Action OrderProcessesReportObject:ShowWindow()
 MENUITEM "Employees Production Report" Action EmployeesProductionReportObject:ShowWindow()
+ENDIF
+IF UserCan_WinDispose = 2
 MENUITEM "Orders Dispose Report" Action OrdersDisposeReportObject:ShowWindow()
+ENDIF
 END POPUP
 Return Nil
 Proc customersreport
@@ -677,14 +713,14 @@ openworld := false
 Public EnteredUserName,EnteredPassword,UserCan_Admin,UserCan_AgreementRole
 EnteredUserName := winlogin.text1.Value
 EnteredPassword := winlogin.text2.Value
-Public UserCan_Employees
-Public UserCan_Suppliers
-Public UserCan_Customers
-Public UserCan_Warehouse
-Public UserCan_Orders
-Public UserCan_Agreement
-Public UserCan_Production
-Public UserCan_Dispose
+Public UserCan_WinEmployees
+Public UserCan_WinSuppliers
+Public UserCan_WinCustomers
+Public UserCan_WinWarehouse
+Public UserCan_WinOrders
+Public UserCan_WinAgreement
+Public UserCan_WinProduction
+Public UserCan_WinDispose
 IF mymax > 0
 oRS:MOVEFIRST()
 FOR x = 1 TO MYMAX STEP 1
