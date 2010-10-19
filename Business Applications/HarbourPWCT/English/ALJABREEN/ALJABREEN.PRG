@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:33:44    Date : 10/18/2010
+* Time : 19:48:06    Date : 10/19/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -677,6 +677,14 @@ openworld := false
 Public EnteredUserName,EnteredPassword,UserCan_Admin,UserCan_AgreementRole
 EnteredUserName := winlogin.text1.Value
 EnteredPassword := winlogin.text2.Value
+Public UserCan_Employees
+Public UserCan_Suppliers
+Public UserCan_Customers
+Public UserCan_Warehouse
+Public UserCan_Orders
+Public UserCan_Agreement
+Public UserCan_Production
+Public UserCan_Dispose
 IF mymax > 0
 oRS:MOVEFIRST()
 FOR x = 1 TO MYMAX STEP 1
@@ -689,6 +697,14 @@ IF cPassword == EnteredPassWord
 openworld := true
 UserCan_Admin := oRS:fields:item("SystemAdmin"):value
 UserCan_AgreementRole := oRS:fields:item("AgreementRole"):value
+UserCan_WinEmployees := oRS:fields:item("WinEmployees"):value
+UserCan_WinSuppliers := oRS:fields:item("WinSuppliers"):value
+UserCan_WinCustomers := oRS:fields:item("WinCustomers"):value
+UserCan_WinWarehouse := oRS:fields:item("WinWarehouse"):value
+UserCan_WinOrders := oRS:fields:item("WinOrders"):value
+UserCan_WinAgreement := oRS:fields:item("WinAgreement"):value
+UserCan_WinProduction := oRS:fields:item("WinProduction"):value
+UserCan_WinDispose := oRS:fields:item("WinDispose"):value
 ELSE
 MyOut := MSGBOX("Invalid Password","Error")
 Return 0
