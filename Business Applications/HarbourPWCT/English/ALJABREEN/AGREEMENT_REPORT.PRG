@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:43:57    Date : 08/24/2010
+* Time : 01:46:45    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,6 +43,10 @@ Method SizeReport
 Method checkchange
 EndClass
 Method ShowWindow Class AgreementReportClass
+IF .not. UserCan_WinAgreement = 2
+MyOut := MSGBOX("Access is denied","Sorry")
+Return 0
+ENDIF
 if !iswindowdefined( AgreementReportWindow )
 DEFINE WINDOW AgreementReportWindow ;
 AT 10 ,10 ;

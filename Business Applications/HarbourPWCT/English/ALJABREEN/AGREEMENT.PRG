@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:47:56    Date : 10/17/2010
+* Time : 01:46:16    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -106,6 +106,10 @@ Method ProductionManNotes
 Method ProductionManNotesSave
 EndClass
 Method showwindow Class AgreementClass
+IF .not. UserCan_WinAgreement = 2
+MyOut := MSGBOX("Access is denied","Sorry")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( AgreementWindow )
