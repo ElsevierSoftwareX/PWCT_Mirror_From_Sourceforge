@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:57:04    Date : 10/20/2010
+* Time : 05:06:37    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -445,8 +445,8 @@ Return 0
 Method Class2UserInterface Class ReserveItemsClass
 self:nOrderNumber = self:LookupIDToIndex(self:nOrderNumber,@self:OrderNumberItemsids)
 ReserveItemsWindow.ComboOrderNumber.Value := self:nOrderNumber
-self:nItem = self:LookupIDToIndex(self:nItem,@self:ItemItemsids)
-ReserveItemsWindow.Comboitem.Value := self:nItem
+tvalue = self:LookupIDToIndex(self:nItem,@self:ItemItemsids)
+ReserveItemsWindow.Comboitem.Value := tvalue
 ReserveItemsWindow.textUnitValue.Value := self:cUnitValue
 ReserveItemsWindow.textSecUnitValue.Value := self:cSecUnitValue
 ReserveItemsWindow.textAmount.Value := self:cAmount
@@ -499,14 +499,19 @@ ReserveItemsWindow.btncancel.Enabled := true
 ReserveItemsWindow.btnedit.Enabled := false
 ReserveItemsWindow.btnadd.Enabled := false
 ReserveItemsWindow.comboOrderNumber.Enabled := true
-ReserveItemsWindow.comboItem.Enabled := true
 ReserveItemsWindow.textUnitValue.Enabled := true
 ReserveItemsWindow.textSecUnitValue.Enabled := true
 ReserveItemsWindow.textAmount.Enabled := true
 ReserveItemsWindow.textCost.Enabled := true
 ReserveItemsWindow.textNotes.Enabled := true
 ReserveItemsWindow.datedateofinput.Enabled := true
+IF self:addrec = true
 ReserveItemsWindow.btnSelItem.Enabled := true
+ReserveItemsWindow.comboItem.Enabled := true
+ELSE
+ReserveItemsWindow.btnSelItem.Enabled := false
+ReserveItemsWindow.comboItem.Enabled := false
+ENDIF
 ENDIF
 IF p1 = 2
 ReserveItemsWindow.btnfirst.Enabled := true
@@ -634,7 +639,6 @@ Method OnAfterAddEdit Class ReserveItemsClass
 myout = self:SubValuesFromItem()
 Return myout
 Method OnBeforeEdit Class ReserveItemsClass
-myout = self:UserInterface2Class()
 myout = self:AddValuesToItem()
 Return myout
 Method OnBeforeDelete Class ReserveItemsClass
