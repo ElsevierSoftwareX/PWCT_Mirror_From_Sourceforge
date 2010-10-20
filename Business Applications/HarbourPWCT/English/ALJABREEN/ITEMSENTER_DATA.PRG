@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:40:19    Date : 10/20/2010
+* Time : 04:12:54    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -81,6 +81,7 @@ Method BeforeSearch
 Method SearchAdd
 Method settimer
 Method GetSearchValue
+Method SelectItem
 EndClass
 Method showwindow Class ItemsEnterClass
 IF .not. UserCan_WinWarehouse = 2
@@ -393,6 +394,12 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 INPUTMASK ""
+@ 346 ,716 BUTTONEX btnSelItem;
+CAPTION ":::";
+ON CLICK self:SelectItem()  ;
+WIDTH 40 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 ItemsEnterWindow.Center ( )
@@ -509,6 +516,7 @@ ItemsEnterWindow.textAmount.Enabled := true
 ItemsEnterWindow.textCost.Enabled := true
 ItemsEnterWindow.textNotes.Enabled := true
 ItemsEnterWindow.datedateofinput.Enabled := true
+ItemsEnterWindow.btnSelItem.Enabled := true
 ENDIF
 IF p1 = 2
 ItemsEnterWindow.btnfirst.Enabled := true
@@ -532,6 +540,7 @@ ItemsEnterWindow.textNotes.Enabled := false
 ItemsEnterWindow.datedateofinput.Enabled := false
 ItemsEnterWindow.textItemUnit.Enabled := false
 ItemsEnterWindow.textItemSecUnit.Enabled := false
+ItemsEnterWindow.btnSelItem.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -641,6 +650,13 @@ Return myout
 Method OnBeforeDelete Class ItemsEnterClass
 myout = self:SubValuesFromItem()
 Return myout
+Method SelectItem Class ItemsEnterClass
+Local myindex,myout
+myout = SelectItemMasterDetailsObject:ShowWindow()
+myindex = self:LookupIDToIndex(SelectItemMasterDetailsObject:nOrderNumber,@self:ItemItemsids)
+ItemsEnterWindow.ComboItem.Value := myindex
+myout = self:ItemChange()
+Return 0
 Method closewindow Class ItemsEnterClass
 myout = self:disconnect()
 ItemsEnterWindow.Release ( )
