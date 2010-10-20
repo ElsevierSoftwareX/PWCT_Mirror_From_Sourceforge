@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:09:31    Date : 10/18/2010
+* Time : 03:57:04    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -80,6 +80,7 @@ Method BeforeSearch
 Method SearchAdd
 Method GetSearchValue
 Method settimer
+Method SelectItem
 EndClass
 Method showwindow Class ReserveItemsClass
 myout = self:connect()
@@ -387,6 +388,12 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
+@ 346 ,716 BUTTONEX btnSelItem;
+CAPTION ":::";
+ON CLICK self:SelectItem()  ;
+WIDTH 40 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 ReserveItemsWindow.Center ( )
@@ -499,6 +506,7 @@ ReserveItemsWindow.textAmount.Enabled := true
 ReserveItemsWindow.textCost.Enabled := true
 ReserveItemsWindow.textNotes.Enabled := true
 ReserveItemsWindow.datedateofinput.Enabled := true
+ReserveItemsWindow.btnSelItem.Enabled := true
 ENDIF
 IF p1 = 2
 ReserveItemsWindow.btnfirst.Enabled := true
@@ -521,6 +529,7 @@ ReserveItemsWindow.textNotes.Enabled := false
 ReserveItemsWindow.datedateofinput.Enabled := false
 ReserveItemsWindow.textItemUnit.Enabled := false
 ReserveItemsWindow.textItemSecUnit.Enabled := false
+ReserveItemsWindow.btnSelItem.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -647,6 +656,13 @@ myrs:open ( "Select * from orders_ALL where id = " + myvalue,self:oCon,3,3 )
 myvalue := myRS:fields:item("f_name"):value
 ReserveItemsWindow.textCustomer.Value := myvalue
 myRS:Close()
+Return 0
+Method SelectItem Class ReserveItemsClass
+Local myindex,myout
+myout = SelectItemMasterDetailsObject:ShowWindow()
+myindex = self:LookupIDToIndex(SelectItemMasterDetailsObject:nOrderNumber,@self:ItemItemsids)
+ReserveItemsWindow.ComboItem.Value := myindex
+myout = self:ItemChange()
 Return 0
 Method closewindow Class ReserveItemsClass
 myout = self:disconnect()
