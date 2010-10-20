@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:06:37    Date : 10/20/2010
+* Time : 05:14:55    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -505,13 +505,8 @@ ReserveItemsWindow.textAmount.Enabled := true
 ReserveItemsWindow.textCost.Enabled := true
 ReserveItemsWindow.textNotes.Enabled := true
 ReserveItemsWindow.datedateofinput.Enabled := true
-IF self:addrec = true
 ReserveItemsWindow.btnSelItem.Enabled := true
 ReserveItemsWindow.comboItem.Enabled := true
-ELSE
-ReserveItemsWindow.btnSelItem.Enabled := false
-ReserveItemsWindow.comboItem.Enabled := false
-ENDIF
 ENDIF
 IF p1 = 2
 ReserveItemsWindow.btnfirst.Enabled := true
