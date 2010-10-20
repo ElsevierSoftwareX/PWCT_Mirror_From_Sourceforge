@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:48:01    Date : 10/04/2010
+* Time : 05:21:26    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -451,8 +451,8 @@ Return 0
 Method Class2UserInterface Class ReserveItemsClass
 self:nOrderNumber = self:LookupIDToIndex(self:nOrderNumber,@self:OrderNumberItemsids)
 ReserveItemsWindow.ComboOrderNumber.Value := self:nOrderNumber
-self:nItem = self:LookupIDToIndex(self:nItem,@self:ItemItemsids)
-ReserveItemsWindow.Comboitem.Value := self:nItem
+tvalue = self:LookupIDToIndex(self:nItem,@self:ItemItemsids)
+ReserveItemsWindow.Comboitem.Value := tvalue
 ReserveItemsWindow.textUnitValue.Value := self:cUnitValue
 ReserveItemsWindow.textSecUnitValue.Value := self:cSecUnitValue
 ReserveItemsWindow.textAmount.Value := self:cAmount
@@ -638,7 +638,6 @@ Method OnAfterAddEdit Class ReserveItemsClass
 myout = self:SubValuesFromItem()
 Return myout
 Method OnBeforeEdit Class ReserveItemsClass
-myout = self:UserInterface2Class()
 myout = self:AddValuesToItem()
 Return myout
 Method OnBeforeDelete Class ReserveItemsClass
