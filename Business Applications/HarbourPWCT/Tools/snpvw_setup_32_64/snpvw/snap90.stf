@@ -1,0 +1,115 @@
+App Name	Snapshot Viewer
+App Version	10.00.00.5508
+Frame Bitmap	"snap_bb.dll, 121,122"
+Frame Caption	Snapshot Viewer Setup
+Dialog Caption Base	Snapshot Viewer
+Usage String	Run Setup.exe \n Admin Mode not supported.
+About Box String	Snapshot Viewer Setup\n\nCopyright (C) 1996-1999 Microsoft Corporation.
+Check Modules	
+MSAPPS Mode	local
+Inf File Name	snap90.inf
+Suppress Copy Disincentive Dialogs
+Suppress Serial Number Dialog
+Maximum Object ID	750
+
+Floppy Mode Root Object ID	20:10
+Maintenance Mode Root Object ID	40:10
+Setup Version	1.20.0.1305							
+
+ObjID	Install	During Batch Mode	Title	Descr	Type	Data	BMP Id	Vital	Shared	Dir Chang	Dest Dir	Check Dir	Installed By Us								
+=== AppSearch ===								
+10		Snapshot Viewer		AppSearch	"%p\SNAPSHOT<%p\Snapshot Viewer>,snapview.exe,,128,no,yes,"							
+								
+====Begin Install Logic====								
+==Install Modes===								
+20	yes	Floppy Installation		AppMainDlg	40				no	%d		
+30		Maintenance		CustomDlg	40					%d		
+======Component Selection Begins======								
+40	Yes	C&omplete Install	Installs Snapshot Viewer	Group	50 70	"snap_bb.dll, 101"			yes	%d		
+===Sub Begin ====								
+50				Group	 60					%m		
+60	yes			Group	130					%m		
+=====Component Selection Ends====								
+70	yes			Group	80					%d		
+====End Install Logic====								
+								
+**** Setup File set *****								
+80	Yes			Group	90 100 110 120					%d\Setup		
+90				CopySection	"Setup Files"							
+100				WriteTableFile	"snap90.stf"							
+110				AddRegData	"""LOCAL"",""Software\Microsoft\Windows\CurrentVersion\Uninstall\Snapshot Viewer"",""DisplayName"",""Snapshot Viewer"",""REG_SZ"""							
+120				AddRegData	"""LOCAL"",""Software\Microsoft\Windows\CurrentVersion\Uninstall\Snapshot Viewer"",""UninstallString"",""%s\Setup.exe /T snap90.stf"",""REG_SZ"""							
+**** Snapshot Viewer files *****								
+130				Group	140 150 160 170 180 190 200 205 210 220 230 240 250 260 262 264 266 268 270 275 280 310 610					%10		
+140		snapview.exe		CopyFile	"Snapshot Viewer Files,snapview_exe"					%10		
+150		snapview.hlp		CopyFile	"Snapshot Viewer Files,snapview_hlp"					%10		
+160		snapview.cnt		CopyFile	"Snapshot Viewer Files,snapview_cnt"					%10		
+170		readme.txt		CopyFile	"Snapshot Viewer Files,readme_txt"					%10		
+180		snapview.ini		CustomAction	"msacccah.dll,RemoveHelpAuxFile,Snapshot Viewer Files;snapview_ini"					%10		
+190		snapview.gid		CustomAction	"msacccah.dll,RemoveHelpAuxFile,Snapshot Viewer Files;snapview_gid"					%10		
+200		snapview.pnf		CustomAction	"msacccah.dll,RemoveHelpAuxFile,Snapshot Viewer Files;snapview_pnf"					%10		
+205		snapview.fts		CustomAction	"msacccah.dll,RemoveHelpAuxFile,Snapshot Viewer Files;snapview_fts"					%10		
+**** System Files								
+210		comcat.dll		InstallSysFile	"Snapshot Viewer Files,comcat_dll"					%m		
+220		snapview.ocx		InstallShared	"Snapshot Viewer Files,snapview_ocx,snapview.ocx,,140 "					%m		
+230		mfc42.dll		InstallSysFile	"Snapshot Viewer Files,mfc42_dll"					%m		
+240		urlmon.dll		InstallSysFile	"Snapshot Viewer Files,urlmon_dll"					%m		
+250		wininet.dll		InstallSysFile	"Snapshot Viewer Files,wininet_dll"					%m		
+260		oleaut32.dll		InstallSysFile	"Snapshot Viewer Files,oleaut32_dll"					%m		
+262		olepro32.dll		InstallSysFile	"Snapshot Viewer Files,olepro32_dll"					%m		
+264		asycfilt.dll		InstallSysFile	"Snapshot Viewer Files,asycfilt_dll"					%m		
+266		stdole2.tlb		InstallSysFile	"Snapshot Viewer Files,stdole2_tlb"					%m		
+268		hlp95en.dll		InstallSysFile	"Snapshot Viewer Files,hlp95en_dll"					%m		
+270		msvcrt.dll		InstallSysFile	"Snapshot Viewer Files,msvcrt_dll"					%m		
+275		32autole.dll		CopyFile	"Snapshot Viewer Files,32autole_dll"					%s		
+**** ProgMan Items ****								
+280				Group	290							
+290				AddProgmanItemQuiet	"Microsoft Office Tools,Microsoft Access Snapshot Viewer,%140\snapview.exe,%140,,,,,,"							
+310				Group	320 330 340 350 360 370 380 390 400 410 420 430 440 450 460 470 480 490 500 510 520 530 540 550 560 570 580 590 600							
+**** Snapshot registry entries *****								
+320				AddRegData	"""HKEY_CLASSES_ROOT"","".SNP"","""",""SnapshotFile"","""""					%10		
+330				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile"","""",""Snapshot File"","""""					%10		
+340				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\shell\open\command"","""",""""""%140\snapview.exe"""" /dde"","""""					%10		
+350				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\shell\open\ddeexec"","""",""[open(""""%%1"""")]"","""""					%10		
+360				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\shell\open\ddeexec\application"","""",""SnapView"","""""					%10		
+370				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\shell\print\command"","""",""""""%140\snapview.exe"""" /dde"","""""					%10		
+380				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\shell\print\ddeexec"","""",""[print(""""%%1"""")]"","""""					%10		
+390				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\shell\printto\command"","""",""""""%140\snapview.exe"""" /dde"","""""					%10		
+400				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\shell\printto\ddeexec"","""",""[printto(""""%%1"""",""""%%2"""",""""%%3"""",""""%%4"""")]"","""""					%10		
+410				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\protocol\StdFileEditing\server"","""",""%140\snapview.exe"","""""					%10		
+420				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\protocol\StdFileEditing\verb\0"","""",""&Edit"","""""					%10		
+430				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\Insertable"","""","""","""""					%10		
+440				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\CLSID"","""",""{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}"","""""					%10		
+450				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\DefaultIcon"","""",""%140\snapview.exe,1"","""""					%10		
+460				AddRegData	"""HKEY_CLASSES_ROOT"",""SnapshotFile\DocObject"","""","""","""""					%10		
+470				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}"","""",""Snapshot File"","""""					%10		
+480				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\DefaultIcon"","""",""%140\snapview.exe,1"","""""					%10		
+490				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\LocalServer32"","""",""%140\snapview.exe"","""""					%10		
+500				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\ProgId"","""",""SnapshotFile"","""""					%10		
+510				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\MiscStatus"","""",""33"","""""					%10		
+520				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\AuxUserType\2"","""",""Snapshot Viewer"","""""					%10		
+530				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\AuxUserType\3"","""",""Snapshot Viewer"","""""					%10		
+540				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\Insertable"","""","""","""""					%10		
+550				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\verb\1"","""",""&Open,0,2"","""""					%10		
+560				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\verb\0"","""",""&Edit,0,2"","""""					%10		
+570				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\InprocHandler32"","""",""ole32.dll"","""""					%10		
+580				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\DefaultExtension"","""","".snp,Snapshot Files (*.snp)"","""""					%10		
+590				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\DocObject"","""",""0"","""""					%10		
+600				AddRegData	"""HKEY_CLASSES_ROOT"",""CLSID\{FACB5ED2-7F99-11D0-ADE2-00A0C90DC8D9}\Printable"","""","""","""""					%10		
+**** Self-Registration ****								
+610				Group	620 640 660 680 700 720 740							
+620				Depend	"210 ? 630"							
+630		comcat.dll		SelfReg	"""Snapshot Viewer Files"",""comcat_dll"","""","""","""","""""					%m		
+640				Depend	"220 ? 650"							
+650		snapview.ocx		SelfReg	"""Snapshot Viewer Files"",""snapview_ocx"","""","""","""","""""					%m		
+660				Depend	"230 ? 670"							
+670		mfc42.dll		SelfReg	"""Snapshot Viewer Files"",""mfc42_dll"","""","""","""","""""					%m		
+680				Depend	"240 ? 690"							
+690		urlmon.dll		SelfReg	"""Snapshot Viewer Files"",""urlmon_dll"","""","""","""","""""					%m		
+700		32autole.dll		SelfReg	"""Snapshot Viewer Files"",""32autole_dll"""					%s		
+720				Depend	"266 ? 730"							
+730		stdole2.tlb		CustomAction	"""msacccah.dll"",""RegisterTypeLibrary"",""Snapshot Viewer Files;stdole2_tlb"""					%m		
+740				Depend	"262 ? 750"							
+750		olepro32.dll		SelfReg	"""Snapshot Viewer Files"",""olepro32_dll"","""","""","""","""""					%m		
+					%m		
+","""","""","""""					%m		
