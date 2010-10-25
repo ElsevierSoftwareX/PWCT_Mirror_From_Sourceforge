@@ -1,0 +1,74 @@
+:note: " Author : Mahmoud Fayed <msfclipper@yahoo.com> "
+
+set window resize off
+set window auto show off
+i want window and window title is Software update.
+window back color is white. window height is 380.
+
+"(current.txt)" file to memory [currentversion].
+do if [currentversion] < (2).
+	i want button and button left = 50.
+	button width = 400.
+	button caption is "New Version Available - Click to install"
+	button font name is aril.
+	button font size is 14.
+	button font underline is true.
+	button fore color is blue.
+	button name is newver.
+end if
+do if not [currentversion] < (2).
+	i want label and label left = 50.
+	label width = 400.
+	label caption is "No New Version Available"
+	label font name is aril.
+	label font size is 14.
+	label font underline is true.
+	label fore color is blue.
+end if
+i want label and label left = 50. and label top = 50.
+label width = 400. and label height = 200.
+label font name is arial. and label font size is 12.
+label caption is "
+ =================
+   Dear Customer  
+ =================
+
+	Welcome to our software update tool !!!
+	It's recommended to update your software
+	When a new version become avialabel
+	With each new release we provide you with
+	A new features + fix to bugs.
+
+"
+
+i want hyperlink
+hyperlink caption is "For more information just visit our website !!!"
+hyperlink left is 50.
+hyperlink top is 250.
+hyperlink width is 400.
+hyperlink address is "http://programmingwithoutcoding.com"
+
+i want button and button left = 50. and button top = 300.
+button width = 400.
+button caption is "Close This Window"
+button font name is aril.
+button font size is 14.
+button font underline is true.
+button fore color is blue.
+button name is btnclose.
+btnclose mouse click. instructions are you close window ok
+
+you show window and you centre window
+
+newver mouse click. instructions are
+	set window modal on
+	i want window and the window title is Download new release.
+	i want label and label caption is "Please Wait...."
+	window height is 70. and window width is 250.
+	please centre window and you show window
+       "(Fayed_AljabreenFactory_OrderTrackingSystem_2010_10_20.zip)" download file from server "(www.programmingwithoutcoding.com)"
+	execute from "(Fayed_AljabreenFactory_OrderTrackingSystem_2010_10_20.zip)"
+	[currentversion]. = (2).
+	[Currentversion]. memory to file "(current.txt)"
+	you close window
+end of instructions

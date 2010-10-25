@@ -1,0 +1,267 @@
+*---------------------------------------------------------------------------*
+* Time : 08:13:00    Date : 05/10/2010
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Programming Language    : Mahmoud Programming Language 
+* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
+* Programming Paradigm    : DoubleS (Super Server)
+*---------------------------------------------------------------------------*
+* Compilers               : Borland C/C++ & Harbour/xHarbour
+* GUI Framework           : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function URGENT
+Public True,False 
+True = .T. 
+False = .F. 
+ Details :
+ * (Noun) *
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance RT_Urgent                     
+	VetoUnit :
+
+Resistance R_URGENT_15speed1() address Code Unit : Circuits\Main\Main\RT_Urgent
+
+
+Return 
+
+* Resistance Code Unit : Circuits\Main\Main\RT_Urgent
+Resistance R_URGENT_15speed1() code
+Proc RT_Urgent
+IF myopcode = 1
+ObjsCount := ObjsCount+1
+cobjscount = STR ( Objscount )
+cobjscount = ALLTRIM ( cobjscount )
+cwinname := "win_"+cobjscount
+MyOpWinName := cwinname
+Return 0
+ENDIF
+IF (myopcode >= 700 .and. myopcode <=712) .or. (myopcode >= 750 .and. myopcode <=755 )
+IF myopwinname = "NULL"
+DO RTE_AddError WITH 11
+DO RTE_Check
+ENDIF
+ENDIF
+IF myopcode = 700
+AADD( RT_GUI_Statusbar , {myopwinname,"arial",10,false,false,false,false,{}})
+Return 0
+ENDIF
+IF myopcode = 701
+mylast  = LEN(RT_GUI_Statusbar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Statusbar[mylast][2] := myopdata[1]
+Return 0
+ENDIF
+IF myopcode = 702
+mylast  = LEN(RT_GUI_Statusbar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Statusbar[mylast][3] := myopdata[1]
+Return 0
+ENDIF
+IF myopcode = 703
+mylast  = LEN(RT_GUI_Statusbar)
+avalue := myopdata[1]
+avalue := &avalue
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Statusbar[mylast][4] := avalue
+Return 0
+ENDIF
+IF myopcode = 704
+mylast  = LEN(RT_GUI_Statusbar)
+avalue := myopdata[1]
+avalue := &avalue
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Statusbar[mylast][5] := avalue
+Return 0
+ENDIF
+IF myopcode = 705
+mylast  = LEN(RT_GUI_Statusbar)
+avalue := myopdata[1]
+avalue := &avalue
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Statusbar[mylast][6] := avalue
+Return 0
+ENDIF
+IF myopcode = 706
+mylast  = LEN(RT_GUI_Statusbar)
+avalue := myopdata[1]
+avalue := &avalue
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Statusbar[mylast][7] := avalue
+Return 0
+ENDIF
+IF myopcode = 707
+mylast  = LEN(RT_GUI_Statusbar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+AADD( RT_GUI_Statusbar[mylast][8] , {1,"statusbar item",100})
+Return 0
+ENDIF
+IF myopcode = 708
+mylast  = LEN(RT_GUI_Statusbar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+AADD( RT_GUI_Statusbar[mylast][8] , {2,"clock",100})
+Return 0
+ENDIF
+IF myopcode = 709
+mylast  = LEN(RT_GUI_Statusbar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+AADD( RT_GUI_Statusbar[mylast][8] , {3,"date",100})
+Return 0
+ENDIF
+IF myopcode = 710
+mylast  = LEN(RT_GUI_Statusbar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+AADD( RT_GUI_Statusbar[mylast][8] , {4,"keyboard",100})
+Return 0
+ENDIF
+IF myopcode = 711
+mylast  = LEN(RT_GUI_Statusbar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+mylast2  = LEN(RT_GUI_Statusbar[mylast][8])
+IF mylast2 = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Statusbar[mylast][8][mylast2][2] := myopdata[1]
+Return 0
+ENDIF
+IF myopcode = 712
+mylast  = LEN(RT_GUI_Statusbar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+mylast2  = LEN(RT_GUI_Statusbar[mylast][8])
+IF mylast2 = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Statusbar[mylast][8][mylast2][3] := myopdata[1]
+Return 0
+ENDIF
+IF myopcode = 750
+AADD( RT_GUI_Menubar , {myopwinname,{}})
+Return 0
+ENDIF
+IF myopcode = 751
+mylast  = LEN(RT_GUI_Menubar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+AADD( RT_GUI_Menubar[mylast][2] , {"popupcaption",{}})
+Return 0
+ENDIF
+IF myopcode = 752
+mylast  = LEN(RT_GUI_menubar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+mylast2  = LEN(RT_GUI_menubar[mylast][2])
+IF mylast2 = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Menubar[mylast][2][mylast2][1] := myopdata[1]
+Return 0
+ENDIF
+IF myopcode = 753
+mylast  = LEN(RT_GUI_Menubar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+mylast2  = LEN(RT_GUI_Menubar[mylast][2])
+IF mylast2 = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+AADD( RT_GUI_Menubar[mylast][2][mylast2][2] , {"itemcaption","item"})
+Return 0
+ENDIF
+IF myopcode = 754
+mylast  = LEN(RT_GUI_menubar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+mylast2  = LEN(RT_GUI_menubar[mylast][2])
+IF mylast2 = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+mylast3  = LEN(RT_GUI_menubar[mylast][2][mylast2][2])
+IF mylast3 = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Menubar[mylast][2][mylast2][2][mylast3][1] := myopdata[1]
+Return 0
+ENDIF
+IF myopcode = 755
+mylast  = LEN(RT_GUI_menubar)
+IF mylast = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+mylast2  = LEN(RT_GUI_menubar[mylast][2])
+IF mylast2 = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+mylast3  = LEN(RT_GUI_menubar[mylast][2][mylast2][2])
+IF mylast3 = 0
+DO RTE_AddError WITH 12
+DO RTE_Check
+ENDIF
+RT_GUI_Menubar[mylast][2][mylast2][2][mylast3][2] := myopdata[1]
+Return 0
+ENDIF
+Return Nil
+
+
+End Of Resistance
+
+*-------------------------------------------------------------------*
