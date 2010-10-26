@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:55:57    Date : 10/04/2010
+* Time : 15:33:28    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -82,6 +82,10 @@ Method beforesearch
 Method searchadd
 EndClass
 Method showwindow Class OrderProcessesClass
+IF .not. UserCan_WinProduction = 2
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( OrderProcessesWindow )
