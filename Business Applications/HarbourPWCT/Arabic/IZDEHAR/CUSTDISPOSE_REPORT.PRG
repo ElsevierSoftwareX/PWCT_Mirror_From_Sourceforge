@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:08:50    Date : 09/17/2010
+* Time : 15:42:33    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,6 +43,10 @@ Method SizeReport
 Method checkchange
 EndClass
 Method ShowWindow Class CustDisposeReportClass
+IF .not. UserCan_WinDispose = 2
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 if !iswindowdefined( CustDisposeReportWindow )
 DEFINE WINDOW CustDisposeReportWindow ;
 AT 10 ,10 ;
