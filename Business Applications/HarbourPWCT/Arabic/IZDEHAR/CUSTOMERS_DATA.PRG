@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:36:36    Date : 10/04/2010
+* Time : 15:16:19    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -80,6 +80,10 @@ Method AutoGotoRecord
 Method printdata
 EndClass
 Method showwindow Class CustomersDataClass
+IF .not. UserCan_WinCustomers = 2
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( CustomersDataWindow )
