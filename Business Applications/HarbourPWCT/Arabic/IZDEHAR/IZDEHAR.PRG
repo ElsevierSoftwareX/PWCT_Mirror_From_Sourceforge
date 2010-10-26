@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:21:46    Date : 10/20/2010
+* Time : 15:49:30    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -474,29 +474,38 @@ POPUP "‰Ÿ«„"
 MENUITEM "«·„” Œœ„Ì‰" Action UsersDataObject:ShowWindow()
 END POPUP
 ENDIF
+IF UserCan_WinEmployees = 2 .or. UserCan_WinSuppliers = 2 .or. UserCan_WinCustomers = 2
 POPUP "«·«‘Œ«’"
+IF UserCan_WinEmployees = 2
 POPUP "«·„ÊŸ›Ì‰ Ê «·„œ—»Ì‰"
 MENUITEM "»Ì«‰«  «·„ÊŸ› «Ê «·„œ—»" Action EmployeesDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „ÊŸ› «Ê „œ—»" Action EmployeesBrowseObject:showwindow()
 MENUITEM " ﬁ—Ì— »«·„ÊŸ›Ì‰ Ê «·„œ—»Ì‰" Action Employeesreport()
 END POPUP
+ENDIF
+IF UserCan_WinCustomers = 2
 POPUP "«·„ œ—»Ì‰"
 MENUITEM "»Ì«‰«  «·„ œ—»Ì‰" Action CustomersDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „ œ—» »«·«”„" Action CustomersBrowseObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „ œ—» »—ﬁ„ «·ÃÊ«·" Action CustomersBrowse2Object:showwindow()
 MENUITEM " ﬁ—Ì— »«·„ œ—»Ì‰" Action Customersreport()
 END POPUP
+ENDIF
+IF UserCan_WinSuppliers = 2
 POPUP " «·„Ê—œÌ‰"
 MENUITEM "»Ì«‰«  «·„Ê—œÌ‰" Action SuppliersDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „Ê—œ" Action SuppliersBrowseObject:showwindow()
 MENUITEM " ﬁ—Ì—  »«·„Ê—œÌ‰" Action Suppliersreport()
 END POPUP
+ENDIF
 MENUITEM "ÃœÊ· «”„«¡ «·œÊ· " Action Countrydataobject:showwindow()
 MENUITEM "ÃœÊ· «”„«¡ «·«ﬁ”«„ " Action GenderDataObject:showwindow()
 MENUITEM "ÃœÊ· «‰Ê«⁄ «·⁄„·«¡" Action CustTypeDataObject:showwindow()
 MENUITEM "ÃœÊ· ÿ—ﬁ «·”œ«œ" Action PayMethodDataObject:showwindow()
 MENUITEM "ÃœÊ· ›∆«  «·⁄„·«¡" Action CustClassDataObject:showwindow()
 END POPUP
+ENDIF
+IF UserCan_WinWarehouse = 2
 POPUP "„Œ«“‰"
 MENUITEM "›∆«  «·«’‰«›" Action ItemsClassesObject:ShowWindow()
 MENUITEM "ÊÕœ«  «·«’‰«›" Action ItemsUnitsObject:ShowWindow()
@@ -513,19 +522,26 @@ MENUITEM "≈œŒ«· ’‰› «·Ï «·„Œ“‰" Action ItemsEnterObject:ShowWindow()
 SEPARATOR
 MENUITEM "ÕÃ“ ﬂ„Ì… „‰ ’‰› ·’«·Õ œÊ—…" Action ReserveItemsObject:ShowWindow()
 END POPUP
+ENDIF
+IF UserCan_WinOrders = 2 .or. UserCan_WinAgreement = 2
 POPUP "œÊ—« "
+IF UserCan_WinOrders = 2
 MENUITEM "ÃœÊ· Ê”«∆· „⁄—›… «·⁄„Ì· »«·œÊ—…" Action HowKnowDataObject:ShowWindow()
 MENUITEM "«„«ﬂ‰ «·œÊ—« " Action LocationsObject:ShowWindow()
 MENUITEM " ”ÃÌ· œÊ—…" Action OrdersEnterObject:ShowWindow()
+MENUITEM "„—‘ÕÌ‰ «·⁄„Ì·" Action CustFriendsObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UserCan_WinAgreement = 2
 MENUITEM "«—«¡ „œÌ— «·ÃÊœ…" Action QualityObject:ShowWindow()
 MENUITEM "«—«¡ „œÌ— «·„ «»⁄…" Action SchedulingObject:ShowWindow()
 MENUITEM "«—«¡ „œÌ— «·„Œ«“‰" Action WarehouseObject:ShowWindow()
 MENUITEM "«—«¡ „œÌ— «·„«·Ì…" Action FinanceObject:ShowWindow()
 MENUITEM "«·„Ê«›ﬁ… ⁄·Ï œÊ—…" Action AgreementObject:ShowWindow()
-SEPARATOR
-MENUITEM "„—‘ÕÌ‰ «·⁄„Ì·" Action CustFriendsObject:ShowWindow()
+ENDIF
 END POPUP
+ENDIF
+IF UserCan_WinProduction = 2
 POPUP "„ «»⁄… ”Ì— œÊ—…"
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:ShowWindow()
 MENUITEM " ⁄—Ì› Õ«·«  «·«Ã—«¡" Action ProcessStatusObject:ShowWindow()
@@ -534,17 +550,28 @@ MENUITEM "⁄„·Ì«   ‰›Ì– œÊ—…" Action OrderProcessesObject:ShowWindow()
 SEPARATOR
 MENUITEM "„ «»⁄… «·„ÊŸ›Ì‰" Action ProductionObject:ShowWindow()
 END POPUP
+ENDIF
+IF UserCan_WinDispose = 2
 POPUP " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡"
 MENUITEM "«· ﬁÌÌ„ „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action DisposeObject:ShowWindow()
 SEPARATOR
 MENUITEM "«—«¡ «·„ œ—»Ì‰" Action CustOpinionObject:ShowWindow()
 MENUITEM "«· ﬁÌÌ„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
 END POPUP
+ENDIF
 POPUP " ﬁ«—Ì—"
+IF UserCan_WinEmployees = 2
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListOfEmployeesreport()
+ENDIF
+IF UserCan_WinSuppliers = 2
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„Ê—œÌ‰" Action ListOfSuppliersreport()
+ENDIF
+IF UserCan_WinCustomers = 2
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·⁄„·«¡" Action ListOfCustomersreport()
 SEPARATOR
+ENDIF
+IF UserCan_WinWarehouse = 2
+POPUP " ﬁ«—Ì— «·„Œ«“‰"
 MENUITEM " ﬁ—Ì— ›∆«  «·«’‰«›" Action ItemClassesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— ÊÕœ«  «·«’‰«›" Action ItemUnitsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— „Ã„Ê⁄«  «·«’‰«›" Action ItemGroupsReportObject:ShowWindow()
@@ -558,31 +585,55 @@ MENUITEM " ﬁ—Ì— »«·„Œ«“‰" Action StoresReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »œŒÊ· «’‰«› «·Ï «·„Œ“‰" Action ITEMSENTEREDTOSTORESReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »ÕÃ“ ﬂ„Ì«  „‰ «·«’‰«› ·’«·Õ œÊ—…" Action ReservedItemsReportObject:ShowWindow()
 SEPARATOR
+END POPUP
+ENDIF
+IF UserCan_WinOrders = 2 .or. UserCan_WinAgreement = 2
+POPUP " ﬁ«—Ì— «·œÊ—« "
 MENUITEM "ﬁ«∆„… »«·œÊ—« " Action ListOfOrdersReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— » ›«’Ì· «·œÊ—…" Action OrderDetailsReportObject:ShowWindow()
 MENUITEM "ﬂ—Ê  œÊ—…" Action OrderCardsReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— »«·œÊ—«  Ê«·„ œ—»Ì‰ Ê„—‘ÕÌ‰ «·⁄„·«¡" Action CustFriendsReportObject:ShowWindow()
+IF UserCan_WinAgreement = 2
 MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·ÃÊœ…" Action QualityOpinionsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·ÃœÊ·… Ê«·„ «»⁄…" Action SchedulingOpinionsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·„Œ«“‰" Action WarehouseOpinionsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·„«·Ì…" Action FinanceOpinionsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«·„Ê«›ﬁ… ⁄·Ï œÊ—…" Action AgreementReportObject:ShowWindow()
 SEPARATOR
+ENDIF
+END POPUP
+ENDIF
+IF UserCan_WinProduction = 2
+POPUP " ﬁ«—Ì— „ «»⁄… ”Ì— «·œÊ—« "
 MENUITEM " ﬁ—Ì— »«Ã—«¡«   «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—…" Action ProcessesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »Õ«·«  «Ã—«¡  ‰›Ì–Ï " Action ProcessStatusReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »„—«Õ· «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—… „Õœœ…" Action OrderProcessesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰" Action EmployeesProductionReportObject:ShowWindow()
+END POPUP
+ENDIF
+IF UserCan_WinDispose = 2
+POPUP " ﬁ«—Ì—  ﬁÌÌ„ «·œÊ—« "
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—… „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action OrdersDisposeReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeReportObject:ShowWindow()
-MENUITEM " ﬁ—Ì— »«·œÊ—«  Ê«·„ œ—»Ì‰ Ê„—‘ÕÌ‰ «·⁄„·«¡" Action CustFriendsReportObject:ShowWindow()
+END POPUP
+ENDIF
 END POPUP
 POPUP "«·»—Ìœ «·«·ﬂ —Ê‰Ï"
 MENUITEM "«—”«· —”«·…" Action sendmailtooneobject:showwindow()
 SEPARATOR
-MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ œ—»Ì‰" Action sendmailtoallcustomersobject:showwindow()
+IF UserCan_WinEmployees = 2
 MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ÊŸ›Ì‰" Action sendmailtoallemployeesobject:showwindow()
+ENDIF
+IF UserCan_WinCustomers = 2
+MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ œ—»Ì‰" Action sendmailtoallcustomersobject:showwindow()
+ENDIF
+IF UserCan_WinSuppliers = 2
 MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„Ê—œÌ‰" Action sendmailtoallSuppliersobject:showwindow()
 SEPARATOR
+ENDIF
+IF UserCan_WinOrders = 2
 MENUITEM "«—”«· —”«·… «·Ï «·„”Ã·Ì‰ ›Ï œÊ—…" Action sendmailtogroupobject:showwindow()
+ENDIF
 END POPUP
 Return Nil
 Proc customersreport
@@ -712,6 +763,14 @@ openworld := false
 Public EnteredUserName,EnteredPassword,UserCan_Admin,UserCan_AgreementRole
 EnteredUserName := winlogin.text1.Value
 EnteredPassword := winlogin.text2.Value
+Public UserCan_WinEmployees
+Public UserCan_WinSuppliers
+Public UserCan_WinCustomers
+Public UserCan_WinWarehouse
+Public UserCan_WinOrders
+Public UserCan_WinAgreement
+Public UserCan_WinProduction
+Public UserCan_WinDispose
 IF mymax > 0
 oRS:MOVEFIRST()
 FOR x = 1 TO MYMAX STEP 1
@@ -724,6 +783,14 @@ IF cPassword == EnteredPassWord
 openworld := true
 UserCan_Admin := oRS:fields:item("SystemAdmin"):value
 UserCan_AgreementRole := oRS:fields:item("AgreementRole"):value
+UserCan_WinEmployees := oRS:fields:item("WinEmployees"):value
+UserCan_WinSuppliers := oRS:fields:item("WinSuppliers"):value
+UserCan_WinCustomers := oRS:fields:item("WinCustomers"):value
+UserCan_WinWarehouse := oRS:fields:item("WinWarehouse"):value
+UserCan_WinOrders := oRS:fields:item("WinOrders"):value
+UserCan_WinAgreement := oRS:fields:item("WinAgreement"):value
+UserCan_WinProduction := oRS:fields:item("WinProduction"):value
+UserCan_WinDispose := oRS:fields:item("WinDispose"):value
 ELSE
 MyOut := MSGBOX("ﬂ·„… «·”— €Ì— ’ÕÌÕ…","⁄›Ê«")
 Return 0

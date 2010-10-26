@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:49:00    Date : 10/04/2010
+* Time : 15:49:16    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,8 @@ Method BeforeSearch
 Method settimer
 Method SearchAdd
 Method GetSearchValue
+Method setMore
+Method MoreSave
 EndClass
 Method showwindow Class UsersClass
 myout = self:connect()
@@ -167,7 +169,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
 VALUE "                                                                               «·„” Œœ„Ì‰" ;
-WIDTH 870 ;
+WIDTH 770 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -214,7 +216,7 @@ WIDTH 740 ;
 HEIGHT 160 ;
 HEADERS {"—ﬁ„","«”„ «·„” Œœ„"};
 WIDTHS {50,250} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
@@ -273,6 +275,12 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DO RightToLeftControl WITH "UsersWindow","comboAgreementRole"
 DO RightToLeftControl WITH "UsersWindow","comboSystemAdmin"
+@ 7 ,775 BUTTONEX btnMore;
+CAPTION " ›«’Ì·";
+ON CLICK self:setmore()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 UsersWindow.Center ( )
@@ -363,6 +371,185 @@ UsersWindow.comboAgreementRole.Enabled := false
 UsersWindow.comboSystemAdmin.Enabled := false
 ENDIF
 self:OperationMode := p1
+Return 0
+Method SetMore Class UsersClass
+if !iswindowdefined( winMore )
+DEFINE WINDOW winMore ;
+AT 10 ,10 ;
+WIDTH 485 ;
+HEIGHT 535 ;
+ICON "PWCTICON" ;
+TITLE "’·«ÕÌ«  «·„” Œœ„Ì‰" ;
+MODAL ;
+BACKCOLOR {236,233,216}
+
+@ 458 ,385 BUTTONEX btnClose;
+CAPTION "„Ê«›ﬁ";
+FONTCOLOR {0,0,0};
+BACKCOLOR {132,242,179};
+ON CLICK Self:MoreSave()  ;
+WIDTH 80 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ -2 ,-4 IMAGE image1;
+PICTURE "Image\back.jpg";
+STRETCH ;
+WIDTH 481 HEIGHT 451
+@ 24 ,38 CHECKBOX check1;
+CAPTION "»Ì«‰«  «·„ÊŸ›Ì‰ Ê«·„œ—»Ì‰";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 76 ,38 CHECKBOX check2;
+CAPTION "»Ì«‰«  «·„Ê—œÌ‰";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 128 ,38 CHECKBOX check3;
+CAPTION "»Ì«‰«  «·„ œ—»Ì‰";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 180 ,38 CHECKBOX check4;
+CAPTION "«·„Œ«“‰";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 232 ,38 CHECKBOX check5;
+CAPTION "«·œÊ—« ";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 284 ,38 CHECKBOX check6;
+CAPTION "«·„Ê«›ﬁ… ⁄·Ï œÊ—…";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 336 ,38 CHECKBOX check7;
+CAPTION "„ «»⁄… ”Ì— «·œÊ—« ";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 388 ,38 CHECKBOX check8;
+CAPTION " ﬁÌÌ„ «·œÊ—« ";
+WIDTH 250;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+END WINDOW
+
+winMore.Center ( )
+vw1 := self:oRS:fields:item("WinEmployees"):value
+vw2 := self:oRS:fields:item("WinSuppliers"):value
+vw3 := self:oRS:fields:item("WinCustomers"):value
+vw4 := self:oRS:fields:item("WinWarehouse"):value
+vw5 := self:oRS:fields:item("WinOrders"):value
+vw6 := self:oRS:fields:item("WinAgreement"):value
+vw7 := self:oRS:fields:item("WinProduction"):value
+vw8 := self:oRS:fields:item("WinDispose"):value
+IF vw1 = 2
+winMore.check1.Value := true
+ELSE
+winMore.check1.Value := false
+ENDIF
+IF vw2 = 2
+winMore.check2.Value := true
+ELSE
+winMore.check2.Value := false
+ENDIF
+IF vw3 = 2
+winMore.check3.Value := true
+ELSE
+winMore.check3.Value := false
+ENDIF
+IF vw4 = 2
+winMore.check4.Value := true
+ELSE
+winMore.check4.Value := false
+ENDIF
+IF vw5 = 2
+winMore.check5.Value := true
+ELSE
+winMore.check5.Value := false
+ENDIF
+IF vw6 = 2
+winMore.check6.Value := true
+ELSE
+winMore.check6.Value := false
+ENDIF
+IF vw7 = 2
+winMore.check7.Value := true
+ELSE
+winMore.check7.Value := false
+ENDIF
+IF vw8 = 2
+winMore.check8.Value := true
+ELSE
+winMore.check8.Value := false
+ENDIF
+ACTIVATE WINDOW winMore
+EndIF
+
+Return 0
+Method MoreSave Class UsersClass
+IF winMore.check1.value = true
+self:oRS:fields:item("WinEmployees"):value := 2
+ELSE
+self:oRS:fields:item("WinEmployees"):value := 3
+ENDIF
+IF winMore.check2.value = true
+self:oRS:fields:item("WinSuppliers"):value := 2
+ELSE
+self:oRS:fields:item("WinSuppliers"):value := 3
+ENDIF
+IF winMore.check3.value = true
+self:oRS:fields:item("WinCustomers"):value := 2
+ELSE
+self:oRS:fields:item("WinCustomers"):value := 3
+ENDIF
+IF winMore.check4.value = true
+self:oRS:fields:item("WinWarehouse"):value := 2
+ELSE
+self:oRS:fields:item("WinWarehouse"):value := 3
+ENDIF
+IF winMore.check5.value = true
+self:oRS:fields:item("WinOrders"):value := 2
+ELSE
+self:oRS:fields:item("WinOrders"):value := 3
+ENDIF
+IF winMore.check6.value = true
+self:oRS:fields:item("WinAgreement"):value := 2
+ELSE
+self:oRS:fields:item("WinAgreement"):value := 3
+ENDIF
+IF winMore.check7.value = true
+self:oRS:fields:item("WinProduction"):value := 2
+ELSE
+self:oRS:fields:item("WinProduction"):value := 3
+ENDIF
+IF winMore.check8.value = true
+self:oRS:fields:item("WinDispose"):value := 2
+ELSE
+self:oRS:fields:item("WinDispose"):value := 3
+ENDIF
+self:oRS:UPDATE()
+winMore.Release ( )
 Return 0
 Method AutoGotoRecord Class UsersClass
 IF self:LFindRecord = true .and. self:OperationMode = 2

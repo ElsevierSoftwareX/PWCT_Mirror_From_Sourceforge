@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:22:51    Date : 10/09/2010
+* Time : 15:23:35    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -95,6 +95,10 @@ Method settimer
 Method mobilechange
 EndClass
 Method showwindow Class OrdersEnterClass
+IF .not. UserCan_WinOrders = 2
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( OrdersEnterWindow )
