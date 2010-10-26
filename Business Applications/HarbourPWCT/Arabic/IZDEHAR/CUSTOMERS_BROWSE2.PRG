@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:36:18    Date : 10/04/2010
+* Time : 15:17:13    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -53,6 +53,10 @@ Method settimer
 Method SearchAdd
 EndClass
 Method showwindow Class CustomersBrowse2Class
+IF .not. UserCan_WinCustomers = 2
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 if !iswindowdefined( CustomersBrowse2Window )
 DEFINE WINDOW CustomersBrowse2Window ;
 AT 10 ,10 ;
