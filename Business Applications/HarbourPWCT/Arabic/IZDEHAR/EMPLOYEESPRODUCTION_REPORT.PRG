@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:08:57    Date : 09/04/2010
+* Time : 15:41:00    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,6 +43,10 @@ Method SizeReport
 Method checkchange
 EndClass
 Method ShowWindow Class EmployeesProductionReportClass
+IF .not. UserCan_WinProduction = 2
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 if !iswindowdefined( EmployeesProductionReportWindow )
 DEFINE WINDOW EmployeesProductionReportWindow ;
 AT 10 ,10 ;
