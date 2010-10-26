@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:24:23    Date : 09/04/2010
+* Time : 15:44:28    Date : 10/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,6 +43,10 @@ Method SizeReport
 Method checkchange
 EndClass
 Method ShowWindow Class OrderProcessesReportClass
+IF .not. UserCan_WinProduction = 2
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 if !iswindowdefined( OrderProcessesReportWindow )
 DEFINE WINDOW OrderProcessesReportWindow ;
 AT 10 ,10 ;
