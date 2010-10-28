@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:07:00    Date : 10/13/2010
+* Time : 17:29:18    Date : 10/20/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -590,6 +590,11 @@ EmpDetailsValuesDataBrowseObject:EmpID := myid
 myout = EmpDetailsValuesDataBrowseObject:ShowWindow()
 Return 0
 Method EmpVacations Class EmployeesDataClass
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("No Record in Employees Table","Sorry")
+Return 0
+ENDIF
 myid := self:oRS:fields:item("id"):value
 VacationsDataBrowseObject:nEmpID := myID
 VacationsDataBrowseObject:ComplexSearch := " and EmpID = " + alltrim(str(myID))
