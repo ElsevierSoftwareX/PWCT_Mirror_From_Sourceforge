@@ -1,0 +1,1 @@
+CALL sscom2.bat  "EXAM"  /X  > _temp.txt

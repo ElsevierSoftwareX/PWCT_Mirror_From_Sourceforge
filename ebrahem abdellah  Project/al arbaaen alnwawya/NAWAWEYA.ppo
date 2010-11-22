@@ -1,0 +1,114 @@
+#line 54 "c:\SSBUILD\minigui\include\i_var.ch"
+  MEMVAR _HMG_SYSDATA
+  MEMVAR _HMG_SCRSAVERDATA
+#line 109 "c:\SSBUILD\xharbour\include\hbclass.ch"
+   DYNAMIC DivertConstructorCall
+
+
+
+
+
+
+
+
+
+
+
+DECLARE HBClass  New( cName AS String, OPTIONAL SuperParams ) AS CLASS HBClass  Create() AS Object  Instance() AS Object  AddClsMethod( cName AS String, @MethodName(), nScope AS Numeric, n2 AS Numeric, n3 AS Numeric )  AddMultiClsData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String )  AddMultiData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String, x AS LOGICAL, lPer AS LOGICAL )  AddMethod( cName AS String, @MethodName(), nScope AS Numeric, lPersistent AS LOGICAL )  AddInLine( cName AS String, bBlock AS CodeBlock, nScope AS Numeric, lPersistent AS LOGICAL )  AddVirtual( cName AS String )
+#line 4 "NAWAWEYA.prg"
+Function Main
+
+
+
+
+
+
+
+
+
+
+
+
+
+Public True,False
+True = .T.
+False = .F.
+SS_NEWSERVER("Server1","Slave","000")
+
+
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+    SS_FLAG3 = 1 ; SS_FLAG = 1 ; SS_FLAG2 = 1
+    SS_FLAG = 4 ; SS_FLAG2 = 3 ; SS_FLAG3 = 2
+            SS_NEWCIRCUIT( "Main" )
+                SS_NEWBRANCH( "Main" )
+                    SS_NRESIS( "Main" )
+    SS_FLAG3 = 3
+
+
+    SS_NEWR( "WIN32EVENTS()" , "WIN32EVENTS" )
+
+  SS_ADDRES("WIN32EVENTS")
+
+
+SS_NEWR( "R5139381072_1()" , "Circuits\Main\Main\Main" )
+
+
+ss_callr( "Circuits\Main\Main\Main" )
+Return
+
+  FUNCTION STARTSERVER()
+       SS_FIREON()
+  RETURN
+
+  function WIN32EVENTS()
+       ProcessMessages()
+  RETURN
+
+
+function R5139381072_1()
+
+
+
+
+
+
+
+
+ _DefineWindow ( "win1", "«·√—»⁄Ì‰ «·‰ÊÊÌ…", 10, 10, 500, 400, .F., .T., .F., .F., .F., {,}, {,},, ,, , ,, {236,233,216} , , .F. , .F. , .T. , "PWCTICON" , .F. , ,, , , ,, , , , , , , , , , .F. , , , , .F. , , , , , .F. , .F. )
+
+DoMethod ( "win1", "Center" )
+
+
+
+_DefineSplitBox( "win1" , .T. , .T. )
+
+_EndSplitBox()
+
+_EndWindow ()
+
+
+
+calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20, NUMOR(calldll32("GetWindowLong","USER32.DLL", GetFormHandle ("Win1"), -20),0x400000,0x100000))
+_ActivateWindow( {"win1"}, .F. )
+
+
+
+return
+
+INIT PROCEDURE Init_NAWAWEYA
+SS_ON()
+SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,10)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",11,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define SPLITBOX",12,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","End SPLITBOX",17,18)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",19,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Right-To-Left, Window 'Win1'",21,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",24,25)
+Return
