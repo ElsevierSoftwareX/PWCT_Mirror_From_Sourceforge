@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:29:33    Date : 10/20/2010
+* Time : 20:41:56    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -493,7 +493,6 @@ IF UserCan_WinWarehouse = 2
 POPUP "Warehouse"
 MENUITEM "Set Items Classes" Action ItemsClassesObject:ShowWindow()
 MENUITEM "Set Items Units" Action ItemsUnitsObject:ShowWindow()
-MENUITEM "Set Items Groups" Action ItemsGroupsObject:ShowWindow()
 MENUITEM "Set Items Grades" Action ItemsGradesObject:ShowWindow()
 MENUITEM "Set Items Sizes" Action ItemsSizesObject:ShowWindow()
 MENUITEM "Set Items Colors" Action ItemsColorsObject:ShowWindow()
