@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:12:58    Date : 10/12/2010
+* Time : 21:46:08    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -71,6 +71,7 @@ Method beforesearch
 Method setTimer
 Method searchadd
 Method getsearchvalue
+Method LoadLookupTable2
 EndClass
 Method ShowRecord Class SYSTEMDATABASE
 mymax := self:oRS:RecordCount
@@ -279,6 +280,31 @@ Method SetTimer Class SystemDatabase
 Return 0
 Method GetSearchValue Class SystemDatabase
 Return ""
+Method LoadLookupTable2(cTableName,cColumnName,aArrayNameRef,cColumnName2,aArrayNameRef2) Class SYSTEMDATABASE
+Local x,nMax,temp_value,temp_value2,oCon,oRS
+oCon := TOLEAUTO():NEW( "ADODB.Connection" )
+oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn='+self:DataSourceName+';uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := oCon
+oRS:open ( "Select * from " + cTableName +" where 1=1 "+ self:complexsearch,oCon,3,3 )
+nMAX := oRS:RecordCount
+aArrayNameRef := {}
+aArrayNameRef2 := {}
+FOR x = 1 TO nMax STEP 1
+temp_value := oRS:fields:item(cColumnName):value
+temp_value2 := oRS:fields:item(cColumnName2):value
+IF valtype(temp_value) = "N"
+temp_Value = STR ( temp_value )
+temp_Value = ALLTRIM ( temp_value )
+ENDIF
+AADD( aArrayNameRef , temp_value)
+AADD( aArrayNameRef2 , temp_value2)
+oRS:MOVENEXT()
+Next
+oRS:Close()
+oCon:CLOSE()
+Return 0
 
 
 End Of Resistance
