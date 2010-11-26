@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:38:38    Date : 10/20/2010
+* Time : 19:03:02    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -69,6 +69,7 @@ Data itemSecUnititems init {}
 Data itemSecUnititemsids init {}
 Data cItemValue init "0"
 Data cItemValue2 init "0"
+Data warehousecode init 1
 Method showwindow
 Method closewindow
 Method SetMode
@@ -87,19 +88,21 @@ Method settimer
 Method GetSearchValue
 Method ItemDetails
 Method GroupFilter
+Method baseGroupFilter
 EndClass
 Method showwindow Class ItemsClass
 IF .not. UserCan_WinWarehouse = 2
 MyOut := MSGBOX("Access is denied","Sorry")
 Return 0
 ENDIF
+myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
+myout = self:basegroupfilter()
 myout = self:connect()
 myout = self:AutoGotoRecord()
-self:complexsearch := ""
 if !iswindowdefined( ItemsWindow )
 DEFINE WINDOW ItemsWindow ;
 AT 10 ,10 ;
-WIDTH 893 ;
+WIDTH 892 ;
 HEIGHT 692 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -233,10 +236,10 @@ ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 133 ,73 GRID Grid1browse;
+@ 93 ,73 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
-HEIGHT 160 ;
+HEIGHT 200 ;
 HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size"};
 WIDTHS {50,150,150,100,100,100,100,100,100} ;
 FONT "Arial" SIZE 9 ;
@@ -276,8 +279,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
-@ 347 ,73 LABEL lblItemGroup ;
+@ 332 ,974 LABEL lblItemGroup ;
 VALUE "Item Group" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -285,16 +287,16 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 347 ,210 COMBOBOX comboitemGroup;
+@ 403 ,971 COMBOBOX comboitemGroup;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:ItemGroupitems ;
-VALUE 1 ;
+VALUE self:warehousecode ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsGrades","GradeName",@self:ItemGradeItems,"id",@self:ItemGradeItemsIDS)
-@ 386 ,73 LABEL lblItemGrade ;
+@ 346 ,73 LABEL lblItemGrade ;
 VALUE "Item Grade" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -302,7 +304,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 386 ,210 COMBOBOX comboitemGrade;
+@ 346 ,210 COMBOBOX comboitemGrade;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:ItemGradeitems ;
@@ -311,7 +313,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsSizes","SizeName",@self:ItemSizeItems,"id",@self:ItemSizeItemsIDS)
-@ 306 ,444 LABEL lblItemSize ;
+@ 346 ,444 LABEL lblItemSize ;
 VALUE "Item Size" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -319,7 +321,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 306 ,580 COMBOBOX comboitemSize;
+@ 346 ,580 COMBOBOX comboitemSize;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:ItemSizeitems ;
@@ -328,7 +330,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsColors","ColorName",@self:ItemColorItems,"id",@self:ItemColorItemsIDS)
-@ 347 ,444 LABEL lblItemColor ;
+@ 387 ,444 LABEL lblItemColor ;
 VALUE "Item Color" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -336,7 +338,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 347 ,580 COMBOBOX comboitemColor;
+@ 387 ,580 COMBOBOX comboitemColor;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:ItemColoritems ;
@@ -345,7 +347,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsSources","SourceName",@self:ItemSourceItems,"id",@self:ItemSourceItemsIDS)
-@ 386 ,444 LABEL lblItemSource ;
+@ 386 ,74 LABEL lblItemSource ;
 VALUE "Item Source" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -353,7 +355,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 386 ,580 COMBOBOX comboitemSource;
+@ 386 ,210 COMBOBOX comboitemSource;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:ItemSourceitems ;
@@ -432,7 +434,7 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
-@ 97 ,68 LABEL lblItemGroupfilter ;
+@ 78 ,982 LABEL lblItemGroupfilter ;
 VALUE "Item Group" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -440,15 +442,15 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 97 ,175 COMBOBOX comboitemGroupFilter;
-WIDTH 530 ;
+@ 119 ,969 COMBOBOX comboitemGroupFilter;
+WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:ItemGroupitems ;
-VALUE 1 ;
+VALUE self:warehousecode ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 94 ,715 BUTTONEX btnFilter;
+@ 32 ,976 BUTTONEX btnFilter;
 CAPTION "Filter";
 ON CLICK Self:GroupFilter()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -460,6 +462,7 @@ ItemsWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
 ItemsWindow.Timer1.Enabled := false
+myout = self:groupfilter()
 ACTIVATE WINDOW ItemsWindow
 EndIF
 
@@ -519,8 +522,6 @@ ItemsWindow.textItemName.Value := self:cItemName
 ItemsWindow.textItemCompleteName.Value := self:cItemCompleteName
 self:nItemClass = self:LookupIDToIndex(self:nItemClass,@self:ItemClassItemsids)
 ItemsWindow.Comboitemclass.Value := self:nItemClass
-self:nItemGroup = self:LookupIDToIndex(self:nItemGroup,@self:ItemGroupItemsids)
-ItemsWindow.ComboitemGroup.Value := self:nItemGroup
 self:nItemGrade = self:LookupIDToIndex(self:nItemGrade,@self:ItemGradeItemsids)
 ItemsWindow.ComboitemGrade.Value := self:nItemGrade
 self:nItemSize = self:LookupIDToIndex(self:nItemSize,@self:ItemSizeItemsids)
@@ -542,7 +543,7 @@ Method ClearRecord Class ItemsClass
 self:cItemName := ""
 self:cItemCompleteName := ""
 self:nItemClass := 0
-self:nItemGroup := 0
+self:nItemGroup := self:warehousecode
 self:nItemGrade := 0
 self:nItemSize := 0
 self:nItemColor := 0
@@ -664,6 +665,10 @@ tvalue := ItemsWindow.ComboitemGroupFilter.Value
 tvalue := self:ItemGroupItemsids[tvalue]
 self:complexsearch := " and itemgroupid = " + alltrim(Str(tvalue))
 myout = self:search()
+Return 0
+Method baseGroupFilter Class ItemsClass
+tvalue := self:ItemGroupItemsids[self:warehousecode]
+self:complexsearch := " and itemgroupid = " + alltrim(Str(tvalue))
 Return 0
 Method closewindow Class ItemsClass
 myout = self:disconnect()

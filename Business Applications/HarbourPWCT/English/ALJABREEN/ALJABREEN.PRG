@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:41:56    Date : 11/23/2010
+* Time : 19:03:09    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -499,8 +499,29 @@ MENUITEM "Set Items Colors" Action ItemsColorsObject:ShowWindow()
 MENUITEM "Set Items Sources" Action ItemsSourcesObject:ShowWindow()
 SEPARATOR
 MENUITEM "Item Details" Action ItemDetailsDataObject:ShowWindow()
-MENUITEM "Define Items" Action ItemsObject:ShowWindow()
+POPUP "Items Warehouse"
+MENUITEM "Skin Warehouse" Action mywarehouse(1)
 SEPARATOR
+MENUITEM "Wet blue 1 Warehouse" Action mywarehouse(2)
+SEPARATOR
+MENUITEM "Wet blue 2 Warehouse" Action mywarehouse(3)
+SEPARATOR
+MENUITEM "Crust Warehouse" Action mywarehouse(4)
+SEPARATOR
+MENUITEM "Finish Warehouse" Action mywarehouse(5)
+SEPARATOR
+MENUITEM "Chemicals Warehouse" Action mywarehouse(6)
+SEPARATOR
+MENUITEM "Shoes Row Materials Warehouse" Action mywarehouse(7)
+SEPARATOR
+MENUITEM "Jacket Row Materials Warehouse" Action mywarehouse(8)
+SEPARATOR
+MENUITEM "General Warehouse" Action mywarehouse(9)
+SEPARATOR
+MENUITEM "Shoes products Warehouse" Action mywarehouse(10)
+SEPARATOR
+MENUITEM "Jacket Products Warehouse" Action mywarehouse(11)
+END POPUP
 MENUITEM "Set Items Stores" Action ItemsStoresObject:ShowWindow()
 MENUITEM "Enter Items to Store" Action ItemsEnterObject:ShowWindow()
 SEPARATOR
@@ -932,6 +953,10 @@ END WINDOW
 ACTIVATE WINDOW winAbout
 EndIF
 
+Return Nil
+Proc mywarehouse( p1 )
+itemsobject:warehousecode := p1
+myout = ItemsObject:ShowWindow()
 Return Nil
 
 
