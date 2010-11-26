@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Photo Gallery</title>
+<meta name="generator" content="Antenna Web Design Studio">
+<meta http-equiv="imagetoolbar" content="no">
+<link rel="stylesheet" type="text/css" href="../../../antenna.css" id="css">
+<script type="text/javascript" src="../../../antenna/auto.js"></script>
+<style type="text/css">
+.abs {position:absolute}
+.content { width:100%; height:100%; overflow:hidden; opacity:1; }
+.thumbs { position:relative; top:0; left:0; width:102px; height:102px; }
+.spc { float:left; cursor:pointer; margin-left:1px; margin-top:1px; }
+.tmb { width:100px; height:100px; overflow:hidden; }
+.lrg { border:1px solid; visibility:hidden; border-color:transparent; }
+.photocaption { width:100%; text-align:right; margin-top:10px; font-size:11px; }
+</style>
+<script type="text/javascript">
+var sFilen; var sCap; var iCur=0; var iThumbContentHeight=102;
+function expandPhotoIdx(iIndex){ expandPhoto(vPhotoList[iIndex][0],vPhotoList[iIndex][1]); }
+function expandPhoto(sFilename,sCaption){ sFilen=sFilename; sCap=sCaption; fadeTo(document.getElementById('vlarge'),0,0.2);
+ setTimeout('expandPhoto2(sFilen,sCap);',300); }
+function expandPhoto2(sFilename,sCaption){ var p=sFilename.lastIndexOf('/'); if (p>-1) { sFilename=sFilename.substr(p+7) };
+ if (window.innerWidth) { var iMaxWidth=window.innerWidth; var iMaxHeight=window.innerHeight; var iOffset=window.pageYOffset; }
+ else { var iMaxWidth=document.body.offsetWidth; var iMaxHeight=document.body.offsetHeight; var iOffset=document.body.scrollTop; }
+ var iCaptionHeight=0; document.getElementById('photocaption').innerHTML=''; var iPadding=2;
+ var vContainer=document.getElementById('vlarge'); var vImage=document.getElementById('vlargei'); var vI=new Image();
+ vI.onload=function() { vImage.src=sFilename; var iImgWidth=vI.width+iPadding; var iImgHeight=vI.height+iPadding;
+ var iTotalHeight=iImgHeight+iCaptionHeight; var iShiftX=0; var iShiftY=0; var iX=(iMaxWidth-iImgWidth+iShiftX)/2;
+ var iY=(iMaxHeight-iTotalHeight+iShiftY)/2; vContainer.style.left=iX+'px'; vContainer.style.top=iY+iOffset+'px';
+ vContainer.style.width=iImgWidth+'px'; vContainer.style.height=iTotalHeight+'px'; vContainer.style.visibility='visible';
+ fadeTo(vContainer,100,0.3); }; vI.src=sFilename+'?t'; vI.src=sFilename; }
+function mouseY(e) { if (e.pageY) return e.pageY; else if (e.clientY) return e.clientY; else return 0; }
+function mouseX(e) { if (e.pageX) return e.pageX; else if (e.clientX) return e.clientX; else return 0; }
+function getWindowWidth() { if (window.innerWidth) return window.innerWidth; else return document.body.offsetWidth; }
+function getWindowHeight() { if (window.innerHeight) return window.innerHeight; else return document.body.offsetHeight; }
+var bThumbScroll=1; var vTmr; var iTgt=0; var iTgt2=0; var iNew=0; var iMPos=0; var iMax=0; var bAxis='y'; var iWindow=1.5;
+ var vInc=new Array(8,7,6,5,4,4,3,3,3,2,2,2,2,1,1,1,1,1,0.5,0.5,0.5,0.5,0.5,0.5,0.5); var bReady=0;
+function calcSpeed(iP) { iP=Math.round(iP/2); return vInc[iP]; }
+function calcDamp(i,t) { i=i/(5-(Math.abs(t)/50)); if (i<0.5) {i=0.5}; return i; }
+function scrollThumbs() { var iChange=(iTgt-iCur)/16; if (iChange>-.5 && iChange<0) {iChange=-.5};
+ if (iChange>0 && iChange<.5) {iChange=.5}; if (Math.abs(iTgt-iCur)<.5) {iCur=iTgt} else {iCur=iCur+iChange}; var iInc;
+ if (iMPos<48 && iTgt2>iNew) { iInc=calcSpeed(iMPos); if (iNew>-200) { iInc=calcDamp(iInc,iNew) }; iNew=iNew+iInc };
+ if (iMPos>(iMax-48) && iTgt2<iNew) { iInc=calcSpeed(iMax-iMPos-1); if (iNew-iTgt2<200) { iInc=calcDamp(iInc,iNew-iTgt2) }; iNew=iNew-iInc; };
+if (bAxis=='y') document.getElementById('thumbs').style.top=Math.round(iNew+iCur)+'px';
+ else document.getElementById('thumbs').style.left=Math.round(iNew+iCur)+'px'; }
+function startTimer() { if (bThumbScroll==1) { vTmr=setInterval('scrollThumbs()',16); }; };
+function removePx(coord) { return parseInt(coord.slice(0,-2)); };
+function setTargetPos(e) { if (bReady==1) { var iDim; var iDim2; var iPos; if (bAxis=='y') { iMax=getWindowHeight();
+ iDim=iMax*iWindow; iDim2=iThumbContentHeight; if (iDim>iDim2) { iDim=iDim2 }; iPos=mouseY(e)-50; } else { iMax=getWindowWidth();
+ iDim=iMax*iWindow; iDim2=102; if (iDim>iDim2) { iDim=iDim2 }; iPos=mouseX(e)-50; } var iL=iDim-iMax;
+ var iY=Math.round(iL/((iMax-100)/iPos)); if (iY>iL) iY=iL; if (iY<0) iY=0; iTgt=-iY;
+ var iL2=iDim2-(iMax*iWindow); var iY2=Math.round(iL2/((iMax-100)/iPos)); if (iY2>iL2) iY2=iL2; if (iY2<0) iY2=0; iTgt2=-iY2;
+ iMPos=iPos+50; } }
+function setupVars() { var iTmp; if (bAxis=='x') { iTmp=102-getWindowWidth() }
+ else { iTmp=iThumbContentHeight-getWindowHeight() }; if (iTmp<0) bThumbScroll=0; slideShowPlay(); bReady=1; }
+function stopTimer() { if (bThumbScroll==1) clearInterval(vTmr); };
+var vSlideShow; var iSlide=0;
+function slideShowReset() { iSlide=0; };
+
+ function slideShowPlay() { expandPhotoIdx(iSlide); iSlide=iSlide+1; if (iSlide>vPhotoList.length-1) { iSlide=0; }; vSlideShow=setTimeout('slideShowPlay()',4.5*1000); };
+function slideShowPause() { clearTimeout(vSlideShow); };
+var vPhotoList=new Array();
+vPhotoList[0]=new Array("image009.jpg","");
+vPhotoList[1]=new Array("image010.jpg","");
+vPhotoList[2]=new Array("image011.jpg","");
+vPhotoList[3]=new Array("image012.jpg","");
+vPhotoList[4]=new Array("image013.jpg","");
+vPhotoList[5]=new Array("image014.jpg","");
+vPhotoList[6]=new Array("image015.jpg","");
+vPhotoList[7]=new Array("image016.jpg","");
+vPhotoList[8]=new Array("image017.jpg","");
+
+</script>
+
+</head><body class="global" style="" onload="setupVars()"><div style=""><center>
+<div id="content" class="content" style="filter:alpha(opacity=100);">
+</div>
+</center></div>
+<div id="vlarge" class="abs hid lrg opr ptr" style="top:10px; left:10px; width:100px; height:100px; z-index:-1;
+ opacity:0.02; filter:alpha(opacity=1);"><img id="vlargei" alt=""
+ <br><div id="photocaption" class="photocaption">Photo Caption</div></div>
+</body></html>
