@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:12:54    Date : 10/20/2010
+* Time : 21:23:19    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -58,6 +58,9 @@ Data cCost init ""
 Data cNotes init ""
 Data cItemUnitText init ""
 Data cItemSecUnitText init ""
+Data WarehouseCode init 1
+Data itemgroupitems init {}
+Data itemgroupitemsids init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -82,12 +85,15 @@ Method SearchAdd
 Method settimer
 Method GetSearchValue
 Method SelectItem
+Method baseGroupFilter
 EndClass
 Method showwindow Class ItemsEnterClass
 IF .not. UserCan_WinWarehouse = 2
 MyOut := MSGBOX("Access is denied","Sorry")
 Return 0
 ENDIF
+myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
+myout = self:basegroupfilter()
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( ItemsEnterWindow )
@@ -656,6 +662,10 @@ myout = SelectItemMasterDetailsObject:ShowWindow()
 myindex = self:LookupIDToIndex(SelectItemMasterDetailsObject:nOrderNumber,@self:ItemItemsids)
 ItemsEnterWindow.ComboItem.Value := myindex
 myout = self:ItemChange()
+Return 0
+Method baseGroupFilter Class ItemsEnterClass
+tvalue := self:ItemGroupItemsids[self:warehousecode]
+self:complexsearch := " and itemgroupid = " + alltrim(Str(tvalue))
 Return 0
 Method closewindow Class ItemsEnterClass
 myout = self:disconnect()
