@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:46:13    Date : 11/26/2010
+* Time : 22:51:44    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -658,6 +658,7 @@ myout = self:SubValuesFromItem()
 Return myout
 Method SelectItem Class ItemsEnterClass
 Local myindex,myout
+SelectItemMasterDetailsObject:warehousecode := self:warehousecode
 myout = SelectItemMasterDetailsObject:ShowWindow()
 myindex = self:LookupIDToIndex(SelectItemMasterDetailsObject:nOrderNumber,@self:ItemItemsids)
 ItemsEnterWindow.ComboItem.Value := myindex
