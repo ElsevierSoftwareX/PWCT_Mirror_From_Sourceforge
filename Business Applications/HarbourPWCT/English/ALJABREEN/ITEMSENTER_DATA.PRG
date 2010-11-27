@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:51:44    Date : 11/26/2010
+* Time : 02:34:49    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -103,7 +103,7 @@ WIDTH 893 ;
 HEIGHT 647 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE "Enter Items to Store" ;
+TITLE sys_warehousearray[self:warehousecode] + " - Enter Items to Store" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
@@ -193,7 +193,7 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                   Enter Items to Store" ;
+VALUE space(50) + sys_warehousearray[self:warehousecode] + " - Enter Items to Store" ;
 WIDTH 870 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;

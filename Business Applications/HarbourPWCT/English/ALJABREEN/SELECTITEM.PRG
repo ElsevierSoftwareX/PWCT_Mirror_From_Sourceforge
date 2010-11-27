@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:58:12    Date : 11/26/2010
+* Time : 02:41:34    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -96,7 +96,7 @@ WIDTH 786 ;
 HEIGHT 595 ;
 ON INIT self:Search()  ;
 ON LOSTFOCUS SelectItemMasterDetailsWindow.release()  ;
-TITLE "Select Item" ;
+TITLE sys_warehousearray[self:warehousecode] + " - Select Item" ;
 CHILD ;
 TOPMOST ;
 NOMINIMIZE ;
@@ -118,7 +118,7 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                            Select Item" ;
+VALUE space(50) + sys_warehousearray[self:warehousecode] + " - Select Item" ;
 WIDTH 760 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
