@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:21:09    Date : 11/28/2010
+* Time : 02:30:22    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -196,7 +196,7 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                               Items" ;
+VALUE space(60) + sys_warehousearray[self:warehousecode] +" Items" ;
 WIDTH 760 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
