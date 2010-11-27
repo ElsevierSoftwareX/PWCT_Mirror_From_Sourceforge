@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:58:17    Date : 11/26/2010
+* Time : 02:21:15    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -190,6 +190,19 @@ ItemDetailsDataObject = ItemDetailsDataClass()
 ItemDetailsValuesDataBrowseObject = ItemDetailsValuesDataBrowseClass()
 SelectItemMasterDetailsObject = SelectItemMasterDetailsClass()
 ProductionManObject = ProductionManClass()
+Public sys_warehousearray
+sys_warehousearray := {}
+AADD( sys_warehousearray , "Skin Warehouse")
+AADD( sys_warehousearray , "Wet blue 1 Warehouse")
+AADD( sys_warehousearray , "Wet blue 2 Warehouse")
+AADD( sys_warehousearray , "Crust Warehouse")
+AADD( sys_warehousearray , "Finish Warehouse")
+AADD( sys_warehousearray , "Chemicals Warehouse")
+AADD( sys_warehousearray , "Shoes Row Materials Warehouse")
+AADD( sys_warehousearray , "Jacket Row Materials Warehouse")
+AADD( sys_warehousearray , "General Warehouse")
+AADD( sys_warehousearray , "Shoes Warehouse")
+AADD( sys_warehousearray , "Jacket Warehouse")
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;

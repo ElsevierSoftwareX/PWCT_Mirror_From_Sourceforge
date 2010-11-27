@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:03:02    Date : 11/26/2010
+* Time : 02:21:09    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -106,7 +106,7 @@ WIDTH 892 ;
 HEIGHT 692 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE "Items" ;
+TITLE sys_warehousearray[self:warehousecode] + " - Items" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
