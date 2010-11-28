@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:41:50    Date : 11/28/2010
+* Time : 03:32:43    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -206,7 +206,7 @@ AADD( sys_warehousearray , "Jacket Warehouse")
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 907 ;
+WIDTH 869 ;
 HEIGHT 718 ;
 ON INIT systemlogin()  ;
 ICON "PWCTICON" ;
@@ -401,6 +401,13 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 84 ,950 LABEL lblUserName ;
+VALUE "User Name : " ;
+WIDTH 293 ;
+HEIGHT 40 ;
+FONT "Arial" SIZE 18  ;
+BACKCOLOR {236,233,216} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 ACTIVATE WINDOW win1
@@ -458,6 +465,7 @@ myout = CALLDLL32("SetParent","USER32.DLL",HCHILD,HPARENT)
 winlogo.Center ( )
 winlogo.Col := (win1.width) - (winlogo.width) - (100 )
 winlogo.Row := 200
+win1.lblusername.Col := (win1.width) - (winlogo.width) - (73 )
 Activate Window winlogo nowait
 Return Nil
 Proc customers
@@ -794,6 +802,7 @@ UserCan_WinOrders := oRS:fields:item("WinOrders"):value
 UserCan_WinAgreement := oRS:fields:item("WinAgreement"):value
 UserCan_WinProduction := oRS:fields:item("WinProduction"):value
 UserCan_WinDispose := oRS:fields:item("WinDispose"):value
+win1.lblusername.Value := "User Name : "    + cName
 ELSE
 MyOut := MSGBOX("Invalid Password","Error")
 Return 0
