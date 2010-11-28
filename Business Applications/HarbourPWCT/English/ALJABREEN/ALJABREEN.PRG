@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:32:43    Date : 11/28/2010
+* Time : 04:17:44    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -566,7 +566,29 @@ MENUITEM "Shoes products Warehouse" Action myenterwarehouse(10)
 SEPARATOR
 MENUITEM "Jacket Products Warehouse" Action myenterwarehouse(11)
 END POPUP
-MENUITEM "Reserve Items For Order" Action ReserveItemsObject:ShowWindow()
+POPUP "Reserve Items for order"
+MENUITEM "Skin Warehouse" Action myreservewarehouse(1)
+SEPARATOR
+MENUITEM "Wet blue 1 Warehouse" Action myreservewarehouse(2)
+SEPARATOR
+MENUITEM "Wet blue 2 Warehouse" Action myenterwarehouse(3)
+SEPARATOR
+MENUITEM "Crust Warehouse" Action myreservewarehouse(4)
+SEPARATOR
+MENUITEM "Finish Warehouse" Action myreservewarehouse(5)
+SEPARATOR
+MENUITEM "Chemicals Warehouse" Action myreservewarehouse(6)
+SEPARATOR
+MENUITEM "Shoes Row Materials Warehouse" Action myreservewarehouse(7)
+SEPARATOR
+MENUITEM "Jacket Row Materials Warehouse" Action myreservewarehouse(8)
+SEPARATOR
+MENUITEM "General Warehouse" Action myreservewarehouse(9)
+SEPARATOR
+MENUITEM "Shoes products Warehouse" Action myreservewarehouse(10)
+SEPARATOR
+MENUITEM "Jacket Products Warehouse" Action myreservewarehouse(11)
+END POPUP
 END POPUP
 ENDIF
 IF UserCan_WinOrders = 2 .or. UserCan_WinAgreement = 2
@@ -1003,6 +1025,10 @@ Return Nil
 Proc myenterwarehouse( p1 )
 itemsenterobject:warehousecode := p1
 myout = ItemsEnterObject:ShowWindow()
+Return Nil
+Proc myreservewarehouse( p1 )
+ReserveItemsObject:warehousecode := p1
+myout = ReserveItemsObject:ShowWindow()
 Return Nil
 
 

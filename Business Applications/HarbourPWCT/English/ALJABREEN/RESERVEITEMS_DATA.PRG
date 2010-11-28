@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:14:55    Date : 10/20/2010
+* Time : 04:17:29    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -56,6 +56,9 @@ Data cNotes init ""
 Data cItemUnitText init ""
 Data cItemSecUnitText init ""
 Data cCustomer init 0
+Data WareHouseCode init 0
+Data itemgroupitems init {}
+Data itemgroupitemsids init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -81,8 +84,11 @@ Method SearchAdd
 Method GetSearchValue
 Method settimer
 Method SelectItem
+Method basegroupfilter
 EndClass
 Method showwindow Class ReserveItemsClass
+myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
+myout = self:basegroupfilter()
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( ReserveItemsWindow )
@@ -92,7 +98,7 @@ WIDTH 893 ;
 HEIGHT 647 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE "Reserve Items For Order" ;
+TITLE sys_warehousearray[self:warehousecode] +" - Reserve Items For Order" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
@@ -182,7 +188,7 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                   Reserve Items For Order" ;
+VALUE space(40) + sys_warehousearray[self:warehousecode] + " - Reserve Items For Order" ;
 WIDTH 870 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
@@ -281,7 +287,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-myout = self:LoadLookupTable("ItemsAndUnits_ALL","ItemCompleteName",@self:ItemItems,"id",@self:ItemItemsIDS)
+myout = self:LoadLookupTable2("ItemsAndUnits_ALL","ItemCompleteName",@self:ItemItems,"id",@self:ItemItemsIDS)
 @ 346 ,243 LABEL lblitems ;
 VALUE "Item" ;
 WIDTH 40 ;
@@ -658,10 +664,15 @@ myRS:Close()
 Return 0
 Method SelectItem Class ReserveItemsClass
 Local myindex,myout
+SelectItemMasterDetailsObject:warehousecode := self:warehousecode
 myout = SelectItemMasterDetailsObject:ShowWindow()
 myindex = self:LookupIDToIndex(SelectItemMasterDetailsObject:nOrderNumber,@self:ItemItemsids)
 ReserveItemsWindow.ComboItem.Value := myindex
 myout = self:ItemChange()
+Return 0
+Method baseGroupFilter Class ReserveItemsClass
+tvalue := self:ItemGroupItemsids[self:warehousecode]
+self:complexsearch := " and itemgroupid = " + alltrim(Str(tvalue))
 Return 0
 Method closewindow Class ReserveItemsClass
 myout = self:disconnect()
