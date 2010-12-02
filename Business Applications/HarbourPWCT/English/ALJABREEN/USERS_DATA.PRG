@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:32:37    Date : 10/18/2010
+* Time : 18:38:57    Date : 12/02/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -374,14 +374,14 @@ Method SetMore Class UsersClass
 if !iswindowdefined( winMore )
 DEFINE WINDOW winMore ;
 AT 10 ,10 ;
-WIDTH 485 ;
+WIDTH 644 ;
 HEIGHT 535 ;
 ICON "PWCTICON" ;
 TITLE "More" ;
 MODAL ;
 BACKCOLOR {236,233,216}
 
-@ 458 ,385 BUTTONEX btnClose;
+@ 459 ,542 BUTTONEX btnClose;
 CAPTION "Ok";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -393,7 +393,7 @@ TOOLTIP ""
 @ -2 ,-4 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 481 HEIGHT 451
+WIDTH 641 HEIGHT 451
 @ 24 ,38 CHECKBOX check1;
 CAPTION "Employees";
 WIDTH 250;
@@ -450,6 +450,83 @@ Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 4 ,326 CHECKBOX checkw1;
+CAPTION "Skin warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 45 ,326 CHECKBOX checkw2;
+CAPTION "Wet blue 1 warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 86 ,326 CHECKBOX checkw3;
+CAPTION "Wet blue 2 warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 127 ,326 CHECKBOX checkw4;
+CAPTION "Crust warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 168 ,326 CHECKBOX checkw5;
+CAPTION "Finish warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 209 ,326 CHECKBOX checkw6;
+CAPTION "Chemicals warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 250 ,326 CHECKBOX checkw7;
+CAPTION "Shoes row warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 291 ,326 CHECKBOX checkw8;
+CAPTION "Jacket row warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 332 ,326 CHECKBOX checkw9;
+CAPTION "General warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 373 ,326 CHECKBOX checkw10;
+CAPTION "Shoes products warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 414 ,326 CHECKBOX checkw11;
+CAPTION "Jacket products warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 winMore.Center ( )
@@ -501,6 +578,72 @@ winMore.check8.Value := true
 ELSE
 winMore.check8.Value := false
 ENDIF
+nw1 := self:oRS:fields:item("nWarehouse1"):value
+nw2 := self:oRS:fields:item("nWarehouse2"):value
+nw3 := self:oRS:fields:item("nWarehouse3"):value
+nw4 := self:oRS:fields:item("nWarehouse4"):value
+nw5 := self:oRS:fields:item("nWarehouse5"):value
+nw6 := self:oRS:fields:item("nWarehouse6"):value
+nw7 := self:oRS:fields:item("nWarehouse7"):value
+nw8 := self:oRS:fields:item("nWarehouse8"):value
+nw9 := self:oRS:fields:item("nWarehouse9"):value
+nw10 := self:oRS:fields:item("nWarehouse10"):value
+nw11 := self:oRS:fields:item("nWarehouse11"):value
+IF nw1 = 2
+winMore.checkw1.Value := true
+ELSE
+winMore.checkw1.Value := false
+ENDIF
+IF nw2 = 2
+winMore.checkw2.Value := true
+ELSE
+winMore.checkw2.Value := false
+ENDIF
+IF nw3 = 2
+winMore.checkw3.Value := true
+ELSE
+winMore.checkw3.Value := false
+ENDIF
+IF nw4 = 2
+winMore.checkw4.Value := true
+ELSE
+winMore.checkw4.Value := false
+ENDIF
+IF nw5 = 2
+winMore.checkw5.Value := true
+ELSE
+winMore.checkw5.Value := false
+ENDIF
+IF nw6 = 2
+winMore.checkw6.Value := true
+ELSE
+winMore.checkw6.Value := false
+ENDIF
+IF nw7 = 2
+winMore.checkw7.Value := true
+ELSE
+winMore.checkw7.Value := false
+ENDIF
+IF nw8 = 2
+winMore.checkw8.Value := true
+ELSE
+winMore.checkw8.Value := false
+ENDIF
+IF nw9 = 2
+winMore.checkw9.Value := true
+ELSE
+winMore.checkw9.Value := false
+ENDIF
+IF nw10 = 2
+winMore.checkw10.Value := true
+ELSE
+winMore.checkw10.Value := false
+ENDIF
+IF nw11 = 2
+winMore.checkw11.Value := true
+ELSE
+winMore.checkw11.Value := false
+ENDIF
 ACTIVATE WINDOW winMore
 EndIF
 
@@ -545,6 +688,61 @@ IF winMore.check8.value = true
 self:oRS:fields:item("WinDispose"):value := 2
 ELSE
 self:oRS:fields:item("WinDispose"):value := 3
+ENDIF
+IF winMore.checkw1.value = true
+self:oRS:fields:item("nWarehouse1"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse1"):value := 3
+ENDIF
+IF winMore.checkw2.value = true
+self:oRS:fields:item("nWarehouse2"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse2"):value := 3
+ENDIF
+IF winMore.checkw3.value = true
+self:oRS:fields:item("nWarehouse3"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse3"):value := 3
+ENDIF
+IF winMore.checkw4.value = true
+self:oRS:fields:item("nWarehouse4"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse4"):value := 3
+ENDIF
+IF winMore.checkw5.value = true
+self:oRS:fields:item("nWarehouse5"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse5"):value := 3
+ENDIF
+IF winMore.checkw6.value = true
+self:oRS:fields:item("nWarehouse6"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse6"):value := 3
+ENDIF
+IF winMore.checkw7.value = true
+self:oRS:fields:item("nWarehouse7"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse7"):value := 3
+ENDIF
+IF winMore.checkw8.value = true
+self:oRS:fields:item("nWarehouse8"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse8"):value := 3
+ENDIF
+IF winMore.checkw9.value = true
+self:oRS:fields:item("nWarehouse9"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse9"):value := 3
+ENDIF
+IF winMore.checkw10.value = true
+self:oRS:fields:item("nWarehouse10"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse10"):value := 3
+ENDIF
+IF winMore.checkw11.value = true
+self:oRS:fields:item("nWarehouse11"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse11"):value := 3
 ENDIF
 self:oRS:UPDATE()
 winMore.Release ( )

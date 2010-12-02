@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:17:44    Date : 11/28/2010
+* Time : 18:55:49    Date : 12/02/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -521,73 +521,139 @@ MENUITEM "Set Items Sources" Action ItemsSourcesObject:ShowWindow()
 SEPARATOR
 MENUITEM "Item Details" Action ItemDetailsDataObject:ShowWindow()
 POPUP "Items Warehouse"
+IF UserCan_nWarehouse1 = 2
 MENUITEM "Skin Warehouse" Action mywarehouse(1)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse2 = 2
 MENUITEM "Wet blue 1 Warehouse" Action mywarehouse(2)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse3 = 2
 MENUITEM "Wet blue 2 Warehouse" Action mywarehouse(3)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse4 = 2
 MENUITEM "Crust Warehouse" Action mywarehouse(4)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse5 = 2
 MENUITEM "Finish Warehouse" Action mywarehouse(5)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse6 = 2
 MENUITEM "Chemicals Warehouse" Action mywarehouse(6)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse7 = 2
 MENUITEM "Shoes Row Materials Warehouse" Action mywarehouse(7)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse8 = 2
 MENUITEM "Jacket Row Materials Warehouse" Action mywarehouse(8)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse9 = 2
 MENUITEM "General Warehouse" Action mywarehouse(9)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse10 = 2
 MENUITEM "Shoes products Warehouse" Action mywarehouse(10)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action mywarehouse(11)
+ENDIF
 END POPUP
 POPUP "Enter Items to Warehouse"
+IF UserCan_nWarehouse1 = 2
 MENUITEM "Skin Warehouse" Action myenterwarehouse(1)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse2 = 2
 MENUITEM "Wet blue 1 Warehouse" Action myenterwarehouse(2)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse3 = 2
 MENUITEM "Wet blue 2 Warehouse" Action myenterwarehouse(3)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse4 = 2
 MENUITEM "Crust Warehouse" Action myenterwarehouse(4)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse5 = 2
 MENUITEM "Finish Warehouse" Action myenterwarehouse(5)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse6 = 2
 MENUITEM "Chemicals Warehouse" Action myenterwarehouse(6)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse7 = 2
 MENUITEM "Shoes Row Materials Warehouse" Action myenterwarehouse(7)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse8 = 2
 MENUITEM "Jacket Row Materials Warehouse" Action myenterwarehouse(8)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse9 = 2
 MENUITEM "General Warehouse" Action myenterwarehouse(9)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse10 = 2
 MENUITEM "Shoes products Warehouse" Action myenterwarehouse(10)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myenterwarehouse(11)
+ENDIF
 END POPUP
 POPUP "Reserve Items for order"
+IF UserCan_nWarehouse1 = 2
 MENUITEM "Skin Warehouse" Action myreservewarehouse(1)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse2 = 2
 MENUITEM "Wet blue 1 Warehouse" Action myreservewarehouse(2)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse3 = 2
 MENUITEM "Wet blue 2 Warehouse" Action myenterwarehouse(3)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse4 = 2
 MENUITEM "Crust Warehouse" Action myreservewarehouse(4)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse5 = 2
 MENUITEM "Finish Warehouse" Action myreservewarehouse(5)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse6 = 2
 MENUITEM "Chemicals Warehouse" Action myreservewarehouse(6)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse7 = 2
 MENUITEM "Shoes Row Materials Warehouse" Action myreservewarehouse(7)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse8 = 2
 MENUITEM "Jacket Row Materials Warehouse" Action myreservewarehouse(8)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse9 = 2
 MENUITEM "General Warehouse" Action myreservewarehouse(9)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse10 = 2
 MENUITEM "Shoes products Warehouse" Action myreservewarehouse(10)
 SEPARATOR
+ENDIF
+IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myreservewarehouse(11)
+ENDIF
 END POPUP
 END POPUP
 ENDIF
@@ -804,6 +870,17 @@ Public UserCan_WinOrders
 Public UserCan_WinAgreement
 Public UserCan_WinProduction
 Public UserCan_WinDispose
+Public UserCan_nWarehouse1
+Public UserCan_nWarehouse2
+Public UserCan_nWarehouse3
+Public UserCan_nWarehouse4
+Public UserCan_nWarehouse5
+Public UserCan_nWarehouse6
+Public UserCan_nWarehouse7
+Public UserCan_nWarehouse8
+Public UserCan_nWarehouse9
+Public UserCan_nWarehouse10
+Public UserCan_nWarehouse11
 IF mymax > 0
 oRS:MOVEFIRST()
 FOR x = 1 TO MYMAX STEP 1
@@ -824,6 +901,17 @@ UserCan_WinOrders := oRS:fields:item("WinOrders"):value
 UserCan_WinAgreement := oRS:fields:item("WinAgreement"):value
 UserCan_WinProduction := oRS:fields:item("WinProduction"):value
 UserCan_WinDispose := oRS:fields:item("WinDispose"):value
+UserCan_nWarehouse1 := oRS:fields:item("nWarehouse1"):value
+UserCan_nWarehouse2 := oRS:fields:item("nWarehouse2"):value
+UserCan_nWarehouse3 := oRS:fields:item("nWarehouse3"):value
+UserCan_nWarehouse4 := oRS:fields:item("nWarehouse4"):value
+UserCan_nWarehouse5 := oRS:fields:item("nWarehouse5"):value
+UserCan_nWarehouse6 := oRS:fields:item("nWarehouse6"):value
+UserCan_nWarehouse7 := oRS:fields:item("nWarehouse7"):value
+UserCan_nWarehouse8 := oRS:fields:item("nWarehouse8"):value
+UserCan_nWarehouse9 := oRS:fields:item("nWarehouse9"):value
+UserCan_nWarehouse10 := oRS:fields:item("nWarehouse10"):value
+UserCan_nWarehouse11 := oRS:fields:item("nWarehouse11"):value
 win1.lblusername.Value := "User Name : "    + cName
 ELSE
 MyOut := MSGBOX("Invalid Password","Error")
