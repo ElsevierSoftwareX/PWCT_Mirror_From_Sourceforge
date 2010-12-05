@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:30:22    Date : 11/28/2010
+* Time : 21:13:47    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,7 +41,7 @@ Data nID init 0
 Data cItemName init ""
 Data column init "ItemName"
 Data PrimaryKey init "id"
-Data columns init {"ID","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
+Data columns init {"ID","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName","itemModelNo","itemModelName"}
 Data cItemCompleteName init ""
 Data nItemClass init 0
 Data itemGroupitems init {}
@@ -70,6 +70,8 @@ Data itemSecUnititemsids init {}
 Data cItemValue init "0"
 Data cItemValue2 init "0"
 Data warehousecode init 1
+Data cModelNumber init ""
+Data cModelName init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -102,7 +104,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( ItemsWindow )
 DEFINE WINDOW ItemsWindow ;
 AT 10 ,10 ;
-WIDTH 892 ;
+WIDTH 959 ;
 HEIGHT 692 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -116,8 +118,8 @@ BACKCOLOR {64,0,64}
 @ 45 ,4 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 870 HEIGHT 550
-@ 610 ,388 BUTTONEX btnFirst;
+WIDTH 930 HEIGHT 550
+@ 610 ,421 BUTTONEX btnFirst;
 CAPTION "First";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -126,7 +128,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 610 ,451 BUTTONEX btnNext;
+@ 610 ,484 BUTTONEX btnNext;
 CAPTION "Next";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -135,7 +137,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 610 ,578 BUTTONEX btnLast;
+@ 610 ,611 BUTTONEX btnLast;
 CAPTION "Last";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -144,7 +146,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 610 ,734 BUTTONEX btnClose;
+@ 610 ,767 BUTTONEX btnClose;
 CAPTION "Close";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -153,7 +155,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 610 ,515 BUTTONEX btnPrev;
+@ 610 ,548 BUTTONEX btnPrev;
 CAPTION "Prev ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -162,7 +164,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 610 ,647 BUTTONEX btnDel;
+@ 610 ,680 BUTTONEX btnDel;
 CAPTION "Delete";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -171,25 +173,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 610 ,224 BUTTONEX btnsave;
+@ 610 ,257 BUTTONEX btnsave;
 CAPTION "Save";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 610 ,296 BUTTONEX btncancel;
+@ 610 ,329 BUTTONEX btncancel;
 CAPTION "Cancel";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 610 ,152 BUTTONEX btnedit;
+@ 610 ,185 BUTTONEX btnedit;
 CAPTION "Edit";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 610 ,69 BUTTONEX btnadd;
+@ 610 ,102 BUTTONEX btnadd;
 CAPTION "Add";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -197,7 +199,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
 VALUE space(60) + sys_warehousearray[self:warehousecode] +" Items" ;
-WIDTH 760 ;
+WIDTH 820 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -210,9 +212,9 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 510 ,289 TEXTBOX textItemName;
+@ 506 ,280 TEXTBOX textItemName;
 HEIGHT 30 ;
-WIDTH 390 ;
+WIDTH 240 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
@@ -238,32 +240,32 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 93 ,73 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 740 ;
+WIDTH 830 ;
 HEIGHT 200 ;
-HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size"};
-WIDTHS {50,150,150,100,100,100,100,100,100} ;
-FONT "Arial" SIZE 9 ;
+HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size","Model Number","Model Name"};
+WIDTHS {50,150,150,100,100,100,100,100,100,100,100} ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 552 ,73 LABEL lblItemDispalyName ;
+@ 551 ,73 LABEL lblItemDispalyName ;
 VALUE "Item Dispaly Name" ;
-WIDTH 190 ;
+WIDTH 170 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 550 ,289 TEXTBOX textItemCompleteName;
+@ 551 ,280 TEXTBOX textItemCompleteName;
 HEIGHT 30 ;
-WIDTH 390 ;
+WIDTH 240 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("ItemClasses","ItemClass",@self:ItemClassItems,"id",@self:ItemClassItemsIDS)
-@ 306 ,73 LABEL lblItemClass ;
+@ 307 ,73 LABEL lblItemClass ;
 VALUE "Item Class" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -271,15 +273,15 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 306 ,210 COMBOBOX comboitemclass;
-WIDTH 200 ;
+@ 306 ,280 COMBOBOX comboitemclass;
+WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemClassitems ;
 VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 332 ,974 LABEL lblItemGroup ;
+@ 332 ,1024 LABEL lblItemGroup ;
 VALUE "Item Group" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -287,7 +289,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 403 ,971 COMBOBOX comboitemGroup;
+@ 403 ,1021 COMBOBOX comboitemGroup;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:ItemGroupitems ;
@@ -296,7 +298,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsGrades","GradeName",@self:ItemGradeItems,"id",@self:ItemGradeItemsIDS)
-@ 346 ,73 LABEL lblItemGrade ;
+@ 347 ,73 LABEL lblItemGrade ;
 VALUE "Item Grade" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -304,8 +306,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 346 ,210 COMBOBOX comboitemGrade;
-WIDTH 200 ;
+@ 346 ,280 COMBOBOX comboitemGrade;
+WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemGradeitems ;
 VALUE 1 ;
@@ -313,7 +315,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsSizes","SizeName",@self:ItemSizeItems,"id",@self:ItemSizeItemsIDS)
-@ 346 ,444 LABEL lblItemSize ;
+@ 337 ,551 LABEL lblItemSize ;
 VALUE "Item Size" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -321,8 +323,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 346 ,580 COMBOBOX comboitemSize;
-WIDTH 200 ;
+@ 338 ,673 COMBOBOX comboitemSize;
+WIDTH 230 ;
 HEIGHT 100;
 ITEMS self:ItemSizeitems ;
 VALUE 1 ;
@@ -330,7 +332,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsColors","ColorName",@self:ItemColorItems,"id",@self:ItemColorItemsIDS)
-@ 387 ,444 LABEL lblItemColor ;
+@ 382 ,551 LABEL lblItemColor ;
 VALUE "Item Color" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -338,8 +340,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 387 ,580 COMBOBOX comboitemColor;
-WIDTH 200 ;
+@ 379 ,673 COMBOBOX comboitemColor;
+WIDTH 230 ;
 HEIGHT 100;
 ITEMS self:ItemColoritems ;
 VALUE 1 ;
@@ -347,7 +349,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsSources","SourceName",@self:ItemSourceItems,"id",@self:ItemSourceItemsIDS)
-@ 386 ,74 LABEL lblItemSource ;
+@ 387 ,73 LABEL lblItemSource ;
 VALUE "Item Source" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -355,8 +357,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 386 ,210 COMBOBOX comboitemSource;
-WIDTH 200 ;
+@ 386 ,280 COMBOBOX comboitemSource;
+WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemSourceitems ;
 VALUE 1 ;
@@ -364,15 +366,15 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsUnits","ItemUnit",@self:ItemUnitItems,"id",@self:ItemUnitItemsIDS)
-@ 424 ,73 LABEL lblItemUnit ;
+@ 425 ,73 LABEL lblItemUnit ;
 VALUE "Item Unit" ;
-WIDTH 110 ;
+WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 424 ,289 COMBOBOX comboitemUnit;
+@ 426 ,280 COMBOBOX comboitemUnit;
 WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemUnititems ;
@@ -381,7 +383,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsUnits","ItemUnit",@self:ItemSecUnitItems,"id",@self:ItemSecUnitItemsIDS)
-@ 465 ,73 LABEL lblItemUnit2 ;
+@ 466 ,73 LABEL lblItemUnit2 ;
 VALUE "Item Unit (Secondary)" ;
 WIDTH 190 ;
 HEIGHT 30 ;
@@ -389,7 +391,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 465 ,289 COMBOBOX comboitemsecUnit;
+@ 466 ,280 COMBOBOX comboitemsecUnit;
 WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemSecUnititems ;
@@ -397,7 +399,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 424 ,567 LABEL lblUnitValue ;
+@ 427 ,551 LABEL lblUnitValue ;
 VALUE "Value" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -405,14 +407,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 424 ,640 TEXTBOX textUnitValue;
+@ 420 ,671 TEXTBOX textUnitValue;
 HEIGHT 30 ;
-WIDTH 140 ;
+WIDTH 230 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 465 ,566 LABEL lblSecUnitValue ;
+@ 472 ,551 LABEL lblSecUnitValue ;
 VALUE "Value" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -420,21 +422,21 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 465 ,640 TEXTBOX textSecUnitValue;
+@ 466 ,671 TEXTBOX textSecUnitValue;
 HEIGHT 30 ;
-WIDTH 140 ;
+WIDTH 230 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 6 ,774 BUTTONEX btnDetails;
+@ 6 ,834 BUTTONEX btnDetails;
 CAPTION "Details";
 ON CLICK self:ItemDetails()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
-@ 78 ,982 LABEL lblItemGroupfilter ;
+@ 78 ,1032 LABEL lblItemGroupfilter ;
 VALUE "Item Group" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -442,7 +444,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 119 ,969 COMBOBOX comboitemGroupFilter;
+@ 119 ,1019 COMBOBOX comboitemGroupFilter;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:ItemGroupitems ;
@@ -450,12 +452,42 @@ VALUE self:warehousecode ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 32 ,976 BUTTONEX btnFilter;
+@ 32 ,1026 BUTTONEX btnFilter;
 CAPTION "Filter";
 ON CLICK Self:GroupFilter()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 517 ,551 LABEL lblModelNumber ;
+VALUE "Model No." ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 512 ,671 TEXTBOX textModelNumber;
+HEIGHT 30 ;
+WIDTH 230 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 562 ,551 LABEL lblModelName ;
+VALUE "Model Name" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 558 ,671 TEXTBOX textModelName;
+HEIGHT 30 ;
+WIDTH 230 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
 END WINDOW
 
 ItemsWindow.Center ( )
@@ -488,6 +520,8 @@ self:nitemSecUnit := ItemsWindow.ComboitemSecUnit.Value
 self:nitemSecUnit := self:ItemSecUnitItemsids[self:nitemSecUnit]
 self:cItemValue := ItemsWindow.textUnitvalue.Value
 self:cItemValue2 := ItemsWindow.textSecUnitvalue.Value
+self:cModelNumber := ItemsWindow.textModelNumber.Value
+self:cModelName := ItemsWindow.textModelName.Value
 Return 0
 Method Class2ADO Class ItemsClass
 self:oRS:fields:item("ItemName"):value := self:cItemName
@@ -502,6 +536,8 @@ self:oRS:fields:item("itemUnitid"):value := self:nitemUnit
 self:oRS:fields:item("itemSecUnitid"):value := self:nitemSecUnit
 self:oRS:fields:item("itemValue"):value := self:cItemValue
 self:oRS:fields:item("itemValue2"):value := self:cItemValue2
+self:oRS:fields:item("itemModelNo"):value := self:cModelNumber
+self:oRS:fields:item("ItemModelName"):value := self:cModelName
 Return 0
 Method ADO2Class Class ItemsClass
 self:cItemName := self:oRS:fields:item("ItemName"):value
@@ -516,6 +552,8 @@ self:nitemUnit := self:oRS:fields:item("itemUnitid"):value
 self:nitemSecUnit := self:oRS:fields:item("itemSecUnitid"):value
 self:cItemValue := self:oRS:fields:item("ItemValue"):value
 self:cItemValue2 := self:oRS:fields:item("ItemValue2"):value
+self:cModelNumber := self:oRS:fields:item("itemModelNo"):value
+self:cModelName := self:oRS:fields:item("itemModelName"):value
 Return 0
 Method Class2UserInterface Class ItemsClass
 ItemsWindow.textItemName.Value := self:cItemName
@@ -538,6 +576,8 @@ self:cItemValue = ALLTRIM ( self:cItemvalue )
 self:cItemValue2 = ALLTRIM ( self:cItemvalue2 )
 ItemsWindow.textUnitValue.Value := self:cItemValue
 ItemsWindow.textSecUnitValue.Value := self:cItemValue2
+ItemsWindow.textModelNumber.Value := self:cModelNumber
+ItemsWindow.textModelName.Value := self:cModelName
 Return 0
 Method ClearRecord Class ItemsClass
 self:cItemName := ""
@@ -552,6 +592,8 @@ self:nItemUnit := 0
 self:nItemSecUnit := 0
 self:cItemValue := "0"
 self:cItemValue2 := "0"
+self:cModelNumber := ""
+self:cModelName := ""
 Return 0
 Method OpenDataWindow Class ItemsClass
 Local nvalue,myout
@@ -591,6 +633,8 @@ ItemsWindow.comboItemColor.Enabled := true
 ItemsWindow.comboItemSource.Enabled := true
 ItemsWindow.comboItemUnit.Enabled := true
 ItemsWindow.comboItemSecUnit.Enabled := true
+ItemsWindow.textModelNumber.Enabled := true
+ItemsWindow.textModelName.Enabled := true
 ENDIF
 IF p1 = 2
 ItemsWindow.btnfirst.Enabled := true
@@ -615,6 +659,8 @@ ItemsWindow.comboItemUnit.Enabled := false
 ItemsWindow.comboItemSecUnit.Enabled := false
 ItemsWindow.textUnitValue.Enabled := false
 ItemsWindow.textSecUnitValue.Enabled := false
+ItemsWindow.textModelNumber.Enabled := false
+ItemsWindow.textModelName.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
