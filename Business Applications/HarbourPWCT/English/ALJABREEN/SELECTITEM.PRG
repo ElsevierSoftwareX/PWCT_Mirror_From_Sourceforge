@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:41:34    Date : 11/28/2010
+* Time : 21:34:07    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "Items_All"
 Data nID init 0
 Data column init "ItemName"
 Data PrimaryKey init "id"
-Data columns init {"ID","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
+Data columns init {"ID","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName","ItemModelNo","ItemModelName"}
 Data nItem init 0
 Data itemitems init {}
 Data itemitemsids init {}
@@ -148,9 +148,9 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 730 ;
 HEIGHT 160 ;
-HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size"};
-WIDTHS {50,150,150,100,100,100,100,100,100} ;
-FONT "Arial" SIZE 9 ;
+HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size","Model Number","Model Name"};
+WIDTHS {50,150,150,100,100,100,100,100,100,100,100} ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;

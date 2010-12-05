@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:13:47    Date : 12/05/2010
+* Time : 21:32:07    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -204,7 +204,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 513 ,73 LABEL lblSourceName ;
+@ 514 ,59 LABEL lblSourceName ;
 VALUE "Item Name" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -212,44 +212,44 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 506 ,280 TEXTBOX textItemName;
+@ 507 ,266 TEXTBOX textItemName;
 HEIGHT 30 ;
 WIDTH 240 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,68 LABEL lbl1browse ;
+@ 53 ,104 LABEL lbl1browse ;
 VALUE "Item Name" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,175 TEXTBOX textNamebrowse;
+@ 54 ,211 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 530 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,715 BUTTONEX btn1browse;
+@ 53 ,751 BUTTONEX btn1browse;
 CAPTION "Search";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 93 ,73 GRID Grid1browse;
+@ 94 ,59 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 830 ;
 HEIGHT 200 ;
 HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size","Model Number","Model Name"};
 WIDTHS {50,150,150,100,100,100,100,100,100,100,100} ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 551 ,73 LABEL lblItemDispalyName ;
+@ 552 ,59 LABEL lblItemDispalyName ;
 VALUE "Item Dispaly Name" ;
 WIDTH 170 ;
 HEIGHT 30 ;
@@ -257,7 +257,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 551 ,280 TEXTBOX textItemCompleteName;
+@ 552 ,266 TEXTBOX textItemCompleteName;
 HEIGHT 30 ;
 WIDTH 240 ;
 FONT "Arial" SIZE 14 ;
@@ -265,7 +265,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("ItemClasses","ItemClass",@self:ItemClassItems,"id",@self:ItemClassItemsIDS)
-@ 307 ,73 LABEL lblItemClass ;
+@ 308 ,59 LABEL lblItemClass ;
 VALUE "Item Class" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -273,7 +273,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 306 ,280 COMBOBOX comboitemclass;
+@ 307 ,266 COMBOBOX comboitemclass;
 WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemClassitems ;
@@ -298,7 +298,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsGrades","GradeName",@self:ItemGradeItems,"id",@self:ItemGradeItemsIDS)
-@ 347 ,73 LABEL lblItemGrade ;
+@ 348 ,59 LABEL lblItemGrade ;
 VALUE "Item Grade" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -306,7 +306,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 346 ,280 COMBOBOX comboitemGrade;
+@ 347 ,266 COMBOBOX comboitemGrade;
 WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemGradeitems ;
@@ -315,7 +315,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsSizes","SizeName",@self:ItemSizeItems,"id",@self:ItemSizeItemsIDS)
-@ 337 ,551 LABEL lblItemSize ;
+@ 328 ,537 LABEL lblItemSize ;
 VALUE "Item Size" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -323,7 +323,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 338 ,673 COMBOBOX comboitemSize;
+@ 328 ,659 COMBOBOX comboitemSize;
 WIDTH 230 ;
 HEIGHT 100;
 ITEMS self:ItemSizeitems ;
@@ -332,7 +332,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsColors","ColorName",@self:ItemColorItems,"id",@self:ItemColorItemsIDS)
-@ 382 ,551 LABEL lblItemColor ;
+@ 373 ,537 LABEL lblItemColor ;
 VALUE "Item Color" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -340,7 +340,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 379 ,673 COMBOBOX comboitemColor;
+@ 369 ,659 COMBOBOX comboitemColor;
 WIDTH 230 ;
 HEIGHT 100;
 ITEMS self:ItemColoritems ;
@@ -349,7 +349,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsSources","SourceName",@self:ItemSourceItems,"id",@self:ItemSourceItemsIDS)
-@ 387 ,73 LABEL lblItemSource ;
+@ 388 ,59 LABEL lblItemSource ;
 VALUE "Item Source" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -357,7 +357,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 386 ,280 COMBOBOX comboitemSource;
+@ 387 ,266 COMBOBOX comboitemSource;
 WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemSourceitems ;
@@ -366,7 +366,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsUnits","ItemUnit",@self:ItemUnitItems,"id",@self:ItemUnitItemsIDS)
-@ 425 ,73 LABEL lblItemUnit ;
+@ 426 ,59 LABEL lblItemUnit ;
 VALUE "Item Unit" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -374,7 +374,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 426 ,280 COMBOBOX comboitemUnit;
+@ 427 ,266 COMBOBOX comboitemUnit;
 WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemUnititems ;
@@ -383,7 +383,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsUnits","ItemUnit",@self:ItemSecUnitItems,"id",@self:ItemSecUnitItemsIDS)
-@ 466 ,73 LABEL lblItemUnit2 ;
+@ 467 ,59 LABEL lblItemUnit2 ;
 VALUE "Item Unit (Secondary)" ;
 WIDTH 190 ;
 HEIGHT 30 ;
@@ -391,7 +391,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 466 ,280 COMBOBOX comboitemsecUnit;
+@ 467 ,266 COMBOBOX comboitemsecUnit;
 WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:ItemSecUnititems ;
@@ -399,7 +399,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 427 ,551 LABEL lblUnitValue ;
+@ 417 ,537 LABEL lblUnitValue ;
 VALUE "Value" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -407,14 +407,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 420 ,671 TEXTBOX textUnitValue;
+@ 410 ,657 TEXTBOX textUnitValue;
 HEIGHT 30 ;
 WIDTH 230 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 472 ,551 LABEL lblSecUnitValue ;
+@ 462 ,537 LABEL lblSecUnitValue ;
 VALUE "Value" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -422,7 +422,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 466 ,671 TEXTBOX textSecUnitValue;
+@ 456 ,657 TEXTBOX textSecUnitValue;
 HEIGHT 30 ;
 WIDTH 230 ;
 FONT "Arial" SIZE 14 ;
@@ -458,7 +458,7 @@ ON CLICK Self:GroupFilter()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 517 ,551 LABEL lblModelNumber ;
+@ 507 ,537 LABEL lblModelNumber ;
 VALUE "Model No." ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -466,14 +466,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 512 ,671 TEXTBOX textModelNumber;
+@ 502 ,657 TEXTBOX textModelNumber;
 HEIGHT 30 ;
 WIDTH 230 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 562 ,551 LABEL lblModelName ;
+@ 552 ,537 LABEL lblModelName ;
 VALUE "Model Name" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -481,7 +481,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 558 ,671 TEXTBOX textModelName;
+@ 548 ,657 TEXTBOX textModelName;
 HEIGHT 30 ;
 WIDTH 230 ;
 FONT "Arial" SIZE 14 ;
