@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:23:33    Date : 10/20/2010
+* Time : 09:01:14    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -571,7 +571,7 @@ MYVALUE = STR ( MYVALUE )
 myrs:CursorType := 1
 myrs:ActiveConnection := self:oCon
 myrs:open ( "Select * from ItemsandUnits_ALL where id = " + myvalue,self:oCon,3,3 )
-myvalue := myRS:fields:item(13):value
+myvalue := myRS:fields:item(15):value
 OrdersEnterWindow.textItemUnit.Value := myvalue
 myvalue := myRS:fields:item("ItemUnit"):value
 OrdersEnterWindow.textItemSecUnit.Value := myvalue

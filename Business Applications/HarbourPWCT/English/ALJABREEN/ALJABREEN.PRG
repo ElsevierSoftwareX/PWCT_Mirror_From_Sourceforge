@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:34:13    Date : 12/05/2010
+* Time : 15:39:55    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -518,6 +518,7 @@ MENUITEM "Set Items Grades" Action ItemsGradesObject:ShowWindow()
 MENUITEM "Set Items Sizes" Action ItemsSizesObject:ShowWindow()
 MENUITEM "Set Items Colors" Action ItemsColorsObject:ShowWindow()
 MENUITEM "Set Items Sources" Action ItemsSourcesObject:ShowWindow()
+MENUITEM "Set Item Stores" Action ItemsStoresObject:ShowWindow()
 SEPARATOR
 MENUITEM "Item Details" Action ItemDetailsDataObject:ShowWindow()
 POPUP "Items Warehouse"
@@ -565,7 +566,7 @@ IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action mywarehouse(11)
 ENDIF
 END POPUP
-POPUP "Enter Items to Warehouse"
+POPUP "Import Items to Warehouse"
 IF UserCan_nWarehouse1 = 2
 MENUITEM "Skin Warehouse" Action myenterwarehouse(1)
 SEPARATOR
@@ -610,7 +611,7 @@ IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myenterwarehouse(11)
 ENDIF
 END POPUP
-POPUP "Reserve Items for order"
+POPUP "Export Items from warehouse"
 IF UserCan_nWarehouse1 = 2
 MENUITEM "Skin Warehouse" Action myreservewarehouse(1)
 SEPARATOR

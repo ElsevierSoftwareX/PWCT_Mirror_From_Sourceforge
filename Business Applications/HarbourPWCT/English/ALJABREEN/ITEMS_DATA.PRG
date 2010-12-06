@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:32:07    Date : 12/05/2010
+* Time : 09:28:17    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -91,6 +91,7 @@ Method GetSearchValue
 Method ItemDetails
 Method GroupFilter
 Method baseGroupFilter
+Method CheckData
 EndClass
 Method showwindow Class ItemsClass
 IF .not. UserCan_WinWarehouse = 2
@@ -716,6 +717,20 @@ Method baseGroupFilter Class ItemsClass
 tvalue := self:ItemGroupItemsids[self:warehousecode]
 self:complexsearch := " and itemgroupid = " + alltrim(Str(tvalue))
 Return 0
+Method CheckData Class ItemsClass
+Local myret,v1,v2
+myret := true
+v1 := ItemsWindow.textItemName.Value
+IF alltrim(v1) == ""
+MyOut := MSGBOX("Please enter item name","Sorry")
+myret := false
+ELSE
+v2 := ItemsWindow.textItemCompleteName.Value
+IF alltrim(V2) == ""
+ItemsWindow.textItemCompleteName.Value := v1
+ENDIF
+ENDIF
+Return myret
 Method closewindow Class ItemsClass
 myout = self:disconnect()
 ItemsWindow.Release ( )

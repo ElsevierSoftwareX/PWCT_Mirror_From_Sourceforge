@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:46:08    Date : 11/26/2010
+* Time : 09:23:39    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -72,6 +72,7 @@ Method setTimer
 Method searchadd
 Method getsearchvalue
 Method LoadLookupTable2
+Method checkdata
 EndClass
 Method ShowRecord Class SYSTEMDATABASE
 mymax := self:oRS:RecordCount
@@ -248,6 +249,10 @@ MyOut := MSGBOX("No Records","Sorry")
 ENDIF
 Return 0
 Method SaveRecord Class SYSTEMDATABASE
+myout = self:CheckData()
+IF myout = false
+Return 0
+ENDIF
 IF self:addrec = true
 self:oRS:ADDNEW()
 ELSE
@@ -305,6 +310,8 @@ Next
 oRS:Close()
 oCon:CLOSE()
 Return 0
+Method CheckData Class SystemDatabase
+Return true
 
 
 End Of Resistance

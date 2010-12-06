@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:17:29    Date : 11/28/2010
+* Time : 15:57:40    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -59,6 +59,9 @@ Data cCustomer init 0
 Data WareHouseCode init 0
 Data itemgroupitems init {}
 Data itemgroupitemsids init {}
+Data cInvNo init ""
+Data cInvNotes init ""
+Data cInvDate init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -95,10 +98,10 @@ if !iswindowdefined( ReserveItemsWindow )
 DEFINE WINDOW ReserveItemsWindow ;
 AT 10 ,10 ;
 WIDTH 893 ;
-HEIGHT 647 ;
+HEIGHT 675 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE sys_warehousearray[self:warehousecode] +" - Reserve Items For Order" ;
+TITLE sys_warehousearray[self:warehousecode] +" - Export Items" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
@@ -108,8 +111,8 @@ BACKCOLOR {64,0,64}
 @ 42 ,3 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 870 HEIGHT 520
-@ 570 ,388 BUTTONEX btnFirst;
+WIDTH 870 HEIGHT 550
+@ 600 ,388 BUTTONEX btnFirst;
 CAPTION "First";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -118,7 +121,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,451 BUTTONEX btnNext;
+@ 600 ,451 BUTTONEX btnNext;
 CAPTION "Next";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -127,7 +130,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,578 BUTTONEX btnLast;
+@ 600 ,578 BUTTONEX btnLast;
 CAPTION "Last";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -136,7 +139,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,734 BUTTONEX btnClose;
+@ 600 ,734 BUTTONEX btnClose;
 CAPTION "Close";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -145,7 +148,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,515 BUTTONEX btnPrev;
+@ 600 ,515 BUTTONEX btnPrev;
 CAPTION "Prev ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -154,7 +157,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,647 BUTTONEX btnDel;
+@ 600 ,647 BUTTONEX btnDel;
 CAPTION "Delete";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -163,38 +166,38 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,224 BUTTONEX btnsave;
+@ 600 ,224 BUTTONEX btnsave;
 CAPTION "Save";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,296 BUTTONEX btncancel;
+@ 600 ,296 BUTTONEX btncancel;
 CAPTION "Cancel";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,152 BUTTONEX btnedit;
+@ 600 ,152 BUTTONEX btnedit;
 CAPTION "Edit";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,69 BUTTONEX btnadd;
+@ 600 ,69 BUTTONEX btnadd;
 CAPTION "Add";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE space(40) + sys_warehousearray[self:warehousecode] + " - Reserve Items For Order" ;
+VALUE space(40) + sys_warehousearray[self:warehousecode] + " - Export Items From Warehouse" ;
 WIDTH 870 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 385 ,487 LABEL lblSourceName ;
+@ 416 ,487 LABEL lblSourceName ;
 VALUE "Value" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -202,7 +205,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 385 ,570 TEXTBOX textUnitValue;
+@ 416 ,570 TEXTBOX textUnitValue;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -231,7 +234,7 @@ TOOLTIP ""
 @ 93 ,73 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
-HEIGHT 160 ;
+HEIGHT 130 ;
 HEADERS {"ID","Order Number","Customer Name","Item Name","Item Display Name","Item","Group","Source","Grade","Color","Size"};
 WIDTHS {100,100,100,100,200,100,100,100,100,100,100} ;
 FONT "Arial" SIZE 9 ;
@@ -239,7 +242,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 434 ,487 LABEL lblSecUnitValue ;
+@ 464 ,487 LABEL lblSecUnitValue ;
 VALUE "Value" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -247,7 +250,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 433 ,570 TEXTBOX textSecUnitValue;
+@ 464 ,570 TEXTBOX textSecUnitValue;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -255,7 +258,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("ReadyOrders","OrderNumber",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
-@ 266 ,153 LABEL lblOrderNumber ;
+@ 300 ,157 LABEL lblOrderNumber ;
 VALUE "Order Number" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -263,7 +266,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 265 ,300 COMBOBOX comboordernumber;
+@ 301 ,298 COMBOBOX comboordernumber;
 ON CHANGE self:orderchange()  ;
 WIDTH 200 ;
 HEIGHT 100;
@@ -272,7 +275,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 306 ,143 LABEL lblStore ;
+@ 336 ,143 LABEL lblStore ;
 VALUE "Customer Name" ;
 WIDTH 140 ;
 HEIGHT 30 ;
@@ -280,7 +283,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 302 ,300 TEXTBOX textCustomer;
+@ 332 ,300 TEXTBOX textCustomer;
 HEIGHT 30 ;
 WIDTH 410 ;
 FONT "Arial" SIZE 14 ;
@@ -288,7 +291,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable2("ItemsAndUnits_ALL","ItemCompleteName",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 346 ,243 LABEL lblitems ;
+@ 376 ,243 LABEL lblitems ;
 VALUE "Item" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -296,7 +299,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 345 ,300 COMBOBOX comboitem;
+@ 375 ,300 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
 WIDTH 410 ;
 HEIGHT 100;
@@ -305,7 +308,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 385 ,203 LABEL lblItemUnit ;
+@ 415 ,203 LABEL lblItemUnit ;
 VALUE "Item Unit" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -313,14 +316,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 385 ,300 TEXTBOX textItemUnit;
+@ 415 ,300 TEXTBOX textItemUnit;
 HEIGHT 30 ;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 433 ,73 LABEL lblItemUnit2 ;
+@ 463 ,74 LABEL lblItemUnit2 ;
 VALUE "Item Unit (Secondary)" ;
 WIDTH 190 ;
 HEIGHT 30 ;
@@ -328,14 +331,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 430 ,300 TEXTBOX textItemSecUnit;
+@ 460 ,300 TEXTBOX textItemSecUnit;
 HEIGHT 30 ;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 522 ,73 LABEL lblNotes ;
+@ 555 ,73 LABEL lblNotes ;
 VALUE "Notes" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -343,14 +346,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 520 ,163 TEXTBOX textNotes;
+@ 553 ,163 TEXTBOX textNotes;
 HEIGHT 30 ;
 WIDTH 650 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 480 ,611 LABEL lblCost ;
+@ 512 ,610 LABEL lblCost ;
 VALUE "Cost" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -358,28 +361,28 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 481 ,670 TEXTBOX textCost;
+@ 513 ,669 TEXTBOX textCost;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 480 ,284 LABEL lblDateofInput ;
-VALUE "Date of Reserve" ;
+@ 512 ,284 LABEL lblDateofInput ;
+VALUE "Date of Export" ;
 WIDTH 140 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 480 ,438 DATEPICKER datedateofinput;
+@ 512 ,438 DATEPICKER datedateofinput;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 480 ,73 LABEL lblAmount ;
+@ 513 ,73 LABEL lblAmount ;
 VALUE "Amount" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -387,19 +390,63 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 480 ,163 TEXTBOX textAmount;
+@ 512 ,163 TEXTBOX textAmount;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 346 ,716 BUTTONEX btnSelItem;
+@ 376 ,716 BUTTONEX btnSelItem;
 CAPTION ":::";
 ON CLICK self:SelectItem()  ;
 WIDTH 40 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 230 ,151 LABEL lblInvNo ;
+VALUE "Invoice Number" ;
+WIDTH 150 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 230 ,299 TEXTBOX textInvNo;
+HEIGHT 30 ;
+WIDTH 160 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 266 ,162 LABEL lblInvNotes ;
+VALUE "Invoice Notes" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 266 ,299 TEXTBOX textInvNotes;
+HEIGHT 30 ;
+WIDTH 460 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 232 ,468 LABEL lblInvDate ;
+VALUE "Invoice Date" ;
+WIDTH 130 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 232 ,589 DATEPICKER dateInvDate;
+WIDTH 170 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+DATEFORMAT "dd/MM/yyyy" ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 ReserveItemsWindow.Center ( )
@@ -424,6 +471,10 @@ self:cNotes := ReserveItemsWindow.textNotes.Value
 self:cDateofInput := ReserveItemsWindow.dateDateofInput.Value
 self:cDateofInput := dtoc(self:cDateofInput)
 myout = self:checkamount()
+self:cInvNo := ReserveItemsWindow.textInvNo.Value
+self:cInvNotes := ReserveItemsWindow.textInvNotes.Value
+self:cInvDate := ReserveItemsWindow.dateInvDate.Value
+self:cInvDate := dtoc(self:cInvDate)
 Return 0
 Method Class2ADO Class ReserveItemsClass
 self:oRS:fields:item("itemid"):value := self:nitem
@@ -434,6 +485,9 @@ self:oRS:fields:item("Notes"):value := self:cNotes
 self:oRS:fields:item("Value1"):value := self:cUnitValue
 self:oRS:fields:item("Value2"):value := self:cSecUnitValue
 self:oRS:fields:item("DateofInput"):value := self:cDateofInput
+self:oRS:fields:item("ExportInvNo"):value := self:cInvNo
+self:oRS:fields:item("ExportInvDate"):value := self:cInvDate
+self:oRS:fields:item("ExportInvNotes"):value := self:cInvNotes
 Return 0
 Method ADO2Class Class ReserveItemsClass
 self:nItem := self:oRS:fields:item("ItemID"):value
@@ -447,6 +501,9 @@ self:cDateOfInput := self:oRS:fields:item("DateOfInput"):value
 self:cItemUnitText := self:oRS:fields:item(10):value
 self:cItemSecUnitText := self:oRS:fields:item("ItemUnit"):value
 self:cCustomer := self:oRS:fields:item("f_name"):value
+self:cInvNo := self:oRS:fields:item("ExportInvNo"):value
+self:cInvDate := self:oRS:fields:item("ExportInvDate"):value
+self:cInvNotes := self:oRS:fields:item("ExportInvNotes"):value
 Return 0
 Method Class2UserInterface Class ReserveItemsClass
 self:nOrderNumber = self:LookupIDToIndex(self:nOrderNumber,@self:OrderNumberItemsids)
@@ -462,6 +519,9 @@ ReserveItemsWindow.textNotes.Value := self:cNotes
 ReserveItemsWindow.textItemUnit.Value := self:cItemUnitText
 ReserveItemsWindow.textItemSecUnit.Value := self:cItemSecUnitText
 ReserveItemsWindow.textCustomer.Value := self:cCustomer
+ReserveItemsWindow.textInvNo.Value := self:cInvNo
+ReserveItemsWindow.dateInvDate.Value := ctod(self:cInvDate)
+ReserveItemsWindow.textInvNotes.Value := self:cInvNotes
 Return 0
 Method ClearRecord Class ReserveItemsClass
 self:nOrderNumber := 0
@@ -475,6 +535,9 @@ self:cNotes := ""
 self:cItemUnitText := ""
 self:cItemSecUnitText := ""
 self:cCustomer := ""
+self:cInvNo := ""
+self:cInvNotes := ""
+self:cInvDate := ""
 Return 0
 Method OpenDataWindow Class ReserveItemsClass
 Local nvalue,myout
@@ -513,6 +576,9 @@ ReserveItemsWindow.textNotes.Enabled := true
 ReserveItemsWindow.datedateofinput.Enabled := true
 ReserveItemsWindow.btnSelItem.Enabled := true
 ReserveItemsWindow.comboItem.Enabled := true
+ReserveItemsWindow.textInvNo.Enabled := true
+ReserveItemsWindow.textInvNotes.Enabled := true
+ReserveItemsWindow.dateInvDate.Enabled := true
 ENDIF
 IF p1 = 2
 ReserveItemsWindow.btnfirst.Enabled := true
@@ -536,6 +602,9 @@ ReserveItemsWindow.datedateofinput.Enabled := false
 ReserveItemsWindow.textItemUnit.Enabled := false
 ReserveItemsWindow.textItemSecUnit.Enabled := false
 ReserveItemsWindow.btnSelItem.Enabled := false
+ReserveItemsWindow.textInvNo.Enabled := false
+ReserveItemsWindow.textInvNotes.Enabled := false
+ReserveItemsWindow.dateInvDate.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -551,7 +620,7 @@ MYVALUE = STR ( MYVALUE )
 myrs:CursorType := 1
 myrs:ActiveConnection := self:oCon
 myrs:open ( "Select * from ItemsandUnits_ALL where id = " + myvalue,self:oCon,3,3 )
-myvalue := myRS:fields:item(13):value
+myvalue := myRS:fields:item(15):value
 ReserveItemsWindow.textItemUnit.Value := myvalue
 myvalue := myRS:fields:item("ItemUnit"):value
 ReserveItemsWindow.textItemSecUnit.Value := myvalue
