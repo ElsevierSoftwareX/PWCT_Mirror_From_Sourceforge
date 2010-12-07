@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:20:32    Date : 12/07/2010
+* Time : 21:32:34    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -744,6 +744,46 @@ v2 := ItemsWindow.textItemCompleteName.Value
 IF alltrim(V2) == ""
 ItemsWindow.textItemCompleteName.Value := v1
 ENDIF
+ENDIF
+v1 := ItemsWindow.ComboItemClass.Value
+IF v1 = 0
+MyOut := MSGBOX("No Item Class Determined","Sorry")
+myret := false
+ENDIF
+v1 := ItemsWindow.ComboItemGroup.Value
+IF v1 = 0
+MyOut := MSGBOX("No Item Group Determined","Sorry")
+myret := false
+ENDIF
+v1 := ItemsWindow.ComboItemGrade.Value
+IF v1 = 0
+MyOut := MSGBOX("No Item Grade Determined","Sorry")
+myret := false
+ENDIF
+v1 := ItemsWindow.ComboItemSize.Value
+IF v1 = 0
+MyOut := MSGBOX("No Item Size Determined","Sorry")
+myret := false
+ENDIF
+v1 := ItemsWindow.ComboItemColor.Value
+IF v1 = 0
+MyOut := MSGBOX("No Item Color Determined","Sorry")
+myret := false
+ENDIF
+v1 := ItemsWindow.ComboItemSize.Value
+IF v1 = 0
+MyOut := MSGBOX("No Item Size Determined","Sorry")
+myret := false
+ENDIF
+v1 := ItemsWindow.ComboItemSource.Value
+IF v1 = 0
+MyOut := MSGBOX("No Item Source Determined","Sorry")
+myret := false
+ENDIF
+v1 := ItemsWindow.ComboItemUnit.Value
+IF v1 = 0
+MyOut := MSGBOX("No Item Unit Determined","Sorry")
+myret := false
 ENDIF
 Return myret
 Method ComboSearchChange Class ItemsClass
