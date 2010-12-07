@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:37:34    Date : 12/07/2010
+* Time : 20:34:20    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -60,10 +60,10 @@ TITLE "Items Entered to Stores Report" ;
 CHILD ;
 BACKCOLOR {64,0,64}
 
-@ 455 ,251 BUTTONEX btn1;
+@ 455 ,841 BUTTONEX btn1;
 CAPTION "Close";
 ON CLICK self:CloseWindow()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 90 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 455 ,141 BUTTONEX btn2;
@@ -114,6 +114,12 @@ WIDTH 100 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
+@ 454 ,251 BUTTONEX btn4;
+CAPTION "Export";
+ON CLICK self:ExportReport()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 ITEMSENTEREDTOSTORESReportWindow.Maximize ( )
@@ -133,6 +139,7 @@ self:oactivex:nHeight := tempvar2 - 125
 ITEMSENTEREDTOSTORESReportWindow.btn1.Row := tempvar2-88
 ITEMSENTEREDTOSTORESReportWindow.btn2.Row := tempvar2-88
 ITEMSENTEREDTOSTORESReportWindow.btn3.Row := tempvar2-88
+ITEMSENTEREDTOSTORESReportWindow.btn4.Row := tempvar2-88
 self:oactivex:Show ( )
 ITEMSENTEREDTOSTORESReportWindow.lbl1.Row := tempvar2 - 88
 ITEMSENTEREDTOSTORESReportWindow.lbl2.Row := tempvar2 - 88

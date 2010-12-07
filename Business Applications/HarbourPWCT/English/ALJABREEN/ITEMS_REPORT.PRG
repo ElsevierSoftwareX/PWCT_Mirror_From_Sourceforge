@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:15:03    Date : 12/07/2010
+* Time : 20:25:33    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -60,10 +60,10 @@ TITLE "Items Report" ;
 CHILD ;
 BACKCOLOR {64,0,64}
 
-@ 455 ,251 BUTTONEX btn1;
+@ 455 ,611 BUTTONEX btn1;
 CAPTION "Close";
 ON CLICK self:CloseWindow()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 455 ,141 BUTTONEX btn2;
@@ -80,7 +80,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 self:oActiveX := TActiveX():New( "ITEMSReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 659 , 417)
 self:oActiveX:Load()
-@ 454 ,377 CHECKBOX check1;
+@ 454 ,367 CHECKBOX check1;
 CAPTION "Item Value Less Than : ";
 ON CHANGE self:checkchange()  ;
 WIDTH 160;
@@ -88,13 +88,19 @@ Height 30;
 FONT "Arial" SIZE 10 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
-@ 454 ,545 TEXTBOX text1;
+@ 454 ,535 TEXTBOX text1;
 ON CHANGE self:checkchange()  ;
 HEIGHT 30 ;
 WIDTH 70 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
+@ 454 ,254 BUTTONEX btn4;
+CAPTION "Export";
+ON CLICK self:ExportReport()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 ITEMSReportWindow.Maximize ( )
@@ -114,6 +120,7 @@ self:oactivex:nHeight := tempvar2 - 125
 ITEMSReportWindow.btn1.Row := tempvar2-88
 ITEMSReportWindow.btn2.Row := tempvar2-88
 ITEMSReportWindow.btn3.Row := tempvar2-88
+ITEMSReportWindow.btn4.Row := tempvar2-88
 self:oactivex:Show ( )
 ITEMSReportWindow.Check1.Row := tempvar2 - 88
 ITEMSReportWindow.text1.Row := tempvar2 - 88

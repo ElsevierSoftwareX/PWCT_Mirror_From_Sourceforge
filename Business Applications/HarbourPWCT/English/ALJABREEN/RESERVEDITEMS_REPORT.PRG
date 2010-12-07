@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:52:34    Date : 12/07/2010
+* Time : 20:38:55    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -50,7 +50,7 @@ ENDIF
 if !iswindowdefined( ReservedItemsReportWindow )
 DEFINE WINDOW ReservedItemsReportWindow ;
 AT 10 ,10 ;
-WIDTH 1031 ;
+WIDTH 1118 ;
 HEIGHT 542 ;
 ON INIT self:ShowReport()  ;
 ON SIZE self:SizeReport()  ;
@@ -60,7 +60,7 @@ TITLE "Reserved Items Report" ;
 CHILD ;
 BACKCOLOR {64,0,64}
 
-@ 455 ,251 BUTTONEX btn1;
+@ 451 ,991 BUTTONEX btn1;
 CAPTION "Close";
 ON CLICK self:CloseWindow()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -78,7 +78,7 @@ ON CLICK self:ShowReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-self:oActiveX := TActiveX():New( "ReservedItemsReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 979 , 417)
+self:oActiveX := TActiveX():New( "ReservedItemsReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 1059 , 417)
 self:oActiveX:Load()
 @ 457 ,486 LABEL lbl1 ;
 VALUE "From" ;
@@ -129,6 +129,12 @@ Height 30;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
+@ 454 ,251 BUTTONEX btn4;
+CAPTION "Export";
+ON CLICK self:ExportReport()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 ReservedItemsReportWindow.Maximize ( )
@@ -148,6 +154,7 @@ self:oactivex:nHeight := tempvar2 - 125
 ReservedItemsReportWindow.btn1.Row := tempvar2-88
 ReservedItemsReportWindow.btn2.Row := tempvar2-88
 ReservedItemsReportWindow.btn3.Row := tempvar2-88
+ReservedItemsReportWindow.btn4.Row := tempvar2-88
 self:oactivex:Show ( )
 ReservedItemsReportWindow.lbl1.Row := tempvar2 - 88
 ReservedItemsReportWindow.lbl2.Row := tempvar2 - 88

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:47:08    Date : 08/24/2010
+* Time : 20:16:46    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -42,8 +42,10 @@ Data myaccessobj init 0
 Data oActiveX init 0
 Data Filter init ""
 Data dbpassword init "systemdatabase123"
+Data outputfile2 init GetStartUpFolder()+"\tempfile.html"
 Method showreport
 Method printreport
+Method exportreport
 EndClass
 Method ShowReport Class Report_Base
 StartUpFolder := GetStartUpFolder()
@@ -65,6 +67,20 @@ self:myaccessobj := TOLEAUTO():NEW( "Access.Application" )
 self:myaccessobj:OpenCurrentDatabase ( self:database,false,self:dbpassword )
 self:myaccessobj:DoCmd:OpenReport ( self:ReportName,,,self:filter )
 self:myaccessobj:Quit ( )
+Return 0
+Method ExportReport Class Report_Base
+StartUpFolder := GetStartUpFolder()
+self:myaccessobj := TOLEAUTO():NEW( "Access.Application" )
+self:myaccessobj:OpenCurrentDatabase ( self:database,false,self:dbpassword )
+self:myaccessobj:DoCmd:OpenReport ( self:ReportName,1 )
+IF .not. empty(alltrim(self:filter))
+self:myaccessobj:Reports(Self:ReportName):Filter := Self:Filter
+ELSE
+self:myaccessobj:Reports(Self:ReportName):Filter := "1 = 1"
+ENDIF
+self:myaccessobj:DoCmd:OutputTo ( 3,,"HTML(*.html)",self:outputfile2 )
+self:myaccessobj:Quit ( )
+Execute File self:outputfile2
 Return 0
 
 
