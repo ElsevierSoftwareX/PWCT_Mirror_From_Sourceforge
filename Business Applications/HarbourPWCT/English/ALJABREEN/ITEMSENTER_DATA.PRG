@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:50:55    Date : 12/07/2010
+* Time : 04:18:01    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,14 @@ Data TableName init "ItemsEnter_All"
 Data nID init 0
 Data column init "ItemName"
 Data PrimaryKey init "id"
-Data columns init {"ID","ItemName","ItemCompleteName","Value1","Amount","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
+Data columns init {"ID","f_name","dateofinput","importInvNo","importInvDate","ItemName","ItemCompleteName","Value1","Amount","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
+
+
+
+
+
+
+
 Data nSupplier init 0
 Data Supplieritems init {}
 Data Supplieritemsids init {}
@@ -240,8 +247,8 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
 HEIGHT 140 ;
-HEADERS {"ID","Item Name","Item Display Name","Value","Amount","Item","Group","Source","Grade","Color","Size"};
-WIDTHS {100,100,200,100,100,100,100,100,100,100,100} ;
+HEADERS {"ID","Supplier Name","Import Date","Invoice Number","Invoice Date","Item Name","Item Display Name","Value","Amount","Item","Group","Source","Grade","Color","Size"};
+WIDTHS {100,100,100,100,100,100,200,100,100,100,100,100,100,100,100} ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
