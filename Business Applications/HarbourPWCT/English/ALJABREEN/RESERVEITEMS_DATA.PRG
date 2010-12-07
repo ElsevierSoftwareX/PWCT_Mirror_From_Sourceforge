@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:57:40    Date : 12/06/2010
+* Time : 04:28:20    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "ReserveItems_All"
 Data nID init 0
 Data column init "OrderNumber"
 Data PrimaryKey init "id"
-Data columns init {"ID","OrderNumber","f_name","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
+Data columns init {"ID","OrderNumber","f_name","ExportInvNo","ExportInvDate","Dateofinput","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
 Data nOrderNumber init 0
 Data OrderNumberitems init {}
 Data OrderNumberitemsids init {}
@@ -235,9 +235,9 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
 HEIGHT 130 ;
-HEADERS {"ID","Order Number","Customer Name","Item Name","Item Display Name","Item","Group","Source","Grade","Color","Size"};
-WIDTHS {100,100,100,100,200,100,100,100,100,100,100} ;
-FONT "Arial" SIZE 9 ;
+HEADERS {"ID","Order Number","Customer Name","Invoice Number","Invoice Date","Date of Export","Item Name","Item Display Name","Item","Group","Source","Grade","Color","Size"};
+WIDTHS {100,100,100,100,100,100,100,200,100,100,100,100,100,100} ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
