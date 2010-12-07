@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:57:08    Date : 12/07/2010
+* Time : 21:48:34    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -89,6 +89,7 @@ Method settimer
 Method SelectItem
 Method basegroupfilter
 Method ComboSearchChange
+Method CheckData
 EndClass
 Method showwindow Class ReserveItemsClass
 myColumns := {}
@@ -785,6 +786,20 @@ Method ComboSearchChange Class ReserveItemsClass
 nColumn := ReserveItemsWindow.ComboSearchColumn.Value
 self:column := self:columns[ncolumn]
 Return 0
+Method CheckData Class ReserveItemsClass
+Local myret,v1
+myret := true
+v1 := ReserveItemsWindow.ComboOrderNumber.Value
+IF v1 = 0
+MyOut := MSGBOX("You must determine order number","Sorry")
+myret := false
+ENDIF
+v1 := ReserveItemsWindow.ComboItem.Value
+IF v1 = 0
+MyOut := MSGBOX("You must determine item","Sorry")
+myret := false
+ENDIF
+Return myret
 Method closewindow Class ReserveItemsClass
 myout = self:disconnect()
 ReserveItemsWindow.Release ( )

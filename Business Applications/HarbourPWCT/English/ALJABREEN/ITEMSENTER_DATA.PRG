@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:13:04    Date : 12/07/2010
+* Time : 21:44:34    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -90,6 +90,7 @@ Method GetSearchValue
 Method SelectItem
 Method baseGroupFilter
 Method ComboSearchChange
+Method CheckData
 EndClass
 Method showwindow Class ItemsEnterClass
 mycolumns := {}
@@ -781,6 +782,25 @@ Method ComboSearchChange Class ItemsEnterClass
 nColumn := ItemsEnterWindow.ComboSearchColumn.Value
 self:column := self:columns[ncolumn]
 Return 0
+Method CheckData Class ItemsEnterClass
+Local myret,v1
+myret := true
+v1 := ItemsEnterWindow.ComboSupplier.Value
+IF v1 = 0
+MyOut := MSGBOX("You must determine supplier","Sorry")
+myret := false
+ENDIF
+v1 := ItemsEnterWindow.ComboStore.Value
+IF v1 = 0
+MyOut := MSGBOX("You must determine store","Sorry")
+myret := false
+ENDIF
+v1 := ItemsEnterWindow.ComboItem.Value
+IF v1 = 0
+MyOut := MSGBOX("You must determine item","Sorry")
+myret := false
+ENDIF
+Return myret
 Method closewindow Class ItemsEnterClass
 myout = self:disconnect()
 ItemsEnterWindow.Release ( )

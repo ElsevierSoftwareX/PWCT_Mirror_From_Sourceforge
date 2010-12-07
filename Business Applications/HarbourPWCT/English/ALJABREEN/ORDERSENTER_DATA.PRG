@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:01:14    Date : 12/06/2010
+* Time : 21:53:33    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -86,6 +86,7 @@ Method SearchAdd
 Method settimer
 Method GetSearchValue
 Method selectitem
+Method CheckData
 EndClass
 Method showwindow Class OrdersEnterClass
 IF .not. UserCan_WinOrders = 2
@@ -713,6 +714,15 @@ myindex = self:LookupIDToIndex(SelectItemMasterDetailsObject:nOrderNumber,@self:
 OrdersEnterWindow.ComboItem.Value := myindex
 myout = self:ItemChange()
 Return 0
+Method CheckData Class OrdersEnterClass
+Local myret,v1
+myret := true
+v1 := OrdersEnterWindow.ComboCustomer.Value
+IF v1 = 0
+MyOut := MSGBOX("You must determine the customer","Sorry")
+myret := false
+ENDIF
+Return myret
 Method closewindow Class OrdersEnterClass
 myout = self:disconnect()
 OrdersEnterWindow.Release ( )
