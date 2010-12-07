@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:53:39    Date : 12/07/2010
+* Time : 22:16:28    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -325,19 +325,6 @@ HEIGHT 20 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 356 ,23 IMAGE image2;
-PICTURE "image\LEATHER.JPG";
-ON CLICK ItemsObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 607 ,65 LABEL lbl2 ;
-VALUE "Warehouse" ;
-ACTION ItemsObject:ShowWindow()  ;
-WIDTH 120 ;
-HEIGHT 40 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
 @ 79 ,225 IMAGE image3;
 PICTURE "image\ORDER.JPG";
 ON CLICK OrdersEnterObject:ShowWindow()  ;
@@ -351,12 +338,12 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 356 ,225 IMAGE image4;
+@ 356 ,135 IMAGE image4;
 PICTURE "image\AGREEMENT.JPG";
 ON CLICK AgreementObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 607 ,274 LABEL lbl4 ;
+@ 607 ,184 LABEL lbl4 ;
 VALUE "Agreement" ;
 ACTION AgreementObject:ShowWindow()  ;
 WIDTH 100 ;
@@ -377,25 +364,12 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 83 ,644 IMAGE image6;
-PICTURE "image\REPORTS.JPG";
-ON CLICK sysreports()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 316 ,706 LABEL lbl6 ;
-VALUE "Reports" ;
-ACTION sysreports()  ;
-WIDTH 80 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 356 ,430 IMAGE image7;
+@ 356 ,340 IMAGE image7;
 PICTURE "image\DISPOSE.JPG";
 ON CLICK DisposeObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 607 ,484 LABEL lbl7 ;
+@ 607 ,394 LABEL lbl7 ;
 VALUE "Dispose" ;
 ACTION DisposeObject:ShowWindow()  ;
 WIDTH 130 ;
@@ -893,15 +867,11 @@ win1.Hide ( )
 DO LOGOSTART
 myhandle = getcontrolhandle ( "image1","win1" )
 DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image2","win1" )
-DO sethandcursor WITH myhandle
 myhandle = getcontrolhandle ( "image3","win1" )
 DO sethandcursor WITH myhandle
 myhandle = getcontrolhandle ( "image4","win1" )
 DO sethandcursor WITH myhandle
 myhandle = getcontrolhandle ( "image5","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image6","win1" )
 DO sethandcursor WITH myhandle
 myhandle = getcontrolhandle ( "image7","win1" )
 DO sethandcursor WITH myhandle
