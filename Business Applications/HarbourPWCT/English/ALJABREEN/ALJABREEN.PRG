@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:28:28    Date : 12/07/2010
+* Time : 17:52:39    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -123,6 +123,7 @@ Set Procedure to "ItemDetails_Data.PRG"
 Set Procedure to "ItemsDetailsValues_Data.PRG"
 Set Procedure to "SelectItem.PRG"
 Set Procedure to "ProductionMan_Data.PRG"
+Set Procedure to "Warehousereportbase.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -190,6 +191,7 @@ ItemDetailsDataObject = ItemDetailsDataClass()
 ItemDetailsValuesDataBrowseObject = ItemDetailsValuesDataBrowseClass()
 SelectItemMasterDetailsObject = SelectItemMasterDetailsClass()
 ProductionManObject = ProductionManClass()
+systemdatabaseobject = systemdatabase()
 Public sys_warehousearray
 sys_warehousearray := {}
 AADD( sys_warehousearray , "Skin Warehouse")
@@ -708,12 +710,144 @@ MENUITEM "Items Grades Report" Action ItemGradesReportObject:ShowWindow()
 MENUITEM "Items Sizes Report" Action ItemSizesReportObject:ShowWindow()
 MENUITEM "Items Colors Report" Action ItemColorsReportObject:ShowWindow()
 MENUITEM "Items Sources Report" Action ItemSourcesReportObject:ShowWindow()
-MENUITEM "Items Report" Action ItemsReportObject:ShowWindow()
-SEPARATOR
 MENUITEM "Stores Report" Action StoresReportObject:ShowWindow()
-MENUITEM "Items Entered to Stores Report" Action ITEMSENTEREDTOSTORESReportObject:ShowWindow()
-MENUITEM "Reserved Items Report" Action ReservedItemsReportObject:ShowWindow()
 SEPARATOR
+POPUP "Warehouse Items Report"
+IF UserCan_nWarehouse1 = 2
+MENUITEM "Skin Warehouse" Action myitemsreport(1)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse2 = 2
+MENUITEM "Wet blue 1 Warehouse" Action myitemsreport(2)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse3 = 2
+MENUITEM "Wet blue 2 Warehouse" Action myitemsreport(3)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse4 = 2
+MENUITEM "Crust Warehouse" Action myitemsreport(4)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse5 = 2
+MENUITEM "Finish Warehouse" Action myitemsreport(5)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse6 = 2
+MENUITEM "Chemicals Warehouse" Action myitemsreport(6)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse7 = 2
+MENUITEM "Shoes Row Materials Warehouse" Action myitemsreport(7)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse8 = 2
+MENUITEM "Jacket Row Materials Warehouse" Action myitemsreport(8)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse9 = 2
+MENUITEM "General Warehouse" Action myitemsreport(9)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse10 = 2
+MENUITEM "Shoes products Warehouse" Action myitemsreport(10)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse11 = 2
+MENUITEM "Jacket Products Warehouse" Action myitemsreport(11)
+ENDIF
+END POPUP
+POPUP "Import Items To Warehouse Report"
+IF UserCan_nWarehouse1 = 2
+MENUITEM "Skin Warehouse" Action myitemsenterreport(1)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse2 = 2
+MENUITEM "Wet blue 1 Warehouse" Action myitemsenterreport(2)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse3 = 2
+MENUITEM "Wet blue 2 Warehouse" Action myitemsenterreport(3)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse4 = 2
+MENUITEM "Crust Warehouse" Action myitemsenterreport(4)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse5 = 2
+MENUITEM "Finish Warehouse" Action myitemsenterreport(5)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse6 = 2
+MENUITEM "Chemicals Warehouse" Action myitemsenterreport(6)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse7 = 2
+MENUITEM "Shoes Row Materials Warehouse" Action myitemsenterreport(7)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse8 = 2
+MENUITEM "Jacket Row Materials Warehouse" Action myitemsenterreport(8)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse9 = 2
+MENUITEM "General Warehouse" Action myitemsenterreport(9)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse10 = 2
+MENUITEM "Shoes products Warehouse" Action myitemsenterreport(10)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse11 = 2
+MENUITEM "Jacket Products Warehouse" Action myitemsenterreport(11)
+ENDIF
+END POPUP
+POPUP "Export Items From Warehouse Report"
+IF UserCan_nWarehouse1 = 2
+MENUITEM "Skin Warehouse" Action myitemsoutreport(1)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse2 = 2
+MENUITEM "Wet blue 1 Warehouse" Action myitemsoutreport(2)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse3 = 2
+MENUITEM "Wet blue 2 Warehouse" Action myitemsoutreport(3)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse4 = 2
+MENUITEM "Crust Warehouse" Action myitemsoutreport(4)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse5 = 2
+MENUITEM "Finish Warehouse" Action myitemsoutreport(5)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse6 = 2
+MENUITEM "Chemicals Warehouse" Action myitemsoutreport(6)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse7 = 2
+MENUITEM "Shoes Row Materials Warehouse" Action myitemsoutreport(7)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse8 = 2
+MENUITEM "Jacket Row Materials Warehouse" Action myitemsoutreport(8)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse9 = 2
+MENUITEM "General Warehouse" Action myitemsoutreport(9)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse10 = 2
+MENUITEM "Shoes products Warehouse" Action myitemsoutreport(10)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse11 = 2
+MENUITEM "Jacket Products Warehouse" Action myitemsoutreport(11)
+ENDIF
+END POPUP
+separator
 ENDIF
 IF UserCan_WinOrders = 2
 MENUITEM "List Of Orders Report" Action ListOfOrdersReportObject:ShowWindow()
@@ -1118,6 +1252,18 @@ Return Nil
 Proc myreservewarehouse( p1 )
 ReserveItemsObject:warehousecode := p1
 myout = ReserveItemsObject:ShowWindow()
+Return Nil
+Proc myitemsreport( p1 )
+ItemsReportObject:nWarehouse := p1
+myout = ItemsReportObject:ShowWindow()
+Return Nil
+Proc myitemsenterreport( p1 )
+ITEMSENTEREDTOSTORESReportObject:nWarehouse := p1
+myout = ITEMSENTEREDTOSTORESReportObject:ShowWindow()
+Return Nil
+Proc myitemsoutreport( p1 )
+ReservedItemsReportObject:nWarehouse := p1
+myout = ReservedItemsReportObject:ShowWindow()
 Return Nil
 
 

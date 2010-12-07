@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:28:17    Date : 12/06/2010
+* Time : 12:20:32    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -92,6 +92,7 @@ Method ItemDetails
 Method GroupFilter
 Method baseGroupFilter
 Method CheckData
+Method ComboSearchChange
 EndClass
 Method showwindow Class ItemsClass
 IF .not. UserCan_WinWarehouse = 2
@@ -102,6 +103,18 @@ myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id"
 myout = self:basegroupfilter()
 myout = self:connect()
 myout = self:AutoGotoRecord()
+mycolumns := {}
+AADD( mycolumns , "ID")
+AADD( mycolumns , "Item Name")
+AADD( mycolumns , "Item Display Name")
+AADD( mycolumns , "Class")
+AADD( mycolumns , "Group")
+AADD( mycolumns , "Source")
+AADD( mycolumns , "Grade")
+AADD( mycolumns , "Color")
+AADD( mycolumns , "Size")
+AADD( mycolumns , "Model Number")
+AADD( mycolumns , "Model Name")
 if !iswindowdefined( ItemsWindow )
 DEFINE WINDOW ItemsWindow ;
 AT 10 ,10 ;
@@ -220,16 +233,9 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 53 ,104 LABEL lbl1browse ;
-VALUE "Item Name" ;
-WIDTH 100 ;
+@ 54 ,261 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 54 ,211 TEXTBOX textNamebrowse;
-HEIGHT 30 ;
-WIDTH 530 ;
+WIDTH 480 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
@@ -243,7 +249,7 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 830 ;
 HEIGHT 200 ;
-HEADERS {"ID","Item Name","Item Display Name","Class","Group","Source","Grade","Color","Size","Model Number","Model Name"};
+HEADERS mycolumns;
 WIDTHS {50,150,150,100,100,100,100,100,100,100,100} ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
@@ -489,6 +495,15 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
+@ 52 ,73 COMBOBOX comboSearchColumn;
+ON CHANGE self:combosearchchange()  ;
+WIDTH 180 ;
+HEIGHT 230;
+ITEMS mycolumns ;
+VALUE 2 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 ItemsWindow.Center ( )
@@ -731,6 +746,10 @@ ItemsWindow.textItemCompleteName.Value := v1
 ENDIF
 ENDIF
 Return myret
+Method ComboSearchChange Class ItemsClass
+nColumn := ItemsWindow.ComboSearchColumn.Value
+self:column := self:columns[ncolumn]
+Return 0
 Method closewindow Class ItemsClass
 myout = self:disconnect()
 ItemsWindow.Release ( )

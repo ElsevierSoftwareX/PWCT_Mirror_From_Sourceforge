@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:18:01    Date : 12/07/2010
+* Time : 12:13:04    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,14 +40,7 @@ Data TableName init "ItemsEnter_All"
 Data nID init 0
 Data column init "ItemName"
 Data PrimaryKey init "id"
-Data columns init {"ID","f_name","dateofinput","importInvNo","importInvDate","ItemName","ItemCompleteName","Value1","Amount","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
-
-
-
-
-
-
-
+Data columns init {}
 Data nSupplier init 0
 Data Supplieritems init {}
 Data Supplieritemsids init {}
@@ -96,8 +89,46 @@ Method settimer
 Method GetSearchValue
 Method SelectItem
 Method baseGroupFilter
+Method ComboSearchChange
 EndClass
 Method showwindow Class ItemsEnterClass
+mycolumns := {}
+AADD( mycolumns , "ID")
+AADD( mycolumns , "f_name")
+AADD( mycolumns , "dateofinput")
+AADD( mycolumns , "importInvNo")
+AADD( mycolumns , "importInvDate")
+AADD( mycolumns , "ItemName")
+AADD( mycolumns , "ItemCompleteName")
+AADD( mycolumns , "Value1")
+AADD( mycolumns , "Amount")
+AADD( mycolumns , "ItemClass")
+AADD( mycolumns , "GroupName")
+AADD( mycolumns , "SourceName")
+AADD( mycolumns , "GradeName")
+AADD( mycolumns , "ColorName")
+AADD( mycolumns , "SizeName")
+AADD( mycolumns , "itemmodelno")
+AADD( mycolumns , "itemmodelname")
+self:Columns := myColumns
+mycolumns := {}
+AADD( mycolumns , "ID")
+AADD( mycolumns , "Supplier Name")
+AADD( mycolumns , "Import Date")
+AADD( mycolumns , "Invoice Number")
+AADD( mycolumns , "Invoice Date")
+AADD( mycolumns , "Item Name")
+AADD( mycolumns , "Item Complete Name")
+AADD( mycolumns , "Value")
+AADD( mycolumns , "Amount")
+AADD( mycolumns , "Item Class")
+AADD( mycolumns , "Group Name")
+AADD( mycolumns , "Source Name")
+AADD( mycolumns , "Grade Name")
+AADD( mycolumns , "Color Name")
+AADD( mycolumns , "Size Name")
+AADD( mycolumns , "Model Number")
+AADD( mycolumns , "Model Name")
 IF .not. UserCan_WinWarehouse = 2
 MyOut := MSGBOX("Access is denied","Sorry")
 Return 0
@@ -224,16 +255,9 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,68 LABEL lbl1browse ;
-VALUE "Item Name" ;
-WIDTH 100 ;
+@ 53 ,265 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 53 ,175 TEXTBOX textNamebrowse;
-HEIGHT 30 ;
-WIDTH 530 ;
+WIDTH 440 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
@@ -247,9 +271,9 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
 HEIGHT 140 ;
-HEADERS {"ID","Supplier Name","Import Date","Invoice Number","Invoice Date","Item Name","Item Display Name","Value","Amount","Item","Group","Source","Grade","Color","Size"};
-WIDTHS {100,100,100,100,100,100,200,100,100,100,100,100,100,100,100} ;
-FONT "arial" SIZE 9 ;
+HEADERS mycolumns;
+WIDTHS {100,100,100,100,100,100,200,100,100,100,100,100,100,100,100,100,100} ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
@@ -459,6 +483,15 @@ WIDTH 170 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
+FONTCOLOR {0,0,0}
+@ 52 ,73 COMBOBOX comboSearchColumn;
+ON CHANGE self:combosearchchange()  ;
+WIDTH 180 ;
+HEIGHT 230;
+ITEMS mycolumns ;
+VALUE 6 ;
+FONT "arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
@@ -743,6 +776,10 @@ Return 0
 Method baseGroupFilter Class ItemsEnterClass
 tvalue := self:ItemGroupItemsids[self:warehousecode]
 self:complexsearch := " and itemgroupid = " + alltrim(Str(tvalue))
+Return 0
+Method ComboSearchChange Class ItemsEnterClass
+nColumn := ItemsEnterWindow.ComboSearchColumn.Value
+self:column := self:columns[ncolumn]
 Return 0
 Method closewindow Class ItemsEnterClass
 myout = self:disconnect()

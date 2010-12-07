@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:41:19    Date : 10/20/2010
+* Time : 15:37:34    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,7 +35,7 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_ITEMSENTEREDTOSTORES_REPORT_15speed1() code
-class ITEMSENTEREDTOSTORESReportClass From Report_Base
+class ITEMSENTEREDTOSTORESReportClass From WarehouseReport_Base
 Data ReportName init "ItemsEntered"
 Method showwindow
 Method closewindow

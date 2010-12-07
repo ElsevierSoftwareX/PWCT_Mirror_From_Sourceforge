@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:39:45    Date : 10/20/2010
+* Time : 17:52:34    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,7 +35,7 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_RESERVEDITEMS_REPORT_15speed1() code
-class ReservedItemsReportClass From Report_Base
+class ReservedItemsReportClass From WarehouseReport_Base
 Data ReportName init "ReservedItems"
 Method showwindow
 Method closewindow

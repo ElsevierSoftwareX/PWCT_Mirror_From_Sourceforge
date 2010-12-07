@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:28:20    Date : 12/07/2010
+* Time : 11:57:08    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "ReserveItems_All"
 Data nID init 0
 Data column init "OrderNumber"
 Data PrimaryKey init "id"
-Data columns init {"ID","OrderNumber","f_name","ExportInvNo","ExportInvDate","Dateofinput","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
+Data columns init {}
 Data nOrderNumber init 0
 Data OrderNumberitems init {}
 Data OrderNumberitemsids init {}
@@ -88,8 +88,44 @@ Method GetSearchValue
 Method settimer
 Method SelectItem
 Method basegroupfilter
+Method ComboSearchChange
 EndClass
 Method showwindow Class ReserveItemsClass
+myColumns := {}
+AADD( myColumns , "ID")
+AADD( myColumns , "OrderNumber")
+AADD( myColumns , "f_name")
+AADD( myColumns , "ExportInvNo")
+AADD( myColumns , "ExportInvDate")
+AADD( myColumns , "Dateofinput")
+AADD( myColumns , "ItemName")
+AADD( myColumns , "ItemCompleteName")
+AADD( myColumns , "ItemClass")
+AADD( myColumns , "GroupName")
+AADD( myColumns , "SourceName")
+AADD( myColumns , "GradeName")
+AADD( myColumns , "ColorName")
+AADD( myColumns , "SizeName")
+AADD( myColumns , "itemModelNo")
+AADD( myColumns , "itemModelName")
+self:columns := mycolumns
+myColumns := {}
+AADD( myColumns , "ID")
+AADD( myColumns , "Order Number")
+AADD( myColumns , "Customer Name")
+AADD( myColumns , "Invoice Number")
+AADD( myColumns , "Invoice Date")
+AADD( myColumns , "Export Date")
+AADD( myColumns , "Item Name")
+AADD( myColumns , "Item Complete Name")
+AADD( myColumns , "Item Class")
+AADD( myColumns , "Group Name")
+AADD( myColumns , "Source Name")
+AADD( myColumns , "Grade Name")
+AADD( myColumns , "Color Name")
+AADD( myColumns , "Size Name")
+AADD( myColumns , "Model Number")
+AADD( myColumns , "Model Name")
 myout = self:LoadLookupTable("ItemsGroups","GroupName",@self:ItemGroupItems,"id",@self:ItemGroupItemsIDS)
 myout = self:basegroupfilter()
 myout = self:connect()
@@ -197,7 +233,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 416 ,487 LABEL lblSourceName ;
+@ 420 ,487 LABEL lblSourceName ;
 VALUE "Value" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -205,23 +241,16 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 416 ,570 TEXTBOX textUnitValue;
+@ 420 ,569 TEXTBOX textUnitValue;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,68 LABEL lbl1browse ;
-VALUE "Order Number" ;
-WIDTH 130 ;
+@ 53 ,265 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 53 ,205 TEXTBOX textNamebrowse;
-HEIGHT 30 ;
-WIDTH 500 ;
+WIDTH 440 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
@@ -235,14 +264,14 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
 HEIGHT 130 ;
-HEADERS {"ID","Order Number","Customer Name","Invoice Number","Invoice Date","Date of Export","Item Name","Item Display Name","Item","Group","Source","Grade","Color","Size"};
-WIDTHS {100,100,100,100,100,100,100,200,100,100,100,100,100,100} ;
-FONT "arial" SIZE 9 ;
+HEADERS mycolumns;
+WIDTHS {100,100,120,100,100,100,100,200,100,100,100,100,100,100,100,100} ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 464 ,487 LABEL lblSecUnitValue ;
+@ 460 ,487 LABEL lblSecUnitValue ;
 VALUE "Value" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -250,7 +279,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 464 ,570 TEXTBOX textSecUnitValue;
+@ 460 ,570 TEXTBOX textSecUnitValue;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -258,7 +287,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("ReadyOrders","OrderNumber",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
-@ 300 ,157 LABEL lblOrderNumber ;
+@ 303 ,156 LABEL lblOrderNumber ;
 VALUE "Order Number" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -266,7 +295,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 301 ,298 COMBOBOX comboordernumber;
+@ 310 ,298 COMBOBOX comboordernumber;
 ON CHANGE self:orderchange()  ;
 WIDTH 200 ;
 HEIGHT 100;
@@ -275,7 +304,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 336 ,143 LABEL lblStore ;
+@ 338 ,141 LABEL lblStore ;
 VALUE "Customer Name" ;
 WIDTH 140 ;
 HEIGHT 30 ;
@@ -283,7 +312,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 332 ,300 TEXTBOX textCustomer;
+@ 345 ,298 TEXTBOX textCustomer;
 HEIGHT 30 ;
 WIDTH 410 ;
 FONT "Arial" SIZE 14 ;
@@ -291,7 +320,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable2("ItemsAndUnits_ALL","ItemCompleteName",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 376 ,243 LABEL lblitems ;
+@ 378 ,241 LABEL lblitems ;
 VALUE "Item" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -299,7 +328,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 375 ,300 COMBOBOX comboitem;
+@ 385 ,298 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
 WIDTH 410 ;
 HEIGHT 100;
@@ -308,7 +337,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 415 ,203 LABEL lblItemUnit ;
+@ 420 ,201 LABEL lblItemUnit ;
 VALUE "Item Unit" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -316,14 +345,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 415 ,300 TEXTBOX textItemUnit;
+@ 420 ,298 TEXTBOX textItemUnit;
 HEIGHT 30 ;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 463 ,74 LABEL lblItemUnit2 ;
+@ 460 ,91 LABEL lblItemUnit2 ;
 VALUE "Item Unit (Secondary)" ;
 WIDTH 190 ;
 HEIGHT 30 ;
@@ -331,7 +360,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 460 ,300 TEXTBOX textItemSecUnit;
+@ 460 ,298 TEXTBOX textItemSecUnit;
 HEIGHT 30 ;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
@@ -397,13 +426,13 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 376 ,716 BUTTONEX btnSelItem;
+@ 382 ,720 BUTTONEX btnSelItem;
 CAPTION ":::";
 ON CLICK self:SelectItem()  ;
 WIDTH 40 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 230 ,151 LABEL lblInvNo ;
+@ 232 ,144 LABEL lblInvNo ;
 VALUE "Invoice Number" ;
 WIDTH 150 ;
 HEIGHT 30 ;
@@ -411,7 +440,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 230 ,299 TEXTBOX textInvNo;
+@ 230 ,298 TEXTBOX textInvNo;
 HEIGHT 30 ;
 WIDTH 160 ;
 FONT "Arial" SIZE 14 ;
@@ -426,7 +455,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 266 ,299 TEXTBOX textInvNotes;
+@ 270 ,298 TEXTBOX textInvNotes;
 HEIGHT 30 ;
 WIDTH 460 ;
 FONT "Arial" SIZE 14 ;
@@ -446,6 +475,15 @@ WIDTH 170 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
+FONTCOLOR {0,0,0}
+@ 52 ,73 COMBOBOX comboSearchColumn;
+ON CHANGE self:combosearchchange()  ;
+WIDTH 180 ;
+HEIGHT 230;
+ITEMS mycolumns ;
+VALUE 2 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
@@ -742,6 +780,10 @@ Return 0
 Method baseGroupFilter Class ReserveItemsClass
 tvalue := self:ItemGroupItemsids[self:warehousecode]
 self:complexsearch := " and itemgroupid = " + alltrim(Str(tvalue))
+Return 0
+Method ComboSearchChange Class ReserveItemsClass
+nColumn := ReserveItemsWindow.ComboSearchColumn.Value
+self:column := self:columns[ncolumn]
 Return 0
 Method closewindow Class ReserveItemsClass
 myout = self:disconnect()
