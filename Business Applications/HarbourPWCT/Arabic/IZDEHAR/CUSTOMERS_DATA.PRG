@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:33:59    Date : 11/29/2010
+* Time : 20:42:33    Date : 11/29/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -695,6 +695,12 @@ cName := CustomersDataWindow.textName.Value
 cName = ALLTRIM ( cName )
 IF cName == ""
 MyOut := MSGBOX("ÌÃ» «œŒ«· «”„ «·„ œ—»","⁄›Ê«")
+myRet := False
+ENDIF
+cMobile := CustomersDataWindow.textMobile.Value
+cMobile = ALLTRIM ( cMobile )
+IF cMobile == ""
+MyOut := MSGBOX("ÌÃ» «œŒ«· —ﬁ„ «·ÃÊ«·","⁄›Ê«")
 myRet := False
 ENDIF
 Return myRet
