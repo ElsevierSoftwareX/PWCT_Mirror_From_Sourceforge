@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:42:33    Date : 11/29/2010
+* Time : 21:29:43    Date : 11/29/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -689,7 +689,7 @@ Customersreportobject:filter := "id = "+myid
 myout = Customersreportobject:ShowWindow()
 Return 0
 Method CheckData Class CustomersDataClass
-Local myRet,cName
+Local myRet,cName,nMax
 myRet := True
 cName := CustomersDataWindow.textName.Value
 cName = ALLTRIM ( cName )
@@ -702,6 +702,18 @@ cMobile = ALLTRIM ( cMobile )
 IF cMobile == ""
 MyOut := MSGBOX("нћ» «ѕќ«б —ёг «бћж«б","ЏЁж«")
 myRet := False
+ELSE
+public myoRS
+myoRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myoRS:CursorType := 1
+myoRS:ActiveConnection := self:oCon
+myoRS:open ( "Select * from Customers where f_Mobile = '" + cMobile + "'",self:oCon,3,3 )
+nMax := myoRS:RecordCount
+IF nMax > 0
+MyOut := MSGBOX("е–« «бћж«б г”ћб гд ё»б","ЏЁж«")
+myRet := False
+ENDIF
+myoRS:Close()
 ENDIF
 Return myRet
 Method closewindow Class CustomersDataClass
