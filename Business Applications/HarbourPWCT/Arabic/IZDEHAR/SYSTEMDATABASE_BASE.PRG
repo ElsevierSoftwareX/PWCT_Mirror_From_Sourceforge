@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:57:44    Date : 09/13/2010
+* Time : 20:28:27    Date : 11/29/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -46,7 +46,8 @@ Data ResultPrimaryKeys init {}
 Data username init "systemdatabase"
 Data password init "systemdatabase123"
 Data DataSourceName init "IZDEHARDATA"
-Data DatabaseName init ""
+Data databasename init ""
+Data complexsearch init ""
 Method ShowRecord
 Method EditRecord
 Method LoadLookupTable
@@ -70,6 +71,8 @@ Method beforesearch
 Method setTimer
 Method searchadd
 Method getsearchvalue
+Method LoadLookupTable2
+Method checkdata
 EndClass
 Method ShowRecord Class SYSTEMDATABASE
 mymax := self:oRS:RecordCount
@@ -128,7 +131,7 @@ self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Propert
 self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 self:oRS:CursorType := 1
 self:oRS:ActiveConnection := self:oCon
-self:oRS:open ( "Select * from " + self:TableName,self:oCon,3,3 )
+self:oRS:open ( "Select * from " + self:TableName + " where 1 = 1 " + self:complexsearch,self:oCon,3,3 )
 Return 0
 Method disconnect Class SYSTEMDATABASE
 self:oRS:Close()
@@ -155,7 +158,7 @@ self:oRS:MOVENEXT()
 mycheck := self:oRS:EOF()
 IF mycheck
 self:oRS:MOVEPREVIOUS()
-MyOut := MSGBOX("‰Â«Ì… «·”Ã·« ","⁄›Ê«")
+MyOut := MSGBOX("End of Records","Sorry")
 ELSE
 myout = self:showrecord()
 ENDIF
@@ -168,7 +171,7 @@ self:oRS:MOVEPREVIOUS()
 mycheck := self:oRS:BOF()
 IF mycheck
 self:oRS:MOVENEXT()
-MyOut := MSGBOX("»œ«Ì… «·”Ã·« ","⁄›Ê«")
+MyOut := MSGBOX("Begin of Records","Sorry")
 ELSE
 myout = self:showrecord()
 ENDIF
@@ -194,7 +197,7 @@ oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := oCon
-oRS:open ( "Select * from "+self:tableName +" where "+self:column+" like '" + cName + "%'",oCon,3,3 )
+oRS:open ( "Select * from "+self:tableName +" where "+self:column+" like '" + cName + "%'" + self:complexsearch,oCon,3,3 )
 mymax := oRS:RecordCount
 self:ResultPrimaryKeys := {}
 myout = self:BeforeSearch()
@@ -224,7 +227,7 @@ Return 0
 Method delrecord Class SYSTEMDATABASE
 mymax := self:oRS:RecordCount
 IF mymax > 0
-MyOut := MSGOKCANCEL("Â· «‰  „ «ﬂœ ?","Õ–›")
+MyOut := MSGOKCANCEL(" Are you sure ?","Delete Record")
 IF myout = false
 Return 0
 ENDIF
@@ -242,10 +245,14 @@ ENDIF
 myout = self:showrecord()
 myout = self:setTimer(true)
 ELSE
-MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
+MyOut := MSGBOX("No Records","Sorry")
 ENDIF
 Return 0
 Method SaveRecord Class SYSTEMDATABASE
+myout = self:CheckData()
+IF myout = false
+Return 0
+ENDIF
 IF self:addrec = true
 self:oRS:ADDNEW()
 ELSE
@@ -278,6 +285,33 @@ Method SetTimer Class SystemDatabase
 Return 0
 Method GetSearchValue Class SystemDatabase
 Return ""
+Method LoadLookupTable2(cTableName,cColumnName,aArrayNameRef,cColumnName2,aArrayNameRef2) Class SYSTEMDATABASE
+Local x,nMax,temp_value,temp_value2,oCon,oRS
+oCon := TOLEAUTO():NEW( "ADODB.Connection" )
+oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn='+self:DataSourceName+';uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := oCon
+oRS:open ( "Select * from " + cTableName +" where 1=1 "+ self:complexsearch,oCon,3,3 )
+nMAX := oRS:RecordCount
+aArrayNameRef := {}
+aArrayNameRef2 := {}
+FOR x = 1 TO nMax STEP 1
+temp_value := oRS:fields:item(cColumnName):value
+temp_value2 := oRS:fields:item(cColumnName2):value
+IF valtype(temp_value) = "N"
+temp_Value = STR ( temp_value )
+temp_Value = ALLTRIM ( temp_value )
+ENDIF
+AADD( aArrayNameRef , temp_value)
+AADD( aArrayNameRef2 , temp_value2)
+oRS:MOVENEXT()
+Next
+oRS:Close()
+oCon:CLOSE()
+Return 0
+Method CheckData Class SystemDatabase
+Return true
 
 
 End Of Resistance

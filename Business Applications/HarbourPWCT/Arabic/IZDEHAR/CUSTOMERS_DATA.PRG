@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:16:19    Date : 10/25/2010
+* Time : 20:33:59    Date : 11/29/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -78,6 +78,7 @@ Method Class2UserInterface
 Method ClearRecord
 Method AutoGotoRecord
 Method printdata
+Method CheckData
 EndClass
 Method showwindow Class CustomersDataClass
 IF .not. UserCan_WinCustomers = 2
@@ -687,6 +688,16 @@ myid = STR ( myid )
 Customersreportobject:filter := "id = "+myid
 myout = Customersreportobject:ShowWindow()
 Return 0
+Method CheckData Class CustomersDataClass
+Local myRet,cName
+myRet := True
+cName := CustomersDataWindow.textName.Value
+cName = ALLTRIM ( cName )
+IF cName == ""
+MyOut := MSGBOX("ÌÃ» «œŒ«· «”„ «·„ œ—»","⁄›Ê«")
+myRet := False
+ENDIF
+Return myRet
 Method closewindow Class CustomersDataClass
 myout = self:disconnect()
 CustomersDataWindow.Release ( )
