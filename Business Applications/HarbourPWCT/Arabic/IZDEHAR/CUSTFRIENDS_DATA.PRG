@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:36:38    Date : 11/23/2010
+* Time : 14:19:43    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -60,6 +60,10 @@ Data ResultPrimaryKeys3 init {}
 Data columns3 init {"recordstatus","f_mobile","f_name"}
 Data FindColumns init {"OrderName","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
 Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
+Data FindColumns2 init {"f_name","f_mobile"}
+Data FindColumns3 init {"f_name","f_mobile"}
+Data FindTitles2 init {"«·«”„","«·ÃÊ«·"}
+Data FindTitles3 init {"«·«”„","«·ÃÊ«·"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -87,6 +91,8 @@ Method delrecord2
 Method addrecord2
 Method search3
 Method CheckFind
+Method CheckFind2
+Method CheckFind3
 EndClass
 Method showwindow Class CustFriendsClass
 myout = self:connect()
@@ -113,12 +119,12 @@ WIDTH 930 HEIGHT 190
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 930 HEIGHT 230
-@ 620 ,31 BUTTONEX btnClose;
+@ 619 ,31 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {255,255,255};
 ON CLICK self:closewindow()  ;
-WIDTH 90 HEIGHT 30 ;
+WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
@@ -148,7 +154,7 @@ WIDTH 890 ;
 HEIGHT 130 ;
 HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
 WIDTHS {100,180,120,200,150,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -163,14 +169,6 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 259 ,681 LABEL lbl1browse2 ;
-VALUE "«”„ «·„ œ—»" ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {64,0,64} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
 @ 256 ,269 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
@@ -178,7 +176,7 @@ BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 255 ,164 BUTTONEX btn1browse2;
+@ 255 ,163 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -194,8 +192,17 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
+@ 255 ,677 COMBOBOX comboFind2;
+ON CHANGE self:CheckFind2()  ;
+WIDTH 230 ;
+HEIGHT 200;
+ITEMS self:FindTitles2 ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("customers","f_name",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 438 ,780 LABEL lblitems ;
+@ 438 ,840 LABEL lblitems ;
 VALUE "«”„ «·„—‘Õ" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -203,16 +210,16 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 439 ,258 COMBOBOX comboitem;
+@ 439 ,558 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
-WIDTH 510 ;
+WIDTH 270 ;
 HEIGHT 100;
 ITEMS self:itemitems ;
 VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 439 ,203 LABEL lblItemUnit ;
+@ 439 ,503 LABEL lblItemUnit ;
 VALUE "ÃÊ«·" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -220,7 +227,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 436 ,31 TEXTBOX textCustomerMobile;
+@ 436 ,331 TEXTBOX textCustomerMobile;
 ON ENTER self:mobilechange()  ;
 HEIGHT 30 ;
 WIDTH 160 ;
@@ -229,28 +236,21 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 485 ,780 LABEL lbl1browse3 ;
-VALUE "«”„ «·„—‘Õ" ;
-WIDTH 100 ;
+@ 485 ,269 TEXTBOX textNamebrowse3;
 HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {64,0,64} ;
-FONTCOLOR {255,255,255}
-@ 485 ,438 TEXTBOX textNamebrowse3;
-HEIGHT 30 ;
-WIDTH 330 ;
+WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 485 ,328 BUTTONEX btn1browse3;
+@ 485 ,163 BUTTONEX btn1browse3;
 CAPTION "»ÕÀ";
-ON CLICK self:search2()  ;
+ON CLICK self:search3()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 525 ,328 GRID Grid1browse3;
-WIDTH 560 ;
+@ 523 ,162 GRID Grid1browse3;
+WIDTH 746 ;
 HEIGHT 130 ;
 HEADERS {"Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„—‘Õ"};
 WIDTHS {150,150,250} ;
@@ -258,16 +258,25 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 526 ,31 BUTTONEX btnDel2;
-CAPTION "Õ–› «·„—‘Õ „‰ „—‘ÕÌ‰ «·⁄„Ì·";
+@ 489 ,677 COMBOBOX comboFind3;
+ON CHANGE self:CheckFind3()  ;
+WIDTH 230 ;
+HEIGHT 200;
+ITEMS self:FindTitles3 ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 524 ,31 BUTTONEX btnDel2;
+CAPTION "Õ–› «·„—‘Õ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
 ON CLICK self:delrecord2()  ;
-WIDTH 280 HEIGHT 30 ;
+WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 487 ,31 BUTTONEX btnadd2;
+@ 437 ,31 BUTTONEX btnadd2;
 CAPTION "«÷«›… «·„—‘Õ «·Ï „—‘ÕÌ‰ «·⁄„Ì·";
 ON CLICK self:addrecord2()  ;
 WIDTH 280 HEIGHT 30 ;
@@ -559,7 +568,7 @@ ENDIF
 Return 0
 Method search3 Class CustFriendsClass
 Local oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
-cName := CustFriendsWindow.textNamebrowse2.Value
+cName := CustFriendsWindow.textNamebrowse3.Value
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 CustFriendsWindow.grid1browse3.DeleteAllItems ( )
 nvalue := CustFriendsWindow.grid1browse2.Value
@@ -602,6 +611,21 @@ ELSE
 ENDIF
 oRS:Close()
 Return 0
+Method CheckFind Class CustFriendsClass
+Local nIndex
+nIndex := CustFriendsWindow.ComboFind.Value
+Self:Column := Self:FindColumns[nIndex]
+Return 0
+Method CheckFind2 Class CustFriendsClass
+Local nIndex
+nIndex := CustFriendsWindow.ComboFind2.Value
+Self:Column2 := Self:FindColumns2[nIndex]
+Return 0
+Method CheckFind3 Class CustFriendsClass
+Local nIndex
+nIndex := CustFriendsWindow.ComboFind3.Value
+Self:Column3 := Self:FindColumns3[nIndex]
+Return 0
 Method closewindow Class CustFriendsClass
 myout = self:disconnect()
 CustFriendsWindow.Release ( )
@@ -633,11 +657,6 @@ cName := CustFriendsWindow.textNamebrowse.Value
 Return cName
 Method SetTimer(p1) Class CustFriendsClass
 CustFriendsWindow.Timer1.Enabled := p1
-Return 0
-Method CheckFind Class CustFriendsClass
-Local nIndex
-nIndex := CustFriendsWindow.ComboFind.Value
-Self:Column := Self:FindColumns[nIndex]
 Return 0
 
 
