@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:56:34    Date : 10/04/2010
+* Time : 13:36:38    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -58,6 +58,8 @@ Data column3 init "f_name"
 Data PrimaryKey3 init "id"
 Data ResultPrimaryKeys3 init {}
 Data columns3 init {"recordstatus","f_mobile","f_name"}
+Data FindColumns init {"OrderName","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
+Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -84,6 +86,7 @@ Method mobilechange
 Method delrecord2
 Method addrecord2
 Method search3
+Method CheckFind
 EndClass
 Method showwindow Class CustFriendsClass
 myout = self:connect()
@@ -126,14 +129,6 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,681 LABEL lbl1browse ;
-VALUE "—ﬁ„ «·œÊ—…" ;
-WIDTH 80 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
 @ 53 ,269 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
@@ -152,10 +147,19 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 890 ;
 HEIGHT 130 ;
 HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,200,120,200,150,100} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {100,180,120,200,150,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
+FONTCOLOR {0,0,0}
+@ 52 ,677 COMBOBOX comboFind;
+ON CHANGE self:CheckFind()  ;
+WIDTH 230 ;
+HEIGHT 200;
+ITEMS self:FindTitles ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
@@ -250,7 +254,7 @@ WIDTH 560 ;
 HEIGHT 130 ;
 HEADERS {"Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„—‘Õ"};
 WIDTHS {150,150,250} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -629,6 +633,11 @@ cName := CustFriendsWindow.textNamebrowse.Value
 Return cName
 Method SetTimer(p1) Class CustFriendsClass
 CustFriendsWindow.Timer1.Enabled := p1
+Return 0
+Method CheckFind Class CustFriendsClass
+Local nIndex
+nIndex := CustFriendsWindow.ComboFind.Value
+Self:Column := Self:FindColumns[nIndex]
 Return 0
 
 
