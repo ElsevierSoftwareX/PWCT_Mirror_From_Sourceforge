@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:13:01    Date : 11/23/2010
+* Time : 00:24:45    Date : 11/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "Orders_All"
 Data nID init 0
 Data column init "ordernumber"
 Data PrimaryKey init "id"
-Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderNumber"}
+Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
 Data nOrderNumber init ""
 Data cOrderDate init ""
 Data cOrderFinishDate init ""
@@ -58,8 +58,8 @@ Data column3 init "f_name"
 Data PrimaryKey3 init "id"
 Data ResultPrimaryKeys3 init {}
 Data columns3 init {"recordstatus","f_mobile","f_name"}
-Data FindColumns init {"OrderNumber","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
-Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
+Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
+Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
 Data FindColumns2 init {"f_name","f_mobile"}
 Data FindColumns3 init {"f_name","f_mobile"}
 Data FindTitles2 init {"«·«”„","«·ÃÊ«·"}
@@ -100,7 +100,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( CustFriendsWindow )
 DEFINE WINDOW CustFriendsWindow ;
 AT 10 ,10 ;
-WIDTH 954 ;
+WIDTH 1054 ;
 HEIGHT 701 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -114,12 +114,12 @@ BACKCOLOR {64,0,64}
 @ 43 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 930 HEIGHT 190
-@ 244 ,4 IMAGE image2;
+WIDTH 1030 HEIGHT 190
+@ 244 ,54 IMAGE image2;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 930 HEIGHT 230
-@ 619 ,31 BUTTONEX btnClose;
+@ 619 ,51 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {255,255,255};
@@ -128,21 +128,21 @@ WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                             „—‘ÕÌ‰ «·⁄„Ì·                 " ;
-WIDTH 930 ;
+@ 6 ,3 LABEL lblTitle ;
+VALUE "                                                                                               „—‘ÕÌ‰ «·⁄„Ì·                  " ;
+WIDTH 1030 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,269 TEXTBOX textnamebrowse;
+@ 53 ,309 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,163 BUTTONEX btn1browse;
+@ 52 ,203 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -150,15 +150,15 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 93 ,23 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 890 ;
+WIDTH 1000 ;
 HEIGHT 130 ;
-HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,180,120,200,150,100} ;
+HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
+WIDTHS {100,180,120,200,150,100,100} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 52 ,677 COMBOBOX comboFind;
+@ 52 ,717 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -169,20 +169,20 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 256 ,269 TEXTBOX textNamebrowse2;
+@ 256 ,319 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 255 ,163 BUTTONEX btn1browse2;
+@ 255 ,213 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 289 ,23 GRID Grid1browse2;
+@ 289 ,73 GRID Grid1browse2;
 ON DBLCLICK self:search3  ;
 WIDTH 890 ;
 HEIGHT 140 ;
@@ -192,7 +192,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 255 ,677 COMBOBOX comboFind2;
+@ 255 ,727 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -202,7 +202,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("customers","f_name",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 438 ,840 LABEL lblitems ;
+@ 438 ,890 LABEL lblitems ;
 VALUE "«”„ «·„—‘Õ" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -210,7 +210,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 439 ,558 COMBOBOX comboitem;
+@ 439 ,608 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
 WIDTH 270 ;
 HEIGHT 100;
@@ -219,7 +219,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 439 ,503 LABEL lblItemUnit ;
+@ 439 ,553 LABEL lblItemUnit ;
 VALUE "ÃÊ«·" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -227,7 +227,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 436 ,331 TEXTBOX textCustomerMobile;
+@ 436 ,381 TEXTBOX textCustomerMobile;
 ON ENTER self:mobilechange()  ;
 HEIGHT 30 ;
 WIDTH 160 ;
@@ -236,20 +236,20 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 485 ,269 TEXTBOX textNamebrowse3;
+@ 485 ,289 TEXTBOX textNamebrowse3;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 485 ,163 BUTTONEX btn1browse3;
+@ 485 ,183 BUTTONEX btn1browse3;
 CAPTION "»ÕÀ";
 ON CLICK self:search3()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 523 ,162 GRID Grid1browse3;
+@ 523 ,182 GRID Grid1browse3;
 WIDTH 746 ;
 HEIGHT 130 ;
 HEADERS {"Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„—‘Õ"};
@@ -258,7 +258,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 489 ,677 COMBOBOX comboFind3;
+@ 489 ,697 COMBOBOX comboFind3;
 ON CHANGE self:CheckFind3()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -267,7 +267,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 524 ,31 BUTTONEX btnDel2;
+@ 524 ,51 BUTTONEX btnDel2;
 CAPTION "Õ–› «·„—‘Õ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -276,7 +276,7 @@ WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 437 ,31 BUTTONEX btnadd2;
+@ 437 ,81 BUTTONEX btnadd2;
 CAPTION "«÷«›… «·„—‘Õ «·Ï „—‘ÕÌ‰ «·⁄„Ì·";
 ON CLICK self:addrecord2()  ;
 WIDTH 280 HEIGHT 30 ;
