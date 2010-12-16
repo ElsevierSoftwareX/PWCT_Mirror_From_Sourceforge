@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:19:43    Date : 11/23/2010
+* Time : 15:13:01    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -58,7 +58,7 @@ Data column3 init "f_name"
 Data PrimaryKey3 init "id"
 Data ResultPrimaryKeys3 init {}
 Data columns3 init {"recordstatus","f_mobile","f_name"}
-Data FindColumns init {"OrderName","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
+Data FindColumns init {"OrderNumber","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
 Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
 Data FindColumns2 init {"f_name","f_mobile"}
 Data FindColumns3 init {"f_name","f_mobile"}

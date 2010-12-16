@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:14:42    Date : 11/23/2010
+* Time : 15:13:37    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -64,7 +64,7 @@ Data nLocation init 0
 Data Locationitems init {}
 Data Locationitemsids init {}
 Data cHayaRecord init ""
-Data FindColumns init {"OrderName","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
+Data FindColumns init {"OrderNumber","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
 Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
 Data FindColumns2 init {"f_name","f_mobile"}
 Data FindTitles2 init {"«”„ «·⁄„Ì·","—ﬁ„ «·„Ê»«Ì·"}

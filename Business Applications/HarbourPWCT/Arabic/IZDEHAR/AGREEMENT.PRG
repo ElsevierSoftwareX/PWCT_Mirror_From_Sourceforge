@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:24:34    Date : 10/25/2010
+* Time : 15:15:51    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,10 @@ Data Financeitemsids init {}
 Data nOrderStatus init 0
 Data OrderStatusitems init {}
 Data OrderStatusitemsids init {}
+Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
+Data FindColumns init {"OrderNumber","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
+Data FindColumns2 init {"f_name","f_mobile"}
+Data FindTitles2 init {"«·«”„","ÃÊ«·"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -93,6 +97,8 @@ Method SearchAdd
 Method BeforeSearch
 Method GetSearchValue
 Method settimer
+Method CheckFind
+Method CheckFind2
 EndClass
 Method showwindow Class AgreementClass
 IF .not. UserCan_WinAgreement = 2
@@ -139,14 +145,6 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,681 LABEL lbl1browse ;
-VALUE "—ﬁ„ «·œÊ—…" ;
-WIDTH 80 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
 @ 53 ,269 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
@@ -165,21 +163,22 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 890 ;
 HEIGHT 130 ;
 HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,200,120,200,150,100} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {100,180,120,200,150,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
+@ 52 ,677 COMBOBOX comboFind;
+ON CHANGE self:CheckFind()  ;
+WIDTH 230 ;
+HEIGHT 200;
+ITEMS self:FindTitles ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 259 ,681 LABEL lbl1browse2 ;
-VALUE "«”„ «·⁄„Ì·" ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {64,0,64} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
 @ 256 ,269 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
@@ -201,6 +200,15 @@ WIDTHS {100,100,100,150,150,250} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
+FONTCOLOR {0,0,0}
+@ 255 ,677 COMBOBOX comboFind2;
+ON CHANGE self:CheckFind2()  ;
+WIDTH 230 ;
+HEIGHT 200;
+ITEMS self:FindTitles2 ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Quality","QualityOpinion",@self:QualityItems,"id",@self:QualityItemsIDS)
 @ 447 ,636 LABEL lblQuality ;
@@ -780,6 +788,16 @@ self:oRS:fields:item("OrderStatusNotes"):value := cNotes
 self:oRS:UPDATE()
 ENDIF
 winOrderStatusNotes.Release ( )
+Return 0
+Method CheckFind Class AgreementClass
+Local nIndex
+nIndex := AgreementWindow.ComboFind.Value
+Self:Column := Self:FindColumns[nIndex]
+Return 0
+Method CheckFind2 Class AgreementClass
+Local nIndex
+nIndex := AgreementWindow.ComboFind2.Value
+Self:Column2 := Self:FindColumns2[nIndex]
 Return 0
 Method closewindow Class AgreementClass
 myout = self:disconnect()

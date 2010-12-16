@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:19:50    Date : 11/23/2010
+* Time : 15:22:32    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -533,6 +533,7 @@ POPUP "œÊ—« "
 IF UserCan_WinOrders = 2
 MENUITEM "ÃœÊ· Ê”«∆· „⁄—›… «·⁄„Ì· »«·œÊ—…" Action HowKnowDataObject:ShowWindow()
 MENUITEM "«„«ﬂ‰ «·œÊ—« " Action LocationsObject:ShowWindow()
+SEPARATOR
 MENUITEM " ”ÃÌ· œÊ—…" Action OrdersEnterObject:ShowWindow()
 MENUITEM "„—‘ÕÌ‰ «·⁄„Ì·" Action CustFriendsObject:ShowWindow()
 SEPARATOR
