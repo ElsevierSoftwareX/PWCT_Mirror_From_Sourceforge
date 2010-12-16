@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:13:37    Date : 11/23/2010
+* Time : 22:38:27    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -68,6 +68,9 @@ Data FindColumns init {"OrderNumber","OrderName","f_name","OrderDate","FinishDat
 Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
 Data FindColumns2 init {"f_name","f_mobile"}
 Data FindTitles2 init {"«”„ «·⁄„Ì·","—ﬁ„ «·„Ê»«Ì·"}
+Data nOrderType init 0
+Data OrderTypeitems init {}
+Data OrderTypeItemsids init {}
 Method showwindow
 Method closewindow
 Method ShowRecord
@@ -421,7 +424,7 @@ ON CLICK self:addrecord2()  ;
 WIDTH 480 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 54 ,473 LABEL lblOrdername ;
+@ 54 ,283 LABEL lblOrdername ;
 VALUE "«”„ «·œÊ—…" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -431,7 +434,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 51 ,26 TEXTBOX textOrderName;
 HEIGHT 30 ;
-WIDTH 440 ;
+WIDTH 250 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
@@ -463,9 +466,9 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 130 ,474 TEXTBOX texthayaRecord;
+@ 130 ,484 TEXTBOX texthayaRecord;
 HEIGHT 30 ;
-WIDTH 200 ;
+WIDTH 190 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
@@ -486,10 +489,28 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+myout = self:LoadLookupTable("OrderTypes","OrderType",@self:OrderTypeItems,"id",@self:OrderTypeItemsIDS)
+@ 52 ,581 LABEL lblOrderType ;
+VALUE "«·‰Ê⁄" ;
+WIDTH 40 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 51 ,367 COMBOBOX comboOrderType;
+WIDTH 200 ;
+HEIGHT 100;
+ITEMS self:OrderTypeitems ;
+VALUE 1 ;
+FONT "arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 myout = RightToLeftControl ( "OrdersEnterWindow","comboCustomer" )
 myout = RightToLeftControl ( "OrdersEnterWindow","comboLocation" )
 myout = RightToLeftControl ( "OrdersEnterWindow","comboItem" )
 myout = RightToLeftControl ( "OrdersEnterWindow","comboHowKnow" )
+myout = RightToLeftControl ( "OrdersEnterWindow","comboOrderType" )
 END WINDOW
 
 OrdersEnterWindow.Center ( )
@@ -512,6 +533,8 @@ self:cOrderName := OrdersEnterWindow.textOrderName.Value
 self:cHayaRecord := OrdersEnterWindow.textHayaRecord.Value
 self:nLocation := OrdersEnterWindow.ComboLocation.Value
 self:nLocation := self:LocationItemsids[self:nLocation]
+self:nOrderType := OrdersEnterWindow.ComboOrderType.Value
+self:nOrderType := self:OrderTypeItemsids[self:nOrderType]
 Return 0
 Method Class2ADO Class OrdersEnterClass
 self:oRS:fields:item("Customerid"):value := self:nCustomer
@@ -521,6 +544,7 @@ self:oRS:fields:item("OrderNumber"):value := self:nOrderNumber
 self:oRS:fields:item("OrderName"):value := self:cOrderName
 self:oRS:fields:item("HayaRecord"):value := self:cHayaRecord
 self:oRS:fields:item("Locationid"):value := self:nLocation
+self:oRS:fields:item("OrderTypeid"):value := self:nOrderType
 Return 0
 Method ADO2Class Class OrdersEnterClass
 self:nCustomer := self:oRS:fields:item("CustomerID"):value
@@ -530,6 +554,7 @@ self:nOrderNumber := self:oRS:fields:item("OrderNumber"):value
 self:cOrderName := self:oRS:fields:item("OrderName"):value
 self:nLocation := self:oRS:fields:item("LocationID"):value
 self:cHayaRecord := self:oRS:fields:item("HayaRecord"):value
+self:nOrderType := self:oRS:fields:item("OrderTypeID"):value
 Return 0
 Method Class2UserInterface Class OrdersEnterClass
 self:nCustomer = self:LookupIDToIndex(self:nCustomer,@self:CustomerItemsids)
@@ -541,6 +566,8 @@ OrdersEnterWindow.textOrderName.Value := self:cOrderName
 self:nLocation = self:LookupIDToIndex(self:nLocation,@self:LocationItemsids)
 OrdersEnterWindow.ComboLocation.Value := self:nLocation
 OrdersEnterWindow.textHayaRecord.Value := self:cHayaRecord
+self:nOrderType = self:LookupIDToIndex(self:nOrderType,@self:OrderTypeItemsids)
+OrdersEnterWindow.ComboOrderType.Value := self:nOrderType
 myout = self:search2()
 Return 0
 Method ClearRecord Class OrdersEnterClass
@@ -550,6 +577,7 @@ self:cOrderFinishDate := ""
 self:cOrderName := ""
 self:nLocation := 0
 self:cHayaRecord := ""
+self:nOrderType := 0
 IF self:addrec = false
 self:nOrderNumber := 0
 ENDIF
@@ -637,6 +665,7 @@ OrdersEnterWindow.textOrderName.Enabled := false
 OrdersEnterWindow.textOrderName.Enabled := true
 OrdersEnterWindow.comboLocation.Enabled := true
 OrdersEnterWindow.textHayaRecord.Enabled := true
+OrdersEnterWindow.comboOrderType.Enabled := true
 ENDIF
 IF p1 = 2
 OrdersEnterWindow.btnfirst.Enabled := true
@@ -657,6 +686,7 @@ OrdersEnterWindow.btndel2.Enabled := true
 OrdersEnterWindow.textOrderName.Enabled := false
 OrdersEnterWindow.comboLocation.Enabled := False
 OrdersEnterWindow.textHayaRecord.Enabled := False
+OrdersEnterWindow.comboOrderType.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
