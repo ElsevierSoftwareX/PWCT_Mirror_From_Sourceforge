@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:38:32    Date : 11/23/2010
+* Time : 13:14:42    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -66,6 +66,8 @@ Data Locationitemsids init {}
 Data cHayaRecord init ""
 Data FindColumns init {"OrderName","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
 Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
+Data FindColumns2 init {"f_name","f_mobile"}
+Data FindTitles2 init {"«”„ «·⁄„Ì·","—ﬁ„ «·„Ê»«Ì·"}
 Method showwindow
 Method closewindow
 Method ShowRecord
@@ -96,6 +98,7 @@ Method GetSearchValue
 Method settimer
 Method mobilechange
 Method CheckFind
+Method CheckFind2
 EndClass
 Method showwindow Class OrdersEnterClass
 IF .not. UserCan_WinOrders = 2
@@ -230,7 +233,7 @@ WIDTH 890 ;
 HEIGHT 130 ;
 HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
 WIDTHS {100,180,120,200,150,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -372,21 +375,14 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 475 ,762 LABEL lbl1browse2 ;
-VALUE "«”„ «·⁄„Ì·" ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 475 ,502 TEXTBOX textNamebrowse2;
+@ 475 ,412 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 250 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 475 ,388 BUTTONEX btn1browse2;
+@ 475 ,298 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -400,6 +396,15 @@ WIDTHS {100,100,100,150,150,250} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
+FONTCOLOR {0,0,0}
+@ 475 ,677 COMBOBOX comboFind2;
+ON CHANGE self:CheckFind2()  ;
+WIDTH 220 ;
+HEIGHT 200;
+ITEMS self:FindTitles2 ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 475 ,8 BUTTONEX btnDel2;
 CAPTION "Õ–› «·⁄„Ì· „‰ «·œÊ—…";
@@ -863,6 +868,11 @@ Method CheckFind Class OrdersEnterClass
 Local nIndex
 nIndex := OrdersEnterWindow.ComboFind.Value
 Self:Column := Self:FindColumns[nIndex]
+Return 0
+Method CheckFind2 Class OrdersEnterClass
+Local nIndex
+nIndex := OrdersEnterWindow.ComboFind2.Value
+Self:Column2 := Self:FindColumns2[nIndex]
 Return 0
 Method closewindow Class OrdersEnterClass
 myout = self:disconnect()
