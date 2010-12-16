@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:28:27    Date : 11/29/2010
+* Time : 09:59:00    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -158,7 +158,7 @@ self:oRS:MOVENEXT()
 mycheck := self:oRS:EOF()
 IF mycheck
 self:oRS:MOVEPREVIOUS()
-MyOut := MSGBOX("End of Records","Sorry")
+MyOut := MSGBOX("‰Â«Ì… «·”Ã·« ","⁄›Ê«")
 ELSE
 myout = self:showrecord()
 ENDIF
@@ -171,7 +171,7 @@ self:oRS:MOVEPREVIOUS()
 mycheck := self:oRS:BOF()
 IF mycheck
 self:oRS:MOVENEXT()
-MyOut := MSGBOX("Begin of Records","Sorry")
+MyOut := MSGBOX("»œ«Ì… «·”Ã·« ","⁄›Ê«")
 ELSE
 myout = self:showrecord()
 ENDIF
@@ -227,7 +227,7 @@ Return 0
 Method delrecord Class SYSTEMDATABASE
 mymax := self:oRS:RecordCount
 IF mymax > 0
-MyOut := MSGOKCANCEL(" Are you sure ?","Delete Record")
+MyOut := MSGOKCANCEL(" Â· «‰  „ «ﬂœ  ?","Õ–› «·”Ã·")
 IF myout = false
 Return 0
 ENDIF
@@ -245,7 +245,7 @@ ENDIF
 myout = self:showrecord()
 myout = self:setTimer(true)
 ELSE
-MyOut := MSGBOX("No Records","Sorry")
+MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
 ENDIF
 Return 0
 Method SaveRecord Class SYSTEMDATABASE
