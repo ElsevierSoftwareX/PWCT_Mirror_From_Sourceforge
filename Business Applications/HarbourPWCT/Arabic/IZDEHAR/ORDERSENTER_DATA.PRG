@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:38:27    Date : 11/23/2010
+* Time : 23:31:03    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "Orders_All"
 Data nID init 0
 Data column init "ordernumber"
 Data PrimaryKey init "id"
-Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderNumber"}
+Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
 Data nCustomer init 0
 Data Customeritems init {}
 Data Customeritemsids init {}
@@ -64,8 +64,8 @@ Data nLocation init 0
 Data Locationitems init {}
 Data Locationitemsids init {}
 Data cHayaRecord init ""
-Data FindColumns init {"OrderNumber","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
-Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
+Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
+Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
 Data FindColumns2 init {"f_name","f_mobile"}
 Data FindTitles2 init {"«”„ «·⁄„Ì·","—ﬁ„ «·„Ê»«Ì·"}
 Data nOrderType init 0
@@ -113,7 +113,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( OrdersEnterWindow )
 DEFINE WINDOW OrdersEnterWindow ;
 AT 10 ,10 ;
-WIDTH 933 ;
+WIDTH 1033 ;
 HEIGHT 704 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -127,11 +127,11 @@ BACKCOLOR {64,0,64}
 @ 43 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 910 HEIGHT 300
+WIDTH 1010 HEIGHT 300
 @ 464 ,4 IMAGE image2;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 910 HEIGHT 200
+WIDTH 1010 HEIGHT 200
 @ 7 ,387 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
@@ -210,21 +210,21 @@ ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 6 ,806 LABEL lblTitle ;
-VALUE "    ”ÃÌ· œÊ—…    " ;
-WIDTH 110 ;
+@ 8 ,817 LABEL lblTitle ;
+VALUE "             ”ÃÌ· œÊ—…    " ;
+WIDTH 200 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 167 ,253 TEXTBOX textnamebrowse;
+@ 167 ,293 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 420 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 167 ,119 BUTTONEX btn1browse;
+@ 167 ,159 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -232,15 +232,15 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 203 ,16 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 890 ;
+WIDTH 990 ;
 HEIGHT 130 ;
-HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,180,120,200,150,100} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
+WIDTHS {100,180,120,200,150,100,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 167 ,677 COMBOBOX comboFind;
+@ 167 ,717 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -251,7 +251,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 389 ,241 TEXTBOX textcustomerwant2;
+@ 389 ,281 TEXTBOX textcustomerwant2;
 HEIGHT 31 ;
 WIDTH 248 ;
 FONT "Arial" SIZE 14 ;
@@ -260,7 +260,7 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("employees","f_name",@self:CustomerItems,"id",@self:CustomerItemsIDS)
-@ 90 ,836 LABEL lblSupplier ;
+@ 90 ,876 LABEL lblSupplier ;
 VALUE "«·„Õ«÷—" ;
 WIDTH 70 ;
 HEIGHT 30 ;
@@ -268,7 +268,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 89 ,576 COMBOBOX combocustomer;
+@ 89 ,616 COMBOBOX combocustomer;
 WIDTH 240 ;
 HEIGHT 100;
 ITEMS self:Customeritems ;
@@ -277,7 +277,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("customers","f_name",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 351 ,762 LABEL lblitems ;
+@ 351 ,802 LABEL lblitems ;
 VALUE "«”„ «·⁄„Ì·" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -285,7 +285,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 352 ,241 COMBOBOX comboitem;
+@ 352 ,281 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
 WIDTH 510 ;
 HEIGHT 100;
@@ -294,7 +294,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 349 ,187 LABEL lblItemUnit ;
+@ 349 ,227 LABEL lblItemUnit ;
 VALUE "ÃÊ«·" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -302,7 +302,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 349 ,8 TEXTBOX textCustomerMobile;
+@ 349 ,48 TEXTBOX textCustomerMobile;
 ON ENTER self:mobilechange()  ;
 HEIGHT 30 ;
 WIDTH 160 ;
@@ -311,7 +311,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 392 ,762 LABEL lblItemUnit2 ;
+@ 392 ,802 LABEL lblItemUnit2 ;
 VALUE "«Â„ À·«À… „Õ«Ê—" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -319,7 +319,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 390 ,502 TEXTBOX textcustomerwant1;
+@ 390 ,542 TEXTBOX textcustomerwant1;
 HEIGHT 30 ;
 WIDTH 250 ;
 FONT "Arial" SIZE 14 ;
@@ -327,7 +327,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 54 ,833 LABEL lblOrdernumber ;
+@ 54 ,873 LABEL lblOrdernumber ;
 VALUE "—ﬁ„ «·œÊ—…" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -335,14 +335,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 51 ,626 TEXTBOX textOrderNumber;
+@ 51 ,666 TEXTBOX textOrderNumber;
 HEIGHT 30 ;
 WIDTH 190 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 88 ,474 LABEL lblOrderDate ;
+@ 88 ,514 LABEL lblOrderDate ;
 VALUE " «—ÌŒ «·œÊ—…" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -350,13 +350,13 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 89 ,296 DATEPICKER dateOrderDate;
+@ 89 ,336 DATEPICKER dateOrderDate;
 WIDTH 170 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 389 ,8 TEXTBOX textcustomerwant3;
+@ 389 ,48 TEXTBOX textcustomerwant3;
 HEIGHT 30 ;
 WIDTH 210 ;
 FONT "Arial" SIZE 14 ;
@@ -364,7 +364,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 90 ,197 LABEL lblFinishDate ;
+@ 90 ,237 LABEL lblFinishDate ;
 VALUE " «—ÌŒ «·«‰ Â«¡" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -372,26 +372,26 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 91 ,25 DATEPICKER dateFinishDate;
+@ 91 ,65 DATEPICKER dateFinishDate;
 WIDTH 160 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 475 ,412 TEXTBOX textNamebrowse2;
+@ 475 ,452 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 250 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 475 ,298 BUTTONEX btn1browse2;
+@ 475 ,338 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 515 ,8 GRID Grid1browse2;
+@ 515 ,48 GRID Grid1browse2;
 WIDTH 890 ;
 HEIGHT 140 ;
 HEADERS {"„ÕÊ— 3","„ÕÊ— 2 ","„ÕÊ— 1 "," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
@@ -400,7 +400,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 475 ,677 COMBOBOX comboFind2;
+@ 475 ,717 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
 WIDTH 220 ;
 HEIGHT 200;
@@ -409,7 +409,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 475 ,8 BUTTONEX btnDel2;
+@ 475 ,48 BUTTONEX btnDel2;
 CAPTION "Õ–› «·⁄„Ì· „‰ «·œÊ—…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -418,13 +418,13 @@ WIDTH 230 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 431 ,8 BUTTONEX btnadd2;
+@ 431 ,48 BUTTONEX btnadd2;
 CAPTION "«÷«›… «·⁄„Ì· «·Ï «·œÊ—…";
 ON CLICK self:addrecord2()  ;
 WIDTH 480 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 54 ,283 LABEL lblOrdername ;
+@ 54 ,323 LABEL lblOrdername ;
 VALUE "«”„ «·œÊ—…" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -432,7 +432,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 51 ,26 TEXTBOX textOrderName;
+@ 51 ,66 TEXTBOX textOrderName;
 HEIGHT 30 ;
 WIDTH 250 ;
 FONT "Arial" SIZE 14 ;
@@ -441,7 +441,7 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("howknow","howknow",@self:howknowItems,"id",@self:howknowItemsIDS)
-@ 431 ,762 LABEL lblhowknow ;
+@ 431 ,802 LABEL lblhowknow ;
 VALUE "ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…" ;
 WIDTH 150 ;
 HEIGHT 30 ;
@@ -449,7 +449,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 431 ,502 COMBOBOX combohowknow;
+@ 431 ,542 COMBOBOX combohowknow;
 ON CHANGE self:itemchange()  ;
 WIDTH 250 ;
 HEIGHT 100;
@@ -458,7 +458,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 130 ,696 LABEL lblhaya ;
+@ 130 ,736 LABEL lblhaya ;
 VALUE "—ﬁ„ ”Ã· «·œÊ—… ›Ï ÂÌ∆… «· œ—Ì»" ;
 WIDTH 210 ;
 HEIGHT 30 ;
@@ -466,14 +466,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 130 ,484 TEXTBOX texthayaRecord;
+@ 130 ,524 TEXTBOX texthayaRecord;
 HEIGHT 30 ;
 WIDTH 190 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("locations","location",@self:locationItems,"id",@self:locationItemsIDS)
-@ 130 ,421 LABEL lbllocation ;
+@ 130 ,461 LABEL lbllocation ;
 VALUE "«·„ﬂ«‰" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -481,7 +481,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 130 ,24 COMBOBOX combolocation;
+@ 130 ,64 COMBOBOX combolocation;
 WIDTH 380 ;
 HEIGHT 100;
 ITEMS self:locationitems ;
@@ -490,7 +490,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("OrderTypes","OrderType",@self:OrderTypeItems,"id",@self:OrderTypeItemsIDS)
-@ 52 ,581 LABEL lblOrderType ;
+@ 52 ,621 LABEL lblOrderType ;
 VALUE "«·‰Ê⁄" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -498,12 +498,12 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 51 ,367 COMBOBOX comboOrderType;
+@ 51 ,407 COMBOBOX comboOrderType;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:OrderTypeitems ;
 VALUE 1 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = RightToLeftControl ( "OrdersEnterWindow","comboCustomer" )
