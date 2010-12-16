@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:23:35    Date : 10/25/2010
+* Time : 12:38:32    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -64,6 +64,8 @@ Data nLocation init 0
 Data Locationitems init {}
 Data Locationitemsids init {}
 Data cHayaRecord init ""
+Data FindColumns init {"OrderName","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
+Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
 Method showwindow
 Method closewindow
 Method ShowRecord
@@ -93,6 +95,7 @@ Method SearchAdd
 Method GetSearchValue
 Method settimer
 Method mobilechange
+Method CheckFind
 EndClass
 Method showwindow Class OrdersEnterClass
 IF .not. UserCan_WinOrders = 2
@@ -208,14 +211,6 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 166 ,696 LABEL lbl1browse ;
-VALUE "—ﬁ„ «·œÊ—…" ;
-WIDTH 130 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
 @ 167 ,253 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 420 ;
@@ -234,10 +229,19 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 890 ;
 HEIGHT 130 ;
 HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,200,120,200,150,100} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {100,180,120,200,150,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
+FONTCOLOR {0,0,0}
+@ 167 ,677 COMBOBOX comboFind;
+ON CHANGE self:CheckFind()  ;
+WIDTH 230 ;
+HEIGHT 200;
+ITEMS self:FindTitles ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
@@ -854,6 +858,11 @@ ELSE
 MyOut := MSGBOX("—ﬁ„ «·ÃÊ«· «·„œŒ· €Ì— „”Ã· ›Ï ”Ã·«  «·„ œ—»Ì‰","⁄›Ê«")
 ENDIF
 myRS:Close()
+Return 0
+Method CheckFind Class OrdersEnterClass
+Local nIndex
+nIndex := OrdersEnterWindow.ComboFind.Value
+Self:Column := Self:FindColumns[nIndex]
 Return 0
 Method closewindow Class OrdersEnterClass
 myout = self:disconnect()
