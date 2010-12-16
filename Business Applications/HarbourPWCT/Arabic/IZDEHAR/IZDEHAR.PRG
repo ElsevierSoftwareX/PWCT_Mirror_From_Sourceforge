@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:22:32    Date : 11/23/2010
+* Time : 16:19:28    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -135,6 +135,7 @@ Set Procedure to "SendMailToAllEmployees.PRG"
 Set Procedure to "SendMailToAllSuppliers.PRG"
 Set Procedure to "SendMailToGroup.PRG"
 Set Procedure to "Customers_Browse3.PRG"
+Set Procedure to "OrderTypes_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -213,6 +214,7 @@ SendMailToAllEmployeesObject = SendMailToAllEmployeesClass()
 SendMailToAllSuppliersObject = SendMailToAllSuppliersClass()
 SendMailToGroupObject = SendMailToGroupClass()
 CustomersBrowse3Object = CustomersBrowse3Class()
+OrderTypesObject = OrderTypesClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -532,6 +534,7 @@ IF UserCan_WinOrders = 2 .or. UserCan_WinAgreement = 2
 POPUP "œÊ—« "
 IF UserCan_WinOrders = 2
 MENUITEM "ÃœÊ· Ê”«∆· „⁄—›… «·⁄„Ì· »«·œÊ—…" Action HowKnowDataObject:ShowWindow()
+MENUITEM "ÃœÊ· «‰Ê«⁄ «·œÊ—« " Action OrderTypesObject:ShowWindow()
 MENUITEM "«„«ﬂ‰ «·œÊ—« " Action LocationsObject:ShowWindow()
 SEPARATOR
 MENUITEM " ”ÃÌ· œÊ—…" Action OrdersEnterObject:ShowWindow()
