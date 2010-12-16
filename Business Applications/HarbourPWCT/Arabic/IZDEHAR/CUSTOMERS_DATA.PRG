@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:29:43    Date : 11/29/2010
+* Time : 11:04:39    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -709,7 +709,11 @@ myoRS:CursorType := 1
 myoRS:ActiveConnection := self:oCon
 myoRS:open ( "Select * from Customers where f_Mobile = '" + cMobile + "'",self:oCon,3,3 )
 nMax := myoRS:RecordCount
-IF nMax > 0
+IF nMax > 0 .and. self:addrec = True
+MyOut := MSGBOX("е–« «бћж«б г”ћб гд ё»б","ЏЁж«")
+myRet := False
+ENDIF
+IF nMax > 1 .and. self:addrec = False
 MyOut := MSGBOX("е–« «бћж«б г”ћб гд ё»б","ЏЁж«")
 myRet := False
 ENDIF

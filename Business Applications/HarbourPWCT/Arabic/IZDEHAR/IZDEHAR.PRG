@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:59:25    Date : 11/23/2010
+* Time : 11:07:23    Date : 11/23/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -134,6 +134,7 @@ Set Procedure to "SendMailToAllCustomers.PRG"
 Set Procedure to "SendMailToAllEmployees.PRG"
 Set Procedure to "SendMailToAllSuppliers.PRG"
 Set Procedure to "SendMailToGroup.PRG"
+Set Procedure to "Customers_Browse3.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -211,6 +212,7 @@ SendMailToAllCustomersObject = SendMailToAllCustomersClass()
 SendMailToAllEmployeesObject = SendMailToAllEmployeesClass()
 SendMailToAllSuppliersObject = SendMailToAllSuppliersClass()
 SendMailToGroupObject = SendMailToGroupClass()
+CustomersBrowse3Object = CustomersBrowse3Class()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -486,8 +488,11 @@ ENDIF
 IF UserCan_WinCustomers = 2
 POPUP "«·„ œ—»Ì‰"
 MENUITEM "»Ì«‰«  «·„ œ—»Ì‰" Action CustomersDataObject:showwindow()
+SEPARATOR
 MENUITEM "»ÕÀ ⁄‰ „ œ—» »«·«”„" Action CustomersBrowseObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „ œ—» »—ﬁ„ «·ÃÊ«·" Action CustomersBrowse2Object:showwindow()
+MENUITEM "»ÕÀ ⁄‰ „ œ—» »«Ï Õﬁ·" Action CustomersBrowse3Object:showwindow()
+SEPARATOR
 MENUITEM " ﬁ—Ì— »«·„ œ—»Ì‰" Action Customersreport()
 END POPUP
 ENDIF
