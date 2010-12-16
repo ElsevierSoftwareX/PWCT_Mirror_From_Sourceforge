@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:15:51    Date : 11/23/2010
+* Time : 00:36:47    Date : 11/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "Orders_All"
 Data nID init 0
 Data column init "ordernumber"
 Data PrimaryKey init "id"
-Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderNumber"}
+Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
 Data nOrderNumber init ""
 Data cOrderDate init ""
 Data cOrderFinishDate init ""
@@ -65,8 +65,8 @@ Data Financeitemsids init {}
 Data nOrderStatus init 0
 Data OrderStatusitems init {}
 Data OrderStatusitemsids init {}
-Data FindTitles init {"—ﬁ„ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
-Data FindColumns init {"OrderNumber","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
+Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
+Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
 Data FindColumns2 init {"f_name","f_mobile"}
 Data FindTitles2 init {"«·«”„","ÃÊ«·"}
 Method showwindow
@@ -110,7 +110,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( AgreementWindow )
 DEFINE WINDOW AgreementWindow ;
 AT 10 ,10 ;
-WIDTH 954 ;
+WIDTH 1038 ;
 HEIGHT 712 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -124,12 +124,12 @@ BACKCOLOR {64,0,64}
 @ 43 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 930 HEIGHT 190
-@ 244 ,4 IMAGE image2;
+WIDTH 1020 HEIGHT 190
+@ 244 ,54 IMAGE image2;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 930 HEIGHT 390
-@ 639 ,11 BUTTONEX btnClose;
+@ 639 ,61 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {255,255,255};
@@ -139,8 +139,8 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                                      «⁄ „«œ œÊ—…" ;
-WIDTH 930 ;
+VALUE "                                                                                                «⁄ „«œ œÊ—…" ;
+WIDTH 1020 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -160,13 +160,13 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 93 ,23 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 890 ;
+WIDTH 990 ;
 HEIGHT 130 ;
-HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,180,120,200,150,100} ;
-FONT "arial" SIZE 14 ;
+HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
+WIDTHS {100,180,120,200,150,100,100} ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 52 ,677 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
@@ -179,20 +179,20 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 256 ,269 TEXTBOX textNamebrowse2;
+@ 256 ,319 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 255 ,164 BUTTONEX btn1browse2;
+@ 255 ,214 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 296 ,23 GRID Grid1browse2;
+@ 296 ,73 GRID Grid1browse2;
 WIDTH 890 ;
 HEIGHT 140 ;
 HEADERS {"„ÕÊ— 3","„ÕÊ— 2","„ÕÊ— 1","ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
@@ -201,7 +201,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 255 ,677 COMBOBOX comboFind2;
+@ 255 ,727 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -211,7 +211,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Quality","QualityOpinion",@self:QualityItems,"id",@self:QualityItemsIDS)
-@ 447 ,636 LABEL lblQuality ;
+@ 447 ,686 LABEL lblQuality ;
 VALUE "—«Ï „œÌ— «·ÃÊœ…" ;
 WIDTH 120 ;
 HEIGHT 30 ;
@@ -219,7 +219,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 449 ,252 COMBOBOX comboquality;
+@ 449 ,302 COMBOBOX comboquality;
 ON CHANGE self:saverecord2()  ;
 WIDTH 370 ;
 HEIGHT 100;
@@ -229,7 +229,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Scheduling","SchedulingOpinion",@self:SchedulingItems,"id",@self:SchedulingItemsIDS)
-@ 483 ,635 LABEL lblScheduling ;
+@ 483 ,685 LABEL lblScheduling ;
 VALUE "—«Ï „œÌ— «·ÃœÊ·… Ê«·„ «»⁄…" ;
 WIDTH 180 ;
 HEIGHT 30 ;
@@ -237,7 +237,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 484 ,252 COMBOBOX comboScheduling;
+@ 484 ,302 COMBOBOX comboScheduling;
 ON CHANGE self:saverecord2()  ;
 WIDTH 370 ;
 HEIGHT 100;
@@ -247,7 +247,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Warehouse","WarehouseOpinion",@self:WarehouseItems,"id",@self:WarehouseItemsIDS)
-@ 519 ,635 LABEL lblWarehouse ;
+@ 519 ,685 LABEL lblWarehouse ;
 VALUE "—« Ï „œÌ— «·„Œ«“‰" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -255,7 +255,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 519 ,251 COMBOBOX comboWarehouse;
+@ 519 ,301 COMBOBOX comboWarehouse;
 ON CHANGE self:saverecord2()  ;
 WIDTH 370 ;
 HEIGHT 100;
@@ -265,7 +265,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Finance","FinanceOpinion",@self:FinanceItems,"id",@self:FinanceItemsIDS)
-@ 555 ,635 LABEL lblFinance ;
+@ 555 ,685 LABEL lblFinance ;
 VALUE "—«Ï „œÌ— «·„«·Ì…" ;
 WIDTH 120 ;
 HEIGHT 30 ;
@@ -273,7 +273,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 554 ,251 COMBOBOX comboFinance;
+@ 554 ,301 COMBOBOX comboFinance;
 ON CHANGE self:saverecord2()  ;
 WIDTH 370 ;
 HEIGHT 100;
@@ -283,7 +283,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("OrderStatus","OrderStatus",@self:OrderStatusItems,"id",@self:OrderStatusItemsIDS)
-@ 591 ,635 LABEL lblOrderStatus ;
+@ 591 ,685 LABEL lblOrderStatus ;
 VALUE " €ÌÌ— Õ«·… œÊ—…" ;
 WIDTH 120 ;
 HEIGHT 30 ;
@@ -291,7 +291,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 589 ,251 COMBOBOX comboOrderStatus;
+@ 589 ,301 COMBOBOX comboOrderStatus;
 ON CHANGE self:saverecord2()  ;
 WIDTH 370 ;
 HEIGHT 100;
@@ -300,31 +300,31 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 449 ,164 BUTTONEX btnQualityNotes;
+@ 449 ,214 BUTTONEX btnQualityNotes;
 CAPTION "„·«ÕŸ« ";
 ON CLICK self:QualityNotes()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 483 ,164 BUTTONEX btnSchedulingNotes;
+@ 483 ,214 BUTTONEX btnSchedulingNotes;
 CAPTION "„·«ÕŸ« ";
 ON CLICK self:SchedulingNotes()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 519 ,164 BUTTONEX btnWarehouseNotes;
+@ 519 ,214 BUTTONEX btnWarehouseNotes;
 CAPTION "„·«ÕŸ« ";
 ON CLICK self:WarehouseNotes()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 554 ,164 BUTTONEX btnFinanceNotes;
+@ 554 ,214 BUTTONEX btnFinanceNotes;
 CAPTION "„·«ÕŸ« ";
 ON CLICK self:FinanceNotes()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 587 ,164 BUTTONEX btnOrderStatusNotes;
+@ 587 ,214 BUTTONEX btnOrderStatusNotes;
 CAPTION "„·«ÕŸ« ";
 ON CLICK self:OrderStatusNotes()  ;
 WIDTH 80 HEIGHT 30 ;
