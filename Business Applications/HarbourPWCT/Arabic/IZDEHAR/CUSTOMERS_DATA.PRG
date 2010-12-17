@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:04:39    Date : 11/23/2010
+* Time : 17:22:46    Date : 11/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -79,6 +79,7 @@ Method ClearRecord
 Method AutoGotoRecord
 Method printdata
 Method CheckData
+Method CustOrders
 EndClass
 Method showwindow Class CustomersDataClass
 IF .not. UserCan_WinCustomers = 2
@@ -183,8 +184,8 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 8 ,246 LABEL lblTitle ;
-VALUE "                                                                     »Ì«‰«  «·„ œ—»Ì‰" ;
-WIDTH 800 ;
+VALUE "                                          »Ì«‰«  «·„ œ—»Ì‰" ;
+WIDTH 520 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -538,6 +539,15 @@ DO RightToLeftControl WITH "CustomersDataWindow","combocusttype"
 DO RightToLeftControl WITH "CustomersDataWindow","combocustclass"
 DO RightToLeftControl WITH "CustomersDataWindow","combocountry"
 DO RightToLeftControl WITH "CustomersDataWindow","combopaymethod"
+@ 7 ,770 BUTTONEX btnCustOrders;
+CAPTION "œÊ—«  „‘ —ﬂ »Â« «Ê „—‘Õ ·Â« «·„ œ—»";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:custOrders()  ;
+WIDTH 283 HEIGHT 34 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
 END WINDOW
 
 CustomersDataWindow.Center ( )
@@ -720,6 +730,18 @@ ENDIF
 myoRS:Close()
 ENDIF
 Return myRet
+Method CustOrders Class CustomersDataClass
+Local myid
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
+Return 0
+ENDIF
+myid := self:oRS:fields:item("id"):value
+myid = STR ( myid )
+CustOrdersObject:CustID := myid
+myout = CustOrdersObject:ShowWindow()
+Return 0
 Method closewindow Class CustomersDataClass
 myout = self:disconnect()
 CustomersDataWindow.Release ( )
