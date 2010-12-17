@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:04:35    Date : 11/24/2010
+* Time : 22:33:24    Date : 11/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -137,6 +137,7 @@ Set Procedure to "SendMailToGroup.PRG"
 Set Procedure to "Customers_Browse3.PRG"
 Set Procedure to "OrderTypes_Data.PRG"
 Set Procedure to "CustOrders_Data.PRG"
+Set Procedure to "EmpOrders_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -217,6 +218,7 @@ SendMailToGroupObject = SendMailToGroupClass()
 CustomersBrowse3Object = CustomersBrowse3Class()
 OrderTypesObject = OrderTypesClass()
 CustOrdersObject = CustOrdersClass()
+EmpOrdersObject = EmpOrdersClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -843,7 +845,7 @@ WIDTH 530 HEIGHT 336
 DEFINE TIMER Timer1 INTERVAL 1500 ;
 Action WINLOGOSTART.RELEASE()
 @ 13 ,270 LABEL lbl1 ;
-VALUE " «—ÌŒ «·«’œ«— :  2010/08/26" ;
+VALUE " «—ÌŒ «·«’œ«— :  2010/12/17" ;
 WIDTH 200 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;

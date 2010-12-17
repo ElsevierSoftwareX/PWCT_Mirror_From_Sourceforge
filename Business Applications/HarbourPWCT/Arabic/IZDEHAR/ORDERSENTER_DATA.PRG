@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:31:03    Date : 11/23/2010
+* Time : 22:33:12    Date : 11/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -340,6 +340,7 @@ HEIGHT 30 ;
 WIDTH 190 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 @ 88 ,514 LABEL lblOrderDate ;

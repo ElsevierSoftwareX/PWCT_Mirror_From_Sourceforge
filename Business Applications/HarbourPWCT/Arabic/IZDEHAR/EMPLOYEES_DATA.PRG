@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:13:14    Date : 10/25/2010
+* Time : 22:29:48    Date : 11/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -67,6 +67,7 @@ Method Class2UserInterface
 Method ClearRecord
 Method AutoGotoRecord
 Method printdata
+Method CustOrders
 EndClass
 Method showwindow Class EmployeesDataClass
 IF .not. UserCan_WinEmployees = 2
@@ -78,7 +79,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( EmployeesDataWindow )
 DEFINE WINDOW EmployeesDataWindow ;
 AT 10 ,10 ;
-WIDTH 777 ;
+WIDTH 774 ;
 HEIGHT 644 ;
 ICON "PWCTICON" ;
 TITLE "»Ì«‰«  «·„ÊŸ›Ì‰ Ê«·„œ—»Ì‰" ;
@@ -170,9 +171,9 @@ ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 8 ,246 LABEL lblTitle ;
-VALUE "                                                           »Ì«‰«  «·„ÊŸ›Ì‰ Ê«·„œ—»Ì‰" ;
-WIDTH 510 ;
+@ 8 ,346 LABEL lblTitle ;
+VALUE "                           »Ì«‰«  «·„ÊŸ›Ì‰ Ê«·„œ—»Ì‰" ;
+WIDTH 410 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -425,13 +426,22 @@ CAPTION "ÿ»«⁄… «·»Ì«‰« ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
 ON CLICK self:printdata()  ;
-WIDTH 203 HEIGHT 34 ;
+WIDTH 143 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 myout = RightToLeftControl ( "EmployeesDataWindow","combogender" )
 myout = RightToLeftControl ( "EmployeesDataWindow","combocountry" )
 myout = RightToLeftControl ( "EmployeesDataWindow","editnotes" )
+@ 7 ,190 BUTTONEX btnCustOrders;
+CAPTION "œÊ—«  «·„œ—»";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:custOrders()  ;
+WIDTH 143 HEIGHT 34 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
 END WINDOW
 
 EmployeesDataWindow.Center ( )
@@ -546,6 +556,18 @@ myid := self:oRS:fields:item("id"):value
 myid = STR ( myid )
 Employeesreportobject:filter := "id = "+myid
 myout = Employeesreportobject:ShowWindow()
+Return 0
+Method CustOrders Class EmployeesDataClass
+Local myid
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
+Return 0
+ENDIF
+myid := self:oRS:fields:item("id"):value
+myid = STR ( myid )
+EmpOrdersObject:CustID := myid
+myout = EmpOrdersObject:ShowWindow()
 Return 0
 Method closewindow Class EmployeesDataClass
 myout = self:disconnect()
