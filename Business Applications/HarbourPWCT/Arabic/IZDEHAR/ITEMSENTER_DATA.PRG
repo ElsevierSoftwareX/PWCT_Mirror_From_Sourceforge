@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:42:29    Date : 10/04/2010
+* Time : 10:42:37    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "ItemsEnter_All"
 Data nID init 0
 Data column init "ItemName"
 Data PrimaryKey init "id"
-Data columns init {"ID","ItemName","ItemCompleteName","ItemClass","GroupName","SourceName","GradeName","ColorName","SizeName"}
+Data columns init {"amount","value1","dateofinput","f_name","ItemCompleteName","ID"}
 Data nSupplier init 0
 Data Supplieritems init {}
 Data Supplieritemsids init {}
@@ -58,6 +58,7 @@ Data cCost init ""
 Data cNotes init ""
 Data cItemUnitText init ""
 Data cItemSecUnitText init ""
+Data FindTitles init {"«·⁄œœ","«·ﬂ„Ì…"," «—ÌŒ «·œŒÊ·","«”„ «·„Ê—œ","«”„ «·’‰› «·ﬂ«„·","ﬂÊœ «·⁄„·Ì…"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -82,6 +83,7 @@ Method BeforeSearch
 Method SearchAdd
 Method GetSearchValue
 Method settimer
+Method CheckFind
 EndClass
 Method showwindow Class ItemsEnterClass
 myout = self:connect()
@@ -89,7 +91,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( ItemsEnterWindow )
 DEFINE WINDOW ItemsEnterWindow ;
 AT 10 ,10 ;
-WIDTH 893 ;
+WIDTH 1073 ;
 HEIGHT 647 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -103,8 +105,8 @@ BACKCOLOR {64,0,64}
 @ 42 ,3 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 870 HEIGHT 520
-@ 570 ,238 BUTTONEX btnFirst;
+WIDTH 1050 HEIGHT 520
+@ 570 ,322 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -113,7 +115,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,301 BUTTONEX btnNext;
+@ 570 ,385 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -122,7 +124,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,428 BUTTONEX btnLast;
+@ 570 ,512 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -131,7 +133,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,55 BUTTONEX btnClose;
+@ 570 ,139 BUTTONEX btnClose;
 CAPTION "Œ—ÊÃ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -140,7 +142,7 @@ WIDTH 79 HEIGHT 27 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,365 BUTTONEX btnPrev;
+@ 570 ,449 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -149,7 +151,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,147 BUTTONEX btnDel;
+@ 570 ,231 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -158,38 +160,38 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,594 BUTTONEX btnsave;
+@ 570 ,678 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,506 BUTTONEX btncancel;
+@ 570 ,590 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,682 BUTTONEX btnedit;
+@ 570 ,766 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,749 BUTTONEX btnadd;
+@ 570 ,833 BUTTONEX btnadd;
 CAPTION "«÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                   «œŒ«· «’‰«› «·Ï «·„Œ“‰" ;
-WIDTH 870 ;
+VALUE "                                                                                    «œŒ«· «’‰«› «·Ï «·„Œ“‰     " ;
+WIDTH 1050 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 385 ,383 LABEL lblSourceName ;
+@ 385 ,464 LABEL lblSourceName ;
 VALUE "«·ﬂ„Ì…" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -197,7 +199,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 386 ,204 TEXTBOX textUnitValue;
+@ 386 ,285 TEXTBOX textUnitValue;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -205,39 +207,41 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,730 LABEL lbl1browse ;
-VALUE "«”„ «·’‰›" ;
-WIDTH 80 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 53 ,187 TEXTBOX textNamebrowse;
+@ 52 ,219 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 530 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,77 BUTTONEX btn1browse;
+@ 51 ,109 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 93 ,73 GRID Grid1browse;
+@ 93 ,13 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 740 ;
+WIDTH 1030 ;
 HEIGHT 160 ;
-HEADERS {"ﬂÊœ","«”„ «·’‰›","«”„ «·’‰› «·ﬂ«„·","«”„ «·’‰›","«·„Ã„Ê⁄…","«·„’œ—","«·„” ÊÏ","«··Ê‰","«·ÕÃ„"};
-WIDTHS {100,100,200,150,150,150,150,150,150} ;
+HEADERS self:FindTitles;
+WIDTHS {100,100,150,250,250,150} ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+JUSTIFY {1,1,1,1,1,1} ;
+FONTCOLOR {0,0,0}
+@ 51 ,753 COMBOBOX comboFind;
+ON CHANGE self:CheckFind()  ;
+WIDTH 200 ;
+HEIGHT 100;
+ITEMS self:FindTitles ;
+VALUE 5 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 434 ,382 LABEL lblSecUnitValue ;
+@ 434 ,463 LABEL lblSecUnitValue ;
 VALUE "«·ﬂ„Ì…" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -245,7 +249,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 433 ,204 TEXTBOX textSecUnitValue;
+@ 433 ,285 TEXTBOX textSecUnitValue;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -254,7 +258,7 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("Suppliers","f_name",@self:SupplierItems,"id",@self:SupplierItemsIDS)
-@ 263 ,629 LABEL lblSupplier ;
+@ 263 ,710 LABEL lblSupplier ;
 VALUE "«·„Ê—œ" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -262,7 +266,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 265 ,204 COMBOBOX combosupplier;
+@ 265 ,285 COMBOBOX combosupplier;
 WIDTH 410 ;
 HEIGHT 100;
 ITEMS self:Supplieritems ;
@@ -271,7 +275,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsStores","StoreName",@self:StoreItems,"id",@self:StoreItemsIDS)
-@ 303 ,629 LABEL lblStore ;
+@ 303 ,710 LABEL lblStore ;
 VALUE "«·„Œ“‰" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -279,7 +283,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 306 ,204 COMBOBOX combostore;
+@ 306 ,285 COMBOBOX combostore;
 WIDTH 410 ;
 HEIGHT 100;
 ITEMS self:Storeitems ;
@@ -288,7 +292,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ItemsAndUnits_ALL","ItemCompleteName",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 344 ,629 LABEL lblitems ;
+@ 344 ,710 LABEL lblitems ;
 VALUE "«”„ «·’‰›" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -296,7 +300,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 345 ,204 COMBOBOX comboitem;
+@ 345 ,285 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
 WIDTH 410 ;
 HEIGHT 100;
@@ -305,7 +309,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 383 ,629 LABEL lblItemUnit ;
+@ 383 ,710 LABEL lblItemUnit ;
 VALUE "ÊÕœ… «·’‰›" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -313,7 +317,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 386 ,466 TEXTBOX textItemUnit;
+@ 386 ,547 TEXTBOX textItemUnit;
 HEIGHT 30 ;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
@@ -321,7 +325,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 431 ,629 LABEL lblItemUnit2 ;
+@ 431 ,710 LABEL lblItemUnit2 ;
 VALUE "ÊÕœ… «·’‰› «·À«‰ÊÌ…" ;
 WIDTH 190 ;
 HEIGHT 30 ;
@@ -329,7 +333,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 429 ,466 TEXTBOX textItemSecUnit;
+@ 429 ,547 TEXTBOX textItemSecUnit;
 HEIGHT 30 ;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
@@ -337,7 +341,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 521 ,742 LABEL lblNotes ;
+@ 521 ,823 LABEL lblNotes ;
 VALUE "„·«ÕŸ« " ;
 WIDTH 70 ;
 HEIGHT 30 ;
@@ -345,15 +349,15 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 519 ,82 TEXTBOX textNotes;
-HEIGHT 30 ;
-WIDTH 650 ;
+@ 518 ,160 TEXTBOX textNotes;
+HEIGHT 32 ;
+WIDTH 654 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 478 ,240 LABEL lblCost ;
+@ 478 ,321 LABEL lblCost ;
 VALUE "«· ﬂ·›…" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -361,7 +365,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 479 ,79 TEXTBOX textCost;
+@ 479 ,160 TEXTBOX textCost;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -369,7 +373,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 478 ,513 LABEL lblDateofInput ;
+@ 478 ,594 LABEL lblDateofInput ;
 VALUE " «—ÌŒ «·œŒÊ·" ;
 WIDTH 120 ;
 HEIGHT 30 ;
@@ -377,14 +381,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 478 ,317 DATEPICKER datedateofinput;
+@ 478 ,398 DATEPICKER datedateofinput;
 WIDTH 170 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 478 ,742 LABEL lblAmount ;
+@ 478 ,823 LABEL lblAmount ;
 VALUE "«·⁄œœ" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -392,7 +396,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 478 ,622 TEXTBOX textAmount;
+@ 478 ,703 TEXTBOX textAmount;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 14 ;
@@ -651,6 +655,11 @@ Return myout
 Method OnBeforeDelete Class ItemsEnterClass
 myout = self:SubValuesFromItem()
 Return myout
+Method CheckFind Class ItemsEnterClass
+Local nIndex
+nIndex := ItemsEnterWindow.ComboFind.Value
+self:Column := self:Columns[nIndex]
+Return 0
 Method closewindow Class ItemsEnterClass
 myout = self:disconnect()
 ItemsEnterWindow.Release ( )
