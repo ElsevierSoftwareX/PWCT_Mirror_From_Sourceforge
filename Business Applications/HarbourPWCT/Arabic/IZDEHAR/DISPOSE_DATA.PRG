@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:38:23    Date : 10/25/2010
+* Time : 23:32:31    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -84,7 +84,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( DisposeWindow )
 DEFINE WINDOW DisposeWindow ;
 AT 10 ,10 ;
-WIDTH 954 ;
+WIDTH 1106 ;
 HEIGHT 587 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -98,11 +98,11 @@ BACKCOLOR {64,0,64}
 @ 43 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 930 HEIGHT 190
-@ 244 ,4 IMAGE image2;
+WIDTH 1090 HEIGHT 190
+@ 244 ,5 IMAGE image2;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 930 HEIGHT 250
+WIDTH 1090 HEIGHT 250
 @ 509 ,11 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
@@ -113,13 +113,13 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                             ﬁÌÌ„ «·œÊ—… »⁄œ «·«‰ Â«¡ „‰ ﬁ»· „œÌ— «·ÃÊœ…" ;
-WIDTH 930 ;
+VALUE "                                                                                    ﬁÌÌ„ «·œÊ—… »⁄œ «·«‰ Â«¡ „‰ ﬁ»· „œÌ— «·ÃÊœ… " ;
+WIDTH 1090 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,681 LABEL lbl1browse ;
+@ 53 ,767 LABEL lbl1browse ;
 VALUE "—ﬁ„ «·œÊ—…" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -127,32 +127,32 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 53 ,269 TEXTBOX textnamebrowse;
+@ 53 ,354 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,163 BUTTONEX btn1browse;
+@ 52 ,248 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 93 ,23 GRID Grid1browse;
+@ 93 ,13 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 890 ;
+WIDTH 1070 ;
 HEIGHT 130 ;
 HEADERS {"—«Ï «·ÃÊœ… »⁄œ «·«‰ Â«¡","Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {200,100,200,120,200,150,100} ;
-FONT "arial" SIZE 14 ;
+WIDTHS {170,100,120,120,200,200,100} ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 259 ,681 LABEL lbl1browse2 ;
+@ 259 ,756 LABEL lbl1browse2 ;
 VALUE "«”„ «·⁄„Ì·" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -160,21 +160,21 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 256 ,269 TEXTBOX textNamebrowse2;
+@ 256 ,344 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 255 ,164 BUTTONEX btn1browse2;
+@ 255 ,239 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 296 ,23 GRID Grid1browse2;
-WIDTH 890 ;
+@ 296 ,88 GRID Grid1browse2;
+WIDTH 920 ;
 HEIGHT 140 ;
 HEADERS {"„ÕÊ— 3","„ÕÊ— 2","„ÕÊ— 1","ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
 WIDTHS {100,100,100,150,150,250} ;
@@ -183,7 +183,7 @@ BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Quality","QualityOpinion",@self:QualityItems,"id",@self:QualityItemsIDS)
-@ 447 ,636 LABEL lblQuality ;
+@ 447 ,724 LABEL lblQuality ;
 VALUE "—«Ï „œÌ— «·ÃÊœ…" ;
 WIDTH 120 ;
 HEIGHT 30 ;
@@ -191,7 +191,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 449 ,252 COMBOBOX comboquality;
+@ 449 ,340 COMBOBOX comboquality;
 ON CHANGE self:saverecord2()  ;
 WIDTH 370 ;
 HEIGHT 100;
@@ -200,7 +200,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 449 ,164 BUTTONEX btnQualityNotes;
+@ 449 ,252 BUTTONEX btnQualityNotes;
 CAPTION "„·«ÕŸ« ";
 ON CLICK self:QualityNotes()  ;
 WIDTH 80 HEIGHT 30 ;

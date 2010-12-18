@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:50:17    Date : 11/25/2010
+* Time : 23:32:37    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -566,10 +566,10 @@ END POPUP
 ENDIF
 IF UserCan_WinDispose = 2
 POPUP " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡"
-MENUITEM "«· ﬁÌÌ„ „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action DisposeObject:ShowWindow()
+MENUITEM "«· ﬁÌÌ„ «·⁄«„ „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action DisposeObject:ShowWindow()
 SEPARATOR
-MENUITEM "«—«¡ «·„ œ—»Ì‰" Action CustOpinionObject:ShowWindow()
-MENUITEM "«· ﬁÌÌ„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
+MENUITEM "«Œ Ì«—«  «· ﬁÌÌ„ «·⁄«„" Action CustOpinionObject:ShowWindow()
+MENUITEM "«· ﬁÌÌ„ «·⁄«„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
 END POPUP
 ENDIF
 POPUP " ﬁ«—Ì—"
