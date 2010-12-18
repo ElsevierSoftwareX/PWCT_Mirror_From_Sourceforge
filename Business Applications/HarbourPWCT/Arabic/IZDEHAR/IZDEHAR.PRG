@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:22:24    Date : 11/25/2010
+* Time : 09:59:21    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -525,10 +525,10 @@ MENUITEM "„” ÊÌ«  «·«’‰«›" Action ItemsGradesObject:ShowWindow()
 MENUITEM "«ÕÃ«„ «·«’‰«›" Action ItemsSizesObject:ShowWindow()
 MENUITEM "«·Ê«‰ «·«’‰«›" Action ItemsColorsObject:ShowWindow()
 MENUITEM "„’«œ— «·«’‰«›" Action ItemsSourcesObject:ShowWindow()
+MENUITEM "„Œ«“‰ «·«’‰«›" Action ItemsStoresObject:ShowWindow()
 SEPARATOR
 MENUITEM " ⁄—Ì› «·«’‰«›" Action ItemsObject:ShowWindow()
 SEPARATOR
-MENUITEM "„Œ«“‰ «·«’‰«›" Action ItemsStoresObject:ShowWindow()
 MENUITEM "≈œŒ«· ’‰› «·Ï «·„Œ“‰" Action ItemsEnterObject:ShowWindow()
 SEPARATOR
 MENUITEM "ÕÃ“ ﬂ„Ì… „‰ ’‰› ·’«·Õ œÊ—…" Action ReserveItemsObject:ShowWindow()
@@ -592,9 +592,9 @@ MENUITEM " ﬁ—Ì— „” ÊÌ«  «·«’‰«›" Action ItemGradesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— «ÕÃ«„ «·«’‰«›" Action ItemSizesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— «·Ê«‰ «·«’‰«›" Action ItemColorsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— „’«œ— «·«’‰«›" Action ItemSourcesReportObject:ShowWindow()
-MENUITEM " ﬁ—Ì— »«·«’‰«›" Action ItemsReportObject:ShowWindow()
-SEPARATOR
 MENUITEM " ﬁ—Ì— »«·„Œ«“‰" Action StoresReportObject:ShowWindow()
+SEPARATOR
+MENUITEM " ﬁ—Ì— »«·«’‰«›" Action ItemsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »œŒÊ· «’‰«› «·Ï «·„Œ“‰" Action ITEMSENTEREDTOSTORESReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »ÕÃ“ ﬂ„Ì«  „‰ «·«’‰«› ·’«·Õ œÊ—…" Action ReservedItemsReportObject:ShowWindow()
 SEPARATOR
