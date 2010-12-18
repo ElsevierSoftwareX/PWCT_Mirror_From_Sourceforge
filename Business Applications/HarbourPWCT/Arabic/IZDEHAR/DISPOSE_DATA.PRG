@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:01:04    Date : 11/26/2010
+* Time : 00:09:53    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,6 +54,7 @@ Data nQuality init 0
 Data Qualityitems init {}
 Data Qualityitemsids init {}
 Data FindTitles init {"—«Ï «·ÃÊœ… »⁄œ «·«‰ Â«¡","Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"}
+Data FindTitles2 init {"„ÕÊ— 3","„ÕÊ— 2","„ÕÊ— 1","ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -75,6 +76,7 @@ Method BeforeSearch
 Method GetSearchValue
 Method settimer
 Method CheckFind
+Method CheckFind2
 EndClass
 Method showwindow Class DisposeClass
 IF .not. UserCan_WinDispose = 2
@@ -155,22 +157,14 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 259 ,756 LABEL lbl1browse2 ;
-VALUE "«”„ «·⁄„Ì·" ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {64,0,64} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 256 ,344 TEXTBOX textNamebrowse2;
+@ 256 ,315 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 255 ,239 BUTTONEX btn1browse2;
+@ 255 ,208 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -179,11 +173,20 @@ TOOLTIP ""
 @ 296 ,88 GRID Grid1browse2;
 WIDTH 920 ;
 HEIGHT 140 ;
-HEADERS {"„ÕÊ— 3","„ÕÊ— 2","„ÕÊ— 1","ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
+HEADERS self:FindTitles2;
 WIDTHS {100,100,100,150,150,250} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
+FONTCOLOR {0,0,0}
+@ 257 ,718 COMBOBOX comboFind2;
+ON CHANGE self:CheckFind2()  ;
+WIDTH 180 ;
+HEIGHT 200;
+ITEMS self:FindTitles2 ;
+VALUE 6 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Quality","QualityOpinion",@self:QualityItems,"id",@self:QualityItemsIDS)
 @ 447 ,724 LABEL lblQuality ;
@@ -379,6 +382,11 @@ Method CheckFind Class DisposeClass
 Local nIndex
 nIndex := DisposeWindow.ComboFind.Value
 self:Column := self:Columns[nIndex]
+Return 0
+Method CheckFind2 Class DisposeClass
+Local nIndex
+nIndex := DisposeWindow.ComboFind2.Value
+self:Column2 := self:Columns2[nIndex]
 Return 0
 Method closewindow Class DisposeClass
 myout = self:disconnect()
