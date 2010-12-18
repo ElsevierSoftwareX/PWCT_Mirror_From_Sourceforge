@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:27:50    Date : 10/25/2010
+* Time : 21:44:01    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -79,7 +79,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( ProductionWindow )
 DEFINE WINDOW ProductionWindow ;
 AT 10 ,10 ;
-WIDTH 893 ;
+WIDTH 1034 ;
 HEIGHT 601 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -93,8 +93,8 @@ BACKCOLOR {64,0,64}
 @ 43 ,3 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 870 HEIGHT 470
-@ 521 ,449 BUTTONEX btnFirst;
+WIDTH 1010 HEIGHT 470
+@ 521 ,519 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -103,7 +103,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 521 ,321 BUTTONEX btnNext;
+@ 521 ,391 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -112,7 +112,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 521 ,257 BUTTONEX btnLast;
+@ 521 ,327 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -121,7 +121,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 521 ,57 BUTTONEX btnClose;
+@ 521 ,127 BUTTONEX btnClose;
 CAPTION "Œ—ÊÃ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -130,7 +130,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 521 ,385 BUTTONEX btnPrev;
+@ 521 ,455 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -139,7 +139,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 521 ,165 BUTTONEX btnDel;
+@ 521 ,235 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -148,46 +148,46 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 521 ,608 BUTTONEX btnsave;
+@ 521 ,678 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 521 ,521 BUTTONEX btncancel;
+@ 521 ,591 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 521 ,686 BUTTONEX btnedit;
+@ 521 ,756 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 521 ,756 BUTTONEX btnadd;
+@ 521 ,826 BUTTONEX btnadd;
 CAPTION "«÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                   „ «»⁄… «‰Ã«“«  «·„ÊŸ›Ì‰" ;
-WIDTH 870 ;
+VALUE "                                                                                      „ «»⁄… «‰Ã«“«  «·„ÊŸ›Ì‰ " ;
+WIDTH 1010 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 386 ,662 LABEL lblSourceName ;
+@ 424 ,481 LABEL lblSourceName ;
 VALUE "Êﬁ  «·»œ¡" ;
-WIDTH 160 ;
+WIDTH 90 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 383 ,503 TEXTBOX textStartTime;
+@ 424 ,332 TEXTBOX textStartTime;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -195,39 +195,39 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 53 ,712 LABEL lbl1browse ;
+@ 53 ,754 LABEL lbl1browse ;
 VALUE "—ﬁ„ «·œÊ—…" ;
 WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,205 TEXTBOX textNamebrowse;
+@ 53 ,247 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 500 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 53 ,98 BUTTONEX btn1browse;
+@ 53 ,140 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 97 ,72 GRID Grid1browse;
+@ 87 ,12 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 740 ;
-HEIGHT 160 ;
+WIDTH 990 ;
+HEIGHT 280 ;
 HEADERS {"«·«‰Ã«“","Êﬁ  «·«‰ Â«¡","Êﬁ  «·»œ«Ì…","«· «—ÌŒ","«”„ «·„ÊŸ›","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,200,100,120,100,100} ;
-FONT "arial" SIZE 14 ;
+WIDTHS {250,200,100,120,200,100} ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 385 ,384 LABEL lblSecUnitValue ;
+@ 424 ,213 LABEL lblSecUnitValue ;
 VALUE "Êﬁ  «·«‰ Â«¡" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -235,7 +235,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 382 ,235 TEXTBOX textFinishTime;
+@ 424 ,64 TEXTBOX textFinishTime;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -244,15 +244,15 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("Orders","OrderNumber",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
-@ 267 ,662 LABEL lblOrderNumber ;
+@ 382 ,876 LABEL lblOrderNumber ;
 VALUE "—ﬁ„ «·œÊ—…" ;
-WIDTH 160 ;
+WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 270 ,445 COMBOBOX comboordernumber;
+@ 382 ,659 COMBOBOX comboordernumber;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:OrderNumberitems ;
@@ -261,15 +261,15 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Employees","f_name",@self:employeeItems,"id",@self:employeeItemsIDS)
-@ 307 ,662 LABEL lblEmployee ;
+@ 382 ,481 LABEL lblEmployee ;
 VALUE "«·„ÊŸ›" ;
-WIDTH 160 ;
+WIDTH 70 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 304 ,235 COMBOBOX comboemployee;
+@ 382 ,64 COMBOBOX comboemployee;
 WIDTH 410 ;
 HEIGHT 100;
 ITEMS self:Employeeitems ;
@@ -277,15 +277,15 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 473 ,662 LABEL lblNotes ;
+@ 466 ,483 LABEL lblNotes ;
 VALUE "„·«ÕŸ« " ;
-WIDTH 160 ;
+WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 467 ,233 TEXTBOX textNotes;
+@ 468 ,63 TEXTBOX textNotes;
 HEIGHT 30 ;
 WIDTH 410 ;
 FONT "Arial" SIZE 14 ;
@@ -293,32 +293,32 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 348 ,662 LABEL lblDateofInput ;
+@ 424 ,871 LABEL lblDateofInput ;
 VALUE " «—ÌŒ «·«‰Ã«“" ;
-WIDTH 160 ;
+WIDTH 90 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 344 ,496 DATEPICKER datedateofinput;
+@ 424 ,705 DATEPICKER datedateofinput;
 WIDTH 150 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 431 ,662 LABEL lblnoofpcs ;
+@ 468 ,875 LABEL lblnoofpcs ;
 VALUE "«·«‰Ã«“" ;
-WIDTH 160 ;
+WIDTH 60 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 425 ,233 TEXTBOX textnoofpcs;
+@ 468 ,577 TEXTBOX textnoofpcs;
 HEIGHT 30 ;
-WIDTH 410 ;
+WIDTH 280 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
@@ -382,7 +382,7 @@ self:nOrderNumber := 0
 self:nEmployee := 0
 self:cStartTime := "1"
 self:cFinishTime := "1"
-self:cNoOfPCS := "1"
+self:cNoOfPCS := ""
 self:cDateOfInput := ""
 self:cNotes := ""
 Return 0
