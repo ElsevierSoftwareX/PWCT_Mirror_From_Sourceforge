@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:35:16    Date : 10/04/2010
+* Time : 00:35:36    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -53,6 +53,8 @@ Data ResultPrimaryKeys2 init {}
 Data nQuality init 0
 Data Qualityitems init {}
 Data Qualityitemsids init {}
+Data FindTitles init {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"}
+Data FindTitles2 init {"—«Ï «·⁄„Ì·","ÃÊ«·","«”„ «·⁄„Ì·"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -74,6 +76,8 @@ Method BeforeSearch
 Method GetSearchValue
 Method settimer
 Method ShowOpinion
+Method CheckFind
+Method CheckFind2
 EndClass
 Method showwindow Class CustDisposeClass
 myout = self:connect()
@@ -81,7 +85,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( CustDisposeWindow )
 DEFINE WINDOW CustDisposeWindow ;
 AT 10 ,10 ;
-WIDTH 954 ;
+WIDTH 1061 ;
 HEIGHT 587 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -95,11 +99,11 @@ BACKCOLOR {64,0,64}
 @ 43 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 930 HEIGHT 190
-@ 244 ,4 IMAGE image2;
+WIDTH 1040 HEIGHT 190
+@ 244 ,5 IMAGE image2;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 930 HEIGHT 250
+WIDTH 1040 HEIGHT 250
 @ 509 ,11 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
@@ -110,28 +114,20 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                             ﬁÌÌ„ «·œÊ—… »⁄œ «·«‰ Â«¡ „‰ ﬁ»· «·„ œ—»Ì‰" ;
-WIDTH 930 ;
+VALUE "                                                                                ﬁÌÌ„ «·œÊ—… »⁄œ «·«‰ Â«¡ „‰ ﬁ»· «·„ œ—»Ì‰" ;
+WIDTH 1040 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,681 LABEL lbl1browse ;
-VALUE "—ﬁ„ «·œÊ—…" ;
-WIDTH 80 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 53 ,269 TEXTBOX textnamebrowse;
+@ 53 ,290 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,163 BUTTONEX btn1browse;
+@ 53 ,184 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -139,49 +135,59 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 93 ,23 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 890 ;
+WIDTH 1010 ;
 HEIGHT 130 ;
-HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,200,120,200,150,100} ;
+HEADERS self:FindTitles;
+WIDTHS {100,150,120,250,250,100} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
+@ 53 ,697 COMBOBOX comboFind;
+ON CHANGE self:CheckFind()  ;
+WIDTH 170 ;
+HEIGHT 200;
+ITEMS self:FindTitles ;
+VALUE 6 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 259 ,681 LABEL lbl1browse2 ;
-VALUE "«”„ «·„ œ—»" ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {64,0,64} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 256 ,269 TEXTBOX textNamebrowse2;
+@ 255 ,286 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 255 ,164 BUTTONEX btn1browse2;
+@ 255 ,181 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 296 ,23 GRID Grid1browse2;
+@ 296 ,80 GRID Grid1browse2;
 ON DBLCLICK self:showopinion  ;
 WIDTH 890 ;
 HEIGHT 140 ;
-HEADERS {"—«Ï «·⁄„Ì·","ÃÊ«·","«”„ «·⁄„Ì·"};
+HEADERS self:FindTitles2;
 WIDTHS {400,230,250} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
+@ 255 ,699 COMBOBOX comboFind2;
+ON CHANGE self:CheckFind2()  ;
+WIDTH 170 ;
+HEIGHT 200;
+ITEMS self:FindTitles2 ;
+VALUE 3 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("CustOpinion","CustOpinion",@self:QualityItems,"id",@self:QualityItemsIDS)
-@ 449 ,641 LABEL lblQuality ;
+@ 449 ,705 LABEL lblQuality ;
 VALUE "—«Ï «·„ œ—»" ;
 WIDTH 120 ;
 HEIGHT 30 ;
@@ -189,7 +195,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 449 ,252 COMBOBOX comboquality;
+@ 449 ,316 COMBOBOX comboquality;
 ON CHANGE self:saverecord2()  ;
 WIDTH 370 ;
 HEIGHT 100;
@@ -198,7 +204,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 449 ,164 BUTTONEX btnQualityNotes;
+@ 449 ,228 BUTTONEX btnQualityNotes;
 CAPTION "„·«ÕŸ« ";
 ON CLICK self:QualityNotes()  ;
 WIDTH 80 HEIGHT 30 ;
@@ -418,6 +424,16 @@ Return 0
 Method ShowOpinion Class CustDisposeClass
 myout = self:Ado2Class()
 myout = self:Class2UserInterface()
+Return 0
+Method CheckFind Class CustDisposeClass
+Local nIndex
+nIndex := CustDisposeWindow.ComboFind.Value
+self:Column := self:Columns[nIndex]
+Return 0
+Method CheckFind2 Class CustDisposeClass
+Local nIndex
+nIndex := CustDisposeWindow.ComboFind2.Value
+self:Column2 := self:Columns2[nIndex]
 Return 0
 Method closewindow Class CustDisposeClass
 myout = self:disconnect()
