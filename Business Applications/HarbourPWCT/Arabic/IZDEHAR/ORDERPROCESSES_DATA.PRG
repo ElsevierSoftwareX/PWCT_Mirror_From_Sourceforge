@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:38:27    Date : 11/25/2010
+* Time : 12:12:36    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,10 @@ Data ProcessStatusitems init {}
 Data ProcessStatusitemsids init {}
 Data cProcessCost init ""
 Data FindTitles init {"„·«ÕŸ« ","«· ﬂ·›…","„Ê⁄œ «·«‰ Â«¡ «·›⁄·Ï","„Ê⁄œ «·»œ¡ «·›⁄·Ï","„Ê⁄œ «·«‰ Â«¡ «·„Œÿÿ","„Ê⁄œ «·»œ¡ «·„Œÿÿ","Õ«·… «·«Ã—«¡","«·«Ã—«¡","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"}
+Data CheckD1 init FALSE
+Data CheckD2 init FALSE
+Data CheckD3 init FALSE
+Data CheckD4 init FALSE
 Method showwindow
 Method closewindow
 Method SetMode
@@ -193,9 +197,9 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 381 ,683 LABEL lblPlannedStartDate ;
+@ 382 ,683 LABEL lblPlannedStartDate ;
 VALUE " «—ÌŒ «·»œ¡ «·„Œÿÿ" ;
-WIDTH 170 ;
+WIDTH 130 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -242,7 +246,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 387 ,364 LABEL lblRealStartDate ;
+@ 386 ,294 LABEL lblRealStartDate ;
 VALUE " «—ÌŒ «·»œ¡ «·›⁄·Ï" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -250,7 +254,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 387 ,199 DATEPICKER daterealstartdate;
+@ 386 ,129 DATEPICKER daterealstartdate;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -291,7 +295,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 512 ,682 LABEL lblNotes ;
+@ 507 ,724 LABEL lblNotes ;
 VALUE "„·«ÕŸ« " ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -299,7 +303,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 508 ,198 TEXTBOX textNotes;
+@ 503 ,240 TEXTBOX textNotes;
 HEIGHT 30 ;
 WIDTH 470 ;
 FONT "Arial" SIZE 14 ;
@@ -307,7 +311,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 428 ,358 LABEL lblRealFinishDate ;
+@ 428 ,288 LABEL lblRealFinishDate ;
 VALUE " «—ÌŒ «·«‰ Â«¡ «·›⁄·Ï" ;
 WIDTH 150 ;
 HEIGHT 30 ;
@@ -315,7 +319,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 427 ,199 DATEPICKER daterealfinishdate;
+@ 426 ,129 DATEPICKER daterealfinishdate;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -354,7 +358,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 474 ,682 LABEL lblProcessCost ;
+@ 469 ,724 LABEL lblProcessCost ;
 VALUE "«· ﬂ·›…" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -362,7 +366,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 467 ,198 TEXTBOX textProcessCost;
+@ 462 ,240 TEXTBOX textProcessCost;
 HEIGHT 30 ;
 WIDTH 470 ;
 FONT "Arial" SIZE 14 ;
@@ -373,6 +377,34 @@ FONTCOLOR {0,0,0}
 myout = RightToLeftControl ( "OrderProcessesWindow","comboOrderNumber" )
 myout = RightToLeftControl ( "OrderProcessesWindow","comboProcess" )
 myout = RightToLeftControl ( "OrderProcessesWindow","comboProcessStatus" )
+@ 380 ,834 CHECKBOX checkd1;
+CAPTION " ›⁄Ì·";
+WIDTH 60;
+Height 30;
+FONT "Arial" SIZE 9 ;
+BACKCOLOR {236,233,216} ;
+FONTCOLOR {0,0,0}
+@ 421 ,833 CHECKBOX checkd2;
+CAPTION " ›⁄Ì·";
+WIDTH 60;
+Height 30;
+FONT "Arial" SIZE 9 ;
+BACKCOLOR {236,233,216} ;
+FONTCOLOR {0,0,0}
+@ 384 ,441 CHECKBOX checkd3;
+CAPTION " ›⁄Ì·";
+WIDTH 60;
+Height 30;
+FONT "Arial" SIZE 9 ;
+BACKCOLOR {236,233,216} ;
+FONTCOLOR {0,0,0}
+@ 426 ,441 CHECKBOX checkd4;
+CAPTION " ›⁄Ì·";
+WIDTH 60;
+Height 30;
+FONT "Arial" SIZE 9 ;
+BACKCOLOR {236,233,216} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 OrderProcessesWindow.Center ( )
@@ -400,6 +432,10 @@ self:cRealStartDate := dtoc(self:cRealStartDate)
 self:cRealFinishDate := OrderProcessesWindow.dateRealFinishDate.Value
 self:cRealFinishDate := dtoc(self:cRealFinishDate)
 self:cProcessCost := OrderProcessesWindow.textProcessCost.Value
+self:CheckD1 := OrderProcessesWindow.CheckD1.Value
+self:CheckD2 := OrderProcessesWindow.CheckD2.Value
+self:CheckD3 := OrderProcessesWindow.CheckD3.Value
+self:CheckD4 := OrderProcessesWindow.CheckD4.Value
 Return 0
 Method Class2ADO Class OrderProcessesClass
 self:oRS:fields:item("processid"):value := self:nprocess
@@ -411,6 +447,30 @@ self:oRS:fields:item("RealStartDate"):value := self:cRealStartDate
 self:oRS:fields:item("RealFinishDate"):value := self:cRealFinishDate
 self:oRS:fields:item("processstatusid"):value := self:nprocessstatus
 self:oRS:fields:item("ProcessCost"):value := self:cProcessCost
+IF self:CheckD1 = True
+self:oRS:fields:item("CheckD1"):value := 2
+ELSE
+self:oRS:fields:item("CheckD1"):value := 3
+self:oRS:fields:item("plannedstartdate"):value := ""
+ENDIF
+IF self:CheckD2 = True
+self:oRS:fields:item("CheckD2"):value := 2
+ELSE
+self:oRS:fields:item("CheckD2"):value := 3
+self:oRS:fields:item("PlannedFinishDate"):value := ""
+ENDIF
+IF self:CheckD3 = True
+self:oRS:fields:item("CheckD3"):value := 2
+ELSE
+self:oRS:fields:item("CheckD3"):value := 3
+self:oRS:fields:item("RealStartDate"):value := ""
+ENDIF
+IF self:CheckD4 = True
+self:oRS:fields:item("CheckD4"):value := 2
+ELSE
+self:oRS:fields:item("CheckD4"):value := 3
+self:oRS:fields:item("RealFinishDate"):value := ""
+ENDIF
 Return 0
 Method ADO2Class Class OrderProcessesClass
 self:nProcess := self:oRS:fields:item("ProcessID"):value
@@ -422,6 +482,30 @@ self:cRealFinishDate := self:oRS:fields:item("RealFinishDate"):value
 self:nProcessStatus := self:oRS:fields:item("ProcessStatusID"):value
 self:cNotes := self:oRS:fields:item("Notes"):value
 self:cProcessCost := self:oRS:fields:item("ProcessCost"):value
+self:CheckD1 := self:oRS:fields:item("CheckD1"):value
+IF Self:CheckD1 = 2
+self:CheckD1 := True
+ELSE
+self:CheckD1 := False
+ENDIF
+self:CheckD2 := self:oRS:fields:item("CheckD2"):value
+IF Self:CheckD2 = 2
+self:CheckD2 := True
+ELSE
+self:CheckD2 := False
+ENDIF
+self:CheckD3 := self:oRS:fields:item("CheckD3"):value
+IF Self:CheckD3 = 2
+self:CheckD3 := True
+ELSE
+self:CheckD3 := False
+ENDIF
+self:CheckD4 := self:oRS:fields:item("CheckD4"):value
+IF Self:CheckD4 = 2
+self:CheckD4 := True
+ELSE
+self:CheckD4 := False
+ENDIF
 Return 0
 Method Class2UserInterface Class OrderProcessesClass
 self:nOrderNumber = self:LookupIDToIndex(self:nOrderNumber,@self:OrderNumberItemsids)
@@ -436,6 +520,10 @@ OrderProcessesWindow.datePlannedFinishDate.Value := ctod(self:cPlannedFinishDate
 OrderProcessesWindow.dateRealStartDate.Value := ctod(self:cRealStartDate)
 OrderProcessesWindow.dateRealFinishDate.Value := ctod(self:cRealFinishDate)
 OrderProcessesWindow.textProcessCost.Value := self:cProcessCost
+OrderProcessesWindow.CheckD1.Value := self:CheckD1
+OrderProcessesWindow.CheckD2.Value := self:CheckD2
+OrderProcessesWindow.CheckD3.Value := self:CheckD3
+OrderProcessesWindow.CheckD4.Value := self:CheckD4
 Return 0
 Method ClearRecord Class OrderProcessesClass
 self:nOrderNumber := 0
@@ -447,6 +535,10 @@ self:cPlannedFinishDate := ""
 self:cRealStartDate := ""
 self:cRealFinishDate := ""
 self:cProcessCost := ""
+self:CheckD1 := False
+self:CheckD2 := False
+self:CheckD3 := False
+self:CheckD4 := False
 Return 0
 Method OpenDataWindow Class OrderProcessesClass
 Local nvalue,myout
@@ -485,6 +577,10 @@ OrderProcessesWindow.dateplannedFinishDate.Enabled := true
 OrderProcessesWindow.dateRealStartDate.Enabled := true
 OrderProcessesWindow.dateRealFinishDate.Enabled := true
 OrderProcessesWindow.textProcessCost.Enabled := true
+OrderProcessesWindow.CheckD1.Enabled := True
+OrderProcessesWindow.CheckD2.Enabled := True
+OrderProcessesWindow.CheckD3.Enabled := True
+OrderProcessesWindow.CheckD4.Enabled := True
 ENDIF
 IF p1 = 2
 OrderProcessesWindow.btnfirst.Enabled := true
@@ -506,6 +602,10 @@ OrderProcessesWindow.datePlannedFinishDate.Enabled := false
 OrderProcessesWindow.dateRealStartDate.Enabled := false
 OrderProcessesWindow.dateRealFinishDate.Enabled := false
 OrderProcessesWindow.textProcessCost.Enabled := False
+OrderProcessesWindow.CheckD1.Enabled := False
+OrderProcessesWindow.CheckD2.Enabled := False
+OrderProcessesWindow.CheckD3.Enabled := False
+OrderProcessesWindow.CheckD4.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
