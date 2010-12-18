@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:24:01    Date : 11/24/2010
+* Time : 22:45:57    Date : 11/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -57,7 +57,7 @@ WIDTH 1040 ;
 HEIGHT 327 ;
 ON INIT self:MyStart()  ;
 ICON "PWCTICON" ;
-TITLE "œÊ—«  «·„‘ —ﬂ »Â« «Ê «·„—‘Õ ·Â« „ œ—»" ;
+TITLE "«·œÊ—«  «· Ï Ìﬁœ„Â« «·„œ—»" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
@@ -75,7 +75,7 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 4 ,433 LABEL lbl1 ;
-VALUE "œÊ—«  „‘ —ﬂ »Â« «·„ œ—»" ;
+VALUE "«·œÊ—«  «· Ï Ìﬁœ„Â« «·„œ—»" ;
 WIDTH 180 ;
 HEIGHT 34 ;
 FONT "Arial" SIZE 14  ;

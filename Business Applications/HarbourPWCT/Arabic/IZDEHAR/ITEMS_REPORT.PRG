@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:21:03    Date : 10/25/2010
+* Time : 09:21:59    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -124,7 +124,7 @@ tvalue := ITEMSReportWindow.Check1.Value
 IF tvalue = true
 tvalue2 := ITEMSReportWindow.text1.Value
 tvalue2 = ALLTRIM ( tvalue2 )
-self:filter := "val(itemvalue) < " + tvalue2
+self:filter := "val(itemvalue) <= " + tvalue2
 ELSE
 self:filter := "1 = 1"
 ENDIF
