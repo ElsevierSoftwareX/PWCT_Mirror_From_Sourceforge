@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:44:01    Date : 11/25/2010
+* Time : 21:50:11    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -52,6 +52,7 @@ Data cFinishTime init ""
 Data cNoOfPCs init ""
 Data cDateofInput init ""
 Data cNotes init ""
+Data FindTitles init {"«·«‰Ã«“","Êﬁ  «·«‰ Â«¡","Êﬁ  «·»œ«Ì…","«· «—ÌŒ","«”„ «·„ÊŸ›","—ﬁ„ «·œÊ—…"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -68,6 +69,7 @@ Method BeforeSearch
 Method SearchAdd
 Method GetSearchValue
 Method settimer
+Method CheckFind
 EndClass
 Method showwindow Class ProductionClass
 IF .not. UserCan_WinProduction = 2
@@ -195,21 +197,14 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 53 ,754 LABEL lbl1browse ;
-VALUE "—ﬁ„ «·œÊ—…" ;
-WIDTH 130 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 53 ,247 TEXTBOX textNamebrowse;
+@ 53 ,218 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 500 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 53 ,140 BUTTONEX btn1browse;
+@ 53 ,111 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -219,11 +214,20 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 990 ;
 HEIGHT 280 ;
-HEADERS {"«·«‰Ã«“","Êﬁ  «·«‰ Â«¡","Êﬁ  «·»œ«Ì…","«· «—ÌŒ","«”„ «·„ÊŸ›","—ﬁ„ «·œÊ—…"};
+HEADERS self:FindTitles;
 WIDTHS {250,200,100,120,200,100} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
+FONTCOLOR {0,0,0}
+@ 53 ,723 COMBOBOX comboFind;
+ON CHANGE Self:CheckFind()  ;
+WIDTH 190 ;
+HEIGHT 200;
+ITEMS self:FindTitles ;
+VALUE 6 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
@@ -442,6 +446,11 @@ ProductionWindow.textNotes.Enabled := false
 ProductionWindow.datedateofinput.Enabled := false
 ENDIF
 self:OperationMode := p1
+Return 0
+Method CheckFind Class ProductionClass
+Local nIndex
+nIndex := ProductionWindow.ComboFind.Value
+Self:Column := Self:Columns[nIndex]
 Return 0
 Method closewindow Class ProductionClass
 myout = self:disconnect()
