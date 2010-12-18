@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:12:36    Date : 11/25/2010
+* Time : 13:28:33    Date : 11/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -86,6 +86,7 @@ Method settimer
 Method beforesearch
 Method searchadd
 Method CheckFind
+Method AutoAdd
 EndClass
 Method showwindow Class OrderProcessesClass
 IF .not. UserCan_WinProduction = 2
@@ -111,8 +112,8 @@ BACKCOLOR {64,0,64}
 @ 42 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 1050 HEIGHT 500
-@ 549 ,526 BUTTONEX btnFirst;
+WIDTH 1050 HEIGHT 490
+@ 545 ,526 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -121,7 +122,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 549 ,401 BUTTONEX btnNext;
+@ 545 ,401 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -130,7 +131,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 549 ,338 BUTTONEX btnLast;
+@ 545 ,338 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -139,7 +140,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 549 ,154 BUTTONEX btnClose;
+@ 545 ,154 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -148,7 +149,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 549 ,465 BUTTONEX btnPrev;
+@ 545 ,465 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -157,7 +158,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 549 ,250 BUTTONEX btnDel;
+@ 545 ,250 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -166,38 +167,38 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 549 ,687 BUTTONEX btnsave;
+@ 545 ,687 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 549 ,604 BUTTONEX btncancel;
+@ 545 ,604 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 549 ,768 BUTTONEX btnedit;
+@ 545 ,768 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 549 ,837 BUTTONEX btnadd;
+@ 545 ,837 BUTTONEX btnadd;
 CAPTION "«÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                                      „ «»⁄… «Ã—«¡«  œÊ—… " ;
-WIDTH 1050 ;
+VALUE "                                                                     „ «»⁄… «Ã—«¡«  œÊ—… " ;
+WIDTH 760 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 382 ,683 LABEL lblPlannedStartDate ;
+@ 329 ,292 LABEL lblPlannedStartDate ;
 VALUE " «—ÌŒ «·»œ¡ «·„Œÿÿ" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -205,7 +206,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 383 ,519 DATEPICKER dateplannedstartdate;
+@ 329 ,128 DATEPICKER dateplannedstartdate;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -228,9 +229,9 @@ TOOLTIP ""
 @ 93 ,13 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1030 ;
-HEIGHT 160 ;
+HEIGHT 230 ;
 HEADERS self:FindTitles;
-WIDTHS {100,100,200,200,200,150,150,150,200,150} ;
+WIDTHS {100,100,200,200,200,150,150,250,200,150} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1,1,1,1} ;
@@ -246,7 +247,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 386 ,294 LABEL lblRealStartDate ;
+@ 406 ,294 LABEL lblRealStartDate ;
 VALUE " «—ÌŒ «·»œ¡ «·›⁄·Ï" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -254,7 +255,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 386 ,129 DATEPICKER daterealstartdate;
+@ 406 ,130 DATEPICKER daterealstartdate;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -262,7 +263,7 @@ RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Orders","OrderNumber",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
-@ 265 ,683 LABEL lblOrderNumber ;
+@ 329 ,884 LABEL lblOrderNumber ;
 VALUE "—ﬁ„ «·œÊ—…" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -270,7 +271,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 265 ,359 COMBOBOX comboordernumber;
+@ 329 ,561 COMBOBOX comboordernumber;
 WIDTH 310 ;
 HEIGHT 100;
 ITEMS self:OrderNumberitems ;
@@ -279,7 +280,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Process","processname",@self:processItems,"id",@self:processItemsIDS)
-@ 301 ,683 LABEL lblProcess ;
+@ 366 ,884 LABEL lblProcess ;
 VALUE "«·«Ã—«¡" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -287,7 +288,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 305 ,359 COMBOBOX comboProcess;
+@ 366 ,560 COMBOBOX comboProcess;
 WIDTH 310 ;
 HEIGHT 100;
 ITEMS self:Processitems ;
@@ -295,7 +296,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 507 ,724 LABEL lblNotes ;
+@ 489 ,883 LABEL lblNotes ;
 VALUE "„·«ÕŸ« " ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -303,15 +304,15 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 503 ,240 TEXTBOX textNotes;
+@ 485 ,129 TEXTBOX textNotes;
 HEIGHT 30 ;
-WIDTH 470 ;
+WIDTH 740 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 428 ,288 LABEL lblRealFinishDate ;
+@ 447 ,289 LABEL lblRealFinishDate ;
 VALUE " «—ÌŒ «·«‰ Â«¡ «·›⁄·Ï" ;
 WIDTH 150 ;
 HEIGHT 30 ;
@@ -319,14 +320,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 426 ,129 DATEPICKER daterealfinishdate;
+@ 447 ,130 DATEPICKER daterealfinishdate;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 341 ,683 LABEL lblDateofInput ;
+@ 406 ,885 LABEL lblDateofInput ;
 VALUE "Õ«·… «·«Ã—«¡" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -335,7 +336,7 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("ProcessStatus","processStatus",@self:processStatusItems,"id",@self:processStatusItemsIDS)
-@ 345 ,359 COMBOBOX comboProcessStatus;
+@ 406 ,561 COMBOBOX comboProcessStatus;
 WIDTH 310 ;
 HEIGHT 100;
 ITEMS self:ProcessStatusitems ;
@@ -343,22 +344,22 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 422 ,683 LABEL lblPlannedFinishDate ;
+@ 366 ,292 LABEL lblPlannedFinishDate ;
 VALUE " «—ÌŒ «·«‰ Â«¡ «·„Œÿÿ" ;
-WIDTH 180 ;
+WIDTH 150 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 424 ,519 DATEPICKER dateplannedfinishdate;
+@ 366 ,128 DATEPICKER dateplannedfinishdate;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 469 ,724 LABEL lblProcessCost ;
+@ 447 ,885 LABEL lblProcessCost ;
 VALUE "«· ﬂ·›…" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -366,9 +367,9 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 462 ,240 TEXTBOX textProcessCost;
+@ 447 ,680 TEXTBOX textProcessCost;
 HEIGHT 30 ;
-WIDTH 470 ;
+WIDTH 190 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
@@ -377,34 +378,43 @@ FONTCOLOR {0,0,0}
 myout = RightToLeftControl ( "OrderProcessesWindow","comboOrderNumber" )
 myout = RightToLeftControl ( "OrderProcessesWindow","comboProcess" )
 myout = RightToLeftControl ( "OrderProcessesWindow","comboProcessStatus" )
-@ 380 ,834 CHECKBOX checkd1;
+@ 329 ,453 CHECKBOX checkd1;
 CAPTION " ›⁄Ì·";
 WIDTH 60;
 Height 30;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
-@ 421 ,833 CHECKBOX checkd2;
+@ 366 ,452 CHECKBOX checkd2;
 CAPTION " ›⁄Ì·";
 WIDTH 60;
 Height 30;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
-@ 384 ,441 CHECKBOX checkd3;
+@ 406 ,451 CHECKBOX checkd3;
 CAPTION " ›⁄Ì·";
 WIDTH 60;
 Height 30;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
-@ 426 ,441 CHECKBOX checkd4;
+@ 447 ,451 CHECKBOX checkd4;
 CAPTION " ›⁄Ì·";
 WIDTH 60;
 Height 30;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
+@ 6 ,765 BUTTONEX btnAutoAdd;
+CAPTION "≈œ—«Ã  ·ﬁ«∆Ï ·≈Ã—«¡«  «·œÊ—« ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:AutoAdd()  ;
+WIDTH 290 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
 END WINDOW
 
 OrderProcessesWindow.Center ( )
@@ -613,6 +623,60 @@ Method CheckFind Class OrderProcessesClass
 Local nIndex
 nIndex := OrderProcessesWindow.ComboFind.Value
 self:Column := self:Columns[nIndex]
+Return 0
+Method AutoAdd Class OrderProcessesClass
+Local oRSOrders,oRSProcess,oRSOrderProcesses,nMax1,nMax2,x,x2,nOrderNumber,nProcessID,cOrderNumber,cProcessID
+oRSOrders := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRSProcess := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRSOrderProcesses := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRSOrders:CursorType := 1
+oRSOrders:ActiveConnection := self:oCon
+oRSOrders:open ( "Select * from Orders",self:oCon,3,3 )
+oRSProcess:CursorType := 1
+oRSProcess:ActiveConnection := self:oCon
+oRSProcess:open ( "Select * from Process",self:oCon,3,3 )
+nMax1 := oRSOrders:RecordCount
+nMax2 := oRSProcess:RecordCount
+IF nMax1 > 0
+FOR x = 1 TO nMax1 STEP 1
+IF nMax2 > 0
+oRSProcess:MOVEFIRST()
+FOR x2 = 1 TO nMax2 STEP 1
+nOrderNumber := oRSOrders:fields:item("ID"):value
+nProcessID := oRSProcess:fields:item("ID"):value
+cOrderNumber = STR ( nOrderNumber )
+cProcessID = STR ( nProcessID )
+oRSOrderProcesses:CursorType := 1
+oRSOrderProcesses:ActiveConnection := self:oCon
+oRSOrderProcesses:open ( "Select * from OrderProcesses_ALL where OrderNumberID = " + cOrderNumber + " and ProcessID = " + cProcessID,self:oCon,3,3 )
+nMax3 := oRSOrderProcesses:RecordCount
+IF nMax3 = 0
+oRSOrderProcesses:ADDNEW()
+oRSOrderProcesses:fields:item("OrderNumberID"):value := cOrderNumber
+oRSOrderProcesses:fields:item("ProcessID"):value := cProcessID
+oRSOrderProcesses:fields:item("CheckD1"):value := 3
+oRSOrderProcesses:fields:item("CheckD2"):value := 3
+oRSOrderProcesses:fields:item("CheckD3"):value := 3
+oRSOrderProcesses:fields:item("CheckD4"):value := 3
+oRSOrderProcesses:fields:item("plannedstartdate"):value := ""
+oRSOrderProcesses:fields:item("PlannedFinishDate"):value := ""
+oRSOrderProcesses:fields:item("RealStartDate"):value := ""
+oRSOrderProcesses:fields:item("RealFinishDate"):value := ""
+oRSOrderProcesses:fields:item("processstatusid"):value := 0
+oRSOrderProcesses:fields:item("ProcessCost"):value := ""
+oRSOrderProcesses:UPDATE()
+ENDIF
+oRSOrderProcesses:Close()
+oRSProcess:MOVENEXT()
+Next
+ENDIF
+oRSOrders:MOVENEXT()
+Next
+ENDIF
+oRSOrders:Close()
+oRSProcess:Close()
+MyOut := MSGBOX(" „  «·⁄„·Ì…","Õ”‰«")
+myout = self:Search()
 Return 0
 Method closewindow Class OrderProcessesClass
 myout = self:disconnect()
