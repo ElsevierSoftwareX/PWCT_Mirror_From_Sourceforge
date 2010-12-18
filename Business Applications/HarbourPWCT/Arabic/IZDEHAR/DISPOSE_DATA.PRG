@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:32:31    Date : 11/25/2010
+* Time : 00:01:04    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -53,6 +53,7 @@ Data ResultPrimaryKeys2 init {}
 Data nQuality init 0
 Data Qualityitems init {}
 Data Qualityitemsids init {}
+Data FindTitles init {"—«Ï «·ÃÊœ… »⁄œ «·«‰ Â«¡","Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -73,6 +74,7 @@ Method SearchAdd
 Method BeforeSearch
 Method GetSearchValue
 Method settimer
+Method CheckFind
 EndClass
 Method showwindow Class DisposeClass
 IF .not. UserCan_WinDispose = 2
@@ -119,22 +121,14 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,767 LABEL lbl1browse ;
-VALUE "—ﬁ„ «·œÊ—…" ;
-WIDTH 80 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 53 ,354 TEXTBOX textnamebrowse;
+@ 53 ,315 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,248 BUTTONEX btn1browse;
+@ 52 ,208 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -144,11 +138,20 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1070 ;
 HEIGHT 130 ;
-HEADERS {"—«Ï «·ÃÊœ… »⁄œ «·«‰ Â«¡","Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","—ﬁ„ «·œÊ—…"};
+HEADERS self:FindTitles;
 WIDTHS {170,100,120,120,200,200,100} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1} ;
+FONTCOLOR {0,0,0}
+@ 53 ,718 COMBOBOX comboFind;
+ON CHANGE self:CheckFind()  ;
+WIDTH 180 ;
+HEIGHT 200;
+ITEMS self:FindTitles ;
+VALUE 6 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
@@ -371,6 +374,11 @@ self:oRS:fields:item("QualityDisposeNotes"):value := cNotes
 self:oRS:UPDATE()
 ENDIF
 winQualityNotes.Release ( )
+Return 0
+Method CheckFind Class DisposeClass
+Local nIndex
+nIndex := DisposeWindow.ComboFind.Value
+self:Column := self:Columns[nIndex]
 Return 0
 Method closewindow Class DisposeClass
 myout = self:disconnect()
