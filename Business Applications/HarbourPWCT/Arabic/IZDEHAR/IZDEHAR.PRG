@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:05:48    Date : 11/26/2010
+* Time : 23:03:39    Date : 11/30/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -140,6 +140,8 @@ Set Procedure to "CustOrders_Data.PRG"
 Set Procedure to "EmpOrders_Data.PRG"
 Set Procedure to "ValueItems_Data.PRG"
 Set Procedure to "ValueItems_Report.PRG"
+Set Procedure to "CustDispose2_Data.PRG"
+Set Procedure to "ValueItemsValues_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -223,6 +225,8 @@ CustOrdersObject = CustOrdersClass()
 EmpOrdersObject = EmpOrdersClass()
 ValueItemsObject = ValueItemsClass()
 ValueItemsReportObject = ValueItemsReportClass()
+CustDispose2Object = CustDispose2Class()
+ValueItemsValuesObject = ValueItemsValuesClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -575,6 +579,7 @@ MENUITEM "«Œ Ì«—«  «· ﬁÌÌ„ «·⁄«„" Action CustOpinionObject:ShowWindow()
 MENUITEM "«· ﬁÌÌ„ «·⁄«„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
 SEPARATOR
 MENUITEM "⁄‰«’— «· ﬁÌÌ„ «·„›’· ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action ValueItemsObject:ShowWindow()
+MENUITEM "«· ﬁÌÌ„ «·„›’· ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDispose2Object:ShowWindow()
 END POPUP
 ENDIF
 POPUP " ﬁ«—Ì—"
