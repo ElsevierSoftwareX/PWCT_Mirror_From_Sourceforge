@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:03:33    Date : 11/30/2010
+* Time : 00:57:47    Date : 12/01/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -62,6 +62,7 @@ Method BeforeSearch
 Method SearchAdd
 Method settimer
 Method GetSearchValue
+Method MySet
 EndClass
 Method showwindow Class ValueItemsValuesClass
 IF .not. self:orderitemsid = 0
@@ -213,12 +214,37 @@ WIDTH 490 ;
 HEIGHT 510 ;
 HEADERS self:ColTitles;
 WIDTHS self:ColWidths ;
+VALUE 1 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
+@ 211 ,31 BUTTONEX btnset1;
+CAPTION " 1 ";
+ON CLICK self:MySet("1")  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 9 ;
+TOOLTIP ""
+@ 259 ,31 BUTTONEX btnset2;
+CAPTION " 2 ";
+ON CLICK self:MySet("2")  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 9 ;
+TOOLTIP ""
+@ 307 ,31 BUTTONEX btnset3;
+CAPTION " 3 ";
+ON CLICK self:MySet("3")  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 9 ;
+TOOLTIP ""
+@ 355 ,31 BUTTONEX btnset4;
+CAPTION " 4 ";
+ON CLICK self:MySet("4")  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 9 ;
+TOOLTIP ""
 END WINDOW
 
 ValueItemsValuesWindow.Center ( )
@@ -272,6 +298,28 @@ ValueItemsValuesWindow.btnadd.Enabled := true
 ValueItemsValuesWindow.textName.Enabled := false
 ENDIF
 self:OperationMode := p1
+Return 0
+Method MySet(p1) Class ValueItemsValuesClass
+nValue := ValueItemsValuesWindow.Grid1Browse.Value
+IF nValue = 0
+MyOut := MSGBOX("ÌÃ»  ÕœÌœ »‰œ ›Ï «·ÃœÊ·","⁄›Ê«")
+Return 0
+ENDIF
+myout = self:OpenDataWindow()
+self:cName := p1
+ValueItemsValuesWindow.textName.Value := self:cName
+myout = self:UserInterface2Class()
+myout = self:Class2Ado()
+self:oRS:UPDATE()
+ValueItemsValuesWindow.Grid1Browse.cell(nValue,1) := self:cName
+nMax := ValueItemsValuesWindow.Grid1browse.ItemCount
+IF nValue < nMax
+ValueItemsValuesWindow.Grid1Browse.Value := nValue+1
+ENDIF
+IF nValue = nMax .and. .not. nMax = 1
+ValueItemsValuesWindow.Grid1Browse.Value := nValue-1
+ENDIF
+myout = self:OpenDataWindow()
 Return 0
 Method closewindow Class ValueItemsValuesClass
 myout = self:disconnect()
