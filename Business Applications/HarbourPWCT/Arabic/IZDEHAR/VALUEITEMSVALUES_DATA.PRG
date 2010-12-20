@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:57:47    Date : 12/01/2010
+* Time : 10:25:20    Date : 12/01/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -263,6 +263,7 @@ self:oRS:fields:item("ValueItemValue"):value := self:cName
 Return 0
 Method ADO2Class Class ValueItemsValuesClass
 self:cName := self:oRS:fields:item("ValueItemValue"):value
+self:cName = STR ( self:cName )
 Return 0
 Method Class2UserInterface Class ValueItemsValuesClass
 ValueItemsValuesWindow.textName.Value := self:cName

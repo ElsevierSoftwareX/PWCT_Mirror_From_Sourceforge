@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:01:55    Date : 11/30/2010
+* Time : 10:46:02    Date : 12/01/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,7 +41,6 @@ Data nID init 0
 Data column init "ordernumber"
 Data PrimaryKey init "id"
 Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderNumber"}
-Data nOrderNumber init ""
 Data cOrderDate init ""
 Data cOrderFinishDate init ""
 Data nOrderNumber init 0
@@ -486,7 +485,9 @@ IF mymax2 = 0
 myRS:ADDNEW()
 myRS:fields:item("OrderItemsid"):value := myid
 myRS:fields:item("ValueItemID"):value := empdetailsids[x]
-myRS:fields:item("ValueItemValue"):value := ""
+myRS:fields:item("ValueItemValue"):value := 0
+nMyID := self:oRS:fields:item("OrderNumber"):value
+myRS:fields:item("OrderNumberID"):value := str(nMyId)
 myRS:UPDATE()
 ENDIF
 myRS:Close()
