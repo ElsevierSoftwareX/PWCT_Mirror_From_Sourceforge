@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:19:39    Date : 12/20/2010
+* Time : 19:45:03    Date : 12/01/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -69,8 +69,7 @@ HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK  
+FONTCOLOR {0,0,0} 
 
 @ 359 ,549 BUTTONEX btn1;
 CAPTION "«·»ÕÀ";
@@ -82,8 +81,8 @@ TOOLTIP ""
 WIDTH 626 ;
 HEIGHT 200 ;
 HEADERS {"«”„ «·”Ê—…","—ﬁ„ «·”Ê—…","—ﬁ„ «·¬Ì…","‰’ «·¬Ì…"};
-WIDTHS {100,75,75,325,50} ;
-FONT "Arial" SIZE 9 ;
+WIDTHS {100,75,75,325} ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {0,255,64} ;
 EDIT INPLACE {} ;
 FONTCOLOR {0,0,0}
@@ -100,7 +99,7 @@ HEIGHT 24 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
-@ 72 ,307 LABEL lbl1 ;
+@ 72 ,307 LABEL lbl2 ;
 VALUE "⁄œœ «· ﬂ—«—" ;
 WIDTH 111 ;
 HEIGHT 28 ;
