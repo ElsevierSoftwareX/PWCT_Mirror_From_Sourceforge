@@ -1,0 +1,194 @@
+#line 54 "c:\SSBUILD\minigui\include\i_var.ch"
+  MEMVAR _HMG_SYSDATA
+  MEMVAR _HMG_SCRSAVERDATA
+#line 109 "c:\SSBUILD\xharbour\include\hbclass.ch"
+   DYNAMIC DivertConstructorCall
+
+
+
+
+
+
+
+
+
+
+
+DECLARE HBClass  New( cName AS String, OPTIONAL SuperParams ) AS CLASS HBClass  Create() AS Object  Instance() AS Object  AddClsMethod( cName AS String, @MethodName(), nScope AS Numeric, n2 AS Numeric, n3 AS Numeric )  AddMultiClsData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String )  AddMultiData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String, x AS LOGICAL, lPer AS LOGICAL )  AddMethod( cName AS String, @MethodName(), nScope AS Numeric, lPersistent AS LOGICAL )  AddInLine( cName AS String, bBlock AS CodeBlock, nScope AS Numeric, lPersistent AS LOGICAL )  AddVirtual( cName AS String )
+#line 4 "SEARCH.prg"
+Function Main
+
+
+
+
+
+
+
+
+
+
+
+
+
+Public True,False
+True = .T.
+False = .F.
+SS_NEWSERVER("Server1","Slave","000")
+
+
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+    SS_FLAG3 = 1 ; SS_FLAG = 1 ; SS_FLAG2 = 1
+    SS_FLAG = 4 ; SS_FLAG2 = 3 ; SS_FLAG3 = 2
+            SS_NEWCIRCUIT( "Main" )
+                SS_NEWBRANCH( "Main" )
+                    SS_NRESIS( "Main" )
+    SS_FLAG3 = 3
+
+
+    SS_NEWR( "WIN32EVENTS()" , "WIN32EVENTS" )
+
+  SS_ADDRES("WIN32EVENTS")
+
+
+SS_NEWR( "R2695626219_1()" , "Circuits\Main\Main\Main" )
+
+
+ss_callr( "Circuits\Main\Main\Main" )
+Return
+
+  FUNCTION STARTSERVER()
+       SS_FIREON()
+  RETURN
+
+  function WIN32EVENTS()
+       ProcessMessages()
+  RETURN
+
+
+function R2695626219_1()
+
+
+
+
+
+
+
+
+
+ _DefineWindow ( "win1", "»—‰«„Ã «·»«ÕÀ ›Ï «Ì«  «·ﬁ—¡«‰ «·ﬂ—Ì„", 10, 10, 781, 506, .F., .T., .T., .F., .F., {,}, {,},, ,, , ,, {236,233,216} , , .F. , .F. , .T. , "PWCTICON" , .F. , ,, , , ,, , , , , , , , , , .F. , , , , .F. , , , , , .F. , .F. )
+
+DoMethod ( "win1", "Center" )
+
+
+
+
+
+_DefineTextBox( "text1",, 99, 23, 200, 30,,,,,, .F., .F., .F., .F.,,,,, .T.,, .F. ,.F., .F., .F., .F. , , {255,255,255} , {0,0,0} , .F. , .F. ,)
+
+
+
+
+
+_DefineOwnerButton ( "btn1",, 325, 22, "«»ÕÀ", {|| find()}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+
+
+
+
+_DefineGrid ( "Grid1" , , 18 , 76 , 732 , 361 , {"«”„ «·”Ê—…","—ﬁ„ «·”Ê—…","—ﬁ„ «·¬Ì…","‰’ «·¬Ì…"} , {150,100,100,600} , , , "arial" , 14 , , , , , ,, .F.,, , .F. , , .T., .F., .F., .F. , .F. , , , .T. , , , .F. , {} , {255,255,255} , {0,0,0} ,, , , !.F. , , .F. )
+_EndWindow ()
+
+
+
+calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20, NUMOR(calldll32("GetWindowLong","USER32.DLL", GetFormHandle ("Win1"), -20),0x400000,0x100000))
+_ActivateWindow( {"win1"}, .F. )
+
+Proc find
+cn := GetProperty ( "win1", "text1" , "Value" )
+cn = ALLTRIM ( cn )
+Public Con
+Con := TOLEAUTO():NEW( "ADODB.Connection" )
+Con:open ( 'Provider=MSDASQL.1;Persist Security Info=False;Extended Properties="dsn=MS Access Database;uid=";Initial Catalog=ayat.mdb' )
+public oRS
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := Con
+oRS:open ( "Select * from h where aya like '" + cn + "%'",Con,3,3 )
+myd := oRS:RecordCount
+Domethod ( "win1", "grid1" , "DeleteAllItems" )
+IF myd > 0
+FOR x = 1 TO myd STEP 1
+soran := oRS:fields:item("soraname"):value
+numsora := oRS:fields:item("nsora"):value
+numaya := oRS:fields:item("naya"):value
+ayatxt := oRS:fields:item("aya"):value
+numsora = STR ( numsora )
+numaya = STR ( numaya )
+Domethod ( "win1", "grid1" , "AddItem" , {soran,numsora,numaya,ayatxt} )
+oRS:MOVENEXT()
+Next
+ELSE
+MyOut := MSGBOX("·« ÌÊÃœ „«  »ÕÀ ⁄‰Â","√”›")
+ENDIF
+Return Nil
+
+
+return
+
+INIT PROCEDURE Init_SEARCH
+SS_ON()
+SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,11)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",12,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",13,13)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",14,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",19,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",21,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",22,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 )",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",26,34)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",35,36)
+SS_ESASTEP("Circuits\Main\Main\Main","Right-To-Left, Window 'Win1'",37,39)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",40,41)
+SS_ESASTEP("Circuits\Main\Main\Main","prog",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure find",42,42)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","cn = win1.text1.Value",43,43)
+SS_ESASTEP("Circuits\Main\Main\Main","cn = All Trim cn",44,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Con = Create New ADODB Connection",45,46)
+SS_ESASTEP("Circuits\Main\Main\Main","Open ADODB Connection Con , Connection String : 'Provider=MSDASQL.1;Persist Security Info=False;Extended Properties='dsn=MS Access Database;uid=';Initial Catalog=ayat.mdb'",47,47)
+SS_ESASTEP("Circuits\Main\Main\Main","oRS = Create New ADODB RecordSet Object",48,49)
+SS_ESASTEP("Circuits\Main\Main\Main","Open Recordset oRS , Connection Con , CursorType 1 , SQL Statement 'Select * from h where aya like '' + cn + '%''",50,52)
+SS_ESASTEP("Circuits\Main\Main\Main","myd := ADODB RecordSet (oRS) , Get Records Count",53,53)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.grid1.DeleteAllItems ( )",54,54)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( myd > 0 )",55,55)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To myd Step 1)",56,56)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","soran = ADODB RecordSet (oRS) Get Field ('soraname') Value",57,57)
+SS_ESASTEP("Circuits\Main\Main\Main","numsora = ADODB RecordSet (oRS) Get Field ('nsora') Value",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","numaya = ADODB RecordSet (oRS) Get Field ('naya') Value",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","ayatxt = ADODB RecordSet (oRS) Get Field ('aya') Value",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","numsora = CONVERT numsora TO STRING",61,61)
+SS_ESASTEP("Circuits\Main\Main\Main","numaya = CONVERT numaya TO STRING",62,62)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.grid1.AddItem ( {soran,numsora,numaya,ayatxt} )",63,63)
+SS_ESASTEP("Circuits\Main\Main\Main","ADODB RecordSet oRS - Goto Next Record",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",65,65)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",66,66)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message '·« ÌÊÃœ „«  »ÕÀ ⁄‰Â' Title '√”›' Type: Message Box",67,67)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",68,68)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",69,69)
+Return
