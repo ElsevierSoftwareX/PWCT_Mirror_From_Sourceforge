@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:57:33    Date : 12/01/2010
+* Time : 13:50:19    Date : 12/01/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -145,6 +145,7 @@ Set Procedure to "ValueItemsValues_Data.PRG"
 Set Procedure to "CustDispose2_Report.PRG"
 Set Procedure to "CustDispose3_Report.PRG"
 Set Procedure to "CustDispose4_Report.PRG"
+Set Procedure to "CustCome_Report.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -233,6 +234,7 @@ ValueItemsValuesObject = ValueItemsValuesClass()
 CustDispose2ReportObject = CustDispose2ReportClass()
 CustDispose3ReportObject = CustDispose3ReportClass()
 CustDispose4ReportObject = CustDispose4ReportClass()
+CustComeReportObject = CustComeReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -622,6 +624,8 @@ MENUITEM "ﬁ«∆„… »«·œÊ—« " Action ListOfOrdersReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— » ›«’Ì· «·œÊ—…" Action OrderDetailsReportObject:ShowWindow()
 MENUITEM "ﬂ—Ê  œÊ—…" Action OrderCardsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«·œÊ—«  Ê«·„ œ—»Ì‰ Ê„—‘ÕÌ‰ «·⁄„·«¡" Action CustFriendsReportObject:ShowWindow()
+MENUITEM "ﬂ‘› Õ÷Ê— Ê≈‰’—«› «·„ œ—»Ì‰" Action CustComeReportObject:ShowWindow()
+SEPARATOR
 IF UserCan_WinAgreement = 2
 MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·ÃÊœ…" Action QualityOpinionsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·ÃœÊ·… Ê«·„ «»⁄…" Action SchedulingOpinionsReportObject:ShowWindow()
