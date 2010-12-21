@@ -1,0 +1,1 @@
+odbcconf CONFIGDSN "Microsoft Access Driver (*.mdb)" "DSN=IZDEHARDATA | Trusted_Connection=Yes | DBQ=D:\doublesvsoop\Business Applications\HarbourPWCT\Arabic\IZDEHAR\data\sysdata.mdb"

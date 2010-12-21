@@ -25,6 +25,10 @@ At Client & Server
 3 - Create ODBC Data Source so application could access the Database
     To Create ODBC Data Source
 
+    You can now Run CreateODBC.bat 
+
+    OR
+
     3.1 Open Control Panel
     3.2 Open Adminstrative Tools
     3.3 Select Data Sources (ODBC)
@@ -36,6 +40,8 @@ At Client & Server
 	IF you don't have network and/or shared folder, select the database path directly
 	for example 
 	C:\IZDEHAR\data\sysdata.mdb
+
+
 
 4 - Run application  \\servername\\IZDEHAR\IZDEHAR.exe
 	Or C:\IZDEHAR\IZDEHAR.exe if you are using one machine 
