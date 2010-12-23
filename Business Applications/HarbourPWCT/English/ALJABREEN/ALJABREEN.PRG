@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:47:16    Date : 12/04/2010
+* Time : 19:08:25    Date : 12/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -312,12 +312,17 @@ AUTOSIZE
 
 END TOOLBAR
 
-@ 84 ,950 LABEL lblUserName ;
+@ 52 ,0 IMAGE imagelogo;
+PICTURE "image\applogo.JPG";
+STRETCH ;
+WIDTH getdesktopwidth() HEIGHT getdesktopheight()-160
+@ 84 ,getdesktopwidth()-310 LABEL lblUserName ;
 VALUE "User Name : " ;
 WIDTH 293 ;
 HEIGHT 40 ;
 FONT "Arial" SIZE 18  ;
 BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
@@ -750,7 +755,6 @@ win1.Hide ( )
 DO LOGOSTART
 win1.Maximize ( )
 win1.Show ( )
-DO mylogo
 if !iswindowdefined( winlogin )
 DEFINE WINDOW winlogin ;
 AT 10 ,10 ;
