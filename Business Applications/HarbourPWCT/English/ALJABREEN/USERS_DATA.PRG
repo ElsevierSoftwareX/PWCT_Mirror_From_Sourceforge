@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:38:57    Date : 12/02/2010
+* Time : 23:13:41    Date : 12/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -211,7 +211,7 @@ TOOLTIP ""
 @ 93 ,73 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
-HEIGHT 160 ;
+HEIGHT 200 ;
 HEADERS {"ID","User Name"};
 WIDTHS {50,150} ;
 FONT "Arial" SIZE 9 ;
@@ -235,23 +235,6 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 PASSWORD
 
-myout = self:LoadLookupTable("AgreementRoles","AgreementRole",@self:AgreementRoleItems,"id",@self:AgreementRoleItemsIDS)
-@ 266 ,73 LABEL lblAgreementRole ;
-VALUE "Agreement Role" ;
-WIDTH 150 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 266 ,290 COMBOBOX comboAgreementRole;
-WIDTH 390 ;
-HEIGHT 100;
-ITEMS self:AgreementRoleitems ;
-VALUE 1 ;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("choice","status",@self:SystemAdminItems,"id",@self:SystemAdminItemsIDS)
 @ 307 ,73 LABEL lblSystemAdmin ;
 VALUE "System Admin" ;
@@ -288,8 +271,6 @@ Return 0
 Method UserInterface2Class Class UsersClass
 self:cUserName := UsersWindow.textUserName.Value
 self:cPassWord := UsersWindow.textPassWord.Value
-self:nAgreementRole := UsersWindow.ComboAgreementRole.Value
-self:nAgreementRole := self:AgreementRoleitemsids[self:nAgreementRole]
 self:nSystemAdmin := UsersWindow.ComboSystemAdmin.Value
 self:nSystemAdmin := self:SystemAdminItemsids[self:nSystemAdmin]
 Return 0
@@ -308,8 +289,6 @@ Return 0
 Method Class2UserInterface Class UsersClass
 UsersWindow.textUserName.Value := self:cUserName
 UsersWindow.textPassWord.Value := self:cPassWord
-self:nAgreementRole = self:LookupIDToIndex(self:nAgreementRole,@self:AgreementRoleItemsids)
-UsersWindow.ComboAgreementRole.Value := self:nAgreementRole
 self:nSystemAdmin = self:LookupIDToIndex(self:nSystemAdmin,@self:SystemAdminItemsids)
 UsersWindow.ComboSystemAdmin.Value := self:nSystemAdmin
 Return 0
@@ -349,7 +328,6 @@ UsersWindow.btnedit.Enabled := false
 UsersWindow.btnadd.Enabled := false
 UsersWindow.textUserName.Enabled := true
 UsersWindow.textPassWord.Enabled := true
-UsersWindow.comboAgreementRole.Enabled := true
 UsersWindow.comboSystemAdmin.Enabled := true
 ENDIF
 IF p1 = 2
@@ -365,7 +343,6 @@ UsersWindow.btnedit.Enabled := true
 UsersWindow.btnadd.Enabled := true
 UsersWindow.textUserName.Enabled := false
 UsersWindow.textPassWord.Enabled := false
-UsersWindow.comboAgreementRole.Enabled := false
 UsersWindow.comboSystemAdmin.Enabled := false
 ENDIF
 self:OperationMode := p1
