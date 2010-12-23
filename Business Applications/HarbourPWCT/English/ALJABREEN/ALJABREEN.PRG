@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:29:54    Date : 12/04/2010
+* Time : 17:47:16    Date : 12/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -569,37 +569,6 @@ ENDIF
 END POPUP
 END POPUP
 ENDIF
-IF UserCan_WinOrders = 2 .or. UserCan_WinAgreement = 2
-POPUP "Orders"
-IF UserCan_WinOrders = 2
-MENUITEM "Enter Order" Action OrdersEnterObject:ShowWindow()
-SEPARATOR
-ENDIF
-IF UserCan_WinAgreement = 2
-MENUITEM "Quality Manager Opinions" Action QualityObject:ShowWindow()
-MENUITEM "Scheduling Manager Opinions" Action SchedulingObject:ShowWindow()
-MENUITEM "Warehouse Manager Opinions" Action WarehouseObject:ShowWindow()
-MENUITEM "Finance Manager Opinions" Action FinanceObject:ShowWindow()
-MENUITEM "Production Manager Opinions" Action ProductionManObject:ShowWindow()
-MENUITEM "Agreement" Action AgreementObject:ShowWindow()
-ENDIF
-END POPUP
-ENDIF
-IF UserCan_WinProduction = 2
-POPUP "Production"
-MENUITEM "Define Processes" Action ProcessesObject:ShowWindow()
-MENUITEM "Define Processes Status" Action ProcessStatusObject:ShowWindow()
-SEPARATOR
-MENUITEM "Order Processes" Action OrderProcessesObject:ShowWindow()
-SEPARATOR
-MENUITEM "Employees Production" Action ProductionObject:ShowWindow()
-END POPUP
-ENDIF
-IF UserCan_WinDispose = 2
-POPUP "Dispose"
-MENUITEM "Dispose and Quality Manager Opinion" Action DisposeObject:ShowWindow()
-END POPUP
-ENDIF
 POPUP "Reports"
 IF UserCan_WinEmployees = 2
 MENUITEM "List of Employees Report" Action ListOfEmployeesreport()
@@ -757,27 +726,6 @@ MENUITEM "Jacket Products Warehouse" Action myitemsoutreport(11)
 ENDIF
 END POPUP
 separator
-ENDIF
-IF UserCan_WinOrders = 2
-MENUITEM "List Of Orders Report" Action ListOfOrdersReportObject:ShowWindow()
-MENUITEM "Order Details Report" Action OrderDetailsReportObject:ShowWindow()
-ENDIF
-IF UserCan_WinAgreement = 2
-MENUITEM "Quality Manager Opinions Report" Action QualityOpinionsReportObject:ShowWindow()
-MENUITEM "Scheduling Manager Opinions Report" Action SchedulingOpinionsReportObject:ShowWindow()
-MENUITEM "Warehouse Manager Opinions Report" Action WarehouseOpinionsReportObject:ShowWindow()
-MENUITEM "Finance Manager Opinions Report" Action FinanceOpinionsReportObject:ShowWindow()
-MENUITEM "Agreement Report" Action AgreementReportObject:ShowWindow()
-SEPARATOR
-ENDIF
-IF UserCan_WinProduction = 2
-MENUITEM "Processes Report" Action ProcessesReportObject:ShowWindow()
-MENUITEM "Process Status Report" Action ProcessStatusReportObject:ShowWindow()
-MENUITEM "Order Processes Report" Action OrderProcessesReportObject:ShowWindow()
-MENUITEM "Employees Production Report" Action EmployeesProductionReportObject:ShowWindow()
-ENDIF
-IF UserCan_WinDispose = 2
-MENUITEM "Orders Dispose Report" Action OrdersDisposeReportObject:ShowWindow()
 ENDIF
 END POPUP
 Return Nil
