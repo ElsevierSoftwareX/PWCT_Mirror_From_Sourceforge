@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:13:41    Date : 12/04/2010
+* Time : 23:43:12    Date : 12/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -399,28 +399,28 @@ Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 232 ,38 CHECKBOX check5;
+@ 232 ,698 CHECKBOX check5;
 CAPTION "Orders";
 WIDTH 250;
 Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 284 ,38 CHECKBOX check6;
+@ 284 ,698 CHECKBOX check6;
 CAPTION "Agreement";
 WIDTH 250;
 Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 336 ,38 CHECKBOX check7;
+@ 336 ,698 CHECKBOX check7;
 CAPTION "Production";
 WIDTH 250;
 Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 388 ,38 CHECKBOX check8;
+@ 388 ,698 CHECKBOX check8;
 CAPTION "Dispose";
 WIDTH 250;
 Height 30;
