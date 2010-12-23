@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:45:03    Date : 12/01/2010
+* Time : 14:32:36    Date : 12/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -116,7 +116,6 @@ EndIF
 
 Proc find
 cn := win1.text1.Value
-cn := "cn"
 cn = ALLTRIM ( cn )
 Public Con
 Con := TOLEAUTO():NEW( "ADODB.Connection" )
@@ -125,13 +124,10 @@ public oRS
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := Con
-oRS:open ( "Select * from h where aya like'%'",Con,3,3 )
+oRS:open ( "Select * from h where aya like '%" + cn + "%'",Con,3,3 )
 myd := oRS:RecordCount
-myd := " myd "
-myd1 = AT(cn,myd)
 win1.grid1.DeleteAllItems ( )
-IF myd1 > 0
-win1.text2.Value := myd1
+IF myd > 0
 FOR x = 1 TO myd STEP 1
 soran := oRS:fields:item("soraname"):value
 numsora := oRS:fields:item("nsora"):value
@@ -143,6 +139,8 @@ win1.grid1.AddItem ( {soran,numsora,numaya,ayatxt} )
 oRS:MOVENEXT()
 Next
 ENDIF
+myd = STR ( myd )
+win1.text2.Value := myd
 Return Nil
 
 
