@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:24:24    Date : 12/07/2010
+* Time : 17:29:54    Date : 12/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -312,71 +312,6 @@ AUTOSIZE
 
 END TOOLBAR
 
-@ 79 ,24 IMAGE image1;
-PICTURE "image\CUSTOMERS.JPG";
-ON CLICK customers()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 316 ,71 LABEL lbl1 ;
-VALUE "Customers" ;
-ACTION customers()  ;
-WIDTH 100 ;
-HEIGHT 20 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 79 ,225 IMAGE image3;
-PICTURE "image\ORDER.JPG";
-ON CLICK OrdersEnterObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 316 ,294 LABEL lbl3 ;
-VALUE "Orders" ;
-ACTION OrdersEnterObject:ShowWindow()  ;
-WIDTH 60 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 356 ,135 IMAGE image4;
-PICTURE "image\AGREEMENT.JPG";
-ON CLICK AgreementObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 607 ,184 LABEL lbl4 ;
-VALUE "Agreement" ;
-ACTION AgreementObject:ShowWindow()  ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 79 ,430 IMAGE image5;
-PICTURE "image\FACTORY.JPG";
-ON CLICK OrderProcessesObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 316 ,470 LABEL lbl5 ;
-VALUE "Production" ;
-ACTION OrderProcessesObject:ShowWindow()  ;
-WIDTH 130 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 356 ,340 IMAGE image7;
-PICTURE "image\DISPOSE.JPG";
-ON CLICK DisposeObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 607 ,394 LABEL lbl7 ;
-VALUE "Dispose" ;
-ACTION DisposeObject:ShowWindow()  ;
-WIDTH 130 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
 @ 84 ,950 LABEL lblUserName ;
 VALUE "User Name : " ;
 WIDTH 293 ;
@@ -865,16 +800,6 @@ Return Nil
 Proc systemlogin
 win1.Hide ( )
 DO LOGOSTART
-myhandle = getcontrolhandle ( "image1","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image3","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image4","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image5","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image7","win1" )
-DO sethandcursor WITH myhandle
 win1.Maximize ( )
 win1.Show ( )
 DO mylogo
