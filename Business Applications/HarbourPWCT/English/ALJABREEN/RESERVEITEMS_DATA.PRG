@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:11:41    Date : 12/05/2010
+* Time : 22:27:33    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -820,6 +820,12 @@ nMax := myRS:RecordCount
 myRS:Close()
 IF nMax > vMax
 MyOut := MSGBOX("Order Number Duplication is not Allowed","Sorry")
+myret := false
+ENDIF
+v1 := ReserveItemsWindow.textInvNo.Value
+v1 = ALLTRIM ( v1 )
+IF v1 == ""
+MyOut := MSGBOX("You must determine Invoice Number","Sorry")
 myret := false
 ENDIF
 Return myret

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:44:34    Date : 12/07/2010
+* Time : 22:32:23    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -798,6 +798,12 @@ ENDIF
 v1 := ItemsEnterWindow.ComboItem.Value
 IF v1 = 0
 MyOut := MSGBOX("You must determine item","Sorry")
+myret := false
+ENDIF
+v1 := ItemsEnterWindow.textInvNo.Value
+v1 = ALLTRIM ( v1 )
+IF v1 == ""
+MyOut := MSGBOX("You must determine Invoice Number","Sorry")
 myret := false
 ENDIF
 Return myret
