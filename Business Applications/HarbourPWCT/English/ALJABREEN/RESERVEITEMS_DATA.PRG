@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:33:12    Date : 12/05/2010
+* Time : 22:11:41    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -789,7 +789,7 @@ nColumn := ReserveItemsWindow.ComboSearchColumn.Value
 self:column := self:columns[ncolumn]
 Return 0
 Method CheckData Class ReserveItemsClass
-Local myret,v1
+Local myret,v1,vMax,myRS,nMax
 myret := true
 v1 := ReserveItemsWindow.ComboCustomerName.Value
 IF v1 = 0
@@ -799,6 +799,27 @@ ENDIF
 v1 := ReserveItemsWindow.ComboItem.Value
 IF v1 = 0
 MyOut := MSGBOX("You must determine item","Sorry")
+myret := false
+ENDIF
+v1 := ReserveItemsWindow.textOrderNumber.Value
+v1 = ALLTRIM ( v1 )
+IF v1 == ""
+MyOut := MSGBOX("You must determine Order Number","Sorry")
+myret := false
+ENDIF
+IF self:addrec = true
+vmax := 0
+ELSE
+vmax := 1
+ENDIF
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from ReserveItems_All where OrderNumber = '" + v1 + "'",self:oCon,3,3 )
+nMax := myRS:RecordCount
+myRS:Close()
+IF nMax > vMax
+MyOut := MSGBOX("Order Number Duplication is not Allowed","Sorry")
 myret := false
 ENDIF
 Return myret
