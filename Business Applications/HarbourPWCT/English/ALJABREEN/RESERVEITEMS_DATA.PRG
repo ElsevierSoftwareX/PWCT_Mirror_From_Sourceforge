@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:09:20    Date : 12/05/2010
+* Time : 00:05:15    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -828,6 +828,22 @@ IF v1 == ""
 MyOut := MSGBOX("You must determine Invoice Number","Sorry")
 myret := false
 ENDIF
+tvalue := ReserveItemsWindow.Comboitem.Value
+tvalue := self:ItemItemsids[tvalue]
+tvalue = STR ( tvalue )
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := Self:oCon
+myRS:open ( "Select * from Items where id = " + tvalue,Self:oCon,3,3 )
+v1 := myRS:fields:item("itemvalue"):value
+c1 := ReserveItemsWindow.textUnitValue.value
+c1 = VAL ( c1 )
+v1 = VAL ( v1 )
+IF ( v1 - c1 ) < 0
+MyOut := MSGBOX("Required Quantity not found ... negative value : " + alltrim(str(v1-c1)),"Sorry")
+myret := false
+ENDIF
+myRS:Close()
 Return myret
 Method closewindow Class ReserveItemsClass
 myout = self:disconnect()
