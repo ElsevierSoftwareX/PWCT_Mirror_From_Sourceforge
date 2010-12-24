@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:46:38    Date : 12/05/2010
+* Time : 21:33:12    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -297,11 +297,11 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 310 ,298 COMBOBOX comboCustomerName;
-WIDTH 200 ;
+WIDTH 460 ;
 HEIGHT 100;
 ITEMS self:CustomerNameitems ;
 VALUE 1 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 344 ,155 LABEL lblOrderNumber ;
