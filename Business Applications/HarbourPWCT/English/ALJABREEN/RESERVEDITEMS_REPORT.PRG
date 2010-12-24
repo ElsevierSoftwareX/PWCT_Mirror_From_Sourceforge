@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:38:55    Date : 12/07/2010
+* Time : 00:32:46    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -95,7 +95,7 @@ FONT "Arial" SIZE 9  ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
 @ 454 ,372 CHECKBOX check1;
-CAPTION "Date Range :";
+CAPTION "Export Date";
 ON CHANGE self:checkchange()  ;
 WIDTH 100;
 Height 30;
