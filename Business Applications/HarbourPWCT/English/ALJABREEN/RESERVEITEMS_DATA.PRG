@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:27:33    Date : 12/05/2010
+* Time : 23:09:20    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -235,8 +235,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 420 ,487 LABEL lblSourceName ;
-VALUE "Value" ;
-WIDTH 50 ;
+VALUE "Quantity" ;
+WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -273,8 +273,8 @@ FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 @ 460 ,487 LABEL lblSecUnitValue ;
-VALUE "Value" ;
-WIDTH 50 ;
+VALUE "Quantity" ;
+WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -382,7 +382,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 512 ,610 LABEL lblCost ;
+@ 506 ,507 LABEL lblCost ;
 VALUE "Cost" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -390,14 +390,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 513 ,669 TEXTBOX textCost;
+@ 505 ,568 TEXTBOX textCost;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 512 ,284 LABEL lblDateofInput ;
+@ 508 ,144 LABEL lblDateofInput ;
 VALUE "Date of Export" ;
 WIDTH 140 ;
 HEIGHT 30 ;
@@ -405,13 +405,13 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 512 ,438 DATEPICKER datedateofinput;
+@ 508 ,298 DATEPICKER datedateofinput;
 WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 513 ,73 LABEL lblAmount ;
+@ 513 ,923 LABEL lblAmount ;
 VALUE "Amount" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -419,7 +419,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 512 ,163 TEXTBOX textAmount;
+@ 512 ,1013 TEXTBOX textAmount;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 14 ;
