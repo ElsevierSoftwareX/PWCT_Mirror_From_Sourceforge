@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:32:23    Date : 12/05/2010
+* Time : 22:44:33    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -102,7 +102,6 @@ AADD( mycolumns , "importInvDate")
 AADD( mycolumns , "ItemName")
 AADD( mycolumns , "ItemCompleteName")
 AADD( mycolumns , "Value1")
-AADD( mycolumns , "Amount")
 AADD( mycolumns , "ItemClass")
 AADD( mycolumns , "GroupName")
 AADD( mycolumns , "SourceName")
@@ -120,8 +119,7 @@ AADD( mycolumns , "Invoice Number")
 AADD( mycolumns , "Invoice Date")
 AADD( mycolumns , "Item Name")
 AADD( mycolumns , "Item Complete Name")
-AADD( mycolumns , "Value")
-AADD( mycolumns , "Amount")
+AADD( mycolumns , "Quantity")
 AADD( mycolumns , "Item Class")
 AADD( mycolumns , "Group Name")
 AADD( mycolumns , "Source Name")
@@ -241,9 +239,9 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 435 ,550 LABEL lblSourceName ;
-VALUE "Value" ;
-WIDTH 50 ;
+@ 435 ,530 LABEL lblSourceName ;
+VALUE "Quantity" ;
+WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -273,15 +271,15 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
 HEIGHT 140 ;
 HEADERS mycolumns;
-WIDTHS {100,100,100,100,100,100,200,100,100,100,100,100,100,100,100,100,100} ;
-FONT "Arial" SIZE 9 ;
+WIDTHS {100,100,100,100,100,100,200,100,100,100,100,100,100,100,100,100} ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 484 ,550 LABEL lblSecUnitValue ;
-VALUE "Value" ;
-WIDTH 50 ;
+@ 484 ,530 LABEL lblSecUnitValue ;
+VALUE "Quantity" ;
+WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -391,7 +389,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 532 ,600 LABEL lblCost ;
+@ 532 ,550 LABEL lblCost ;
 VALUE "Cost" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -399,14 +397,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 531 ,660 TEXTBOX textCost;
+@ 531 ,620 TEXTBOX textCost;
 HEIGHT 30 ;
-WIDTH 100 ;
+WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 530 ,285 LABEL lblDateofInput ;
+@ 530 ,165 LABEL lblDateofInput ;
 VALUE "Date of Import" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -414,13 +412,13 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 530 ,419 DATEPICKER datedateofinput;
+@ 530 ,299 DATEPICKER datedateofinput;
 WIDTH 170 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 530 ,74 LABEL lblAmount ;
+@ 530 ,914 LABEL lblAmount ;
 VALUE "Amount" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -428,7 +426,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 530 ,164 TEXTBOX textAmount;
+@ 530 ,1004 TEXTBOX textAmount;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 14 ;
@@ -491,7 +489,7 @@ WIDTH 180 ;
 HEIGHT 230;
 ITEMS mycolumns ;
 VALUE 6 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
