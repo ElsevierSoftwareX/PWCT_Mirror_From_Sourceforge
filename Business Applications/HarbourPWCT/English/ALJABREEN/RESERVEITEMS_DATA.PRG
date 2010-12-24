@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:48:34    Date : 12/07/2010
+* Time : 16:46:38    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,9 +41,9 @@ Data nID init 0
 Data column init "OrderNumber"
 Data PrimaryKey init "id"
 Data columns init {}
-Data nOrderNumber init 0
-Data OrderNumberitems init {}
-Data OrderNumberitemsids init {}
+Data nCustomerName init 0
+Data CustomerNameitems init {}
+Data CustomerNameitemsids init {}
 Data nItem init 0
 Data itemitems init {}
 Data itemitemsids init {}
@@ -55,13 +55,13 @@ Data cCost init ""
 Data cNotes init ""
 Data cItemUnitText init ""
 Data cItemSecUnitText init ""
-Data cCustomer init 0
 Data WareHouseCode init 0
 Data itemgroupitems init {}
 Data itemgroupitemsids init {}
 Data cInvNo init ""
 Data cInvNotes init ""
 Data cInvDate init ""
+Data cOrderNumber init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -287,41 +287,40 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-myout = self:LoadLookupTable("ReadyOrders","OrderNumber",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
-@ 303 ,156 LABEL lblOrderNumber ;
-VALUE "Order Number" ;
-WIDTH 130 ;
+myout = self:LoadLookupTable("Customers","f_name",@self:CustomerNameItems,"id",@self:CustomerNameItemsIDS)
+@ 308 ,139 LABEL lblCustomerName ;
+VALUE "Customer Name" ;
+WIDTH 150 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 310 ,298 COMBOBOX comboordernumber;
-ON CHANGE self:orderchange()  ;
+@ 310 ,298 COMBOBOX comboCustomerName;
 WIDTH 200 ;
 HEIGHT 100;
-ITEMS self:OrderNumberitems ;
+ITEMS self:CustomerNameitems ;
 VALUE 1 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 338 ,141 LABEL lblStore ;
-VALUE "Customer Name" ;
+@ 344 ,155 LABEL lblOrderNumber ;
+VALUE "Order Number" ;
 WIDTH 140 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 345 ,298 TEXTBOX textCustomer;
+@ 345 ,298 TEXTBOX textOrderNumber;
 HEIGHT 30 ;
-WIDTH 410 ;
+WIDTH 200 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable2("ItemsAndUnits_ALL","ItemCompleteName",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 378 ,241 LABEL lblitems ;
+@ 378 ,236 LABEL lblitems ;
 VALUE "Item" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -492,14 +491,13 @@ ReserveItemsWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
 ReserveItemsWindow.Timer1.Enabled := false
-ReserveItemsWindow.textCustomer.Enabled := false
 ACTIVATE WINDOW ReserveItemsWindow
 EndIF
 
 Return 0
 Method UserInterface2Class Class ReserveItemsClass
-self:nOrderNumber := ReserveItemsWindow.ComboOrderNumber.Value
-self:nOrderNumber := self:OrderNumberItemsids[self:nOrderNumber]
+self:nCustomerName := ReserveItemsWindow.ComboCustomerName.Value
+self:nCustomerName := self:CustomerNameItemsids[self:nCustomerName]
 self:nitem := ReserveItemsWindow.Comboitem.Value
 self:nitem := self:ItemItemsids[self:nitem]
 self:cUnitValue := ReserveItemsWindow.textUnitValue.Value
@@ -514,10 +512,11 @@ self:cInvNo := ReserveItemsWindow.textInvNo.Value
 self:cInvNotes := ReserveItemsWindow.textInvNotes.Value
 self:cInvDate := ReserveItemsWindow.dateInvDate.Value
 self:cInvDate := dtoc(self:cInvDate)
+self:cOrderNumber := ReserveItemsWindow.textOrderNumber.Value
 Return 0
 Method Class2ADO Class ReserveItemsClass
 self:oRS:fields:item("itemid"):value := self:nitem
-self:oRS:fields:item("OrderNumberid"):value := self:nOrderNumber
+self:oRS:fields:item("CustomerNameid"):value := self:nCustomerName
 self:oRS:fields:item("Amount"):value := self:cAmount
 self:oRS:fields:item("Cost"):value := self:cCost
 self:oRS:fields:item("Notes"):value := self:cNotes
@@ -527,10 +526,11 @@ self:oRS:fields:item("DateofInput"):value := self:cDateofInput
 self:oRS:fields:item("ExportInvNo"):value := self:cInvNo
 self:oRS:fields:item("ExportInvDate"):value := self:cInvDate
 self:oRS:fields:item("ExportInvNotes"):value := self:cInvNotes
+self:oRS:fields:item("OrderNumber"):value := self:cOrderNumber
 Return 0
 Method ADO2Class Class ReserveItemsClass
 self:nItem := self:oRS:fields:item("ItemID"):value
-self:nOrderNumber := self:oRS:fields:item("OrderNumberID"):value
+self:nCustomerName := self:oRS:fields:item("CustomerNameID"):value
 self:cAmount := self:oRS:fields:item("Amount"):value
 self:cCost := self:oRS:fields:item("Cost"):value
 self:cNotes := self:oRS:fields:item("Notes"):value
@@ -539,14 +539,14 @@ self:cSecUnitValue := self:oRS:fields:item("Value2"):value
 self:cDateOfInput := self:oRS:fields:item("DateOfInput"):value
 self:cItemUnitText := self:oRS:fields:item(10):value
 self:cItemSecUnitText := self:oRS:fields:item("ItemUnit"):value
-self:cCustomer := self:oRS:fields:item("f_name"):value
 self:cInvNo := self:oRS:fields:item("ExportInvNo"):value
 self:cInvDate := self:oRS:fields:item("ExportInvDate"):value
 self:cInvNotes := self:oRS:fields:item("ExportInvNotes"):value
+self:cOrderNumber := self:oRS:fields:item("OrderNumber"):value
 Return 0
 Method Class2UserInterface Class ReserveItemsClass
-self:nOrderNumber = self:LookupIDToIndex(self:nOrderNumber,@self:OrderNumberItemsids)
-ReserveItemsWindow.ComboOrderNumber.Value := self:nOrderNumber
+self:nCustomerName = self:LookupIDToIndex(self:nCustomerName,@self:CustomerNameItemsids)
+ReserveItemsWindow.ComboCustomerName.Value := self:nCustomerName
 tvalue = self:LookupIDToIndex(self:nItem,@self:ItemItemsids)
 ReserveItemsWindow.Comboitem.Value := tvalue
 ReserveItemsWindow.textUnitValue.Value := self:cUnitValue
@@ -557,13 +557,13 @@ ReserveItemsWindow.textCost.Value := self:cCost
 ReserveItemsWindow.textNotes.Value := self:cNotes
 ReserveItemsWindow.textItemUnit.Value := self:cItemUnitText
 ReserveItemsWindow.textItemSecUnit.Value := self:cItemSecUnitText
-ReserveItemsWindow.textCustomer.Value := self:cCustomer
 ReserveItemsWindow.textInvNo.Value := self:cInvNo
 ReserveItemsWindow.dateInvDate.Value := ctod(self:cInvDate)
 ReserveItemsWindow.textInvNotes.Value := self:cInvNotes
+ReserveItemsWindow.textOrderNumber.Value := self:cOrderNumber
 Return 0
 Method ClearRecord Class ReserveItemsClass
-self:nOrderNumber := 0
+self:nCustomerName := 0
 self:nItem := 0
 self:cUnitValue := "1"
 self:cSecUnitValue := "1"
@@ -573,10 +573,10 @@ self:cCost := ""
 self:cNotes := ""
 self:cItemUnitText := ""
 self:cItemSecUnitText := ""
-self:cCustomer := ""
 self:cInvNo := ""
 self:cInvNotes := ""
 self:cInvDate := ""
+self:cOrderNumber := ""
 Return 0
 Method OpenDataWindow Class ReserveItemsClass
 Local nvalue,myout
@@ -606,7 +606,7 @@ ReserveItemsWindow.btnsave.Enabled := true
 ReserveItemsWindow.btncancel.Enabled := true
 ReserveItemsWindow.btnedit.Enabled := false
 ReserveItemsWindow.btnadd.Enabled := false
-ReserveItemsWindow.comboOrderNumber.Enabled := true
+ReserveItemsWindow.comboCustomerName.Enabled := true
 ReserveItemsWindow.textUnitValue.Enabled := true
 ReserveItemsWindow.textSecUnitValue.Enabled := true
 ReserveItemsWindow.textAmount.Enabled := true
@@ -618,6 +618,7 @@ ReserveItemsWindow.comboItem.Enabled := true
 ReserveItemsWindow.textInvNo.Enabled := true
 ReserveItemsWindow.textInvNotes.Enabled := true
 ReserveItemsWindow.dateInvDate.Enabled := true
+ReserveItemsWindow.textOrderNumber.Enabled := true
 ENDIF
 IF p1 = 2
 ReserveItemsWindow.btnfirst.Enabled := true
@@ -630,7 +631,7 @@ ReserveItemsWindow.btnsave.Enabled := false
 ReserveItemsWindow.btncancel.Enabled := false
 ReserveItemsWindow.btnedit.Enabled := true
 ReserveItemsWindow.btnadd.Enabled := true
-ReserveItemsWindow.comboOrderNumber.Enabled := false
+ReserveItemsWindow.comboCustomerName.Enabled := false
 ReserveItemsWindow.comboItem.Enabled := false
 ReserveItemsWindow.textUnitValue.Enabled := false
 ReserveItemsWindow.textSecUnitValue.Enabled := false
@@ -644,6 +645,7 @@ ReserveItemsWindow.btnSelItem.Enabled := false
 ReserveItemsWindow.textInvNo.Enabled := false
 ReserveItemsWindow.textInvNotes.Enabled := false
 ReserveItemsWindow.dateInvDate.Enabled := false
+ReserveItemsWindow.textOrderNumber.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -789,9 +791,9 @@ Return 0
 Method CheckData Class ReserveItemsClass
 Local myret,v1
 myret := true
-v1 := ReserveItemsWindow.ComboOrderNumber.Value
+v1 := ReserveItemsWindow.ComboCustomerName.Value
 IF v1 = 0
-MyOut := MSGBOX("You must determine order number","Sorry")
+MyOut := MSGBOX("You must determine Customer Name","Sorry")
 myret := false
 ENDIF
 v1 := ReserveItemsWindow.ComboItem.Value
