@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:32:52    Date : 12/06/2010
+* Time : 01:34:58    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -423,7 +423,6 @@ END POPUP
 ENDIF
 IF UserCan_WinEmployees = 2 .or. UserCan_WinSuppliers = 2 .or. UserCan_WinCustomers = 2
 MENUITEM "Lookup Table : Country" Action Countrydataobject:showwindow()
-MENUITEM "Lookup Table : Gender" Action genderdataobject:showwindow()
 ENDIF
 END POPUP
 IF UserCan_WinWarehouse = 2
