@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:27:11    Date : 12/06/2010
+* Time : 14:45:14    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -480,6 +480,7 @@ SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action mywarehouse(11)
+SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12 = 2
 MENUITEM "Chemicals 2 Warehouse" Action mywarehouse(12)
@@ -528,6 +529,7 @@ SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myenterwarehouse(11)
+SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12 = 2
 MENUITEM "Chemical 2 Warehouse" Action myenterwarehouse(12)
@@ -576,6 +578,7 @@ SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myreservewarehouse(11)
+SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12 = 2
 MENUITEM "Chemicals 2 Warehouse" Action myreservewarehouse(12)
@@ -647,6 +650,10 @@ SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myitemsreport(11)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse12= 2
+MENUITEM "Chemicals 2 Warehouse" Action myitemsreport(12)
 ENDIF
 END POPUP
 POPUP "Import Items To Warehouse Report"
@@ -692,6 +699,10 @@ SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myitemsenterreport(11)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse12 = 2
+MENUITEM "Chemicals 2 Warehouse" Action myitemsenterreport(12)
 ENDIF
 END POPUP
 POPUP "Export Items From Warehouse Report"
@@ -737,9 +748,12 @@ SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myitemsoutreport(11)
+SEPARATOR
+ENDIF
+IF UserCan_nWarehouse12 = 2
+MENUITEM "Chemicals 2 Warehouse" Action myitemsoutreport(12)
 ENDIF
 END POPUP
-separator
 ENDIF
 END POPUP
 Return Nil
