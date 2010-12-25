@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:43:12    Date : 12/04/2010
+* Time : 02:27:45    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -352,13 +352,13 @@ if !iswindowdefined( winMore )
 DEFINE WINDOW winMore ;
 AT 10 ,10 ;
 WIDTH 644 ;
-HEIGHT 535 ;
+HEIGHT 576 ;
 ICON "PWCTICON" ;
 TITLE "More" ;
 MODAL ;
 BACKCOLOR {236,233,216}
 
-@ 459 ,542 BUTTONEX btnClose;
+@ 503 ,542 BUTTONEX btnClose;
 CAPTION "Ok";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -370,7 +370,7 @@ TOOLTIP ""
 @ -2 ,-4 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 641 HEIGHT 451
+WIDTH 641 HEIGHT 501
 @ 24 ,38 CHECKBOX check1;
 CAPTION "Employees";
 WIDTH 250;
@@ -504,6 +504,13 @@ Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 454 ,326 CHECKBOX checkw12;
+CAPTION "Chemicals 2 warehouse";
+WIDTH 260;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 winMore.Center ( )
@@ -621,6 +628,12 @@ winMore.checkw11.Value := true
 ELSE
 winMore.checkw11.Value := false
 ENDIF
+nw12 := self:oRS:fields:item("nWarehouse12"):value
+IF nw12 = 2
+winMore.checkw12.Value := true
+ELSE
+winMore.checkw12.Value := false
+ENDIF
 ACTIVATE WINDOW winMore
 EndIF
 
@@ -720,6 +733,11 @@ IF winMore.checkw11.value = true
 self:oRS:fields:item("nWarehouse11"):value := 2
 ELSE
 self:oRS:fields:item("nWarehouse11"):value := 3
+ENDIF
+IF winMore.checkw12.value = true
+self:oRS:fields:item("nWarehouse12"):value := 2
+ELSE
+self:oRS:fields:item("nWarehouse12"):value := 3
 ENDIF
 self:oRS:UPDATE()
 winMore.Release ( )

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:34:58    Date : 12/06/2010
+* Time : 05:27:11    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -205,6 +205,7 @@ AADD( sys_warehousearray , "Jacket Row Materials Warehouse")
 AADD( sys_warehousearray , "General Warehouse")
 AADD( sys_warehousearray , "Shoes Warehouse")
 AADD( sys_warehousearray , "Jacket Warehouse")
+AADD( sys_warehousearray , "Chemicals 2 Warehouse")
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -480,6 +481,9 @@ ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action mywarehouse(11)
 ENDIF
+IF UserCan_nWarehouse12 = 2
+MENUITEM "Chemicals 2 Warehouse" Action mywarehouse(12)
+ENDIF
 END POPUP
 POPUP "Import Items to Warehouse"
 IF UserCan_nWarehouse1 = 2
@@ -525,6 +529,9 @@ ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myenterwarehouse(11)
 ENDIF
+IF UserCan_nWarehouse12 = 2
+MENUITEM "Chemical 2 Warehouse" Action myenterwarehouse(12)
+ENDIF
 END POPUP
 POPUP "Export Items from warehouse"
 IF UserCan_nWarehouse1 = 2
@@ -569,6 +576,9 @@ SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
 MENUITEM "Jacket Products Warehouse" Action myreservewarehouse(11)
+ENDIF
+IF UserCan_nWarehouse12 = 2
+MENUITEM "Chemicals 2 Warehouse" Action myreservewarehouse(12)
 ENDIF
 END POPUP
 END POPUP
@@ -862,6 +872,7 @@ Public UserCan_nWarehouse8
 Public UserCan_nWarehouse9
 Public UserCan_nWarehouse10
 Public UserCan_nWarehouse11
+Public UserCan_nWarehouse12
 IF mymax > 0
 oRS:MOVEFIRST()
 FOR x = 1 TO MYMAX STEP 1
@@ -893,6 +904,7 @@ UserCan_nWarehouse8 := oRS:fields:item("nWarehouse8"):value
 UserCan_nWarehouse9 := oRS:fields:item("nWarehouse9"):value
 UserCan_nWarehouse10 := oRS:fields:item("nWarehouse10"):value
 UserCan_nWarehouse11 := oRS:fields:item("nWarehouse11"):value
+UserCan_nWarehouse12 := oRS:fields:item("nWarehouse12"):value
 win1.lblusername.Value := "User Name : "    + cName
 ELSE
 MyOut := MSGBOX("Invalid Password","Error")
