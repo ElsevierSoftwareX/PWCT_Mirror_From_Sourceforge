@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:45:14    Date : 12/06/2010
+* Time : 15:32:01    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -194,18 +194,18 @@ ProductionManObject = ProductionManClass()
 systemdatabaseobject = systemdatabase()
 Public sys_warehousearray
 sys_warehousearray := {}
+AADD( sys_warehousearray , "Chemicals Warehouse")
+AADD( sys_warehousearray , "Chemicals 2 Warehouse")
+AADD( sys_warehousearray , "Crust Warehouse")
+AADD( sys_warehousearray , "Finish Warehouse")
+AADD( sys_warehousearray , "General Warehouse")
+AADD( sys_warehousearray , "Jacket Warehouse")
+AADD( sys_warehousearray , "Jacket Row Materials Warehouse")
+AADD( sys_warehousearray , "Shoes Warehouse")
+AADD( sys_warehousearray , "Shoes Row Materials Warehouse")
 AADD( sys_warehousearray , "Skin Warehouse")
 AADD( sys_warehousearray , "Wet blue 1 Warehouse")
 AADD( sys_warehousearray , "Wet blue 2 Warehouse")
-AADD( sys_warehousearray , "Crust Warehouse")
-AADD( sys_warehousearray , "Finish Warehouse")
-AADD( sys_warehousearray , "Chemicals Warehouse")
-AADD( sys_warehousearray , "Shoes Row Materials Warehouse")
-AADD( sys_warehousearray , "Jacket Row Materials Warehouse")
-AADD( sys_warehousearray , "General Warehouse")
-AADD( sys_warehousearray , "Shoes Warehouse")
-AADD( sys_warehousearray , "Jacket Warehouse")
-AADD( sys_warehousearray , "Chemicals 2 Warehouse")
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -439,149 +439,149 @@ SEPARATOR
 MENUITEM "Item Details" Action ItemDetailsDataObject:ShowWindow()
 POPUP "Items Warehouse"
 IF UserCan_nWarehouse1 = 2
-MENUITEM "Skin Warehouse" Action mywarehouse(1)
+MENUITEM "Skin Warehouse" Action mywarehouse(10)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse2 = 2
-MENUITEM "Wet blue 1 Warehouse" Action mywarehouse(2)
+MENUITEM "Wet blue 1 Warehouse" Action mywarehouse(11)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse3 = 2
-MENUITEM "Wet blue 2 Warehouse" Action mywarehouse(3)
+MENUITEM "Wet blue 2 Warehouse" Action mywarehouse(12)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse4 = 2
-MENUITEM "Crust Warehouse" Action mywarehouse(4)
+MENUITEM "Crust Warehouse" Action mywarehouse(3)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse5 = 2
-MENUITEM "Finish Warehouse" Action mywarehouse(5)
+MENUITEM "Finish Warehouse" Action mywarehouse(4)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse6 = 2
-MENUITEM "Chemicals Warehouse" Action mywarehouse(6)
+MENUITEM "Chemicals Warehouse" Action mywarehouse(1)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse7 = 2
-MENUITEM "Shoes Row Materials Warehouse" Action mywarehouse(7)
+MENUITEM "Shoes Row Materials Warehouse" Action mywarehouse(9)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse8 = 2
-MENUITEM "Jacket Row Materials Warehouse" Action mywarehouse(8)
+MENUITEM "Jacket Row Materials Warehouse" Action mywarehouse(7)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse9 = 2
-MENUITEM "General Warehouse" Action mywarehouse(9)
+MENUITEM "General Warehouse" Action mywarehouse(5)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse10 = 2
-MENUITEM "Shoes products Warehouse" Action mywarehouse(10)
+MENUITEM "Shoes products Warehouse" Action mywarehouse(8)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
-MENUITEM "Jacket Products Warehouse" Action mywarehouse(11)
+MENUITEM "Jacket Products Warehouse" Action mywarehouse(6)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12 = 2
-MENUITEM "Chemicals 2 Warehouse" Action mywarehouse(12)
+MENUITEM "Chemicals 2 Warehouse" Action mywarehouse(2)
 ENDIF
 END POPUP
 POPUP "Import Items to Warehouse"
 IF UserCan_nWarehouse1 = 2
-MENUITEM "Skin Warehouse" Action myenterwarehouse(1)
+MENUITEM "Skin Warehouse" Action myenterwarehouse(10)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse2 = 2
-MENUITEM "Wet blue 1 Warehouse" Action myenterwarehouse(2)
+MENUITEM "Wet blue 1 Warehouse" Action myenterwarehouse(11)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse3 = 2
-MENUITEM "Wet blue 2 Warehouse" Action myenterwarehouse(3)
+MENUITEM "Wet blue 2 Warehouse" Action myenterwarehouse(12)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse4 = 2
-MENUITEM "Crust Warehouse" Action myenterwarehouse(4)
+MENUITEM "Crust Warehouse" Action myenterwarehouse(3)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse5 = 2
-MENUITEM "Finish Warehouse" Action myenterwarehouse(5)
+MENUITEM "Finish Warehouse" Action myenterwarehouse(4)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse6 = 2
-MENUITEM "Chemicals Warehouse" Action myenterwarehouse(6)
+MENUITEM "Chemicals Warehouse" Action myenterwarehouse(1)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse7 = 2
-MENUITEM "Shoes Row Materials Warehouse" Action myenterwarehouse(7)
+MENUITEM "Shoes Row Materials Warehouse" Action myenterwarehouse(9)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse8 = 2
-MENUITEM "Jacket Row Materials Warehouse" Action myenterwarehouse(8)
+MENUITEM "Jacket Row Materials Warehouse" Action myenterwarehouse(7)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse9 = 2
-MENUITEM "General Warehouse" Action myenterwarehouse(9)
+MENUITEM "General Warehouse" Action myenterwarehouse(5)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse10 = 2
-MENUITEM "Shoes products Warehouse" Action myenterwarehouse(10)
+MENUITEM "Shoes products Warehouse" Action myenterwarehouse(8)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
-MENUITEM "Jacket Products Warehouse" Action myenterwarehouse(11)
+MENUITEM "Jacket Products Warehouse" Action myenterwarehouse(6)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12 = 2
-MENUITEM "Chemical 2 Warehouse" Action myenterwarehouse(12)
+MENUITEM "Chemical 2 Warehouse" Action myenterwarehouse(2)
 ENDIF
 END POPUP
 POPUP "Export Items from warehouse"
 IF UserCan_nWarehouse1 = 2
-MENUITEM "Skin Warehouse" Action myreservewarehouse(1)
+MENUITEM "Skin Warehouse" Action myreservewarehouse(10)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse2 = 2
-MENUITEM "Wet blue 1 Warehouse" Action myreservewarehouse(2)
+MENUITEM "Wet blue 1 Warehouse" Action myreservewarehouse(11)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse3 = 2
-MENUITEM "Wet blue 2 Warehouse" Action myenterwarehouse(3)
+MENUITEM "Wet blue 2 Warehouse" Action myreservewarehouse(12)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse4 = 2
-MENUITEM "Crust Warehouse" Action myreservewarehouse(4)
+MENUITEM "Crust Warehouse" Action myreservewarehouse(3)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse5 = 2
-MENUITEM "Finish Warehouse" Action myreservewarehouse(5)
+MENUITEM "Finish Warehouse" Action myreservewarehouse(4)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse6 = 2
-MENUITEM "Chemicals Warehouse" Action myreservewarehouse(6)
+MENUITEM "Chemicals Warehouse" Action myreservewarehouse(1)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse7 = 2
-MENUITEM "Shoes Row Materials Warehouse" Action myreservewarehouse(7)
+MENUITEM "Shoes Row Materials Warehouse" Action myreservewarehouse(9)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse8 = 2
-MENUITEM "Jacket Row Materials Warehouse" Action myreservewarehouse(8)
+MENUITEM "Jacket Row Materials Warehouse" Action myreservewarehouse(7)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse9 = 2
-MENUITEM "General Warehouse" Action myreservewarehouse(9)
+MENUITEM "General Warehouse" Action myreservewarehouse(5)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse10 = 2
-MENUITEM "Shoes products Warehouse" Action myreservewarehouse(10)
+MENUITEM "Shoes products Warehouse" Action myreservewarehouse(8)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
-MENUITEM "Jacket Products Warehouse" Action myreservewarehouse(11)
+MENUITEM "Jacket Products Warehouse" Action myreservewarehouse(6)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12 = 2
-MENUITEM "Chemicals 2 Warehouse" Action myreservewarehouse(12)
+MENUITEM "Chemicals 2 Warehouse" Action myreservewarehouse(2)
 ENDIF
 END POPUP
 END POPUP
@@ -609,149 +609,149 @@ MENUITEM "Stores Report" Action StoresReportObject:ShowWindow()
 SEPARATOR
 POPUP "Warehouse Items Report"
 IF UserCan_nWarehouse1 = 2
-MENUITEM "Skin Warehouse" Action myitemsreport(1)
+MENUITEM "Skin Warehouse" Action myitemsreport(10)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse2 = 2
-MENUITEM "Wet blue 1 Warehouse" Action myitemsreport(2)
+MENUITEM "Wet blue 1 Warehouse" Action myitemsreport(11)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse3 = 2
-MENUITEM "Wet blue 2 Warehouse" Action myitemsreport(3)
+MENUITEM "Wet blue 2 Warehouse" Action myitemsreport(12)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse4 = 2
-MENUITEM "Crust Warehouse" Action myitemsreport(4)
+MENUITEM "Crust Warehouse" Action myitemsreport(3)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse5 = 2
-MENUITEM "Finish Warehouse" Action myitemsreport(5)
+MENUITEM "Finish Warehouse" Action myitemsreport(4)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse6 = 2
-MENUITEM "Chemicals Warehouse" Action myitemsreport(6)
+MENUITEM "Chemicals Warehouse" Action myitemsreport(1)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse7 = 2
-MENUITEM "Shoes Row Materials Warehouse" Action myitemsreport(7)
+MENUITEM "Shoes Row Materials Warehouse" Action myitemsreport(9)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse8 = 2
-MENUITEM "Jacket Row Materials Warehouse" Action myitemsreport(8)
+MENUITEM "Jacket Row Materials Warehouse" Action myitemsreport(7)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse9 = 2
-MENUITEM "General Warehouse" Action myitemsreport(9)
+MENUITEM "General Warehouse" Action myitemsreport(5)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse10 = 2
-MENUITEM "Shoes products Warehouse" Action myitemsreport(10)
+MENUITEM "Shoes products Warehouse" Action myitemsreport(8)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
-MENUITEM "Jacket Products Warehouse" Action myitemsreport(11)
+MENUITEM "Jacket Products Warehouse" Action myitemsreport(6)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12= 2
-MENUITEM "Chemicals 2 Warehouse" Action myitemsreport(12)
+MENUITEM "Chemicals 2 Warehouse" Action myitemsreport(2)
 ENDIF
 END POPUP
 POPUP "Import Items To Warehouse Report"
 IF UserCan_nWarehouse1 = 2
-MENUITEM "Skin Warehouse" Action myitemsenterreport(1)
+MENUITEM "Skin Warehouse" Action myitemsenterreport(10)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse2 = 2
-MENUITEM "Wet blue 1 Warehouse" Action myitemsenterreport(2)
+MENUITEM "Wet blue 1 Warehouse" Action myitemsenterreport(11)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse3 = 2
-MENUITEM "Wet blue 2 Warehouse" Action myitemsenterreport(3)
+MENUITEM "Wet blue 2 Warehouse" Action myitemsenterreport(12)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse4 = 2
-MENUITEM "Crust Warehouse" Action myitemsenterreport(4)
+MENUITEM "Crust Warehouse" Action myitemsenterreport(3)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse5 = 2
-MENUITEM "Finish Warehouse" Action myitemsenterreport(5)
+MENUITEM "Finish Warehouse" Action myitemsenterreport(4)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse6 = 2
-MENUITEM "Chemicals Warehouse" Action myitemsenterreport(6)
+MENUITEM "Chemicals Warehouse" Action myitemsenterreport(1)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse7 = 2
-MENUITEM "Shoes Row Materials Warehouse" Action myitemsenterreport(7)
+MENUITEM "Shoes Row Materials Warehouse" Action myitemsenterreport(9)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse8 = 2
-MENUITEM "Jacket Row Materials Warehouse" Action myitemsenterreport(8)
+MENUITEM "Jacket Row Materials Warehouse" Action myitemsenterreport(7)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse9 = 2
-MENUITEM "General Warehouse" Action myitemsenterreport(9)
+MENUITEM "General Warehouse" Action myitemsenterreport(5)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse10 = 2
-MENUITEM "Shoes products Warehouse" Action myitemsenterreport(10)
+MENUITEM "Shoes products Warehouse" Action myitemsenterreport(8)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
-MENUITEM "Jacket Products Warehouse" Action myitemsenterreport(11)
+MENUITEM "Jacket Products Warehouse" Action myitemsenterreport(6)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12 = 2
-MENUITEM "Chemicals 2 Warehouse" Action myitemsenterreport(12)
+MENUITEM "Chemicals 2 Warehouse" Action myitemsenterreport(2)
 ENDIF
 END POPUP
 POPUP "Export Items From Warehouse Report"
 IF UserCan_nWarehouse1 = 2
-MENUITEM "Skin Warehouse" Action myitemsoutreport(1)
+MENUITEM "Skin Warehouse" Action myitemsoutreport(10)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse2 = 2
-MENUITEM "Wet blue 1 Warehouse" Action myitemsoutreport(2)
+MENUITEM "Wet blue 1 Warehouse" Action myitemsoutreport(11)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse3 = 2
-MENUITEM "Wet blue 2 Warehouse" Action myitemsoutreport(3)
+MENUITEM "Wet blue 2 Warehouse" Action myitemsoutreport(12)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse4 = 2
-MENUITEM "Crust Warehouse" Action myitemsoutreport(4)
+MENUITEM "Crust Warehouse" Action myitemsoutreport(3)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse5 = 2
-MENUITEM "Finish Warehouse" Action myitemsoutreport(5)
+MENUITEM "Finish Warehouse" Action myitemsoutreport(4)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse6 = 2
-MENUITEM "Chemicals Warehouse" Action myitemsoutreport(6)
+MENUITEM "Chemicals Warehouse" Action myitemsoutreport(1)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse7 = 2
-MENUITEM "Shoes Row Materials Warehouse" Action myitemsoutreport(7)
+MENUITEM "Shoes Row Materials Warehouse" Action myitemsoutreport(9)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse8 = 2
-MENUITEM "Jacket Row Materials Warehouse" Action myitemsoutreport(8)
+MENUITEM "Jacket Row Materials Warehouse" Action myitemsoutreport(7)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse9 = 2
-MENUITEM "General Warehouse" Action myitemsoutreport(9)
+MENUITEM "General Warehouse" Action myitemsoutreport(5)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse10 = 2
-MENUITEM "Shoes products Warehouse" Action myitemsoutreport(10)
+MENUITEM "Shoes products Warehouse" Action myitemsoutreport(8)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse11 = 2
-MENUITEM "Jacket Products Warehouse" Action myitemsoutreport(11)
+MENUITEM "Jacket Products Warehouse" Action myitemsoutreport(6)
 SEPARATOR
 ENDIF
 IF UserCan_nWarehouse12 = 2
-MENUITEM "Chemicals 2 Warehouse" Action myitemsoutreport(12)
+MENUITEM "Chemicals 2 Warehouse" Action myitemsoutreport(2)
 ENDIF
 END POPUP
 ENDIF

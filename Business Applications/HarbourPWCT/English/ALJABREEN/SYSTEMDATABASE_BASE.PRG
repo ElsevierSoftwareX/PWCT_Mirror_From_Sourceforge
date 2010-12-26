@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:23:39    Date : 12/06/2010
+* Time : 00:37:04    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -107,7 +107,7 @@ oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := oCon
-oRS:open ( "Select * from " + cTableName,oCon,3,3 )
+oRS:open ( "Select * from " + cTableName + " order by " + cColumnName,oCon,3,3 )
 nMAX := oRS:RecordCount
 aArrayNameRef := {}
 aArrayNameRef2 := {}
