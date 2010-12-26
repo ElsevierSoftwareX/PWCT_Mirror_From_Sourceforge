@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:32:34    Date : 12/07/2010
+* Time : 00:53:33    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -784,6 +784,46 @@ v1 := ItemsWindow.ComboItemUnit.Value
 IF v1 = 0
 MyOut := MSGBOX("No Item Unit Determined","Sorry")
 myret := false
+ENDIF
+v1 := ItemsWindow.textModelNumber.Value
+v1 = ALLTRIM ( v1 )
+IF v1 == ""
+ELSE
+IF self:addrec = true
+vmax := 0
+ELSE
+vmax := 1
+ENDIF
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from Items_All where ItemModelNo = '" + v1 + "'",self:oCon,3,3 )
+nMax := myRS:RecordCount
+myRS:Close()
+IF nMax > vMax
+MyOut := MSGBOX("Model Number Duplication is not Allowed","Sorry")
+myret := false
+ENDIF
+ENDIF
+v1 := ItemsWindow.textModelName.Value
+v1 = ALLTRIM ( v1 )
+IF v1 == ""
+ELSE
+IF self:addrec = true
+vmax := 0
+ELSE
+vmax := 1
+ENDIF
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from Items_All where ItemModelName = '" + v1 + "'",self:oCon,3,3 )
+nMax := myRS:RecordCount
+myRS:Close()
+IF nMax > vMax
+MyOut := MSGBOX("Model Name Duplication is not Allowed","Sorry")
+myret := false
+ENDIF
 ENDIF
 Return myret
 Method ComboSearchChange Class ItemsClass
