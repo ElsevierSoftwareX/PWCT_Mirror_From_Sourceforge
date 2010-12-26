@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:32:01    Date : 12/07/2010
+* Time : 15:45:10    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -229,89 +229,6 @@ WIDTH 100;
 AMPM 
 
 END STATUSBAR
-
-DEFINE TOOLBAR Toolbar1;
-BUTTONSIZE 40 , 40 ;
-BOLD ;
-FLAT ;
-BORDER ;
-BREAK 
-
-BUTTON toolbaremployeebtn1;
-PICTURE "image\EmployeesIcon.bmp" ;
-ADJUST ;
-ON CLICK EmployeesDataObject:showwindow()  ;
-TOOLTIP "Employees" ;
-AUTOSIZE 
-
-BUTTON toolbaremployeebtn2;
-PICTURE "image\searchicon.bmp" ;
-ADJUST ;
-ON CLICK EmployeesBrowseObject:showwindow()  ;
-TOOLTIP "Search in Employees" ;
-AUTOSIZE 
-
-BUTTON toolbaremployeebtn3;
-PICTURE "image\reporticon.bmp" ;
-ADJUST ;
-ON CLICK Employeesreport()  ;
-TOOLTIP "Employees  Report" ;
-SEPARATOR ;
-AUTOSIZE 
-
-BUTTON toolbarsupplierbtn1;
-PICTURE "image\suppliersicon.bmp" ;
-ADJUST ;
-ON CLICK SuppliersDataObject:showwindow()  ;
-TOOLTIP "Suppliers" ;
-AUTOSIZE 
-
-BUTTON toolbarSuppliersbtn2;
-PICTURE "image\searchicon.bmp" ;
-ADJUST ;
-ON CLICK SuppliersBrowseObject:showwindow()  ;
-TOOLTIP "Search in Suppliers" ;
-AUTOSIZE 
-
-BUTTON toolbarSuppliersbtn3;
-PICTURE "image\reporticon.bmp" ;
-ADJUST ;
-ON CLICK Suppliersreport()  ;
-TOOLTIP "Suppliers Report" ;
-SEPARATOR ;
-AUTOSIZE 
-
-BUTTON toolbarcustomersbtn1;
-PICTURE "image\customersicon.bmp" ;
-ADJUST ;
-ON CLICK CustomersDataObject:showwindow()  ;
-TOOLTIP "Customers" ;
-AUTOSIZE 
-
-BUTTON toolbarcustomersbtn2;
-PICTURE "image\searchicon.bmp" ;
-ADJUST ;
-ON CLICK CustomersBrowseObject:showwindow()  ;
-TOOLTIP "Search in Customers" ;
-AUTOSIZE 
-
-BUTTON toolbarcustomersbtn3;
-PICTURE "image\reporticon.bmp" ;
-ADJUST ;
-ON CLICK Customersreport()  ;
-TOOLTIP "Customers Report" ;
-SEPARATOR ;
-AUTOSIZE 
-
-BUTTON toolbarshutdown;
-PICTURE "image\shutdown.bmp" ;
-ADJUST ;
-ON CLICK closesystem()  ;
-TOOLTIP "Close" ;
-SEPARATOR ;
-AUTOSIZE 
-
-END TOOLBAR
 
 @ 52 ,0 IMAGE imagelogo;
 PICTURE "image\applogo.JPG";
@@ -756,6 +673,96 @@ ENDIF
 END POPUP
 ENDIF
 END POPUP
+DEFINE TOOLBAR Toolbar1;
+PARENT win1 ;
+BUTTONSIZE 40 , 40 ;
+BOLD ;
+FLAT ;
+BORDER ;
+BREAK 
+
+IF UserCan_WinEmployees = 2
+BUTTON toolbaremployeebtn1;
+PICTURE "image\EmployeesIcon.bmp" ;
+ADJUST ;
+ON CLICK EmployeesDataObject:showwindow()  ;
+TOOLTIP "Employees" ;
+AUTOSIZE 
+
+BUTTON toolbaremployeebtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK EmployeesBrowseObject:showwindow()  ;
+TOOLTIP "Search in Employees" ;
+AUTOSIZE 
+
+BUTTON toolbaremployeebtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Employeesreport()  ;
+TOOLTIP "Employees  Report" ;
+SEPARATOR ;
+AUTOSIZE 
+
+ENDIF
+IF UserCan_WinSuppliers = 2
+BUTTON toolbarsupplierbtn1;
+PICTURE "image\suppliersicon.bmp" ;
+ADJUST ;
+ON CLICK SuppliersDataObject:showwindow()  ;
+TOOLTIP "Suppliers" ;
+AUTOSIZE 
+
+BUTTON toolbarSuppliersbtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK SuppliersBrowseObject:showwindow()  ;
+TOOLTIP "Search in Suppliers" ;
+AUTOSIZE 
+
+BUTTON toolbarSuppliersbtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Suppliersreport()  ;
+TOOLTIP "Suppliers Report" ;
+SEPARATOR ;
+AUTOSIZE 
+
+ENDIF
+IF UserCan_WinCustomers = 2
+BUTTON toolbarcustomersbtn1;
+PICTURE "image\customersicon.bmp" ;
+ADJUST ;
+ON CLICK CustomersDataObject:showwindow()  ;
+TOOLTIP "Customers" ;
+AUTOSIZE 
+
+BUTTON toolbarcustomersbtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK CustomersBrowseObject:showwindow()  ;
+TOOLTIP "Search in Customers" ;
+AUTOSIZE 
+
+BUTTON toolbarcustomersbtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Customersreport()  ;
+TOOLTIP "Customers Report" ;
+SEPARATOR ;
+AUTOSIZE 
+
+ENDIF
+BUTTON toolbarshutdown;
+PICTURE "image\shutdown.bmp" ;
+ADJUST ;
+ON CLICK closesystem()  ;
+TOOLTIP "Close" ;
+SEPARATOR ;
+AUTOSIZE 
+
+END TOOLBAR
+
 Return Nil
 Proc customersreport
 customersreportobject:filter := ""
