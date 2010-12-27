@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:05:48    Date : 12/08/2010
+* Time : 03:16:20    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -823,6 +823,28 @@ nMax := myRS:RecordCount
 myRS:Close()
 IF nMax > vMax
 MyOut := MSGBOX("Model Name Duplication is not Allowed","Sorry")
+myret := false
+ENDIF
+ENDIF
+v1 := ItemsWindow.textItemCompleteName.Value
+v1 = ALLTRIM ( v1 )
+IF v1 == ""
+MyOut := MSGBOX("You must determine Item Complete Name","Sorry")
+myret := false
+ELSE
+IF self:addrec = true
+vmax := 0
+ELSE
+vmax := 1
+ENDIF
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from Items_All where ItemCompleteName = '" + v1 + "'" + " and itemgroupid = " + alltrim(Str(tvalue)),self:oCon,3,3 )
+nMax := myRS:RecordCount
+myRS:Close()
+IF nMax > vMax
+MyOut := MSGBOX("Item Complete Name Duplication is not Allowed","Sorry")
 myret := false
 ENDIF
 ENDIF
