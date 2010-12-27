@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:22:46    Date : 11/24/2010
+* Time : 02:14:52    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -713,6 +713,10 @@ IF cMobile == ""
 MyOut := MSGBOX("ÌÃ» «œŒ«· —ﬁ„ «·ÃÊ«·","⁄›Ê«")
 myRet := False
 ELSE
+IF len(cMobile) < 12
+MyOut := MSGBOX("—ﬁ„ «·ÃÊ«· ÌÃ» «‰ ·«Ìﬁ· ⁄‰ 12 —ﬁ„","⁄›Ê«")
+myRet := False
+ELSE
 public myoRS
 myoRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 myoRS:CursorType := 1
@@ -728,6 +732,7 @@ MyOut := MSGBOX("Â–« «·ÃÊ«· „”Ã· „‰ ﬁ»·","⁄›Ê«")
 myRet := False
 ENDIF
 myoRS:Close()
+ENDIF
 ENDIF
 Return myRet
 Method CustOrders Class CustomersDataClass
