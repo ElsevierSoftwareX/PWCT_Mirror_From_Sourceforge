@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:14:52    Date : 12/09/2010
+* Time : 02:32:12    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -729,6 +729,35 @@ myRet := False
 ENDIF
 IF nMax > 1 .and. self:addrec = False
 MyOut := MSGBOX("е–« «бћж«б г”ћб гд ё»б","ЏЁж«")
+myRet := False
+ENDIF
+myoRS:Close()
+ENDIF
+ENDIF
+ceMail := CustomersDataWindow.texteMail.Value
+ceMail = ALLTRIM ( ceMail )
+IF ceMail == ""
+MyOut := MSGBOX("нћ» «ѕќ«б «б»—нѕ «б«бя —ждм","ЏЁж«")
+myRet := False
+ELSE
+nTest = AT("@",ceMail)
+nTest2 = AT(".",ceMail)
+IF ntest = 0 .or. ntest2 = 0
+MyOut := MSGBOX("’нџ… «б»—нѕ «б«бя —ждм џн— ’ЌнЌ…","ЏЁж«")
+myRet := False
+ELSE
+public myoRS
+myoRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myoRS:CursorType := 1
+myoRS:ActiveConnection := self:oCon
+myoRS:open ( "Select * from Customers where f_eMail = '" + ceMail + "'",self:oCon,3,3 )
+nMax := myoRS:RecordCount
+IF nMax > 0 .and. self:addrec = True
+MyOut := MSGBOX("е–« «б»—нѕ «б«бя —ждм г”ћб гд ё»б","ЏЁж«")
+myRet := False
+ENDIF
+IF nMax > 1 .and. self:addrec = False
+MyOut := MSGBOX("е–« «б»—нѕ «б«бя —ждм г”ћб гд ё»б","ЏЁж«")
 myRet := False
 ENDIF
 myoRS:Close()
