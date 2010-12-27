@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:32:20    Date : 12/09/2010
+* Time : 02:37:43    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -455,11 +455,6 @@ MENUITEM "„—‘ÕÌ‰ «·⁄„Ì·" Action CustFriendsObject:ShowWindow()
 SEPARATOR
 ENDIF
 IF UserCan_WinAgreement = 2
-MENUITEM "«—«¡ „œÌ— «·ÃÊœ…" Action QualityObject:ShowWindow()
-MENUITEM "«—«¡ „œÌ— «·„ «»⁄…" Action SchedulingObject:ShowWindow()
-MENUITEM "«—«¡ „œÌ— «·„Œ«“‰" Action WarehouseObject:ShowWindow()
-MENUITEM "«—«¡ „œÌ— «·„«·Ì…" Action FinanceObject:ShowWindow()
-MENUITEM "«·„Ê«›ﬁ… ⁄·Ï œÊ—…" Action AgreementObject:ShowWindow()
 ENDIF
 END POPUP
 ENDIF
@@ -520,12 +515,6 @@ MENUITEM " ﬁ—Ì— »«·œÊ—«  Ê«·„ œ—»Ì‰ Ê„—‘ÕÌ‰ «·⁄„·«¡" Action CustFriendsReportObj
 MENUITEM "ﬂ‘› Õ÷Ê— Ê≈‰’—«› «·„ œ—»Ì‰" Action CustComeReportObject:ShowWindow()
 SEPARATOR
 IF UserCan_WinAgreement = 2
-MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·ÃÊœ…" Action QualityOpinionsReportObject:ShowWindow()
-MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·ÃœÊ·… Ê«·„ «»⁄…" Action SchedulingOpinionsReportObject:ShowWindow()
-MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·„Œ«“‰" Action WarehouseOpinionsReportObject:ShowWindow()
-MENUITEM " ﬁ—Ì— »«—«¡ „”∆Ê· «·„«·Ì…" Action FinanceOpinionsReportObject:ShowWindow()
-MENUITEM " ﬁ—Ì— »«·„Ê«›ﬁ… ⁄·Ï œÊ—…" Action AgreementReportObject:ShowWindow()
-SEPARATOR
 ENDIF
 END POPUP
 ENDIF
