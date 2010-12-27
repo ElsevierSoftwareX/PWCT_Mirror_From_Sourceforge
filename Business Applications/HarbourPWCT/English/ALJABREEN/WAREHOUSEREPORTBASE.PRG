@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:13:46    Date : 12/07/2010
+* Time : 05:28:57    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,6 +40,7 @@ Data nWarehouse init 1
 Data groupitems init {}
 Data groupitemsids init {}
 Method ShowReport
+Method exportreport
 EndClass
 Method ShowReport Class warehousereport_base
 Local oldfilter
@@ -51,6 +52,18 @@ ELSE
 self:filter := self:filter + " and  val(itemgroupid) = " + alltrim(str(self:groupitemsids[self:nwarehouse]))
 ENDIF
 myout = super:ShowReport()
+self:filter := oldfilter
+Return 0
+Method exportreport Class warehousereport_base
+Local oldfilter
+oldfilter := self:filter
+myout = systemdatabaseobject:loadlookuptable("ItemsGroups","GroupName",@self:GroupItems,"id",@self:GroupItemsIDS)
+IF empty(alltrim(self:filter))
+self:filter := " val(itemgroupid) = " + alltrim(str(self:groupitemsids[self:nwarehouse]))
+ELSE
+self:filter := self:filter + " and  val(itemgroupid) = " + alltrim(str(self:groupitemsids[self:nwarehouse]))
+ENDIF
+myout = super:exportReport()
 self:filter := oldfilter
 Return 0
 

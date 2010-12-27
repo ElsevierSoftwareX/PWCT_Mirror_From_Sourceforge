@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:53:46    Date : 12/08/2010
+* Time : 05:29:26    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -968,7 +968,7 @@ WIDTH 530 HEIGHT 336
 DEFINE TIMER Timer1 INTERVAL 1500 ;
 Action WINLOGOSTART.RELEASE()
 @ 13 ,17 LABEL lbl1 ;
-VALUE "System Vesion Date :  2010/12/07" ;
+VALUE "System Vesion Date :  2010/12/26" ;
 WIDTH 200 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;
