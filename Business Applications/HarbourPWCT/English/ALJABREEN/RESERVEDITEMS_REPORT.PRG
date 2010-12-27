@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:32:46    Date : 12/06/2010
+* Time : 04:51:41    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,6 +41,7 @@ Method showwindow
 Method closewindow
 Method SizeReport
 Method checkchange
+Method SortChange
 EndClass
 Method ShowWindow Class ReservedItemsReportClass
 IF .not. UserCan_WinWarehouse = 2
@@ -50,8 +51,8 @@ ENDIF
 if !iswindowdefined( ReservedItemsReportWindow )
 DEFINE WINDOW ReservedItemsReportWindow ;
 AT 10 ,10 ;
-WIDTH 1118 ;
-HEIGHT 542 ;
+WIDTH 1155 ;
+HEIGHT 528 ;
 ON INIT self:ShowReport()  ;
 ON SIZE self:SizeReport()  ;
 ON MAXIMIZE self:SizeReport()  ;
@@ -60,41 +61,41 @@ TITLE "Reserved Items Report" ;
 CHILD ;
 BACKCOLOR {64,0,64}
 
-@ 451 ,991 BUTTONEX btn1;
+@ 446 ,1055 BUTTONEX btn1;
 CAPTION "Close";
 ON CLICK self:CloseWindow()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 455 ,141 BUTTONEX btn2;
+@ 446 ,111 BUTTONEX btn2;
 CAPTION "Print";
 ON CLICK self:PrintReport()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 455 ,31 BUTTONEX btn3;
+@ 446 ,11 BUTTONEX btn3;
 CAPTION "Refresh";
 ON CLICK self:ShowReport()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 90 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-self:oActiveX := TActiveX():New( "ReservedItemsReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 1059 , 417)
+self:oActiveX := TActiveX():New( "ReservedItemsReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 12 , 1119 , 417)
 self:oActiveX:Load()
-@ 457 ,486 LABEL lbl1 ;
+@ 446 ,396 LABEL lbl1 ;
 VALUE "From" ;
 WIDTH 40 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 457 ,644 LABEL lbl2 ;
+@ 446 ,552 LABEL lbl2 ;
 VALUE "To" ;
 WIDTH 30 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 454 ,372 CHECKBOX check1;
+@ 446 ,291 CHECKBOX check1;
 CAPTION "Export Date";
 ON CHANGE self:checkchange()  ;
 WIDTH 100;
@@ -102,26 +103,26 @@ Height 30;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 454 ,535 DATEPICKER datepicker1;
+@ 446 ,445 DATEPICKER datepicker1;
 ON CHANGE self:checkchange()  ;
 WIDTH 100 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 454 ,689 DATEPICKER datepicker2;
+@ 446 ,589 DATEPICKER datepicker2;
 ON CHANGE self:checkchange()  ;
 WIDTH 100 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 451 ,913 TEXTBOX text1;
+@ 446 ,813 TEXTBOX text1;
 ON CHANGE self:checkchange()  ;
 HEIGHT 30 ;
-WIDTH 70 ;
+WIDTH 60 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 452 ,798 CHECKBOX check2;
+@ 446 ,698 CHECKBOX check2;
 CAPTION "Order Number";
 ON CHANGE self:checkchange()  ;
 WIDTH 110;
@@ -129,12 +130,20 @@ Height 30;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
-@ 454 ,251 BUTTONEX btn4;
+@ 446 ,191 BUTTONEX btn4;
 CAPTION "Export";
 ON CLICK self:ExportReport()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 449 ,883 COMBOBOX comboSort;
+ON CHANGE self:sortchange()  ;
+WIDTH 160 ;
+HEIGHT 100;
+ITEMS {"Sort by Item Name","Sort by Item Number","Sort by Model Name","Sort by Model Number","Sort by Inv. Date","Sort by Inv. No"} ;
+FONT "Arial" SIZE 10 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 ReservedItemsReportWindow.Maximize ( )
@@ -163,6 +172,7 @@ ReservedItemsReportWindow.DatePicker1.Row := tempvar2 - 88
 ReservedItemsReportWindow.DatePicker2.Row := tempvar2 - 88
 ReservedItemsReportWindow.check2.Row := tempvar2 - 88
 ReservedItemsReportWindow.text1.Row := tempvar2 - 88
+ReservedItemsReportWindow.ComboSort.Row := tempvar2 - 88
 Return 0
 Method CheckChange Class ReservedItemsReportClass
 tvalue := ReservedItemsReportWindow.Check1.Value
@@ -189,6 +199,13 @@ cOrderNumber := ReservedItemsReportWindow.text1.Value
 cOrderNumber = ALLTRIM ( cOrderNumber )
 self:filter := self:filter + " orders.ordernumber = " + cordernumber
 ENDIF
+Return 0
+Method SortChange Class ReservedItemsReportClass
+Local nValue
+nValue := ReservedItemsReportWindow.ComboSort.Value
+nValue = STR ( nValue )
+nValue = ALLTRIM ( nValue )
+self:ReportName := "ReservedItems"+nValue
 Return 0
 
 

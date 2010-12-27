@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:31:46    Date : 12/06/2010
+* Time : 04:53:41    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,6 +41,7 @@ Method showwindow
 Method closewindow
 Method SizeReport
 Method checkchange
+Method SortChange
 EndClass
 Method ShowWindow Class ITEMSENTEREDTOSTORESReportClass
 IF .not. UserCan_WinWarehouse = 2
@@ -50,7 +51,7 @@ ENDIF
 if !iswindowdefined( ITEMSENTEREDTOSTORESReportWindow )
 DEFINE WINDOW ITEMSENTEREDTOSTORESReportWindow ;
 AT 10 ,10 ;
-WIDTH 966 ;
+WIDTH 1106 ;
 HEIGHT 542 ;
 ON INIT self:ShowReport()  ;
 ON SIZE self:SizeReport()  ;
@@ -60,7 +61,7 @@ TITLE "Items Entered to Stores Report" ;
 CHILD ;
 BACKCOLOR {64,0,64}
 
-@ 455 ,841 BUTTONEX btn1;
+@ 455 ,961 BUTTONEX btn1;
 CAPTION "Close";
 ON CLICK self:CloseWindow()  ;
 WIDTH 90 HEIGHT 30 ;
@@ -78,23 +79,23 @@ ON CLICK self:ShowReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-self:oActiveX := TActiveX():New( "ITEMSENTEREDTOSTORESReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 899 , 417)
+self:oActiveX := TActiveX():New( "ITEMSENTEREDTOSTORESReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 1039 , 417)
 self:oActiveX:Load()
-@ 457 ,526 LABEL lbl1 ;
+@ 457 ,476 LABEL lbl1 ;
 VALUE "From" ;
 WIDTH 40 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 457 ,684 LABEL lbl2 ;
+@ 457 ,634 LABEL lbl2 ;
 VALUE "To" ;
 WIDTH 30 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 454 ,412 CHECKBOX check1;
+@ 454 ,362 CHECKBOX check1;
 CAPTION "Import Date";
 ON CHANGE self:checkchange()  ;
 WIDTH 100;
@@ -102,13 +103,13 @@ Height 30;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 454 ,575 DATEPICKER datepicker1;
+@ 454 ,525 DATEPICKER datepicker1;
 ON CHANGE self:checkchange()  ;
 WIDTH 100 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 454 ,729 DATEPICKER datepicker2;
+@ 454 ,679 DATEPICKER datepicker2;
 ON CHANGE self:checkchange()  ;
 WIDTH 100 ;
 FONT "Arial" SIZE 9 ;
@@ -120,6 +121,14 @@ ON CLICK self:ExportReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 454 ,791 COMBOBOX comboSort;
+ON CHANGE self:sortchange()  ;
+WIDTH 160 ;
+HEIGHT 100;
+ITEMS {"Sort by Item Name","Sort by Item Number","Sort by Model Name","Sort by Model Number","Sort by Inv. Date","Sort by Inv. No"} ;
+FONT "Arial" SIZE 10 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 ITEMSENTEREDTOSTORESReportWindow.Maximize ( )
@@ -146,6 +155,7 @@ ITEMSENTEREDTOSTORESReportWindow.lbl2.Row := tempvar2 - 88
 ITEMSENTEREDTOSTORESReportWindow.check1.Row := tempvar2 - 88
 ITEMSENTEREDTOSTORESReportWindow.DatePicker1.Row := tempvar2 - 88
 ITEMSENTEREDTOSTORESReportWindow.DatePicker2.Row := tempvar2 - 88
+ITEMSENTEREDTOSTORESReportWindow.ComboSort.Row := tempvar2 - 88
 Return 0
 Method CheckChange Class ITEMSENTEREDTOSTORESReportClass
 tvalue := ITEMSENTEREDTOSTORESReportWindow.Check1.Value
@@ -160,6 +170,13 @@ self:filter := "cdate(itemsenter.dateofinput) >= cdate('" + cdate1 + "') and cda
 ELSE
 self:filter := "1 = 1"
 ENDIF
+Return 0
+Method SortChange Class ITEMSENTEREDTOSTORESReportClass
+Local nValue
+nValue := ITEMSENTEREDTOSTORESReportWindow.ComboSort.Value
+nValue = STR ( nValue )
+nValue = ALLTRIM ( nValue )
+self:ReportName := "ItemsEntered"+nValue
 Return 0
 
 

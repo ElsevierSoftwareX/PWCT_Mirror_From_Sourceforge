@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:25:33    Date : 12/07/2010
+* Time : 04:35:49    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,6 +41,7 @@ Method showwindow
 Method closewindow
 Method SizeReport
 Method CheckChange
+Method SortChange
 EndClass
 Method ShowWindow Class ITEMSReportClass
 IF .not. UserCan_WinWarehouse = 2
@@ -50,7 +51,7 @@ ENDIF
 if !iswindowdefined( ITEMSReportWindow )
 DEFINE WINDOW ITEMSReportWindow ;
 AT 10 ,10 ;
-WIDTH 743 ;
+WIDTH 886 ;
 HEIGHT 542 ;
 ON INIT self:ShowReport()  ;
 ON SIZE self:SizeReport()  ;
@@ -60,7 +61,7 @@ TITLE "Items Report" ;
 CHILD ;
 BACKCOLOR {64,0,64}
 
-@ 455 ,611 BUTTONEX btn1;
+@ 455 ,771 BUTTONEX btn1;
 CAPTION "Close";
 ON CLICK self:CloseWindow()  ;
 WIDTH 80 HEIGHT 30 ;
@@ -78,7 +79,7 @@ ON CLICK self:ShowReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-self:oActiveX := TActiveX():New( "ITEMSReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 659 , 417)
+self:oActiveX := TActiveX():New( "ITEMSReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 829 , 417)
 self:oActiveX:Load()
 @ 454 ,367 CHECKBOX check1;
 CAPTION "Item Value Less Than : ";
@@ -101,6 +102,14 @@ ON CLICK self:ExportReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 455 ,611 COMBOBOX comboSort;
+ON CHANGE self:sortchange()  ;
+WIDTH 150 ;
+HEIGHT 100;
+ITEMS {"Sort by Item Name","Sort by Item Number","Sort by Model Name","Sort by Model Number"} ;
+FONT "Arial" SIZE 10 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 ITEMSReportWindow.Maximize ( )
@@ -124,6 +133,7 @@ ITEMSReportWindow.btn4.Row := tempvar2-88
 self:oactivex:Show ( )
 ITEMSReportWindow.Check1.Row := tempvar2 - 88
 ITEMSReportWindow.text1.Row := tempvar2 - 88
+ITEMSReportWindow.ComboSort.Row := tempvar2 - 88
 Return 0
 Method CheckChange Class ITEMSReportClass
 Local tvalue
@@ -135,6 +145,13 @@ self:filter := "val(itemvalue) < " + tvalue2
 ELSE
 self:filter := "1 = 1"
 ENDIF
+Return 0
+Method SortChange Class ITEMSReportClass
+Local nValue
+nValue := ITEMSReportWindow.ComboSort.Value
+nValue = STR ( nValue )
+nValue = ALLTRIM ( nValue )
+self:ReportName := "Items"+nValue
 Return 0
 
 
