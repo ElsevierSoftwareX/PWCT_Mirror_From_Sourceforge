@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:50:19    Date : 12/01/2010
+* Time : 00:49:20    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -259,89 +259,6 @@ AMPM
 
 END STATUSBAR
 
-DEFINE TOOLBAR Toolbar1;
-BUTTONSIZE 40 , 40 ;
-BOLD ;
-FLAT ;
-BORDER ;
-BREAK 
-
-BUTTON toolbaremployeebtn1;
-PICTURE "image\EmployeesIcon.bmp" ;
-ADJUST ;
-ON CLICK EmployeesDataObject:showwindow()  ;
-TOOLTIP "»Ì«‰«  «·„œ—»Ì‰" ;
-AUTOSIZE 
-
-BUTTON toolbaremployeebtn2;
-PICTURE "image\searchicon.bmp" ;
-ADJUST ;
-ON CLICK EmployeesBrowseObject:showwindow()  ;
-TOOLTIP "»ÕÀ ›Ï »Ì«‰«  «·„œ—»Ì‰" ;
-AUTOSIZE 
-
-BUTTON toolbaremployeebtn3;
-PICTURE "image\reporticon.bmp" ;
-ADJUST ;
-ON CLICK Employeesreport()  ;
-TOOLTIP " ﬁ—Ì— »«·„œ—»Ì‰" ;
-SEPARATOR ;
-AUTOSIZE 
-
-BUTTON toolbarsupplierbtn1;
-PICTURE "image\suppliersicon.bmp" ;
-ADJUST ;
-ON CLICK SuppliersDataObject:showwindow()  ;
-TOOLTIP "»Ì«‰«  «·„Ê—œÌ‰" ;
-AUTOSIZE 
-
-BUTTON toolbarSuppliersbtn2;
-PICTURE "image\searchicon.bmp" ;
-ADJUST ;
-ON CLICK SuppliersBrowseObject:showwindow()  ;
-TOOLTIP "»ÕÀ ›Ï »Ì«‰«  «·„Ê—œÌ‰" ;
-AUTOSIZE 
-
-BUTTON toolbarSuppliersbtn3;
-PICTURE "image\reporticon.bmp" ;
-ADJUST ;
-ON CLICK Suppliersreport()  ;
-TOOLTIP " ﬁ—Ì— »«·„Ê—œÌ‰" ;
-SEPARATOR ;
-AUTOSIZE 
-
-BUTTON toolbarcustomersbtn1;
-PICTURE "image\customersicon.bmp" ;
-ADJUST ;
-ON CLICK CustomersDataObject:showwindow()  ;
-TOOLTIP "»Ì«‰«  «·⁄„·«¡" ;
-AUTOSIZE 
-
-BUTTON toolbarcustomersbtn2;
-PICTURE "image\searchicon.bmp" ;
-ADJUST ;
-ON CLICK CustomersBrowseObject:showwindow()  ;
-TOOLTIP "»ÕÀ ›Ï »Ì«‰«  «·⁄„·«¡" ;
-AUTOSIZE 
-
-BUTTON toolbarcustomersbtn3;
-PICTURE "image\reporticon.bmp" ;
-ADJUST ;
-ON CLICK Customersreport()  ;
-TOOLTIP " ﬁ—Ì— »«·⁄„·«¡" ;
-SEPARATOR ;
-AUTOSIZE 
-
-BUTTON toolbarshutdown;
-PICTURE "image\shutdown.bmp" ;
-ADJUST ;
-ON CLICK closesystem()  ;
-TOOLTIP "≈€·«ﬁ «·‰Ÿ«„" ;
-SEPARATOR ;
-AUTOSIZE 
-
-END TOOLBAR
-
 @ 79 ,644 IMAGE image1;
 PICTURE "image\CUSTOMERS.JPG";
 ON CLICK customers()  ;
@@ -381,19 +298,6 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 356 ,425 IMAGE image4;
-PICTURE "image\AGREEMENT.JPG";
-ON CLICK AgreementObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 607 ,464 LABEL lbl4 ;
-VALUE "«·„Ê«›ﬁ… ⁄·Ï «·œÊ—…" ;
-ACTION AgreementObject:ShowWindow()  ;
-WIDTH 130 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
 @ 79 ,223 IMAGE image5;
 PICTURE "image\FACTORY.JPG";
 ON CLICK OrderProcessesObject:ShowWindow()  ;
@@ -407,28 +311,15 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 79 ,23 IMAGE image6;
+@ 356 ,430 IMAGE image6;
 PICTURE "image\REPORTS.JPG";
 ON CLICK sysreports()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 316 ,86 LABEL lbl6 ;
+@ 607 ,488 LABEL lbl6 ;
 VALUE " ﬁ«—Ì—" ;
 ACTION sysreports()  ;
 WIDTH 50 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 356 ,223 IMAGE image7;
-PICTURE "image\DISPOSE.JPG";
-ON CLICK DisposeObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 607 ,264 LABEL lbl7 ;
-VALUE " ﬁÌÌ„ «·œÊ—« " ;
-ACTION DisposeObject:ShowWindow()  ;
-WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -673,6 +564,90 @@ IF UserCan_WinOrders = 2
 MENUITEM "«—”«· —”«·… «·Ï «·„”Ã·Ì‰ ›Ï œÊ—…" Action sendmailtogroupobject:showwindow()
 ENDIF
 END POPUP
+DEFINE TOOLBAR Toolbar1;
+PARENT win1 ;
+BUTTONSIZE 40 , 40 ;
+BOLD ;
+FLAT ;
+BORDER ;
+BREAK 
+
+BUTTON toolbaremployeebtn1;
+PICTURE "image\EmployeesIcon.bmp" ;
+ADJUST ;
+ON CLICK EmployeesDataObject:showwindow()  ;
+TOOLTIP "»Ì«‰«  «·„œ—»Ì‰" ;
+AUTOSIZE 
+
+BUTTON toolbaremployeebtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK EmployeesBrowseObject:showwindow()  ;
+TOOLTIP "»ÕÀ ›Ï »Ì«‰«  «·„œ—»Ì‰" ;
+AUTOSIZE 
+
+BUTTON toolbaremployeebtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Employeesreport()  ;
+TOOLTIP " ﬁ—Ì— »«·„œ—»Ì‰" ;
+SEPARATOR ;
+AUTOSIZE 
+
+BUTTON toolbarsupplierbtn1;
+PICTURE "image\suppliersicon.bmp" ;
+ADJUST ;
+ON CLICK SuppliersDataObject:showwindow()  ;
+TOOLTIP "»Ì«‰«  «·„Ê—œÌ‰" ;
+AUTOSIZE 
+
+BUTTON toolbarSuppliersbtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK SuppliersBrowseObject:showwindow()  ;
+TOOLTIP "»ÕÀ ›Ï »Ì«‰«  «·„Ê—œÌ‰" ;
+AUTOSIZE 
+
+BUTTON toolbarSuppliersbtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Suppliersreport()  ;
+TOOLTIP " ﬁ—Ì— »«·„Ê—œÌ‰" ;
+SEPARATOR ;
+AUTOSIZE 
+
+BUTTON toolbarcustomersbtn1;
+PICTURE "image\customersicon.bmp" ;
+ADJUST ;
+ON CLICK CustomersDataObject:showwindow()  ;
+TOOLTIP "»Ì«‰«  «·⁄„·«¡" ;
+AUTOSIZE 
+
+BUTTON toolbarcustomersbtn2;
+PICTURE "image\searchicon.bmp" ;
+ADJUST ;
+ON CLICK CustomersBrowseObject:showwindow()  ;
+TOOLTIP "»ÕÀ ›Ï »Ì«‰«  «·⁄„·«¡" ;
+AUTOSIZE 
+
+BUTTON toolbarcustomersbtn3;
+PICTURE "image\reporticon.bmp" ;
+ADJUST ;
+ON CLICK Customersreport()  ;
+TOOLTIP " ﬁ—Ì— »«·⁄„·«¡" ;
+SEPARATOR ;
+AUTOSIZE 
+
+BUTTON toolbarshutdown;
+PICTURE "image\shutdown.bmp" ;
+ADJUST ;
+ON CLICK closesystem()  ;
+TOOLTIP "≈€·«ﬁ «·‰Ÿ«„" ;
+SEPARATOR ;
+AUTOSIZE 
+
+END TOOLBAR
+
 Return Nil
 Proc customersreport
 customersreportobject:filter := ""
@@ -699,13 +674,9 @@ myhandle = getcontrolhandle ( "image2","win1" )
 DO sethandcursor WITH myhandle
 myhandle = getcontrolhandle ( "image3","win1" )
 DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image4","win1" )
-DO sethandcursor WITH myhandle
 myhandle = getcontrolhandle ( "image5","win1" )
 DO sethandcursor WITH myhandle
 myhandle = getcontrolhandle ( "image6","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image7","win1" )
 DO sethandcursor WITH myhandle
 win1.Maximize ( )
 win1.Show ( )
