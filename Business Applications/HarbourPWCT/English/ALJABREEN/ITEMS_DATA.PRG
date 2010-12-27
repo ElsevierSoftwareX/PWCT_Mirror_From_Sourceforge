@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:53:33    Date : 12/08/2010
+* Time : 03:05:48    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -785,6 +785,7 @@ IF v1 = 0
 MyOut := MSGBOX("No Item Unit Determined","Sorry")
 myret := false
 ENDIF
+tvalue := self:ItemGroupItemsids[self:warehousecode]
 v1 := ItemsWindow.textModelNumber.Value
 v1 = ALLTRIM ( v1 )
 IF v1 == ""
@@ -797,7 +798,7 @@ ENDIF
 myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 myRS:CursorType := 1
 myRS:ActiveConnection := self:oCon
-myRS:open ( "Select * from Items_All where ItemModelNo = '" + v1 + "'",self:oCon,3,3 )
+myRS:open ( "Select * from Items_All where ItemModelNo = '" + v1 + "'" + " and itemgroupid = " + alltrim(Str(tvalue)),self:oCon,3,3 )
 nMax := myRS:RecordCount
 myRS:Close()
 IF nMax > vMax
@@ -817,7 +818,7 @@ ENDIF
 myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 myRS:CursorType := 1
 myRS:ActiveConnection := self:oCon
-myRS:open ( "Select * from Items_All where ItemModelName = '" + v1 + "'",self:oCon,3,3 )
+myRS:open ( "Select * from Items_All where ItemModelName = '" + v1 + "'" + " and itemgroupid = " + alltrim(Str(tvalue)),self:oCon,3,3 )
 nMax := myRS:RecordCount
 myRS:Close()
 IF nMax > vMax
