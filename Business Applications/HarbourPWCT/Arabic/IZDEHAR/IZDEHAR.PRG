@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:49:20    Date : 12/09/2010
+* Time : 01:19:12    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -146,6 +146,7 @@ Set Procedure to "CustDispose2_Report.PRG"
 Set Procedure to "CustDispose3_Report.PRG"
 Set Procedure to "CustDispose4_Report.PRG"
 Set Procedure to "CustCome_Report.PRG"
+Set Procedure to "CustDispose5_Report.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -235,6 +236,7 @@ CustDispose2ReportObject = CustDispose2ReportClass()
 CustDispose3ReportObject = CustDispose3ReportClass()
 CustDispose4ReportObject = CustDispose4ReportClass()
 CustComeReportObject = CustComeReportClass()
+CustDispose5ReportObject = CustDispose5ReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -544,6 +546,7 @@ MENUITEM "⁄‰«’— «· ﬁÌÌ„ «·„›’· ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action ValueItemsReportO
 MENUITEM " ﬁ—Ì— »œ—Ã«   ﬁÌÌ„ „›’· ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDispose2ReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »„ Ê”ÿ «· ﬁÌÌ„ «· ›’Ì·Ï ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDispose3ReportObject:ShowWindow()
 MENUITEM "≈” „«—… «· ﬁÌÌ„ «· ›’Ì·Ï ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDispose4ReportObject:ShowWindow()
+MENUITEM "≈” „«—… «· ﬁÌÌ„ «· ›’Ì·Ï ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰ »œÊ‰ «”„ «·„ œ—»" Action CustDispose5ReportObject:ShowWindow()
 END POPUP
 ENDIF
 END POPUP
