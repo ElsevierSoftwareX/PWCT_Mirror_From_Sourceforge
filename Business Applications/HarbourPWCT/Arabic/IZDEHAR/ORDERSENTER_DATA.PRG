@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:50:27    Date : 12/09/2010
+* Time : 00:08:11    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,7 +54,7 @@ Data nOrderNumber init 0
 Data TableName2 init "OrderItems_All"
 Data column2 init "f_name"
 Data PrimaryKey2 init "id"
-Data columns2 init {"invoicenumber","howknow","f_mobile","f_name"}
+Data columns2 init {"username","invoicenumber","howknow","f_mobile","f_name"}
 Data ResultPrimaryKeys2 init {}
 Data cOrderName init ""
 Data nhowknow init 0
@@ -398,11 +398,11 @@ TOOLTIP ""
 @ 515 ,66 GRID Grid1browse2;
 WIDTH 890 ;
 HEIGHT 140 ;
-HEADERS {"—ﬁ„ «·”‰œ"," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
-WIDTHS {100,150,250,350} ;
+HEADERS {"«”„ «·„” Œœ„","—ﬁ„ «·”‰œ"," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
+WIDTHS {100,100,150,150,350} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1} ;
+JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 475 ,736 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
@@ -893,6 +893,7 @@ oRS:fields:item("customerid"):value := self:nItem
 oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("customerhowknow"):value := self:nhowknow
 oRS:fields:item("InvoiceNumber"):value := cInvoiceNumber
+oRS:fields:item("UserName"):value := enteredusername
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search2()
