@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:33:12    Date : 11/24/2010
+* Time : 19:21:17    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "Orders_All"
 Data nID init 0
 Data column init "ordernumber"
 Data PrimaryKey init "id"
-Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
+Data columns init {"FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
 Data nCustomer init 0
 Data Customeritems init {}
 Data Customeritemsids init {}
@@ -54,7 +54,7 @@ Data nOrderNumber init 0
 Data TableName2 init "OrderItems_All"
 Data column2 init "f_name"
 Data PrimaryKey2 init "id"
-Data columns2 init {"customerwant3","customerwant2","customerwant1","howknow","f_mobile","f_name"}
+Data columns2 init {"howknow","f_mobile","f_name"}
 Data ResultPrimaryKeys2 init {}
 Data cOrderName init ""
 Data nhowknow init 0
@@ -71,6 +71,9 @@ Data FindTitles2 init {"«”„ «·⁄„Ì·","—ﬁ„ «·„Ê»«Ì·"}
 Data nOrderType init 0
 Data OrderTypeitems init {}
 Data OrderTypeItemsids init {}
+Data CustomerWant1 init ""
+Data CustomerWant2 init ""
+Data CustomerWant3 init ""
 Method showwindow
 Method closewindow
 Method ShowRecord
@@ -127,7 +130,7 @@ BACKCOLOR {64,0,64}
 @ 43 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 1010 HEIGHT 300
+WIDTH 1010 HEIGHT 340
 @ 464 ,4 IMAGE image2;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
@@ -217,30 +220,30 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 167 ,293 TEXTBOX textnamebrowse;
+@ 210 ,292 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 420 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 167 ,159 BUTTONEX btn1browse;
+@ 210 ,158 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 203 ,16 GRID Grid1browse;
+@ 246 ,16 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 990 ;
 HEIGHT 130 ;
-HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,180,120,200,150,100,100} ;
-FONT "arial" SIZE 14 ;
+HEADERS {" «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
+WIDTHS {180,120,200,250,100,100} ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 167 ,717 COMBOBOX comboFind;
+@ 210 ,716 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -251,7 +254,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 389 ,281 TEXTBOX textcustomerwant2;
+@ 167 ,296 TEXTBOX textcustomerwant2;
 HEIGHT 31 ;
 WIDTH 248 ;
 FONT "Arial" SIZE 14 ;
@@ -277,7 +280,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("customers","f_name",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 351 ,802 LABEL lblitems ;
+@ 391 ,801 LABEL lblitems ;
 VALUE "«”„ «·⁄„Ì·" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -285,7 +288,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 352 ,281 COMBOBOX comboitem;
+@ 392 ,280 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
 WIDTH 510 ;
 HEIGHT 100;
@@ -294,7 +297,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 349 ,227 LABEL lblItemUnit ;
+@ 389 ,226 LABEL lblItemUnit ;
 VALUE "ÃÊ«·" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -302,7 +305,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 349 ,48 TEXTBOX textCustomerMobile;
+@ 389 ,48 TEXTBOX textCustomerMobile;
 ON ENTER self:mobilechange()  ;
 HEIGHT 30 ;
 WIDTH 160 ;
@@ -311,15 +314,15 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 392 ,802 LABEL lblItemUnit2 ;
+@ 167 ,838 LABEL lblItemUnit2 ;
 VALUE "«Â„ À·«À… „Õ«Ê—" ;
 WIDTH 110 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
+BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
-FONTCOLOR {255,255,255}
-@ 390 ,542 TEXTBOX textcustomerwant1;
+FONTCOLOR {0,0,0}
+@ 168 ,567 TEXTBOX textcustomerwant1;
 HEIGHT 30 ;
 WIDTH 250 ;
 FONT "Arial" SIZE 14 ;
@@ -357,7 +360,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 389 ,48 TEXTBOX textcustomerwant3;
+@ 167 ,63 TEXTBOX textcustomerwant3;
 HEIGHT 30 ;
 WIDTH 210 ;
 FONT "Arial" SIZE 14 ;
@@ -379,29 +382,29 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-@ 475 ,452 TEXTBOX textNamebrowse2;
+@ 475 ,471 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 250 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 475 ,338 BUTTONEX btn1browse2;
+@ 475 ,357 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 515 ,48 GRID Grid1browse2;
+@ 515 ,66 GRID Grid1browse2;
 WIDTH 890 ;
 HEIGHT 140 ;
-HEADERS {"„ÕÊ— 3","„ÕÊ— 2 ","„ÕÊ— 1 "," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
-WIDTHS {100,100,100,150,150,250} ;
+HEADERS {" ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
+WIDTHS {250,250,350} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1} ;
+JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 475 ,717 COMBOBOX comboFind2;
+@ 475 ,736 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
 WIDTH 220 ;
 HEIGHT 200;
@@ -410,7 +413,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 475 ,48 BUTTONEX btnDel2;
+@ 475 ,67 BUTTONEX btnDel2;
 CAPTION "Õ–› «·⁄„Ì· „‰ «·œÊ—…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -459,7 +462,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 130 ,736 LABEL lblhaya ;
+@ 127 ,733 LABEL lblhaya ;
 VALUE "—ﬁ„ ”Ã· «·œÊ—… ›Ï ÂÌ∆… «· œ—Ì»" ;
 WIDTH 210 ;
 HEIGHT 30 ;
@@ -536,6 +539,9 @@ self:nLocation := OrdersEnterWindow.ComboLocation.Value
 self:nLocation := self:LocationItemsids[self:nLocation]
 self:nOrderType := OrdersEnterWindow.ComboOrderType.Value
 self:nOrderType := self:OrderTypeItemsids[self:nOrderType]
+self:CustomerWant1 := OrdersEnterWindow.textCustomerWant1.Value
+self:CustomerWant2 := OrdersEnterWindow.textCustomerWant2.Value
+self:CustomerWant3 := OrdersEnterWindow.textCustomerWant3.Value
 Return 0
 Method Class2ADO Class OrdersEnterClass
 self:oRS:fields:item("Customerid"):value := self:nCustomer
@@ -546,6 +552,9 @@ self:oRS:fields:item("OrderName"):value := self:cOrderName
 self:oRS:fields:item("HayaRecord"):value := self:cHayaRecord
 self:oRS:fields:item("Locationid"):value := self:nLocation
 self:oRS:fields:item("OrderTypeid"):value := self:nOrderType
+self:oRS:fields:item("CustomerWant1"):value := self:CustomerWant1
+self:oRS:fields:item("CustomerWant2"):value := self:CustomerWant2
+self:oRS:fields:item("CustomerWant3"):value := self:CustomerWant3
 Return 0
 Method ADO2Class Class OrdersEnterClass
 self:nCustomer := self:oRS:fields:item("CustomerID"):value
@@ -556,6 +565,9 @@ self:cOrderName := self:oRS:fields:item("OrderName"):value
 self:nLocation := self:oRS:fields:item("LocationID"):value
 self:cHayaRecord := self:oRS:fields:item("HayaRecord"):value
 self:nOrderType := self:oRS:fields:item("OrderTypeID"):value
+self:CustomerWant1 := self:oRS:fields:item("CustomerWant1"):value
+self:CustomerWant2 := self:oRS:fields:item("CustomerWant2"):value
+self:CustomerWant3 := self:oRS:fields:item("CustomerWant3"):value
 Return 0
 Method Class2UserInterface Class OrdersEnterClass
 self:nCustomer = self:LookupIDToIndex(self:nCustomer,@self:CustomerItemsids)
@@ -570,6 +582,9 @@ OrdersEnterWindow.textHayaRecord.Value := self:cHayaRecord
 self:nOrderType = self:LookupIDToIndex(self:nOrderType,@self:OrderTypeItemsids)
 OrdersEnterWindow.ComboOrderType.Value := self:nOrderType
 myout = self:search2()
+OrdersEnterWindow.textCustomerWant1.Value := self:CustomerWant1
+OrdersEnterWindow.textCustomerWant2.Value := self:CustomerWant2
+OrdersEnterWindow.textCustomerWant3.Value := self:CustomerWant3
 Return 0
 Method ClearRecord Class OrdersEnterClass
 self:nCustomer := 0
@@ -582,6 +597,9 @@ self:nOrderType := 0
 IF self:addrec = false
 self:nOrderNumber := 0
 ENDIF
+self:CustomerWant1 := ""
+self:CustomerWant2 := ""
+self:CustomerWant3 := ""
 Return 0
 Method search Class OrdersEnterClass
 Local oCon,oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
@@ -667,6 +685,9 @@ OrdersEnterWindow.textOrderName.Enabled := true
 OrdersEnterWindow.comboLocation.Enabled := true
 OrdersEnterWindow.textHayaRecord.Enabled := true
 OrdersEnterWindow.comboOrderType.Enabled := true
+OrdersEnterWindow.textCustomerWant1.Enabled := true
+OrdersEnterWindow.textCustomerWant2.Enabled := true
+OrdersEnterWindow.textCustomerWant3.Enabled := true
 ENDIF
 IF p1 = 2
 OrdersEnterWindow.btnfirst.Enabled := true
@@ -688,6 +709,9 @@ OrdersEnterWindow.textOrderName.Enabled := false
 OrdersEnterWindow.comboLocation.Enabled := False
 OrdersEnterWindow.textHayaRecord.Enabled := False
 OrdersEnterWindow.comboOrderType.Enabled := False
+OrdersEnterWindow.textCustomerWant1.Enabled := false
+OrdersEnterWindow.textCustomerWant2.Enabled := false
+OrdersEnterWindow.textCustomerWant3.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -845,9 +869,6 @@ oRS:ADDNEW()
 oRS:fields:item("customerid"):value := self:nItem
 oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("customerhowknow"):value := self:nhowknow
-oRS:fields:item("customerwant1"):value := OrdersEnterWindow.textcustomerwant1.value
-oRS:fields:item("customerwant2"):value := OrdersEnterWindow.textcustomerwant2.value
-oRS:fields:item("customerwant3"):value := OrdersEnterWindow.textcustomerwant3.value
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search2()
@@ -869,9 +890,6 @@ Return 0
 Method SetOrderStatus Class OrdersEnterClass
 self:oRS:fields:item("orderstatusID"):value := 2
 self:oRS:UPDATE()
-myitem := OrdersEnterWindow.Grid1Browse.item(OrdersEnterWindow.Grid1Browse.value)
-myitem[1] := "»«‰ Ÿ«— «·«⁄ „«œ"
-OrdersEnterWindow.Grid1Browse.item(OrdersEnterWindow.Grid1Browse.Value) := myitem
 Return 0
 Method mobilechange Class OrdersEnterClass
 Local myrs,MYVALUE,vname
