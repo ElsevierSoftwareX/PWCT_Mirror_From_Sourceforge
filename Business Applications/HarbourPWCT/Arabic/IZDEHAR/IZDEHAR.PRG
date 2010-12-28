@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:08:21    Date : 12/10/2010
+* Time : 01:27:47    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -481,7 +481,6 @@ END POPUP
 ENDIF
 IF UserCan_WinDispose = 2
 POPUP " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡"
-MENUITEM "«· ﬁÌÌ„ «·⁄«„ „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action DisposeObject:ShowWindow()
 MENUITEM "«Œ Ì«—«  «· ﬁÌÌ„ «·⁄«„" Action CustOpinionObject:ShowWindow()
 MENUITEM "«· ﬁÌÌ„ «·⁄«„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
 SEPARATOR
@@ -772,7 +771,7 @@ oRS:ActiveConnection := oCon
 oRS:open ( "Select * from Users",oCon,3,3 )
 mymax := oRS:RecordCount
 openworld := false
-Public EnteredUserName,EnteredPassword,UserCan_Admin,UserCan_AgreementRole
+Public EnteredUserName,EnteredPassword,UserCan_Admin,UserCan_EmpID
 EnteredUserName := winlogin.text1.Value
 EnteredPassword := winlogin.text2.Value
 Public UserCan_WinEmployees
@@ -794,7 +793,7 @@ cPassword = ALLTRIM ( cPassword )
 IF cPassword == EnteredPassWord
 openworld := true
 UserCan_Admin := oRS:fields:item("SystemAdmin"):value
-UserCan_AgreementRole := oRS:fields:item("AgreementRole"):value
+UserCan_EmpID := oRS:fields:item("EmpID"):value
 UserCan_WinEmployees := oRS:fields:item("WinEmployees"):value
 UserCan_WinSuppliers := oRS:fields:item("WinSuppliers"):value
 UserCan_WinCustomers := oRS:fields:item("WinCustomers"):value

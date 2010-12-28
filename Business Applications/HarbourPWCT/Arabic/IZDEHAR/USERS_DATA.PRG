@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:49:16    Date : 10/25/2010
+* Time : 01:27:40    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,9 +41,9 @@ Data nID init 0
 Data column init "UserName"
 Data PrimaryKey init "id"
 Data columns init {"ID","UserName"}
-Data nAgreementRole init 0
-Data AgreementRoleitems init {}
-Data AgreementRoleitemsids init {}
+Data nEmp init 0
+Data Empitems init {}
+Data empitemsids init {}
 Data nSystemAdmin init 0
 Data SystemAdminitems init {}
 Data SystemAdminitemsids init {}
@@ -239,19 +239,19 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0} ;
 PASSWORD
 
-myout = self:LoadLookupTable("AgreementRoles","AgreementRole",@self:AgreementRoleItems,"id",@self:AgreementRoleItemsIDS)
-@ 263 ,591 LABEL lblAgreementRole ;
-VALUE "’·«ÕÌ«  «·„Ê«›ﬁ… ⁄·Ï œÊ—…" ;
+myout = self:LoadLookupTable("Employees2","f_name",@self:empItems,"id",@self:empItemsIDS)
+@ 263 ,591 LABEL lblemp ;
+VALUE "«·„ÊŸ›" ;
 WIDTH 190 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 266 ,180 COMBOBOX comboAgreementRole;
+@ 266 ,180 COMBOBOX comboEmp;
 WIDTH 390 ;
 HEIGHT 100;
-ITEMS self:AgreementRoleitems ;
+ITEMS self:empitems ;
 VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -273,7 +273,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-DO RightToLeftControl WITH "UsersWindow","comboAgreementRole"
+DO RightToLeftControl WITH "UsersWindow","comboEmp"
 DO RightToLeftControl WITH "UsersWindow","comboSystemAdmin"
 @ 7 ,775 BUTTONEX btnMore;
 CAPTION " ›«’Ì·";
@@ -294,35 +294,39 @@ Return 0
 Method UserInterface2Class Class UsersClass
 self:cUserName := UsersWindow.textUserName.Value
 self:cPassWord := UsersWindow.textPassWord.Value
-self:nAgreementRole := UsersWindow.ComboAgreementRole.Value
-self:nAgreementRole := self:AgreementRoleitemsids[self:nAgreementRole]
+self:nEmp := UsersWindow.ComboEmp.Value
+IF .not. self:nEmp = 0
+self:nEmp := self:Empitemsids[self:nEmp]
+ENDIF
 self:nSystemAdmin := UsersWindow.ComboSystemAdmin.Value
 self:nSystemAdmin := self:SystemAdminItemsids[self:nSystemAdmin]
 Return 0
 Method Class2ADO Class UsersClass
 self:oRS:fields:item("UserName"):value := self:cUserName
 self:oRS:fields:item("PassWord"):value := self:cPassWord
-self:oRS:fields:item("AgreementRole"):value := self:nAgreementRole
+self:oRS:fields:item("empid"):value := self:nEmp
 self:oRS:fields:item("SystemAdmin"):value := self:nSystemAdmin
 Return 0
 Method ADO2Class Class UsersClass
 self:cUserName := self:oRS:fields:item("UserName"):value
 self:cPassWord := self:oRS:fields:item("PassWord"):value
-self:nAgreementRole := self:oRS:fields:item("AgreementRole"):value
+self:nEmp := self:oRS:fields:item("Empid"):value
 self:nSystemAdmin := self:oRS:fields:item("SystemAdmin"):value
 Return 0
 Method Class2UserInterface Class UsersClass
 UsersWindow.textUserName.Value := self:cUserName
 UsersWindow.textPassWord.Value := self:cPassWord
-self:nAgreementRole = self:LookupIDToIndex(self:nAgreementRole,@self:AgreementRoleItemsids)
-UsersWindow.ComboAgreementRole.Value := self:nAgreementRole
+IF .not. self:nEmp = 0
+self:nEmp = self:LookupIDToIndex(self:nEmp,@self:EmpItemsids)
+ENDIF
+UsersWindow.ComboEmp.Value := self:nEmp
 self:nSystemAdmin = self:LookupIDToIndex(self:nSystemAdmin,@self:SystemAdminItemsids)
 UsersWindow.ComboSystemAdmin.Value := self:nSystemAdmin
 Return 0
 Method ClearRecord Class UsersClass
 self:cUserName := ""
 self:cPassWord := ""
-self:nAgreementRole := 0
+self:nEmp := 0
 self:nSystemAdmin := 0
 Return 0
 Method OpenDataWindow Class UsersClass
@@ -351,7 +355,7 @@ UsersWindow.btnedit.Enabled := false
 UsersWindow.btnadd.Enabled := false
 UsersWindow.textUserName.Enabled := true
 UsersWindow.textPassWord.Enabled := true
-UsersWindow.comboAgreementRole.Enabled := true
+UsersWindow.comboEmp.Enabled := true
 UsersWindow.comboSystemAdmin.Enabled := true
 ENDIF
 IF p1 = 2
@@ -367,7 +371,7 @@ UsersWindow.btnedit.Enabled := true
 UsersWindow.btnadd.Enabled := true
 UsersWindow.textUserName.Enabled := false
 UsersWindow.textPassWord.Enabled := false
-UsersWindow.comboAgreementRole.Enabled := false
+UsersWindow.comboEmp.Enabled := false
 UsersWindow.comboSystemAdmin.Enabled := false
 ENDIF
 self:OperationMode := p1
@@ -377,13 +381,13 @@ if !iswindowdefined( winMore )
 DEFINE WINDOW winMore ;
 AT 10 ,10 ;
 WIDTH 485 ;
-HEIGHT 535 ;
+HEIGHT 490 ;
 ICON "PWCTICON" ;
 TITLE "’·«ÕÌ«  «·„” Œœ„Ì‰" ;
 MODAL ;
 BACKCOLOR {236,233,216}
 
-@ 458 ,385 BUTTONEX btnClose;
+@ 408 ,385 BUTTONEX btnClose;
 CAPTION "„Ê«›ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -395,7 +399,7 @@ TOOLTIP ""
 @ -2 ,-4 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 481 HEIGHT 451
+WIDTH 481 HEIGHT 391
 @ 24 ,38 CHECKBOX check1;
 CAPTION "»Ì«‰«  «·„ÊŸ›Ì‰ Ê«·„œ—»Ì‰";
 WIDTH 250;
@@ -431,21 +435,21 @@ Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 284 ,38 CHECKBOX check6;
+@ 284 ,498 CHECKBOX check6;
 CAPTION "«·„Ê«›ﬁ… ⁄·Ï œÊ—…";
 WIDTH 250;
 Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 336 ,38 CHECKBOX check7;
+@ 286 ,38 CHECKBOX check7;
 CAPTION "„ «»⁄… ”Ì— «·œÊ—« ";
 WIDTH 250;
 Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 388 ,38 CHECKBOX check8;
+@ 338 ,38 CHECKBOX check8;
 CAPTION " ﬁÌÌ„ «·œÊ—« ";
 WIDTH 250;
 Height 30;

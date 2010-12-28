@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:19:12    Date : 12/09/2010
+* Time : 00:58:58    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -49,7 +49,7 @@ Data TableName2 init "OrderItems_All"
 Data column2 init "f_name"
 Data PrimaryKey2 init "id"
 Data ResultPrimaryKeys2 init {}
-Data columns2 init {"howknow","f_mobile","f_name"}
+Data columns2 init {"username","invoicenumber","howknow","f_mobile","f_name"}
 Data nitem init 0
 Data itemitems init {}
 Data itemitemsids init {}
@@ -186,11 +186,11 @@ TOOLTIP ""
 ON DBLCLICK self:search3  ;
 WIDTH 890 ;
 HEIGHT 140 ;
-HEADERS {" ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
-WIDTHS {250,250,350} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"«”„ «·„ÊŸ›","—ﬁ„ «·”‰œ"," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
+WIDTHS {150,150,150,150,250} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1} ;
+JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 255 ,727 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
