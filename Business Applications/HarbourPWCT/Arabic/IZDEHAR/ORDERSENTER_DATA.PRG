@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:21:17    Date : 12/09/2010
+* Time : 23:50:27    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,7 +54,7 @@ Data nOrderNumber init 0
 Data TableName2 init "OrderItems_All"
 Data column2 init "f_name"
 Data PrimaryKey2 init "id"
-Data columns2 init {"howknow","f_mobile","f_name"}
+Data columns2 init {"invoicenumber","howknow","f_mobile","f_name"}
 Data ResultPrimaryKeys2 init {}
 Data cOrderName init ""
 Data nhowknow init 0
@@ -288,16 +288,16 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 392 ,280 COMBOBOX comboitem;
+@ 392 ,540 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
-WIDTH 510 ;
+WIDTH 250 ;
 HEIGHT 100;
 ITEMS self:itemitems ;
 VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 389 ,226 LABEL lblItemUnit ;
+@ 389 ,466 LABEL lblItemUnit ;
 VALUE "ÃÊ«·" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -305,7 +305,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 389 ,48 TEXTBOX textCustomerMobile;
+@ 389 ,278 TEXTBOX textCustomerMobile;
 ON ENTER self:mobilechange()  ;
 HEIGHT 30 ;
 WIDTH 160 ;
@@ -398,11 +398,11 @@ TOOLTIP ""
 @ 515 ,66 GRID Grid1browse2;
 WIDTH 890 ;
 HEIGHT 140 ;
-HEADERS {" ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
-WIDTHS {250,250,350} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"—ﬁ„ «·”‰œ"," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
+WIDTHS {100,150,250,350} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1} ;
+JUSTIFY {1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 475 ,736 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
@@ -418,14 +418,14 @@ CAPTION "Õ–› «·⁄„Ì· „‰ «·œÊ—…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
 ON CLICK self:delrecord2()  ;
-WIDTH 230 HEIGHT 30 ;
+WIDTH 180 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 431 ,48 BUTTONEX btnadd2;
+@ 431 ,68 BUTTONEX btnadd2;
 CAPTION "«÷«›… «·⁄„Ì· «·Ï «·œÊ—…";
 ON CLICK self:addrecord2()  ;
-WIDTH 480 HEIGHT 30 ;
+WIDTH 180 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 54 ,323 LABEL lblOrdername ;
@@ -515,6 +515,23 @@ myout = RightToLeftControl ( "OrdersEnterWindow","comboLocation" )
 myout = RightToLeftControl ( "OrdersEnterWindow","comboItem" )
 myout = RightToLeftControl ( "OrdersEnterWindow","comboHowKnow" )
 myout = RightToLeftControl ( "OrdersEnterWindow","comboOrderType" )
+@ 429 ,446 LABEL lblinvoicenumber ;
+VALUE "—ﬁ„ «·”‰œ" ;
+WIDTH 80 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {255,255,255}
+@ 429 ,278 TEXTBOX textInvoiceNumber;
+ON ENTER self:mobilechange()  ;
+HEIGHT 30 ;
+WIDTH 160 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
 END WINDOW
 
 OrdersEnterWindow.Center ( )
@@ -847,6 +864,12 @@ Return 0
 Method AddRecord2 Class OrdersEnterClass
 Local oRS,nValue,nMax
 IF self:nOrderNumber > 0
+cInvoiceNumber := OrdersEnterWindow.textInvoiceNumber.Value
+cInvoiceNumber = ALLTRIM ( cInvoiceNumber )
+IF cInvoiceNumber == ""
+MyOut := MSGBOX("ÌÃ» «œŒ«· —ﬁ„ «·”‰œ","⁄›Ê«")
+Return 0
+ENDIF
 self:nItem := OrdersEnterWindow.ComboItem.Value
 self:nItem := self:ItemItemsids[self:nItem]
 self:nhowknow := OrdersEnterWindow.Combohowknow.Value
@@ -869,6 +892,7 @@ oRS:ADDNEW()
 oRS:fields:item("customerid"):value := self:nItem
 oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("customerhowknow"):value := self:nhowknow
+oRS:fields:item("InvoiceNumber"):value := cInvoiceNumber
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search2()

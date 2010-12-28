@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:56:21    Date : 12/09/2010
+* Time : 23:50:36    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -353,7 +353,7 @@ if !iswindowdefined( winlogo )
 DEFINE WINDOW winlogo ;
 AT 10 ,10 ;
 WIDTH 234 ;
-HEIGHT 196 ;
+HEIGHT 184 ;
 ICON "PWCTICON" ;
 TITLE "Window Title" ;
 CHILD ;
@@ -381,7 +381,7 @@ EndIF
 HPARENT := GetFormHandle("win1")
 HCHILD := GetFormHandle("winLOGO")
 myout = CALLDLL32("SetParent","USER32.DLL",HCHILD,HPARENT)
-winlogo.Col := 100
+winlogo.Col := 50
 winlogo.Row := 450
 Activate Window winlogo nowait
 Return Nil
