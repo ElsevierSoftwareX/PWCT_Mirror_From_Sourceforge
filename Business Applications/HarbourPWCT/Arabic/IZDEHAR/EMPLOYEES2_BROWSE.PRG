@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:09:26    Date : 12/09/2010
+* Time : 05:51:47    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -126,19 +126,19 @@ EndIF
 
 Return 0
 Method ShowDataWindow(nValue) Class Employees2BrowseClass
-EmployeesDataObject:LFindRecord := true
-EmployeesDataObject:CFindExpr := self:primarykey+"= '"+self:resultprimarykeys[nvalue]+"' "
-myout = EmployeesDataObject:ShowWindow()
+Employees2DataObject:LFindRecord := true
+Employees2DataObject:CFindExpr := self:primarykey+"= '"+self:resultprimarykeys[nvalue]+"' "
+myout = Employees2DataObject:ShowWindow()
 Return 0
 Method Print Class Employees2BrowseClass
 Local cName,myout
 cName := Employees2BrowseWindow.textNamebrowse.Value
 cName = ALLTRIM ( cName )
-Employeesreportobject:filter := ""
+Employees2reportobject:filter := ""
 IF .not. empty(cName)
-Employeesreportobject:filter := '((employees_all.f_name) Like "'+cName+'*")'
+Employees2reportobject:filter := '((employees2_all.f_name) Like "'+cName+'*")'
 ENDIF
-myout = Employeesreportobject:ShowWindow()
+myout = Employees2reportobject:ShowWindow()
 Return 0
 Method closewindow Class Employees2BrowseClass
 Employees2BrowseWindow.Release ( )

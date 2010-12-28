@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:08:13    Date : 12/09/2010
+* Time : 05:50:22    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -171,9 +171,9 @@ ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 8 ,346 LABEL lblTitle ;
-VALUE "                           »Ì«‰«  «·„ÊŸ›Ì‰ Ê«·„œ—»Ì‰" ;
-WIDTH 410 ;
+@ 8 ,185 LABEL lblTitle ;
+VALUE "                                      »Ì«‰«  «·„ÊŸ›Ì‰  " ;
+WIDTH 570 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -433,7 +433,7 @@ TOOLTIP ""
 myout = RightToLeftControl ( "Employees2DataWindow","combogender" )
 myout = RightToLeftControl ( "Employees2DataWindow","combocountry" )
 myout = RightToLeftControl ( "Employees2DataWindow","editnotes" )
-@ 7 ,190 BUTTONEX btnCustOrders;
+@ 7 ,790 BUTTONEX btnCustOrders;
 CAPTION "œÊ—«  «·„œ—»";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -554,8 +554,8 @@ Return 0
 ENDIF
 myid := self:oRS:fields:item("id"):value
 myid = STR ( myid )
-Employeesreportobject:filter := "id = "+myid
-myout = Employeesreportobject:ShowWindow()
+Employees2reportobject:filter := "id = "+myid
+myout = Employees2reportobject:ShowWindow()
 Return 0
 Method CustOrders Class Employees2DataClass
 Local myid
