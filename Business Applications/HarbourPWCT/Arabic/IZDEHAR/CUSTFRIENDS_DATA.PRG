@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:58:58    Date : 12/10/2010
+* Time : 02:15:19    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -57,7 +57,7 @@ Data TableName3 init "CustFriends_All"
 Data column3 init "f_name"
 Data PrimaryKey3 init "id"
 Data ResultPrimaryKeys3 init {}
-Data columns3 init {"recordstatus","f_mobile","f_name"}
+Data columns3 init {"username","recordstatus","f_mobile","f_name"}
 Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate"}
 Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"}
 Data FindColumns2 init {"f_name","f_mobile"}
@@ -252,11 +252,11 @@ TOOLTIP ""
 @ 523 ,182 GRID Grid1browse3;
 WIDTH 746 ;
 HEIGHT 130 ;
-HEADERS {"Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„” ›”—"};
-WIDTHS {200,200,300} ;
+HEADERS {"≈”„ «·„ÊŸ›","Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„” ›”—"};
+WIDTHS {150,150,150,250} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1} ;
+JUSTIFY {1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 489 ,697 COMBOBOX comboFind3;
 ON CHANGE self:CheckFind3()  ;
@@ -544,6 +544,8 @@ oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("Friendid"):value := self:nItem
 oRS:fields:item("recordstatusid"):value := 2
 oRS:fields:item("customerid"):value := 0
+oRS:fields:item("username"):value := EnteredUserName
+oRS:fields:item("empid"):value := UserCan_EmpID
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search3()
