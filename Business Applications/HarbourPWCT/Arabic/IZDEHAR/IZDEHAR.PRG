@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:37:43    Date : 12/09/2010
+* Time : 05:31:26    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -147,6 +147,9 @@ Set Procedure to "CustDispose3_Report.PRG"
 Set Procedure to "CustDispose4_Report.PRG"
 Set Procedure to "CustCome_Report.PRG"
 Set Procedure to "CustDispose5_Report.PRG"
+Set Procedure to "Employees2_Data.PRG"
+Set Procedure to "Employees2_Browse.PRG"
+Set Procedure to "Employees2_Report.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -237,6 +240,9 @@ CustDispose3ReportObject = CustDispose3ReportClass()
 CustDispose4ReportObject = CustDispose4ReportClass()
 CustComeReportObject = CustComeReportClass()
 CustDispose5ReportObject = CustDispose5ReportClass()
+Employees2DataObject = Employees2DataClass()
+Employees2BrowseObject = Employees2BrowseClass()
+Employees2ReportObject = Employees2ReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -394,10 +400,15 @@ ENDIF
 IF UserCan_WinEmployees = 2 .or. UserCan_WinSuppliers = 2 .or. UserCan_WinCustomers = 2
 POPUP "«·«‘Œ«’"
 IF UserCan_WinEmployees = 2
-POPUP "«·„ÊŸ›Ì‰ Ê «·„œ—»Ì‰"
-MENUITEM "»Ì«‰«  «·„ÊŸ› «Ê «·„œ—»" Action EmployeesDataObject:showwindow()
-MENUITEM "»ÕÀ ⁄‰ „ÊŸ› «Ê „œ—»" Action EmployeesBrowseObject:showwindow()
-MENUITEM " ﬁ—Ì— »«·„ÊŸ›Ì‰ Ê «·„œ—»Ì‰" Action Employeesreport()
+POPUP "«·„œ—»Ì‰"
+MENUITEM "»Ì«‰«  «·„œ—»" Action EmployeesDataObject:showwindow()
+MENUITEM "»ÕÀ ⁄‰  „œ—»" Action EmployeesBrowseObject:showwindow()
+MENUITEM " ﬁ—Ì— »«·„œ—»Ì‰" Action Employeesreport()
+END POPUP
+POPUP "«·„ÊŸ›Ì‰"
+MENUITEM "»Ì«‰«  «·„ÊŸ›" Action Employees2DataObject:showwindow()
+MENUITEM "»ÕÀ ⁄‰ „ÊŸ›" Action Employees2BrowseObject:showwindow()
+MENUITEM " ﬁ—Ì— »«·„ÊŸ›Ì‰" Action Employees2report()
 END POPUP
 ENDIF
 IF UserCan_WinCustomers = 2
@@ -956,6 +967,10 @@ Local v1,myhandle
 myhandle = GetControlHandle ( p2,p1 )
 v1 = CALLDLL32("GetWindowLong","USER32.DLL",myhandle,-20)
 myout = CALLDLL32("SetWindowLong","USER32.DLL",myhandle,-20,NUMOR(v1,0x400000,0x100000))
+Return Nil
+Proc Employees2report
+Employees2reportobject:filter := ""
+myout = Employees2reportobject:ShowWindow()
 Return Nil
 
 
