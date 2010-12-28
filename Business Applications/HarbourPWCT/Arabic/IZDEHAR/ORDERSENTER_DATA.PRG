@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:18:52    Date : 12/10/2010
+* Time : 01:47:09    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -67,7 +67,7 @@ Data cHayaRecord init ""
 Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
 Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
 Data FindColumns2 init {"f_name","f_mobile"}
-Data FindTitles2 init {"«”„ «·⁄„Ì·","—ﬁ„ «·„Ê»«Ì·"}
+Data FindTitles2 init {"«”„ «·⁄„Ì·","—ﬁ„ «·ÃÊ«·"}
 Data nOrderType init 0
 Data OrderTypeitems init {}
 Data OrderTypeItemsids init {}
@@ -399,7 +399,7 @@ TOOLTIP ""
 WIDTH 890 ;
 HEIGHT 140 ;
 HEADERS {"«”„ «·„ÊŸ›","—ﬁ„ «·”‰œ"," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
-WIDTHS {100,100,150,150,350} ;
+WIDTHS {150,150,150,150,250} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
@@ -894,6 +894,7 @@ oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("customerhowknow"):value := self:nhowknow
 oRS:fields:item("InvoiceNumber"):value := cInvoiceNumber
 oRS:fields:item("UserName"):value := enteredusername
+oRS:fields:item("empid"):value := UserCan_EmpID
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search2()
