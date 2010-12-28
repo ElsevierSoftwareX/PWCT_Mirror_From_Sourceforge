@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:21:27    Date : 12/09/2010
+* Time : 21:19:19    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -462,7 +462,7 @@ MENUITEM "ÃœÊ· «‰Ê«⁄ «·œÊ—« " Action OrderTypesObject:ShowWindow()
 MENUITEM "«„«ﬂ‰ «·œÊ—« " Action LocationsObject:ShowWindow()
 SEPARATOR
 MENUITEM " ”ÃÌ· œÊ—…" Action OrdersEnterObject:ShowWindow()
-MENUITEM "„—‘ÕÌ‰ «·⁄„Ì·" Action CustFriendsObject:ShowWindow()
+MENUITEM "«·„” ›”—Ì‰ ⁄‰ œÊ—…" Action CustFriendsObject:ShowWindow()
 SEPARATOR
 ENDIF
 IF UserCan_WinAgreement = 2

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:24:45    Date : 11/24/2010
+* Time : 21:19:12    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "Orders_All"
 Data nID init 0
 Data column init "ordernumber"
 Data PrimaryKey init "id"
-Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
+Data columns init {"FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
 Data nOrderNumber init ""
 Data cOrderDate init ""
 Data cOrderFinishDate init ""
@@ -49,7 +49,7 @@ Data TableName2 init "OrderItems_All"
 Data column2 init "f_name"
 Data PrimaryKey2 init "id"
 Data ResultPrimaryKeys2 init {}
-Data columns2 init {"customerwant3","customerwant2","customerwant1","howknow","f_mobile","f_name"}
+Data columns2 init {"howknow","f_mobile","f_name"}
 Data nitem init 0
 Data itemitems init {}
 Data itemitemsids init {}
@@ -58,8 +58,8 @@ Data column3 init "f_name"
 Data PrimaryKey3 init "id"
 Data ResultPrimaryKeys3 init {}
 Data columns3 init {"recordstatus","f_mobile","f_name"}
-Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
-Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
+Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate"}
+Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"}
 Data FindColumns2 init {"f_name","f_mobile"}
 Data FindColumns3 init {"f_name","f_mobile"}
 Data FindTitles2 init {"«·«”„","«·ÃÊ«·"}
@@ -104,14 +104,14 @@ WIDTH 1054 ;
 HEIGHT 701 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE "„—‘ÕÌ‰ «·⁄„Ì·" ;
+TITLE "«·„” ›”—Ì‰ ⁄‰ œÊ—…" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 43 ,4 IMAGE image1;
+@ 43 ,3 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1030 HEIGHT 190
@@ -129,7 +129,7 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 6 ,3 LABEL lblTitle ;
-VALUE "                                                                                               „—‘ÕÌ‰ «·⁄„Ì·                  " ;
+VALUE "                                                                                         «·„” ›”—Ì‰ ⁄‰ œÊ—…            " ;
 WIDTH 1030 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
@@ -152,11 +152,11 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1000 ;
 HEIGHT 130 ;
-HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,180,120,200,150,100,100} ;
+HEADERS {" «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
+WIDTHS {180,120,200,250,100,100} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 52 ,717 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
@@ -186,11 +186,11 @@ TOOLTIP ""
 ON DBLCLICK self:search3  ;
 WIDTH 890 ;
 HEIGHT 140 ;
-HEADERS {"„ÕÊ— 3","„ÕÊ— 2 ","„ÕÊ— 1 "," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
-WIDTHS {100,100,100,150,150,250} ;
+HEADERS {" ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
+WIDTHS {250,250,350} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1} ;
+JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 255 ,727 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
@@ -203,7 +203,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("customers","f_name",@self:ItemItems,"id",@self:ItemItemsIDS)
 @ 438 ,890 LABEL lblitems ;
-VALUE "«”„ «·„—‘Õ" ;
+VALUE "«”„ «·„” ›”—" ;
 WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
@@ -252,9 +252,9 @@ TOOLTIP ""
 @ 523 ,182 GRID Grid1browse3;
 WIDTH 746 ;
 HEIGHT 130 ;
-HEADERS {"Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„—‘Õ"};
-WIDTHS {150,150,250} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„” ›”—"};
+WIDTHS {200,200,300} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -268,7 +268,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 524 ,51 BUTTONEX btnDel2;
-CAPTION "Õ–› «·„—‘Õ";
+CAPTION "Õ–› «·„” ›”—";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
 ON CLICK self:delrecord2()  ;
@@ -277,7 +277,7 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 437 ,81 BUTTONEX btnadd2;
-CAPTION "«÷«›… «·„—‘Õ «·Ï „—‘ÕÌ‰ «·⁄„Ì·";
+CAPTION " ”ÃÌ· «·„” ›”—";
 ON CLICK self:addrecord2()  ;
 WIDTH 280 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
@@ -361,10 +361,10 @@ AADD( self:ResultPrimaryKeys2 , vid)
 oRS:MOVENEXT()
 Next
 CustFriendsWindow.grid1browse2.Value := 1
-myout = self:search3()
 ELSE
 ENDIF
 oRS:Close()
+myout = self:search3()
 Return 0
 Method SaveRecord2 Class CustFriendsClass
 myout = self:UserInterface2Class()
@@ -516,37 +516,22 @@ IF self:nOrderNumber > 0
 self:nItem := CustFriendsWindow.ComboItem.Value
 self:nItem := self:ItemItemsids[self:nItem]
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-nvalue := CustFriendsWindow.grid1browse2.Value
-IF nvalue = 0
-MyOut := MSGBOX("ÌÃ»  ÕœÌœ «·⁄„Ì· «Ê·« ﬁ»· «·„—‘Õ","⁄›Ê«")
-Return 0
-ENDIF
-MYCUSTID := self:resultprimarykeys2[nvalue]
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
-oRS:open ( "Select * from OrderItems_All where id = " + mycustid,self:oCon,3,3 )
-myCustID := oRS:fields:item("CustomerID"):value
-oRS:Close()
-oRS:CursorType := 1
-oRS:ActiveConnection := self:oCon
-oRS:open ( "Select * from CustFriends_All where orderid = " + str(self:nOrderNumber) +" and customerid = " + str(mycustid) + " and friendid = " + str(self:nItem),self:oCon,3,3 )
+oRS:open ( "Select * from CustFriends_All where orderid = " + str(self:nOrderNumber) + " and friendid = " + str(self:nItem),self:oCon,3,3 )
 nMax := oRS:RecordCount
 IF nMax > 0
-MyOut := MSGBOX(" „  ”ÃÌ· Â–« «·„—‘Õ ”«»ﬁ«","⁄›Ê«")
+MyOut := MSGBOX(" „  ”ÃÌ· Â–« «·„” ›”— ”«»ﬁ«","⁄›Ê«")
 oRS:Close()
 Return 0
 ENDIF
 oRS:Close()
-IF self:nItem = mycustid
-MyOut := MSGBOX("·«Ì„ﬂ‰ ··⁄„Ì· «‰ Ì—‘Õ ‰›”Â ›Â–« €Ì— „‰ÿﬁÏ","⁄›Ê«")
-Return 0
-ENDIF
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from orderitems_All where orderid = " + str(self:nOrderNumber) +" and customerid = " + str(self:nItem),self:oCon,3,3 )
 nMax := oRS:RecordCount
 IF nMax > 0
-MyOut := MSGBOX("«·„—‘Õ ﬁ«„ „”»ﬁ« »«· ”ÃÌ· ›Ï «·œÊ—…","⁄›Ê«")
+MyOut := MSGBOX("«·„” ›”— ﬁ«„ „”»ﬁ« »«· ”ÃÌ· ›Ï «·œÊ—…","⁄›Ê«")
 oRS:Close()
 Return 0
 ENDIF
@@ -555,10 +540,10 @@ oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from CustFriends_All",self:oCon,3,3 )
 oRS:ADDNEW()
-oRS:fields:item("customerid"):value := mycustid
 oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("Friendid"):value := self:nItem
 oRS:fields:item("recordstatusid"):value := 2
+oRS:fields:item("customerid"):value := 0
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search3()
@@ -571,20 +556,9 @@ Local oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
 cName := CustFriendsWindow.textNamebrowse3.Value
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 CustFriendsWindow.grid1browse3.DeleteAllItems ( )
-nvalue := CustFriendsWindow.grid1browse2.Value
-IF nvalue = 0
-MyOut := MSGBOX("ÌÃ»  ÕœÌœ «·⁄„Ì· «Ê·« ﬁ»· «·„—‘Õ","⁄›Ê«")
-Return 0
-ENDIF
-MYCUSTID := self:resultprimarykeys2[nvalue]
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
-oRS:open ( "Select * from OrderItems_All where id = " + mycustid,self:oCon,3,3 )
-myCustID := oRS:fields:item("CustomerID"):value
-oRS:Close()
-oRS:CursorType := 1
-oRS:ActiveConnection := self:oCon
-oRS:open ( "Select * from "+self:tableName3 +" where orderid = "+str(self:nOrderNumber)+" and customerid = "+ str(mycustid) +"  and "+self:column3+" like '" + cName + "%'",self:oCon,3,3 )
+oRS:open ( "Select * from "+self:tableName3 +" where orderid = "+str(self:nOrderNumber)+"  and "+self:column3+" like '" + cName + "%'",self:oCon,3,3 )
 mymax := oRS:RecordCount
 self:ResultPrimaryKeys3 := {}
 CustFriendsWindow.grid1browse3.Value := 0
