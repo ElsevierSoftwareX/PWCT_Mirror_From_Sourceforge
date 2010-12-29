@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:15:19    Date : 12/10/2010
+* Time : 04:34:48    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -546,6 +546,17 @@ oRS:fields:item("recordstatusid"):value := 2
 oRS:fields:item("customerid"):value := 0
 oRS:fields:item("username"):value := EnteredUserName
 oRS:fields:item("empid"):value := UserCan_EmpID
+oRS:UPDATE()
+oRS:Close()
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from Production_All",self:oCon,3,3 )
+oRS:ADDNEW()
+oRS:fields:item("employeeid"):value := UserCan_EmpId
+oRS:fields:item("ordernumber"):value := self:nOrderNumber
+oRS:fields:item("noofpcs"):value := "  ”ÃÌ· «·„” ›”— " + self:ItemItems[CustFriendsWindow.ComboItem.Value]
+oRS:fields:item("finishtime"):value := time()
+oRS:fields:item("dateofinput"):value := alltrim(dtoc(date()))
 oRS:UPDATE()
 oRS:Close()
 myout = self:Search3()
