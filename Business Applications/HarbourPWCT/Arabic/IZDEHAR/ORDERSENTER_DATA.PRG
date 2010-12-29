@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:22:56    Date : 12/10/2010
+* Time : 05:16:31    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -105,6 +105,7 @@ Method settimer
 Method mobilechange
 Method CheckFind
 Method CheckFind2
+Method CheckData
 EndClass
 Method showwindow Class OrdersEnterClass
 IF .not. UserCan_WinOrders = 2
@@ -960,6 +961,16 @@ Local nIndex
 nIndex := OrdersEnterWindow.ComboFind2.Value
 Self:Column2 := Self:FindColumns2[nIndex]
 Return 0
+Method CheckData Class OrdersEnterClass
+Local myret,d1,d2
+myret := True
+d1 := OrdersEnterWindow.dateOrderDate.Value
+d2 := OrdersEnterWindow.dateFinishDate.Value
+IF d2 < d1
+MyOut := MSGBOX("áÇíæÌÏ ÏæÑÉ ÊäÊåì ÞÈá Çä ÊÈÏÇ ... ÑÇÌÚ ÊÇÑíÎ ÇáÇäÊåÇÁ","ÚÝæÇ")
+myret := false
+ENDIF
+Return myret
 Method closewindow Class OrdersEnterClass
 myout = self:disconnect()
 OrdersEnterWindow.Release ( )
