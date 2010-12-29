@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:51:53    Date : 12/10/2010
+* Time : 10:09:13    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -63,6 +63,7 @@ Method BeforeSearch
 Method SearchAdd
 Method settimer
 Method GetSearchValue
+Method CheckData
 EndClass
 Method showwindow Class ProcessesClass
 myout = self:connect()
@@ -321,10 +322,6 @@ Method mytimer Class ProcessesClass
 myout = self:search()
 CustTypeDataWindow.Timer1.Enabled := false
 Return 0
-Method closewindow Class ProcessesClass
-myout = self:disconnect()
-CustTypeDataWindow.Release ( )
-Return 0
 Method setmode(p1) Class ProcessesClass
 IF p1 = 1
 CustTypeDataWindow.btnfirst.Enabled := false
@@ -359,6 +356,32 @@ CustTypeDataWindow.textStartPos.Enabled := false
 CustTypeDataWindow.textDuration.Enabled := false
 ENDIF
 self:OperationMode := p1
+Return 0
+Method CheckData Class ProcessesClass
+Local myRet,cValue,nValue
+myRet := True
+cValue := CustTypeDataWindow.textCountry.Value
+cValue := cValue
+IF cValue == ""
+MyOut := MSGBOX("ÌÃ» «œŒ«· «”„ «·«Ã—«¡","⁄›Ê«")
+myRet := False
+ENDIF
+cValue := CustTypeDataWindow.textStartPos.Value
+nValue = VAL ( cValue )
+IF nValue < 1
+MyOut := MSGBOX("⁄œœ «·«Ì«„ ·«Ìﬁ· ⁄‰ ÌÊ„ Ê«Õœ","⁄›Ê«")
+myRet := False
+ENDIF
+cValue := CustTypeDataWindow.textDuration.Value
+nValue = VAL ( cValue )
+IF nValue < 1
+MyOut := MSGBOX("„œ… «·«Ã—«¡ ·«  ﬁ· ⁄‰ ÌÊ„ Ê«Õœ","⁄›Ê«")
+myRet := False
+ENDIF
+Return myret
+Method closewindow Class ProcessesClass
+myout = self:disconnect()
+CustTypeDataWindow.Release ( )
 Return 0
 Method AutoGotoRecord Class ProcessesClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
