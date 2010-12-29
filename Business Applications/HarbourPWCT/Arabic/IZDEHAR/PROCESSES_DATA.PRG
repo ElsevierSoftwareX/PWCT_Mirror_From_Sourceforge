@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:46:35    Date : 10/04/2010
+* Time : 09:30:21    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,12 +36,15 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_PROCESSES_DATA_15speed1() code
 class ProcessesClass From SYSTEMDATABASE
-Data TableName init "Process"
+Data TableName init "Process_All"
 Data cid init ""
 Data cCountry init ""
 Data column init "ProcessName"
 Data PrimaryKey init "id"
-Data columns init {"ID","ProcessName"}
+Data columns init {"StartCode","ProcessName","ID"}
+Data StartCodeitemsids init {}
+Data StartCodeitems init {}
+Data nStartCode init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -65,8 +68,8 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( CustTypeDataWindow )
 DEFINE WINDOW CustTypeDataWindow ;
 AT 10 ,10 ;
-WIDTH 774 ;
-HEIGHT 426 ;
+WIDTH 773 ;
+HEIGHT 548 ;
 ON INIT self:search()  ;
 ICON "PWCTICON" ;
 TITLE "«Ã—«¡«  «·œÊ—…" ;
@@ -79,8 +82,8 @@ BACKCOLOR {64,0,64}
 @ 40 ,5 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\BACK.jpg";
 STRETCH ;
-WIDTH 750 HEIGHT 296
-@ 350 ,370 BUTTONEX btnFirst;
+WIDTH 750 HEIGHT 416
+@ 460 ,370 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -89,7 +92,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 350 ,243 BUTTONEX btnNext;
+@ 460 ,243 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -98,7 +101,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 350 ,180 BUTTONEX btnLast;
+@ 460 ,180 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -107,7 +110,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 350 ,12 BUTTONEX btnClose;
+@ 460 ,12 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -116,7 +119,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 350 ,307 BUTTONEX btnPrev;
+@ 460 ,307 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -125,7 +128,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 350 ,105 BUTTONEX btnDel;
+@ 460 ,105 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -134,25 +137,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 350 ,522 BUTTONEX btnsave;
+@ 460 ,522 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 350 ,435 BUTTONEX btncancel;
+@ 460 ,435 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 350 ,602 BUTTONEX btnedit;
+@ 460 ,602 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 350 ,677 BUTTONEX btnadd;
+@ 460 ,677 BUTTONEX btnadd;
 CAPTION "≈÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -165,17 +168,17 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {128,128,0}
-@ 281 ,417 LABEL lblCountry ;
-VALUE "«·«Ã—«¡" ;
+@ 277 ,415 LABEL lblCountry ;
+VALUE "«”„ «·«Ã—«¡" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 279 ,215 TEXTBOX textCountry;
+@ 275 ,213 TEXTBOX textCountry;
 HEIGHT 30 ;
-WIDTH 190 ;
+WIDTH 196 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -201,18 +204,35 @@ ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 99 ,165 GRID Grid1browse;
+@ 99 ,15 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 410 ;
+WIDTH 730 ;
 HEIGHT 160 ;
-HEADERS {"—ﬁ„","«·«Ã—«¡"};
-WIDTHS {100,200} ;
+HEADERS {"‰ﬁÿ… «·»œ¡","«·«Ã—«¡","—ﬁ„"};
+WIDTHS {200,200,100} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1} ;
+JUSTIFY {1,1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:mytimer()
+myout = self:LoadLookupTable("StartCode","StartCode",@self:StartCodeItems,"id",@self:StartCodeItemsIDS)
+@ 319 ,431 LABEL lblStartCode ;
+VALUE "«Ì«„" ;
+WIDTH 40 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 319 ,213 COMBOBOX comboStartCode;
+WIDTH 200 ;
+HEIGHT 100;
+ITEMS self:StartCodeitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 CustTypeDataWindow.Center ( )
@@ -225,18 +245,25 @@ EndIF
 Return 0
 Method UserInterface2Class Class ProcessesClass
 self:cCountry := CustTypeDataWindow.textCountry.Value
+self:nStartCode := CustTypeDataWindow.comboStartCode.Value
+self:nStartCode := self:StartCodeItemsIDS[self:nStartCode]
 Return 0
 Method Class2ADO Class ProcessesClass
 self:oRS:fields:item("ProcessName"):value := self:cCountry
+self:oRS:fields:item("StartCodeID"):value := self:nStartCode
 Return 0
 Method ADO2Class Class ProcessesClass
 self:cCountry := self:oRS:fields:item("ProcessName"):value
+self:nStartCode := self:oRS:fields:item("StartCodeID"):value
 Return 0
 Method Class2UserInterface Class ProcessesClass
 CustTypeDataWindow.textCountry.Value := self:cCountry
+self:nStartCode = self:LookupIDToIndex(self:nStartCode,@self:StartCodeItemsIDS)
+CustTypeDataWindow.comboStartCode.Value := self:nStartCode
 Return 0
 Method ClearRecord Class ProcessesClass
 self:cCountry := ""
+self:nStartCode := 0
 Return 0
 Method OpenDataWindow Class ProcessesClass
 Local nvalue,myout
@@ -271,6 +298,7 @@ CustTypeDataWindow.btncancel.Enabled := true
 CustTypeDataWindow.btnedit.Enabled := false
 CustTypeDataWindow.btnadd.Enabled := false
 CustTypeDataWindow.textCountry.Enabled := true
+CustTypeDataWindow.ComboStartCode.Enabled := true
 ENDIF
 IF p1 = 2
 CustTypeDataWindow.btnfirst.Enabled := true
@@ -284,6 +312,7 @@ CustTypeDataWindow.btncancel.Enabled := false
 CustTypeDataWindow.btnedit.Enabled := true
 CustTypeDataWindow.btnadd.Enabled := true
 CustTypeDataWindow.textCountry.Enabled := false
+CustTypeDataWindow.ComboStartCode.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
