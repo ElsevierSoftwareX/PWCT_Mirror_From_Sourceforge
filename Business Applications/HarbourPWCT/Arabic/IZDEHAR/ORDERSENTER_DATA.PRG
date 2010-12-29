@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:16:31    Date : 12/10/2010
+* Time : 05:49:26    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -74,6 +74,7 @@ Data OrderTypeItemsids init {}
 Data CustomerWant1 init ""
 Data CustomerWant2 init ""
 Data CustomerWant3 init ""
+Data Days init ""
 Method showwindow
 Method closewindow
 Method ShowRecord
@@ -228,7 +229,7 @@ BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 210 ,158 BUTTONEX btn1browse;
+@ 210 ,178 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -336,7 +337,7 @@ VALUE "—ﬁ„ «·œÊ—…" ;
 WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
+BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 51 ,666 TEXTBOX textOrderNumber;
@@ -401,7 +402,7 @@ WIDTH 890 ;
 HEIGHT 140 ;
 HEADERS {"«”„ «·„ÊŸ›","—ﬁ„ «·”‰œ"," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
 WIDTHS {150,150,150,150,250} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -486,8 +487,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 130 ,64 COMBOBOX combolocation;
-WIDTH 380 ;
+@ 130 ,224 COMBOBOX combolocation;
+WIDTH 230 ;
 HEIGHT 100;
 ITEMS self:locationitems ;
 VALUE 1 ;
@@ -533,6 +534,22 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+@ 127 ,63 TEXTBOX textdays;
+HEIGHT 30 ;
+WIDTH 80 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
+@ 126 ,150 LABEL lbldays ;
+VALUE "⁄œœ «·«Ì«„" ;
+WIDTH 70 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 OrdersEnterWindow.Center ( )
@@ -560,6 +577,7 @@ self:nOrderType := self:OrderTypeItemsids[self:nOrderType]
 self:CustomerWant1 := OrdersEnterWindow.textCustomerWant1.Value
 self:CustomerWant2 := OrdersEnterWindow.textCustomerWant2.Value
 self:CustomerWant3 := OrdersEnterWindow.textCustomerWant3.Value
+self:Days := OrdersEnterWindow.textDays.Value
 Return 0
 Method Class2ADO Class OrdersEnterClass
 self:oRS:fields:item("Customerid"):value := self:nCustomer
@@ -573,6 +591,7 @@ self:oRS:fields:item("OrderTypeid"):value := self:nOrderType
 self:oRS:fields:item("CustomerWant1"):value := self:CustomerWant1
 self:oRS:fields:item("CustomerWant2"):value := self:CustomerWant2
 self:oRS:fields:item("CustomerWant3"):value := self:CustomerWant3
+self:oRS:fields:item("days"):value := self:days
 Return 0
 Method ADO2Class Class OrdersEnterClass
 self:nCustomer := self:oRS:fields:item("CustomerID"):value
@@ -586,6 +605,7 @@ self:nOrderType := self:oRS:fields:item("OrderTypeID"):value
 self:CustomerWant1 := self:oRS:fields:item("CustomerWant1"):value
 self:CustomerWant2 := self:oRS:fields:item("CustomerWant2"):value
 self:CustomerWant3 := self:oRS:fields:item("CustomerWant3"):value
+self:days := self:oRS:fields:item("days"):value
 Return 0
 Method Class2UserInterface Class OrdersEnterClass
 self:nCustomer = self:LookupIDToIndex(self:nCustomer,@self:CustomerItemsids)
@@ -603,6 +623,7 @@ myout = self:search2()
 OrdersEnterWindow.textCustomerWant1.Value := self:CustomerWant1
 OrdersEnterWindow.textCustomerWant2.Value := self:CustomerWant2
 OrdersEnterWindow.textCustomerWant3.Value := self:CustomerWant3
+OrdersEnterWindow.textDays.Value := self:Days
 Return 0
 Method ClearRecord Class OrdersEnterClass
 self:nCustomer := 0
@@ -618,6 +639,7 @@ ENDIF
 self:CustomerWant1 := ""
 self:CustomerWant2 := ""
 self:CustomerWant3 := ""
+self:Days := ""
 Return 0
 Method search Class OrdersEnterClass
 Local oCon,oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
@@ -706,6 +728,7 @@ OrdersEnterWindow.comboOrderType.Enabled := true
 OrdersEnterWindow.textCustomerWant1.Enabled := true
 OrdersEnterWindow.textCustomerWant2.Enabled := true
 OrdersEnterWindow.textCustomerWant3.Enabled := true
+OrdersEnterWindow.textDays.Enabled := true
 ENDIF
 IF p1 = 2
 OrdersEnterWindow.btnfirst.Enabled := true
@@ -730,6 +753,7 @@ OrdersEnterWindow.comboOrderType.Enabled := False
 OrdersEnterWindow.textCustomerWant1.Enabled := false
 OrdersEnterWindow.textCustomerWant2.Enabled := false
 OrdersEnterWindow.textCustomerWant3.Enabled := false
+OrdersEnterWindow.textDays.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -969,6 +993,12 @@ d2 := OrdersEnterWindow.dateFinishDate.Value
 IF d2 < d1
 MyOut := MSGBOX("·«ÌÊÃœ œÊ—…  ‰ ÂÏ ﬁ»· «‰  »œ« ... —«Ã⁄  «—ÌŒ «·«‰ Â«¡","⁄›Ê«")
 myret := false
+ELSE
+IF self:addrec = true
+IF alltrim(OrdersEnterWindow.textDays.value) == ""
+OrdersEnterWindow.textDays.Value := alltrim(str(d2-d1+1))
+ENDIF
+ENDIF
 ENDIF
 Return myret
 Method closewindow Class OrdersEnterClass
