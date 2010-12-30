@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:09:18    Date : 12/10/2010
+* Time : 13:37:15    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -150,6 +150,7 @@ Set Procedure to "CustDispose5_Report.PRG"
 Set Procedure to "Employees2_Data.PRG"
 Set Procedure to "Employees2_Browse.PRG"
 Set Procedure to "Employees2_Report.PRG"
+Set Procedure to "ListOfEmployees2_Report.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -243,6 +244,7 @@ CustDispose5ReportObject = CustDispose5ReportClass()
 Employees2DataObject = Employees2DataClass()
 Employees2BrowseObject = Employees2BrowseClass()
 Employees2ReportObject = Employees2ReportClass()
+ListofEmployees2ReportObject = ListofEmployees2ReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -267,7 +269,7 @@ AMPM
 
 END STATUSBAR
 
-@ 79 ,644 IMAGE image1;
+@ 74 ,644 IMAGE image1;
 PICTURE "image\CUSTOMERS.JPG";
 ON CLICK customers()  ;
 STRETCH ;
@@ -293,20 +295,33 @@ HEIGHT 40 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 79 ,430 IMAGE image3;
+@ 356 ,430 IMAGE image3;
 PICTURE "image\ORDER.JPG";
-ON CLICK OrdersEnterObject:ShowWindow()  ;
+ON CLICK CustFriendsObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 316 ,504 LABEL lbl3 ;
-VALUE "«·œÊ—« " ;
-ACTION OrdersEnterObject:ShowWindow()  ;
-WIDTH 60 ;
+@ 607 ,474 LABEL lbl3 ;
+VALUE " ”ÃÌ· „” ›”—" ;
+ACTION CustFriendsObject:ShowWindow()  ;
+WIDTH 110 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 79 ,223 IMAGE image5;
+@ 74 ,433 IMAGE image4;
+PICTURE "image\AGREEMENT.JPG";
+ON CLICK OrdersEnterObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 316 ,442 LABEL lbl4 ;
+VALUE " ”ÃÌ· «·œÊ—«  Ê«·„ œ—»Ì‰" ;
+ACTION OrdersEnterObject:ShowWindow()  ;
+WIDTH 180 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 74 ,223 IMAGE image5;
 PICTURE "image\FACTORY.JPG";
 ON CLICK OrderProcessesObject:ShowWindow()  ;
 STRETCH ;
@@ -319,15 +334,28 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 356 ,430 IMAGE image6;
+@ 74 ,9 IMAGE image6;
 PICTURE "image\REPORTS.JPG";
 ON CLICK sysreports()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 607 ,488 LABEL lbl6 ;
+@ 316 ,70 LABEL lbl6 ;
 VALUE " ﬁ«—Ì—" ;
 ACTION sysreports()  ;
 WIDTH 50 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 356 ,213 IMAGE image7;
+PICTURE "image\DISPOSE.JPG";
+ON CLICK ProductionObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 607 ,234 LABEL lbl7 ;
+VALUE "„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰" ;
+ACTION ProductionObject:ShowWindow()  ;
+WIDTH 150 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -490,10 +518,14 @@ END POPUP
 ENDIF
 POPUP " ﬁ«—Ì—"
 IF UserCan_WinEmployees = 2
-MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListOfEmployeesreport()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„œ—»Ì‰" Action ListOfEmployeesreport()
+SEPARATOR
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListOfEmployees2report()
+SEPARATOR
 ENDIF
 IF UserCan_WinSuppliers = 2
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„Ê—œÌ‰" Action ListOfSuppliersreport()
+SEPARATOR
 ENDIF
 IF UserCan_WinCustomers = 2
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·⁄„·«¡" Action ListOfCustomersreport()
@@ -875,7 +907,7 @@ if !iswindowdefined( winsysreports )
 DEFINE WINDOW winsysreports ;
 AT 10 ,10 ;
 WIDTH 690 ;
-HEIGHT 546 ;
+HEIGHT 437 ;
 ICON "PWCTICON" ;
 TITLE "«· ﬁ«—Ì— «·‘«∆⁄…" ;
 CHILD ;
@@ -887,7 +919,7 @@ BACKCOLOR {236,233,216}
 @ -9 ,-8 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 706 HEIGHT 528
+WIDTH 706 HEIGHT 418
 @ 38 ,180 BUTTONEX btn1;
 CAPTION " ﬁ—Ì— »«·«’‰«› Ê«·„ Ê›— „‰Â«";
 ON CLICK ItemsReportObject:ShowWindow()  ;
@@ -912,31 +944,31 @@ ON CLICK OrderDetailsReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 238 ,180 BUTTONEX btn5;
+@ 238 ,690 BUTTONEX btn5;
 CAPTION "«·„Ê«›ﬁ… ⁄·Ï œÊ—…";
 ON CLICK AgreementReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 278 ,180 BUTTONEX btn6;
+@ 238 ,180 BUTTONEX btn6;
 CAPTION "«Ã—«¡«   ‰›Ì– œÊ—…";
 ON CLICK OrderProcessesReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 318 ,180 BUTTONEX btn7;
+@ 278 ,180 BUTTONEX btn7;
 CAPTION "„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰";
 ON CLICK EmployeesProductionReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 358 ,180 BUTTONEX btn8;
+@ 358 ,710 BUTTONEX btn8;
 CAPTION " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡ „‰ ﬁ»· „”∆Ê· «·ÃÊœ… ";
 ON CLICK OrdersDisposeReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 438 ,180 BUTTONEX btnClose;
+@ 318 ,180 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 ON CLICK winsysreports.release()  ;
 WIDTH 320 HEIGHT 30 ;
@@ -948,7 +980,7 @@ ON CLICK OrderCardsReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 398 ,180 BUTTONEX btn10;
+@ 398 ,710 BUTTONEX btn10;
 CAPTION " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡ „‰ ﬁ»· «·„ œ—»Ì‰";
 ON CLICK CustDisposeReportObject:ShowWindow()  ;
 WIDTH 320 HEIGHT 30 ;
@@ -970,6 +1002,10 @@ Return Nil
 Proc Employees2report
 Employees2reportobject:filter := ""
 myout = Employees2reportobject:ShowWindow()
+Return Nil
+Proc listofemployees2report
+ListofEmployees2ReportObject:filter := ""
+myout = ListofEmployees2ReportObject:ShowWindow()
 Return Nil
 
 
