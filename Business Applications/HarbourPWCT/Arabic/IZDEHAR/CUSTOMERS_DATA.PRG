@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:32:12    Date : 12/09/2010
+* Time : 12:54:22    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -540,7 +540,7 @@ DO RightToLeftControl WITH "CustomersDataWindow","combocustclass"
 DO RightToLeftControl WITH "CustomersDataWindow","combocountry"
 DO RightToLeftControl WITH "CustomersDataWindow","combopaymethod"
 @ 7 ,770 BUTTONEX btnCustOrders;
-CAPTION "œÊ—«  „‘ —ﬂ »Â« «Ê „—‘Õ ·Â« «·„ œ—»";
+CAPTION "œÊ—«  „‘ —ﬂ »Â« «Ê «” ›”— ⁄‰Â« «·„ œ—»";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
 ON CLICK self:custOrders()  ;
