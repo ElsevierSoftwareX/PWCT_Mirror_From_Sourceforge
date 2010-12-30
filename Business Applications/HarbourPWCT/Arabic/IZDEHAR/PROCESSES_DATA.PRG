@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:09:13    Date : 12/10/2010
+* Time : 11:17:23    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -368,8 +368,8 @@ myRet := False
 ENDIF
 cValue := CustTypeDataWindow.textStartPos.Value
 nValue = VAL ( cValue )
-IF nValue < 1
-MyOut := MSGBOX("ÚÏÏ ÇáÇíÇã áÇíÞá Úä íæã æÇÍÏ","ÚÝæÇ")
+IF nValue < 0
+MyOut := MSGBOX("äÞØÉ ÇáÈÏÁ áÇÊÞá Úä ÕÝÑ íæã","ÚÝæÇ")
 myRet := False
 ENDIF
 cValue := CustTypeDataWindow.textDuration.Value
