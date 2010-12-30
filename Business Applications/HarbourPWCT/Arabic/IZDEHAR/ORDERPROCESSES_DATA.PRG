@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:28:33    Date : 11/25/2010
+* Time : 11:16:03    Date : 12/10/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -658,12 +658,41 @@ oRSOrderProcesses:fields:item("CheckD1"):value := 3
 oRSOrderProcesses:fields:item("CheckD2"):value := 3
 oRSOrderProcesses:fields:item("CheckD3"):value := 3
 oRSOrderProcesses:fields:item("CheckD4"):value := 3
-oRSOrderProcesses:fields:item("plannedstartdate"):value := ""
-oRSOrderProcesses:fields:item("PlannedFinishDate"):value := ""
 oRSOrderProcesses:fields:item("RealStartDate"):value := ""
 oRSOrderProcesses:fields:item("RealFinishDate"):value := ""
 oRSOrderProcesses:fields:item("processstatusid"):value := 0
 oRSOrderProcesses:fields:item("ProcessCost"):value := ""
+temp_OrderDate := oRSOrders:fields:item("OrderDate"):value
+temp_FinishDate := oRSOrders:fields:item("FinishDate"):value
+temp_orderdate := ctod(temp_orderdate )
+temp_finishdate := ctod(temp_finishdate )
+temp_startcodeid := oRSProcess:fields:item("StartCodeID"):value
+temp_startpos := oRSProcess:fields:item("StartPos"):value
+temp_Duration := oRSProcess:fields:item("Duration"):value
+temp_startpos = VAL ( temp_startpos )
+temp_duration = VAL ( temp_duration )
+IF temp_startcodeid = 2
+temp_mystart := temp_orderdate - temp_startpos
+temp_myend := temp_orderdate - temp_startpos + temp_duration - 1
+ENDIF
+IF temp_startcodeid = 3
+temp_mystart := temp_orderdate + temp_startpos
+temp_myend := temp_orderdate + temp_startpos + temp_duration - 1
+ENDIF
+IF temp_startcodeid = 4
+temp_mystart := temp_finishdate - temp_startpos
+temp_myend := temp_finishdate - temp_startpos + temp_duration - 1
+ENDIF
+IF temp_startcodeid = 5
+temp_mystart := temp_finishdate + temp_startpos
+temp_myend := temp_finishdate + temp_startpos + temp_duration - 1
+ENDIF
+temp_mystart = DTOC ( temp_mystart )
+temp_myend = DTOC ( temp_myend )
+temp_mystart = ALLTRIM ( temp_mystart )
+temp_myend = ALLTRIM ( temp_myend )
+oRSOrderProcesses:fields:item("plannedstartdate"):value := temp_mystart
+oRSOrderProcesses:fields:item("PlannedFinishDate"):value := temp_myend
 oRSOrderProcesses:UPDATE()
 ENDIF
 oRSOrderProcesses:Close()
