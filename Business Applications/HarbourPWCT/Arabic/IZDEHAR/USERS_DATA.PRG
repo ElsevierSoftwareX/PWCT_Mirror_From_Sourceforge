@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:27:40    Date : 12/10/2010
+* Time : 02:06:39    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,14 +41,16 @@ Data nID init 0
 Data column init "UserName"
 Data PrimaryKey init "id"
 Data columns init {"ID","UserName"}
-Data nEmp init 0
-Data Empitems init {}
-Data empitemsids init {}
 Data nSystemAdmin init 0
 Data SystemAdminitems init {}
 Data SystemAdminitemsids init {}
 Data cUserName init ""
 Data cPassword init ""
+Data EnteredUserName init ""
+Data EnteredPassWord init ""
+Data UserIsAdmin init 0
+Data StartSystem init false
+Data EnteredUserID init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -65,31 +67,37 @@ Method BeforeSearch
 Method settimer
 Method SearchAdd
 Method GetSearchValue
-Method setMore
-Method MoreSave
+Method SystemLogin
+Method OpenSystem
+Method ValueDetails
+Method CheckPermission
 EndClass
 Method showwindow Class UsersClass
+IF self:UserIsAdmin = 2
+MyOut := MSGBOX("Access Is Denied","Sorry")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( UsersWindow )
 DEFINE WINDOW UsersWindow ;
 AT 10 ,10 ;
 WIDTH 893 ;
-HEIGHT 533 ;
+HEIGHT 544 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE "ãÓÊÎÏãíä ÇáäÙÇã" ;
+TITLE "ÇáãÓÊÎÏãíä" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 45 ,4 IMAGE image1;
-PICTURE GetStartUpFolder()+"\Image\back.jpg";
+@ 45 ,5 IMAGE image1;
+PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 870 HEIGHT 390
-@ 450 ,437 BUTTONEX btnFirst;
+WIDTH 870 HEIGHT 400
+@ 455 ,437 BUTTONEX btnFirst;
 CAPTION "ÈÏÇíÉ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -98,7 +106,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 450 ,311 BUTTONEX btnNext;
+@ 455 ,303 BUTTONEX btnNext;
 CAPTION "ÊÇáì";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -107,7 +115,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 450 ,246 BUTTONEX btnLast;
+@ 455 ,238 BUTTONEX btnLast;
 CAPTION "äåÇíÉ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -116,7 +124,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 450 ,74 BUTTONEX btnClose;
+@ 455 ,56 BUTTONEX btnClose;
 CAPTION "ÇÛáÇÞ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -125,8 +133,8 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 450 ,375 BUTTONEX btnPrev;
-CAPTION "ÇáÓÇÈÞ";
+@ 455 ,373 BUTTONEX btnPrev;
+CAPTION "ÓÇÈÞ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
 ON CLICK self:prevrecord()  ;
@@ -134,7 +142,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 450 ,167 BUTTONEX btnDel;
+@ 455 ,151 BUTTONEX btnDel;
 CAPTION "ÍÐÝ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -143,25 +151,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 450 ,594 BUTTONEX btnsave;
+@ 455 ,599 BUTTONEX btnsave;
 CAPTION "ÍÝÙ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 450 ,506 BUTTONEX btncancel;
+@ 455 ,518 BUTTONEX btncancel;
 CAPTION "ÇáÛÇÁ";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 450 ,682 BUTTONEX btnedit;
+@ 455 ,682 BUTTONEX btnedit;
 CAPTION "ÊÚÏíá";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 450 ,749 BUTTONEX btnadd;
+@ 455 ,757 BUTTONEX btnadd;
 CAPTION "ÇÖÇÝÉ";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -169,12 +177,12 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
 VALUE "                                                                               ÇáãÓÊÎÏãíä" ;
-WIDTH 770 ;
+WIDTH 870 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 350 ,591 LABEL lblUserName ;
+@ 313 ,571 LABEL lblUserName ;
 VALUE "ÇÓã ÇáãÓÊÎÏã" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -182,29 +190,27 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 349 ,180 TEXTBOX textUserName;
+@ 310 ,171 TEXTBOX textUserName;
 HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 54 ,719 LABEL lbl1browse ;
+@ 51 ,728 LABEL lbl1browse ;
 VALUE "ÇÓã ÇáãÓÊÎÏã" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,175 TEXTBOX textNamebrowse;
+@ 53 ,185 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 530 ;
 BACKCOLOR {0,255,128} ;
-RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,72 BUTTONEX btn1browse;
+@ 52 ,75 BUTTONEX btn1browse;
 CAPTION "ÈÍË";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -214,58 +220,39 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
 HEIGHT 160 ;
-HEADERS {"ÑÞã","ÇÓã ÇáãÓÊÎÏã"};
-WIDTHS {50,250} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"ßæÏ","ÇÓã ÇáãÓÊÎÏã"};
+WIDTHS {50,150} ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 389 ,591 LABEL lblPassword ;
+@ 351 ,571 LABEL lblPassword ;
 VALUE "ßáãÉ ÇáÓÑ" ;
-WIDTH 190 ;
+WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 389 ,180 TEXTBOX textPassword;
+@ 350 ,172 TEXTBOX textPassword;
 HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-RIGHTALIGN ;
 FONTCOLOR {0,0,0} ;
 PASSWORD
 
-myout = self:LoadLookupTable("Employees2","f_name",@self:empItems,"id",@self:empItemsIDS)
-@ 263 ,591 LABEL lblemp ;
-VALUE "ÇáãæÙÝ" ;
-WIDTH 190 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 266 ,180 COMBOBOX comboEmp;
-WIDTH 390 ;
-HEIGHT 100;
-ITEMS self:empitems ;
-VALUE 1 ;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("choice","status",@self:SystemAdminItems,"id",@self:SystemAdminItemsIDS)
-@ 304 ,591 LABEL lblSystemAdmin ;
+@ 265 ,571 LABEL lblSystemAdmin ;
 VALUE "ãÏíÑ ÇáäÙÇã" ;
-WIDTH 150 ;
+WIDTH 140 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 307 ,180 COMBOBOX comboSystemAdmin;
+@ 267 ,171 COMBOBOX comboSystemAdmin;
 WIDTH 390 ;
 HEIGHT 100;
 ITEMS self:SystemAdminitems ;
@@ -273,13 +260,14 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-DO RightToLeftControl WITH "UsersWindow","comboEmp"
-DO RightToLeftControl WITH "UsersWindow","comboSystemAdmin"
-@ 7 ,775 BUTTONEX btnMore;
-CAPTION "ÊÝÇÕíá";
-ON CLICK self:setmore()  ;
-WIDTH 100 HEIGHT 30 ;
+@ 396 ,246 BUTTONEX btnPermissions;
+CAPTION "ÖÈØ ÕáÇÍíÇÊ ÇáãÓÊÎÏã";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:ValueDetails()  ;
+WIDTH 390 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
 TOOLTIP ""
 END WINDOW
 
@@ -294,39 +282,28 @@ Return 0
 Method UserInterface2Class Class UsersClass
 self:cUserName := UsersWindow.textUserName.Value
 self:cPassWord := UsersWindow.textPassWord.Value
-self:nEmp := UsersWindow.ComboEmp.Value
-IF .not. self:nEmp = 0
-self:nEmp := self:Empitemsids[self:nEmp]
-ENDIF
 self:nSystemAdmin := UsersWindow.ComboSystemAdmin.Value
 self:nSystemAdmin := self:SystemAdminItemsids[self:nSystemAdmin]
 Return 0
 Method Class2ADO Class UsersClass
 self:oRS:fields:item("UserName"):value := self:cUserName
 self:oRS:fields:item("PassWord"):value := self:cPassWord
-self:oRS:fields:item("empid"):value := self:nEmp
 self:oRS:fields:item("SystemAdmin"):value := self:nSystemAdmin
 Return 0
 Method ADO2Class Class UsersClass
 self:cUserName := self:oRS:fields:item("UserName"):value
 self:cPassWord := self:oRS:fields:item("PassWord"):value
-self:nEmp := self:oRS:fields:item("Empid"):value
 self:nSystemAdmin := self:oRS:fields:item("SystemAdmin"):value
 Return 0
 Method Class2UserInterface Class UsersClass
 UsersWindow.textUserName.Value := self:cUserName
 UsersWindow.textPassWord.Value := self:cPassWord
-IF .not. self:nEmp = 0
-self:nEmp = self:LookupIDToIndex(self:nEmp,@self:EmpItemsids)
-ENDIF
-UsersWindow.ComboEmp.Value := self:nEmp
 self:nSystemAdmin = self:LookupIDToIndex(self:nSystemAdmin,@self:SystemAdminItemsids)
 UsersWindow.ComboSystemAdmin.Value := self:nSystemAdmin
 Return 0
 Method ClearRecord Class UsersClass
 self:cUserName := ""
 self:cPassWord := ""
-self:nEmp := 0
 self:nSystemAdmin := 0
 Return 0
 Method OpenDataWindow Class UsersClass
@@ -340,6 +317,10 @@ Method ShowDataWindow(nvalue) Class UsersClass
 self:LFindRecord := true
 self:CFindExpr := self:primarykey+"= '"+self:resultprimarykeys[nvalue]+"' "
 myout = self:ShowWindow()
+Return 0
+Method mytimer Class UsersClass
+myout = self:search()
+UsersWindow.Timer1.Enabled := false
 Return 0
 Method setmode(p1) Class UsersClass
 IF p1 = 1
@@ -355,7 +336,6 @@ UsersWindow.btnedit.Enabled := false
 UsersWindow.btnadd.Enabled := false
 UsersWindow.textUserName.Enabled := true
 UsersWindow.textPassWord.Enabled := true
-UsersWindow.comboEmp.Enabled := true
 UsersWindow.comboSystemAdmin.Enabled := true
 ENDIF
 IF p1 = 2
@@ -371,189 +351,192 @@ UsersWindow.btnedit.Enabled := true
 UsersWindow.btnadd.Enabled := true
 UsersWindow.textUserName.Enabled := false
 UsersWindow.textPassWord.Enabled := false
-UsersWindow.comboEmp.Enabled := false
 UsersWindow.comboSystemAdmin.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
-Method SetMore Class UsersClass
-if !iswindowdefined( winMore )
-DEFINE WINDOW winMore ;
+Method SystemLogin Class UsersClass
+if !iswindowdefined( winlogin )
+DEFINE WINDOW winlogin ;
 AT 10 ,10 ;
-WIDTH 485 ;
-HEIGHT 490 ;
+WIDTH 532 ;
+HEIGHT 267 ;
 ICON "PWCTICON" ;
-TITLE "ÕáÇÍíÇÊ ÇáãÓÊÎÏãíä" ;
+TITLE "ÊÓÌíá ÇáÏÎæá" ;
 MODAL ;
-BACKCOLOR {236,233,216}
+NOSIZE ;
+NOSYSMENU ;
+BACKCOLOR {255,255,255}
 
-@ 408 ,385 BUTTONEX btnClose;
-CAPTION "ãæÇÝÞ";
-FONTCOLOR {0,0,0};
-BACKCOLOR {132,242,179};
-ON CLICK Self:MoreSave()  ;
-WIDTH 80 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-NOXPSTYLE ;
-TOOLTIP ""
-@ -2 ,-4 IMAGE image1;
+@ 40 ,0 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 481 HEIGHT 391
-@ 24 ,38 CHECKBOX check1;
-CAPTION "ÈíÇäÇÊ ÇáãæÙÝíä æÇáãÏÑÈíä";
-WIDTH 250;
-Height 30;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
+WIDTH 530 HEIGHT 120
+@ 33 ,328 LABEL lbl1 ;
+VALUE "ÅÓã ÇáãÓÊÎÏã" ;
+WIDTH 120 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 76 ,38 CHECKBOX check2;
-CAPTION "ÈíÇäÇÊ ÇáãæÑÏíä";
-WIDTH 250;
-Height 30;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
+@ 90 ,328 LABEL lbl2 ;
+VALUE "ßáãÉ ÇáÓÑ" ;
+WIDTH 120 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 128 ,38 CHECKBOX check3;
-CAPTION "ÈíÇäÇÊ ÇáãÊÏÑÈíä";
-WIDTH 250;
-Height 30;
-FONT "Arial" SIZE 14 ;
+@ 33 ,92 TEXTBOX text1;
+HEIGHT 30 ;
+WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
-@ 180 ,38 CHECKBOX check4;
-CAPTION "ÇáãÎÇÒä";
-WIDTH 250;
-Height 30;
-FONT "Arial" SIZE 14 ;
+
+@ 91 ,92 TEXTBOX text2;
+ON ENTER self:OpenSystem()  ;
+HEIGHT 30 ;
+WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 232 ,38 CHECKBOX check5;
-CAPTION "ÇáÏæÑÇÊ";
-WIDTH 250;
-Height 30;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0} ;
+PASSWORD
+
+@ 182 ,272 BUTTONEX btn1;
+CAPTION "ÇáÏÎæá";
+ON CLICK self:OpenSystem()  ;
+WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 284 ,498 CHECKBOX check6;
-CAPTION "ÇáãæÇÝÞÉ Úáì ÏæÑÉ";
-WIDTH 250;
-Height 30;
+DEFAULT ;
+TOOLTIP ""
+@ 181 ,149 BUTTONEX btn2;
+CAPTION "ÇÛáÇÞ";
+ON CLICK closesystem()  ;
+WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 286 ,38 CHECKBOX check7;
-CAPTION "ãÊÇÈÚÉ ÓíÑ ÇáÏæÑÇÊ";
-WIDTH 250;
-Height 30;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 338 ,38 CHECKBOX check8;
-CAPTION "ÊÞííã ÇáÏæÑÇÊ";
-WIDTH 250;
-Height 30;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+TOOLTIP ""
 END WINDOW
 
-winMore.Center ( )
-vw1 := self:oRS:fields:item("WinEmployees"):value
-vw2 := self:oRS:fields:item("WinSuppliers"):value
-vw3 := self:oRS:fields:item("WinCustomers"):value
-vw4 := self:oRS:fields:item("WinWarehouse"):value
-vw5 := self:oRS:fields:item("WinOrders"):value
-vw6 := self:oRS:fields:item("WinAgreement"):value
-vw7 := self:oRS:fields:item("WinProduction"):value
-vw8 := self:oRS:fields:item("WinDispose"):value
-IF vw1 = 2
-winMore.check1.Value := true
-ELSE
-winMore.check1.Value := false
-ENDIF
-IF vw2 = 2
-winMore.check2.Value := true
-ELSE
-winMore.check2.Value := false
-ENDIF
-IF vw3 = 2
-winMore.check3.Value := true
-ELSE
-winMore.check3.Value := false
-ENDIF
-IF vw4 = 2
-winMore.check4.Value := true
-ELSE
-winMore.check4.Value := false
-ENDIF
-IF vw5 = 2
-winMore.check5.Value := true
-ELSE
-winMore.check5.Value := false
-ENDIF
-IF vw6 = 2
-winMore.check6.Value := true
-ELSE
-winMore.check6.Value := false
-ENDIF
-IF vw7 = 2
-winMore.check7.Value := true
-ELSE
-winMore.check7.Value := false
-ENDIF
-IF vw8 = 2
-winMore.check8.Value := true
-ELSE
-winMore.check8.Value := false
-ENDIF
-ACTIVATE WINDOW winMore
+winlogin.Center ( )
+ACTIVATE WINDOW winlogin
 EndIF
 
 Return 0
-Method MoreSave Class UsersClass
-IF winMore.check1.value = true
-self:oRS:fields:item("WinEmployees"):value := 2
+Method OpenSystem Class UsersClass
+Local oCon,oRS,mymax,x,cName,cPassword
+myout = self:Connect()
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from Users",self:oCon,3,3 )
+mymax := oRS:RecordCount
+self:EnteredUserName := winlogin.text1.Value
+self:EnteredPassword := winlogin.text2.Value
+IF mymax > 0
+oRS:MOVEFIRST()
+FOR x = 1 TO MYMAX STEP 1
+cName := oRS:fields:item("UserName"):value
+cName = ALLTRIM ( cName )
+IF lower(cName) == lower(self:EnteredUserName)
+cPassword := oRS:fields:item("Password"):value
+cPassword = ALLTRIM ( cPassword )
+IF cPassword == self:EnteredPassWord
+self:StartSystem := true
+self:UserIsAdmin := oRS:fields:item("SystemAdmin"):value
+self:EnteredUserID := oRS:fields:item("ID"):value
 ELSE
-self:oRS:fields:item("WinEmployees"):value := 3
+MyOut := MSGBOX("ßáãÉ ÇáÓÑ ÛíÑ ÕÍíÍÉ","ÚÝæÇ")
+Return 0
 ENDIF
-IF winMore.check2.value = true
-self:oRS:fields:item("WinSuppliers"):value := 2
+ENDIF
+oRS:MOVENEXT()
+Next
 ELSE
-self:oRS:fields:item("WinSuppliers"):value := 3
+MyOut := MSGINFO("No Users in System Database","Error")
+Return 0
 ENDIF
-IF winMore.check3.value = true
-self:oRS:fields:item("WinCustomers"):value := 2
+myout = self:Disconnect()
+IF self:StartSystem = True
+winLogin.Release ( )
 ELSE
-self:oRS:fields:item("WinCustomers"):value := 3
+MyOut := MSGBOX("ÇÓã ÇáãÓÊÎÏã ÛíÑ ÕÍíÍ","ÚÝæÇ")
 ENDIF
-IF winMore.check4.value = true
-self:oRS:fields:item("WinWarehouse"):value := 2
+Return 0
+Method ValueDetails Class UsersClass
+Local myid,myout,myrs,empdetailsids
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("No Users","Sorry")
+Return 0
+ENDIF
+myid := UsersWindow.Grid1Browse.Value
+IF myid > 0
+myid := self:resultprimarykeys[myid]
 ELSE
-self:oRS:fields:item("WinWarehouse"):value := 3
+MyOut := MSGBOX("You must select user first ","Sorry")
+Return 0
 ENDIF
-IF winMore.check5.value = true
-self:oRS:fields:item("WinOrders"):value := 2
-ELSE
-self:oRS:fields:item("WinOrders"):value := 3
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from UserPermissions",self:oCon,3,3 )
+mymax := myRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("No Records in User Permissions table","Sorry")
+Return 0
 ENDIF
-IF winMore.check6.value = true
-self:oRS:fields:item("WinAgreement"):value := 2
-ELSE
-self:oRS:fields:item("WinAgreement"):value := 3
+myRS:MOVEFIRST()
+empdetailsids := {}
+FOR x = 1 TO mymax STEP 1
+MYDETAILID := myRS:fields:item("ID"):value
+AADD( EMPDETAILSIDS , MYDETAILID)
+MYRS:MOVENEXT()
+Next
+myRS:Close()
+FOR x = 1 TO mymax STEP 1
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from UserPermissionsValues where Userid = " + myid + " and PermissionID = " + str(empdetailsids[x]),self:oCon,3,3 )
+mymax2 := myRS:RecordCount
+IF mymax2 = 0
+myRS:ADDNEW()
+myRS:fields:item("Userid"):value := myid
+myRS:fields:item("PermissionID"):value := empdetailsids[x]
+myRS:fields:item("PermissionValue"):value := 0
+myRS:UPDATE()
 ENDIF
-IF winMore.check7.value = true
-self:oRS:fields:item("WinProduction"):value := 2
-ELSE
-self:oRS:fields:item("WinProduction"):value := 3
+myRS:Close()
+Next
+myout = self:DisConnect()
+myout = self:Connect()
+UserPermissionsObject:UserID := val(myid)
+myout = UserPermissionsObject:ShowWindow()
+Return 0
+Method CheckPermission(nCode) Class UsersClass
+Local myret,myid,myRS,nMax
+myout = self:Connect()
+myret := false
+myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myID := self:EnteredUserID
+myRS:CursorType := 1
+myRS:ActiveConnection := self:oCon
+myRS:open ( "Select * from UserPermissionsValues where Userid = " + str(myid) + " and PermissionID = " + str(nCode),self:oCon,3,3 )
+nMax := myRS:RecordCount
+IF nMax > 0
+nValue := myRS:fields:item("PermissionValue"):value
+IF nValue = 1
+myret := True
 ENDIF
-IF winMore.check8.value = true
-self:oRS:fields:item("WinDispose"):value := 2
-ELSE
-self:oRS:fields:item("WinDispose"):value := 3
 ENDIF
-self:oRS:UPDATE()
-winMore.Release ( )
+myRS:Close()
+myout = self:DisConnect()
+Return myret
+Method closewindow Class UsersClass
+myout = self:disconnect()
+UsersWindow.Release ( )
 Return 0
 Method AutoGotoRecord Class UsersClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
@@ -570,23 +553,15 @@ ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
 Return 0
-Method closewindow Class UsersClass
-myout = self:disconnect()
-UsersWindow.Release ( )
-Return 0
 Method BeforeSearch Class UsersClass
 UsersWindow.grid1browse.DeleteAllItems ( )
 UsersWindow.grid1browse.Value := 0
 Return 0
-Method SearchAdd(temp_array) Class UsersClass
-UsersWindow.grid1browse.AddItem ( temp_array )
-Return 0
 Method SetTimer(p1) Class UsersClass
 UsersWindow.Timer1.Enabled := p1
 Return 0
-Method mytimer Class UsersClass
-myout = self:search()
-UsersWindow.Timer1.Enabled := false
+Method SearchAdd(temp_array) Class UsersClass
+UsersWindow.grid1browse.AddItem ( temp_array )
 Return 0
 Method GetSearchValue Class UsersClass
 cName := UsersWindow.textNamebrowse.Value

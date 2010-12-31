@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:37:15    Date : 12/10/2010
+* Time : 02:13:09    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -75,7 +75,6 @@ Set Procedure to "Suppliers_Browse.PRG"
 Set Procedure to "Suppliers_Report.PRG"
 Set Procedure to "Items_Data.PRG"
 Set Procedure to "ItemsEnter_Data.PRG"
-Set Procedure to "Users_Data.PRG"
 Set Procedure to "OrdersEnter_Data.PRG"
 Set Procedure to "Agreement.PRG"
 Set Procedure to "Quality_Data.PRG"
@@ -151,6 +150,8 @@ Set Procedure to "Employees2_Data.PRG"
 Set Procedure to "Employees2_Browse.PRG"
 Set Procedure to "Employees2_Report.PRG"
 Set Procedure to "ListOfEmployees2_Report.PRG"
+Set Procedure to "Users_Data.PRG"
+Set Procedure to "UserPermissions_Data.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -245,12 +246,14 @@ Employees2DataObject = Employees2DataClass()
 Employees2BrowseObject = Employees2BrowseClass()
 Employees2ReportObject = Employees2ReportClass()
 ListofEmployees2ReportObject = ListofEmployees2ReportClass()
+UsersObject = UsersClass()
+UserPermissionsObject = UserPermissionsClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 907 ;
 HEIGHT 718 ;
-ON INIT systemlogin()  ;
+ON INIT systemkey()  ;
 ICON "PWCTICON" ;
 TITLE "≈“œÂ«— - «” ‘«—«  «œ«—Ì… Ê œ—Ì»" ;
 MAIN ;
@@ -420,14 +423,14 @@ Proc sysmenu
 POPUP "„·›"
 MENUITEM "Œ—ÊÃ" Action closesystem()  IMAGE "image\wzclose.bmp"
 END POPUP
-IF UserCan_Admin = 2
+IF UsersObject:userisadmin = 1
 POPUP "‰Ÿ«„"
 MENUITEM "«·„” Œœ„Ì‰" Action UsersDataObject:ShowWindow()
 END POPUP
 ENDIF
-IF UserCan_WinEmployees = 2 .or. UserCan_WinSuppliers = 2 .or. UserCan_WinCustomers = 2
+IF UsersObject:CheckPermission(1)
 POPUP "«·«‘Œ«’"
-IF UserCan_WinEmployees = 2
+IF UsersObject:CheckPermission(1)
 POPUP "«·„œ—»Ì‰"
 MENUITEM "»Ì«‰«  «·„œ—»" Action EmployeesDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰  „œ—»" Action EmployeesBrowseObject:showwindow()
@@ -439,7 +442,7 @@ MENUITEM "»ÕÀ ⁄‰ „ÊŸ›" Action Employees2BrowseObject:showwindow()
 MENUITEM " ﬁ—Ì— »«·„ÊŸ›Ì‰" Action Employees2report()
 END POPUP
 ENDIF
-IF UserCan_WinCustomers = 2
+IF UsersObject:CheckPermission(1)
 POPUP "«·„ œ—»Ì‰"
 MENUITEM "»Ì«‰«  «·„ œ—»Ì‰" Action CustomersDataObject:showwindow()
 SEPARATOR
@@ -450,7 +453,7 @@ SEPARATOR
 MENUITEM " ﬁ—Ì— »«·„ œ—»Ì‰" Action Customersreport()
 END POPUP
 ENDIF
-IF UserCan_WinSuppliers = 2
+IF UsersObject:CheckPermission(1)
 POPUP " «·„Ê—œÌ‰"
 MENUITEM "»Ì«‰«  «·„Ê—œÌ‰" Action SuppliersDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „Ê—œ" Action SuppliersBrowseObject:showwindow()
@@ -464,7 +467,7 @@ MENUITEM "ÃœÊ· ÿ—ﬁ «·”œ«œ" Action PayMethodDataObject:showwindow()
 MENUITEM "ÃœÊ· ›∆«  «·⁄„·«¡" Action CustClassDataObject:showwindow()
 END POPUP
 ENDIF
-IF UserCan_WinWarehouse = 2
+IF UsersObject:CheckPermission(1)
 POPUP "„Œ«“‰"
 MENUITEM "›∆«  «·«’‰«›" Action ItemsClassesObject:ShowWindow()
 MENUITEM "ÊÕœ«  «·«’‰«›" Action ItemsUnitsObject:ShowWindow()
@@ -482,7 +485,7 @@ SEPARATOR
 MENUITEM "ÕÃ“ ﬂ„Ì… „‰ ’‰› ·’«·Õ œÊ—…" Action ReserveItemsObject:ShowWindow()
 END POPUP
 ENDIF
-IF UserCan_WinOrders = 2 .or. UserCan_WinAgreement = 2
+IF UsersObject:CheckPermission(1)
 POPUP "œÊ—« "
 IF UserCan_WinOrders = 2
 MENUITEM "ÃœÊ· Ê”«∆· „⁄—›… «·⁄„Ì· »«·œÊ—…" Action HowKnowDataObject:ShowWindow()
@@ -497,7 +500,7 @@ IF UserCan_WinAgreement = 2
 ENDIF
 END POPUP
 ENDIF
-IF UserCan_WinProduction = 2
+IF UsersObject:CheckPermission(1)
 POPUP "„ «»⁄… ”Ì— œÊ—…"
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:ShowWindow()
 MENUITEM " ⁄—Ì› Õ«·«  «·«Ã—«¡" Action ProcessStatusObject:ShowWindow()
@@ -507,7 +510,7 @@ SEPARATOR
 MENUITEM "„ «»⁄… «·„ÊŸ›Ì‰" Action ProductionObject:ShowWindow()
 END POPUP
 ENDIF
-IF UserCan_WinDispose = 2
+IF UsersObject:CheckPermission(1)
 POPUP " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡"
 MENUITEM "«Œ Ì«—«  «· ﬁÌÌ„ «·⁄«„" Action CustOpinionObject:ShowWindow()
 MENUITEM "«· ﬁÌÌ„ «·⁄«„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
@@ -517,21 +520,21 @@ MENUITEM "«· ﬁÌÌ„ «·„›’· ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDispose2Object:Show
 END POPUP
 ENDIF
 POPUP " ﬁ«—Ì—"
-IF UserCan_WinEmployees = 2
+IF UsersObject:CheckPermission(1)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„œ—»Ì‰" Action ListOfEmployeesreport()
 SEPARATOR
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListOfEmployees2report()
 SEPARATOR
 ENDIF
-IF UserCan_WinSuppliers = 2
+IF UsersObject:CheckPermission(1)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„Ê—œÌ‰" Action ListOfSuppliersreport()
 SEPARATOR
 ENDIF
-IF UserCan_WinCustomers = 2
+IF UsersObject:CheckPermission(1)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·⁄„·«¡" Action ListOfCustomersreport()
 SEPARATOR
 ENDIF
-IF UserCan_WinWarehouse = 2
+IF UsersObject:CheckPermission(1)
 POPUP " ﬁ«—Ì— «·„Œ«“‰"
 MENUITEM " ﬁ—Ì— ›∆«  «·«’‰«›" Action ItemClassesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— ÊÕœ«  «·«’‰«›" Action ItemUnitsReportObject:ShowWindow()
@@ -548,7 +551,7 @@ MENUITEM " ﬁ—Ì— »ÕÃ“ ﬂ„Ì«  „‰ «·«’‰«› ·’«·Õ œÊ—…" Action ReservedItemsReportObje
 SEPARATOR
 END POPUP
 ENDIF
-IF UserCan_WinOrders = 2 .or. UserCan_WinAgreement = 2
+IF UsersObject:CheckPermission(1)
 POPUP " ﬁ«—Ì— «·œÊ—« "
 MENUITEM "ﬁ«∆„… »«·œÊ—« " Action ListOfOrdersReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— » ›«’Ì· «·œÊ—…" Action OrderDetailsReportObject:ShowWindow()
@@ -560,7 +563,7 @@ IF UserCan_WinAgreement = 2
 ENDIF
 END POPUP
 ENDIF
-IF UserCan_WinProduction = 2
+IF UsersObject:CheckPermission(1)
 POPUP " ﬁ«—Ì— „ «»⁄… ”Ì— «·œÊ—« "
 MENUITEM " ﬁ—Ì— »«Ã—«¡«   «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—…" Action ProcessesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »Õ«·«  «Ã—«¡  ‰›Ì–Ï " Action ProcessStatusReportObject:ShowWindow()
@@ -568,7 +571,7 @@ MENUITEM " ﬁ—Ì— »„—«Õ· «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—… „Õœœ…" Action OrderProcessesReport
 MENUITEM " ﬁ—Ì— »„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰" Action EmployeesProductionReportObject:ShowWindow()
 END POPUP
 ENDIF
-IF UserCan_WinDispose = 2
+IF UsersObject:CheckPermission(1)
 POPUP " ﬁ«—Ì—  ﬁÌÌ„ «·œÊ—« "
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ ⁄«„ ··œÊ—… „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action OrdersDisposeReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ ⁄«„ ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeReportObject:ShowWindow()
@@ -584,20 +587,41 @@ END POPUP
 POPUP "«·»—Ìœ «·«·ﬂ —Ê‰Ï"
 MENUITEM "«—”«· —”«·…" Action sendmailtooneobject:showwindow()
 SEPARATOR
-IF UserCan_WinEmployees = 2
+IF UsersObject:CheckPermission(1)
 MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ÊŸ›Ì‰" Action sendmailtoallemployeesobject:showwindow()
 ENDIF
-IF UserCan_WinCustomers = 2
+IF UsersObject:CheckPermission(1)
 MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ œ—»Ì‰" Action sendmailtoallcustomersobject:showwindow()
 ENDIF
-IF UserCan_WinSuppliers = 2
+IF UsersObject:CheckPermission(1)
 MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„Ê—œÌ‰" Action sendmailtoallSuppliersobject:showwindow()
 SEPARATOR
 ENDIF
-IF UserCan_WinOrders = 2
+IF UsersObject:CheckPermission(1)
 MENUITEM "«—”«· —”«·… «·Ï «·„”Ã·Ì‰ ›Ï œÊ—…" Action sendmailtogroupobject:showwindow()
 ENDIF
 END POPUP
+Return Nil
+Proc customersreport
+customersreportobject:filter := ""
+myout = customersreportobject:ShowWindow()
+Return Nil
+Proc Employeesreport
+Employeesreportobject:filter := ""
+myout = Employeesreportobject:ShowWindow()
+Return Nil
+Proc Suppliersreport
+Suppliersreportobject:filter := ""
+myout = Suppliersreportobject:ShowWindow()
+Return Nil
+Proc datesettings
+set date japan
+set cent on
+Return Nil
+Proc entersystem
+DEFINE MAIN MENU of win1
+DO sysmenu
+END MENU
 DEFINE TOOLBAR Toolbar1;
 PARENT win1 ;
 BUTTONSIZE 40 , 40 ;
@@ -682,174 +706,6 @@ AUTOSIZE
 
 END TOOLBAR
 
-Return Nil
-Proc customersreport
-customersreportobject:filter := ""
-myout = customersreportobject:ShowWindow()
-Return Nil
-Proc Employeesreport
-Employeesreportobject:filter := ""
-myout = Employeesreportobject:ShowWindow()
-Return Nil
-Proc Suppliersreport
-Suppliersreportobject:filter := ""
-myout = Suppliersreportobject:ShowWindow()
-Return Nil
-Proc datesettings
-set date japan
-set cent on
-Return Nil
-Proc systemlogin
-win1.Hide ( )
-DO LOGOSTART
-myhandle = getcontrolhandle ( "image1","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image2","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image3","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image5","win1" )
-DO sethandcursor WITH myhandle
-myhandle = getcontrolhandle ( "image6","win1" )
-DO sethandcursor WITH myhandle
-win1.Maximize ( )
-win1.Show ( )
-DO mylogo
-if !iswindowdefined( winlogin )
-DEFINE WINDOW winlogin ;
-AT 10 ,10 ;
-WIDTH 532 ;
-HEIGHT 267 ;
-ICON "PWCTICON" ;
-TITLE " ”ÃÌ· «·œŒÊ·" ;
-MODAL ;
-NOAUTORELEASE ;
-NOSIZE ;
-NOSYSMENU ;
-BACKCOLOR {255,255,255} 
-
-@ 40 ,0 IMAGE image1;
-PICTURE GetStartUpFolder()+"\Image\back.jpg";
-STRETCH ;
-WIDTH 530 HEIGHT 120
-@ 36 ,307 LABEL lbl1 ;
-VALUE " :  «”„ «·„” Œœ„" ;
-WIDTH 120 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 93 ,310 LABEL lbl2 ;
-VALUE ":  ﬂ·„… «·”—" ;
-WIDTH 120 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 33 ,92 TEXTBOX text1;
-HEIGHT 30 ;
-WIDTH 200 ;
-BACKCOLOR {255,255,255} ;
-RIGHTALIGN ;
-FONTCOLOR {0,0,0} 
-
-@ 91 ,92 TEXTBOX text2;
-ON ENTER OpenSystem()  ;
-HEIGHT 30 ;
-WIDTH 200 ;
-BACKCOLOR {255,255,255} ;
-RIGHTALIGN ;
-FONTCOLOR {0,0,0} ;
-PASSWORD 
-
-@ 182 ,283 BUTTONEX btn1;
-CAPTION "„Ê«›ﬁ";
-ON CLICK OpenSystem()  ;
-WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-DEFAULT ;
-TOOLTIP ""
-@ 181 ,149 BUTTONEX btn2;
-CAPTION "«€·«ﬁ";
-ON CLICK closesystem()  ;
-WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-TOOLTIP ""
-END WINDOW
-
-winlogin.Center ( )
-ACTIVATE WINDOW winlogin
-EndIF
-
-Return Nil
-Proc closelogin
-winlogin.Release ( )
-Return Nil
-Proc entersystem
-DEFINE MAIN MENU of win1
-DO sysmenu
-END MENU
-winlogin.Release ( )
-Return Nil
-Proc OpenSystem
-Local oCon,oRS,OpenWorld,mymax,x,cName,cPassword
-oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn=IZDEHARDATA;uid=systemdatabase;pwd=systemdatabase123";Initial Catalog=' )
-oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
-oRS:CursorType := 1
-oRS:ActiveConnection := oCon
-oRS:open ( "Select * from Users",oCon,3,3 )
-mymax := oRS:RecordCount
-openworld := false
-Public EnteredUserName,EnteredPassword,UserCan_Admin,UserCan_EmpID
-EnteredUserName := winlogin.text1.Value
-EnteredPassword := winlogin.text2.Value
-Public UserCan_WinEmployees
-Public UserCan_WinSuppliers
-Public UserCan_WinCustomers
-Public UserCan_WinWarehouse
-Public UserCan_WinOrders
-Public UserCan_WinAgreement
-Public UserCan_WinProduction
-Public UserCan_WinDispose
-IF mymax > 0
-oRS:MOVEFIRST()
-FOR x = 1 TO MYMAX STEP 1
-cName := oRS:fields:item("UserName"):value
-cName = ALLTRIM ( cName )
-IF cName = EnteredUserName
-cPassword := oRS:fields:item("Password"):value
-cPassword = ALLTRIM ( cPassword )
-IF cPassword == EnteredPassWord
-openworld := true
-UserCan_Admin := oRS:fields:item("SystemAdmin"):value
-UserCan_EmpID := oRS:fields:item("EmpID"):value
-UserCan_WinEmployees := oRS:fields:item("WinEmployees"):value
-UserCan_WinSuppliers := oRS:fields:item("WinSuppliers"):value
-UserCan_WinCustomers := oRS:fields:item("WinCustomers"):value
-UserCan_WinWarehouse := oRS:fields:item("WinWarehouse"):value
-UserCan_WinOrders := oRS:fields:item("WinOrders"):value
-UserCan_WinAgreement := oRS:fields:item("WinAgreement"):value
-UserCan_WinProduction := oRS:fields:item("WinProduction"):value
-UserCan_WinDispose := oRS:fields:item("WinDispose"):value
-ELSE
-MyOut := MSGBOX("ﬂ·„… «·”— €Ì— ’ÕÌÕ…","⁄›Ê«")
-Return 0
-ENDIF
-ENDIF
-oRS:MOVENEXT()
-Next
-ELSE
-MyOut := MSGINFO("·«ÌÊÃœ „” Œœ„Ì‰ ›Ï ﬁ«⁄œ… »Ì«‰«  «·‰Ÿ«„","⁄›Ê«")
-Return 0
-ENDIF
-IF openworld = true
-DO EnterSystem
-ELSE
-MyOut := MSGBOX("Œÿ« ›Ï «”„ «·„” Œœ„","⁄›Ê«")
-ENDIF
 Return Nil
 Proc LOGOSTART
 if !iswindowdefined( winLOGOSTART )
@@ -1006,6 +862,12 @@ Return Nil
 Proc listofemployees2report
 ListofEmployees2ReportObject:filter := ""
 myout = ListofEmployees2ReportObject:ShowWindow()
+Return Nil
+Proc SystemKey
+DO logostart
+win1.Maximize ( )
+myout = UsersObject:SystemLogin()
+DO entersystem
 Return Nil
 
 
