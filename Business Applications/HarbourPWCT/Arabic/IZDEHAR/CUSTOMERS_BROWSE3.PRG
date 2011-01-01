@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:07:12    Date : 11/23/2010
+* Time : 09:44:17    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -56,10 +56,6 @@ Method SearchAdd
 Method FindChange
 EndClass
 Method showwindow Class CustomersBrowse3Class
-IF .not. UserCan_WinCustomers = 2
-MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
-Return 0
-ENDIF
 if !iswindowdefined( CustomersBrowse3Window )
 DEFINE WINDOW CustomersBrowse3Window ;
 AT 10 ,10 ;
