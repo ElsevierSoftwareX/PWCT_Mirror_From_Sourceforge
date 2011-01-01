@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:26:31    Date : 10/25/2010
+* Time : 12:19:21    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,7 +43,7 @@ Method SizeReport
 Method checkchange
 EndClass
 Method ShowWindow Class OrderDetailsReportClass
-IF .not. UserCan_WinOrders = 2
+IF .not. UsersObject:CheckPermission(58)
 MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
 Return 0
 ENDIF
