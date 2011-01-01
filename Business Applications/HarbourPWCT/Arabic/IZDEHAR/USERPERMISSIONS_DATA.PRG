@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:04:49    Date : 12/03/2010
+* Time : 03:47:13    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -39,11 +39,11 @@ class UserPermissionsClass From SystemDatabase
 Data TableName init "UserPermissionsValues_All"
 Data column init "PermissionName"
 Data PrimaryKey init "id"
-Data columns init {"PermissionName","Status"}
+Data columns init {"Status","PermissionName"}
 Data nID init 0
 Data cName init ""
-Data ColTitles init {"Permission Name","Status"}
-Data ColWidths init {300,120}
+Data ColTitles init {"«·Õ«·…","«”„ «·’·«ÕÌ…"}
+Data ColWidths init {120,300}
 Data Userid init 0
 Data complexsearch init ""
 Method showwindow
@@ -77,7 +77,7 @@ WIDTH 710 ;
 HEIGHT 574 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE "Set User Permissions" ;
+TITLE "÷»ÿ ’·«ÕÌ«  «·„” Œœ„Ì‰" ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
@@ -85,11 +85,11 @@ NOSIZE ;
 BACKCOLOR {64,0,64}
 
 @ 40 ,5 IMAGE image1;
-PICTURE "Images\back.jpg";
+PICTURE "Image\back.jpg";
 STRETCH ;
 WIDTH 690 HEIGHT 500
-@ 205 ,586 BUTTONEX btnClose;
-CAPTION "Close";
+@ 205 ,26 BUTTONEX btnClose;
+CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
 ON CLICK self:closewindow()  ;
@@ -98,15 +98,15 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                   User Permissions" ;
+VALUE "                                                  ’·«ÕÌ«  «·„” Œœ„Ì‰" ;
 WIDTH 690 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 46 ,25 LABEL lbl1browse ;
-VALUE "Permission" ;
-WIDTH 110 ;
+@ 46 ,585 LABEL lbl1browse ;
+VALUE "«·’·«ÕÌ…" ;
+WIDTH 90 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -118,8 +118,8 @@ WIDTH 440 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 44 ,586 BUTTONEX btn1browse;
-CAPTION "Find";
+@ 44 ,26 BUTTONEX btn1browse;
+CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
@@ -131,19 +131,20 @@ HEIGHT 450 ;
 HEADERS self:ColTitles;
 WIDTHS self:ColWidths ;
 VALUE 1 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 101 ,586 BUTTONEX btnset1;
-CAPTION "Yes";
+@ 102 ,26 BUTTONEX btnset1;
+CAPTION "‰⁄„";
 ON CLICK self:MySet("1")  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 149 ,586 BUTTONEX btnset2;
-CAPTION "No";
+@ 149 ,26 BUTTONEX btnset2;
+CAPTION "·«";
 ON CLICK self:MySet("2")  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
