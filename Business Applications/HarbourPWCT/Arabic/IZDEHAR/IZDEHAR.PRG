@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:51:00    Date : 11/26/2010
+* Time : 13:05:25    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -977,6 +977,7 @@ Return Nil
 Proc SystemKey
 DO logostart
 win1.Maximize ( )
+DO mylogo
 myout = UsersObject:SystemLogin()
 DO entersystem
 Return Nil
