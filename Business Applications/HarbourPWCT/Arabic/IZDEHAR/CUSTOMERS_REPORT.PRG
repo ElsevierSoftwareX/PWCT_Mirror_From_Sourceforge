@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:45:29    Date : 11/26/2010
+* Time : 10:20:45    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -42,7 +42,7 @@ Method closewindow
 Method SizeReport
 EndClass
 Method ShowWindow Class CustomersReportClass
-IF .not. UsersObject:CheckPermission(5)
+IF .not. UsersObject:CheckPermission(43)
 MyOut := MSGBOX("ÇáÏÎæá ããäæÚ ","ÚÝæÇ")
 Return 0
 ENDIF
