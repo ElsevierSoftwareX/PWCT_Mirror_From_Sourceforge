@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:49:26    Date : 12/10/2010
+* Time : 11:36:00    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -109,7 +109,7 @@ Method CheckFind2
 Method CheckData
 EndClass
 Method showwindow Class OrdersEnterClass
-IF .not. UserCan_WinOrders = 2
+IF .not. UsersObject:CheckPermission(27)
 MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
 Return 0
 ENDIF
