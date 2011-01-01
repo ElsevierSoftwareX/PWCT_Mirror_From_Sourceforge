@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:18:09    Date : 10/25/2010
+* Time : 10:02:01    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -69,10 +69,6 @@ Method AutoGotoRecord
 Method printdata
 EndClass
 Method showwindow Class SuppliersDataClass
-IF .not. UserCan_WinSuppliers = 2
-MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
-Return 0
-ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( SuppliersDataWindow )
