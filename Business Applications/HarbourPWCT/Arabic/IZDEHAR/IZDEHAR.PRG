@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:34:13    Date : 11/26/2010
+* Time : 09:09:33    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -430,19 +430,28 @@ END POPUP
 ENDIF
 IF UsersObject:CheckPermission(1)
 POPUP "«·«‘Œ«’"
-IF UsersObject:CheckPermission(1)
-POPUP "«·„œ—»Ì‰"
-MENUITEM "»Ì«‰«  «·„œ—»" Action EmployeesDataObject:showwindow()
-MENUITEM "»ÕÀ ⁄‰  „œ—»" Action EmployeesBrowseObject:showwindow()
-MENUITEM " ﬁ—Ì— »«·„œ—»Ì‰" Action Employeesreport()
-END POPUP
+IF UsersObject:CheckPermission(2)
 POPUP "«·„ÊŸ›Ì‰"
 MENUITEM "»Ì«‰«  «·„ÊŸ›" Action Employees2DataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „ÊŸ›" Action Employees2BrowseObject:showwindow()
 MENUITEM " ﬁ—Ì— »«·„ÊŸ›Ì‰" Action Employees2report()
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(3)
+POPUP "«·„œ—»Ì‰"
+MENUITEM "»Ì«‰«  «·„œ—»" Action EmployeesDataObject:showwindow()
+MENUITEM "»ÕÀ ⁄‰  „œ—»" Action EmployeesBrowseObject:showwindow()
+MENUITEM " ﬁ—Ì— »«·„œ—»Ì‰" Action Employeesreport()
+END POPUP
+ENDIF
+IF UsersObject:CheckPermission(4)
+POPUP " «·„Ê—œÌ‰"
+MENUITEM "»Ì«‰«  «·„Ê—œÌ‰" Action SuppliersDataObject:showwindow()
+MENUITEM "»ÕÀ ⁄‰ „Ê—œ" Action SuppliersBrowseObject:showwindow()
+MENUITEM " ﬁ—Ì—  »«·„Ê—œÌ‰" Action Suppliersreport()
+END POPUP
+ENDIF
+IF UsersObject:CheckPermission(5)
 POPUP "«·„ œ—»Ì‰"
 MENUITEM "»Ì«‰«  «·„ œ—»Ì‰" Action CustomersDataObject:showwindow()
 SEPARATOR
@@ -453,125 +462,213 @@ SEPARATOR
 MENUITEM " ﬁ—Ì— »«·„ œ—»Ì‰" Action Customersreport()
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
-POPUP " «·„Ê—œÌ‰"
-MENUITEM "»Ì«‰«  «·„Ê—œÌ‰" Action SuppliersDataObject:showwindow()
-MENUITEM "»ÕÀ ⁄‰ „Ê—œ" Action SuppliersBrowseObject:showwindow()
-MENUITEM " ﬁ—Ì—  »«·„Ê—œÌ‰" Action Suppliersreport()
-END POPUP
-ENDIF
+IF UsersObject:CheckPermission(6)
 MENUITEM "ÃœÊ· «”„«¡ «·œÊ· " Action Countrydataobject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(7)
 MENUITEM "ÃœÊ· «”„«¡ «·«ﬁ”«„ " Action GenderDataObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(8)
 MENUITEM "ÃœÊ· «‰Ê«⁄ «·⁄„·«¡" Action CustTypeDataObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(9)
 MENUITEM "ÃœÊ· ÿ—ﬁ «·”œ«œ" Action PayMethodDataObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(10)
 MENUITEM "ÃœÊ· ›∆«  «·⁄„·«¡" Action CustClassDataObject:showwindow()
+ENDIF
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(11)
 POPUP "„Œ«“‰"
+IF UsersObject:CheckPermission(12)
 MENUITEM "›∆«  «·«’‰«›" Action ItemsClassesObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(13)
 MENUITEM "ÊÕœ«  «·«’‰«›" Action ItemsUnitsObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(14)
 MENUITEM "„Ã„Ê⁄«  «·«’‰«›" Action ItemsGroupsObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(15)
 MENUITEM "„” ÊÌ«  «·«’‰«›" Action ItemsGradesObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(16)
 MENUITEM "«ÕÃ«„ «·«’‰«›" Action ItemsSizesObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(17)
 MENUITEM "«·Ê«‰ «·«’‰«›" Action ItemsColorsObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(18)
 MENUITEM "„’«œ— «·«’‰«›" Action ItemsSourcesObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(19)
 MENUITEM "„Œ«“‰ «·«’‰«›" Action ItemsStoresObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(20)
 MENUITEM " ⁄—Ì› «·«’‰«›" Action ItemsObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(21)
 MENUITEM "≈œŒ«· ’‰› «·Ï «·„Œ“‰" Action ItemsEnterObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(22)
 MENUITEM "ÕÃ“ ﬂ„Ì… „‰ ’‰› ·’«·Õ œÊ—…" Action ReserveItemsObject:ShowWindow()
+ENDIF
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(23)
 POPUP "œÊ—« "
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(24)
 MENUITEM "ÃœÊ· Ê”«∆· „⁄—›… «·⁄„Ì· »«·œÊ—…" Action HowKnowDataObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(25)
 MENUITEM "ÃœÊ· «‰Ê«⁄ «·œÊ—« " Action OrderTypesObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(26)
 MENUITEM "«„«ﬂ‰ «·œÊ—« " Action LocationsObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(27)
 MENUITEM " ”ÃÌ· «·œÊ—«  Ê«·„ œ—»Ì‰" Action OrdersEnterObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(28)
 MENUITEM "«·„” ›”—Ì‰ ⁄‰ œÊ—…" Action CustFriendsObject:ShowWindow()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(1)
-ENDIF
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(29)
 POPUP "„ «»⁄… ”Ì— œÊ—…"
+IF UsersObject:CheckPermission(30)
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(31)
 MENUITEM " ⁄—Ì› Õ«·«  «·«Ã—«¡" Action ProcessStatusObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(32)
 MENUITEM "⁄„·Ì«   ‰›Ì– œÊ—…" Action OrderProcessesObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(33)
 MENUITEM "„ «»⁄… «·„ÊŸ›Ì‰" Action ProductionObject:ShowWindow()
+ENDIF
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(34)
 POPUP " ﬁÌÌ„ œÊ—… »⁄œ «·«‰ Â«¡"
+IF UsersObject:CheckPermission(35)
 MENUITEM "«Œ Ì«—«  «· ﬁÌÌ„ «·⁄«„" Action CustOpinionObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(36)
 MENUITEM "«· ﬁÌÌ„ «·⁄«„ „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(37)
 MENUITEM "⁄‰«’— «· ﬁÌÌ„ «·„›’· ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action ValueItemsObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(38)
 MENUITEM "«· ﬁÌÌ„ «·„›’· ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDispose2Object:ShowWindow()
+ENDIF
 END POPUP
 ENDIF
+IF UsersObject:CheckPermission(39)
 POPUP " ﬁ«—Ì—"
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(40)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„œ—»Ì‰" Action ListOfEmployeesreport()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(41)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListOfEmployees2report()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(42)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„Ê—œÌ‰" Action ListOfSuppliersreport()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(43)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·⁄„·«¡" Action ListOfCustomersreport()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(44)
 POPUP " ﬁ«—Ì— «·„Œ«“‰"
+IF UsersObject:CheckPermission(45)
 MENUITEM " ﬁ—Ì— ›∆«  «·«’‰«›" Action ItemClassesReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(46)
 MENUITEM " ﬁ—Ì— ÊÕœ«  «·«’‰«›" Action ItemUnitsReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(47)
 MENUITEM " ﬁ—Ì— „Ã„Ê⁄«  «·«’‰«›" Action ItemGroupsReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(48)
 MENUITEM " ﬁ—Ì— „” ÊÌ«  «·«’‰«›" Action ItemGradesReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(49)
 MENUITEM " ﬁ—Ì— «ÕÃ«„ «·«’‰«›" Action ItemSizesReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(50)
 MENUITEM " ﬁ—Ì— «·Ê«‰ «·«’‰«›" Action ItemColorsReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(51)
 MENUITEM " ﬁ—Ì— „’«œ— «·«’‰«›" Action ItemSourcesReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(52)
 MENUITEM " ﬁ—Ì— »«·„Œ«“‰" Action StoresReportObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(53)
 MENUITEM " ﬁ—Ì— »«·«’‰«› Ê«·ﬂ„Ì«  «·„ Ê›—…" Action ItemsReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(54)
 MENUITEM " ﬁ—Ì— »œŒÊ· «’‰«› «·Ï «·„Œ“‰" Action ITEMSENTEREDTOSTORESReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(55)
 MENUITEM " ﬁ—Ì— »ÕÃ“ ﬂ„Ì«  „‰ «·«’‰«› ·’«·Õ œÊ—…" Action ReservedItemsReportObject:ShowWindow()
 SEPARATOR
+ENDIF
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(56)
 POPUP " ﬁ«—Ì— «·œÊ—« "
+IF UsersObject:CheckPermission(57)
 MENUITEM "ﬁ«∆„… »«·œÊ—« " Action ListOfOrdersReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(58)
 MENUITEM " ﬁ—Ì— » ›«’Ì· «·œÊ—…" Action OrderDetailsReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(59)
 MENUITEM "ﬂ—Ê  œÊ—…" Action OrderCardsReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(60)
 MENUITEM " ﬁ—Ì— »«·œÊ—«  Ê«·„ œ—»Ì‰ Ê«·„” ›”—Ì‰ ⁄‰ œÊ—…" Action CustFriendsReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(61)
 MENUITEM "ﬂ‘› Õ÷Ê— Ê≈‰’—«› «·„ œ—»Ì‰" Action CustComeReportObject:ShowWindow()
 SEPARATOR
-IF UsersObject:CheckPermission(1)
 ENDIF
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(62)
 POPUP " ﬁ«—Ì— „ «»⁄… ”Ì— «·œÊ—« "
+IF UsersObject:CheckPermission(63)
 MENUITEM " ﬁ—Ì— »«Ã—«¡«   «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—…" Action ProcessesReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(64)
 MENUITEM " ﬁ—Ì— »Õ«·«  «Ã—«¡  ‰›Ì–Ï " Action ProcessStatusReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(65)
 MENUITEM " ﬁ—Ì— »„—«Õ· «· ÃÂÌ“ Ê«· ‰›Ì– ·œÊ—… „Õœœ…" Action OrderProcessesReportObject:ShowWindow()
+ENDIF
+IF UsersObject:CheckPermission(66)
 MENUITEM " ﬁ—Ì— »„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰" Action EmployeesProductionReportObject:ShowWindow()
+ENDIF
 END POPUP
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(67)
 POPUP " ﬁ«—Ì—  ﬁÌÌ„ «·œÊ—« "
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ ⁄«„ ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeReportObject:ShowWindow()
 SEPARATOR
@@ -583,23 +680,28 @@ MENUITEM "≈” „«—… «· ﬁÌÌ„ «· ›’Ì·Ï ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰ »œÊ‰ «”„ «·„ œ—»" Act
 END POPUP
 ENDIF
 END POPUP
+ENDIF
+IF UsersObject:CheckPermission(68)
 POPUP "«·»—Ìœ «·«·ﬂ —Ê‰Ï"
+IF UsersObject:CheckPermission(69)
 MENUITEM "«—”«· —”«·…" Action sendmailtooneobject:showwindow()
 SEPARATOR
-IF UsersObject:CheckPermission(1)
-MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ÊŸ›Ì‰" Action sendmailtoallemployeesobject:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(1)
-MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ œ—»Ì‰" Action sendmailtoallcustomersobject:showwindow()
+IF UsersObject:CheckPermission(71)
+MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„œ—»Ì‰" Action sendmailtoallemployeesobject:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(72)
 MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„Ê—œÌ‰" Action sendmailtoallSuppliersobject:showwindow()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(1)
+IF UsersObject:CheckPermission(73)
+MENUITEM "«—”«· —”«·… «·Ï ﬂ· «·„ œ—»Ì‰" Action sendmailtoallcustomersobject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(74)
 MENUITEM "«—”«· —”«·… «·Ï «·„”Ã·Ì‰ ›Ï œÊ—…" Action sendmailtogroupobject:showwindow()
 ENDIF
 END POPUP
+ENDIF
 Return Nil
 Proc customersreport
 customersreportobject:filter := ""
@@ -629,6 +731,7 @@ FLAT ;
 BORDER ;
 BREAK 
 
+IF UsersObject:CheckPermission(2)
 BUTTON toolbaremployeebtn1;
 PICTURE "image\EmployeesIcon.bmp" ;
 ADJUST ;
@@ -651,6 +754,8 @@ TOOLTIP " ﬁ—Ì— »«·„œ—»Ì‰" ;
 SEPARATOR ;
 AUTOSIZE 
 
+ENDIF
+IF UsersObject:CheckPermission(4)
 BUTTON toolbarsupplierbtn1;
 PICTURE "image\suppliersicon.bmp" ;
 ADJUST ;
@@ -673,6 +778,8 @@ TOOLTIP " ﬁ—Ì— »«·„Ê—œÌ‰" ;
 SEPARATOR ;
 AUTOSIZE 
 
+ENDIF
+IF UsersObject:CheckPermission(5)
 BUTTON toolbarcustomersbtn1;
 PICTURE "image\customersicon.bmp" ;
 ADJUST ;
@@ -695,6 +802,7 @@ TOOLTIP " ﬁ—Ì— »«·⁄„·«¡" ;
 SEPARATOR ;
 AUTOSIZE 
 
+ENDIF
 BUTTON toolbarshutdown;
 PICTURE "image\shutdown.bmp" ;
 ADJUST ;
