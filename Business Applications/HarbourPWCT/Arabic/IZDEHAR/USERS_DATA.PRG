@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:06:39    Date : 11/26/2010
+* Time : 03:24:43    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -51,6 +51,9 @@ Data EnteredPassWord init ""
 Data UserIsAdmin init 0
 Data StartSystem init false
 Data EnteredUserID init 0
+Data nEmployee init 0
+Data Employeeitems init {}
+Data Employeeitemsids init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -83,7 +86,7 @@ if !iswindowdefined( UsersWindow )
 DEFINE WINDOW UsersWindow ;
 AT 10 ,10 ;
 WIDTH 893 ;
-HEIGHT 544 ;
+HEIGHT 572 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
 TITLE "«·„” Œœ„Ì‰" ;
@@ -96,8 +99,8 @@ BACKCOLOR {64,0,64}
 @ 45 ,5 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 870 HEIGHT 400
-@ 455 ,437 BUTTONEX btnFirst;
+WIDTH 870 HEIGHT 430
+@ 485 ,437 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -106,7 +109,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 455 ,303 BUTTONEX btnNext;
+@ 485 ,303 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -115,7 +118,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 455 ,238 BUTTONEX btnLast;
+@ 485 ,238 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -124,7 +127,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 455 ,56 BUTTONEX btnClose;
+@ 485 ,56 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -133,7 +136,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 455 ,373 BUTTONEX btnPrev;
+@ 485 ,373 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -142,7 +145,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 455 ,151 BUTTONEX btnDel;
+@ 485 ,151 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -151,25 +154,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 455 ,599 BUTTONEX btnsave;
+@ 485 ,599 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 455 ,518 BUTTONEX btncancel;
+@ 485 ,518 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 455 ,682 BUTTONEX btnedit;
+@ 485 ,682 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 455 ,757 BUTTONEX btnadd;
+@ 485 ,757 BUTTONEX btnadd;
 CAPTION "«÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -182,7 +185,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 313 ,571 LABEL lblUserName ;
+@ 343 ,571 LABEL lblUserName ;
 VALUE "«”„ «·„” Œœ„" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -190,11 +193,12 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 310 ,171 TEXTBOX textUserName;
+@ 340 ,171 TEXTBOX textUserName;
 HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 @ 51 ,728 LABEL lbl1browse ;
@@ -222,12 +226,13 @@ WIDTH 740 ;
 HEIGHT 160 ;
 HEADERS {"ﬂÊœ","«”„ «·„” Œœ„"};
 WIDTHS {50,150} ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 351 ,571 LABEL lblPassword ;
+@ 381 ,571 LABEL lblPassword ;
 VALUE "ﬂ·„… «·”—" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -235,16 +240,17 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 350 ,172 TEXTBOX textPassword;
+@ 380 ,172 TEXTBOX textPassword;
 HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0} ;
 PASSWORD
 
 myout = self:LoadLookupTable("choice","status",@self:SystemAdminItems,"id",@self:SystemAdminItemsIDS)
-@ 265 ,571 LABEL lblSystemAdmin ;
+@ 305 ,571 LABEL lblSystemAdmin ;
 VALUE "„œÌ— «·‰Ÿ«„" ;
 WIDTH 140 ;
 HEIGHT 30 ;
@@ -252,7 +258,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 267 ,171 COMBOBOX comboSystemAdmin;
+@ 307 ,171 COMBOBOX comboSystemAdmin;
 WIDTH 390 ;
 HEIGHT 100;
 ITEMS self:SystemAdminitems ;
@@ -260,7 +266,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 396 ,246 BUTTONEX btnPermissions;
+@ 426 ,246 BUTTONEX btnPermissions;
 CAPTION "÷»ÿ ’·«ÕÌ«  «·„” Œœ„";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -269,12 +275,30 @@ WIDTH 390 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
+myout = self:LoadLookupTable("employees2","f_name",@self:EmployeeItems,"id",@self:EmployeeItemsIDS)
+@ 265 ,571 LABEL lblEmployee ;
+VALUE "«·„ÊŸ›" ;
+WIDTH 140 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 267 ,171 COMBOBOX comboEmployee;
+WIDTH 390 ;
+HEIGHT 100;
+ITEMS self:Employeeitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 UsersWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
 UsersWindow.Timer1.Enabled := false
+DO RightToLeftControl WITH "UsersWindow","ComboSystemAdmin"
 ACTIVATE WINDOW UsersWindow
 EndIF
 
