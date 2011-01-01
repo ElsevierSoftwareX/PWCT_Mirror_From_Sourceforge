@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:47:18    Date : 11/26/2010
+* Time : 04:22:26    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -487,16 +487,16 @@ END POPUP
 ENDIF
 IF UsersObject:CheckPermission(1)
 POPUP "œÊ—« "
-IF UserCan_WinOrders = 2
+IF UsersObject:CheckPermission(1)
 MENUITEM "ÃœÊ· Ê”«∆· „⁄—›… «·⁄„Ì· »«·œÊ—…" Action HowKnowDataObject:ShowWindow()
 MENUITEM "ÃœÊ· «‰Ê«⁄ «·œÊ—« " Action OrderTypesObject:ShowWindow()
 MENUITEM "«„«ﬂ‰ «·œÊ—« " Action LocationsObject:ShowWindow()
 SEPARATOR
-MENUITEM " ”ÃÌ· œÊ—…" Action OrdersEnterObject:ShowWindow()
+MENUITEM " ”ÃÌ· «·œÊ—«  Ê«·„ œ—»Ì‰" Action OrdersEnterObject:ShowWindow()
 MENUITEM "«·„” ›”—Ì‰ ⁄‰ œÊ—…" Action CustFriendsObject:ShowWindow()
 SEPARATOR
 ENDIF
-IF UserCan_WinAgreement = 2
+IF UsersObject:CheckPermission(1)
 ENDIF
 END POPUP
 ENDIF
@@ -545,7 +545,7 @@ MENUITEM " ﬁ—Ì— «·Ê«‰ «·«’‰«›" Action ItemColorsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— „’«œ— «·«’‰«›" Action ItemSourcesReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«·„Œ«“‰" Action StoresReportObject:ShowWindow()
 SEPARATOR
-MENUITEM " ﬁ—Ì— »«·«’‰«›" Action ItemsReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— »«·«’‰«› Ê«·ﬂ„Ì«  «·„ Ê›—…" Action ItemsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »œŒÊ· «’‰«› «·Ï «·„Œ“‰" Action ITEMSENTEREDTOSTORESReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »ÕÃ“ ﬂ„Ì«  „‰ «·«’‰«› ·’«·Õ œÊ—…" Action ReservedItemsReportObject:ShowWindow()
 SEPARATOR
@@ -559,7 +559,7 @@ MENUITEM "ﬂ—Ê  œÊ—…" Action OrderCardsReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »«·œÊ—«  Ê«·„ œ—»Ì‰ Ê«·„” ›”—Ì‰ ⁄‰ œÊ—…" Action CustFriendsReportObject:ShowWindow()
 MENUITEM "ﬂ‘› Õ÷Ê— Ê≈‰’—«› «·„ œ—»Ì‰" Action CustComeReportObject:ShowWindow()
 SEPARATOR
-IF UserCan_WinAgreement = 2
+IF UsersObject:CheckPermission(1)
 ENDIF
 END POPUP
 ENDIF
@@ -573,7 +573,6 @@ END POPUP
 ENDIF
 IF UsersObject:CheckPermission(1)
 POPUP " ﬁ«—Ì—  ﬁÌÌ„ «·œÊ—« "
-MENUITEM " ﬁ—Ì— » ﬁÌÌ„ ⁄«„ ··œÊ—… „‰ ﬁ»· „œÌ— «·ÃÊœ…" Action OrdersDisposeReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— » ﬁÌÌ„ ⁄«„ ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action CustDisposeReportObject:ShowWindow()
 SEPARATOR
 MENUITEM "⁄‰«’— «· ﬁÌÌ„ «·„›’· ··œÊ—… „‰ ﬁ»· «·„ œ—»Ì‰" Action ValueItemsReportObject:ShowWindow()

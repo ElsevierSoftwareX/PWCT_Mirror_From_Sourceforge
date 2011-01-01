@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:47:13    Date : 11/26/2010
+* Time : 04:22:21    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,7 +43,7 @@ Data columns init {"Status","PermissionName"}
 Data nID init 0
 Data cName init ""
 Data ColTitles init {"«·Õ«·…","«”„ «·’·«ÕÌ…"}
-Data ColWidths init {120,300}
+Data ColWidths init {115,300}
 Data Userid init 0
 Data complexsearch init ""
 Method showwindow
@@ -194,9 +194,9 @@ myout = self:UserInterface2Class()
 myout = self:Class2Ado()
 self:oRS:UPDATE()
 IF p1 = "1"
-UserPermissionsWindow.Grid1Browse.cell(nValue,2) := "Yes"
+UserPermissionsWindow.Grid1Browse.cell(nValue,1) := "‰⁄„"
 ELSE
-UserPermissionsWindow.Grid1Browse.cell(nValue,2) := "No"
+UserPermissionsWindow.Grid1Browse.cell(nValue,1) := "·«"
 ENDIF
 nMax := UserPermissionsWindow.Grid1browse.ItemCount
 IF nValue < nMax
