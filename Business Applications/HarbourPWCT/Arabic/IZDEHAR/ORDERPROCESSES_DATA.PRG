@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:16:03    Date : 12/10/2010
+* Time : 12:08:01    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -89,7 +89,7 @@ Method CheckFind
 Method AutoAdd
 EndClass
 Method showwindow Class OrderProcessesClass
-IF .not. UserCan_WinProduction = 2
+IF .not. UsersObject:CheckPermission(32)
 MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
 Return 0
 ENDIF
