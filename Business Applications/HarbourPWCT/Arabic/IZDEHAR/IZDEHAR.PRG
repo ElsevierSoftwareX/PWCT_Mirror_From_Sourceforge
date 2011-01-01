@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:28:13    Date : 11/26/2010
+* Time : 12:51:00    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -720,6 +720,8 @@ set date japan
 set cent on
 Return Nil
 Proc entersystem
+usersobject:manychecks := true
+myout = usersobject:connect()
 DEFINE MAIN MENU of win1
 DO sysmenu
 END MENU
@@ -813,6 +815,8 @@ AUTOSIZE
 
 END TOOLBAR
 
+myout = usersobject:disconnect()
+usersobject:manychecks := false
 Return Nil
 Proc LOGOSTART
 if !iswindowdefined( winLOGOSTART )

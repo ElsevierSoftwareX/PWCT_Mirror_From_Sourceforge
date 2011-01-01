@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:36:23    Date : 11/26/2010
+* Time : 12:50:54    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,6 +54,7 @@ Data EnteredUserID init 0
 Data nEmployee init 0
 Data Employeeitems init {}
 Data Employeeitemsids init {}
+Data manychecks init false
 Method showwindow
 Method closewindow
 Method SetMode
@@ -551,7 +552,9 @@ myout = UserPermissionsObject:ShowWindow()
 Return 0
 Method CheckPermission(nCode) Class UsersClass
 Local myret,myid,myRS,nMax
+IF self:ManyChecks = false
 myout = self:Connect()
+ENDIF
 myret := false
 myRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 myID := self:EnteredUserID
@@ -566,7 +569,9 @@ myret := True
 ENDIF
 ENDIF
 myRS:Close()
+IF self:ManyChecks = false
 myout = self:DisConnect()
+ENDIF
 Return myret
 Method closewindow Class UsersClass
 myout = self:disconnect()
