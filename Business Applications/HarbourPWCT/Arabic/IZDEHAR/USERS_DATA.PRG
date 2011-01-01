@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:24:43    Date : 11/26/2010
+* Time : 03:36:23    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -299,6 +299,7 @@ myout = self:showrecord()
 myout = self:setmode(2)
 UsersWindow.Timer1.Enabled := false
 DO RightToLeftControl WITH "UsersWindow","ComboSystemAdmin"
+DO RightToLeftControl WITH "UsersWindow","ComboEmployee"
 ACTIVATE WINDOW UsersWindow
 EndIF
 
@@ -308,27 +309,34 @@ self:cUserName := UsersWindow.textUserName.Value
 self:cPassWord := UsersWindow.textPassWord.Value
 self:nSystemAdmin := UsersWindow.ComboSystemAdmin.Value
 self:nSystemAdmin := self:SystemAdminItemsids[self:nSystemAdmin]
+self:nEmployee := UsersWindow.ComboEmployee.Value
+self:nEmployee := self:EmployeeItemsids[self:nEmployee]
 Return 0
 Method Class2ADO Class UsersClass
 self:oRS:fields:item("UserName"):value := self:cUserName
 self:oRS:fields:item("PassWord"):value := self:cPassWord
 self:oRS:fields:item("SystemAdmin"):value := self:nSystemAdmin
+self:oRS:fields:item("EmpID"):value := self:nEmployee
 Return 0
 Method ADO2Class Class UsersClass
 self:cUserName := self:oRS:fields:item("UserName"):value
 self:cPassWord := self:oRS:fields:item("PassWord"):value
 self:nSystemAdmin := self:oRS:fields:item("SystemAdmin"):value
+self:nEmployee := self:oRS:fields:item("EmpID"):value
 Return 0
 Method Class2UserInterface Class UsersClass
 UsersWindow.textUserName.Value := self:cUserName
 UsersWindow.textPassWord.Value := self:cPassWord
 self:nSystemAdmin = self:LookupIDToIndex(self:nSystemAdmin,@self:SystemAdminItemsids)
 UsersWindow.ComboSystemAdmin.Value := self:nSystemAdmin
+self:nEmployee = self:LookupIDToIndex(self:nEmployee,@self:EmployeeItemsids)
+UsersWindow.ComboEmployee.Value := self:nEmployee
 Return 0
 Method ClearRecord Class UsersClass
 self:cUserName := ""
 self:cPassWord := ""
 self:nSystemAdmin := 0
+self:nEmployee := 0
 Return 0
 Method OpenDataWindow Class UsersClass
 Local nvalue,myout
@@ -361,6 +369,7 @@ UsersWindow.btnadd.Enabled := false
 UsersWindow.textUserName.Enabled := true
 UsersWindow.textPassWord.Enabled := true
 UsersWindow.comboSystemAdmin.Enabled := true
+UsersWindow.comboEmployee.Enabled := true
 ENDIF
 IF p1 = 2
 UsersWindow.btnfirst.Enabled := true
@@ -376,6 +385,7 @@ UsersWindow.btnadd.Enabled := true
 UsersWindow.textUserName.Enabled := false
 UsersWindow.textPassWord.Enabled := false
 UsersWindow.comboSystemAdmin.Enabled := false
+UsersWindow.comboEmployee.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
