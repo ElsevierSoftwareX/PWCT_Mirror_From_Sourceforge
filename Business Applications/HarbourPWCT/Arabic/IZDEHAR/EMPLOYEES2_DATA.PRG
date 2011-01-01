@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:50:22    Date : 12/09/2010
+* Time : 09:54:57    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -70,10 +70,6 @@ Method printdata
 Method CustOrders
 EndClass
 Method showwindow Class Employees2DataClass
-IF .not. UserCan_WinEmployees = 2
-MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
-Return 0
-ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( Employees2DataWindow )

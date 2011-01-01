@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:47:47    Date : 12/09/2010
+* Time : 09:52:53    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -53,10 +53,6 @@ Method settimer
 Method SearchAdd
 EndClass
 Method showwindow Class EmployeesBrowseClass
-IF .not. UserCan_WinEmployees = 2
-MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
-Return 0
-ENDIF
 if !iswindowdefined( EmployeesBrowseWindow )
 DEFINE WINDOW EmployeesBrowseWindow ;
 AT 10 ,10 ;
