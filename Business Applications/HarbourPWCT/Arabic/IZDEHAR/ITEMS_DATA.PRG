@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:59:13    Date : 11/25/2010
+* Time : 11:04:25    Date : 11/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -89,7 +89,7 @@ Method settimer
 Method CheckFind
 EndClass
 Method showwindow Class ItemsClass
-IF .not. UserCan_WinWarehouse = 2
+IF .not. UsersObject:CheckPermission(20)
 MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
 Return 0
 ENDIF
