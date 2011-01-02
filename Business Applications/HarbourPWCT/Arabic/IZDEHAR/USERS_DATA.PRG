@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:53:08    Date : 11/27/2010
+* Time : 10:54:30    Date : 11/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -55,6 +55,7 @@ Data nEmployee init 0
 Data Employeeitems init {}
 Data Employeeitemsids init {}
 Data manychecks init false
+Data EnteredEmployeeID init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -482,6 +483,7 @@ IF cPassword == self:EnteredPassWord
 self:StartSystem := true
 self:UserIsAdmin := oRS:fields:item("SystemAdmin"):value
 self:EnteredUserID := oRS:fields:item("ID"):value
+self:EnteredEmployeeID := oRS:fields:item("EmpID"):value
 ELSE
 MyOut := MSGBOX("ﬂ·„… «·”— €Ì— ’ÕÌÕ…","⁄›Ê«")
 Return 0

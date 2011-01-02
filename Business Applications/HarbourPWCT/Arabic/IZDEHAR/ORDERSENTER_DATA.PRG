@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:45:04    Date : 11/27/2010
+* Time : 10:55:09    Date : 11/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -924,14 +924,14 @@ oRS:fields:item("Orderid"):value := self:nOrderNumber
 oRS:fields:item("customerhowknow"):value := self:nhowknow
 oRS:fields:item("InvoiceNumber"):value := cInvoiceNumber
 oRS:fields:item("UserName"):value := usersobject:enteredusername
-oRS:fields:item("empid"):value := UsersObject:EnteredUserID
+oRS:fields:item("empid"):value := UsersObject:EnteredEmployeeID
 oRS:UPDATE()
 oRS:Close()
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from Production_All",self:oCon,3,3 )
 oRS:ADDNEW()
-oRS:fields:item("employeeid"):value := UsersObject:EnteredUserID
+oRS:fields:item("employeeid"):value := UsersObject:EnteredEmployeeID
 oRS:fields:item("ordernumberID"):value := self:resultprimarykeys[OrdersEnterWindow.Grid1Browse.Value]
 oRS:fields:item("noofpcs"):value := "  ”ÃÌ· «·⁄„Ì· " + self:ItemItems[OrdersEnterWindow.ComboItem.Value]
 oRS:fields:item("finishtime"):value := time()
