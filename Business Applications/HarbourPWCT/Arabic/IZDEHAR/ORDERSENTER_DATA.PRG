@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:36:00    Date : 11/26/2010
+* Time : 09:00:23    Date : 11/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -986,7 +986,7 @@ nIndex := OrdersEnterWindow.ComboFind2.Value
 Self:Column2 := Self:FindColumns2[nIndex]
 Return 0
 Method CheckData Class OrdersEnterClass
-Local myret,d1,d2
+Local myret,d1,d2,nValue
 myret := True
 d1 := OrdersEnterWindow.dateOrderDate.Value
 d2 := OrdersEnterWindow.dateFinishDate.Value
@@ -999,6 +999,11 @@ IF alltrim(OrdersEnterWindow.textDays.value) == ""
 OrdersEnterWindow.textDays.Value := alltrim(str(d2-d1+1))
 ENDIF
 ENDIF
+ENDIF
+nValue := OrdersEnterWindow.ComboCustomer.Value
+IF nValue = 0
+MyOut := MSGBOX("ÌÃ»  ÕœÌœ «·„Õ«÷—/«·„œ—»","⁄›Ê«")
+myret := false
 ENDIF
 Return myret
 Method closewindow Class OrdersEnterClass
