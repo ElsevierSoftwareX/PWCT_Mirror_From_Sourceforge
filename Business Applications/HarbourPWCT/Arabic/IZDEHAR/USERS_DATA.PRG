@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:50:54    Date : 11/26/2010
+* Time : 08:53:08    Date : 11/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -75,6 +75,7 @@ Method SystemLogin
 Method OpenSystem
 Method ValueDetails
 Method CheckPermission
+Method CheckData
 EndClass
 Method showwindow Class UsersClass
 IF self:UserIsAdmin = 2
@@ -571,6 +572,15 @@ ENDIF
 myRS:Close()
 IF self:ManyChecks = false
 myout = self:DisConnect()
+ENDIF
+Return myret
+Method CheckData Class UsersClass
+Local myret,nValue
+myret := true
+nValue := UsersWindow.ComboEmployee.Value
+IF nValue = 0
+MyOut := MSGBOX("áÇíæÌÏ ãæÙÝ Êã ÊÍÏíÏå","ÚÝæÇ")
+myret := false
 ENDIF
 Return myret
 Method closewindow Class UsersClass
