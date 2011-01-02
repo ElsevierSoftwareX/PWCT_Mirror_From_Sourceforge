@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:34:39    Date : 11/27/2010
+* Time : 10:45:04    Date : 11/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -932,7 +932,7 @@ oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from Production_All",self:oCon,3,3 )
 oRS:ADDNEW()
 oRS:fields:item("employeeid"):value := UsersObject:EnteredUserID
-oRS:fields:item("ordernumber"):value := self:nOrderNumber
+oRS:fields:item("ordernumberID"):value := self:resultprimarykeys[OrdersEnterWindow.Grid1Browse.Value]
 oRS:fields:item("noofpcs"):value := "  ”ÃÌ· «·⁄„Ì· " + self:ItemItems[OrdersEnterWindow.ComboItem.Value]
 oRS:fields:item("finishtime"):value := time()
 oRS:fields:item("dateofinput"):value := alltrim(dtoc(date()))
