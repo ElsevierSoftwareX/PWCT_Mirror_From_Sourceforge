@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:39:27    Date : 11/27/2010
+* Time : 11:22:08    Date : 11/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -154,7 +154,7 @@ WIDTH 1000 ;
 HEIGHT 130 ;
 HEADERS {" «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
 WIDTHS {180,120,200,250,100,100} ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -512,6 +512,9 @@ ENDIF
 Return 0
 Method AddRecord2 Class CustFriendsClass
 Local oRS,nValue,nMax
+IF CustFriendsWindow.Grid1Browse.Value = 0
+CustFriendsWindow.Grid1Browse.Value := 1
+ENDIF
 IF self:nOrderNumber > 0
 self:nItem := CustFriendsWindow.ComboItem.Value
 self:nItem := self:ItemItemsids[self:nItem]
@@ -545,15 +548,15 @@ oRS:fields:item("Friendid"):value := self:nItem
 oRS:fields:item("recordstatusid"):value := 2
 oRS:fields:item("customerid"):value := 0
 oRS:fields:item("username"):value := UsersObject:EnteredUserName
-oRS:fields:item("empid"):value := UsersObject:EnteredUserID
+oRS:fields:item("empid"):value := UsersObject:EnteredEmployeeID
 oRS:UPDATE()
 oRS:Close()
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from Production_All",self:oCon,3,3 )
 oRS:ADDNEW()
-oRS:fields:item("employeeid"):value := UsersObject:EnteredUserID
-oRS:fields:item("ordernumber"):value := self:nOrderNumber
+oRS:fields:item("employeeid"):value := UsersObject:EnteredEmployeeID
+oRS:fields:item("ordernumberID"):value := self:resultprimarykeys[CustFriendsWindow.Grid1Browse.Value]
 oRS:fields:item("noofpcs"):value := "  ”ÃÌ· «·„” ›”— " + self:ItemItems[CustFriendsWindow.ComboItem.Value]
 oRS:fields:item("finishtime"):value := time()
 oRS:fields:item("dateofinput"):value := alltrim(dtoc(date()))
