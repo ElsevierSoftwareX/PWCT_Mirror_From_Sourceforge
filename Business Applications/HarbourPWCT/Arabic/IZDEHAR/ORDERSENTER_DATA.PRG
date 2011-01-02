@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:00:23    Date : 11/27/2010
+* Time : 09:11:27    Date : 11/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -889,6 +889,11 @@ Return 0
 Method AddRecord2 Class OrdersEnterClass
 Local oRS,nValue,nMax
 IF self:nOrderNumber > 0
+nValue := OrdersEnterWindow.ComboItem.Value
+IF nValue = 0
+MyOut := MSGBOX("íÌÈ ÊÍÏíÏ ÇáÚãíá","ÚİæÇ")
+Return 0
+ENDIF
 cInvoiceNumber := OrdersEnterWindow.textInvoiceNumber.Value
 cInvoiceNumber = ALLTRIM ( cInvoiceNumber )
 IF cInvoiceNumber == ""
@@ -1003,6 +1008,16 @@ ENDIF
 nValue := OrdersEnterWindow.ComboCustomer.Value
 IF nValue = 0
 MyOut := MSGBOX("íÌÈ ÊÍÏíÏ ÇáãÍÇÖÑ/ÇáãÏÑÈ","ÚİæÇ")
+myret := false
+ENDIF
+nValue := OrdersEnterWindow.ComboOrderType.Value
+IF nValue = 0
+MyOut := MSGBOX("íÌÈ ÊÍÏíÏ äæÚ ÇáÏæÑÉ","ÚİæÇ")
+myret := false
+ENDIF
+nValue := OrdersEnterWindow.ComboLocation.Value
+IF nValue = 0
+MyOut := MSGBOX("íÌÈ ÊÍÏíÏ ÇáãßÇä","ÚİæÇ")
 myret := false
 ENDIF
 Return myret
