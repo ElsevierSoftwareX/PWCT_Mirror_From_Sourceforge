@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:42:33    Date : 10/25/2010
+* Time : 08:39:37    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,7 +43,7 @@ Method SizeReport
 Method checkchange
 EndClass
 Method ShowWindow Class CustDisposeReportClass
-IF .not. UserCan_WinDispose = 2
+IF .not. usersobject:CheckPermission(67)
 MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
 Return 0
 ENDIF
