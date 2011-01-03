@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:55:09    Date : 11/27/2010
+* Time : 07:25:10    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -808,7 +808,11 @@ Return myout
 Method OnBeforeEdit Class OrdersEnterClass
 Return myout
 Method OnBeforeDelete Class OrdersEnterClass
+Local myorderid
+myorderid := self:resultprimarykeys[OrdersEnterWindow.Grid1Browse.Value]
 myout = self:oCon:execute("delete from orderitems where orderid = " + str(self:nOrderNumber))
+myout = self:oCon:execute("delete from production where ordernumberid = " + myorderid)
+myout = self:oCon:execute("delete from orderprocesses where ordernumberid = " + myorderid)
 Return myout
 Method onAddClick Class OrdersEnterClass
 Local myRS,nValue
