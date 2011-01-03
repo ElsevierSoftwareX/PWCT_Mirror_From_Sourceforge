@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:20:16    Date : 11/28/2010
+* Time : 11:32:07    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -842,7 +842,7 @@ WIDTH 530 HEIGHT 336
 DEFINE TIMER Timer1 INTERVAL 1500 ;
 Action WINLOGOSTART.RELEASE()
 @ 13 ,270 LABEL lbl1 ;
-VALUE " «—ÌŒ «·«’œ«— :  2010/12/17" ;
+VALUE " «—ÌŒ «·«’œ«— :  2011/01/02" ;
 WIDTH 200 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;

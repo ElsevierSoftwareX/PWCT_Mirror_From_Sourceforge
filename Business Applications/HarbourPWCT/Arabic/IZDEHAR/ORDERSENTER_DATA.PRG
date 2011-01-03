@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:35:03    Date : 11/28/2010
+* Time : 11:28:03    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -606,6 +606,7 @@ self:CustomerWant1 := self:oRS:fields:item("CustomerWant1"):value
 self:CustomerWant2 := self:oRS:fields:item("CustomerWant2"):value
 self:CustomerWant3 := self:oRS:fields:item("CustomerWant3"):value
 self:days := self:oRS:fields:item("days"):value
+self:nID := self:oRS:fields:item("ID"):value
 Return 0
 Method Class2UserInterface Class OrdersEnterClass
 self:nCustomer = self:LookupIDToIndex(self:nCustomer,@self:CustomerItemsids)
@@ -809,11 +810,14 @@ Method OnBeforeEdit Class OrdersEnterClass
 Return myout
 Method OnBeforeDelete Class OrdersEnterClass
 Local myorderid
-myorderid := self:resultprimarykeys[OrdersEnterWindow.Grid1Browse.Value]
+myorderid := self:nID
 myout = self:oCon:execute("delete from orderitems where orderid = " + str(self:nOrderNumber))
+myout = self:oCon:execute("delete from custfriends where orderid = " + str(self:nOrderNumber))
+IF .not. myorderid = 0
+myorderid = STR ( myorderid )
 myout = self:oCon:execute("delete from production where ordernumberid = " + myorderid)
 myout = self:oCon:execute("delete from orderprocesses where ordernumberid = " + myorderid)
-myout = self:oCon:execute("delete from custfriends where orderid = " + str(self:nOrderNumber))
+ENDIF
 Return myout
 Method onAddClick Class OrdersEnterClass
 Local myRS,nValue
