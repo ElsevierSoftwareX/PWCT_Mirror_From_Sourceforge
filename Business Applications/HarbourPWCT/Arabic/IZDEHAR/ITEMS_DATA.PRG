@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:04:25    Date : 11/26/2010
+* Time : 11:20:08    Date : 11/28/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -87,6 +87,7 @@ Method SearchAdd
 Method GetSearchValue
 Method settimer
 Method CheckFind
+Method OnBeforeDelete
 EndClass
 Method showwindow Class ItemsClass
 IF .not. UsersObject:CheckPermission(20)
@@ -499,6 +500,7 @@ self:nitemUnit := self:oRS:fields:item("itemUnitid"):value
 self:nitemSecUnit := self:oRS:fields:item("itemSecUnitid"):value
 self:cItemValue := self:oRS:fields:item("ItemValue"):value
 self:cItemValue2 := self:oRS:fields:item("ItemValue2"):value
+self:nID := self:oRS:fields:item("ID"):value
 Return 0
 Method Class2UserInterface Class ItemsClass
 ItemsWindow.textItemName.Value := self:cItemName
@@ -608,6 +610,14 @@ Local nIndex
 nIndex := ItemsWindow.ComboFind.Value
 self:Column := self:Columns[nIndex]
 Return 0
+Method OnBeforeDelete Class ItemsClass
+Local myorderid
+IF .not. self:nID = 0
+myItemID = STR ( self:nID )
+myout = self:oCon:execute("delete from reserveitems where itemid = " + myitemid)
+myout = self:oCon:execute("delete from itemsenter where itemid = " + myitemid)
+ENDIF
+Return myout
 Method closewindow Class ItemsClass
 myout = self:disconnect()
 ItemsWindow.Release ( )
