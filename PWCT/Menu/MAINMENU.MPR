@@ -1,6 +1,6 @@
 *       *********************************************************
 *       *                                                         
-*       * 12/06/10            MAINMENU.MPR              07:14:07  
+*       * 12/06/10            MAINMENU.MPR              07:33:25  
 *       *                                                         
 *       *********************************************************
 *       *                                                         
@@ -138,34 +138,34 @@ DEFINE MENU (m.cMenuName) IN (m.oFormRef.Name) BAR
 DEFINE PAD MS_FILE OF (m.cMenuName) PROMPT "File" COLOR SCHEME 3 ;
 	NEGOTIATE  RIGHT, RIGHT ;
 	KEY ALT+F, ""
-DEFINE PAD _33e0fiajn OF (m.cMenuName) PROMPT "Edit" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73kp OF (m.cMenuName) PROMPT "Edit" COLOR SCHEME 3 ;
 	KEY ALT+E, ""
-DEFINE PAD _33e0fiajo OF (m.cMenuName) PROMPT "Data" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73kq OF (m.cMenuName) PROMPT "Data" COLOR SCHEME 3 ;
 	KEY ALT+D, ""
-DEFINE PAD _33e0fiajp OF (m.cMenuName) PROMPT "Code" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73kr OF (m.cMenuName) PROMPT "Code" COLOR SCHEME 3 ;
 	KEY ALT+C, ""
-DEFINE PAD _33e0fiajq OF (m.cMenuName) PROMPT "Veto" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73ks OF (m.cMenuName) PROMPT "Veto" COLOR SCHEME 3 ;
 	KEY ALT+V, ""
-DEFINE PAD _33e0fiajr OF (m.cMenuName) PROMPT "RPWI" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73kt OF (m.cMenuName) PROMPT "RPWI" COLOR SCHEME 3 ;
 	KEY ALT+R, ""
-DEFINE PAD _33e0fiajs OF (m.cMenuName) PROMPT "Transporter" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73ku OF (m.cMenuName) PROMPT "Transporter" COLOR SCHEME 3 ;
 	KEY ALT+T, ""
-DEFINE PAD _33e0fiajt OF (m.cMenuName) PROMPT "Package" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73kv OF (m.cMenuName) PROMPT "Package" COLOR SCHEME 3 ;
 	KEY ALT+P, ""
-DEFINE PAD _33e0fiaju OF (m.cMenuName) PROMPT "Tools" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73kw OF (m.cMenuName) PROMPT "Tools" COLOR SCHEME 3 ;
 	KEY ALT+T, ""
-DEFINE PAD _33e0fiajv OF (m.cMenuName) PROMPT "Help" COLOR SCHEME 3 ;
+DEFINE PAD _33e0g73kx OF (m.cMenuName) PROMPT "Help" COLOR SCHEME 3 ;
 	KEY ALT+H, ""
 ON PAD MS_FILE OF (m.cMenuName) ACTIVATE POPUP (a_menupops[1])
-ON PAD _33e0fiajn OF (m.cMenuName) ACTIVATE POPUP (a_menupops[2])
-ON PAD _33e0fiajo OF (m.cMenuName) ACTIVATE POPUP (a_menupops[4])
-ON PAD _33e0fiajp OF (m.cMenuName) ACTIVATE POPUP (a_menupops[8])
-ON PAD _33e0fiajq OF (m.cMenuName) ACTIVATE POPUP (a_menupops[9])
-ON PAD _33e0fiajr OF (m.cMenuName) ACTIVATE POPUP (a_menupops[10])
-ON PAD _33e0fiajs OF (m.cMenuName) ACTIVATE POPUP (a_menupops[11])
-ON PAD _33e0fiajt OF (m.cMenuName) ACTIVATE POPUP (a_menupops[12])
-ON PAD _33e0fiaju OF (m.cMenuName) ACTIVATE POPUP (a_menupops[13])
-ON PAD _33e0fiajv OF (m.cMenuName) ACTIVATE POPUP (a_menupops[14])
+ON PAD _33e0g73kp OF (m.cMenuName) ACTIVATE POPUP (a_menupops[2])
+ON PAD _33e0g73kq OF (m.cMenuName) ACTIVATE POPUP (a_menupops[4])
+ON PAD _33e0g73kr OF (m.cMenuName) ACTIVATE POPUP (a_menupops[8])
+ON PAD _33e0g73ks OF (m.cMenuName) ACTIVATE POPUP (a_menupops[9])
+ON PAD _33e0g73kt OF (m.cMenuName) ACTIVATE POPUP (a_menupops[10])
+ON PAD _33e0g73ku OF (m.cMenuName) ACTIVATE POPUP (a_menupops[11])
+ON PAD _33e0g73kv OF (m.cMenuName) ACTIVATE POPUP (a_menupops[12])
+ON PAD _33e0g73kw OF (m.cMenuName) ACTIVATE POPUP (a_menupops[13])
+ON PAD _33e0g73kx OF (m.cMenuName) ACTIVATE POPUP (a_menupops[14])
 
 DEFINE POPUP (a_menupops[1]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[1]) PROMPT "New" ;
@@ -185,22 +185,22 @@ DEFINE BAR 7 OF (a_menupops[1]) PROMPT "\-"
 DEFINE BAR 8 OF (a_menupops[1]) PROMPT "Exit" ;
 	KEY ALT+F4, "ALT+F4"
 ON SELECTION BAR 1 OF (a_menupops[1]) ;
-	DO _33e0fiajw ;
+	DO _33e0g73ky ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 2 OF (a_menupops[1]) ;
-	DO _33e0fiajx ;
+	DO _33e0g73kz ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[1]) ;
-	DO _33e0fiajy ;
+	DO _33e0g73l5 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 5 OF (a_menupops[1]) ;
-	DO _33e0fiajz ;
+	DO _33e0g73l6 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 6 OF (a_menupops[1]) ;
-	DO _33e0fiak0 ;
+	DO _33e0g73l7 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 8 OF (a_menupops[1]) ;
-	DO _33e0fiak1 ;
+	DO _33e0g73l8 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[2]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -224,16 +224,16 @@ DEFINE BAR 2 OF (a_menupops[3]) PROMPT "In Data Unit"
 DEFINE BAR 3 OF (a_menupops[3]) PROMPT "In Code Unit"
 DEFINE BAR 4 OF (a_menupops[3]) PROMPT "In Veto Unit"
 ON SELECTION BAR 1 OF (a_menupops[3]) ;
-	DO _33e0fiak2 ;
+	DO _33e0g73l9 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 2 OF (a_menupops[3]) ;
-	DO _33e0fiak3 ;
+	DO _33e0g73la ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[3]) ;
-	DO _33e0fiak4 ;
+	DO _33e0g73lb ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 4 OF (a_menupops[3]) ;
-	DO _33e0fiak5 ;
+	DO _33e0g73lc ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[4]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -269,52 +269,52 @@ DEFINE BAR 20 OF (a_menupops[4]) PROMPT "New Reaction" ;
 DEFINE BAR 21 OF (a_menupops[4]) PROMPT "Edit Reaction"
 DEFINE BAR 22 OF (a_menupops[4]) PROMPT "Delete Reaction"
 ON SELECTION BAR 1 OF (a_menupops[4]) ;
-	DO _33e0fiak6 ;
+	DO _33e0g73ld ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON BAR 2 OF (a_menupops[4]) ACTIVATE POPUP (a_menupops[5])
 ON BAR 3 OF (a_menupops[4]) ACTIVATE POPUP (a_menupops[6])
 ON BAR 4 OF (a_menupops[4]) ACTIVATE POPUP (a_menupops[7])
 ON SELECTION BAR 6 OF (a_menupops[4]) ;
-	DO _33e0fiak7 ;
+	DO _33e0g73le ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 7 OF (a_menupops[4]) ;
-	DO _33e0fiak8 ;
+	DO _33e0g73lf ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 8 OF (a_menupops[4]) ;
-	DO _33e0fiak9 ;
+	DO _33e0g73lg ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 9 OF (a_menupops[4]) ;
-	DO _33e0fiaka ;
+	DO _33e0g73lh ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 11 OF (a_menupops[4]) ;
-	DO _33e0fiakb ;
+	DO _33e0g73li ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 12 OF (a_menupops[4]) ;
-	DO _33e0fiakc ;
+	DO _33e0g73lj ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 13 OF (a_menupops[4]) ;
-	DO _33e0fiakd ;
+	DO _33e0g73lk ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 14 OF (a_menupops[4]) ;
-	DO _33e0fiake ;
+	DO _33e0g73ll ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 16 OF (a_menupops[4]) ;
-	DO _33e0fiakf ;
+	DO _33e0g73lm ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 17 OF (a_menupops[4]) ;
-	DO _33e0fiaki ;
+	DO _33e0g73ln ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 18 OF (a_menupops[4]) ;
-	DO _33e0fiakj ;
+	DO _33e0g73lo ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 20 OF (a_menupops[4]) ;
-	DO _33e0fiakk ;
+	DO _33e0g73lp ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 21 OF (a_menupops[4]) ;
-	DO _33e0fiakl ;
+	DO _33e0g73lq ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 22 OF (a_menupops[4]) ;
-	DO _33e0fiakm ;
+	DO _33e0g73lr ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[5]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -327,28 +327,28 @@ DEFINE BAR 6 OF (a_menupops[5]) PROMPT "O"
 DEFINE BAR 7 OF (a_menupops[5]) PROMPT "P"
 DEFINE BAR 8 OF (a_menupops[5]) PROMPT "Q"
 ON SELECTION BAR 1 OF (a_menupops[5]) ;
-	DO _33e0fiakn ;
+	DO _33e0g73ls ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 2 OF (a_menupops[5]) ;
-	DO _33e0fiako ;
+	DO _33e0g73lt ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[5]) ;
-	DO _33e0fiakp ;
+	DO _33e0g73lu ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 4 OF (a_menupops[5]) ;
-	DO _33e0fiakq ;
+	DO _33e0g73lv ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 5 OF (a_menupops[5]) ;
-	DO _33e0fiakr ;
+	DO _33e0g73lw ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 6 OF (a_menupops[5]) ;
-	DO _33e0fiaks ;
+	DO _33e0g73lx ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 7 OF (a_menupops[5]) ;
-	DO _33e0fiakt ;
+	DO _33e0g73ly ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 8 OF (a_menupops[5]) ;
-	DO _33e0fiaku ;
+	DO _33e0g73lz ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[6]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -358,19 +358,19 @@ DEFINE BAR 3 OF (a_menupops[6]) PROMPT "P"
 DEFINE BAR 4 OF (a_menupops[6]) PROMPT "D"
 DEFINE BAR 5 OF (a_menupops[6]) PROMPT "F"
 ON SELECTION BAR 1 OF (a_menupops[6]) ;
-	DO _33e0fiakv ;
+	DO _33e0g73m0 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 2 OF (a_menupops[6]) ;
-	DO _33e0fiakw ;
+	DO _33e0g73m1 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[6]) ;
-	DO _33e0fiakx ;
+	DO _33e0g73m2 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 4 OF (a_menupops[6]) ;
-	DO _33e0fiaky ;
+	DO _33e0g73m3 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 5 OF (a_menupops[6]) ;
-	DO _33e0fiakz ;
+	DO _33e0g73m4 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[7]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -378,13 +378,13 @@ DEFINE BAR 1 OF (a_menupops[7]) PROMPT "Data Block (X) without F(X)"
 DEFINE BAR 2 OF (a_menupops[7]) PROMPT "Variable"
 DEFINE BAR 3 OF (a_menupops[7]) PROMPT "Method Refrence"
 ON SELECTION BAR 1 OF (a_menupops[7]) ;
-	DO _33e0fial0 ;
+	DO _33e0g73m5 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 2 OF (a_menupops[7]) ;
-	DO _33e0fial1 ;
+	DO _33e0g73m6 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[7]) ;
-	DO _33e0fial2 ;
+	DO _33e0g73m7 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[8]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -409,43 +409,43 @@ DEFINE BAR 15 OF (a_menupops[8]) PROMPT "\-"
 DEFINE BAR 16 OF (a_menupops[8]) PROMPT "Main Switch"
 DEFINE BAR 17 OF (a_menupops[8]) PROMPT "Branch Switch"
 ON SELECTION BAR 1 OF (a_menupops[8]) ;
-	DO _33e0fial3 ;
+	DO _33e0g73m8 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 2 OF (a_menupops[8]) ;
-	DO _33e0fial4 ;
+	DO _33e0g73m9 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[8]) ;
-	DO _33e0fial5 ;
+	DO _33e0g73ma ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 5 OF (a_menupops[8]) ;
-	DO _33e0fial6 ;
+	DO _33e0g73mb ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 6 OF (a_menupops[8]) ;
-	DO _33e0fial7 ;
+	DO _33e0g73mc ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 7 OF (a_menupops[8]) ;
-	DO _33e0fial8 ;
+	DO _33e0g73md ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 9 OF (a_menupops[8]) ;
-	DO _33e0fial9 ;
+	DO _33e0g73me ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 10 OF (a_menupops[8]) ;
-	DO _33e0fiala ;
+	DO _33e0g73mf ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 11 OF (a_menupops[8]) ;
-	DO _33e0fialb ;
+	DO _33e0g73mg ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 13 OF (a_menupops[8]) ;
-	DO _33e0fiald ;
+	DO _33e0g73mh ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 14 OF (a_menupops[8]) ;
-	DO _33e0fiale ;
+	DO _33e0g73mi ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 16 OF (a_menupops[8]) ;
-	DO _33e0fialf ;
+	DO _33e0g73mj ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 17 OF (a_menupops[8]) ;
-	DO _33e0fialg ;
+	DO _33e0g73mk ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[9]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -467,37 +467,37 @@ DEFINE BAR 12 OF (a_menupops[9]) PROMPT "Delete Veto" ;
 DEFINE BAR 13 OF (a_menupops[9]) PROMPT "Delete Channel"
 DEFINE BAR 14 OF (a_menupops[9]) PROMPT "Delete Connection"
 ON SELECTION BAR 1 OF (a_menupops[9]) ;
-	DO _33e0fialh ;
+	DO _33e0g73ml ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 2 OF (a_menupops[9]) ;
-	DO _33e0fiali ;
+	DO _33e0g73mm ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[9]) ;
-	DO _33e0fialj ;
+	DO _33e0g73mn ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 5 OF (a_menupops[9]) ;
-	DO _33e0fialk ;
+	DO _33e0g73mo ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 6 OF (a_menupops[9]) ;
-	DO _33e0fiall ;
+	DO _33e0g73mp ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 8 OF (a_menupops[9]) ;
-	DO _33e0fialm ;
+	DO _33e0g73mq ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 9 OF (a_menupops[9]) ;
-	DO _33e0fialn ;
+	DO _33e0g73mr ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 10 OF (a_menupops[9]) ;
-	DO _33e0fialo ;
+	DO _33e0g73ms ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 12 OF (a_menupops[9]) ;
-	DO _33e0fialp ;
+	DO _33e0g73mt ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 13 OF (a_menupops[9]) ;
-	DO _33e0fialq ;
+	DO _33e0g73mu ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 14 OF (a_menupops[9]) ;
-	DO _33e0fialr ;
+	DO _33e0g73mv ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[10]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -519,28 +519,28 @@ DEFINE BAR 15 OF (a_menupops[10]) PROMPT "Default Code Extractor Application"
 DEFINE BAR 16 OF (a_menupops[10]) PROMPT "\-"
 DEFINE BAR 17 OF (a_menupops[10]) PROMPT "Invoke Code Extractor"
 ON SELECTION BAR 1 OF (a_menupops[10]) ;
-	DO _33e0fialt ;
+	DO _33e0g73mw ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 4 OF (a_menupops[10]) ;
-	DO _33e0fialu ;
+	DO _33e0g73mx ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 5 OF (a_menupops[10]) ;
-	DO _33e0fialv ;
+	DO _33e0g73my ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 6 OF (a_menupops[10]) ;
-	DO _33e0fialw ;
+	DO _33e0g73mz ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 8 OF (a_menupops[10]) ;
-	DO _33e0fialx ;
+	DO _33e0g73n0 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 9 OF (a_menupops[10]) ;
-	DO _33e0fialy ;
+	DO _33e0g73n1 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 10 OF (a_menupops[10]) ;
-	DO _33e0fialz ;
+	DO _33e0g73n2 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 11 OF (a_menupops[10]) ;
-	DO _33e0fiam0 ;
+	DO _33e0g73n3 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 13 OF (a_menupops[10]) do form danalysis.scx
 ON SELECTION BAR 14 OF (a_menupops[10]) do form contwr.scx
@@ -557,16 +557,16 @@ DEFINE BAR 6 OF (a_menupops[11]) PROMPT "\-"
 DEFINE BAR 7 OF (a_menupops[11]) PROMPT "Transporter Designer"
 DEFINE BAR 8 OF (a_menupops[11]) PROMPT "Syntax to Code Mask"
 ON SELECTION BAR 1 OF (a_menupops[11]) ;
-	DO _33e0fiam1 ;
+	DO _33e0g73n4 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 2 OF (a_menupops[11]) ;
-	DO _33e0fiam2 ;
+	DO _33e0g73n5 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 4 OF (a_menupops[11]) ;
-	DO _33e0fiam3 ;
+	DO _33e0g73n6 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 7 OF (a_menupops[11]) ;
-	DO _33e0fiam4 ;
+	DO _33e0g73n7 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[12]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -576,13 +576,13 @@ DEFINE BAR 3 OF (a_menupops[12]) PROMPT "Open Package"
 DEFINE BAR 4 OF (a_menupops[12]) PROMPT "\-"
 DEFINE BAR 5 OF (a_menupops[12]) PROMPT "Install Package"
 ON SELECTION BAR 1 OF (a_menupops[12]) ;
-	DO _33e0fiam8 ;
+	DO _33e0g73n8 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[12]) ;
-	DO _33e0fiam9 ;
+	DO _33e0g73n9 ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 5 OF (a_menupops[12]) ;
-	DO _33e0fiama ;
+	DO _33e0g73na ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[13]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -605,13 +605,13 @@ ON SELECTION BAR 5 OF (a_menupops[13]) do form toolrd
 ON SELECTION BAR 6 OF (a_menupops[13]) do form tooldm
 ON SELECTION BAR 8 OF (a_menupops[13]) do form toolsw
 ON SELECTION BAR 10 OF (a_menupops[13]) ;
-	DO _33e0fiamb ;
+	DO _33e0g73nb ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 11 OF (a_menupops[13]) ;
-	DO _33e0fiamc ;
+	DO _33e0g73nc ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 12 OF (a_menupops[13]) ;
-	DO _33e0fiamd ;
+	DO _33e0g73nd ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 DEFINE POPUP (a_menupops[14]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -635,34 +635,34 @@ DEFINE BAR 16 OF (a_menupops[14]) PROMPT "\-"
 DEFINE BAR 17 OF (a_menupops[14]) PROMPT "About" ;
 	PICTURE "help.bmp"
 ON SELECTION BAR 1 OF (a_menupops[14]) ;
-	DO _33e0fiame ;
+	DO _33e0g73ne ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 3 OF (a_menupops[14]) ;
-	DO _33e0fiamf ;
+	DO _33e0g73nf ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 4 OF (a_menupops[14]) ;
-	DO _33e0fiamg ;
+	DO _33e0g73ng ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 5 OF (a_menupops[14]) ;
-	DO _33e0fiamh ;
+	DO _33e0g73nh ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 6 OF (a_menupops[14]) ;
-	DO _33e0fiami ;
+	DO _33e0g73ni ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 8 OF (a_menupops[14]) ;
-	DO _33e0fiamj ;
+	DO _33e0g73nj ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 11 OF (a_menupops[14]) ;
-	DO _33e0fiamk ;
+	DO _33e0g73nk ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 12 OF (a_menupops[14]) ;
-	DO _33e0fiamo ;
+	DO _33e0g73nl ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 13 OF (a_menupops[14]) ;
-	DO _33e0fiamp ;
+	DO _33e0g73nm ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 ON SELECTION BAR 17 OF (a_menupops[14]) ;
-	DO _33e0fiamq ;
+	DO _33e0g73nn ;
 	IN LOCFILE("PWCT\MENU\MAINMENU" ,"MPX;MPR|FXP;PRG" ,"WHERE is MAINMENU?")
 
 ACTIVATE MENU (m.cMenuName) NOWAIT
@@ -675,7 +675,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAJW  ON SELECTION BAR 1 OF POPUP filevar         
+*       * _33E0G73KY  ON SELECTION BAR 1 OF POPUP filevar         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -686,13 +686,13 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiajw
+PROCEDURE _33e0g73ky
 S_Menu = "1_1"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAJX  ON SELECTION BAR 2 OF POPUP filevar         
+*       * _33E0G73KZ  ON SELECTION BAR 2 OF POPUP filevar         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -703,13 +703,13 @@ S_Menu = "1_1"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiajx
+PROCEDURE _33e0g73kz
 S_Menu = "1_2"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAJY  ON SELECTION BAR 3 OF POPUP filevar         
+*       * _33E0G73L5  ON SELECTION BAR 3 OF POPUP filevar         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -720,13 +720,13 @@ S_Menu = "1_2"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiajy
+PROCEDURE _33e0g73l5
 S_Menu = "1_3"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAJZ  ON SELECTION BAR 5 OF POPUP filevar         
+*       * _33E0G73L6  ON SELECTION BAR 5 OF POPUP filevar         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -737,13 +737,13 @@ S_Menu = "1_3"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiajz
+PROCEDURE _33e0g73l6
 S_Menu = "1_4"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK0  ON SELECTION BAR 6 OF POPUP filevar         
+*       * _33E0G73L7  ON SELECTION BAR 6 OF POPUP filevar         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -754,13 +754,13 @@ S_Menu = "1_4"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak0
+PROCEDURE _33e0g73l7
 S_Menu = "1_5"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK1  ON SELECTION BAR 8 OF POPUP filevar         
+*       * _33E0G73L8  ON SELECTION BAR 8 OF POPUP filevar         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -771,13 +771,13 @@ S_Menu = "1_5"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak1
+PROCEDURE _33e0g73l8
 S_Menu = "1_6"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK2  ON SELECTION BAR 1 OF POPUP search          
+*       * _33E0G73L9  ON SELECTION BAR 1 OF POPUP search          
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -788,14 +788,14 @@ S_Menu = "1_6"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak2
+PROCEDURE _33e0g73l9
 s_menu = "Search 1"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK3  ON SELECTION BAR 2 OF POPUP search          
+*       * _33E0G73LA  ON SELECTION BAR 2 OF POPUP search          
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -806,14 +806,14 @@ s_menu = "Search 1"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak3
+PROCEDURE _33e0g73la
 s_menu = "Search 2"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK4  ON SELECTION BAR 3 OF POPUP search          
+*       * _33E0G73LB  ON SELECTION BAR 3 OF POPUP search          
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -824,14 +824,14 @@ s_menu = "Search 2"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak4
+PROCEDURE _33e0g73lb
 s_menu = "Search 3"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK5  ON SELECTION BAR 4 OF POPUP search          
+*       * _33E0G73LC  ON SELECTION BAR 4 OF POPUP search          
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -842,14 +842,14 @@ s_menu = "Search 3"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak5
+PROCEDURE _33e0g73lc
 s_menu = "Search 4"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK6  ON SELECTION BAR 1 OF POPUP dataunit        
+*       * _33E0G73LD  ON SELECTION BAR 1 OF POPUP dataunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -860,13 +860,13 @@ s_menu = "Search 4"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak6
+PROCEDURE _33e0g73ld
 s_menu = "3_1"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK7  ON SELECTION BAR 6 OF POPUP dataunit        
+*       * _33E0G73LE  ON SELECTION BAR 6 OF POPUP dataunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -877,13 +877,13 @@ s_menu = "3_1"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak7
+PROCEDURE _33e0g73le
 S_Menu = "3_9"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK8  ON SELECTION BAR 7 OF POPUP dataunit        
+*       * _33E0G73LF  ON SELECTION BAR 7 OF POPUP dataunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -894,14 +894,14 @@ S_Menu = "3_9"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak8
+PROCEDURE _33e0g73lf
 s_menu = "3_10"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAK9  ON SELECTION BAR 8 OF POPUP dataunit        
+*       * _33E0G73LG  ON SELECTION BAR 8 OF POPUP dataunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -912,13 +912,13 @@ s_menu = "3_10"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiak9
+PROCEDURE _33e0g73lg
 s_menu = "edit_shell"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKA  ON SELECTION BAR 9 OF POPUP dataunit        
+*       * _33E0G73LH  ON SELECTION BAR 9 OF POPUP dataunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -929,13 +929,13 @@ s_menu = "edit_shell"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiaka
+PROCEDURE _33e0g73lh
 s_menu = "edit_subshell"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKB  ON SELECTION BAR 11 OF POPUP dataunit       
+*       * _33E0G73LI  ON SELECTION BAR 11 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -946,13 +946,13 @@ s_menu = "edit_subshell"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakb
+PROCEDURE _33e0g73li
 s_menu = "3_11"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKC  ON SELECTION BAR 12 OF POPUP dataunit       
+*       * _33E0G73LJ  ON SELECTION BAR 12 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -963,13 +963,13 @@ s_menu = "3_11"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakc
+PROCEDURE _33e0g73lj
 s_menu = "3_12"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKD  ON SELECTION BAR 13 OF POPUP dataunit       
+*       * _33E0G73LK  ON SELECTION BAR 13 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -980,13 +980,13 @@ s_menu = "3_12"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakd
+PROCEDURE _33e0g73lk
 s_menu = "3_13"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKE  ON SELECTION BAR 14 OF POPUP dataunit       
+*       * _33E0G73LL  ON SELECTION BAR 14 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -997,13 +997,13 @@ s_menu = "3_13"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiake
+PROCEDURE _33e0g73ll
 S_menu = "3_14"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKF  ON SELECTION BAR 16 OF POPUP dataunit       
+*       * _33E0G73LM  ON SELECTION BAR 16 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1014,13 +1014,13 @@ S_menu = "3_14"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakf
+PROCEDURE _33e0g73lm
 s_menu = "3_15"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKI  ON SELECTION BAR 17 OF POPUP dataunit       
+*       * _33E0G73LN  ON SELECTION BAR 17 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1031,13 +1031,13 @@ s_menu = "3_15"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiaki
+PROCEDURE _33e0g73ln
 s_menu = "3_16"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKJ  ON SELECTION BAR 18 OF POPUP dataunit       
+*       * _33E0G73LO  ON SELECTION BAR 18 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1048,13 +1048,13 @@ s_menu = "3_16"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakj
+PROCEDURE _33e0g73lo
 s_menu = "3_17"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKK  ON SELECTION BAR 20 OF POPUP dataunit       
+*       * _33E0G73LP  ON SELECTION BAR 20 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1065,14 +1065,14 @@ s_menu = "3_17"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakk
+PROCEDURE _33e0g73lp
 s_menu = "3_22"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKL  ON SELECTION BAR 21 OF POPUP dataunit       
+*       * _33E0G73LQ  ON SELECTION BAR 21 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1083,14 +1083,14 @@ s_menu = "3_22"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakl
+PROCEDURE _33e0g73lq
 s_menu = "3_23"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKM  ON SELECTION BAR 22 OF POPUP dataunit       
+*       * _33E0G73LR  ON SELECTION BAR 22 OF POPUP dataunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1101,14 +1101,14 @@ s_menu = "3_23"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakm
+PROCEDURE _33e0g73lr
 s_menu = "3_24"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKN  ON SELECTION BAR 1 OF POPUP newshell        
+*       * _33E0G73LS  ON SELECTION BAR 1 OF POPUP newshell        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1119,13 +1119,13 @@ s_menu = "3_24"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakn
+PROCEDURE _33e0g73ls
 s_menu = "shell_custom"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKO  ON SELECTION BAR 2 OF POPUP newshell        
+*       * _33E0G73LT  ON SELECTION BAR 2 OF POPUP newshell        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1136,13 +1136,13 @@ s_menu = "shell_custom"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiako
+PROCEDURE _33e0g73lt
 s_menu = "3_2_1"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKP  ON SELECTION BAR 3 OF POPUP newshell        
+*       * _33E0G73LU  ON SELECTION BAR 3 OF POPUP newshell        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1153,13 +1153,13 @@ s_menu = "3_2_1"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakp
+PROCEDURE _33e0g73lu
 s_menu = "3_2_2"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKQ  ON SELECTION BAR 4 OF POPUP newshell        
+*       * _33E0G73LV  ON SELECTION BAR 4 OF POPUP newshell        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1170,13 +1170,13 @@ s_menu = "3_2_2"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakq
+PROCEDURE _33e0g73lv
 s_menu = "3_2_3"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKR  ON SELECTION BAR 5 OF POPUP newshell        
+*       * _33E0G73LW  ON SELECTION BAR 5 OF POPUP newshell        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1187,13 +1187,13 @@ s_menu = "3_2_3"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakr
+PROCEDURE _33e0g73lw
 s_menu = "3_2_4"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKS  ON SELECTION BAR 6 OF POPUP newshell        
+*       * _33E0G73LX  ON SELECTION BAR 6 OF POPUP newshell        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1204,13 +1204,13 @@ s_menu = "3_2_4"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiaks
+PROCEDURE _33e0g73lx
 s_menu = "3_2_5"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKT  ON SELECTION BAR 7 OF POPUP newshell        
+*       * _33E0G73LY  ON SELECTION BAR 7 OF POPUP newshell        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1221,13 +1221,13 @@ s_menu = "3_2_5"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakt
+PROCEDURE _33e0g73ly
 s_menu = "3_2_6"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKU  ON SELECTION BAR 8 OF POPUP newshell        
+*       * _33E0G73LZ  ON SELECTION BAR 8 OF POPUP newshell        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1238,13 +1238,13 @@ s_menu = "3_2_6"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiaku
+PROCEDURE _33e0g73lz
 s_menu = "3_2_7"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKV  ON SELECTION BAR 1 OF POPUP newsubshel      
+*       * _33E0G73M0  ON SELECTION BAR 1 OF POPUP newsubshel      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1255,13 +1255,13 @@ s_menu = "3_2_7"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakv
+PROCEDURE _33e0g73m0
 S_MENU = "subshell_custom"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKW  ON SELECTION BAR 2 OF POPUP newsubshel      
+*       * _33E0G73M1  ON SELECTION BAR 2 OF POPUP newsubshel      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1272,14 +1272,14 @@ S_MENU = "subshell_custom"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakw
+PROCEDURE _33e0g73m1
 S_MENU = "3_3_1"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKX  ON SELECTION BAR 3 OF POPUP newsubshel      
+*       * _33E0G73M2  ON SELECTION BAR 3 OF POPUP newsubshel      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1290,14 +1290,14 @@ S_MENU = "3_3_1"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakx
+PROCEDURE _33e0g73m2
 S_MENU = "3_3_2"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKY  ON SELECTION BAR 4 OF POPUP newsubshel      
+*       * _33E0G73M3  ON SELECTION BAR 4 OF POPUP newsubshel      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1308,14 +1308,14 @@ S_MENU = "3_3_2"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiaky
+PROCEDURE _33e0g73m3
 S_MENU = "3_3_3"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAKZ  ON SELECTION BAR 5 OF POPUP newsubshel      
+*       * _33E0G73M4  ON SELECTION BAR 5 OF POPUP newsubshel      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1326,14 +1326,14 @@ S_MENU = "3_3_3"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiakz
+PROCEDURE _33e0g73m4
 S_MENU = "3_3_4"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL0  ON SELECTION BAR 1 OF POPUP newelectro      
+*       * _33E0G73M5  ON SELECTION BAR 1 OF POPUP newelectro      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1344,14 +1344,14 @@ S_MENU = "3_3_4"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial0
+PROCEDURE _33e0g73m5
 S_Menu = "3_4_1"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL1  ON SELECTION BAR 2 OF POPUP newelectro      
+*       * _33E0G73M6  ON SELECTION BAR 2 OF POPUP newelectro      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1362,14 +1362,14 @@ S_Menu = "3_4_1"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial1
+PROCEDURE _33e0g73m6
 S_Menu = "3_4_2"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL2  ON SELECTION BAR 3 OF POPUP newelectro      
+*       * _33E0G73M7  ON SELECTION BAR 3 OF POPUP newelectro      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1380,14 +1380,14 @@ S_Menu = "3_4_2"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial2
+PROCEDURE _33e0g73m7
 S_Menu = "3_4_3"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL3  ON SELECTION BAR 1 OF POPUP codeunit        
+*       * _33E0G73M8  ON SELECTION BAR 1 OF POPUP codeunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1398,14 +1398,14 @@ S_Menu = "3_4_3"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial3
+PROCEDURE _33e0g73m8
 s_menu = "Code_New_Circuit"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL4  ON SELECTION BAR 2 OF POPUP codeunit        
+*       * _33E0G73M9  ON SELECTION BAR 2 OF POPUP codeunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1416,13 +1416,13 @@ s_menu = "Code_New_Circuit"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial4
+PROCEDURE _33e0g73m9
 s_menu = "Code_New_Branch"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL5  ON SELECTION BAR 3 OF POPUP codeunit        
+*       * _33E0G73MA  ON SELECTION BAR 3 OF POPUP codeunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1433,13 +1433,13 @@ s_menu = "Code_New_Branch"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial5
+PROCEDURE _33e0g73ma
 s_menu = "Code_New_Resistance"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL6  ON SELECTION BAR 5 OF POPUP codeunit        
+*       * _33E0G73MB  ON SELECTION BAR 5 OF POPUP codeunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1450,13 +1450,13 @@ s_menu = "Code_New_Resistance"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial6
+PROCEDURE _33e0g73mb
 s_menu = "Code_Edit_Circuit"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL7  ON SELECTION BAR 6 OF POPUP codeunit        
+*       * _33E0G73MC  ON SELECTION BAR 6 OF POPUP codeunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1467,13 +1467,13 @@ s_menu = "Code_Edit_Circuit"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial7
+PROCEDURE _33e0g73mc
 S_MENU = "Code_Edit_Branch"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL8  ON SELECTION BAR 7 OF POPUP codeunit        
+*       * _33E0G73MD  ON SELECTION BAR 7 OF POPUP codeunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1484,13 +1484,13 @@ S_MENU = "Code_Edit_Branch"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial8
+PROCEDURE _33e0g73md
 s_menu = "Code_Edit_Resistance"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAL9  ON SELECTION BAR 9 OF POPUP codeunit        
+*       * _33E0G73ME  ON SELECTION BAR 9 OF POPUP codeunit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1501,13 +1501,13 @@ s_menu = "Code_Edit_Resistance"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fial9
+PROCEDURE _33e0g73me
 s_menu = "Code_Delete_Circuit"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALA  ON SELECTION BAR 10 OF POPUP codeunit       
+*       * _33E0G73MF  ON SELECTION BAR 10 OF POPUP codeunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1518,14 +1518,14 @@ s_menu = "Code_Delete_Circuit"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiala
+PROCEDURE _33e0g73mf
 s_menu = "Code_Delete_Branch"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALB  ON SELECTION BAR 11 OF POPUP codeunit       
+*       * _33E0G73MG  ON SELECTION BAR 11 OF POPUP codeunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1536,13 +1536,13 @@ s_menu = "Code_Delete_Branch"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialb
+PROCEDURE _33e0g73mg
 s_menu = "Code_Delete_Resistance"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALD  ON SELECTION BAR 13 OF POPUP codeunit       
+*       * _33E0G73MH  ON SELECTION BAR 13 OF POPUP codeunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1553,14 +1553,14 @@ s_menu = "Code_Delete_Resistance"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiald
+PROCEDURE _33e0g73mh
 S_Menu = "Main Circuit"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALE  ON SELECTION BAR 14 OF POPUP codeunit       
+*       * _33E0G73MI  ON SELECTION BAR 14 OF POPUP codeunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1571,13 +1571,13 @@ S_Menu = "Main Circuit"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiale
+PROCEDURE _33e0g73mi
 S_Menu = "Main Resistance"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALF  ON SELECTION BAR 16 OF POPUP codeunit       
+*       * _33E0G73MJ  ON SELECTION BAR 16 OF POPUP codeunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1588,13 +1588,13 @@ S_Menu = "Main Resistance"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialf
+PROCEDURE _33e0g73mj
 S_Menu = "Main Switch"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALG  ON SELECTION BAR 17 OF POPUP codeunit       
+*       * _33E0G73MK  ON SELECTION BAR 17 OF POPUP codeunit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1605,13 +1605,13 @@ S_Menu = "Main Switch"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialg
+PROCEDURE _33e0g73mk
 S_menu = "Branch Switch"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALH  ON SELECTION BAR 1 OF POPUP vetounit        
+*       * _33E0G73ML  ON SELECTION BAR 1 OF POPUP vetounit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1622,13 +1622,13 @@ S_menu = "Branch Switch"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialh
+PROCEDURE _33e0g73ml
 S_Menu = "New Veto"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALI  ON SELECTION BAR 2 OF POPUP vetounit        
+*       * _33E0G73MM  ON SELECTION BAR 2 OF POPUP vetounit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1639,13 +1639,13 @@ S_Menu = "New Veto"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiali
+PROCEDURE _33e0g73mm
 S_Menu = "New Channel"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALJ  ON SELECTION BAR 3 OF POPUP vetounit        
+*       * _33E0G73MN  ON SELECTION BAR 3 OF POPUP vetounit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1656,13 +1656,13 @@ S_Menu = "New Channel"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialj
+PROCEDURE _33e0g73mn
 S_Menu = "New Connection"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALK  ON SELECTION BAR 5 OF POPUP vetounit        
+*       * _33E0G73MO  ON SELECTION BAR 5 OF POPUP vetounit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1673,13 +1673,13 @@ S_Menu = "New Connection"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialk
+PROCEDURE _33e0g73mo
 S_Menu = "Sender Veto"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALL  ON SELECTION BAR 6 OF POPUP vetounit        
+*       * _33E0G73MP  ON SELECTION BAR 6 OF POPUP vetounit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1690,13 +1690,13 @@ S_Menu = "Sender Veto"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiall
+PROCEDURE _33e0g73mp
 S_Menu = "Receiver Veto"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALM  ON SELECTION BAR 8 OF POPUP vetounit        
+*       * _33E0G73MQ  ON SELECTION BAR 8 OF POPUP vetounit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1707,13 +1707,13 @@ S_Menu = "Receiver Veto"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialm
+PROCEDURE _33e0g73mq
 S_Menu = "Edit Veto"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALN  ON SELECTION BAR 9 OF POPUP vetounit        
+*       * _33E0G73MR  ON SELECTION BAR 9 OF POPUP vetounit        
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1724,13 +1724,13 @@ S_Menu = "Edit Veto"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialn
+PROCEDURE _33e0g73mr
 S_Menu = "Edit Channel"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALO  ON SELECTION BAR 10 OF POPUP vetounit       
+*       * _33E0G73MS  ON SELECTION BAR 10 OF POPUP vetounit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1741,13 +1741,13 @@ S_Menu = "Edit Channel"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialo
+PROCEDURE _33e0g73ms
 S_Menu = "Edit Connection"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALP  ON SELECTION BAR 12 OF POPUP vetounit       
+*       * _33E0G73MT  ON SELECTION BAR 12 OF POPUP vetounit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1758,13 +1758,13 @@ S_Menu = "Edit Connection"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialp
+PROCEDURE _33e0g73mt
 S_Menu = "Delete Veto"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALQ  ON SELECTION BAR 13 OF POPUP vetounit       
+*       * _33E0G73MU  ON SELECTION BAR 13 OF POPUP vetounit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1775,13 +1775,13 @@ S_Menu = "Delete Veto"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialq
+PROCEDURE _33e0g73mu
 S_Menu = "Delete Channel"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALR  ON SELECTION BAR 14 OF POPUP vetounit       
+*       * _33E0G73MV  ON SELECTION BAR 14 OF POPUP vetounit       
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1792,13 +1792,13 @@ S_Menu = "Delete Channel"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialr
+PROCEDURE _33e0g73mv
 S_Menu = "Delete Connection"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALT  ON SELECTION BAR 1 OF POPUP rpwi            
+*       * _33E0G73MW  ON SELECTION BAR 1 OF POPUP rpwi            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1809,7 +1809,7 @@ S_Menu = "Delete Connection"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialt
+PROCEDURE _33e0g73mw
 IF win_rpwi = .f.
 DO FORM rpwi
 ELSE
@@ -1825,7 +1825,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALU  ON SELECTION BAR 4 OF POPUP rpwi            
+*       * _33E0G73MX  ON SELECTION BAR 4 OF POPUP rpwi            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1836,13 +1836,13 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialu
+PROCEDURE _33e0g73mx
 S_Menu = "New Goal"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALV  ON SELECTION BAR 5 OF POPUP rpwi            
+*       * _33E0G73MY  ON SELECTION BAR 5 OF POPUP rpwi            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1853,14 +1853,14 @@ S_Menu = "New Goal"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialv
+PROCEDURE _33e0g73my
 S_MENU = "Edit Goal"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALW  ON SELECTION BAR 6 OF POPUP rpwi            
+*       * _33E0G73MZ  ON SELECTION BAR 6 OF POPUP rpwi            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1871,14 +1871,14 @@ S_MENU = "Edit Goal"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialw
+PROCEDURE _33e0g73mz
 S_MENU = "Delete Goal"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALX  ON SELECTION BAR 8 OF POPUP rpwi            
+*       * _33E0G73N0  ON SELECTION BAR 8 OF POPUP rpwi            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1889,7 +1889,7 @@ S_MENU = "Delete Goal"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialx
+PROCEDURE _33e0g73n0
 IF win_dtree = .f.
 DO FORM dtree
 ENDIF
@@ -1898,7 +1898,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALY  ON SELECTION BAR 9 OF POPUP rpwi            
+*       * _33E0G73N1  ON SELECTION BAR 9 OF POPUP rpwi            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1909,7 +1909,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialy
+PROCEDURE _33e0g73n1
 IF win_iser = .f.
 DO FORM iser
 ENDIF
@@ -1918,7 +1918,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIALZ  ON SELECTION BAR 10 OF POPUP rpwi           
+*       * _33E0G73N2  ON SELECTION BAR 10 OF POPUP rpwi           
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1929,7 +1929,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fialz
+PROCEDURE _33e0g73n2
 IF win_riser = .f.
 DO FORM riser
 ENDIF
@@ -1938,7 +1938,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAM0  ON SELECTION BAR 11 OF POPUP rpwi           
+*       * _33E0G73N3  ON SELECTION BAR 11 OF POPUP rpwi           
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1949,7 +1949,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiam0
+PROCEDURE _33e0g73n3
 IF win_uiser = .f.
 DO FORM uiser
 ENDIF
@@ -1958,7 +1958,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAM1  ON SELECTION BAR 1 OF POPUP transporte      
+*       * _33E0G73N4  ON SELECTION BAR 1 OF POPUP transporte      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1969,7 +1969,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiam1
+PROCEDURE _33e0g73n4
 IF win_lL = .f.
 DO FORM LANGLIST
 ELSE
@@ -1985,7 +1985,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAM2  ON SELECTION BAR 2 OF POPUP transporte      
+*       * _33E0G73N5  ON SELECTION BAR 2 OF POPUP transporte      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -1996,7 +1996,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiam2
+PROCEDURE _33e0g73n5
 IF win_ls = .f.
 DO FORM syntax
 ELSE
@@ -2012,7 +2012,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAM3  ON SELECTION BAR 4 OF POPUP transporte      
+*       * _33E0G73N6  ON SELECTION BAR 4 OF POPUP transporte      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2023,7 +2023,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiam3
+PROCEDURE _33e0g73n6
 IF win_interd = .f.
 DO FORM interd
 ELSE
@@ -2039,7 +2039,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAM4  ON SELECTION BAR 7 OF POPUP transporte      
+*       * _33E0G73N7  ON SELECTION BAR 7 OF POPUP transporte      
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2050,7 +2050,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiam4
+PROCEDURE _33e0g73n7
 IF win_transd = .f.
 DO FORM transd
 ELSE
@@ -2066,7 +2066,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAM8  ON SELECTION BAR 1 OF POPUP package         
+*       * _33E0G73N8  ON SELECTION BAR 1 OF POPUP package         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2077,7 +2077,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiam8
+PROCEDURE _33e0g73n8
 IF win_NEWPACKAGE = .f.
 DO FORM NEWPACKAGE
 ELSE
@@ -2093,7 +2093,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAM9  ON SELECTION BAR 3 OF POPUP package         
+*       * _33E0G73N9  ON SELECTION BAR 3 OF POPUP package         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2104,7 +2104,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiam9
+PROCEDURE _33e0g73n9
 IF win_NEWPACKAGE = .f.
 DO FORM OPENPACKAGE
 ELSE
@@ -2120,7 +2120,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMA  ON SELECTION BAR 5 OF POPUP package         
+*       * _33E0G73NA  ON SELECTION BAR 5 OF POPUP package         
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2131,7 +2131,7 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiama
+PROCEDURE _33e0g73na
 IF win_NEWPACKAGE = .f.
 DO FORM INSTALLPACKAGE
 ELSE
@@ -2147,7 +2147,7 @@ ENDIF
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMB  ON SELECTION BAR 10 OF POPUP tools          
+*       * _33E0G73NB  ON SELECTION BAR 10 OF POPUP tools          
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2158,14 +2158,14 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamb
+PROCEDURE _33e0g73nb
 S_menu = "Calculator"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMC  ON SELECTION BAR 11 OF POPUP tools          
+*       * _33E0G73NC  ON SELECTION BAR 11 OF POPUP tools          
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2176,13 +2176,13 @@ S_menu = "Calculator"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamc
+PROCEDURE _33e0g73nc
 S_Menu = "NotePad"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMD  ON SELECTION BAR 12 OF POPUP tools          
+*       * _33E0G73ND  ON SELECTION BAR 12 OF POPUP tools          
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2193,13 +2193,13 @@ S_Menu = "NotePad"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamd
+PROCEDURE _33e0g73nd
 S_menu = "Paint"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAME  ON SELECTION BAR 1 OF POPUP help            
+*       * _33E0G73NE  ON SELECTION BAR 1 OF POPUP help            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2210,13 +2210,13 @@ S_menu = "Paint"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiame
+PROCEDURE _33e0g73ne
 S_MENU = "DoubleS Framework"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMF  ON SELECTION BAR 3 OF POPUP help            
+*       * _33E0G73NF  ON SELECTION BAR 3 OF POPUP help            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2227,13 +2227,13 @@ S_MENU = "DoubleS Framework"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamf
+PROCEDURE _33e0g73nf
 S_MENU = "DoubleS Research"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMG  ON SELECTION BAR 4 OF POPUP help            
+*       * _33E0G73NG  ON SELECTION BAR 4 OF POPUP help            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2244,13 +2244,13 @@ S_MENU = "DoubleS Research"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamg
+PROCEDURE _33e0g73ng
 S_Menu = "DoubleS Lecture"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMH  ON SELECTION BAR 5 OF POPUP help            
+*       * _33E0G73NH  ON SELECTION BAR 5 OF POPUP help            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2261,14 +2261,14 @@ S_Menu = "DoubleS Lecture"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamh
+PROCEDURE _33e0g73nh
 S_menu = "DoubleS Goals"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMI  ON SELECTION BAR 6 OF POPUP help            
+*       * _33E0G73NI  ON SELECTION BAR 6 OF POPUP help            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2279,14 +2279,14 @@ S_menu = "DoubleS Goals"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiami
+PROCEDURE _33e0g73ni
 S_menu = "DoubleS FAQ"
 
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMJ  ON SELECTION BAR 8 OF POPUP help            
+*       * _33E0G73NJ  ON SELECTION BAR 8 OF POPUP help            
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2297,13 +2297,13 @@ S_menu = "DoubleS FAQ"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamj
+PROCEDURE _33e0g73nj
 S_MENU = "DoubleS Library"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMK  ON SELECTION BAR 11 OF POPUP help           
+*       * _33E0G73NK  ON SELECTION BAR 11 OF POPUP help           
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2314,13 +2314,13 @@ S_MENU = "DoubleS Library"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamk
+PROCEDURE _33e0g73nk
 S_MENU = "(x)Harbour"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMO  ON SELECTION BAR 12 OF POPUP help           
+*       * _33E0G73NL  ON SELECTION BAR 12 OF POPUP help           
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2331,13 +2331,13 @@ S_MENU = "(x)Harbour"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamo
+PROCEDURE _33e0g73nl
 S_MENU = "MiniGUI"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMP  ON SELECTION BAR 13 OF POPUP help           
+*       * _33E0G73NM  ON SELECTION BAR 13 OF POPUP help           
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2348,13 +2348,13 @@ S_MENU = "MiniGUI"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamp
+PROCEDURE _33e0g73nm
 S_MENU = "TSBrowse"
 
 
 *       *********************************************************
 *       *                                                         
-*       * _33E0FIAMQ  ON SELECTION BAR 17 OF POPUP help           
+*       * _33E0G73NN  ON SELECTION BAR 17 OF POPUP help           
 *       *                                                         
 *       * Procedure Origin:                                       
 *       *                                                         
@@ -2365,5 +2365,5 @@ S_MENU = "TSBrowse"
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _33e0fiamq
+PROCEDURE _33e0g73nn
 S_MENU = "6_2"
