@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:57:55    Date : 10/31/2010
+* Time : 21:03:24    Date : 10/31/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -665,7 +665,7 @@ Return 0
 Method ClearRecord Class CustomersDataClass
 self:cname := ""
 self:cPayMethod := 0
-self:cMobile := ""
+self:cMobile := "966"
 self:ceMail := ""
 self:cCardNum := ""
 self:cCardFinish := ""
