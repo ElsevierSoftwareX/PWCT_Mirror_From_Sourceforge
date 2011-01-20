@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:41:20    Date : 11/26/2010
+* Time : 20:57:55    Date : 10/31/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -709,10 +709,13 @@ myRet := False
 ENDIF
 cMobile := CustomersDataWindow.textMobile.Value
 cMobile = ALLTRIM ( cMobile )
-IF cMobile == ""
-MyOut := MSGBOX("ÌÃ» «œŒ«· —ﬁ„ «·ÃÊ«·","⁄›Ê«")
+ceMail := CustomersDataWindow.texteMail.Value
+ceMail = ALLTRIM ( ceMail )
+IF cMobile == "" .and. ceMail == ""
+MyOut := MSGBOX("ÌÃ» «œŒ«· —ﬁ„ «·ÃÊ«· «Ê «·»—Ìœ «·«·ﬂ —Ê‰Ï","⁄›Ê«")
 myRet := False
 ELSE
+IF .not. cMobile == ""
 IF len(cMobile) < 12
 MyOut := MSGBOX("—ﬁ„ «·ÃÊ«· ÌÃ» «‰ ·«Ìﬁ· ⁄‰ 12 —ﬁ„","⁄›Ê«")
 myRet := False
@@ -734,12 +737,7 @@ ENDIF
 myoRS:Close()
 ENDIF
 ENDIF
-ceMail := CustomersDataWindow.texteMail.Value
-ceMail = ALLTRIM ( ceMail )
-IF ceMail == ""
-MyOut := MSGBOX("ÌÃ» «œŒ«· «·»—Ìœ «·«·ﬂ —Ê‰Ï","⁄›Ê«")
-myRet := False
-ELSE
+IF .not.   ceMail == ""
 nTest = AT("@",ceMail)
 nTest2 = AT(".",ceMail)
 IF ntest = 0 .or. ntest2 = 0
@@ -761,6 +759,7 @@ MyOut := MSGBOX("Â–« «·»—Ìœ «·«·ﬂ —Ê‰Ï „”Ã· „‰ ﬁ»·","⁄›Ê«")
 myRet := False
 ENDIF
 myoRS:Close()
+ENDIF
 ENDIF
 ENDIF
 Return myRet
