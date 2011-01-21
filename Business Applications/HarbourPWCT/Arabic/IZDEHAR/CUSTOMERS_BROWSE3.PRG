@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:44:17    Date : 11/26/2010
+* Time : 20:36:42    Date : 11/01/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,8 +41,8 @@ Data tablename init "Customers_All"
 Data column init "f_name"
 Data PrimaryKey init "id"
 Data columns init {"custtype","custclass","paymethod","f_mobile","f_name"}
-Data FindColumns init {"f_name","f_mobile","f_email","f_cardnum","f_cardfinish","f_company","country","paymethod","custtype","custclass"}
-Data FindTitles init {"«·≈”„","«·ÃÊ«·","«·«Ì„Ì·","—ﬁ„ «·»ÿ«ﬁ…"," «—ÌŒ «‰ Â«¡ «·ÂÊÌ…","«·‘—ﬂ…","«·œÊ·…","ÿ—Ìﬁ… «·œ›⁄","‰Ê⁄ «·⁄„Ì·","›∆… «·⁄„Ì·"}
+Data FindColumns init {"f_name","f_mobile","f_email","f_cardnum","f_cardfinish","f_company","country","paymethod","custtype","custclass","f_ename","f_enumber"}
+Data FindTitles init {"«·≈”„","«·ÃÊ«·","«·«Ì„Ì·","—ﬁ„ «·»ÿ«ﬁ…"," «—ÌŒ «‰ Â«¡ «·ÂÊÌ…","«·‘—ﬂ…","«·œÊ·…","ÿ—Ìﬁ… «·œ›⁄","‰Ê⁄ «·⁄„Ì·","›∆… «·⁄„Ì·","«”„ «·⁄„Ì· »«·«‰Ã·Ì“Ï","—ﬁ„ «·⁄÷ÊÌ…"}
 Data ResultPrimaryKeys init {}
 Method showwindow
 Method closewindow
@@ -59,7 +59,7 @@ Method showwindow Class CustomersBrowse3Class
 if !iswindowdefined( CustomersBrowse3Window )
 DEFINE WINDOW CustomersBrowse3Window ;
 AT 10 ,10 ;
-WIDTH 772 ;
+WIDTH 963 ;
 HEIGHT 361 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -73,45 +73,45 @@ BACKCOLOR {255,255,255}
 @ -13 ,-12 IMAGE image1;
 PICTURE GetStartUpFolder()+"\image\back.jpg";
 STRETCH ;
-WIDTH 780 HEIGHT 360
-@ 18 ,142 TEXTBOX textNameBrowse;
+WIDTH 970 HEIGHT 360
+@ 17 ,363 TEXTBOX textNameBrowse;
 HEIGHT 30 ;
-WIDTH 480 ;
+WIDTH 340 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 18 ,26 BUTTONEX btn1;
+@ 17 ,247 BUTTONEX btn1;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 103 ,28 BUTTONEX btnclose;
+@ 17 ,15 BUTTONEX btnclose;
 CAPTION "«€·«ﬁ";
 ON CLICK self:closewindow()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 59 ,135 GRID Grid1browse;
+@ 58 ,15 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 620 ;
-HEIGHT 250 ;
+WIDTH 925 ;
+HEIGHT 251 ;
 HEADERS {"‰Ê⁄ «·⁄„Ì·","›∆… «·⁄„Ì·","ÿ—Ìﬁ… «·”œ«œ","ÃÊ«·","«·«”„"};
-WIDTHS {100,100,100,100,200} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {150,150,150,200,250} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 59 ,27 BUTTONEX btnPrint;
+@ 17 ,131 BUTTONEX btnPrint;
 CAPTION "ÿ»«⁄…";
 ON CLICK self:print()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 19 ,626 COMBOBOX comboFind;
+@ 17 ,719 COMBOBOX comboFind;
 ON CHANGE self:findchange()  ;
-WIDTH 130 ;
+WIDTH 220 ;
 HEIGHT 200;
 ITEMS self:FindTitles ;
 VALUE 1 ;
