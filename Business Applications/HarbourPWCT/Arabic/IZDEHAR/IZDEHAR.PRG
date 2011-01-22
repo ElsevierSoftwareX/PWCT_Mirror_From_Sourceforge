@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:55:11    Date : 11/02/2010
+* Time : 23:17:52    Date : 11/02/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -792,7 +792,7 @@ AUTOSIZE
 BUTTON toolbarcustomersbtn2;
 PICTURE "image\searchicon.bmp" ;
 ADJUST ;
-ON CLICK CustomersBrowseObject:showwindow()  ;
+ON CLICK CustomersBrowse3Object:showwindow()  ;
 TOOLTIP "»ÕÀ ›Ï »Ì«‰«  «·⁄„·«¡" ;
 AUTOSIZE 
 
