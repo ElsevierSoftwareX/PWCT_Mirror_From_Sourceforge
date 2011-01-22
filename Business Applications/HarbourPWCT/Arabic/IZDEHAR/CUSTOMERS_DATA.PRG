@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:23:57    Date : 11/02/2010
+* Time : 21:55:00    Date : 11/02/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -372,7 +372,6 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 @ 310 ,679 LABEL lblworkdomain ;
@@ -778,7 +777,7 @@ IF cMobile == "" .and. ceMail == ""
 MyOut := MSGBOX("ÌÃ» «œŒ«· —ﬁ„ «·ÃÊ«· «Ê «·»—Ìœ «·«·ﬂ —Ê‰Ï","⁄›Ê«")
 myRet := False
 ELSE
-IF .not. cMobile == ""
+IF ceMail == "" .and. .not. cMobile == ""
 IF len(cMobile) < 12
 MyOut := MSGBOX("—ﬁ„ «·ÃÊ«· ÌÃ» «‰ ·«Ìﬁ· ⁄‰ 12 —ﬁ„","⁄›Ê«")
 myRet := False
