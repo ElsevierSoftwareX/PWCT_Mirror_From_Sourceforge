@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:14:41    Date : 11/01/2010
+* Time : 21:23:57    Date : 11/02/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -70,6 +70,7 @@ Data CustClassitemsids init {}
 Data CustClassitems init {}
 Data cEName init ""
 Data cEMN init ""
+Data cCustAsk init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -94,7 +95,7 @@ if !iswindowdefined( CustomersDataWindow )
 DEFINE WINDOW CustomersDataWindow ;
 AT 10 ,10 ;
 WIDTH 1061 ;
-HEIGHT 562 ;
+HEIGHT 654 ;
 ICON "PWCTICON" ;
 TITLE "»Ì«‰«  «·„ œ—»Ì‰" ;
 CHILD ;
@@ -106,8 +107,8 @@ BACKCOLOR {64,0,64}
 @ 49 ,6 IMAGE image1;
 PICTURE GetStartUpFolder()+"\image\Back.jpg";
 STRETCH ;
-WIDTH 1040 HEIGHT 425
-@ 486 ,519 BUTTONEX btnFirst;
+WIDTH 1040 HEIGHT 515
+@ 576 ,519 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -116,7 +117,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 486 ,389 BUTTONEX btnNext;
+@ 576 ,389 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -125,7 +126,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 486 ,324 BUTTONEX btnLast;
+@ 576 ,324 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -134,7 +135,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 486 ,163 BUTTONEX btnClose;
+@ 576 ,163 BUTTONEX btnClose;
 CAPTION "Œ—ÊÃ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -143,7 +144,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 486 ,455 BUTTONEX btnPrev;
+@ 576 ,455 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -152,7 +153,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 486 ,247 BUTTONEX btnDel;
+@ 576 ,247 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -161,25 +162,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 486 ,682 BUTTONEX btnsave;
+@ 576 ,682 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 486 ,594 BUTTONEX btncancel;
+@ 576 ,594 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 486 ,761 BUTTONEX btnedit;
+@ 576 ,761 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 486 ,828 BUTTONEX btnadd;
+@ 576 ,828 BUTTONEX btnadd;
 CAPTION "«÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -208,7 +209,7 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("paymethod","paymethod",@self:paymethodItems,"id",@self:paymethodItemsIDS)
-@ 304 ,926 LABEL lblpaymethod ;
+@ 310 ,924 LABEL lblpaymethod ;
 VALUE "ÿ—Ìﬁ… «·”œ«œ" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -216,8 +217,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 305 ,708 COMBOBOX combopaymethod;
-WIDTH 200 ;
+@ 310 ,778 COMBOBOX combopaymethod;
+WIDTH 130 ;
 HEIGHT 100;
 ITEMS self:paymethoditems ;
 VALUE 1 ;
@@ -260,7 +261,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 265 ,55 TEXTBOX textCity;
+@ 265 ,53 TEXTBOX textCity;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
@@ -374,17 +375,17 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 344 ,926 LABEL lblworkdomain ;
+@ 310 ,679 LABEL lblworkdomain ;
 VALUE "‰‘«ÿ «·‘—ﬂ…" ;
-WIDTH 120 ;
+WIDTH 90 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 344 ,708 TEXTBOX textWorkDomain;
+@ 310 ,519 TEXTBOX textWorkDomain;
 HEIGHT 30 ;
-WIDTH 200 ;
+WIDTH 150 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -413,7 +414,7 @@ WIDTH 203 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 344 ,604 LABEL lblbranches ;
+@ 310 ,430 LABEL lblbranches ;
 VALUE "⁄œœ «·›—Ê⁄" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -421,14 +422,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 344 ,459 TEXTBOX textbranches;
+@ 310 ,355 TEXTBOX textbranches;
 HEIGHT 30 ;
-WIDTH 130 ;
+WIDTH 70 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 344 ,280 LABEL lblinst ;
+@ 310 ,220 LABEL lblinst ;
 VALUE "«·„”∆Ê· ⁄‰ «· œ—Ì»" ;
 WIDTH 140 ;
 HEIGHT 30 ;
@@ -436,14 +437,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 344 ,55 TEXTBOX textinst;
+@ 310 ,53 TEXTBOX textinst;
 HEIGHT 30 ;
-WIDTH 200 ;
+WIDTH 160 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 388 ,926 LABEL lblcompanyemail ;
+@ 348 ,926 LABEL lblcompanyemail ;
 VALUE "«·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -451,54 +452,54 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 388 ,708 TEXTBOX textcompanyemail;
+@ 348 ,738 TEXTBOX textcompanyemail;
 HEIGHT 30 ;
-WIDTH 200 ;
+WIDTH 170 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 388 ,601 LABEL lblcompanyphone ;
+@ 348 ,681 LABEL lblcompanyphone ;
 VALUE "Â« ›" ;
-WIDTH 80 ;
+WIDTH 50 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 388 ,388 TEXTBOX textcompanyphone;
+@ 348 ,519 TEXTBOX textcompanyphone;
 HEIGHT 30 ;
-WIDTH 200 ;
+WIDTH 150 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 388 ,280 LABEL lblcompanytrans ;
+@ 348 ,430 LABEL lblcompanytrans ;
 VALUE " ÕÊÌ·…" ;
-WIDTH 110 ;
+WIDTH 70 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 388 ,55 TEXTBOX textcompanytrans;
+@ 348 ,355 TEXTBOX textcompanytrans;
 HEIGHT 30 ;
-WIDTH 200 ;
+WIDTH 70 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 429 ,926 LABEL lblcompanyfax ;
+@ 348 ,220 LABEL lblcompanyfax ;
 VALUE "›«ﬂ”" ;
-WIDTH 110 ;
+WIDTH 60 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 433 ,708 TEXTBOX textcompanyfax;
+@ 348 ,53 TEXTBOX textcompanyfax;
 HEIGHT 30 ;
-WIDTH 200 ;
+WIDTH 160 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -555,7 +556,7 @@ VALUE "«·«”„ »«·«‰Ã·Ì“Ì…" ;
 WIDTH 110 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
+BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 57 ,926 LABEL lblMembershipnumber ;
@@ -563,7 +564,7 @@ VALUE "—ﬁ„ «·⁄÷ÊÌ…" ;
 WIDTH 110 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
+BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 57 ,56 TEXTBOX texteName;
@@ -580,6 +581,21 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
+@ 403 ,922 LABEL lblcustask ;
+VALUE "«” ›”«—«  «·⁄„Ì·" ;
+WIDTH 120 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 404 ,53 EDITBOX editCustAsk;
+WIDTH 854 ;
+HEIGHT 144;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+DO RightToLeftControl WITH "CustomersDataWindow","editcustask"
 END WINDOW
 
 CustomersDataWindow.Center ( )
@@ -619,6 +635,7 @@ self:cCountry := self:CountryItemsIDS[self:cCountry]
 self:cCardFinish := dtoc(self:cCardFinish)
 self:cEName := CustomersDataWindow.texteName.Value
 self:cEMN := CustomersDataWindow.texteMN.Value
+self:cCustAsk := CustomersDataWindow.editCustAsk.Value
 Return 0
 Method Class2ADO Class CustomersDataClass
 self:oRS:fields:item("f_name"):value := self:cName
@@ -645,6 +662,7 @@ self:oRS:fields:item("f_companytrans"):value := self:cCompanytrans
 self:oRS:fields:item("f_companyfax"):value := self:cCompanyfax
 self:oRS:fields:item("f_ename"):value := self:cENAME
 self:oRS:fields:item("f_enumber"):value := self:cEMN
+self:oRS:fields:item("f_custAsk"):value := self:cCustAsk
 Return 0
 Method ADO2Class Class CustomersDataClass
 self:cname := self:oRS:fields:item("f_name"):value
@@ -671,6 +689,7 @@ self:cCompanyFax := self:oRS:fields:item("f_CompanyFax"):value
 self:cFax := self:oRS:fields:item("f_Fax"):value
 self:cENAME := self:oRS:fields:item("f_ename"):value
 self:cEMN := self:oRS:fields:item("f_enumber"):value
+self:cCustAsk := self:oRS:fields:item("f_CustAsk"):value
 Return 0
 Method Class2UserInterface Class CustomersDataClass
 CustomersDataWindow.textName.Value := self:cname
@@ -701,6 +720,7 @@ CustomersDataWindow.textCompanytrans.Value := self:cCompanytrans
 CustomersDataWindow.textCompanyfax.Value := self:cCompanyfax
 CustomersDataWindow.textENAME.Value := self:cENAME
 CustomersDataWindow.textEMN.Value := self:cEMN
+CustomersDataWindow.editCustAsk.Value := self:cCustAsk
 Return 0
 Method ClearRecord Class CustomersDataClass
 self:cname := ""
@@ -727,6 +747,7 @@ self:cCompanyFax := ""
 self:cCountry := 0
 self:cENAME := ""
 self:cEMN := ""
+self:cCustAsk := ""
 Return 0
 Method PrintData Class CustomersDataClass
 Local myid,myout
@@ -857,6 +878,7 @@ CustomersDataWindow.textcompanytrans.Enabled := true
 CustomersDataWindow.textcompanyfax.Enabled := true
 CustomersDataWindow.textENAME.Enabled := TRUE
 CustomersDataWindow.textEMN.Enabled := TRUE
+CustomersDataWindow.editCustAsk.Enabled := true
 ENDIF
 IF p1 = 2
 CustomersDataWindow.btnfirst.Enabled := true
@@ -893,6 +915,7 @@ CustomersDataWindow.textcompanytrans.Enabled := false
 CustomersDataWindow.textcompanyfax.Enabled := false
 CustomersDataWindow.textENAME.Enabled := false
 CustomersDataWindow.textEMN.Enabled := false
+CustomersDataWindow.editCustAsk.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
