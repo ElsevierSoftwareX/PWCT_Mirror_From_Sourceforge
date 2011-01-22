@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:51:42    Date : 12/10/2010
+* Time : 23:55:15    Date : 11/02/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -116,6 +116,21 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
+@ 6 ,814 BUTTONEX btnRecCust;
+CAPTION " ”ÃÌ· „ œ—»";
+WIDTH 190 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 238 ,814 BUTTONEX btnRecMaybe;
+CAPTION " ”ÃÌ· „” ›”—";
+WIDTH 190 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 469 ,814 BUTTONEX btnConvert;
+CAPTION " ÕÊÌ· „” ›”— ·„ œ—»";
+WIDTH 190 HEIGHT 30 ;
+FONT "arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 CustOrdersWindow.Center ( )
