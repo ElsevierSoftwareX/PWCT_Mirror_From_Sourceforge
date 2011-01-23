@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:31:58    Date : 11/03/2010
+* Time : 20:29:09    Date : 11/03/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -75,6 +75,8 @@ Data CustomerWant1 init ""
 Data CustomerWant2 init ""
 Data CustomerWant3 init ""
 Data Days init ""
+Data SelectCust init false
+Data SelectCustIndex init 0
 Method showwindow
 Method closewindow
 Method ShowRecord
@@ -558,6 +560,11 @@ myout = self:showrecord()
 myout = self:setmode(2)
 OrdersEnterWindow.Timer1.Enabled := false
 OrdersEnterWindow.textOrderNumber.Enabled := false
+IF self:SelectCust = True
+OrdersEnterWindow.ComboItem.Value := Self:SelectCustIndex
+Self:SelectCust := False
+Self:SelectCustIndex := 0
+ENDIF
 ACTIVATE WINDOW OrdersEnterWindow
 EndIF
 
@@ -1032,7 +1039,11 @@ myret := false
 ENDIF
 Return myret
 Method AutoCustRec(nCustID) Class OrdersEnterClass
-MyOut := MSGBOX(nCustID,"Text Here")
+Local nIndex
+nIndex = self:LookupIDToIndex(VAL(nCustID),@self:ItemItemsids)
+Self:SelectCust := True
+Self:SelectCustIndex := nIndex
+myout = self:ShowWindow()
 Return 0
 Method closewindow Class OrdersEnterClass
 myout = self:disconnect()
