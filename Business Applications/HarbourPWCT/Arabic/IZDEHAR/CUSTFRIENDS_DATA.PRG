@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:22:08    Date : 11/27/2010
+* Time : 20:51:00    Date : 11/03/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -64,6 +64,8 @@ Data FindColumns2 init {"f_name","f_mobile"}
 Data FindColumns3 init {"f_name","f_mobile"}
 Data FindTitles2 init {"«·«”„","«·ÃÊ«·"}
 Data FindTitles3 init {"«·«”„","«·ÃÊ«·"}
+Data SelectCust init false
+Data SelectCustIndex init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -93,6 +95,7 @@ Method search3
 Method CheckFind
 Method CheckFind2
 Method CheckFind3
+Method AutoCustRec
 EndClass
 Method showwindow Class CustFriendsClass
 myout = self:connect()
@@ -290,6 +293,11 @@ myout = self:showrecord()
 myout = self:setmode(2)
 CustFriendsWindow.Timer1.Enabled := false
 myout = self:search2()
+IF self:SelectCust = True
+CustFriendsWindow.ComboItem.Value := Self:SelectCustIndex
+Self:SelectCust := False
+Self:SelectCustIndex := 0
+ENDIF
 ACTIVATE WINDOW CustFriendsWindow
 EndIF
 
@@ -615,6 +623,13 @@ Method CheckFind3 Class CustFriendsClass
 Local nIndex
 nIndex := CustFriendsWindow.ComboFind3.Value
 Self:Column3 := Self:FindColumns3[nIndex]
+Return 0
+Method AutoCustRec(nCustID) Class CustFriendsClass
+Local nIndex
+nIndex = self:LookupIDToIndex(VAL(nCustID),@self:ItemItemsids)
+Self:SelectCust := True
+Self:SelectCustIndex := nIndex
+myout = self:ShowWindow()
 Return 0
 Method closewindow Class CustFriendsClass
 myout = self:disconnect()
