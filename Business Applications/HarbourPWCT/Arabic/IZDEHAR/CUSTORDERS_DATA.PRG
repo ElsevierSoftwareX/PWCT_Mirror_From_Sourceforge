@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:49:21    Date : 11/03/2010
+* Time : 21:16:44    Date : 11/03/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -243,9 +243,11 @@ myout = OrdersEnterObject:ShowWindow()
 Return 0
 Method RecCust Class CustOrdersClass
 myout = OrdersEnterObject:AutoCustRec(self:CustID)
+myout = self:MyStart()
 Return 0
 Method RecMaybe Class CustOrdersClass
 myout = CustFriendsObject:AutoCustRec(self:CustID)
+myout = self:MyStart()
 Return 0
 Method Convert Class CustOrdersClass
 Return 0
