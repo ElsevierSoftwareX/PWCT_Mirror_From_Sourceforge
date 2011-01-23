@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:28:03    Date : 11/28/2010
+* Time : 19:31:58    Date : 11/03/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -107,6 +107,7 @@ Method mobilechange
 Method CheckFind
 Method CheckFind2
 Method CheckData
+Method AutoCustRec
 EndClass
 Method showwindow Class OrdersEnterClass
 IF .not. UsersObject:CheckPermission(27)
@@ -1030,6 +1031,9 @@ MyOut := MSGBOX("ÌÃ»  ÕœÌœ «·„ﬂ«‰","⁄›Ê«")
 myret := false
 ENDIF
 Return myret
+Method AutoCustRec(nCustID) Class OrdersEnterClass
+MyOut := MSGBOX(nCustID,"Text Here")
+Return 0
 Method closewindow Class OrdersEnterClass
 myout = self:disconnect()
 OrdersEnterWindow.Release ( )

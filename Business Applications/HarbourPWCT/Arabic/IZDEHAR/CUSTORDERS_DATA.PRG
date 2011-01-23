@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:55:15    Date : 11/02/2010
+* Time : 19:32:13    Date : 11/03/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,6 +54,9 @@ Method search2
 Method MyStart
 Method OpenDataWindow2
 Method ShowDataWindow2
+Method RecCust
+Method RecMaybe
+Method Convert
 EndClass
 Method showwindow Class CustOrdersClass
 if !iswindowdefined( CustOrdersWindow )
@@ -118,16 +121,19 @@ JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 6 ,814 BUTTONEX btnRecCust;
 CAPTION " ”ÃÌ· „ œ—»";
+ON CLICK self:RecCust()  ;
 WIDTH 190 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 238 ,814 BUTTONEX btnRecMaybe;
 CAPTION " ”ÃÌ· „” ›”—";
+ON CLICK self:RecMaybe()  ;
 WIDTH 190 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 469 ,814 BUTTONEX btnConvert;
 CAPTION " ÕÊÌ· „” ›”— ·„ œ—»";
+ON CLICK self:Convert()  ;
 WIDTH 190 HEIGHT 30 ;
 FONT "arial" SIZE 14 ;
 TOOLTIP ""
@@ -234,6 +240,13 @@ Method ShowDataWindow2(nValue) Class CustOrdersClass
 OrdersEnterObject:LFindRecord := true
 OrdersEnterObject:CFindExpr := self:primarykey2+"= '"+self:resultprimarykeys2[nvalue]+"' "
 myout = OrdersEnterObject:ShowWindow()
+Return 0
+Method RecCust Class CustOrdersClass
+myout = OrdersEnterObject:AutoCustRec(self:CustID)
+Return 0
+Method RecMaybe Class CustOrdersClass
+Return 0
+Method Convert Class CustOrdersClass
 Return 0
 
 
