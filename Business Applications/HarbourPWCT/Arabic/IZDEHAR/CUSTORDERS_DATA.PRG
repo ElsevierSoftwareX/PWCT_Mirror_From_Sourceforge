@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:59:08    Date : 11/04/2010
+* Time : 21:27:25    Date : 11/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,9 +36,9 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_CUSTORDERS_DATA_15speed1() code
 class CustOrdersClass From SystemDatabase
-Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
+Data columns init {"FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
 Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
-Data FindTitles init {"ÑÞã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÇÓã ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÊÇÑíÎ ÇáÏæÑÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ","ÍÇáÉ ÇáÏæÑÉ"}
+Data FindTitles init {"ÑÞã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÇÓã ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÊÇÑíÎ ÇáÏæÑÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ"}
 Data TableName init "CustOrders"
 Data CustID init 0
 Data PrimaryKey init "OrderNumber"
@@ -104,21 +104,21 @@ FONTCOLOR {0,0,0}
 ON DBLCLICK self:OpenDataWindow()  ;
 WIDTH 980 ;
 HEIGHT 180 ;
-HEADERS {"ÍÇáÉ ÇáÏæÑÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÇÓã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÑÞã ÇáÏæÑÉ"};
-WIDTHS {100,180,120,200,150,100,100} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÇÓã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÑÞã ÇáÏæÑÉ"};
+WIDTHS {180,120,200,250,100,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 281 ,25 GRID Grid2browse;
 ON DBLCLICK self:OpenDataWindow2()  ;
 WIDTH 980 ;
 HEIGHT 180 ;
-HEADERS {"ÍÇáÉ ÇáÏæÑÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÇÓã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÑÞã ÇáÏæÑÉ"};
-WIDTHS {100,180,120,200,150,100,100} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÇÓã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÑÞã ÇáÏæÑÉ"};
+WIDTHS {180,120,200,250,100,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 6 ,814 BUTTONEX btnRecCust;
 CAPTION "ÊÓÌíá ãÊÏÑÈ";
@@ -259,7 +259,7 @@ Local nvalue,myout,myorderid,mycustid,myorderidreal
 myout = self:Connect()
 nvalue := CustOrdersWindow.grid2browse.Value
 IF nvalue > 0
-myorderid := CustOrdersWindow.Grid2Browse.cell(nValue,7)
+myorderid := CustOrdersWindow.Grid2Browse.cell(nValue,6)
 mycustid := self:custid
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
