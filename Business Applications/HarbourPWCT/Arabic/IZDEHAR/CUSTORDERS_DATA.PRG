@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:27:25    Date : 11/04/2010
+* Time : 23:16:57    Date : 11/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -312,7 +312,12 @@ oRS:UPDATE()
 ENDIF
 oRS:Close()
 ELSE
+nvalue := CustOrdersWindow.grid2browse.ItemCount
+IF nValue = 0
 MyOut := MSGBOX("·«ÌÊÃœ œÊ—«  «” ›”— ⁄‰Â« «·„ œ—»","⁄›Ê«")
+ELSE
+MyOut := MSGBOX("ÌÃœ «‰  Œ «— «·œÊ—… «· Ï «” ›”— ⁄‰Â« «·„ œ—» „‰ «·ﬁ«∆„…","⁄›Ê«")
+ENDIF
 ENDIF
 myout = self:DisConnect()
 Return 0
