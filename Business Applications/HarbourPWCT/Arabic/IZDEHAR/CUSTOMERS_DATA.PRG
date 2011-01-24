@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:55:00    Date : 11/02/2010
+* Time : 21:02:48    Date : 11/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -826,15 +826,17 @@ ENDIF
 ENDIF
 Return myRet
 Method CustOrders Class CustomersDataClass
-Local myid
+Local myid,myname
 mymax := self:oRS:RecordCount
 IF mymax = 0
 MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
 Return 0
 ENDIF
 myid := self:oRS:fields:item("id"):value
+myname := self:oRS:fields:item("f_name"):value
 myid = STR ( myid )
 CustOrdersObject:CustID := myid
+CustOrdersObject:CustName := myname
 myout = CustOrdersObject:ShowWindow()
 Return 0
 Method closewindow Class CustomersDataClass

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:13:58    Date : 11/04/2010
+* Time : 20:59:08    Date : 11/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -45,6 +45,7 @@ Data PrimaryKey init "OrderNumber"
 Data PrimaryKey2 init "OrderNumber"
 Data resultprimarykeys2 init {}
 Data TableName2 init "CustOrdersMaybe"
+Data CustName init ""
 Method showwindow
 Method closewindow
 Method search
@@ -254,12 +255,66 @@ myout = self:MyStart()
 ENDIF
 Return 0
 Method Convert Class CustOrdersClass
-Local nvalue,myout
+Local nvalue,myout,myorderid,mycustid,myorderidreal
+myout = self:Connect()
 nvalue := CustOrdersWindow.grid2browse.Value
 IF nvalue > 0
+myorderid := CustOrdersWindow.Grid2Browse.cell(nValue,7)
+mycustid := self:custid
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from Orders where ordernumber = " + myorderid,self:oCon,3,3 )
+myOrderIDReal := oRS:fields:item("ID"):value
+oRS:Close()
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from OrderItems where orderid = " + myorderid + " and customerid = " + mycustid,self:oCon,3,3 )
+nMax := oRS:RecordCount
+IF nMax > 0
+MyOut := MSGBOX("Êã ÊÓÌíá åĞÇ ÇáÚãíá ÓÇÈŞÇ","ÚİæÇ")
+oRS:Close()
+Return 0
+ENDIF
+oRS:Close()
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from OrderItems",self:oCon,3,3 )
+oRS:ADDNEW()
+oRS:fields:item("customerid"):value := mycustid
+oRS:fields:item("Orderid"):value := myorderid
+oRS:fields:item("customerhowknow"):value := 1
+oRS:fields:item("InvoiceNumber"):value := "0"
+oRS:fields:item("UserName"):value := usersobject:enteredusername
+oRS:fields:item("empid"):value := UsersObject:EnteredEmployeeID
+oRS:UPDATE()
+oRS:Close()
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from Production_All",self:oCon,3,3 )
+oRS:ADDNEW()
+oRS:fields:item("employeeid"):value := UsersObject:EnteredEmployeeID
+oRS:fields:item("ordernumberID"):value := myorderidreal
+oRS:fields:item("noofpcs"):value := " ÊÓÌíá ÇáÚãíá " + self:CustName
+oRS:fields:item("finishtime"):value := time()
+oRS:fields:item("dateofinput"):value := alltrim(dtoc(date()))
+oRS:UPDATE()
+oRS:Close()
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from CustFriends_All where orderid = " + myorderid + " and Friendid = " + mycustid,self:oCon,3,3 )
+nMax := oRS:RecordCount
+IF nMax > 0
+oRS:fields:item("RecordStatusid"):value := 3
+oRS:UPDATE()
+ENDIF
+oRS:Close()
 ELSE
 MyOut := MSGBOX("áÇíæÌÏ ÏæÑÇÊ ÇÓÊİÓÑ ÚäåÇ ÇáãÊÏÑÈ","ÚİæÇ")
 ENDIF
+myout = self:DisConnect()
 Return 0
 
 
