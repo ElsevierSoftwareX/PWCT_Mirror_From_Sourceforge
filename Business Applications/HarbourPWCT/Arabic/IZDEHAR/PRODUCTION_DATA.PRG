@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:55:02    Date : 11/05/2010
+* Time : 02:37:59    Date : 11/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -180,14 +180,14 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,218 TEXTBOX textNamebrowse;
+@ 53 ,198 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 500 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 53 ,111 BUTTONEX btn1browse;
+@ 53 ,91 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -203,12 +203,12 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 53 ,723 COMBOBOX comboFind;
+@ 53 ,703 COMBOBOX comboFind;
 ON CHANGE Self:CheckFind()  ;
-WIDTH 190 ;
+WIDTH 230 ;
 HEIGHT 200;
 ITEMS self:FindTitles ;
-VALUE 6 ;
+VALUE 5 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
