@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:08:10    Date : 11/05/2010
+* Time : 01:55:02    Date : 11/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -180,22 +180,6 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 424 ,481 LABEL lblSourceName ;
-VALUE "Êﬁ  «·»œ¡" ;
-WIDTH 90 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 424 ,332 TEXTBOX textStartTime;
-HEIGHT 30 ;
-WIDTH 140 ;
-FONT "Arial" SIZE 14 ;
-BACKCOLOR {255,255,255} ;
-RIGHTALIGN ;
-FONTCOLOR {0,0,0}
-
 @ 53 ,218 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 500 ;
@@ -215,7 +199,7 @@ WIDTH 990 ;
 HEIGHT 280 ;
 HEADERS self:FindTitles;
 WIDTHS {240,200,220,200,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -230,15 +214,15 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 424 ,213 LABEL lblSecUnitValue ;
-VALUE "Êﬁ  «·«‰ Â«¡" ;
+@ 424 ,483 LABEL lblSecUnitValue ;
+VALUE "Êﬁ  «· ‰›Ì–" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 424 ,64 TEXTBOX textFinishTime;
+@ 424 ,334 TEXTBOX textFinishTime;
 HEIGHT 30 ;
 WIDTH 140 ;
 FONT "Arial" SIZE 14 ;
@@ -414,7 +398,6 @@ ProductionWindow.btnedit.Enabled := false
 ProductionWindow.btnadd.Enabled := false
 ProductionWindow.comboOrderNumber.Enabled := true
 ProductionWindow.comboEmployee.Enabled := true
-ProductionWindow.textStartTime.Enabled := true
 ProductionWindow.textFinishTime.Enabled := true
 ProductionWindow.textNoOfPCS.Enabled := true
 ProductionWindow.textNotes.Enabled := true
@@ -433,7 +416,6 @@ ProductionWindow.btnedit.Enabled := true
 ProductionWindow.btnadd.Enabled := true
 ProductionWindow.comboOrderNumber.Enabled := false
 ProductionWindow.comboEmployee.Enabled := false
-ProductionWindow.textStartTime.Enabled := false
 ProductionWindow.textFinishTime.Enabled := false
 ProductionWindow.textNoOfPCS.Enabled := false
 ProductionWindow.textNotes.Enabled := false
