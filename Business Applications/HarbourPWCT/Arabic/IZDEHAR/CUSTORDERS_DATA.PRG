@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:49:50    Date : 11/04/2010
+* Time : 18:13:58    Date : 11/04/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -254,6 +254,12 @@ myout = self:MyStart()
 ENDIF
 Return 0
 Method Convert Class CustOrdersClass
+Local nvalue,myout
+nvalue := CustOrdersWindow.grid2browse.Value
+IF nvalue > 0
+ELSE
+MyOut := MSGBOX("АгМФло оФягй гсйщся зДЕг гАЦйоях","зщФг")
+ENDIF
 Return 0
 
 
