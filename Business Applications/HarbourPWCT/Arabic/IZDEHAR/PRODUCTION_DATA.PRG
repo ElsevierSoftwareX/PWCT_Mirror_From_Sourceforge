@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:52:39    Date : 11/04/2010
+* Time : 01:08:10    Date : 11/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,19 +40,18 @@ Data TableName init "Production_All"
 Data nID init 0
 Data column init "OrderNumber"
 Data PrimaryKey init "id"
-Data columns init {"noofpcs","finishtime","starttime","dateofinput","f_name","ordernumber"}
+Data columns init {"noofpcs","finishtime","dateofinput","f_name","ordernumber"}
 Data nOrderNumber init 0
 Data OrderNumberitems init {}
 Data OrderNumberitemsids init {}
 Data nEmployee init 0
 Data Employeeitems init {}
 Data Employeeitemsids init {}
-Data cStartTime init ""
 Data cFinishTime init ""
 Data cNoOfPCs init ""
 Data cDateofInput init ""
 Data cNotes init ""
-Data FindTitles init {"«·«‰Ã«“","Êﬁ  «·«‰ Â«¡","Êﬁ  «·»œ«Ì…","«· «—ÌŒ","«”„ «·„ÊŸ›","—ﬁ„ «·œÊ—…"}
+Data FindTitles init {"«·«‰Ã«“","Êﬁ  «· ‰›Ì–","«· «—ÌŒ","«”„ «·„ÊŸ›","—ﬁ„ «·œÊ—…"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -215,10 +214,10 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 990 ;
 HEIGHT 280 ;
 HEADERS self:FindTitles;
-WIDTHS {240,200,100,120,200,100} ;
+WIDTHS {240,200,220,200,100} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 53 ,723 COMBOBOX comboFind;
 ON CHANGE Self:CheckFind()  ;
@@ -345,7 +344,6 @@ self:nOrderNumber := ProductionWindow.ComboOrderNumber.Value
 self:nOrderNumber := self:OrderNumberItemsids[self:nOrderNumber]
 self:nEmployee := ProductionWindow.ComboEmployee.Value
 self:nEmployee := self:EmployeeItemsids[self:nEmployee ]
-self:cStartTime := ProductionWindow.textStartTime.Value
 self:cFinishTime := ProductionWindow.textFinishTime.Value
 self:cNoOfPCS := ProductionWindow.textNoOfPCS.Value
 self:cNotes := ProductionWindow.textNotes.Value
@@ -357,7 +355,6 @@ self:oRS:fields:item("employeeid"):value := self:nEmployee
 self:oRS:fields:item("OrderNumberid"):value := self:nOrderNumber
 self:oRS:fields:item("NoOfPCS"):value := self:cNoOfPCS
 self:oRS:fields:item("Notes"):value := self:cNotes
-self:oRS:fields:item("StartTime"):value := self:cStartTime
 self:oRS:fields:item("FinishTime"):value := self:cFinishTime
 self:oRS:fields:item("DateofInput"):value := self:cDateofInput
 Return 0
@@ -366,7 +363,6 @@ self:nEmployee := self:oRS:fields:item("EmployeeID"):value
 self:nOrderNumber := self:oRS:fields:item("OrderNumberID"):value
 self:cNOOFPCS := self:oRS:fields:item("NoOfPCS"):value
 self:cNotes := self:oRS:fields:item("Notes"):value
-self:cStartTime := self:oRS:fields:item("StartTime"):value
 self:cFinishTime := self:oRS:fields:item("FinishTime"):value
 self:cDateOfInput := self:oRS:fields:item("DateOfInput"):value
 Return 0
@@ -375,7 +371,6 @@ self:nOrderNumber = self:LookupIDToIndex(self:nOrderNumber,@self:OrderNumberItem
 ProductionWindow.ComboOrderNumber.Value := self:nOrderNumber
 self:nEmployee = self:LookupIDToIndex(self:nEmployee,@self:EmployeeItemsids)
 ProductionWindow.ComboEmployee.Value := self:nEmployee
-ProductionWindow.textStartTime.Value := self:cStartTime
 ProductionWindow.textFinishTime.Value := self:cFinishTime
 ProductionWindow.textNoOfPCS.Value := self:cNoOfPCS
 ProductionWindow.dateDateOfInput.Value := ctod(self:cDateOfInput)
@@ -384,7 +379,6 @@ Return 0
 Method ClearRecord Class ProductionClass
 self:nOrderNumber := 0
 self:nEmployee := 0
-self:cStartTime := "1"
 self:cFinishTime := "1"
 self:cNoOfPCS := ""
 self:cDateOfInput := ""
