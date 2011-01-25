@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:07:47    Date : 11/05/2010
+* Time : 03:44:57    Date : 11/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -362,7 +362,7 @@ ProductionWindow.textNotes.Value := self:cNotes
 Return 0
 Method ClearRecord Class ProductionClass
 self:nOrderNumber := 0
-self:nEmployee := 0
+self:nEmployee := UsersObject:EnteredEmployeeID
 self:cFinishTime := time()
 self:cNoOfPCS := ""
 self:cNotes := ""
@@ -399,7 +399,7 @@ ProductionWindow.btncancel.Enabled := true
 ProductionWindow.btnedit.Enabled := false
 ProductionWindow.btnadd.Enabled := false
 ProductionWindow.comboOrderNumber.Enabled := true
-ProductionWindow.comboEmployee.Enabled := true
+ProductionWindow.comboEmployee.Enabled := false
 ProductionWindow.textFinishTime.Enabled := false
 ProductionWindow.textNoOfPCS.Enabled := true
 ProductionWindow.textNotes.Enabled := true
