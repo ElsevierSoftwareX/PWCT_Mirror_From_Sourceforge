@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:08:01    Date : 11/26/2010
+* Time : 04:11:52    Date : 11/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -660,7 +660,7 @@ oRSOrderProcesses:fields:item("CheckD3"):value := 3
 oRSOrderProcesses:fields:item("CheckD4"):value := 3
 oRSOrderProcesses:fields:item("RealStartDate"):value := ""
 oRSOrderProcesses:fields:item("RealFinishDate"):value := ""
-oRSOrderProcesses:fields:item("processstatusid"):value := 0
+oRSOrderProcesses:fields:item("processstatusid"):value := 2
 oRSOrderProcesses:fields:item("ProcessCost"):value := ""
 temp_OrderDate := oRSOrders:fields:item("OrderDate"):value
 temp_FinishDate := oRSOrders:fields:item("FinishDate"):value
