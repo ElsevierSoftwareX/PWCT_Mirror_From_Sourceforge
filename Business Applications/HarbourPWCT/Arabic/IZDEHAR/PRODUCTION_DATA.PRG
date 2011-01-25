@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:37:59    Date : 11/05/2010
+* Time : 03:07:47    Date : 11/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -363,10 +363,12 @@ Return 0
 Method ClearRecord Class ProductionClass
 self:nOrderNumber := 0
 self:nEmployee := 0
-self:cFinishTime := "1"
+self:cFinishTime := time()
 self:cNoOfPCS := ""
-self:cDateOfInput := ""
 self:cNotes := ""
+set century on
+self:cDateOfInput = DATE()
+self:cDateOfInput = DTOC ( self:cDateOfInput )
 Return 0
 Method OpenDataWindow Class ProductionClass
 Local nvalue,myout
@@ -398,10 +400,10 @@ ProductionWindow.btnedit.Enabled := false
 ProductionWindow.btnadd.Enabled := false
 ProductionWindow.comboOrderNumber.Enabled := true
 ProductionWindow.comboEmployee.Enabled := true
-ProductionWindow.textFinishTime.Enabled := true
+ProductionWindow.textFinishTime.Enabled := false
 ProductionWindow.textNoOfPCS.Enabled := true
 ProductionWindow.textNotes.Enabled := true
-ProductionWindow.datedateofinput.Enabled := true
+ProductionWindow.datedateofinput.Enabled := false
 ENDIF
 IF p1 = 2
 ProductionWindow.btnfirst.Enabled := true
