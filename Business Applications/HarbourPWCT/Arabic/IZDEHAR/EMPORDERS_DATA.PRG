@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:45:57    Date : 11/24/2010
+* Time : 17:45:34    Date : 12/22/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,9 +36,9 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_EMPORDERS_DATA_15speed1() code
 class EmpOrdersClass From SystemDatabase
-Data columns init {"OrderStatus","FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
-Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
-Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡","Õ«·… «·œÊ—…"}
+Data columns init {"FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
+Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate"}
+Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"}
 Data TableName init "Orders_All"
 Data CustID init 0
 Data PrimaryKey init "OrderNumber"
@@ -86,11 +86,11 @@ FONTCOLOR {0,0,0}
 ON DBLCLICK self:OpenDataWindow()  ;
 WIDTH 980 ;
 HEIGHT 180 ;
-HEADERS {"Õ«·… «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
-WIDTHS {100,180,120,200,150,100,100} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {" «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
+WIDTHS {180,120,200,250,100,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
