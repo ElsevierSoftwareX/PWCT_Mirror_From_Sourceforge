@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:11:52    Date : 11/05/2010
+* Time : 17:21:08    Date : 12/22/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -654,8 +654,8 @@ IF nMax3 = 0
 oRSOrderProcesses:ADDNEW()
 oRSOrderProcesses:fields:item("OrderNumberID"):value := cOrderNumber
 oRSOrderProcesses:fields:item("ProcessID"):value := cProcessID
-oRSOrderProcesses:fields:item("CheckD1"):value := 3
-oRSOrderProcesses:fields:item("CheckD2"):value := 3
+oRSOrderProcesses:fields:item("CheckD1"):value := 2
+oRSOrderProcesses:fields:item("CheckD2"):value := 2
 oRSOrderProcesses:fields:item("CheckD3"):value := 3
 oRSOrderProcesses:fields:item("CheckD4"):value := 3
 oRSOrderProcesses:fields:item("RealStartDate"):value := ""

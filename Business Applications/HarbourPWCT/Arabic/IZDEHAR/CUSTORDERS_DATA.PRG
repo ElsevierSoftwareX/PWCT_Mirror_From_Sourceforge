@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:16:57    Date : 11/04/2010
+* Time : 17:16:00    Date : 12/22/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -192,6 +192,9 @@ Method ShowDataWindow(nValue) Class CustOrdersClass
 OrdersEnterObject:LFindRecord := true
 OrdersEnterObject:CFindExpr := self:primarykey+"= '"+self:resultprimarykeys[nvalue]+"' "
 myout = OrdersEnterObject:ShowWindow()
+IF iswindowdefined( CustOrdersWindow )
+myout = self:MyStart()
+ENDIF
 Return 0
 Method search2 Class CustOrdersClass
 Local oRS,cName,myMax,x,x2,mymax2,vname,vname2,vid
@@ -241,6 +244,9 @@ Method ShowDataWindow2(nValue) Class CustOrdersClass
 OrdersEnterObject:LFindRecord := true
 OrdersEnterObject:CFindExpr := self:primarykey2+"= '"+self:resultprimarykeys2[nvalue]+"' "
 myout = OrdersEnterObject:ShowWindow()
+IF iswindowdefined( CustOrdersWindow )
+myout = self:MyStart()
+ENDIF
 Return 0
 Method RecCust Class CustOrdersClass
 myout = OrdersEnterObject:AutoCustRec(self:CustID)
@@ -320,6 +326,9 @@ MyOut := MSGBOX("ÌÃœ «‰  Œ «— «·œÊ—… «· Ï «” ›”— ⁄‰Â« «·„ œ—» „‰ «·ﬁ«∆„…","⁄›Ê«"
 ENDIF
 ENDIF
 myout = self:DisConnect()
+IF iswindowdefined( CustOrdersWindow )
+myout = self:MyStart()
+ENDIF
 Return 0
 
 
