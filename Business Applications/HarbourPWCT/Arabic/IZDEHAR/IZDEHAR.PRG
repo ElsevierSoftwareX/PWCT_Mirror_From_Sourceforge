@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:28:43    Date : 12/24/2010
+* Time : 00:55:52    Date : 12/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -251,7 +251,7 @@ UserPermissionsObject = UserPermissionsClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 907 ;
+WIDTH 1338 ;
 HEIGHT 718 ;
 ON INIT systemkey()  ;
 ICON "PWCTICON" ;
@@ -272,12 +272,12 @@ AMPM
 
 END STATUSBAR
 
-@ 66 ,674 IMAGE image1;
+@ 336 ,891 IMAGE image1;
 PICTURE "image\CUSTOMERS.JPG";
 ON CLICK customers()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 309 ,751 LABEL lbl1 ;
+@ 579 ,968 LABEL lbl1 ;
 VALUE "«·„»Ì⁄« " ;
 ACTION customers()  ;
 WIDTH 100 ;
@@ -285,12 +285,12 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 66 ,240 IMAGE image2;
+@ 336 ,457 IMAGE image2;
 PICTURE "image\LEATHER.JPG";
 ON CLICK ItemsObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 309 ,318 LABEL lbl2 ;
+@ 579 ,535 LABEL lbl2 ;
 VALUE "«· ‰”Ìﬁ" ;
 ACTION ItemsObject:ShowWindow()  ;
 WIDTH 50 ;
@@ -298,12 +298,12 @@ HEIGHT 40 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 66 ,454 IMAGE image4;
+@ 336 ,671 IMAGE image4;
 PICTURE "image\AGREEMENT.JPG";
 ON CLICK OrdersEnterObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 309 ,522 LABEL lbl4 ;
+@ 579 ,739 LABEL lbl4 ;
 VALUE "«· ”ÊÌﬁ" ;
 ACTION OrdersEnterObject:ShowWindow()  ;
 WIDTH 180 ;
@@ -311,12 +311,12 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 66 ,26 IMAGE image7;
+@ 336 ,243 IMAGE image7;
 PICTURE "image\DISPOSE.JPG";
 ON CLICK ProductionObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 309 ,98 LABEL lbl7 ;
+@ 579 ,315 LABEL lbl7 ;
 VALUE "«·«œ«—…" ;
 ACTION ProductionObject:ShowWindow()  ;
 WIDTH 60 ;
@@ -373,8 +373,8 @@ EndIF
 HPARENT := GetFormHandle("win1")
 HCHILD := GetFormHandle("winLOGO")
 myout = CALLDLL32("SetParent","USER32.DLL",HCHILD,HPARENT)
-winlogo.Col := 50
-winlogo.Row := 450
+winlogo.Col := 600
+winlogo.Row := 100
 Activate Window winlogo nowait
 Return Nil
 Proc customers
