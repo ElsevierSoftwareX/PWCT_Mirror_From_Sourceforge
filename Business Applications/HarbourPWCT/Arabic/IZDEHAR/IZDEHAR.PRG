@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:45:38    Date : 12/22/2010
+* Time : 00:28:43    Date : 12/24/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -272,93 +272,54 @@ AMPM
 
 END STATUSBAR
 
-@ 74 ,644 IMAGE image1;
+@ 66 ,674 IMAGE image1;
 PICTURE "image\CUSTOMERS.JPG";
 ON CLICK customers()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 316 ,721 LABEL lbl1 ;
-VALUE "«·„ œ—»Ì‰" ;
+@ 309 ,751 LABEL lbl1 ;
+VALUE "«·„»Ì⁄« " ;
 ACTION customers()  ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 356 ,640 IMAGE image2;
+@ 66 ,240 IMAGE image2;
 PICTURE "image\LEATHER.JPG";
 ON CLICK ItemsObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 607 ,705 LABEL lbl2 ;
-VALUE "„Œ«“‰" ;
+@ 309 ,318 LABEL lbl2 ;
+VALUE "«· ‰”Ìﬁ" ;
 ACTION ItemsObject:ShowWindow()  ;
 WIDTH 50 ;
 HEIGHT 40 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 356 ,430 IMAGE image3;
-PICTURE "image\ORDER.JPG";
-ON CLICK CustFriendsObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 607 ,474 LABEL lbl3 ;
-VALUE " ”ÃÌ· „” ›”—" ;
-ACTION CustFriendsObject:ShowWindow()  ;
-WIDTH 110 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 74 ,433 IMAGE image4;
+@ 66 ,454 IMAGE image4;
 PICTURE "image\AGREEMENT.JPG";
 ON CLICK OrdersEnterObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 316 ,442 LABEL lbl4 ;
-VALUE " ”ÃÌ· «·œÊ—«  Ê«·„ œ—»Ì‰" ;
+@ 309 ,522 LABEL lbl4 ;
+VALUE "«· ”ÊÌﬁ" ;
 ACTION OrdersEnterObject:ShowWindow()  ;
 WIDTH 180 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 74 ,223 IMAGE image5;
-PICTURE "image\FACTORY.JPG";
-ON CLICK OrderProcessesObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 316 ,271 LABEL lbl5 ;
-VALUE "„ «»⁄… ”Ì— œÊ—…" ;
-ACTION OrderProcessesObject:ShowWindow()  ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 74 ,9 IMAGE image6;
-PICTURE "image\REPORTS.JPG";
-ON CLICK sysreports()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 316 ,70 LABEL lbl6 ;
-VALUE " ﬁ«—Ì—" ;
-ACTION sysreports()  ;
-WIDTH 50 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 356 ,213 IMAGE image7;
+@ 66 ,26 IMAGE image7;
 PICTURE "image\DISPOSE.JPG";
 ON CLICK ProductionObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 607 ,234 LABEL lbl7 ;
-VALUE "„ «»⁄… «‰Ã«“ «·„ÊŸ›Ì‰" ;
+@ 309 ,98 LABEL lbl7 ;
+VALUE "«·«œ«—…" ;
 ACTION ProductionObject:ShowWindow()  ;
-WIDTH 150 ;
+WIDTH 60 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
