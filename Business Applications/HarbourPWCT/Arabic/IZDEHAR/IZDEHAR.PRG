@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:03:37    Date : 12/24/2010
+* Time : 21:31:13    Date : 12/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -274,12 +274,12 @@ END STATUSBAR
 
 @ 336 ,891 IMAGE image1;
 PICTURE "image\CUSTOMERS.JPG";
-ON CLICK customers()  ;
+ON CLICK CustomersBrowse3Object:showwindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
 @ 579 ,968 LABEL lbl1 ;
 VALUE "«·„»Ì⁄« " ;
-ACTION customers()  ;
+ACTION CustomersBrowse3Object:showwindow()  ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
