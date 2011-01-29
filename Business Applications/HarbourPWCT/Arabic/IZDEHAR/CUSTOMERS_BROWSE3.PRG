@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:57:33    Date : 12/26/2010
+* Time : 01:14:19    Date : 12/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -56,6 +56,10 @@ Method SearchAdd
 Method FindChange
 EndClass
 Method showwindow Class CustomersBrowse3Class
+IF .not. UsersObject:CheckPermission(5)
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 if !iswindowdefined( CustomersBrowse3Window )
 DEFINE WINDOW CustomersBrowse3Window ;
 AT 10 ,10 ;
