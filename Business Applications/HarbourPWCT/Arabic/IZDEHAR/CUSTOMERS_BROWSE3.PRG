@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:36:42    Date : 11/01/2010
+* Time : 21:54:14    Date : 12/25/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -60,7 +60,7 @@ if !iswindowdefined( CustomersBrowse3Window )
 DEFINE WINDOW CustomersBrowse3Window ;
 AT 10 ,10 ;
 WIDTH 963 ;
-HEIGHT 361 ;
+HEIGHT 416 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
 TITLE "»ÕÀ ⁄‰ „ œ—»" ;
@@ -73,7 +73,7 @@ BACKCOLOR {255,255,255}
 @ -13 ,-12 IMAGE image1;
 PICTURE GetStartUpFolder()+"\image\back.jpg";
 STRETCH ;
-WIDTH 970 HEIGHT 360
+WIDTH 970 HEIGHT 410
 @ 17 ,363 TEXTBOX textNameBrowse;
 HEIGHT 30 ;
 WIDTH 340 ;
@@ -99,7 +99,7 @@ WIDTH 925 ;
 HEIGHT 251 ;
 HEADERS {"‰Ê⁄ «·⁄„Ì·","›∆… «·⁄„Ì·","ÿ—Ìﬁ… «·”œ«œ","ÃÊ«·","«·«”„"};
 WIDTHS {150,150,150,200,250} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -118,6 +118,12 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 324 ,366 BUTTONEX btnAddRec;
+CAPTION "«÷«›… ⁄„Ì· ÃœÌœ";
+ON CLICK CustomersDataObject:ShowWindow()  ;
+WIDTH 220 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 CustomersBrowse3Window.Center ( )
