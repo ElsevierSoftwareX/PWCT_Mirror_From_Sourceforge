@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:14:19    Date : 12/26/2010
+* Time : 02:45:03    Date : 12/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,6 +54,7 @@ Method GetSearchValue
 Method settimer
 Method SearchAdd
 Method FindChange
+Method AddCustomer
 EndClass
 Method showwindow Class CustomersBrowse3Class
 IF .not. UsersObject:CheckPermission(5)
@@ -122,9 +123,15 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 324 ,366 BUTTONEX btnAddRec;
+@ 324 ,248 BUTTONEX btnCustData;
 CAPTION "‘«‘… »Ì«‰«  «·⁄„·«¡";
 ON CLICK CustomersDataObject:ShowWindow()  ;
+WIDTH 220 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 324 ,484 BUTTONEX btnAddRec;
+CAPTION "«÷«›… ⁄„Ì· ÃœÌœ";
+ON CLICK self:addcustomer()  ;
 WIDTH 220 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
@@ -154,6 +161,9 @@ Method FindChange Class CustomersBrowse3Class
 Local nIndex
 nIndex := CustomersBrowse3Window.ComboFind.Value
 self:Column := Self:FindColumns[nIndex]
+Return 0
+Method AddCustomer Class CustomersBrowse3Class
+myout = CustomersDataObject:ShowWindow()
 Return 0
 Method closewindow Class CustomersBrowse3Class
 CustomersBrowse3Window.Release ( )
