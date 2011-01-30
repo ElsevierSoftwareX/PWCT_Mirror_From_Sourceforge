@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:45:03    Date : 12/26/2010
+* Time : 03:05:07    Date : 12/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -163,6 +163,7 @@ nIndex := CustomersBrowse3Window.ComboFind.Value
 self:Column := Self:FindColumns[nIndex]
 Return 0
 Method AddCustomer Class CustomersBrowse3Class
+CustomersDataObject:AddOrEdit := 1
 myout = CustomersDataObject:ShowWindow()
 Return 0
 Method closewindow Class CustomersBrowse3Class

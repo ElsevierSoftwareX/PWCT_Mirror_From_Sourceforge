@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:02:48    Date : 11/04/2010
+* Time : 03:10:34    Date : 12/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -71,6 +71,7 @@ Data CustClassitems init {}
 Data cEName init ""
 Data cEMN init ""
 Data cCustAsk init 0
+Data AddOrEdit init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -83,6 +84,7 @@ Method AutoGotoRecord
 Method printdata
 Method CheckData
 Method CustOrders
+Method CheckAddOrEdit
 EndClass
 Method showwindow Class CustomersDataClass
 IF .not. UsersObject:CheckPermission(5)
@@ -600,6 +602,7 @@ END WINDOW
 CustomersDataWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
+myout = self:CheckAddOrEdit()
 ACTIVATE WINDOW CustomersDataWindow
 EndIF
 
@@ -838,6 +841,18 @@ myid = STR ( myid )
 CustOrdersObject:CustID := myid
 CustOrdersObject:CustName := myname
 myout = CustOrdersObject:ShowWindow()
+Return 0
+Method CheckAddOrEdit Class CustomersDataClass
+Local mycheck
+MyCheck := Self:AddOrEdit
+Self:AddOrEdit := 0
+IF mycheck = 1
+myout = self:AddRecord()
+Return 0
+ENDIF
+IF mycheck = 2
+myout = self:EditRecord()
+ENDIF
 Return 0
 Method closewindow Class CustomersDataClass
 myout = self:disconnect()
