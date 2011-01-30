@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:05:07    Date : 12/26/2010
+* Time : 03:14:52    Date : 12/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -145,6 +145,7 @@ Return 0
 Method ShowDataWindow(nValue) Class CustomersBrowse3Class
 CustomersDataObject:LFindRecord := true
 CustomersDataObject:CFindExpr := self:primarykey+"= '"+self:resultprimarykeys[nvalue]+"' "
+CustomersDataObject:AddOrEdit := 2
 myout = CustomersDataObject:ShowWindow()
 Return 0
 Method Print Class CustomersBrowse3Class
