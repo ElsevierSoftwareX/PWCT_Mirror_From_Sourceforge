@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:10:34    Date : 12/26/2010
+* Time : 03:27:00    Date : 12/26/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -865,7 +865,6 @@ CustomersDataWindow.btnnext.Enabled := false
 CustomersDataWindow.btnprev.Enabled := false
 CustomersDataWindow.btnlast.Enabled := false
 CustomersDataWindow.btndel.Enabled := false
-CustomersDataWindow.btnclose.Enabled := false
 CustomersDataWindow.btnsave.Enabled := true
 CustomersDataWindow.btncancel.Enabled := true
 CustomersDataWindow.btnedit.Enabled := false
@@ -902,7 +901,6 @@ CustomersDataWindow.btnnext.Enabled := true
 CustomersDataWindow.btnprev.Enabled := true
 CustomersDataWindow.btnlast.Enabled := true
 CustomersDataWindow.btndel.Enabled := true
-CustomersDataWindow.btnclose.Enabled := true
 CustomersDataWindow.btnsave.Enabled := false
 CustomersDataWindow.btncancel.Enabled := false
 CustomersDataWindow.btnedit.Enabled := true
