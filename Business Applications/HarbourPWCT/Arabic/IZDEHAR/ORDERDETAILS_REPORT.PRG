@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:06:49    Date : 12/27/2010
+* Time : 04:10:21    Date : 12/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -63,19 +63,19 @@ BACKCOLOR {64,0,64}
 @ 449 ,36 BUTTONEX btn1;
 CAPTION "«€·«ﬁ";
 ON CLICK self:CloseWindow()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 449 ,144 BUTTONEX btn2;
+@ 449 ,124 BUTTONEX btn2;
 CAPTION "ÿ»«⁄…";
 ON CLICK self:PrintReport()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 449 ,250 BUTTONEX btn3;
+@ 449 ,210 BUTTONEX btn3;
 CAPTION "⁄—÷";
 ON CLICK self:ShowReport()  ;
-WIDTH 100 HEIGHT 30 ;
+WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 self:oActiveX := TActiveX():New( "OrderDetailsReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 979 , 417)
@@ -114,17 +114,17 @@ WIDTH 100 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
-@ 449 ,459 TEXTBOX text1;
+@ 449 ,429 TEXTBOX text1;
 ON CHANGE self:checkchange()  ;
 HEIGHT 30 ;
 WIDTH 70 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 449 ,538 CHECKBOX check2;
+@ 449 ,508 CHECKBOX check2;
 CAPTION "—ﬁ„ «·œÊ—…";
 ON CHANGE self:checkchange()  ;
-WIDTH 70;
+WIDTH 100;
 Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {236,233,216} ;
