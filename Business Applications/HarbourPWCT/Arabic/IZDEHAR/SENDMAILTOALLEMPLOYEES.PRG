@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:37:34    Date : 10/08/2010
+* Time : 11:57:04    Date : 01/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -104,7 +104,7 @@ FONTCOLOR {0,0,0}
 @ 9 ,75 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 410 ;
-VALUE "msfclipper@yahoo.com" ;
+VALUE UsersObject:EnteredEmployeeEMAIL ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
