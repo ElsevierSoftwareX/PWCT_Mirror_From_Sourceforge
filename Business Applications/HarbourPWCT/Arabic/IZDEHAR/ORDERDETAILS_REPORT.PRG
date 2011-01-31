@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:10:21    Date : 12/27/2010
+* Time : 04:15:20    Date : 12/27/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -72,7 +72,7 @@ ON CLICK self:PrintReport()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 449 ,210 BUTTONEX btn3;
+@ 449 ,212 BUTTONEX btn3;
 CAPTION "⁄—÷";
 ON CLICK self:ShowReport()  ;
 WIDTH 80 HEIGHT 30 ;
@@ -129,6 +129,12 @@ Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
+@ 449 ,300 BUTTONEX btn4;
+CAPTION " ’œÌ—";
+ON CLICK self:ExportReport2()  ;
+WIDTH 80 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 OrderDetailsReportWindow.Maximize ( )
@@ -156,6 +162,7 @@ OrderDetailsReportWindow.DatePicker1.Row := tempvar2 - 88
 OrderDetailsReportWindow.DatePicker2.Row := tempvar2 - 88
 OrderDetailsReportWindow.check2.Row := tempvar2 - 88
 OrderDetailsReportWindow.text1.Row := tempvar2 - 88
+OrderDetailsReportWindow.btn4.Row := tempvar2-88
 Return 0
 Method CheckChange Class OrderDetailsReportClass
 tvalue := OrderDetailsReportWindow.Check1.Value
