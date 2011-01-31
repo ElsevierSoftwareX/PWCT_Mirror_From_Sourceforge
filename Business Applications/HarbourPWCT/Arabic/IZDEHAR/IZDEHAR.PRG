@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:59:24    Date : 01/31/2011
+* Time : 12:01:25    Date : 01/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -946,3 +946,7 @@ Return Nil
 
 End Of Resistance
 
+INIT PROCEDURE Init_IZDEHAR
+START DOUBLES
+Return
+*-------------------------------------------------------------------*
