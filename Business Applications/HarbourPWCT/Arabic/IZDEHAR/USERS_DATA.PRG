@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:54:30    Date : 11/27/2010
+* Time : 11:23:41    Date : 01/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -56,6 +56,7 @@ Data Employeeitems init {}
 Data Employeeitemsids init {}
 Data manychecks init false
 Data EnteredEmployeeID init 0
+Data EnteredEmployeeEMail init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -462,7 +463,7 @@ EndIF
 
 Return 0
 Method OpenSystem Class UsersClass
-Local oCon,oRS,mymax,x,cName,cPassword
+Local oCon,oRS,mymax,x,cName,cPassword,oRS2
 myout = self:Connect()
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
@@ -484,6 +485,12 @@ self:StartSystem := true
 self:UserIsAdmin := oRS:fields:item("SystemAdmin"):value
 self:EnteredUserID := oRS:fields:item("ID"):value
 self:EnteredEmployeeID := oRS:fields:item("EmpID"):value
+oRS2 := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS2:CursorType := 1
+oRS2:ActiveConnection := self:oCon
+oRS2:open ( "Select * from Employees2 where id = " + str(self:EnteredEmployeeID),self:oCon,3,3 )
+self:EnteredEmployeeEMAIL := oRS2:fields:item("F_EMAIL"):value
+oRS2:Close()
 ELSE
 MyOut := MSGBOX("ﬂ·„… «·”— €Ì— ’ÕÌÕ…","⁄›Ê«")
 Return 0
