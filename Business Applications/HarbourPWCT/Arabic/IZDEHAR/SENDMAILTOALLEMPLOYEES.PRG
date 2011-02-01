@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:26:24    Date : 02/01/2011
+* Time : 04:35:46    Date : 02/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -37,8 +37,8 @@ Return
 Resistance R_SENDMAILTOALLEMPLOYEES_15speed1() code
 class SendMailtoAllEmployeesClass From MailSMTPServer
 Data TableName init "Employees"
-Data windowtitle init "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï «·Ï ﬂ· «·„ÊŸ›Ì‰"
-Data gridheader init {"«·»—Ìœ «·«·ﬂ —Ê‰Ï","«”„ «·„ÊŸ›"}
+Data windowtitle init "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï «·Ï ﬂ· «·„œ—»Ì‰"
+Data gridheader init {"«·»—Ìœ «·«·ﬂ —Ê‰Ï","«”„ «·„œ—»"}
 Data btncaption init "«—”«· «·—”«·… «·Ï ﬂ· «·„ÊŸ›Ì‰"
 Method ShowWindow
 Method msgSend
