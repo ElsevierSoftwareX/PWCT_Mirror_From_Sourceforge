@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:02:35    Date : 02/01/2011
+* Time : 04:55:58    Date : 02/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -249,7 +249,7 @@ IF nMax > 0
 FOR x = 1 TO nMax STEP 1
 TRY
 cSMTP := SendMailToGroupWindow.textSMTP.Value
-nPort := 25
+nPort := SELF:SMTPPORT
 cUserID := SendMailToGroupWindow.text1.value
 cPassword := SendMailToGroupWindow.text2.value
 cFrom := "<" + alltrim(SendMailToGroupWindow.text1.value) + ">"
