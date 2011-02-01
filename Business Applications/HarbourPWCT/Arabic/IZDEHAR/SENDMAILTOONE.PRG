@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:38:38    Date : 01/31/2011
+* Time : 03:31:20    Date : 02/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -46,7 +46,7 @@ if !iswindowdefined( SendMailToOneWindow )
 DEFINE WINDOW SendMailToOneWindow ;
 AT 10 ,10 ;
 WIDTH 664 ;
-HEIGHT 494 ;
+HEIGHT 542 ;
 ICON "PWCTICON" ;
 TITLE "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
 CHILD ;
@@ -55,17 +55,17 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216}
 
-@ 414 ,284 BUTTONEX btn1;
+@ 464 ,284 BUTTONEX btn1;
 CAPTION "«—”«· «·—”«·… «·Ï «·⁄„Ì·";
 ON CLICK self:msgsend()  ;
 WIDTH 200 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 0 ,0 IMAGE image1;
+@ 0 ,1 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 656 HEIGHT 402
-@ 10 ,497 LABEL lbl1 ;
+WIDTH 656 HEIGHT 452
+@ 60 ,497 LABEL lbl1 ;
 VALUE "«·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -73,7 +73,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 46 ,496 LABEL lbl2 ;
+@ 96 ,496 LABEL lbl2 ;
 VALUE "ﬂ·„… «·”—" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -81,7 +81,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 88 ,493 LABEL lbl4 ;
+@ 138 ,493 LABEL lbl4 ;
 VALUE "«·—”«·… «·Ï" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -89,7 +89,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 139 ,493 LABEL lbl6 ;
+@ 189 ,493 LABEL lbl6 ;
 VALUE "⁄‰Ê«‰ «·—”«·…" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -97,7 +97,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 186 ,492 LABEL lbl7 ;
+@ 236 ,492 LABEL lbl7 ;
 VALUE "„Õ ÊÏ «·—”«·…" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -105,7 +105,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 9 ,75 TEXTBOX text1;
+@ 59 ,75 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 410 ;
 VALUE UsersObject:EnteredEmployeeEMAIL ;
@@ -113,7 +113,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 46 ,75 TEXTBOX text2;
+@ 96 ,75 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 410 ;
 BACKCOLOR {255,255,255} ;
@@ -121,33 +121,33 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0} ;
 PASSWORD
 
-@ 91 ,75 TEXTBOX text4;
+@ 141 ,75 TEXTBOX text4;
 HEIGHT 30 ;
 WIDTH 410 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 135 ,75 TEXTBOX text5;
+@ 185 ,75 TEXTBOX text5;
 HEIGHT 30 ;
 WIDTH 410 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 222 ,75 EDITBOX edit1;
+@ 272 ,75 EDITBOX edit1;
 WIDTH 410 ;
 HEIGHT 120;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 185 ,77 BUTTONEX btnLoad;
+@ 235 ,77 BUTTONEX btnLoad;
 CAPTION "htm  Õ„Ì· «·—”«·… „‰ „·› ";
 ON CLICK self:MSGLOAD()  ;
 WIDTH 230 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 350 ,492 LABEL lbl8 ;
+@ 400 ,492 LABEL lbl8 ;
 VALUE "«·„—›ﬁ« " ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -155,24 +155,39 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 350 ,124 TEXTBOX text8;
+@ 400 ,124 TEXTBOX text8;
 HEIGHT 30 ;
 WIDTH 360 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 351 ,76 BUTTONEX btnattach;
+@ 401 ,76 BUTTONEX btnattach;
 CAPTION "::";
 ON CLICK self:msgattach()  ;
 WIDTH 40 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
-@ 414 ,76 BUTTONEX btnClose;
+@ 464 ,76 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 ON CLICK SendMailToOneWindow.Release()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 19 ,497 LABEL lblSMTP ;
+VALUE "„“Êœ «·Œœ„…" ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 18 ,75 TEXTBOX textSMTP;
+HEIGHT 30 ;
+WIDTH 410 ;
+VALUE "smtp.mail.yahoo.com" ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
 END WINDOW
 
 SendMailToOneWindow.Center ( )
@@ -181,7 +196,7 @@ EndIF
 
 Return 0
 Method msgSend Class SendMailtoOneClass
-cSMTP := "smtp.mail.yahoo.com"
+cSMTP := SendMailToOneWindow.textSMTP.value
 nPort := 25
 cUserID := SendMailToOneWindow.text1.value
 cPassword := SendMailToOneWindow.text2.value
