@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:31:20    Date : 02/01/2011
+* Time : 03:45:56    Date : 02/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,13 +35,14 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_SENDMAILTOONE_15speed1() code
-Class SendMailtoOneClass
+class SendMailtoOneClass From MailSMTPServer
 Method ShowWindow
 Method msgSend
 Method msgAttach
 Method msgLoad
 EndClass
 Method ShowWindow Class SendMailtoOneClass
+myout = self:LoadSMTPFile()
 if !iswindowdefined( SendMailToOneWindow )
 DEFINE WINDOW SendMailToOneWindow ;
 AT 10 ,10 ;
@@ -184,7 +185,7 @@ FONTCOLOR {0,0,0}
 @ 18 ,75 TEXTBOX textSMTP;
 HEIGHT 30 ;
 WIDTH 410 ;
-VALUE "smtp.mail.yahoo.com" ;
+VALUE self:SMTPServer ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
@@ -237,6 +238,17 @@ SendMailToOneWindow.Edit1.VALUE := SendMailToOneWindow.Edit1.VALUE + CHR(13) + C
 else
 SendMailToOneWindow.Edit1.VALUE := mystr
 endif
+ENDIF
+Return 0
+Class MailSMTPServer
+Data SMTPServer init "smtp.mail.yahoo.com"
+Method LoadSMTPFile
+EndClass
+Method LoadSMTPFile Class MailSMTPServer
+StartUpFolder := GetStartUpFolder()
+CheckFile := File(startupfolder + "\smtpfile.txt")
+IF CheckFile = true
+self:smtpserver := FILESTR( startupfolder + "\smtpfile.txt" )
 ENDIF
 Return 0
 
