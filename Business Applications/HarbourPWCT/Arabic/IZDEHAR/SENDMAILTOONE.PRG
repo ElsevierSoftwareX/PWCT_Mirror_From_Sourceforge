@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:00:11    Date : 02/01/2011
+* Time : 05:04:18    Date : 02/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -198,7 +198,7 @@ EndIF
 Return 0
 Method msgSend Class SendMailtoOneClass
 cSMTP := SendMailToOneWindow.textSMTP.value
-nPort := 25
+nPort := SELF:SMTPPORT
 cUserID := SendMailToOneWindow.text1.value
 cPassword := SendMailToOneWindow.text2.value
 cFrom := "<" + alltrim(SendMailToOneWindow.text1.value) + ">"
@@ -242,13 +242,18 @@ ENDIF
 Return 0
 class MailSMTPServer From SystemDatabase
 Data SMTPServer init "smtp.mail.yahoo.com"
+Data SMTPPORT init 25
 Method LoadSMTPFile
 EndClass
 Method LoadSMTPFile Class MailSMTPServer
 StartUpFolder := GetStartUpFolder()
 CheckFile := File(startupfolder + "\smtpfile.txt")
 IF CheckFile = true
-self:smtpserver := FILESTR( startupfolder + "\smtpfile.txt" )
+mydata := FILESTR( startupfolder + "\smtpfile.txt" )
+self:smtpserver = MEMOLINE( mydata , 254 , 1 )
+self:smtpserver = ALLTRIM ( self:smtpserver )
+self:smtpport = MEMOLINE( mydata , 254 , 2 )
+self:smtpport = VAL ( self:smtpport )
 ENDIF
 Return 0
 
