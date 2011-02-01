@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:57:04    Date : 01/31/2011
+* Time : 04:26:24    Date : 02/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,7 +35,7 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_SENDMAILTOALLEMPLOYEES_15speed1() code
-class SendMailtoAllEmployeesClass From SystemDatabase
+class SendMailtoAllEmployeesClass From MailSMTPServer
 Data TableName init "Employees"
 Data windowtitle init "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï «·Ï ﬂ· «·„ÊŸ›Ì‰"
 Data gridheader init {"«·»—Ìœ «·«·ﬂ —Ê‰Ï","«”„ «·„ÊŸ›"}
@@ -46,11 +46,12 @@ Method msgAttach
 Method msgLoad
 EndClass
 Method ShowWindow Class SendMailtoAllEmployeesClass
+myout = self:LoadSMTPFile()
 if !iswindowdefined( SendMailToAllEmployeesWindow )
 DEFINE WINDOW SendMailToAllEmployeesWindow ;
 AT 10 ,10 ;
 WIDTH 664 ;
-HEIGHT 560 ;
+HEIGHT 590 ;
 ICON "PWCTICON" ;
 TITLE self:windowtitle ;
 CHILD ;
@@ -59,17 +60,17 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216}
 
-@ 484 ,274 BUTTONEX btn1;
+@ 514 ,274 BUTTONEX btn1;
 CAPTION self:btncaption;
 ON CLICK self:msgsend()  ;
 WIDTH 210 HEIGHT 30 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 0 ,0 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 656 HEIGHT 472
-@ 10 ,497 LABEL lbl1 ;
+WIDTH 656 HEIGHT 502
+@ 49 ,492 LABEL lbl1 ;
 VALUE "«·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -77,7 +78,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 46 ,496 LABEL lbl2 ;
+@ 84 ,493 LABEL lbl2 ;
 VALUE "ﬂ·„… «·”—" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -85,7 +86,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 89 ,493 LABEL lbl6 ;
+@ 127 ,493 LABEL lbl6 ;
 VALUE "⁄‰Ê«‰ «·—”«·…" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -93,7 +94,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 136 ,492 LABEL lbl7 ;
+@ 166 ,493 LABEL lbl7 ;
 VALUE "„Õ ÊÏ «·—”«·…" ;
 WIDTH 130 ;
 HEIGHT 30 ;
@@ -101,7 +102,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 9 ,75 TEXTBOX text1;
+@ 47 ,74 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 410 ;
 VALUE UsersObject:EnteredEmployeeEMAIL ;
@@ -109,7 +110,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 46 ,75 TEXTBOX text2;
+@ 84 ,74 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 410 ;
 BACKCOLOR {255,255,255} ;
@@ -117,26 +118,26 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0} ;
 PASSWORD
 
-@ 85 ,75 TEXTBOX text5;
+@ 123 ,74 TEXTBOX text5;
 HEIGHT 30 ;
 WIDTH 410 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 172 ,75 EDITBOX edit1;
+@ 202 ,74 EDITBOX edit1;
 WIDTH 410 ;
 HEIGHT 120;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 135 ,77 BUTTONEX btnLoad;
+@ 165 ,74 BUTTONEX btnLoad;
 CAPTION "htm  Õ„Ì· «·—”«·… „‰ „·› ";
 ON CLICK self:MSGLOAD()  ;
 WIDTH 230 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 300 ,492 LABEL lbl8 ;
+@ 330 ,493 LABEL lbl8 ;
 VALUE "«·„—›ﬁ« " ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -144,25 +145,25 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 300 ,124 TEXTBOX text8;
+@ 330 ,125 TEXTBOX text8;
 HEIGHT 30 ;
 WIDTH 360 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 301 ,76 BUTTONEX btnattach;
+@ 331 ,77 BUTTONEX btnattach;
 CAPTION "::";
 ON CLICK self:msgattach()  ;
 WIDTH 40 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
-@ 484 ,76 BUTTONEX btnClose;
+@ 514 ,76 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 ON CLICK SendMailToAllEmployeesWindow.Release()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 344 ,492 LABEL lbl9 ;
+@ 374 ,493 LABEL lbl9 ;
 VALUE "Õ«·… «·«—”«·" ;
 WIDTH 100 ;
 HEIGHT 40 ;
@@ -170,16 +171,31 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 341 ,76 GRID Grid1;
+@ 371 ,77 GRID Grid1;
 WIDTH 410 ;
 HEIGHT 120 ;
 HEADERS self:gridheader;
 WIDTHS {200,200} ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 EDIT INPLACE {} ;
 JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
+@ 17 ,493 LABEL lblSMTP ;
+VALUE "„“Êœ «·Œœ„…" ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 12 ,74 TEXTBOX textSMTP;
+HEIGHT 30 ;
+WIDTH 410 ;
+VALUE self:SMTPServer ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
 END WINDOW
 
 SendMailToAllEmployeesWindow.Center ( )
