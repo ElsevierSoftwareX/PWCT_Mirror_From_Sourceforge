@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:45:56    Date : 02/01/2011
+* Time : 04:00:11    Date : 02/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -240,7 +240,7 @@ SendMailToOneWindow.Edit1.VALUE := mystr
 endif
 ENDIF
 Return 0
-Class MailSMTPServer
+class MailSMTPServer From SystemDatabase
 Data SMTPServer init "smtp.mail.yahoo.com"
 Method LoadSMTPFile
 EndClass
