@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:01:22    Date : 02/03/2011
+* Time : 07:11:54    Date : 02/03/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -38,6 +38,7 @@ Resistance R_IMPORTDATA_15speed1() code
 Class ImportDataClass
 Method showwindow
 Method closewindow
+Method SelectFile
 EndClass
 Method showwindow Class ImportDataClass
 if !iswindowdefined( ImportDataWindow )
@@ -65,13 +66,13 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 11 ,139 TEXTBOX text1;
 HEIGHT 30 ;
-WIDTH 310 ;
+WIDTH 330 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 11 ,459 LABEL lbl1 ;
+@ 11 ,479 LABEL lbl1 ;
 VALUE "„”«— «·„·›" ;
-WIDTH 100 ;
+WIDTH 80 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -79,6 +80,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 11 ,25 BUTTONEX btnBrowse;
 CAPTION " ÕœÌœ «·„·›";
+ON CLICK self:SelectFile()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
@@ -102,6 +104,14 @@ EndIF
 Return 0
 Method closewindow Class ImportDataClass
 ImportDataWindow.Release ( )
+Return 0
+Method SelectFile Class ImportDataClass
+GetFile := GetFile ( { {"Excel","*.xls"}} , ;
+, ;
+, ;
+, ;
+)
+ImportDataWindow.text1.Value := GetFile
 Return 0
 
 
