@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:04:25    Date : 02/01/2011
+* Time : 07:01:29    Date : 02/03/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -152,6 +152,7 @@ Set Procedure to "Employees2_Report.PRG"
 Set Procedure to "ListOfEmployees2_Report.PRG"
 Set Procedure to "Users_Data.PRG"
 Set Procedure to "UserPermissions_Data.PRG"
+Set Procedure to "ImportData.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -248,6 +249,7 @@ Employees2ReportObject = Employees2ReportClass()
 ListofEmployees2ReportObject = ListofEmployees2ReportClass()
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
+importdataobject = ImportDataClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -663,6 +665,10 @@ MENUITEM "«—”«· —”«·… «·Ï «·„”Ã·Ì‰ ›Ï œÊ—…" Action sendmailtogroupobject:showwin
 ENDIF
 END POPUP
 ENDIF
+POPUP "«” Ì—«œ «·»Ì«‰« "
+MENUITEM "«” Ì—«œ «·»Ì«‰«  „‰ «ﬂ”·" Action importdataobject:showwindow()
+SEPARATOR
+END POPUP
 Return Nil
 Proc customersreport
 customersreportobject:filter := ""
