@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:11:54    Date : 02/03/2011
+* Time : 07:30:30    Date : 02/03/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -39,6 +39,7 @@ Class ImportDataClass
 Method showwindow
 Method closewindow
 Method SelectFile
+Method Import
 EndClass
 Method showwindow Class ImportDataClass
 if !iswindowdefined( ImportDataWindow )
@@ -92,6 +93,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 358 ,459 BUTTONEX btnImport;
 CAPTION "«” Ì—«œ";
+ON CLICK self:import()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
@@ -112,6 +114,9 @@ GetFile := GetFile ( { {"Excel","*.xls"}} , ;
 , ;
 )
 ImportDataWindow.text1.Value := GetFile
+Return 0
+Method Import Class ImportDataClass
+MyOut := MSGBOX("Text Here","Text Here")
 Return 0
 
 
