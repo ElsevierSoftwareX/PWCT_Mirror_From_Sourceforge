@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:12:55    Date : 02/04/2011
+* Time : 03:34:50    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -121,7 +121,14 @@ cFileName := ImportDataWindow.Text1.Value
 CheckFile := File(cFileName)
 IF CheckFile
 oCon := TOLEAUTO():NEW( "ADODB.Connection" )
-oCon:open ( 'Driver={Microsoft Excel Driver (*.xls)};Dbq='+cFileName+';ReadOnly=0' )
+oCon:open ( 'Driver={Microsoft Excel Driver (*.xls)};Dbq='+cFileName )
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := oCon
+oRS:open ( "Select * from [Sheet1$]",oCon,3,3 )
+mymax := oRS:RecordCount
+MyOut := MSGBOX(mymax,"Text Here")
+oRS:Close()
 oCon:CLOSE()
 ELSE
 MyOut := MSGBOX("ÌÃ»  ÕœÌœ „·› «·«ﬂ”·","⁄›Ê«")
