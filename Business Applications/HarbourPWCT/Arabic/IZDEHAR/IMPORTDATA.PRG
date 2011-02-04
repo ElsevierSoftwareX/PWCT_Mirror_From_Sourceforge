@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:24:43    Date : 02/04/2011
+* Time : 10:29:25    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -174,6 +174,9 @@ IF mymax2 > 0
 addrecnow := false
 ENDIF
 oRS2:Close()
+ENDIF
+IF valtype(self:records[x][2]) = "U" .AND. valtype(self:records[x][3]) = "U"
+addrecnow := false
 ENDIF
 IF addrecnow = false
 Loop
