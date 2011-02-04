@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:54:26    Date : 02/04/2011
+* Time : 07:15:10    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -119,6 +119,8 @@ ImportDataWindow.text1.Value := GetFile
 Return 0
 Method Import Class ImportDataClass
 Local oCon,oRS,x,mymax,cName,ceMail,cMobile,cFileName
+ImportDataWindow.list1.DeleteAllItems ( )
+self:records := {}
 cFileName := ImportDataWindow.Text1.Value
 CheckFile := File(cFileName)
 IF CheckFile
