@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:06:12    Date : 02/04/2011
+* Time : 06:47:42    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -101,6 +101,8 @@ TOOLTIP ""
 END WINDOW
 
 ImportDataWindow.Center ( )
+RightToLeftControl ( "ImportDataWindow","Text1" )
+RightToLeftControl ( "ImportDataWindow","List1" )
 ACTIVATE WINDOW ImportDataWindow
 EndIF
 
