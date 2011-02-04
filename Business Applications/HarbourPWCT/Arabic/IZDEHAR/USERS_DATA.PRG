@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:23:41    Date : 01/31/2011
+* Time : 02:22:23    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -429,6 +429,7 @@ FONTCOLOR {0,0,0}
 @ 33 ,92 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 200 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -437,6 +438,7 @@ FONTCOLOR {0,0,0}
 ON ENTER self:OpenSystem()  ;
 HEIGHT 30 ;
 WIDTH 200 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0} ;
