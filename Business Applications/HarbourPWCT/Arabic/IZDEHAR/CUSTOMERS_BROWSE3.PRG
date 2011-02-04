@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:34:05    Date : 02/05/2011
+* Time : 02:38:06    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -64,7 +64,7 @@ ENDIF
 if !iswindowdefined( CustomersBrowse3Window )
 DEFINE WINDOW CustomersBrowse3Window ;
 AT 10 ,10 ;
-WIDTH 963 ;
+WIDTH 1061 ;
 HEIGHT 416 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -78,21 +78,21 @@ BACKCOLOR {255,255,255}
 @ -13 ,-12 IMAGE image1;
 PICTURE GetStartUpFolder()+"\image\back.jpg";
 STRETCH ;
-WIDTH 970 HEIGHT 410
-@ 17 ,363 TEXTBOX textNameBrowse;
+WIDTH 1080 HEIGHT 410
+@ 17 ,411 TEXTBOX textNameBrowse;
 HEIGHT 30 ;
 WIDTH 340 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 17 ,247 BUTTONEX btn1;
+@ 17 ,295 BUTTONEX btn1;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 17 ,15 BUTTONEX btnclose;
+@ 17 ,63 BUTTONEX btnclose;
 CAPTION "«€·«ﬁ";
 ON CLICK self:closewindow()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -100,21 +100,21 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 58 ,15 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 925 ;
+WIDTH 1025 ;
 HEIGHT 251 ;
 HEADERS {"›∆… «·⁄„Ì·","ÿ—Ìﬁ… «·”œ«œ","«·»—Ìœ «·«·ﬂ —Ê‰Ï","ÃÊ«·","«·«”„"};
-WIDTHS {150,150,150,200,250} ;
-FONT "arial" SIZE 14 ;
+WIDTHS {150,150,250,200,250} ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 17 ,131 BUTTONEX btnPrint;
+@ 17 ,179 BUTTONEX btnPrint;
 CAPTION "ÿ»«⁄…";
 ON CLICK self:print()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 17 ,719 COMBOBOX comboFind;
+@ 17 ,767 COMBOBOX comboFind;
 ON CHANGE self:findchange()  ;
 WIDTH 220 ;
 HEIGHT 200;
@@ -123,13 +123,13 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 324 ,248 BUTTONEX btnCustData;
+@ 324 ,297 BUTTONEX btnCustData;
 CAPTION "‘«‘… »Ì«‰«  «·⁄„·«¡";
 ON CLICK CustomersDataObject:ShowWindow()  ;
 WIDTH 220 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 324 ,484 BUTTONEX btnAddRec;
+@ 324 ,533 BUTTONEX btnAddRec;
 CAPTION "«÷«›… ⁄„Ì· ÃœÌœ";
 ON CLICK self:addcustomer()  ;
 WIDTH 220 HEIGHT 30 ;
