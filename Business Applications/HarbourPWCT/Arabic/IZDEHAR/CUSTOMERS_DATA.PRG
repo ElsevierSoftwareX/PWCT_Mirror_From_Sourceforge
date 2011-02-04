@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:27:00    Date : 12/26/2010
+* Time : 05:34:23    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -98,6 +98,7 @@ DEFINE WINDOW CustomersDataWindow ;
 AT 10 ,10 ;
 WIDTH 1061 ;
 HEIGHT 654 ;
+ON RELEASE self:cancelrecord()  ;
 ICON "PWCTICON" ;
 TITLE "»Ì«‰«  «·„ œ—»Ì‰" ;
 CHILD ;
@@ -855,6 +856,7 @@ myout = self:EditRecord()
 ENDIF
 Return 0
 Method closewindow Class CustomersDataClass
+myout = self:cancelrecord()
 myout = self:disconnect()
 CustomersDataWindow.Release ( )
 Return 0
