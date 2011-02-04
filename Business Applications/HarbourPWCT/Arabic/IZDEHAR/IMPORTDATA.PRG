@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:18:05    Date : 02/04/2011
+* Time : 10:24:43    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -157,7 +157,7 @@ IF valtype(self:records[x][2]) = "N"
 oRS2 := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS2:CursorType := 1
 oRS2:ActiveConnection := self:oCon
-oRS2:open ( "Select * from Customers where f_mobile = '" + alltrim(str(self:records[x][2])) + "'",self:oCon,3,3 )
+oRS2:open ( "Select * from Customers where f_mobile = '" + alltrim(str(int(self:records[x][2]))) + "'",self:oCon,3,3 )
 mymax2 := oRS2:RecordCount
 IF mymax2 > 0
 addrecnow := false
@@ -181,7 +181,7 @@ ENDIF
 oRS:ADDNEW()
 oRS:fields:item("f_name"):value := self:records[x][1]
 IF valtype(self:records[x][2]) = "N"
-oRS:fields:item("f_mobile"):value := alltrim(str(self:records[x][2]))
+oRS:fields:item("f_mobile"):value := alltrim(str(int(self:records[x][2])))
 ELSE
 oRS:fields:item("f_mobile"):value := ""
 ENDIF
