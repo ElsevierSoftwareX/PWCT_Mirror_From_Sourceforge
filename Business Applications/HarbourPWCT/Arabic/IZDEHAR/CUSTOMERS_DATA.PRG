@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:34:23    Date : 02/04/2011
+* Time : 05:39:44    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -85,6 +85,7 @@ Method printdata
 Method CheckData
 Method CustOrders
 Method CheckAddOrEdit
+Method CheckCancel
 EndClass
 Method showwindow Class CustomersDataClass
 IF .not. UsersObject:CheckPermission(5)
@@ -98,7 +99,7 @@ DEFINE WINDOW CustomersDataWindow ;
 AT 10 ,10 ;
 WIDTH 1061 ;
 HEIGHT 654 ;
-ON RELEASE self:cancelrecord()  ;
+ON RELEASE self:checkcancel()  ;
 ICON "PWCTICON" ;
 TITLE "»Ì«‰«  «·„ œ—»Ì‰" ;
 CHILD ;
@@ -855,8 +856,15 @@ IF mycheck = 2
 myout = self:EditRecord()
 ENDIF
 Return 0
-Method closewindow Class CustomersDataClass
+Method CheckCancel Class CustomersDataClass
+Local mycheck
+mycheck := CustomersDataWindow.btnCancel.Enabled
+IF mycheck = true
 myout = self:cancelrecord()
+ENDIF
+Return 0
+Method closewindow Class CustomersDataClass
+myout = self:checkcancel()
 myout = self:disconnect()
 CustomersDataWindow.Release ( )
 Return 0
