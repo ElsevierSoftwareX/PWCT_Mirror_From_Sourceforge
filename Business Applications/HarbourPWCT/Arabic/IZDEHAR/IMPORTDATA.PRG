@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:22:39    Date : 02/04/2011
+* Time : 09:38:10    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -118,7 +118,7 @@ GetFile := GetFile ( { {"Excel","*.xls"}} , ;
 ImportDataWindow.text1.Value := GetFile
 Return 0
 Method Import Class ImportDataClass
-Local oCon,oRS,x,mymax,cName,ceMail,cMobile,cFileName
+Local oCon,oRS,x,mymax,cName,ceMail,cMobile,cFileName,addrecnow,oRS2,mymax2
 ImportDataWindow.list1.DeleteAllItems ( )
 self:records := {}
 cFileName := ImportDataWindow.Text1.Value
@@ -152,6 +152,32 @@ oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from Customers",self:oCon,3,3 )
 oRS:MOVEFIRST()
 FOR x = 1 TO mymax STEP 1
+addrecnow := true
+IF valtype(self:records[x][2]) = "C"
+oRS2 := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS2:CursorType := 1
+oRS2:ActiveConnection := self:oCon
+oRS2:open ( "Select * from Customers where f_mobile = '" + self:records[x][2] + "'",self:oCon,3,3 )
+mymax2 := oRS2:RecordCount
+IF mymax2 > 0
+addrecnow := false
+ENDIF
+oRS2:Close()
+ENDIF
+IF VALTYPE(self:records[x][3]) = "C"
+oRS2 := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS2:CursorType := 1
+oRS2:ActiveConnection := self:oCon
+oRS2:open ( "Select * from Customers where f_email = '" + self:records[x][3] + "'",self:oCon,3,3 )
+mymax2 := oRS2:RecordCount
+IF mymax2 > 0
+addrecnow := false
+ENDIF
+oRS2:Close()
+ENDIF
+IF addrecnow = false
+Loop
+ENDIF
 oRS:ADDNEW()
 oRS:fields:item("f_name"):value := self:records[x][1]
 oRS:fields:item("f_mobile"):value := self:records[x][2]
