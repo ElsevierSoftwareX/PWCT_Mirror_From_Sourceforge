@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:24:33    Date : 02/04/2011
+* Time : 06:06:12    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -155,6 +155,7 @@ oRS:fields:item("f_mobile"):value := self:records[x][2]
 oRS:fields:item("f_email"):value := self:records[x][3]
 oRS:fields:item("f_cardfinish"):value := dtoc(date())
 oRS:UPDATE()
+ImportDataWindow.List1.Additem ( self:records[x][1] )
 Next
 oRS:Close()
 myout = Self:Disconnect()
