@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:50:39    Date : 02/04/2011
+* Time : 04:07:44    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,6 +36,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_IMPORTDATA_15speed1() code
 Class ImportDataClass
+Data Records init {}
 Method showwindow
 Method closewindow
 Method SelectFile
@@ -116,7 +117,7 @@ GetFile := GetFile ( { {"Excel","*.xls"}} , ;
 ImportDataWindow.text1.Value := GetFile
 Return 0
 Method Import Class ImportDataClass
-Local oCon,oRS
+Local oCon,oRS,x,mymax,cName,ceMail,cMobile,cFileName
 cFileName := ImportDataWindow.Text1.Value
 CheckFile := File(cFileName)
 IF CheckFile
@@ -129,6 +130,10 @@ oRS:open ( "Select * from [Sheet1$]",oCon,3,3 )
 mymax := oRS:RecordCount
 oRS:MOVEFIRST()
 FOR x = 1 TO mymax STEP 1
+cName := oRS:fields:item(1):value
+cMobile := oRS:fields:item(2):value
+ceMail := oRS:fields:item(3):value
+AADD( self:Records , {cName,cMobile,ceMail})
 oRS:MOVENEXT()
 Next
 oRS:Close()
