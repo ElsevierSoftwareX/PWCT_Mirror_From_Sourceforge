@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:07:44    Date : 02/04/2011
+* Time : 04:18:37    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,7 +35,7 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_IMPORTDATA_15speed1() code
-Class ImportDataClass
+class ImportDataClass From CustomersDataClass
 Data Records init {}
 Method showwindow
 Method closewindow
@@ -141,7 +141,23 @@ oCon:CLOSE()
 ELSE
 MyOut := MSGBOX("íÌÈ ÊÍÏíÏ ãáÝ ÇáÇßÓá","ÚÝæÇ")
 ENDIF
-MyOut := MSGBOX("Done","Text Here")
+mymax  = LEN(self:Records)
+IF mymax > 0
+myout = self:Connect()
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from Customers",self:oCon,3,3 )
+oRS:MOVEFIRST()
+FOR x = 1 TO mymax STEP 1
+oRS:ADDNEW()
+oRS:fields:item("f_name"):value := self:records[x][1]
+oRS:fields:item("f_mobile"):value := self:records[x][2]
+oRS:fields:item("f_email"):value := self:records[x][3]
+oRS:UPDATE()
+Next
+oRS:Close()
+myout = Self:Disconnect()
+ENDIF
 Return 0
 
 
