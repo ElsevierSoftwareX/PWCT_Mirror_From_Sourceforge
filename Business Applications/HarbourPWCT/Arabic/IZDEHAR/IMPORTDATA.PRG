@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:15:10    Date : 02/04/2011
+* Time : 07:22:39    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -47,7 +47,7 @@ if !iswindowdefined( ImportDataWindow )
 DEFINE WINDOW ImportDataWindow ;
 AT 10 ,10 ;
 WIDTH 595 ;
-HEIGHT 449 ;
+HEIGHT 534 ;
 ICON "PWCTICON" ;
 TITLE "«” Ì—«œ «·»Ì«‰«  „‰ «ﬂ”·" ;
 CHILD ;
@@ -59,11 +59,11 @@ BACKCOLOR {255,255,255}
 @ -5 ,-10 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 611 HEIGHT 424
-@ 358 ,25 BUTTONEX btnClose;
+WIDTH 611 HEIGHT 514
+@ 448 ,25 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 ON CLICK self:closewindow()  ;
-WIDTH 130 HEIGHT 30 ;
+WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 11 ,139 TEXTBOX text1;
@@ -88,11 +88,11 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 58 ,25 LISTBOX list1;
 WIDTH 534 ;
-HEIGHT 292 ;
+HEIGHT 372 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 358 ,459 BUTTONEX btnImport;
+@ 448 ,459 BUTTONEX btnImport;
 CAPTION "«” Ì—«œ";
 ON CLICK self:import()  ;
 WIDTH 100 HEIGHT 30 ;
