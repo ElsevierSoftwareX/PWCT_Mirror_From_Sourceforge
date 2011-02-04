@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:18:37    Date : 02/04/2011
+* Time : 05:11:57    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -130,9 +130,9 @@ oRS:open ( "Select * from [Sheet1$]",oCon,3,3 )
 mymax := oRS:RecordCount
 oRS:MOVEFIRST()
 FOR x = 1 TO mymax STEP 1
-cName := oRS:fields:item(1):value
-cMobile := oRS:fields:item(2):value
-ceMail := oRS:fields:item(3):value
+cName := oRS:fields:item(0):value
+cMobile := oRS:fields:item(1):value
+ceMail := oRS:fields:item(2):value
 AADD( self:Records , {cName,cMobile,ceMail})
 oRS:MOVENEXT()
 Next
@@ -158,6 +158,7 @@ Next
 oRS:Close()
 myout = Self:Disconnect()
 ENDIF
+MyOut := MSGBOX("«‰ Â  ⁄„·Ì… «·«” Ì—«œ","Õ”‰«")
 Return 0
 
 
