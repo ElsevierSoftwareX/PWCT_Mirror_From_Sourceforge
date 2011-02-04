@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:30:34    Date : 02/03/2011
+* Time : 03:13:00    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -666,7 +666,7 @@ ENDIF
 END POPUP
 ENDIF
 POPUP "«” Ì—«œ «·»Ì«‰« "
-MENUITEM "«” Ì—«œ «·»Ì«‰«  „‰ «ﬂ”·" Action importdataobject:showwindow()
+MENUITEM "«” Ì—«œ »Ì«‰«  «·⁄„·«¡ „‰ «ﬂ”·" Action importdataobject:showwindow()
 SEPARATOR
 END POPUP
 Return Nil

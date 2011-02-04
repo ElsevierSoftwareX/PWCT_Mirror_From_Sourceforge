@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:30:30    Date : 02/03/2011
+* Time : 03:12:55    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -116,7 +116,17 @@ GetFile := GetFile ( { {"Excel","*.xls"}} , ;
 ImportDataWindow.text1.Value := GetFile
 Return 0
 Method Import Class ImportDataClass
-MyOut := MSGBOX("Text Here","Text Here")
+Local oCon,oRS
+cFileName := ImportDataWindow.Text1.Value
+CheckFile := File(cFileName)
+IF CheckFile
+oCon := TOLEAUTO():NEW( "ADODB.Connection" )
+oCon:open ( 'Driver={Microsoft Excel Driver (*.xls)};Dbq='+cFileName+';ReadOnly=0' )
+oCon:CLOSE()
+ELSE
+MyOut := MSGBOX("ÌÃ»  ÕœÌœ „·› «·«ﬂ”·","⁄›Ê«")
+ENDIF
+MyOut := MSGBOX("Done","Text Here")
 Return 0
 
 
