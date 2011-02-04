@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:14:52    Date : 12/26/2010
+* Time : 02:34:05    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data databasename init ""
 Data tablename init "Customers_All"
 Data column init "f_name"
 Data PrimaryKey init "id"
-Data columns init {"custtype","custclass","paymethod","f_mobile","f_name"}
+Data columns init {"custclass","paymethod","f_email","f_mobile","f_name"}
 Data FindColumns init {"f_name","f_mobile","f_email","f_cardnum","f_cardfinish","f_company","country","paymethod","custtype","custclass","f_ename","f_enumber"}
 Data FindTitles init {"«·≈”„","«·ÃÊ«·","«·«Ì„Ì·","—ﬁ„ «·»ÿ«ﬁ…"," «—ÌŒ «‰ Â«¡ «·ÂÊÌ…","«·‘—ﬂ…","«·œÊ·…","ÿ—Ìﬁ… «·œ›⁄","‰Ê⁄ «·⁄„Ì·","›∆… «·⁄„Ì·","«”„ «·⁄„Ì· »«·«‰Ã·Ì“Ï","—ﬁ„ «·⁄÷ÊÌ…"}
 Data ResultPrimaryKeys init {}
@@ -102,9 +102,9 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 925 ;
 HEIGHT 251 ;
-HEADERS {"‰Ê⁄ «·⁄„Ì·","›∆… «·⁄„Ì·","ÿ—Ìﬁ… «·”œ«œ","ÃÊ«·","«·«”„"};
+HEADERS {"›∆… «·⁄„Ì·","ÿ—Ìﬁ… «·”œ«œ","«·»—Ìœ «·«·ﬂ —Ê‰Ï","ÃÊ«·","«·«”„"};
 WIDTHS {150,150,150,200,250} ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
