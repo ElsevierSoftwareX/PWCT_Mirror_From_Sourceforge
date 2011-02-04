@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:38:10    Date : 02/04/2011
+* Time : 10:18:05    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -57,7 +57,7 @@ NOSIZE ;
 BACKCOLOR {255,255,255}
 
 @ -5 ,-10 IMAGE image1;
-PICTURE "Image\back.jpg";
+PICTURE getstartupfolder() + "\Image\back.jpg";
 STRETCH ;
 WIDTH 611 HEIGHT 514
 @ 448 ,25 BUTTONEX btnClose;
@@ -153,11 +153,11 @@ oRS:open ( "Select * from Customers",self:oCon,3,3 )
 oRS:MOVEFIRST()
 FOR x = 1 TO mymax STEP 1
 addrecnow := true
-IF valtype(self:records[x][2]) = "C"
+IF valtype(self:records[x][2]) = "N"
 oRS2 := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS2:CursorType := 1
 oRS2:ActiveConnection := self:oCon
-oRS2:open ( "Select * from Customers where f_mobile = '" + self:records[x][2] + "'",self:oCon,3,3 )
+oRS2:open ( "Select * from Customers where f_mobile = '" + alltrim(str(self:records[x][2])) + "'",self:oCon,3,3 )
 mymax2 := oRS2:RecordCount
 IF mymax2 > 0
 addrecnow := false
@@ -180,7 +180,11 @@ Loop
 ENDIF
 oRS:ADDNEW()
 oRS:fields:item("f_name"):value := self:records[x][1]
-oRS:fields:item("f_mobile"):value := self:records[x][2]
+IF valtype(self:records[x][2]) = "N"
+oRS:fields:item("f_mobile"):value := alltrim(str(self:records[x][2]))
+ELSE
+oRS:fields:item("f_mobile"):value := ""
+ENDIF
 oRS:fields:item("f_email"):value := self:records[x][3]
 oRS:fields:item("f_cardfinish"):value := dtoc(date())
 oRS:UPDATE()
