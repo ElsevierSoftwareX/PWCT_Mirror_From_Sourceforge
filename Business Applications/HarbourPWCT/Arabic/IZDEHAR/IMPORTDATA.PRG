@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:34:50    Date : 02/04/2011
+* Time : 03:50:39    Date : 02/04/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -127,7 +127,10 @@ oRS:CursorType := 1
 oRS:ActiveConnection := oCon
 oRS:open ( "Select * from [Sheet1$]",oCon,3,3 )
 mymax := oRS:RecordCount
-MyOut := MSGBOX(mymax,"Text Here")
+oRS:MOVEFIRST()
+FOR x = 1 TO mymax STEP 1
+oRS:MOVENEXT()
+Next
 oRS:Close()
 oCon:CLOSE()
 ELSE
