@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:38:06    Date : 02/05/2011
+* Time : 02:51:57    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -147,6 +147,7 @@ CustomersDataObject:LFindRecord := true
 CustomersDataObject:CFindExpr := self:primarykey+"= '"+self:resultprimarykeys[nvalue]+"' "
 CustomersDataObject:AddOrEdit := 2
 myout = CustomersDataObject:ShowWindow()
+myout = self:search()
 Return 0
 Method Print Class CustomersBrowse3Class
 Local cName,myout
@@ -166,6 +167,7 @@ Return 0
 Method AddCustomer Class CustomersBrowse3Class
 CustomersDataObject:AddOrEdit := 1
 myout = CustomersDataObject:ShowWindow()
+myout = self:search()
 Return 0
 Method closewindow Class CustomersBrowse3Class
 CustomersBrowse3Window.Release ( )
