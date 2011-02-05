@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:15:39    Date : 02/05/2011
+* Time : 04:31:59    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -47,6 +47,9 @@ Data StartCodeitems init {}
 Data nStartCode init 0
 Data cStartPos init ""
 Data cDuration init ""
+Data departmentitemsids init {}
+Data departmentitems init {}
+Data ndepartment init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -82,7 +85,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 40 ,5 IMAGE image1;
+@ 41 ,3 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\BACK.jpg";
 STRETCH ;
 WIDTH 750 HEIGHT 416
@@ -264,6 +267,23 @@ WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
+myout = self:LoadLookupTable("gender","gender",@self:departmentItems,"id",@self:departmentItemsIDS)
+@ 409 ,494 LABEL lbldepartment ;
+VALUE "Чсогу" ;
+WIDTH 40 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 409 ,281 COMBOBOX combodepartment;
+WIDTH 200 ;
+HEIGHT 100;
+ITEMS self:departmentitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 CustTypeDataWindow.Center ( )
