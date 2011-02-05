@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:21:08    Date : 12/22/2010
+* Time : 05:25:41    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -48,7 +48,7 @@ Data TableName init "OrderProcesses_All"
 Data nID init 0
 Data column init "OrderNumber"
 Data PrimaryKey init "id"
-Data columns init {"Notes","ProcessCost","RealFinishDate","RealStartDate","PlannedFinishDate","PlannedStartDate","ProcessStatus","ProcessName","OrderName","orderNumber"}
+Data columns init {"Notes","ProcessCost","RealFinishDate","RealStartDate","PlannedFinishDate","PlannedStartDate","ProcessStatus","ProcessName","Gender","OrderName","orderNumber"}
 Data nOrderNumber init 0
 Data OrderNumberitems init {}
 Data OrderNumberitemsids init {}
@@ -64,7 +64,7 @@ Data nProcessStatus init 0
 Data ProcessStatusitems init {}
 Data ProcessStatusitemsids init {}
 Data cProcessCost init ""
-Data FindTitles init {"ãáÇÍÙÇÊ","ÇáÊßáİÉ","ãæÚÏ ÇáÇäÊåÇÁ ÇáİÚáì","ãæÚÏ ÇáÈÏÁ ÇáİÚáì","ãæÚÏ ÇáÇäÊåÇÁ ÇáãÎØØ","ãæÚÏ ÇáÈÏÁ ÇáãÎØØ","ÍÇáÉ ÇáÇÌÑÇÁ","ÇáÇÌÑÇÁ","ÇÓã ÇáÏæÑÉ","ÑŞã ÇáÏæÑÉ"}
+Data FindTitles init {"ãáÇÍÙÇÊ","ÇáÊßáİÉ","ãæÚÏ ÇáÇäÊåÇÁ ÇáİÚáì","ãæÚÏ ÇáÈÏÁ ÇáİÚáì","ãæÚÏ ÇáÇäÊåÇÁ ÇáãÎØØ","ãæÚÏ ÇáÈÏÁ ÇáãÎØØ","ÍÇáÉ ÇáÇÌÑÇÁ","ÇáÇÌÑÇÁ","ÇáŞÓã","ÇÓã ÇáÏæÑÉ","ÑŞã ÇáÏæÑÉ"}
 Data CheckD1 init FALSE
 Data CheckD2 init FALSE
 Data CheckD3 init FALSE
@@ -231,8 +231,8 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1030 ;
 HEIGHT 230 ;
 HEADERS self:FindTitles;
-WIDTHS {100,100,200,200,200,150,150,250,200,150} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {100,100,200,200,200,150,150,250,100,200,150} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
