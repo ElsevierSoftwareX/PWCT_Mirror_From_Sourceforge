@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:31:59    Date : 02/05/2011
+* Time : 04:38:21    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -300,18 +300,22 @@ self:nStartCode := CustTypeDataWindow.comboStartCode.Value
 self:nStartCode := self:StartCodeItemsIDS[self:nStartCode]
 self:cStartPos := CustTypeDataWindow.textStartPos.Value
 self:cDuration := CustTypeDataWindow.textDuration.Value
+self:nDepartment := CustTypeDataWindow.comboDepartment.Value
+self:nDepartment := self:DepartmentItemsIDS[self:nDepartment]
 Return 0
 Method Class2ADO Class ProcessesClass
 self:oRS:fields:item("ProcessName"):value := self:cCountry
 self:oRS:fields:item("StartCodeID"):value := self:nStartCode
 self:oRS:fields:item("StartPos"):value := self:cStartPos
 self:oRS:fields:item("Duration"):value := self:cDuration
+self:oRS:fields:item("GenderID"):value := self:nDepartment
 Return 0
 Method ADO2Class Class ProcessesClass
 self:cCountry := self:oRS:fields:item("ProcessName"):value
 self:nStartCode := self:oRS:fields:item("StartCodeID"):value
 self:cDuration := self:oRS:fields:item("Duration"):value
 self:cStartPos := self:oRS:fields:item("StartPos"):value
+self:nDepartment := self:oRS:fields:item("GenderID"):value
 Return 0
 Method Class2UserInterface Class ProcessesClass
 CustTypeDataWindow.textCountry.Value := self:cCountry
@@ -319,12 +323,15 @@ self:nStartCode = self:LookupIDToIndex(self:nStartCode,@self:StartCodeItemsIDS)
 CustTypeDataWindow.comboStartCode.Value := self:nStartCode
 CustTypeDataWindow.textStartPos.Value := self:cStartPos
 CustTypeDataWindow.textDuration.Value := self:cDuration
+self:nDepartment = self:LookupIDToIndex(self:nDepartment,@self:DepartmentItemsIDS)
+CustTypeDataWindow.comboDepartment.Value := self:nDepartment
 Return 0
 Method ClearRecord Class ProcessesClass
 self:cCountry := ""
 self:nStartCode := 0
 self:cStartPos := ""
 self:cDuration := ""
+self:nDepartment := 0
 Return 0
 Method OpenDataWindow Class ProcessesClass
 Local nvalue,myout
@@ -358,6 +365,7 @@ CustTypeDataWindow.textCountry.Enabled := true
 CustTypeDataWindow.ComboStartCode.Enabled := true
 CustTypeDataWindow.textStartPos.Enabled := true
 CustTypeDataWindow.textDuration.Enabled := true
+CustTypeDataWindow.ComboDepartment.Enabled := true
 ENDIF
 IF p1 = 2
 CustTypeDataWindow.btnfirst.Enabled := true
@@ -374,6 +382,7 @@ CustTypeDataWindow.textCountry.Enabled := false
 CustTypeDataWindow.ComboStartCode.Enabled := false
 CustTypeDataWindow.textStartPos.Enabled := false
 CustTypeDataWindow.textDuration.Enabled := false
+CustTypeDataWindow.ComboDepartment.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
