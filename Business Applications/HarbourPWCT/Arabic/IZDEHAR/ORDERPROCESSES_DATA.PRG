@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:25:41    Date : 02/05/2011
+* Time : 05:56:43    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -234,7 +234,7 @@ HEADERS self:FindTitles;
 WIDTHS {100,100,200,200,200,150,150,250,100,200,150} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 52 ,737 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
