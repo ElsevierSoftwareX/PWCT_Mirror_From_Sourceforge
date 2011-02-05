@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:38:21    Date : 02/05/2011
+* Time : 04:46:05    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -243,6 +243,7 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 60 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 @ 318 ,492 LABEL lblStartPos ;
@@ -265,6 +266,7 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("gender","gender",@self:departmentItems,"id",@self:departmentItemsIDS)
@@ -290,6 +292,8 @@ CustTypeDataWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
 CustTypeDataWindow.Timer1.Enabled := false
+RightToLeftControl ( "CustTypeDataWindow","ComboStartCode" )
+RightToLeftControl ( "CustTypeDataWindow","ComboDepartment" )
 ACTIVATE WINDOW CustTypeDataWindow
 EndIF
 
