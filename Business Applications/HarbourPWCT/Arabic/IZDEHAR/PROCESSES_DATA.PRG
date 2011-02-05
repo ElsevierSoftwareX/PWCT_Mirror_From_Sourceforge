@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:17:23    Date : 12/10/2010
+* Time : 04:15:39    Date : 02/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -72,7 +72,7 @@ if !iswindowdefined( CustTypeDataWindow )
 DEFINE WINDOW CustTypeDataWindow ;
 AT 10 ,10 ;
 WIDTH 773 ;
-HEIGHT 511 ;
+HEIGHT 559 ;
 ON INIT self:search()  ;
 ICON "PWCTICON" ;
 TITLE "«Ã—«¡«  «·œÊ—…" ;
@@ -85,8 +85,8 @@ BACKCOLOR {64,0,64}
 @ 40 ,5 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\BACK.jpg";
 STRETCH ;
-WIDTH 750 HEIGHT 376
-@ 430 ,370 BUTTONEX btnFirst;
+WIDTH 750 HEIGHT 416
+@ 470 ,370 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -95,7 +95,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 430 ,243 BUTTONEX btnNext;
+@ 470 ,243 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -104,7 +104,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 430 ,180 BUTTONEX btnLast;
+@ 470 ,180 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -113,7 +113,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 430 ,12 BUTTONEX btnClose;
+@ 470 ,12 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -122,7 +122,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 430 ,307 BUTTONEX btnPrev;
+@ 470 ,307 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -131,7 +131,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 430 ,105 BUTTONEX btnDel;
+@ 470 ,105 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -140,25 +140,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 430 ,522 BUTTONEX btnsave;
+@ 470 ,522 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 430 ,435 BUTTONEX btncancel;
+@ 470 ,435 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 430 ,602 BUTTONEX btnedit;
+@ 470 ,602 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 430 ,677 BUTTONEX btnadd;
+@ 470 ,677 BUTTONEX btnadd;
 CAPTION "≈÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -213,7 +213,7 @@ WIDTH 730 ;
 HEIGHT 160 ;
 HEADERS {"„œ… «·«Ã—«¡","‰ﬁÿ… «·»œ¡","«·»œ¡ »⁄œœ «Ì«„","«·«Ã—«¡","—ﬁ„"};
 WIDTHS {100,200,100,200,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
