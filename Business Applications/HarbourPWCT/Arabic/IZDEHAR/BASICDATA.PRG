@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:18:56    Date : 02/06/2011
+* Time : 11:29:45    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,8 +36,11 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_BASICDATA_15speed1() code
 class BasicDataClass From SystemDatabase
+Data TableName init "BasicData"
 Method showwindow
 Method closewindow
+Method Load
+Method Save
 EndClass
 Method showwindow Class BasicDataClass
 if !iswindowdefined( BasicDataWindow )
@@ -45,6 +48,7 @@ DEFINE WINDOW BasicDataWindow ;
 AT 10 ,10 ;
 WIDTH 513 ;
 HEIGHT 266 ;
+ON INIT self:load()  ;
 ICON "PWCTICON" ;
 TITLE "«·»Ì«‰«  «·«”«”Ì…" ;
 CHILD ;
@@ -122,6 +126,16 @@ EndIF
 Return 0
 Method closewindow Class BasicDataClass
 BasicDataWindow.Release ( )
+Return 0
+Method Load Class BasicDataClass
+myout = self:Connect()
+self:oRS:MOVEFIRST()
+BasicDataWindow.text1.value := self:oRS:fields:item("ManName"):value
+BasicDataWindow.text2.value := self:oRS:fields:item("EngManName"):value
+BasicDataWindow.text3.value := self:oRS:fields:item("ComCode"):value
+myout = self:disconnect()
+Return 0
+Method Save Class BasicDataClass
 Return 0
 
 
