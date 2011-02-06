@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:05:25    Date : 02/06/2011
+* Time : 05:21:17    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -86,6 +86,7 @@ Method CheckData
 Method CustOrders
 Method CheckAddOrEdit
 Method CheckCancel
+Method SaveRecord
 EndClass
 Method showwindow Class CustomersDataClass
 IF .not. UsersObject:CheckPermission(5)
@@ -862,6 +863,9 @@ mycheck := CustomersDataWindow.btnCancel.Enabled
 IF mycheck = true
 myout = self:cancelrecord()
 ENDIF
+Return 0
+Method SaveRecord Class CustomersDataClass
+myout = super:saverecord()
 Return 0
 Method closewindow Class CustomersDataClass
 myout = self:checkcancel()
