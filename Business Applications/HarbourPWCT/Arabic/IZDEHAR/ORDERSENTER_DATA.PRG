@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:29:09    Date : 11/03/2010
+* Time : 09:30:43    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -259,14 +259,22 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 167 ,296 TEXTBOX textcustomerwant2;
+@ 165 ,274 TEXTBOX textcustomerwant2;
 HEIGHT 31 ;
-WIDTH 248 ;
+WIDTH 178 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+@ 167 ,462 LABEL lblcustwant2 ;
+VALUE "«· ÊﬁÌ " ;
+WIDTH 60 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("employees","f_name",@self:CustomerItems,"id",@self:CustomerItemsIDS)
 @ 90 ,876 LABEL lblSupplier ;
 VALUE "«·„Õ«÷—" ;
@@ -319,15 +327,15 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 167 ,838 LABEL lblItemUnit2 ;
-VALUE "«Â„ À·«À… „Õ«Ê—" ;
-WIDTH 110 ;
+@ 167 ,802 LABEL lblItemUnit2 ;
+VALUE "«”„ «·œÊ—… »«·«‰Ã·Ì“Ï" ;
+WIDTH 150 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 168 ,567 TEXTBOX textcustomerwant1;
+@ 168 ,524 TEXTBOX textcustomerwant1;
 HEIGHT 30 ;
 WIDTH 250 ;
 FONT "Arial" SIZE 14 ;
@@ -367,12 +375,20 @@ DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
 @ 167 ,63 TEXTBOX textcustomerwant3;
 HEIGHT 30 ;
-WIDTH 210 ;
+WIDTH 80 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+@ 167 ,150 LABEL lblcustwant3 ;
+VALUE "⁄œœ «·”«⁄« " ;
+WIDTH 80 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
 @ 90 ,237 LABEL lblFinishDate ;
 VALUE " «—ÌŒ «·«‰ Â«¡" ;
 WIDTH 90 ;
