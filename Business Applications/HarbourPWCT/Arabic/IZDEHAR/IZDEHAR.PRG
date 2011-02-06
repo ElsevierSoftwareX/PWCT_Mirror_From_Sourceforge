@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:15:21    Date : 02/06/2011
+* Time : 10:54:12    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -153,6 +153,7 @@ Set Procedure to "ListOfEmployees2_Report.PRG"
 Set Procedure to "Users_Data.PRG"
 Set Procedure to "UserPermissions_Data.PRG"
 Set Procedure to "ImportData.PRG"
+Set Procedure to "BasicData.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -250,6 +251,7 @@ ListofEmployees2ReportObject = ListofEmployees2ReportClass()
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 importdataobject = ImportDataClass()
+BasicDataObject = BasicDataClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -384,6 +386,7 @@ myout = CustomersDataObject:ShowWindow()
 Return Nil
 Proc sysmenu
 POPUP "„·›"
+MENUITEM "«·»Ì«‰«  «·«”«”Ì…" Action BasicDataObject:ShowWindow()
 MENUITEM "Œ—ÊÃ" Action closesystem()  IMAGE "image\wzclose.bmp"
 END POPUP
 IF UsersObject:userisadmin = 1
