@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:24:00    Date : 02/06/2011
+* Time : 05:35:38    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -751,7 +751,7 @@ self:cCompanytrans := ""
 self:cCompanyFax := ""
 self:cCountry := 0
 self:cENAME := ""
-self:cEMN := ""
+self:cEMN := "”Ì „ Ê÷⁄Â  ·ﬁ«∆Ì«"
 self:cCustAsk := ""
 Return 0
 Method PrintData Class CustomersDataClass
