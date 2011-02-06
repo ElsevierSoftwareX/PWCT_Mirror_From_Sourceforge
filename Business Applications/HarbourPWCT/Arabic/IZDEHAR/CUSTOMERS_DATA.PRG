@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:39:44    Date : 02/04/2011
+* Time : 04:56:54    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -666,7 +666,6 @@ self:oRS:fields:item("f_companytrans"):value := self:cCompanytrans
 self:oRS:fields:item("f_companyfax"):value := self:cCompanyfax
 self:oRS:fields:item("f_ename"):value := self:cENAME
 self:oRS:fields:item("f_enumber"):value := self:cEMN
-self:oRS:fields:item("f_custAsk"):value := self:cCustAsk
 Return 0
 Method ADO2Class Class CustomersDataClass
 self:cname := self:oRS:fields:item("f_name"):value
@@ -693,7 +692,8 @@ self:cCompanyFax := self:oRS:fields:item("f_CompanyFax"):value
 self:cFax := self:oRS:fields:item("f_Fax"):value
 self:cENAME := self:oRS:fields:item("f_ename"):value
 self:cEMN := self:oRS:fields:item("f_enumber"):value
-self:cCustAsk := self:oRS:fields:item("f_CustAsk"):value
+self:cCustAsk := self:oRS:fields:item("ID"):value
+self:cCustAsk = STR ( self:cCustAsk )
 Return 0
 Method Class2UserInterface Class CustomersDataClass
 CustomersDataWindow.textName.Value := self:cname
@@ -902,7 +902,6 @@ CustomersDataWindow.textcompanyphone.Enabled := true
 CustomersDataWindow.textcompanytrans.Enabled := true
 CustomersDataWindow.textcompanyfax.Enabled := true
 CustomersDataWindow.textENAME.Enabled := TRUE
-CustomersDataWindow.textEMN.Enabled := TRUE
 CustomersDataWindow.editCustAsk.Enabled := true
 ENDIF
 IF p1 = 2
