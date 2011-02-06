@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:29:45    Date : 02/06/2011
+* Time : 11:50:58    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -39,8 +39,8 @@ class BasicDataClass From SystemDatabase
 Data TableName init "BasicData"
 Method showwindow
 Method closewindow
-Method Load
-Method Save
+Method LoadData
+Method SaveData
 EndClass
 Method showwindow Class BasicDataClass
 if !iswindowdefined( BasicDataWindow )
@@ -48,7 +48,7 @@ DEFINE WINDOW BasicDataWindow ;
 AT 10 ,10 ;
 WIDTH 513 ;
 HEIGHT 266 ;
-ON INIT self:load()  ;
+ON INIT self:loaddata()  ;
 ICON "PWCTICON" ;
 TITLE "«·»Ì«‰«  «·«”«”Ì…" ;
 CHILD ;
@@ -114,6 +114,7 @@ FONTCOLOR {0,0,0}
 
 @ 182 ,262 BUTTONEX btnSave;
 CAPTION "Õ›Ÿ";
+ON CLICK self:savedata()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
@@ -127,15 +128,22 @@ Return 0
 Method closewindow Class BasicDataClass
 BasicDataWindow.Release ( )
 Return 0
-Method Load Class BasicDataClass
+Method LoadData Class BasicDataClass
 myout = self:Connect()
 self:oRS:MOVEFIRST()
 BasicDataWindow.text1.value := self:oRS:fields:item("ManName"):value
 BasicDataWindow.text2.value := self:oRS:fields:item("EngManName"):value
 BasicDataWindow.text3.value := self:oRS:fields:item("ComCode"):value
-myout = self:disconnect()
+myout = self:DisConnect()
 Return 0
-Method Save Class BasicDataClass
+Method SaveData Class BasicDataClass
+myout = self:Connect()
+self:oRS:MOVEFIRST()
+self:oRS:fields:item("ManName"):value := BasicDataWindow.text1.value
+self:oRS:fields:item("EngManName"):value := BasicDataWindow.text2.value
+self:oRS:fields:item("ComCode"):value := BasicDataWindow.text3.value
+self:oRS:UPDATE()
+myout = self:CloseWindow()
 Return 0
 
 
