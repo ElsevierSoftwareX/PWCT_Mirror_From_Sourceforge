@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:04:50    Date : 02/06/2011
+* Time : 11:18:56    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,8 +43,8 @@ Method showwindow Class BasicDataClass
 if !iswindowdefined( BasicDataWindow )
 DEFINE WINDOW BasicDataWindow ;
 AT 10 ,10 ;
-WIDTH 567 ;
-HEIGHT 325 ;
+WIDTH 513 ;
+HEIGHT 266 ;
 ICON "PWCTICON" ;
 TITLE "«·»Ì«‰«  «·«”«”Ì…" ;
 CHILD ;
@@ -53,52 +53,62 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {255,255,255}
 
-@ 224 ,37 BUTTONEX btnClose;
+@ -5 ,-4 IMAGE image1;
+PICTURE "Image\back.jpg";
+STRETCH ;
+WIDTH 514 HEIGHT 259
+@ 182 ,140 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 ON CLICK self:closewindow()  ;
-WIDTH 130 HEIGHT 30 ;
+WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 30 ,360 LABEL lbl1 ;
+@ 24 ,360 LABEL lbl1 ;
 VALUE "«·„œÌ— «·⁄«„" ;
 WIDTH 160 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 93 ,360 LABEL lbl2 ;
+@ 70 ,360 LABEL lbl2 ;
 VALUE "«·„œÌ— «·⁄«„ »«·«‰Ã·Ì“Ï" ;
 WIDTH 160 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 152 ,360 LABEL lbl3 ;
+@ 116 ,360 LABEL lbl3 ;
 VALUE "—ﬁ„ «· —ŒÌ’" ;
 WIDTH 160 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 30 ,38 TEXTBOX text1;
+@ 26 ,30 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 310 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 83 ,38 TEXTBOX text2;
+@ 71 ,30 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 310 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 151 ,38 TEXTBOX text3;
+@ 116 ,30 TEXTBOX text3;
 HEIGHT 30 ;
 WIDTH 310 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 224 ,379 BUTTONEX btnSave;
+@ 182 ,262 BUTTONEX btnSave;
 CAPTION "Õ›Ÿ";
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
