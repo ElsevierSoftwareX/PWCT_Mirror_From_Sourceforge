@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:02:12    Date : 02/06/2011
+* Time : 05:05:25    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -582,6 +582,7 @@ HEIGHT 30 ;
 WIDTH 200 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 @ 403 ,922 LABEL lblcustask ;
@@ -749,6 +750,7 @@ self:cCompanytrans := ""
 self:cCompanyFax := ""
 self:cCountry := 0
 self:cENAME := ""
+self:cEMN := ""
 self:cCustAsk := ""
 Return 0
 Method PrintData Class CustomersDataClass
