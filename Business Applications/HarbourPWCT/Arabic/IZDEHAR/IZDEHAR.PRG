@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:55:01    Date : 02/06/2011
+* Time : 11:58:32    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -386,7 +386,9 @@ myout = CustomersDataObject:ShowWindow()
 Return Nil
 Proc sysmenu
 POPUP "„·›"
+IF UsersObject:CheckPermission(76)
 MENUITEM "«·»Ì«‰«  «·«”«”Ì…" Action BasicDataObject:ShowWindow()
+ENDIF
 MENUITEM "Œ—ÊÃ" Action closesystem()  IMAGE "image\wzclose.bmp"
 END POPUP
 IF UsersObject:userisadmin = 1
