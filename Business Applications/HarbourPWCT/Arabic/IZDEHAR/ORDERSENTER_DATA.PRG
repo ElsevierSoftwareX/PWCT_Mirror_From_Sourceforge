@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:46:52    Date : 02/06/2011
+* Time : 10:15:10    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -268,7 +268,7 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 @ 167 ,462 LABEL lblcustwant2 ;
-VALUE "«·› —…" ;
+VALUE "«·„œÌ‰…" ;
 WIDTH 60 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
@@ -662,7 +662,7 @@ IF self:addrec = false
 self:nOrderNumber := 0
 ENDIF
 self:CustomerWant1 := ""
-self:CustomerWant2 := ""
+self:CustomerWant2 := "Ãœ…"
 self:CustomerWant3 := ""
 self:Days := ""
 Return 0
