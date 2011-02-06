@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:56:54    Date : 02/06/2011
+* Time : 05:02:12    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -638,7 +638,6 @@ self:cCountry := CustomersDataWindow.comboCountry.Value
 self:cCountry := self:CountryItemsIDS[self:cCountry]
 self:cCardFinish := dtoc(self:cCardFinish)
 self:cEName := CustomersDataWindow.texteName.Value
-self:cEMN := CustomersDataWindow.texteMN.Value
 self:cCustAsk := CustomersDataWindow.editCustAsk.Value
 Return 0
 Method Class2ADO Class CustomersDataClass
@@ -665,7 +664,7 @@ self:oRS:fields:item("f_companyphone"):value := self:cCompanyphone
 self:oRS:fields:item("f_companytrans"):value := self:cCompanytrans
 self:oRS:fields:item("f_companyfax"):value := self:cCompanyfax
 self:oRS:fields:item("f_ename"):value := self:cENAME
-self:oRS:fields:item("f_enumber"):value := self:cEMN
+self:oRS:fields:item("f_custAsk"):value := self:cCustAsk
 Return 0
 Method ADO2Class Class CustomersDataClass
 self:cname := self:oRS:fields:item("f_name"):value
@@ -691,9 +690,9 @@ self:cCompanytrans := self:oRS:fields:item("f_Companytrans"):value
 self:cCompanyFax := self:oRS:fields:item("f_CompanyFax"):value
 self:cFax := self:oRS:fields:item("f_Fax"):value
 self:cENAME := self:oRS:fields:item("f_ename"):value
-self:cEMN := self:oRS:fields:item("f_enumber"):value
-self:cCustAsk := self:oRS:fields:item("ID"):value
-self:cCustAsk = STR ( self:cCustAsk )
+self:cCustAsk := self:oRS:fields:item("f_custask"):value
+self:cEMN := self:oRS:fields:item("ID"):value
+self:cEMN = STR ( self:cEMN )
 Return 0
 Method Class2UserInterface Class CustomersDataClass
 CustomersDataWindow.textName.Value := self:cname
@@ -750,7 +749,6 @@ self:cCompanytrans := ""
 self:cCompanyFax := ""
 self:cCountry := 0
 self:cENAME := ""
-self:cEMN := ""
 self:cCustAsk := ""
 Return 0
 Method PrintData Class CustomersDataClass
