@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:37:20    Date : 02/06/2011
+* Time : 09:46:52    Date : 02/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -218,21 +218,21 @@ ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 8 ,817 LABEL lblTitle ;
+@ 8 ,814 LABEL lblTitle ;
 VALUE "             ”ÃÌ· œÊ—…    " ;
 WIDTH 200 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 210 ,292 TEXTBOX textnamebrowse;
+@ 210 ,241 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 420 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 210 ,178 BUTTONEX btn1browse;
+@ 210 ,127 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -248,7 +248,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 210 ,716 COMBOBOX comboFind;
+@ 210 ,665 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -397,7 +397,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 91 ,65 DATEPICKER dateFinishDate;
+@ 91 ,63 DATEPICKER dateFinishDate;
 WIDTH 160 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -457,7 +457,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 51 ,66 TEXTBOX textOrderName;
+@ 51 ,63 TEXTBOX textOrderName;
 HEIGHT 30 ;
 WIDTH 250 ;
 FONT "Arial" SIZE 14 ;
