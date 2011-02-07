@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:35:38    Date : 02/06/2011
+* Time : 04:41:33    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -87,6 +87,7 @@ Method CustOrders
 Method CheckAddOrEdit
 Method CheckCancel
 Method SaveRecord
+Method OnBeforeDelete
 EndClass
 Method showwindow Class CustomersDataClass
 IF .not. UsersObject:CheckPermission(5)
@@ -868,6 +869,15 @@ Method SaveRecord Class CustomersDataClass
 myout = super:saverecord()
 myout = self:ShowRecord()
 Return 0
+Method OnBeforeDelete Class CustomersDataClass
+Local mycustomerid
+mycustomerid := self:cEMN
+mycustomerid = VAL ( mycustomerid )
+IF mycustomerid != 0
+mycustomerid = STR ( mycustomerid )
+myout = self:oCon:execute("delete from orderitems where customerid = " + mycustomerid)
+ENDIF
+Return myout
 Method closewindow Class CustomersDataClass
 myout = self:checkcancel()
 myout = self:disconnect()
