@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:54:57    Date : 11/26/2010
+* Time : 13:34:39    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -268,7 +268,7 @@ FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("Country","Country",@self:CountryItems,"id",@self:CountryItemsIDS)
 @ 239 ,644 LABEL lblCountry ;
-VALUE "«·œÊ·…" ;
+VALUE "«·Ã‰”Ì…" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
