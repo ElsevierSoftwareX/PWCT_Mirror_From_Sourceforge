@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:29:25    Date : 02/04/2011
+* Time : 04:50:17    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -131,6 +131,7 @@ oRS:CursorType := 1
 oRS:ActiveConnection := oCon
 oRS:open ( "Select * from [Sheet1$]",oCon,3,3 )
 mymax := oRS:RecordCount
+IF mymax > 0
 oRS:MOVEFIRST()
 FOR x = 1 TO mymax STEP 1
 cName := oRS:fields:item(0):value
@@ -139,6 +140,7 @@ ceMail := oRS:fields:item(2):value
 AADD( self:Records , {cName,cMobile,ceMail})
 oRS:MOVENEXT()
 Next
+ENDIF
 oRS:Close()
 oCon:CLOSE()
 ELSE
@@ -150,7 +152,6 @@ myout = self:Connect()
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from Customers",self:oCon,3,3 )
-oRS:MOVEFIRST()
 FOR x = 1 TO mymax STEP 1
 addrecnow := true
 IF valtype(self:records[x][2]) = "N"
