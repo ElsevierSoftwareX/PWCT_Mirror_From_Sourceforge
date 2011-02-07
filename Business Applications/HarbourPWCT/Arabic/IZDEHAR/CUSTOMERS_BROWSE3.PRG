@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:51:57    Date : 02/05/2011
+* Time : 13:23:14    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -55,6 +55,7 @@ Method settimer
 Method SearchAdd
 Method FindChange
 Method AddCustomer
+Method OpenCustData
 EndClass
 Method showwindow Class CustomersBrowse3Class
 IF .not. UsersObject:CheckPermission(5)
@@ -125,7 +126,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 324 ,297 BUTTONEX btnCustData;
 CAPTION "‘«‘… »Ì«‰«  «·⁄„·«¡";
-ON CLICK CustomersDataObject:ShowWindow()  ;
+ON CLICK self:opencustdata()  ;
 WIDTH 220 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
@@ -166,6 +167,10 @@ self:Column := Self:FindColumns[nIndex]
 Return 0
 Method AddCustomer Class CustomersBrowse3Class
 CustomersDataObject:AddOrEdit := 1
+myout = CustomersDataObject:ShowWindow()
+myout = self:search()
+Return 0
+Method OpenCustData Class CustomersBrowse3Class
 myout = CustomersDataObject:ShowWindow()
 myout = self:search()
 Return 0
