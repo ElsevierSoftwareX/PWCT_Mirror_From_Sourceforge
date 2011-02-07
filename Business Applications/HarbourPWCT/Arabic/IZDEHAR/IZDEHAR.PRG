@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:58:32    Date : 02/06/2011
+* Time : 04:16:50    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -154,6 +154,7 @@ Set Procedure to "Users_Data.PRG"
 Set Procedure to "UserPermissions_Data.PRG"
 Set Procedure to "ImportData.PRG"
 Set Procedure to "BasicData.PRG"
+Set Procedure to "Shehada_Report.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -252,6 +253,7 @@ UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 importdataobject = ImportDataClass()
 BasicDataObject = BasicDataClass()
+ShehadaReportObject = ShehadaReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -618,6 +620,8 @@ IF UsersObject:CheckPermission(61)
 MENUITEM "ﬂ‘› Õ÷Ê— Ê≈‰’—«› «·„ œ—»Ì‰" Action CustComeReportObject:ShowWindow()
 SEPARATOR
 ENDIF
+MENUITEM "‘Â«œ… »«··€… «·⁄—»Ì…" Action ShehadaReportObject:ShowWindow()
+SEPARATOR
 END POPUP
 ENDIF
 IF UsersObject:CheckPermission(62)
