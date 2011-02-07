@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:16:45    Date : 02/07/2011
+* Time : 04:23:34    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -75,40 +75,6 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 self:oActiveX := TActiveX():New( "ShehadaReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 979 , 417)
 self:oActiveX:Load()
-@ 449 ,487 LABEL lbl1 ;
-VALUE "ãä" ;
-WIDTH 40 ;
-HEIGHT 20 ;
-FONT "Arial" SIZE 9  ;
-BACKCOLOR {192,192,192} ;
-FONTCOLOR {0,0,0}
-@ 449 ,333 LABEL lbl2 ;
-VALUE "Çáì" ;
-WIDTH 30 ;
-HEIGHT 20 ;
-FONT "Arial" SIZE 9  ;
-BACKCOLOR {192,192,192} ;
-FONTCOLOR {0,0,0}
-@ 449 ,544 CHECKBOX check1;
-CAPTION "ÇáÊÇÑíÎ";
-ON CHANGE self:checkchange()  ;
-WIDTH 100;
-Height 30;
-FONT "Arial" SIZE 9 ;
-BACKCOLOR {192,192,192} ;
-FONTCOLOR {0,0,0}
-@ 449 ,373 DATEPICKER datepicker1;
-ON CHANGE self:checkchange()  ;
-WIDTH 100 ;
-FONT "Arial" SIZE 9 ;
-BACKCOLOR {192,192,192} ;
-FONTCOLOR {0,0,0}
-@ 449 ,227 DATEPICKER datepicker2;
-ON CHANGE self:checkchange()  ;
-WIDTH 100 ;
-FONT "Arial" SIZE 9 ;
-BACKCOLOR {192,192,192} ;
-FONTCOLOR {0,0,0}
 @ 449 ,29 TEXTBOX text1;
 ON CHANGE self:checkchange()  ;
 HEIGHT 30 ;
@@ -144,35 +110,13 @@ ShehadaReportWindow.btn1.Row := tempvar2-88
 ShehadaReportWindow.btn2.Row := tempvar2-88
 ShehadaReportWindow.btn3.Row := tempvar2-88
 self:oactivex:Show ( )
-ShehadaReportWindow.lbl1.Row := tempvar2 - 88
-ShehadaReportWindow.lbl2.Row := tempvar2 - 88
-ShehadaReportWindow.check1.Row := tempvar2 - 88
-ShehadaReportWindow.DatePicker1.Row := tempvar2 - 88
-ShehadaReportWindow.DatePicker2.Row := tempvar2 - 88
 ShehadaReportWindow.check2.Row := tempvar2 - 88
 ShehadaReportWindow.text1.Row := tempvar2 - 88
 Return 0
 Method CheckChange Class ShehadaReportClass
-tvalue := ShehadaReportWindow.Check1.Value
 self:filter := ""
-IF tvalue = true
-cdate1 := ShehadaReportWindow.Datepicker1.Value
-cdate2 := ShehadaReportWindow.Datepicker2.Value
-cdate1 = DTOC ( cdate1 )
-cdate2 = DTOC ( cdate2 )
-cdate1 = ALLTRIM ( cdate1 )
-cdate2 = ALLTRIM ( cdate2 )
-self:filter := "cdate(Orders.OrderDate) >= cdate('" + cdate1 + "') and cdate(Orders.OrderDate) <= cdate('" + cdate2 + "')"
-ELSE
-self:filter := "1 = 1"
-ENDIF
 tvalue2 := ShehadaReportWindow.Check2.Value
 IF tvalue2 = true
-IF tvalue = true
-self:filter := self:filter + " and "
-ELSE
-self:filter := ""
-ENDIF
 cOrderNumber := ShehadaReportWindow.text1.Value
 cOrderNumber = ALLTRIM ( cOrderNumber )
 self:filter := self:filter + " orders.ordernumber = " + cordernumber
