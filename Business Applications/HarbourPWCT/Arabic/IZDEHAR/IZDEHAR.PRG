@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:50:22    Date : 02/07/2011
+* Time : 05:22:47    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -620,8 +620,10 @@ IF UsersObject:CheckPermission(61)
 MENUITEM "ﬂ‘› Õ÷Ê— Ê≈‰’—«› «·„ œ—»Ì‰" Action CustComeReportObject:ShowWindow()
 SEPARATOR
 ENDIF
+IF UsersObject:CheckPermission(77)
 MENUITEM "‘Â«œ… »«··€… «·⁄—»Ì…" Action ShehadaReportObject:ShowWindow()
 SEPARATOR
+ENDIF
 END POPUP
 ENDIF
 IF UsersObject:CheckPermission(62)
