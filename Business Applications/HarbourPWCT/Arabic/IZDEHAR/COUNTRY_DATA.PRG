@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:32:53    Date : 10/04/2010
+* Time : 05:42:42    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -69,7 +69,7 @@ WIDTH 774 ;
 HEIGHT 426 ;
 ON INIT self:search()  ;
 ICON "PWCTICON" ;
-TITLE "√”„«¡ «·œÊ·" ;
+TITLE "ÃœÊ· «·Ã‰”Ì« " ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;

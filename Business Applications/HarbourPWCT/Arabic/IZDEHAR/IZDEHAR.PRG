@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:22:47    Date : 02/07/2011
+* Time : 05:42:48    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -433,7 +433,7 @@ MENUITEM " ﬁ—Ì— »«·„ œ—»Ì‰" Action Customersreport()
 END POPUP
 ENDIF
 IF UsersObject:CheckPermission(6)
-MENUITEM "ÃœÊ· «”„«¡ «·œÊ· " Action Countrydataobject:showwindow()
+MENUITEM "ÃœÊ· «·Ã‰”Ì«  " Action Countrydataobject:showwindow()
 ENDIF
 IF UsersObject:CheckPermission(7)
 MENUITEM "ÃœÊ· «”„«¡ «·«ﬁ”«„ " Action GenderDataObject:showwindow()
