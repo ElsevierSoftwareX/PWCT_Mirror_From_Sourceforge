@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:34:52    Date : 02/07/2011
+* Time : 15:07:03    Date : 02/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -280,12 +280,12 @@ AMPM
 
 END STATUSBAR
 
-@ 336 ,891 IMAGE image1;
+@ 336 ,761 IMAGE image1;
 PICTURE "image\CUSTOMERS.JPG";
 ON CLICK CustomersBrowse3Object:showwindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 579 ,968 LABEL lbl1 ;
+@ 579 ,838 LABEL lbl1 ;
 VALUE "«·„»Ì⁄« " ;
 ACTION CustomersBrowse3Object:showwindow()  ;
 WIDTH 100 ;
@@ -293,12 +293,12 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 336 ,457 IMAGE image2;
+@ 336 ,327 IMAGE image2;
 PICTURE "image\LEATHER.JPG";
 ON CLICK ItemsObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 579 ,535 LABEL lbl2 ;
+@ 579 ,405 LABEL lbl2 ;
 VALUE "«· ‰”Ìﬁ" ;
 ACTION ItemsObject:ShowWindow()  ;
 WIDTH 50 ;
@@ -306,12 +306,12 @@ HEIGHT 40 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 336 ,671 IMAGE image4;
+@ 336 ,541 IMAGE image4;
 PICTURE "image\AGREEMENT.JPG";
 ON CLICK OrdersEnterObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 579 ,739 LABEL lbl4 ;
+@ 579 ,609 LABEL lbl4 ;
 VALUE "«· ”ÊÌﬁ" ;
 ACTION OrdersEnterObject:ShowWindow()  ;
 WIDTH 180 ;
@@ -319,12 +319,12 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 336 ,243 IMAGE image7;
+@ 336 ,113 IMAGE image7;
 PICTURE "image\DISPOSE.JPG";
 ON CLICK ProductionObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
-@ 579 ,315 LABEL lbl7 ;
+@ 579 ,185 LABEL lbl7 ;
 VALUE "«·«œ«—…" ;
 ACTION ProductionObject:ShowWindow()  ;
 WIDTH 60 ;
@@ -381,7 +381,7 @@ EndIF
 HPARENT := GetFormHandle("win1")
 HCHILD := GetFormHandle("winLOGO")
 myout = CALLDLL32("SetParent","USER32.DLL",HCHILD,HPARENT)
-winlogo.Col := 600
+winlogo.Col := 420
 winlogo.Row := 100
 Activate Window winlogo nowait
 Return Nil
