@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:44:40    Date : 12/05/2010
+* Time : 20:53:16    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -74,7 +74,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {0,0,0}
 
-@ -8 ,-26 IMAGE image1;
+@ -5 ,-12 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1060 HEIGHT 540
@@ -106,7 +106,7 @@ WIDTH 980 ;
 HEIGHT 180 ;
 HEADERS {" «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
 WIDTHS {180,120,200,250,100,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -116,7 +116,7 @@ WIDTH 980 ;
 HEIGHT 180 ;
 HEADERS {" «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
 WIDTHS {180,120,200,250,100,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -130,8 +130,53 @@ TOOLTIP ""
 CAPTION " ÕÊÌ· „” ›”— ·„ œ—»";
 ON CLICK self:Convert()  ;
 WIDTH 190 HEIGHT 30 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 469 ,467 LABEL lblpayfirst ;
+VALUE "«·„»·€ «·„œ›Ê⁄" ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 469 ,381 TEXTBOX textpayfirst;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 469 ,277 LABEL lblpaylater ;
+VALUE "«·„»·€ «·„ »ﬁÏ" ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 469 ,195 TEXTBOX textpaylater;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 469 ,727 LABEL lblinvoicenumber ;
+VALUE "—ﬁ„ «·”‰œ" ;
+WIDTH 70 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 469 ,585 TEXTBOX textinvoicenumber;
+HEIGHT 30 ;
+WIDTH 130 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
 END WINDOW
 
 CustOrdersWindow.Center ( )
