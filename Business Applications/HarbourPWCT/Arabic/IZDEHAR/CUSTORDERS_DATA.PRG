@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:53:16    Date : 12/05/2010
+* Time : 21:00:44    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -46,6 +46,8 @@ Data PrimaryKey2 init "OrderNumber"
 Data resultprimarykeys2 init {}
 Data TableName2 init "CustOrdersMaybe"
 Data CustName init ""
+Data paymethoditems init {}
+Data paymethoditemsids init {}
 Method showwindow
 Method closewindow
 Method search
@@ -64,7 +66,7 @@ if !iswindowdefined( CustOrdersWindow )
 DEFINE WINDOW CustOrdersWindow ;
 AT 10 ,10 ;
 WIDTH 1040 ;
-HEIGHT 549 ;
+HEIGHT 585 ;
 ON INIT self:MyStart()  ;
 ICON "PWCTICON" ;
 TITLE "œÊ—«  «·„‘ —ﬂ »Â« «Ê «·„” ›”— ⁄‰Â«  „ œ—»" ;
@@ -72,12 +74,12 @@ CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
-BACKCOLOR {0,0,0}
+BACKCOLOR {255,255,255}
 
 @ -5 ,-12 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 1060 HEIGHT 540
+WIDTH 1060 HEIGHT 580
 @ 471 ,25 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 ON CLICK self:closewindow()  ;
@@ -137,7 +139,7 @@ VALUE "«·„»·€ «·„œ›Ê⁄" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
+BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 469 ,381 TEXTBOX textpayfirst;
@@ -162,7 +164,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 469 ,727 LABEL lblinvoicenumber ;
+@ 469 ,705 LABEL lblinvoicenumber ;
 VALUE "—ﬁ„ «·”‰œ" ;
 WIDTH 70 ;
 HEIGHT 30 ;
@@ -170,13 +172,30 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 469 ,585 TEXTBOX textinvoicenumber;
+@ 469 ,559 TEXTBOX textinvoicenumber;
 HEIGHT 30 ;
 WIDTH 130 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
+myout = self:LoadLookupTable("paymethod","paymethod",@self:paymethodItems,"id",@self:paymethodItemsIDS)
+@ 504 ,705 LABEL lblpaymethod ;
+VALUE "ÿ—Ìﬁ… «·”œ«œ" ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 504 ,559 COMBOBOX combopaymethod;
+WIDTH 130 ;
+HEIGHT 100;
+ITEMS self:paymethoditems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 CustOrdersWindow.Center ( )
