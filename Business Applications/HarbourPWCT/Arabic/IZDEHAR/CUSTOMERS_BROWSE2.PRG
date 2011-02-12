@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:34:12    Date : 12/05/2010
+* Time : 12:37:27    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -71,7 +71,7 @@ BACKCOLOR {255,255,255}
 PICTURE GetStartUpFolder()+"\image\back.jpg";
 STRETCH ;
 WIDTH 780 HEIGHT 360
-@ 16 ,697 LABEL lbl1 ;
+@ 16 ,691 LABEL lbl1 ;
 VALUE "ÃÊ«·" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -79,7 +79,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 18 ,252 TEXTBOX textNameBrowse;
+@ 18 ,246 TEXTBOX textNameBrowse;
 ON CHANGE self:search()  ;
 HEIGHT 30 ;
 WIDTH 430 ;
@@ -87,29 +87,23 @@ BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 18 ,136 BUTTONEX btn1;
-CAPTION "»ÕÀ";
-ON CLICK self:search()  ;
-WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-TOOLTIP ""
-@ 103 ,28 BUTTONEX btnclose;
+@ 19 ,21 BUTTONEX btnclose;
 CAPTION "«€·«ﬁ";
 ON CLICK self:closewindow()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 59 ,135 GRID Grid1browse;
+@ 59 ,22 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 620 ;
+WIDTH 710 ;
 HEIGHT 250 ;
 HEADERS {"‰Ê⁄ «·⁄„Ì·","›∆… «·⁄„Ì·","ÿ—Ìﬁ… «·”œ«œ","ÃÊ«·","«·«”„"};
-WIDTHS {100,100,100,100,200} ;
+WIDTHS {100,100,100,200,200} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 59 ,27 BUTTONEX btnPrint;
+@ 19 ,131 BUTTONEX btnPrint;
 CAPTION "ÿ»«⁄…";
 ON CLICK self:print()  ;
 WIDTH 100 HEIGHT 30 ;
