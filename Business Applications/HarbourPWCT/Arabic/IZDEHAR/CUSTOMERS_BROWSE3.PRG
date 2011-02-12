@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:33:50    Date : 12/01/2010
+* Time : 12:08:19    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -81,6 +81,7 @@ PICTURE GetStartUpFolder()+"\image\back.jpg";
 STRETCH ;
 WIDTH 1080 HEIGHT 410
 @ 17 ,411 TEXTBOX textNameBrowse;
+ON GOTFOCUS self:search()  ;
 HEIGHT 30 ;
 WIDTH 340 ;
 BACKCOLOR {0,255,128} ;
