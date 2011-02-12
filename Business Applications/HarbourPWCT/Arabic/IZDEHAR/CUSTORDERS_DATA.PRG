@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:09:14    Date : 12/05/2010
+* Time : 22:33:26    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,7 +36,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_CUSTORDERS_DATA_15speed1() code
 class CustOrdersClass From SystemDatabase
-Data columns init {"FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
+Data columns init {"paylater","payfirst","paymethod","invoicenumber","FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
 Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate","OrderStatus"}
 Data FindTitles init {"ÑÞã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÇÓã ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÊÇÑíÎ ÇáÏæÑÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ"}
 Data TableName init "CustOrders"
@@ -49,6 +49,7 @@ Data CustName init ""
 Data paymethoditems init {}
 Data paymethoditemsids init {}
 Data cPayMethod init 0
+Data columns2 init {"FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
 Method showwindow
 Method closewindow
 Method search
@@ -107,9 +108,9 @@ FONTCOLOR {0,0,0}
 ON DBLCLICK self:OpenDataWindow()  ;
 WIDTH 980 ;
 HEIGHT 180 ;
-HEADERS {"ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÇÓã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÑÞã ÇáÏæÑÉ"};
-WIDTHS {180,120,200,250,100,100} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"ÇáãÈáÛ ÇáãÊÈÞì","ÇáãÈáÛ ÇáãÏÝæÚ","ØÑíÞÉ ÇáÓÏÇÏ","ÑÞã ÇáÓäÏ","ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÏæÑÉ","ÇÓã ÇáãÍÇÖÑ","ÇÓã ÇáÏæÑÉ","äæÚ ÇáÏæÑÉ","ÑÞã ÇáÏæÑÉ"};
+WIDTHS {100,100,100,100,180,120,200,250,100,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -269,9 +270,9 @@ CustOrdersWindow.grid2browse.Value := 0
 IF mymax > 0
 FOR x = 1 TO mymax STEP 1
 temp_array := {}
-mymax2  = LEN(self:columns)
+mymax2  = LEN(self:columns2)
 FOR x2 = 1 TO mymax2 STEP 1
-vname2 := oRS:fields:item(self:columns[x2]):value
+vname2 := oRS:fields:item(self:columns2[x2]):value
 IF valtype(vname2) = "N"
 VNAME2 = STR ( VNAME2 )
 VNAME2 = ALLTRIM ( VNAME2 )
