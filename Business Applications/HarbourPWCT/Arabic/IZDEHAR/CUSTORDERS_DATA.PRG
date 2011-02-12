@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:44:29    Date : 12/05/2010
+* Time : 22:50:20    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -112,7 +112,7 @@ HEADERS {"«·„»·€ «·„ »ﬁÏ","«·„»·€ «·„œ›Ê⁄","ÿ—Ìﬁ… «·”œ«œ","—ﬁ„ «·”‰œ"," «—ÌŒ «·«
 WIDTHS {100,100,100,100,180,120,200,250,100,100} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 281 ,25 GRID Grid2browse;
 ON DBLCLICK self:OpenDataWindow2()  ;
