@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:33:26    Date : 12/05/2010
+* Time : 22:44:29    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -288,6 +288,10 @@ Next
 ENDIF
 oRS:Close()
 myout = self:DisConnect()
+CustOrdersWindow.textPayFirst.Value := ""
+CustOrdersWindow.textPayLater.Value := ""
+CustOrdersWindow.textInvoiceNumber.Value := ""
+CustOrdersWindow.ComboPayMethod.Value := 1
 Return 0
 Method MyStart Class CustOrdersClass
 myout = self:Search()
