@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:02:05    Date : 12/05/2010
+* Time : 22:09:14    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -48,6 +48,7 @@ Data TableName2 init "CustOrdersMaybe"
 Data CustName init ""
 Data paymethoditems init {}
 Data paymethoditemsids init {}
+Data cPayMethod init 0
 Method showwindow
 Method closewindow
 Method search
@@ -355,7 +356,9 @@ oRS:fields:item("empid"):value := UsersObject:EnteredEmployeeID
 oRS:fields:item("invoicenumber"):value := CustOrdersWindow.textInvoiceNumber.value
 oRS:fields:item("payfirst"):value := CustOrdersWindow.textPayFirst.value
 oRS:fields:item("paylater"):value := CustOrdersWindow.textPayLater.value
-oRS:fields:item("paymethodid"):value := CustOrdersWindow.combopaymethod.value
+self:cPayMethod := CustOrdersWindow.ComboPayMethod.Value
+self:cPayMethod := self:PayMethodItemsids[self:cPayMethod]
+oRS:fields:item("paymethodid"):value := self:cPayMethod
 oRS:UPDATE()
 oRS:Close()
 oRS:CursorType := 1
