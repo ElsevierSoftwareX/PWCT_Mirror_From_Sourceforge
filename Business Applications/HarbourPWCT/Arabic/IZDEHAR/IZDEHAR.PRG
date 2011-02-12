@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:07:03    Date : 02/07/2011
+* Time : 11:54:27    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -280,58 +280,6 @@ AMPM
 
 END STATUSBAR
 
-@ 336 ,761 IMAGE image1;
-PICTURE "image\CUSTOMERS.JPG";
-ON CLICK CustomersBrowse3Object:showwindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 579 ,838 LABEL lbl1 ;
-VALUE "«·„»Ì⁄« " ;
-ACTION CustomersBrowse3Object:showwindow()  ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 336 ,327 IMAGE image2;
-PICTURE "image\LEATHER.JPG";
-ON CLICK ItemsObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 579 ,405 LABEL lbl2 ;
-VALUE "«· ‰”Ìﬁ" ;
-ACTION ItemsObject:ShowWindow()  ;
-WIDTH 50 ;
-HEIGHT 40 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 336 ,541 IMAGE image4;
-PICTURE "image\AGREEMENT.JPG";
-ON CLICK OrdersEnterObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 579 ,609 LABEL lbl4 ;
-VALUE "«· ”ÊÌﬁ" ;
-ACTION OrdersEnterObject:ShowWindow()  ;
-WIDTH 180 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 336 ,113 IMAGE image7;
-PICTURE "image\DISPOSE.JPG";
-ON CLICK ProductionObject:ShowWindow()  ;
-STRETCH ;
-WIDTH 193 HEIGHT 229
-@ 579 ,185 LABEL lbl7 ;
-VALUE "«·«œ«—…" ;
-ACTION ProductionObject:ShowWindow()  ;
-WIDTH 60 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
 END WINDOW
 
 calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20,;
@@ -352,8 +300,8 @@ Proc mylogo
 if !iswindowdefined( winlogo )
 DEFINE WINDOW winlogo ;
 AT 10 ,10 ;
-WIDTH 234 ;
-HEIGHT 184 ;
+WIDTH 910 ;
+HEIGHT 484 ;
 ICON "PWCTICON" ;
 TITLE "Window Title" ;
 CHILD ;
@@ -364,25 +312,76 @@ NOSYSMENU ;
 NOCAPTION ;
 BACKCOLOR {255,255,255} 
 
-@ 8 ,15 IMAGE image1;
+@ 8 ,353 IMAGE image1;
 PICTURE "LOGOALONE";
 WHITEBACKGROUND ;
 WIDTH 196 HEIGHT 135
-@ 149 ,4 LABEL lbl1 ;
+@ 149 ,342 LABEL lbl1 ;
 VALUE "  ≈“œÂ«— - «” ‘«—«  «œ«—Ì… Ê œ—Ì»" ;
 WIDTH 226 ;
 HEIGHT 32 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {64,0,64}
+@ 200 ,669 IMAGE image3;
+PICTURE "image\CUSTOMERS.JPG";
+ON CLICK CustomersBrowse3Object:showwindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 443 ,746 LABEL lbl3 ;
+VALUE "«·„»Ì⁄« " ;
+ACTION CustomersBrowse3Object:showwindow()  ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 200 ,235 IMAGE image2;
+PICTURE "image\LEATHER.JPG";
+ON CLICK ItemsObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 443 ,313 LABEL lbl2 ;
+VALUE "«· ‰”Ìﬁ" ;
+ACTION ItemsObject:ShowWindow()  ;
+WIDTH 50 ;
+HEIGHT 40 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 200 ,449 IMAGE image4;
+PICTURE "image\AGREEMENT.JPG";
+ON CLICK OrdersEnterObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 443 ,517 LABEL lbl4 ;
+VALUE "«· ”ÊÌﬁ" ;
+ACTION OrdersEnterObject:ShowWindow()  ;
+WIDTH 180 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 200 ,21 IMAGE image7;
+PICTURE "image\DISPOSE.JPG";
+ON CLICK ProductionObject:ShowWindow()  ;
+STRETCH ;
+WIDTH 193 HEIGHT 229
+@ 443 ,93 LABEL lbl7 ;
+VALUE "«·«œ«—…" ;
+ACTION ProductionObject:ShowWindow()  ;
+WIDTH 60 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 EndIF
 
 HPARENT := GetFormHandle("win1")
 HCHILD := GetFormHandle("winLOGO")
 myout = CALLDLL32("SetParent","USER32.DLL",HCHILD,HPARENT)
-winlogo.Col := 420
-winlogo.Row := 100
+winlogo.Center ( )
 Activate Window winlogo nowait
 Return Nil
 Proc customers
