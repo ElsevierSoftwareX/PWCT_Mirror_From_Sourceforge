@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:00:44    Date : 12/05/2010
+* Time : 21:33:54    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -134,22 +134,22 @@ ON CLICK self:Convert()  ;
 WIDTH 190 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 469 ,467 LABEL lblpayfirst ;
+@ 469 ,457 LABEL lblpayfirst ;
 VALUE "«·„»·€ «·„œ›Ê⁄" ;
-WIDTH 100 ;
+WIDTH 90 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 469 ,381 TEXTBOX textpayfirst;
+@ 469 ,371 TEXTBOX textpayfirst;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 469 ,277 LABEL lblpaylater ;
+@ 469 ,227 LABEL lblpaylater ;
 VALUE "«·„»·€ «·„ »ﬁÏ" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -157,7 +157,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 469 ,195 TEXTBOX textpaylater;
+@ 469 ,145 TEXTBOX textpaylater;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "Arial" SIZE 14 ;
