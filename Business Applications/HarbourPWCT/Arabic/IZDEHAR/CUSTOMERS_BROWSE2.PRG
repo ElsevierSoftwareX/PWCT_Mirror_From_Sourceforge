@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:43:52    Date : 11/26/2010
+* Time : 12:34:12    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -80,6 +80,7 @@ BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 18 ,252 TEXTBOX textNameBrowse;
+ON CHANGE self:search()  ;
 HEIGHT 30 ;
 WIDTH 430 ;
 BACKCOLOR {0,255,128} ;
