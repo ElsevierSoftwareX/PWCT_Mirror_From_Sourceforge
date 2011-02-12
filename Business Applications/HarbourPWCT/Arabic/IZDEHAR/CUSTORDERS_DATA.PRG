@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:33:54    Date : 12/05/2010
+* Time : 21:42:22    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -76,11 +76,11 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {255,255,255}
 
-@ -5 ,-12 IMAGE image1;
+@ -4 ,-13 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1060 HEIGHT 580
-@ 471 ,25 BUTTONEX btnClose;
+@ 500 ,25 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 ON CLICK self:closewindow()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -128,13 +128,13 @@ ON CLICK self:RecMaybe()  ;
 WIDTH 190 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 469 ,814 BUTTONEX btnConvert;
+@ 500 ,814 BUTTONEX btnConvert;
 CAPTION " ÕÊÌ· „” ›”— ·„ œ—»";
 ON CLICK self:Convert()  ;
 WIDTH 190 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 469 ,457 LABEL lblpayfirst ;
+@ 469 ,377 LABEL lblpayfirst ;
 VALUE "«·„»·€ «·„œ›Ê⁄" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -142,14 +142,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 469 ,371 TEXTBOX textpayfirst;
+@ 469 ,291 TEXTBOX textpayfirst;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 469 ,227 LABEL lblpaylater ;
+@ 507 ,373 LABEL lblpaylater ;
 VALUE "«·„»·€ «·„ »ﬁÏ" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -157,14 +157,14 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 469 ,145 TEXTBOX textpaylater;
+@ 507 ,291 TEXTBOX textpaylater;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
-@ 469 ,705 LABEL lblinvoicenumber ;
+@ 469 ,635 LABEL lblinvoicenumber ;
 VALUE "—ﬁ„ «·”‰œ" ;
 WIDTH 70 ;
 HEIGHT 30 ;
@@ -172,7 +172,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 469 ,559 TEXTBOX textinvoicenumber;
+@ 469 ,487 TEXTBOX textinvoicenumber;
 HEIGHT 30 ;
 WIDTH 130 ;
 FONT "Arial" SIZE 14 ;
@@ -180,7 +180,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("paymethod","paymethod",@self:paymethodItems,"id",@self:paymethodItemsIDS)
-@ 504 ,705 LABEL lblpaymethod ;
+@ 505 ,633 LABEL lblpaymethod ;
 VALUE "ÿ—Ìﬁ… «·”œ«œ" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -188,7 +188,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 504 ,559 COMBOBOX combopaymethod;
+@ 505 ,487 COMBOBOX combopaymethod;
 WIDTH 130 ;
 HEIGHT 100;
 ITEMS self:paymethoditems ;
