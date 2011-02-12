@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:10:28    Date : 12/05/2010
+* Time : 12:13:41    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -80,20 +80,14 @@ BACKCOLOR {255,255,255}
 PICTURE GetStartUpFolder()+"\image\back.jpg";
 STRETCH ;
 WIDTH 1080 HEIGHT 410
-@ 17 ,411 TEXTBOX textNameBrowse;
+@ 17 ,291 TEXTBOX textNameBrowse;
 ON CHANGE self:search()  ;
 HEIGHT 30 ;
-WIDTH 340 ;
+WIDTH 470 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 17 ,295 BUTTONEX btn1;
-CAPTION "»ÕÀ";
-ON CLICK self:search()  ;
-WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
-TOOLTIP ""
 @ 17 ,63 BUTTONEX btnclose;
 CAPTION "«€·«ﬁ";
 ON CLICK self:closewindow()  ;
