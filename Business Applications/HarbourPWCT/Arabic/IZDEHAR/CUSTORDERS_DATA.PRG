@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:42:22    Date : 12/05/2010
+* Time : 22:02:05    Date : 12/05/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -352,6 +352,10 @@ oRS:fields:item("customerhowknow"):value := 1
 oRS:fields:item("InvoiceNumber"):value := "0"
 oRS:fields:item("UserName"):value := usersobject:enteredusername
 oRS:fields:item("empid"):value := UsersObject:EnteredEmployeeID
+oRS:fields:item("invoicenumber"):value := CustOrdersWindow.textInvoiceNumber.value
+oRS:fields:item("payfirst"):value := CustOrdersWindow.textPayFirst.value
+oRS:fields:item("paylater"):value := CustOrdersWindow.textPayLater.value
+oRS:fields:item("paymethodid"):value := CustOrdersWindow.combopaymethod.value
 oRS:UPDATE()
 oRS:Close()
 oRS:CursorType := 1
