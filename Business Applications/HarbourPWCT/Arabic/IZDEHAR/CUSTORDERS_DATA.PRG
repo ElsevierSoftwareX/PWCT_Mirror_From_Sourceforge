@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:31:33    Date : 12/06/2010
+* Time : 21:12:17    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -50,6 +50,10 @@ Data paymethoditems init {}
 Data paymethoditemsids init {}
 Data cPayMethod init 0
 Data columns2 init {"FinishDate","orderdate","f_name","OrderName","OrderType","OrderNumber"}
+Data V1 init 0
+Data V2 init 0
+Data V3 init 0
+Data V4 init 0
 Method showwindow
 Method closewindow
 Method search
@@ -63,6 +67,7 @@ Method RecCust
 Method RecMaybe
 Method Convert
 Method EditValues
+Method SaveValues
 EndClass
 Method showwindow Class CustOrdersClass
 if !iswindowdefined( CustOrdersWindow )
@@ -424,16 +429,16 @@ oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from OrderItems where orderid = " + myorderid + " and customerid = " + mycustid,self:oCon,3,3 )
-v1 := oRS:fields:item("invoicenumber"):value
-v2 := oRS:fields:item("payfirst"):value
-v3 := oRS:fields:item("paylater"):value
-v4 := oRS:fields:item("paymethodid"):value
-v4 = self:LookupIDToIndex(v4,@self:paymethoditemsids)
+self:v1 := oRS:fields:item("invoicenumber"):value
+self:v2 := oRS:fields:item("payfirst"):value
+self:v3 := oRS:fields:item("paylater"):value
+self:v4 := oRS:fields:item("paymethodid"):value
+self:v4 = self:LookupIDToIndex(self:v4,@self:paymethoditemsids)
 if !iswindowdefined( winEditRec )
 DEFINE WINDOW winEditRec ;
 AT 10 ,10 ;
 WIDTH 474 ;
-HEIGHT 154 ;
+HEIGHT 206 ;
 ICON "PWCTICON" ;
 TITLE " ⁄œÌ· »Ì«‰«  ⁄„Ì· „”Ã· ›Ï œÊ—…" ;
 MODAL ;
@@ -450,7 +455,7 @@ FONTCOLOR {0,0,0}
 @ 24 ,25 TEXTBOX textpayfirst;
 HEIGHT 30 ;
 WIDTH 70 ;
-VALUE v2 ;
+VALUE self:v2 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
@@ -466,7 +471,7 @@ FONTCOLOR {0,0,0}
 @ 62 ,25 TEXTBOX textpaylater;
 HEIGHT 30 ;
 WIDTH 70 ;
-VALUE v3 ;
+VALUE self:v3 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
@@ -482,7 +487,7 @@ FONTCOLOR {0,0,0}
 @ 24 ,221 TEXTBOX textinvoicenumber;
 HEIGHT 30 ;
 WIDTH 130 ;
-VALUE v1 ;
+VALUE self:v1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
@@ -497,19 +502,36 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 60 ,221 COMBOBOX combopaymethod;
-WIDTH 130 ;
+WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:paymethoditems ;
-VALUE v4 ;
-FONT "Arial" SIZE 14 ;
+VALUE self:v4 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 113 ,240 BUTTONEX btnSave;
+CAPTION "Õ›Ÿ";
+ON CLICK self:savevalues()  ;
+WIDTH 98 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 113 ,126 BUTTONEX btnCancel;
+CAPTION "«·€«¡";
+ON CLICK winEditRec.release()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 winEditRec.Center ( )
 ACTIVATE WINDOW winEditRec
 EndIF
 
+oRS:fields:item("invoicenumber"):value := self:v1
+oRS:fields:item("payfirst"):value := self:v2
+oRS:fields:item("paylater"):value := self:v3
+oRS:fields:item("paymethodid"):value := self:v4
+oRS:UPDATE()
 oRS:Close()
 ELSE
 nvalue := CustOrdersWindow.grid1browse.ItemCount
@@ -520,6 +542,13 @@ MyOut := MSGBOX("ÌÃœ «‰  Œ «— «·œÊ—… «· Ï ”Ã· ›ÌÂ« «·„ œ—» „‰ «·ﬁ«∆„…","⁄›Ê«")
 ENDIF
 ENDIF
 myout = self:DisConnect()
+Return 0
+Method SaveValues Class CustOrdersClass
+self:v1 := winEditRec.textInvoiceNumber.value
+self:v2 := winEditRec.textPayFirst.value
+self:v3 := winEditRec.textPayLater.value
+self:v4 := winEditRec.ComboPayMethod.value
+self:v4 := self:PayMethodItemsids[self:v4]
 Return 0
 
 
