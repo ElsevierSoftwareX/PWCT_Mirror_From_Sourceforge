@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:17:30    Date : 12/06/2010
+* Time : 21:57:11    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -533,6 +533,9 @@ oRS:fields:item("paylater"):value := self:v3
 oRS:fields:item("paymethodid"):value := self:v4
 oRS:UPDATE()
 oRS:Close()
+myout = self:DisConnect()
+myout = self:search()
+Return 0
 ELSE
 nvalue := CustOrdersWindow.grid1browse.ItemCount
 IF nValue = 0
