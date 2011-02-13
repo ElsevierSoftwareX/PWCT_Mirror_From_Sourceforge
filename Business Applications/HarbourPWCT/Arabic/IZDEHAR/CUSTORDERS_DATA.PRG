@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:04:12    Date : 12/06/2010
+* Time : 17:26:33    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -409,8 +409,22 @@ ENDIF
 Return 0
 Method EditValues Class CustOrdersClass
 Local nvalue,myout,myorderid,mycustid,myorderidreal
+myout = self:Connect()
 nvalue := CustOrdersWindow.grid1browse.Value
 IF nvalue > 0
+myorderid := CustOrdersWindow.Grid1Browse.cell(nValue,10)
+mycustid := self:custid
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from Orders where ordernumber = " + myorderid,self:oCon,3,3 )
+myOrderIDReal := oRS:fields:item("ID"):value
+oRS:Close()
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from OrderItems where orderid = " + myorderid + " and customerid = " + mycustid,self:oCon,3,3 )
+oRS:Close()
 ELSE
 nvalue := CustOrdersWindow.grid1browse.ItemCount
 IF nValue = 0
@@ -419,6 +433,7 @@ ELSE
 MyOut := MSGBOX("ÌÃœ «‰  Œ «— «·œÊ—… «· Ï ”Ã· ›ÌÂ« «·„ œ—» „‰ «·ﬁ«∆„…","⁄›Ê«")
 ENDIF
 ENDIF
+myout = self:DisConnect()
 Return 0
 
 
