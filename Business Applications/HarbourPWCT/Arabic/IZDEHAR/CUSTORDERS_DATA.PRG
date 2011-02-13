@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:12:17    Date : 12/06/2010
+* Time : 21:17:30    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -502,11 +502,11 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 60 ,221 COMBOBOX combopaymethod;
-WIDTH 200 ;
+WIDTH 130 ;
 HEIGHT 100;
 ITEMS self:paymethoditems ;
 VALUE self:v4 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 113 ,240 BUTTONEX btnSave;
@@ -549,6 +549,7 @@ self:v2 := winEditRec.textPayFirst.value
 self:v3 := winEditRec.textPayLater.value
 self:v4 := winEditRec.ComboPayMethod.value
 self:v4 := self:PayMethodItemsids[self:v4]
+winEditRec.Release ( )
 Return 0
 
 
