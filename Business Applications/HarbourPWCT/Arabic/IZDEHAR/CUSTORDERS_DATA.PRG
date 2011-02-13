@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:48:59    Date : 12/06/2010
+* Time : 16:04:12    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -408,7 +408,17 @@ myout = self:MyStart()
 ENDIF
 Return 0
 Method EditValues Class CustOrdersClass
-MyOut := MSGBOX("Text Here","Text Here")
+Local nvalue,myout,myorderid,mycustid,myorderidreal
+nvalue := CustOrdersWindow.grid1browse.Value
+IF nvalue > 0
+ELSE
+nvalue := CustOrdersWindow.grid1browse.ItemCount
+IF nValue = 0
+MyOut := MSGBOX("בÇםזÌÏ ÏזÑÇÊ דÓÌב ÝםוÇ ÇבדÊÏÑÈ","ÚÝזÇ")
+ELSE
+MyOut := MSGBOX("םÌÏ Çה ÊÎÊÇÑ ÇבÏזÑÉ ÇבÊל ÓÌב ÝםוÇ ÇבדÊÏÑÈ דה ÇבÞÇÆדÉ","ÚÝזÇ")
+ENDIF
+ENDIF
 Return 0
 
 
