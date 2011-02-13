@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:36:27    Date : 12/06/2010
+* Time : 18:02:38    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -428,6 +428,84 @@ v1 := oRS:fields:item("invoicenumber"):value
 v2 := oRS:fields:item("payfirst"):value
 v3 := oRS:fields:item("paylater"):value
 v4 := oRS:fields:item("paymethodid"):value
+if !iswindowdefined( winEditRec )
+DEFINE WINDOW winEditRec ;
+AT 10 ,10 ;
+WIDTH 474 ;
+HEIGHT 154 ;
+ICON "PWCTICON" ;
+TITLE "Window Title" ;
+MODAL ;
+BACKCOLOR {236,233,216}
+
+@ 24 ,111 LABEL lblpayfirst ;
+VALUE "«·„»·€ «·„œ›Ê⁄" ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 24 ,25 TEXTBOX textpayfirst;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 62 ,107 LABEL lblpaylater ;
+VALUE "«·„»·€ «·„ »ﬁÏ" ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 62 ,25 TEXTBOX textpaylater;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 24 ,369 LABEL lblinvoicenumber ;
+VALUE "—ﬁ„ «·”‰œ" ;
+WIDTH 70 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 24 ,221 TEXTBOX textinvoicenumber;
+HEIGHT 30 ;
+WIDTH 130 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+myout = self:LoadLookupTable("paymethod","paymethod",@self:paymethodItems,"id",@self:paymethodItemsIDS)
+@ 60 ,367 LABEL lblpaymethod ;
+VALUE "ÿ—Ìﬁ… «·”œ«œ" ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 60 ,221 COMBOBOX combopaymethod;
+WIDTH 130 ;
+HEIGHT 100;
+ITEMS self:paymethoditems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+END WINDOW
+
+winEditRec.Center ( )
+ACTIVATE WINDOW winEditRec
+EndIF
+
 oRS:Close()
 ELSE
 nvalue := CustOrdersWindow.grid1browse.ItemCount
