@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:12:42    Date : 12/06/2010
+* Time : 18:17:37    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -449,7 +449,8 @@ FONTCOLOR {0,0,0}
 @ 24 ,25 TEXTBOX textpayfirst;
 HEIGHT 30 ;
 WIDTH 70 ;
-FONT "arial" SIZE 14 ;
+VALUE v2 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 
@@ -464,6 +465,7 @@ FONTCOLOR {0,0,0}
 @ 62 ,25 TEXTBOX textpaylater;
 HEIGHT 30 ;
 WIDTH 70 ;
+VALUE v3 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
@@ -479,6 +481,7 @@ FONTCOLOR {0,0,0}
 @ 24 ,221 TEXTBOX textinvoicenumber;
 HEIGHT 30 ;
 WIDTH 130 ;
+VALUE v1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
