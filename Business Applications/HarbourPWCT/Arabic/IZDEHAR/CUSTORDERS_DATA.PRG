@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:26:33    Date : 12/06/2010
+* Time : 17:36:27    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -424,6 +424,10 @@ oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
 oRS:open ( "Select * from OrderItems where orderid = " + myorderid + " and customerid = " + mycustid,self:oCon,3,3 )
+v1 := oRS:fields:item("invoicenumber"):value
+v2 := oRS:fields:item("payfirst"):value
+v3 := oRS:fields:item("paylater"):value
+v4 := oRS:fields:item("paymethodid"):value
 oRS:Close()
 ELSE
 nvalue := CustOrdersWindow.grid1browse.ItemCount
