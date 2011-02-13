@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:25:31    Date : 12/05/2010
+* Time : 15:48:59    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -62,6 +62,7 @@ Method ShowDataWindow2
 Method RecCust
 Method RecMaybe
 Method Convert
+Method EditValues
 EndClass
 Method showwindow Class CustOrdersClass
 if !iswindowdefined( CustOrdersWindow )
@@ -110,7 +111,7 @@ WIDTH 980 ;
 HEIGHT 180 ;
 HEADERS {"«·„»·€ «·„ »ﬁÏ","«·„»·€ «·„œ›Ê⁄","ÿ—Ìﬁ… «·”œ«œ","—ﬁ„ «·”‰œ"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
 WIDTHS {100,100,100,100,180,120,200,250,100,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -198,6 +199,12 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 10 ,24 BUTTONEX btnedit;
+CAPTION " ⁄œÌ·";
+ON CLICK self:editvalues()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 CustOrdersWindow.Center ( )
@@ -399,6 +406,9 @@ myout = self:DisConnect()
 IF iswindowdefined( CustOrdersWindow )
 myout = self:MyStart()
 ENDIF
+Return 0
+Method EditValues Class CustOrdersClass
+MyOut := MSGBOX("Text Here","Text Here")
 Return 0
 
 
