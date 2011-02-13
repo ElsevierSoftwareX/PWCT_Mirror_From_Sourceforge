@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:17:37    Date : 12/06/2010
+* Time : 18:24:13    Date : 12/06/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -428,6 +428,7 @@ v1 := oRS:fields:item("invoicenumber"):value
 v2 := oRS:fields:item("payfirst"):value
 v3 := oRS:fields:item("paylater"):value
 v4 := oRS:fields:item("paymethodid"):value
+v4 = self:LookupIDToIndex(v4,@self:paymethoditemsids)
 if !iswindowdefined( winEditRec )
 DEFINE WINDOW winEditRec ;
 AT 10 ,10 ;
@@ -496,11 +497,11 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 60 ,221 COMBOBOX combopaymethod;
-WIDTH 130 ;
+WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:paymethoditems ;
-VALUE 1 ;
-FONT "Arial" SIZE 14 ;
+VALUE v4 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
