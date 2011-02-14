@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:57:11    Date : 12/06/2010
+* Time : 18:12:36    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -523,6 +523,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
+DO RightToLeftControl WITH "winEditRec","combopaymethod"
 winEditRec.Center ( )
 ACTIVATE WINDOW winEditRec
 EndIF
