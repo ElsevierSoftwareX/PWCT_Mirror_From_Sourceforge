@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:42:48    Date : 12/07/2010
+* Time : 16:11:08    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -57,7 +57,7 @@ Data TableName3 init "CustFriends_All"
 Data column3 init "f_name"
 Data PrimaryKey3 init "id"
 Data ResultPrimaryKeys3 init {}
-Data columns3 init {"username","recordstatus","f_mobile","f_name"}
+Data columns3 init {"username","recordstatus","howknow","f_mobile","f_name"}
 Data FindColumns init {"OrderNumber","OrderType","OrderName","f_name","OrderDate","FinishDate"}
 Data FindTitles init {"—ﬁ„ «·œÊ—…","‰Ê⁄ «·œÊ—…","«”„ «·œÊ—…","«”„ «·„Õ«÷—"," «—ÌŒ «·œÊ—…"," «—ÌŒ «·«‰ Â«¡"}
 Data FindColumns2 init {"f_name","f_mobile"}
@@ -258,11 +258,11 @@ TOOLTIP ""
 @ 523 ,182 GRID Grid1browse3;
 WIDTH 746 ;
 HEIGHT 130 ;
-HEADERS {"≈”„ «·„ÊŸ›","Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„” ›”—"};
-WIDTHS {150,150,150,250} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"≈”„ «·„ÊŸ›","Õ«·… «· ”ÃÌ·","«·Ê”Ì·…","ÃÊ«·","«”„ «·„” ›”—"};
+WIDTHS {150,150,100,150,250} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1} ;
+JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 489 ,697 COMBOBOX comboFind3;
 ON CHANGE self:CheckFind3()  ;
