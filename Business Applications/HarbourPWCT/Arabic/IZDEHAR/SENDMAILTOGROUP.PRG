@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:55:58    Date : 02/01/2011
+* Time : 01:19:59    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -260,6 +260,18 @@ cTo := emailsList[x][1]
 DO sendmailtoclient WITH cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody,cAttach,false
 SendMailToGroupWindow.Grid1.AddItem ( {emailslist[x][1],emailslist[x][2]} )
 DO EVENTS
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from Production_All",self:oCon,3,3 )
+oRS:ADDNEW()
+oRS:fields:item("employeeid"):value := UsersObject:EnteredEmployeeID
+oRS:fields:item("ordernumberID"):value := val( SendMailToGroupWindow.text10.value )
+oRS:fields:item("noofpcs"):value := " «—”«· —”«·… «·Ï" + cTO
+oRS:fields:item("finishtime"):value := time()
+oRS:fields:item("dateofinput"):value := alltrim(dtoc(date()))
+oRS:UPDATE()
+oRS:Close()
 CATCH
 MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«· ","⁄›Ê«")
 END
