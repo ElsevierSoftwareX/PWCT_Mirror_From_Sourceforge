@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:12:36    Date : 12/07/2010
+* Time : 19:15:18    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -531,6 +531,7 @@ EndIF
 oRS:fields:item("invoicenumber"):value := self:v1
 oRS:fields:item("payfirst"):value := self:v2
 oRS:fields:item("paylater"):value := self:v3
+self:v4 := self:PayMethodItemsids[self:v4]
 oRS:fields:item("paymethodid"):value := self:v4
 oRS:UPDATE()
 oRS:Close()
@@ -552,7 +553,6 @@ self:v1 := winEditRec.textInvoiceNumber.value
 self:v2 := winEditRec.textPayFirst.value
 self:v3 := winEditRec.textPayLater.value
 self:v4 := winEditRec.ComboPayMethod.value
-self:v4 := self:PayMethodItemsids[self:v4]
 winEditRec.Release ( )
 Return 0
 
