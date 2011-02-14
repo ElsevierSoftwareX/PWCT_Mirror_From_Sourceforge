@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:36:08    Date : 12/08/2010
+* Time : 00:59:31    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -223,9 +223,6 @@ cMsgBody := SendMailToOneWindow.edit1.value
 cAttach := SendMailToOneWindow.text8.value
 TRY
 DO sendmailtoclient WITH cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody,cAttach
-CATCH
-MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«· ","⁄›Ê«")
-END
 myout = self:Connect()
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
@@ -240,6 +237,9 @@ oRS:fields:item("dateofinput"):value := alltrim(dtoc(date()))
 oRS:UPDATE()
 oRS:Close()
 myout = self:DisConnect()
+CATCH
+MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«· ","⁄›Ê«")
+END
 Return 0
 Method msgAttach Class SendMailtoOneClass
 GetFile := GetFile (  , ;
