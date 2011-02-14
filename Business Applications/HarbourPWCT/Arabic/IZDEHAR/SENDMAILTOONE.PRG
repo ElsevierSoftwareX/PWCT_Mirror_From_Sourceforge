@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:04:18    Date : 02/01/2011
+* Time : 23:58:03    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -208,6 +208,17 @@ cMsgBody := SendMailToOneWindow.edit1.value
 cAttach := SendMailToOneWindow.text8.value
 TRY
 DO sendmailtoclient WITH cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody,cAttach
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from Production_All",self:oCon,3,3 )
+oRS:ADDNEW()
+oRS:fields:item("employeeid"):value := UsersObject:EnteredEmployeeID
+oRS:fields:item("ordernumberID"):value := ""
+oRS:fields:item("noofpcs"):value := " «—”«· —”«·… «·Ï" + cTO
+oRS:fields:item("finishtime"):value := time()
+oRS:fields:item("dateofinput"):value := alltrim(dtoc(date()))
+oRS:UPDATE()
+oRS:Close()
 CATCH
 MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«· ","⁄›Ê«")
 END
