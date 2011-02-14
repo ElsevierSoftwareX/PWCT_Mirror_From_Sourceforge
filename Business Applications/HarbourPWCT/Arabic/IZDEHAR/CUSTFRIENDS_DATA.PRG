@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:51:00    Date : 11/03/2010
+* Time : 15:11:29    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -66,6 +66,8 @@ Data FindTitles2 init {"«·«”„","«·ÃÊ«·"}
 Data FindTitles3 init {"«·«”„","«·ÃÊ«·"}
 Data SelectCust init false
 Data SelectCustIndex init 0
+Data HowKnowItems init {}
+Data HowKnowItemsIDS init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -118,10 +120,10 @@ BACKCOLOR {64,0,64}
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1030 HEIGHT 190
-@ 244 ,54 IMAGE image2;
+@ 246 ,47 IMAGE image2;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 930 HEIGHT 230
+WIDTH 950 HEIGHT 230
 @ 619 ,51 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
@@ -138,14 +140,14 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,309 TEXTBOX textnamebrowse;
+@ 53 ,256 TEXTBOX textnamebrowse;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,203 BUTTONEX btn1browse;
+@ 52 ,150 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -157,11 +159,11 @@ WIDTH 1000 ;
 HEIGHT 130 ;
 HEADERS {" «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·œÊ—…","«”„ «·„Õ«÷—","«”„ «·œÊ—…","‰Ê⁄ «·œÊ—…","—ﬁ„ «·œÊ—…"};
 WIDTHS {180,120,200,250,100,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 52 ,717 COMBOBOX comboFind;
+@ 52 ,664 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -172,14 +174,14 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 256 ,319 TEXTBOX textNamebrowse2;
+@ 256 ,256 TEXTBOX textNamebrowse2;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 255 ,213 BUTTONEX btn1browse2;
+@ 255 ,150 BUTTONEX btn1browse2;
 CAPTION "»ÕÀ";
 ON CLICK self:search2()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -191,11 +193,11 @@ WIDTH 890 ;
 HEIGHT 140 ;
 HEADERS {"«”„ «·„ÊŸ›","—ﬁ„ «·”‰œ"," ﬂÌ› ”„⁄  ⁄‰ «·œÊ—…","ÃÊ«·","«”„ «·⁄„Ì·"};
 WIDTHS {150,150,150,150,250} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 255 ,727 COMBOBOX comboFind2;
+@ 255 ,664 COMBOBOX comboFind2;
 ON CHANGE self:CheckFind2()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -205,7 +207,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("customers","f_name",@self:ItemItems,"id",@self:ItemItemsIDS)
-@ 438 ,890 LABEL lblitems ;
+@ 436 ,891 LABEL lblitems ;
 VALUE "«”„ «·„” ›”—" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -213,16 +215,16 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 439 ,608 COMBOBOX comboitem;
+@ 436 ,669 COMBOBOX comboitem;
 ON CHANGE self:itemchange()  ;
-WIDTH 270 ;
+WIDTH 210 ;
 HEIGHT 100;
 ITEMS self:itemitems ;
 VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 439 ,553 LABEL lblItemUnit ;
+@ 436 ,624 LABEL lblItemUnit ;
 VALUE "ÃÊ«·" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -230,7 +232,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
-@ 436 ,381 TEXTBOX textCustomerMobile;
+@ 436 ,443 TEXTBOX textCustomerMobile;
 ON ENTER self:mobilechange()  ;
 HEIGHT 30 ;
 WIDTH 160 ;
@@ -257,7 +259,7 @@ WIDTH 746 ;
 HEIGHT 130 ;
 HEADERS {"≈”„ «·„ÊŸ›","Õ«·… «· ”ÃÌ·","ÃÊ«·","«”„ «·„” ›”—"};
 WIDTHS {150,150,150,250} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -279,13 +281,31 @@ WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 437 ,81 BUTTONEX btnadd2;
+@ 437 ,71 BUTTONEX btnadd2;
 CAPTION " ”ÃÌ· «·„” ›”—";
 ON CLICK self:addrecord2()  ;
-WIDTH 280 HEIGHT 30 ;
+WIDTH 130 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 myout = RightToLeftControl ( "CustFriendsWindow","comboItem" )
+myout = self:LoadLookupTable("howknow","howknow",@self:howknowItems,"id",@self:howknowItemsIDS)
+@ 436 ,368 LABEL lblhowknow ;
+VALUE "«·Ê”Ì·…" ;
+WIDTH 70 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {255,255,255}
+@ 436 ,211 COMBOBOX combohowknow;
+ON CHANGE self:itemchange()  ;
+WIDTH 140 ;
+HEIGHT 100;
+ITEMS self:howknowitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 CustFriendsWindow.Center ( )
