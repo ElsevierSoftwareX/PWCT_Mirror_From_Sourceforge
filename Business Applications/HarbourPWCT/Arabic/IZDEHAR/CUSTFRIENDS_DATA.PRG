@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:11:08    Date : 12/07/2010
+* Time : 16:16:08    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -125,7 +125,7 @@ WIDTH 1030 HEIGHT 190
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 950 HEIGHT 230
-@ 619 ,51 BUTTONEX btnClose;
+@ 619 ,33 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {255,255,255};
@@ -242,29 +242,29 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 485 ,289 TEXTBOX textNamebrowse3;
+@ 485 ,319 TEXTBOX textNamebrowse3;
 HEIGHT 30 ;
 WIDTH 400 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 485 ,183 BUTTONEX btn1browse3;
+@ 485 ,213 BUTTONEX btn1browse3;
 CAPTION "»ÕÀ";
 ON CLICK self:search3()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 523 ,182 GRID Grid1browse3;
-WIDTH 746 ;
+@ 523 ,164 GRID Grid1browse3;
+WIDTH 846 ;
 HEIGHT 130 ;
 HEADERS {"≈”„ «·„ÊŸ›","Õ«·… «· ”ÃÌ·","«·Ê”Ì·…","ÃÊ«·","«”„ «·„” ›”—"};
 WIDTHS {150,150,100,150,250} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 489 ,697 COMBOBOX comboFind3;
+@ 489 ,727 COMBOBOX comboFind3;
 ON CHANGE self:CheckFind3()  ;
 WIDTH 230 ;
 HEIGHT 200;
@@ -273,7 +273,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 524 ,51 BUTTONEX btnDel2;
+@ 524 ,33 BUTTONEX btnDel2;
 CAPTION "Õ–› «·„” ›”—";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
