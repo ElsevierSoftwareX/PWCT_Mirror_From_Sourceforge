@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:17:06    Date : 12/07/2010
+* Time : 15:42:48    Date : 12/07/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -68,6 +68,7 @@ Data SelectCust init false
 Data SelectCustIndex init 0
 Data HowKnowItems init {}
 Data HowKnowItemsIDS init {}
+Data nHowKnow init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -577,6 +578,9 @@ oRS:fields:item("recordstatusid"):value := 2
 oRS:fields:item("customerid"):value := 0
 oRS:fields:item("username"):value := UsersObject:EnteredUserName
 oRS:fields:item("empid"):value := UsersObject:EnteredEmployeeID
+self:nHowKnow := CustFriendsWindow.ComboHowKnow.Value
+self:nHowKnow := self:howknowItemsids[self:nhowknow]
+oRS:fields:item("CustomerHowKnow"):value := self:nHowKnow
 oRS:UPDATE()
 oRS:Close()
 oRS:CursorType := 1
