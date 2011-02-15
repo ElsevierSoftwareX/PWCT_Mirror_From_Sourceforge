@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:44:18    Date : 12/08/2010
+* Time : 15:56:43    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,7 +36,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_SENDMAILTOGROUP2_15speed1() code
 class SendMailtoGroup2Class From MailSMTPServer
-Data TableName init "OrderItems_All"
+Data TableName init "CustFriends_All"
 Data windowtitle init "ÇÑÓÇá ÑÓÇáÉ Úä ØÑíÞ ÇáÈÑíÏ ÇáÇáßÊÑæäì Çáì ÇáãÓÊÝÓÑíä Úä ÏæÑÉ"
 Data gridheader init {"ÇáÈÑíÏ ÇáÇáßÊÑæäì","ÇÓã ÇáãÓÊÝÓÑ"}
 Data btncaption init "ÇÑÓÇá ÇáÑÓÇáÉ Çáì ÇáãÓÊÝÓÑíä Úä ÏæÑÉ"
@@ -225,7 +225,7 @@ myout = self:Connect()
 self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 self:oRS:CursorType := 1
 self:oRS:ActiveConnection := self:oCon
-self:oRS:open ( "Select * from OrderItems_All where orderid = " + SendMailToGroup2Window.text10.value,self:oCon,3,3 )
+self:oRS:open ( "Select * from CustFriends_All where orderid = " + SendMailToGroup2Window.text10.value,self:oCon,3,3 )
 nMax := self:oRS:RecordCount
 IF nMax > 0
 self:oRS:MOVEFIRST()
