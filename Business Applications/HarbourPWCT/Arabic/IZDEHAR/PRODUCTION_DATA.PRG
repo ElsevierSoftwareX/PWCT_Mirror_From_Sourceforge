@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:29:20    Date : 02/05/2011
+* Time : 13:32:20    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -38,7 +38,7 @@ Resistance R_PRODUCTION_DATA_15speed1() code
 class ProductionClass From SystemDatabase
 Data TableName init "Production_All"
 Data nID init 0
-Data column init "OrderNumber"
+Data column init "f_name"
 Data PrimaryKey init "id"
 Data columns init {"noofpcs","finishtime","dateofinput","f_name","ordernumber"}
 Data nOrderNumber init 0
@@ -199,16 +199,16 @@ WIDTH 990 ;
 HEIGHT 280 ;
 HEADERS self:FindTitles;
 WIDTHS {440,100,120,200,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 53 ,703 COMBOBOX comboFind;
 ON CHANGE Self:CheckFind()  ;
-WIDTH 230 ;
+WIDTH 190 ;
 HEIGHT 200;
 ITEMS self:FindTitles ;
-VALUE 5 ;
+VALUE 4 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
