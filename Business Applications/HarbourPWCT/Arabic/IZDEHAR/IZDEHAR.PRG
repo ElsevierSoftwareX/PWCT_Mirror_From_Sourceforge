@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:15:58    Date : 12/08/2010
+* Time : 00:38:33    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -157,6 +157,7 @@ Set Procedure to "BasicData.PRG"
 Set Procedure to "Shehada_Report.PRG"
 Set Procedure to "Shehada2_Report.PRG"
 Set Procedure to "SendMailToGroup2.PRG"
+Set Procedure to "SendMailToGroup3.PRG"
 CustomersDataObject = CustomersDataClass()
 GenderDataObject = GenderDataClass()
 CountryDataObject = CountryDataClass()
@@ -258,6 +259,7 @@ BasicDataObject = BasicDataClass()
 ShehadaReportObject = ShehadaReportClass()
 Shehada2ReportObject = Shehada2ReportClass()
 SendMailToGroup2Object = SendMailToGroup2Class()
+SendMailToGroup3Object = SendMailToGroup3Class()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -681,6 +683,9 @@ MENUITEM "«—”«· —”«·… «·Ï «·„”Ã·Ì‰ ›Ï œÊ—…" Action sendmailtogroupobject:showwin
 ENDIF
 IF UsersObject:CheckPermission(78)
 MENUITEM "«—”«· —”«·… «·Ï «·„” ›”—Ì‰ ⁄‰ œÊ—…" Action sendmailtogroup2object:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(78)
+MENUITEM "«—”«· —”«·… «·Ï «·„” ›”—Ì‰ ⁄‰ œÊ—… Ê«·„”Ã·Ì‰ „‰ ﬁ»· «·„ÊŸ›" Action sendmailtogroup3object:showwindow()
 ENDIF
 END POPUP
 ENDIF
