@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:34:41    Date : 12/09/2010
+* Time : 01:55:26    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -684,7 +684,7 @@ ENDIF
 IF UsersObject:CheckPermission(78)
 MENUITEM "«—”«· —”«·… «·Ï «·„” ›”—Ì‰ ⁄‰ œÊ—…" Action sendmailtogroup2object:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(78)
+IF UsersObject:CheckPermission(79)
 MENUITEM "«—”«· —”«·… «·Ï «·„” ›”—Ì‰ ⁄‰ œÊ—… Ê«·„”Ã·Ì‰ „‰ ﬁ»· «·„ÊŸ›" Action sendmailtogroup3object:showwindow()
 ENDIF
 END POPUP
