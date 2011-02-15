@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:34:08    Date : 11/26/2010
+* Time : 01:55:19    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,7 +43,7 @@ Data columns init {"Status","PermissionName"}
 Data nID init 0
 Data cName init ""
 Data ColTitles init {"«·Õ«·…","«”„ «·’·«ÕÌ…"}
-Data ColWidths init {115,300}
+Data ColWidths init {115,400}
 Data Userid init 0
 Data complexsearch init ""
 Method showwindow
@@ -73,7 +73,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( UserPermissionsWindow )
 DEFINE WINDOW UserPermissionsWindow ;
 AT 10 ,10 ;
-WIDTH 710 ;
+WIDTH 798 ;
 HEIGHT 574 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -87,7 +87,7 @@ BACKCOLOR {64,0,64}
 @ 40 ,5 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
-WIDTH 690 HEIGHT 500
+WIDTH 780 HEIGHT 500
 @ 205 ,26 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
@@ -99,12 +99,12 @@ NOXPSTYLE ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
 VALUE "                                                  ’·«ÕÌ«  «·„” Œœ„Ì‰" ;
-WIDTH 690 ;
+WIDTH 780 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 46 ,585 LABEL lbl1browse ;
+@ 46 ,685 LABEL lbl1browse ;
 VALUE "«·’·«ÕÌ…" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -114,7 +114,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 43 ,139 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
-WIDTH 440 ;
+WIDTH 540 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -127,12 +127,12 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 77 ,138 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
-WIDTH 440 ;
+WIDTH 540 ;
 HEIGHT 450 ;
 HEADERS self:ColTitles;
 WIDTHS self:ColWidths ;
 VALUE 1 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
