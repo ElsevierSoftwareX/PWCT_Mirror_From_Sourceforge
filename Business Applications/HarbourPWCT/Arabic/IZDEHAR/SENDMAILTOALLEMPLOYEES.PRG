@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:37:32    Date : 12/08/2010
+* Time : 13:46:33    Date : 12/08/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -39,7 +39,7 @@ class SendMailtoAllEmployeesClass From MailSMTPServer
 Data TableName init "Employees"
 Data windowtitle init "«—”«· —”«·… ⁄‰ ÿ—Ìﬁ «·»—Ìœ «·«·ﬂ —Ê‰Ï «·Ï ﬂ· «·„œ—»Ì‰"
 Data gridheader init {"«·»—Ìœ «·«·ﬂ —Ê‰Ï","«”„ «·„œ—»"}
-Data btncaption init "«—”«· «·—”«·… «·Ï ﬂ· «·„ÊŸ›Ì‰"
+Data btncaption init "«—”«· «·—”«·… «·Ï ﬂ· «·„œ—»Ì‰"
 Method ShowWindow
 Method msgSend
 Method msgAttach
