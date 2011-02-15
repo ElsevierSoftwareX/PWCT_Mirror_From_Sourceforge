@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:37:02    Date : 12/09/2010
+* Time : 01:34:37    Date : 12/09/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -225,7 +225,7 @@ myout = self:Connect()
 self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 self:oRS:CursorType := 1
 self:oRS:ActiveConnection := self:oCon
-self:oRS:open ( "Select * from CustFriends_All where orderid = " + SendMailToGroup3Window.text10.value,self:oCon,3,3 )
+self:oRS:open ( "Select * from CustFriends_All where orderid = " + SendMailToGroup3Window.text10.value + " and empid = " + str(UsersObject:EnteredEmployeeID),self:oCon,3,3 )
 nMax := self:oRS:RecordCount
 IF nMax > 0
 self:oRS:MOVEFIRST()
