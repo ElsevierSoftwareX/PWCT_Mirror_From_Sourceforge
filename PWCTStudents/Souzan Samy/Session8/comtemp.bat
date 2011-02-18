@@ -1,0 +1,1 @@
+CALL sscom2.bat  "SO8"  /X /l calldll  > _temp.txt
