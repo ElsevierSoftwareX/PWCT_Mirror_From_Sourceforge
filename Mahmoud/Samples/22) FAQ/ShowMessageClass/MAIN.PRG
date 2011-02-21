@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:33:00    Date : 02/21/2011
+* Time : 18:37:26    Date : 02/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -95,9 +95,9 @@ win1.Release ( )
 Return Nil
 Proc mytest
 MessageBoxObject:cMessage := "Hello - How are you ? "
-myout = MessageBoxObject:ShowWindow()
+myout = MessageBoxObject:MsgOk()
 MessageBoxObject:cMessage := "I hope that you are fine  "
-myout = MessageBoxObject:ShowWindow()
+myout = MessageBoxObject:MsgOk()
 Return Nil
 
 
