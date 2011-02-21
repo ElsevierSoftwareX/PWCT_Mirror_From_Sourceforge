@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:26:42    Date : 02/21/2011
+* Time : 18:26:26    Date : 02/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -14,11 +14,10 @@
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
-Function Main
+Function MESSAGEBOX
 Public True,False 
 True = .T. 
 False = .F. 
-New Server Server1 Type Slave Server Eigen Value 000
  Details :
  * (Noun) *
 Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
@@ -28,80 +27,59 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 				Branch     Main                          
 					Resistance Main                          
 	VetoUnit :
-End Of Server 
 
-	Resistance WIN32EVENTS() Address Code Unit : WIN32EVENTS
-
-  ADD RESISTANCE WIN32EVENTS 
+Resistance R_MESSAGEBOX_15speed1() address Code Unit : Circuits\Main\Main\Main
 
 
-Resistance R_MAIN_15speed1() address Code Unit : Circuits\Main\Main\Main
-
-
-CALL RESISTANCE Circuits\Main\Main\Main
 Return 
 
-  FUNCTION STARTSERVER()
-   	Server FireON
-  RETURN
-
-  RESISTANCE WIN32EVENTS() CODE
-	   DO EVENTS
-  RETURN
-
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_MAIN_15speed1() code
-Set Procedure to "MessageBox.PRG"
-MessageBoxObject = MessageBoxClass()
-if !iswindowdefined( win1 )
-DEFINE WINDOW win1 ;
+Resistance R_MESSAGEBOX_15speed1() code
+Class MessageBoxClass
+Data cMessage init ""
+Method showwindow
+Method closewindow
+EndClass
+Method showwindow Class MessageBoxClass
+if !iswindowdefined( MessageBoxWindow )
+DEFINE WINDOW MessageBoxWindow ;
 AT 10 ,10 ;
-WIDTH 500 ;
-HEIGHT 400 ;
+WIDTH 592 ;
+HEIGHT 203 ;
 ICON "PWCTICON" ;
-TITLE "System" ;
-MAIN ;
-BACKCOLOR {236,233,216} 
+TITLE "Welcome" ;
+MODAL ;
+NOSIZE ;
+BACKCOLOR {64,0,64}
 
-DEFINE MAIN MENU
-POPUP "File"
-MENUITEM "Close System" Action closesystem()
-END POPUP
-END MENU
-DEFINE STATUSBAR 
-
-STATUSITEM "Ready"
-
-KEYBOARD
-
-CLOCK
-
-END STATUSBAR
-
-@ 10 ,10 BUTTONEX btn1;
-CAPTION "Test MessageBox Class";
-ON CLICK mytest()  ;
-WIDTH 190 HEIGHT 30 ;
-FONT "Arial" SIZE 9 ;
+@ 115 ,435 BUTTONEX btnClose;
+CAPTION "Ok";
+ON CLICK self:closewindow()  ;
+WIDTH 130 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 14 ,11 LABEL lbl1 ;
+VALUE self:cMessage ;
+WIDTH 225 ;
+HEIGHT 50 ;
+AUTOSIZE ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {255,255,255}
 END WINDOW
 
-win1.Maximize ( )
-ACTIVATE WINDOW win1
+MessageBoxWindow.Center ( )
+ACTIVATE WINDOW MessageBoxWindow
 EndIF
 
-Proc closesystem
-win1.Release ( )
-Return Nil
-Proc mytest
-MessageBoxObject:cMessage := "Hello - How are you ? "
-myout = MessageBoxObject:ShowWindow()
-Return Nil
+Return 0
+Method closewindow Class MessageBoxClass
+MessageBoxWindow.Release ( )
+Return 0
+
 
 
 End Of Resistance
 
-INIT PROCEDURE Init_MAIN
-START DOUBLES
-Return
 *-------------------------------------------------------------------*
