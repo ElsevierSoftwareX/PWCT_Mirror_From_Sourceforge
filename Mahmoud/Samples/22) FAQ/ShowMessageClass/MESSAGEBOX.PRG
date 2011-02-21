@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:01:40    Date : 02/21/2011
+* Time : 19:11:53    Date : 02/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -37,9 +37,11 @@ Return
 Resistance R_MESSAGEBOX_15speed1() code
 Class MessageBoxClass
 Data cMessage init ""
+Data YesNo init False
 Method MsgOk
 Method closewindow
 Method MsgYesNo
+Method Yes
 EndClass
 Method MsgOk Class MessageBoxClass
 if !iswindowdefined( MessageBoxWindow )
@@ -79,6 +81,7 @@ Method closewindow Class MessageBoxClass
 MessageBoxWindow.Release ( )
 Return 0
 Method MsgYesNo Class MessageBoxClass
+self:YesNo := False
 if !iswindowdefined( MessageBoxWindow )
 DEFINE WINDOW MessageBoxWindow ;
 AT 10 ,10 ;
@@ -88,10 +91,10 @@ ICON "PWCTICON" ;
 TITLE "Welcome" ;
 MODAL ;
 NOSIZE ;
-BACKCOLOR {64,0,64}
+BACKCOLOR {128,128,0}
 
-@ 115 ,435 BUTTONEX btnClose;
-CAPTION "Ok";
+@ 115 ,301 BUTTONEX btnNo;
+CAPTION "No";
 ON CLICK self:closewindow()  ;
 WIDTH 130 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
@@ -105,12 +108,22 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,255}
+@ 115 ,151 BUTTONEX btnYes;
+CAPTION "Yes";
+ON CLICK self:Yes()  ;
+WIDTH 130 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 MessageBoxWindow.Center ( )
 ACTIVATE WINDOW MessageBoxWindow
 EndIF
 
+Return self:YesNo
+Method Yes Class MessageBoxClass
+self:YesNo := True
+MessageBoxWindow.Release ( )
 Return 0
 
 

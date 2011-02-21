@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:01:49    Date : 02/21/2011
+* Time : 19:13:47    Date : 02/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -98,6 +98,12 @@ MessageBoxObject:cMessage := "Hello - How are you ? "
 myout = MessageBoxObject:MsgOk()
 MessageBoxObject:cMessage := "I hope that you are fine  "
 myout = MessageBoxObject:MsgOk()
+MessageBoxObject:cMessage := "Are you fine ?"
+myout = MessageBoxObject:MsgYesNo()
+IF myout = True
+MessageBoxObject:cMessage := "Your Answer is Yes "
+myout = MessageBoxObject:MsgOk()
+ENDIF
 Return Nil
 
 
