@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:26:26    Date : 02/21/2011
+* Time : 18:37:04    Date : 02/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -37,10 +37,10 @@ Return
 Resistance R_MESSAGEBOX_15speed1() code
 Class MessageBoxClass
 Data cMessage init ""
-Method showwindow
+Method MsgOk
 Method closewindow
 EndClass
-Method showwindow Class MessageBoxClass
+Method MsgOk Class MessageBoxClass
 if !iswindowdefined( MessageBoxWindow )
 DEFINE WINDOW MessageBoxWindow ;
 AT 10 ,10 ;
