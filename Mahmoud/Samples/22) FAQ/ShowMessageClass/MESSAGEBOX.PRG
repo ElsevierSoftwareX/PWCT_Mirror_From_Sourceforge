@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 18:37:04    Date : 02/21/2011
+* Time : 19:01:40    Date : 02/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -39,6 +39,7 @@ Class MessageBoxClass
 Data cMessage init ""
 Method MsgOk
 Method closewindow
+Method MsgYesNo
 EndClass
 Method MsgOk Class MessageBoxClass
 if !iswindowdefined( MessageBoxWindow )
@@ -76,6 +77,40 @@ EndIF
 Return 0
 Method closewindow Class MessageBoxClass
 MessageBoxWindow.Release ( )
+Return 0
+Method MsgYesNo Class MessageBoxClass
+if !iswindowdefined( MessageBoxWindow )
+DEFINE WINDOW MessageBoxWindow ;
+AT 10 ,10 ;
+WIDTH 592 ;
+HEIGHT 203 ;
+ICON "PWCTICON" ;
+TITLE "Welcome" ;
+MODAL ;
+NOSIZE ;
+BACKCOLOR {64,0,64}
+
+@ 115 ,435 BUTTONEX btnClose;
+CAPTION "Ok";
+ON CLICK self:closewindow()  ;
+WIDTH 130 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 14 ,11 LABEL lbl1 ;
+VALUE self:cMessage ;
+WIDTH 225 ;
+HEIGHT 50 ;
+AUTOSIZE ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {255,255,255}
+END WINDOW
+
+MessageBoxWindow.Center ( )
+ACTIVATE WINDOW MessageBoxWindow
+EndIF
+
 Return 0
 
 
