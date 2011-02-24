@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:07:12    Date : 02/23/2011
+* Time : 20:46:14    Date : 02/24/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -116,20 +116,6 @@ if .not. empty(Win1.Edit1.VALUE)
 Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + " Welcome to WowBox " + myversion()
 else
 Win1.Edit1.VALUE := " Welcome to WowBox " + myversion()
-endif
-set century on
-mydate = DATE()
-mydate = DTOC ( mydate )
-if .not. empty(Win1.Edit1.VALUE)
-Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + " Date : " + mydate
-else
-Win1.Edit1.VALUE := " Date : " + mydate
-endif
-mytime = TIME()
-if .not. empty(Win1.Edit1.VALUE)
-Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + " Time : " + mytime
-else
-Win1.Edit1.VALUE := " Time : " + mytime
 endif
 if .not. empty(Win1.Edit1.VALUE)
 Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + "--------------------------------------------------------  "
