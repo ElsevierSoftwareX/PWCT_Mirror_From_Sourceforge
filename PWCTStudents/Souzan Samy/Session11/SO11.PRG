@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:30:39    Date : 03/21/2011
+* Time : 14:18:04    Date : 03/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -117,6 +117,7 @@ FONTCOLOR {0,0,0}
 CAPTION "create";
 FONTCOLOR {0,0,0};
 BACKCOLOR {249,219,249};
+ON CLICK mycreate()  ;
 WIDTH 153 HEIGHT 41 ;
 FONT "Arial" SIZE 18 ;
 TOOLTIP ""
@@ -125,7 +126,7 @@ END WINDOW
 ACTIVATE WINDOW win1
 EndIF
 
-Proc create
+Proc mycreate
 title := win1.text1.Value
 hight := win1.text2.Value
 width := win1.text3.Value
