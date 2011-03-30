@@ -1,0 +1,1 @@
+CALL sscom2.bat  "IMAGEFUNCS"  /X /l calldll  > _temp.txt
