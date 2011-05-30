@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:10:01    Date : 05/29/2011
+* Time : 22:04:24    Date : 05/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -290,7 +290,7 @@ y = SUBSTR(date,7,10)
 win1.text3.Value := y
 m = SUBSTR(date,1,2)
 win1.text2.Value := m
-d = SUBSTR(date,4,4)
+d = SUBSTR(date,4,2)
 win1.text1.Value := d
 win1.text4.SetFocus ( )
 Return Nil
