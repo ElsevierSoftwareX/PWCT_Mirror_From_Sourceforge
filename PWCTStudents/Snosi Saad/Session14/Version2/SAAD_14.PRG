@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:19:01    Date : 05/30/2011
+* Time : 23:13:26    Date : 05/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -108,10 +108,18 @@ CAPTION "≈Õ”»";
 FONTCOLOR {66,147,72};
 ON CLICK mycount()  ;
 WIDTH 100 HEIGHT 40 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 188 ,236 BUTTONEX btn2;
+CAPTION " ›—€";
+FONTCOLOR {255,0,0};
+ON CLICK mydelete()  ;
+WIDTH 100 HEIGHT 40 ;
 FONT "arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
+DO RightToLeftControl WITH "win1","edit1"
 calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20,;
 NUMOR(calldll32("GetWindowLong","USER32.DLL",;
 GetFormHandle ("Win1"), -20),0x400000,0x100000))
@@ -130,6 +138,15 @@ else
 Win1.Edit1.VALUE := x2
 endif
 Next
+Return Nil
+Proc RightToLeftControl( p1,p2 )
+Local v1,myhandle
+myhandle = GetControlHandle ( p2,p1 )
+v1 = CALLDLL32("GetWindowLong","USER32.DLL",myhandle,-20)
+myout = CALLDLL32("SetWindowLong","USER32.DLL",myhandle,-20,NUMOR(v1,0x400000,0x100000))
+Return Nil
+Proc mydelete
+win1.edit1.Value := ""
 Return Nil
 
 
