@@ -1079,7 +1079,11 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	mem_electronhandle = myswform.oletree.SelectedItem.key
 	locate for alltrim(electronhandle) = alltrim(mem_electronhandle)
 	if found()
-	myswform.Pageframe1.Page2.editBTN.CLICK()
+
+  s_mem = alltrim(electronname)
+  do form editelectron.scx
+	
+	
 	ELSE
 			GOTO bottom
  STMSG(sysmsg(267))
@@ -1097,7 +1101,24 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	mem_electronhandle = myswform.oletree.SelectedItem.key
 	locate for alltrim(electronhandle) = alltrim(mem_electronhandle)
 	if found()
-	myswform.Pageframe1.Page2.delbtn.click()
+
+
+	
+				if .not. reccount() = 0
+						mymsg = messagebox(sysmsg(139),36,sysmsg(140))
+						if .not. mymsg = 6
+								return
+						endif
+					select 4
+				myswform.oletree.nodes.remove(alltrim(electronhandle))
+					myswform.oletree.refresh
+					delete
+					pack
+					goto top
+			
+				endif
+	
+	
 	ELSE
 			GOTO bottom
   STMSG(sysmsg(267))
@@ -1253,7 +1274,7 @@ if found()
  enddo
  PACK
  		GOTO bottom
- myswform.Pageframe1.Page2.activate()
+ 
 ELSE
 		GOTO bottom
 	STMSG(sysmsg(281))
@@ -1273,7 +1294,13 @@ endif
 if s_menu == "3_15"
 FS_SW = 1
 s_menu = "1_0"
-myswform.Pageframe1.Page3.newvesselbtn.click()
+
+select 1
+if reccount() = 0
+mymsg = messagebox(sysmsg(150),6,sysmsg(151))
+endif
+do form newvessel.scx
+
 endif
 
 *!*	if s_menu == "3_15_OK"
@@ -1295,7 +1322,12 @@ o = myswform.oletree
 		mem_vesselhandle = myswform.oletree.SelectedItem.key
 		locate for alltrim(vesselhandle) = alltrim(mem_vesselhandle)
 		if found()
-			myswform.Pageframe1.Page3.editvesselbtn.click()
+		
+		
+			Do form editvessel.scx
+			
+			
+			
 			ELSE
 					GOTO bottom
   	STMSG(sysmsg(272))
@@ -1313,7 +1345,27 @@ o = myswform.oletree
 		mem_vesselhandle = myswform.oletree.SelectedItem.key
 		locate for alltrim(vesselhandle) = alltrim(mem_vesselhandle)
 		if found()
-			myswform.Pageframe1.Page3.deletevesselbtn.click()
+			
+								select 5
+					if .not. reccount() = 0
+					mymsg = messagebox(sysmsg(152),36,sysmsg(140))
+					if .not. mymsg = 6
+					return
+					endif
+					
+					
+					myswform.oletree.nodes.remove(alltrim(mem_vesselhandle))
+					myswform.oletree.refresh
+					delete
+					pack
+					select 6
+					delete all for alltrim(vesselhandle) = alltrim(mem_vesselhandle)
+					pack
+					goto top
+					endif
+
+			
+			
 		ELSE
 				GOTO bottom
   		STMSG(sysmsg(272))
@@ -1347,12 +1399,13 @@ select 5
 myswform.oleTree.Nodes.item(alltrim(vesselhandle)).Selected = .T.
 myswform.oletree.SelectedItem.text = alltrim(vesselname)
 myswform.oletree.refresh
-myswform.Pageframe1.Page3.activate()
 endif
 
 if s_menu == "3_22"
 s_menu = "1_0"
-myswform.Pageframe1.Page4.newreactionbtn.click()
+
+DO FORM newreaction.scx
+
 endif
 
 *!*	if s_menu == "3_22_OK"
@@ -1373,7 +1426,7 @@ select 7
 myswform.oleTree.Nodes.item(alltrim(reactionhandle)).Selected = .T.
 myswform.oletree.SelectedItem.text = alltrim(reactionname)
 myswform.oletree.refresh
-myswform.Pageframe1.Page3.activate()
+
 endif
 
 if s_menu == "3_23"
@@ -1385,7 +1438,13 @@ o = myswform.oletree
 		mem_reactionhandle = myswform.oletree.SelectedItem.key
 		locate for alltrim(reactionhandle) = alltrim(mem_reactionhandle)
 		if found()
-			myswform.Pageframe1.Page4.editreactionbtn.click()
+
+
+
+		Do form editreaction.scx
+			
+			
+			
 		ELSE
 				GOTO bottom
   		STMSG(sysmsg(273))
@@ -1404,7 +1463,41 @@ o = myswform.oletree
 		mem_reactionhandle = myswform.oletree.SelectedItem.key
 		locate for alltrim(reactionhandle) = alltrim(mem_reactionhandle)
 		if found()
-		myswform.Pageframe1.Page4.deletereactionbtn.click()
+	
+	
+								select 7
+							if .not. reccount() = 0
+							mymsg = messagebox(sysmsg(166),36,sysmsg(167))
+							if .not. mymsg = 6
+							return
+							endif
+						
+							myswform.oletree.nodes.remove(alltrim(mem_reactionhandle))
+							myswform.oletree.refresh
+							delete
+							pack
+							select 8
+							delete all for alltrim(reactionhandle) = alltrim(mem_reactionhandle)
+							pack
+							goto top
+							select 9
+							delete all for alltrim(reactionhandle) = alltrim(mem_reactionhandle)
+							pack
+							goto top
+							select 10
+							delete all for alltrim(reactionhandle) = alltrim(mem_reactionhandle)
+							pack
+							goto top
+							select 11
+							delete all for alltrim(reactionhandle) = alltrim(mem_reactionhandle)
+							pack
+							goto top
+							
+							endif
+
+		
+		
+		
 		ELSE
 				GOTO bottom
   		STMSG(sysmsg(273))
@@ -1528,7 +1621,21 @@ endif
 if s_menu == "Code_New_Branch"
 FS_SW = 1
 s_menu = "1_0"
-myswform.Pageframe1.Page5.newrbranchbtn.click()
+
+IF !ISNULL(myswform.oletree.SelectedItem)
+select 13
+locate for alltrim(circuithandle) = alltrim(myswform.oletree.SelectedItem.key)
+if found()
+do form newbranch.scx
+else
+mymsg = messagebox(sysmsg(182),6,sysmsg(136))
+endif
+else
+mymsg = messagebox(sysmsg(183),6,sysmsg(136))
+endif
+
+
+
 endif
 
 if s_menu == "Code_First_Branch"
@@ -1558,7 +1665,29 @@ o = myswform.oletree
 		mem_branchhandle = myswform.oletree.SelectedItem.key
 		locate for alltrim(branchhandle) = alltrim(mem_branchhandle)
 		if found()
-		myswform.Pageframe1.Page5.deletebranchbtn.click()
+	
+					if .not. reccount() = 0
+				mymsg = messagebox(sysmsg(184),36,sysmsg(135))
+				if .not. mymsg = 6
+				return
+				endif
+				select 14
+				myswform.oletree.nodes.remove(alltrim(branchhandle))
+				myswform.oletree.refresh
+				select 15
+				delete all for alltrim(branchhandle) = alltrim(t14->branchhandle)
+				pack
+				select 14
+				delete
+				pack
+				goto top
+				
+				endif
+
+	
+	
+	
+	
 		ELSE
 				GOTO bottom
 	STMSG(sysmsg(275))
@@ -1586,7 +1715,7 @@ o = myswform.oletree
 		mem_branchhandle = myswform.oletree.SelectedItem.key
 		locate for alltrim(branchhandle) = alltrim(mem_branchhandle)
 		if found()
-		myswform.Pageframe1.Page5.editbranchbtn.click()
+		Do form editbranch.scx
 		ELSE
 				GOTO bottom
 		STMSG(sysmsg(275))
@@ -1639,7 +1768,26 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	select 15
 	locate for ALLTRIM(resistancehandle) == alltrim(myvar)	
 		if found()
-			myswform.Pageframe1.Page6.deleteResistancebtn.click()
+		
+		
+					
+					if .not. reccount() = 0
+					mymsg = messagebox(sysmsg(201),36,sysmsg(202))
+					if .not. mymsg = 6
+					return
+					endif
+					select 15
+					myswform.oletree.nodes.remove(alltrim(resistancehandle))
+					myswform.oletree.refresh
+					delete
+					pack
+					goto top
+				
+					endif
+
+		
+		
+		
 		ELSE
 				GOTO bottom
 	 STMSG(sysmsg(276))
@@ -1658,7 +1806,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	select 15
 	locate for ALLTRIM(resistancehandle) == alltrim(myvar)	
 		if found()
-		myswform.Pageframe1.Page6.editResistancebtn.click()
+		Do form editresistance.scx
 		ELSE
 				GOTO bottom
 	 		STMSG(sysmsg(276))
@@ -1671,7 +1819,23 @@ endif
 if s_menu == "Code_New_Resistance"
 FS_SW = 1
 s_menu = "1_0"
-myswform.Pageframe1.Page6.newResistancebtn.click()
+
+
+IF !ISNULL(myswform.oletree.SelectedItem)
+select 14
+locate for alltrim(branchhandle) = alltrim(myswform.oletree.SelectedItem.key)
+if found()
+do form newresistance.scx
+else
+mymsg = messagebox(sysmsg(199),6,sysmsg(136))
+endif
+else
+mymsg = messagebox(sysmsg(200),6,sysmsg(136))
+endif
+
+
+
+
 endif
 
 if S_Menu ==  "Code_New_Resistance"
