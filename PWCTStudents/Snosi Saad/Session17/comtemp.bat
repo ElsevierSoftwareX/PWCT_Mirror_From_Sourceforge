@@ -1,0 +1,1 @@
+CALL sscom2.bat  "SAAD_17"  /X /l calldll  > _temp.txt
