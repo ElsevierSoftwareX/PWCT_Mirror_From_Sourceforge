@@ -1,0 +1,1 @@
+CALL sscom2.bat  "NOZA FAMILY"  /X /l calldll  > _temp.txt
