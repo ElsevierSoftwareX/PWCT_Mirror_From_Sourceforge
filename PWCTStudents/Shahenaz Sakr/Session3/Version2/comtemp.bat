@@ -1,0 +1,1 @@
+CALL sscom2.bat  "AVG OF 2 NUMBERS"  /X /l calldll  > _temp.txt
