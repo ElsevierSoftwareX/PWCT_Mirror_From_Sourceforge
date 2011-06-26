@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:47:33    Date : 06/26/2011
+* Time : 13:20:41    Date : 06/26/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -52,7 +52,9 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_MAIN_15speed1() code
 Set Procedure to "searchbyname.PRG"
+Set Procedure to "searchbyaddress.PRG"
 myobj = search()
+myobj2 = search2()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -69,6 +71,7 @@ MENUITEM "≈€·«ﬁ" Action closesystem()
 END POPUP
 POPUP "»ÕÀ"
 MENUITEM "»ÕÀ »«·«”„" Action myobj:showwindow()
+MENUITEM "»ÕÀ »«·⁄‰Ê«‰" Action myobj2:showwindow()
 END POPUP
 END MENU
 DEFINE STATUSBAR 
