@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:39:40    Date : 06/26/2011
+* Time : 10:47:33    Date : 06/26/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -84,6 +84,9 @@ END STATUSBAR
 END WINDOW
 
 win1.Maximize ( )
+calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20,;
+NUMOR(calldll32("GetWindowLong","USER32.DLL",;
+GetFormHandle ("Win1"), -20),0x400000,0x100000))
 ACTIVATE WINDOW win1
 EndIF
 

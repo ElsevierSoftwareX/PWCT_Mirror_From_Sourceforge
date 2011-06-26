@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:39:00    Date : 06/26/2011
+* Time : 10:46:21    Date : 06/26/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,7 +43,7 @@ Method ShowWindow
 Method CloseWindow
 Method GoSearch
 EndClass
-Method ShowWindow Class Search
+Method ShowWindow Class search
 if !iswindowdefined( WinSearch )
 DEFINE WINDOW WinSearch ;
 AT 10 ,10 ;
@@ -69,11 +69,11 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {85,148,210} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
-@ 25 ,25 BUTTONEX btn1;
+@ 25 ,25 BUTTONEX btnsearch;
 CAPTION "»ÕÀ";
 ON CLICK self:GoSearch()  ;
 WIDTH 50 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 @ 66 ,25 LISTBOX list1;
 WIDTH 357 ;
@@ -83,17 +83,18 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 249 ,25 BUTTONEX btnclose;
 CAPTION "≈€·«ﬁ";
-ON CLICK self:closewindow()  ;
+ON CLICK self:CloseWindow()  ;
 WIDTH 357 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
+winsearch.Center ( )
 ACTIVATE WINDOW WinSearch
 EndIF
 
 Return 0
-Method CloseWindow Class Search
+Method CloseWindow Class search
 winsearch.Release ( )
 Return 0
 Method GoSearch Class Search
