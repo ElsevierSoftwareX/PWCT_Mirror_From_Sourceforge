@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:29:35    Date : 07/01/2011
+* Time : 22:23:39    Date : 07/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -67,7 +67,7 @@ HEIGHT 400 ;
 ICON "PWCTICON" ;
 TITLE "„–ﬂ—… «·Â« ›" ;
 MAIN ;
-BACKCOLOR {236,233,216} 
+BACKCOLOR {95,95,95} 
 
 DEFINE MAIN MENU
 POPUP "„·›"

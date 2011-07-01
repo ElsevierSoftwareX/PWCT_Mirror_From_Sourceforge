@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:51:50    Date : 06/29/2011
+* Time : 19:08:12    Date : 07/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -57,21 +57,29 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {26,142,230} 
 
-@ 14 ,288 BUTTONEX btnShowReport;
+@ 16 ,288 BUTTONEX btnShowReport;
 CAPTION "⁄—÷ «· ﬁ—Ì—";
+FONTCOLOR {0,0,255};
 ON CLICK self:ShowReport()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
+TOOLTIP ""
+@ 16 ,8 BUTTONEX btnclose;
+CAPTION "≈€·«ﬁ";
+FONTCOLOR {255,0,0};
+ON CLICK self:CloseWindow  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 Public oActiveX
 oActiveX := TActiveX():New( "WinPrint", "CrystalReports10.ActiveXreportViewer.1" , 55 , 7 , 661 , 297)
 oActiveX:Load()
 END WINDOW
 
+WinPrint.Center ( )
 calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("WinPrint"),-20,;
 NUMOR(calldll32("GetWindowLong","USER32.DLL",;
 GetFormHandle ("WinPrint"), -20),0x400000,0x100000))
-WinPrint.Center ( )
 ACTIVATE WINDOW WinPrint
 EndIF
 

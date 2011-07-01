@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:01:42    Date : 06/30/2011
+* Time : 18:35:29    Date : 07/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,7 +35,7 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_DATA_WINDOW_15speed1() code
-Class WondowData
+Class WindowData
 Data oCon init 0
 Data oRS init 0
 Data addrec init false
@@ -56,16 +56,17 @@ Method DelRecord
 Method PrevRecord
 Method NextRecord
 Method LastRecord
-Method FarstRecord
+Method FirstRecord
 Method ShowRecord
-Method CloseRecord
-Method DisconnectRecord
-Method ConnectRecord
+Method CloseSystem
+Method Disconnect
+Method Connect
 Method Mode
 Method SaveRecord
 Method EditRecord
 EndClass
 Method ShowWindow Class WindowData
+myout = self:Connect()
 if !iswindowdefined( windata )
 DEFINE WINDOW windata ;
 AT 10 ,10 ;
@@ -208,11 +209,12 @@ FONT "Arial" SIZE 12 ;
 TOOLTIP ""
 END WINDOW
 
-calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20,;
+calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("WinData"),-20,;
 NUMOR(calldll32("GetWindowLong","USER32.DLL",;
-GetFormHandle ("Win1"), -20),0x400000,0x100000))
-DO self:ShowRecord
-DO self:mode WITH 2
+GetFormHandle ("WinData"), -20),0x400000,0x100000))
+myout = self:ShowRecord()
+myout = self:mode(2)
+windata.Center ( )
 ACTIVATE WINDOW windata
 EndIF
 
@@ -225,7 +227,7 @@ cNotes := windata.textnotes.Value
 Return 0
 Method Class2ADO Class WindowData
 self:oRS:fields:item("name"):value := self:cName
-self:oRS:fields:item("Address"):value := self:cAdress
+self:oRS:fields:item("Address"):value := self:cAddress
 self:oRS:fields:item("Phone"):value := self:cPhone
 self:oRS:fields:item("Notes"):value := self:cNotes
 Return 0
@@ -248,49 +250,46 @@ self:cPhone := ""
 self:cNotes := ""
 Return 0
 Method CancelRecord Class WindowData
-DO self:mode WITH 2
-DO self:ShowRecord
+myout = self:mode(2)
+myout = self:ShowRecord()
 Return 0
 Method connect Class WindowData
-Public oCon,oRS
-Public self:oCon
 self:oCon := TOLEAUTO():NEW( "ADODB.Connection" )
 self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=False;Extended Properties="dsn=MS Access Database;uid=";Initial Catalog=data.mdb' )
-public self:oRS
 self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 self:oRS:CursorType := 1
 self:oRS:ActiveConnection := self:oCon
-self:oRS:open ( "Select * from tel",self:oCon,3,3 )
+self:oRS:open ( "Select * from " + self:tablename,self:oCon,3,3 )
 Return 0
 Method disconnect Class WindowData
 self:oRS:Close()
 self:oCon:CLOSE()
 Return 0
 Method CloseSystem Class WindowData
-DO self:disconnect
+myout = self:Disconnect()
 WinData.Release ( )
 Return 0
 Method ShowRecord Class WindowData
 mymax := self:oRS:RecordCount
 IF mymax > 0
-DO self:ADO2Class
+myout = self:ado2class()
 ELSE
-DO self:ClearRecord
+myout = self:clearRecord()
 ENDIF
-DO Class2Userinterface
+myout = self:Class2Userinterface()
 Return 0
 Method FirstRecord Class WindowData
 mymax := self:oRS:RecordCount
 IF mymax > 0
 self:oRS:MOVEFIRST()
-DO self:ShowRecord
+myout = self:ShowRecord()
 ENDIF
 Return 0
 Method LastRecord Class WindowData
 mymax := self:oRS:RecordCount
 IF mymax > 0
 self:oRS:MOVELAST()
-DO self:ShowRecord
+myout = self:ShowRecord()
 ENDIF
 Return 0
 Method NextRecord Class WindowData
@@ -302,9 +301,9 @@ IF mycheck
 self:oRS:MOVEPREVIOUS()
 MyOut := MSGBOX("åÐå äåÇíÉ ÇáãáÝ","ÚÝæÇð")
 ELSE
-DO self:ShowRecord
+myout = self:ShowRecord()
 ENDIF
-DO showrecord
+myout = self:ShowRecord()
 ENDIF
 Return 0
 Method PrevRecord Class WindowData
@@ -316,7 +315,7 @@ IF mycheck
 self:oRS:MOVENEXT()
 MyOut := MSGBOX("åÐå äåÇíÉ ÇáãáÝ","ÚÝæÇð")
 ELSE
-DO self:ShowRecord
+myout = self:ShowRecord()
 ENDIF
 ENDIF
 Return 0
@@ -337,7 +336,7 @@ IF mycheck
 self:oRS:MOVENEXT()
 ENDIF
 ENDIF
-DO showrecord
+myout = self:ShowRecord()
 ELSE
 MyOut := MSGBOX("! áÇ íæÌÏ ÓÌáÇÊ","ÚÝæÇ")
 ENDIF
@@ -367,15 +366,15 @@ winData.btn5.Enabled := true
 ENDIF
 Return 0
 Method SaveRecord Class WindowData
-DO self:mode WITH 2
-DO self:Userinterface2Class
-DO self:Class2ADO
+myout = self:mode(2)
+myout = self:Userinterface2class()
+myout = self:Class2ado()
 self:oRS:UPDATE()
 Return 0
 Method EditRecord Class WindowData
 mymax := self:oRS:RecordCount
 IF mymax > 0
-DO self:mode WITH 1
+myout = self:mode(1)
 ENDIF
 Return 0
 
