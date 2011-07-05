@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:23:12    Date : 07/05/2011
+* Time : 14:56:30    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -63,6 +63,7 @@ Set Procedure to "Employees2_Report.PRG"
 Set Procedure to "ListOfEmployees2_Report.PRG"
 Set Procedure to "Country_data.PRG"
 Set Procedure to "STREAMFUNCS.PRG"
+Set Procedure to "Projects_Data.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -70,6 +71,7 @@ Employees2BrowseObject = Employees2BrowseClass()
 Employees2ReportObject = Employees2ReportClass()
 ListofEmployees2ReportObject = ListofEmployees2ReportClass()
 CountryDataObject = CountryDataClass()
+ProjectsObject = ProjectsClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -199,6 +201,9 @@ MENUITEM " ﬁ—Ì— »«·„ÊŸ›Ì‰" Action Employees2ReportObject:ShowWindow()
 MENUITEM "ÃœÊ· «·Ã‰”Ì«  " Action Countrydataobject:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListofEmployees2ReportObject:ShowWindow()
 SEPARATOR
+END POPUP
+POPUP "Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„« "
+MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject:showwindow()
 END POPUP
 Return Nil
 Proc datesettings
