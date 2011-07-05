@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:03:28    Date : 07/05/2011
+* Time : 17:10:46    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -315,30 +315,42 @@ self:cProjectName := ProjectsWindow.textProjectName.Value
 self:cProjectOwner := ProjectsWindow.textProjectOwner.Value
 self:cOwnerLocation := ProjectsWindow.textOwnerLocation.Value
 self:cKeywords := ProjectsWindow.textKeywords.Value
+self:cDateReceived := ProjectsWindow.dateReceived.Value
+self:cDateComplete := ProjectsWindow.dateComplete.Value
+self:cDateReceived = DTOC ( self:cDateReceived )
+self:cDateComplete = DTOC ( self:cDateComplete )
 Return 0
 Method Class2ADO Class ProjectsClass
 self:oRS:fields:item("ProjectName"):value := self:cProjectName
 self:oRS:fields:item("ProjectOwner"):value := self:cProjectOwner
 self:oRS:fields:item("OwnerLocation"):value := self:cOwnerLocation
 self:oRS:fields:item("Keywords"):value := self:cKeywords
+self:oRS:fields:item("DateReceived"):value := self:cDateReceived
+self:oRS:fields:item("DateComplete"):value := self:cDateComplete
 Return 0
 Method ADO2Class Class ProjectsClass
 self:cProjectName := self:oRS:fields:item("ProjectName"):value
 self:cProjectOwner := self:oRS:fields:item("ProjectOwner"):value
 self:cOwnerLocation := self:oRS:fields:item("OwnerLocation"):value
 self:cKeywords := self:oRS:fields:item("Keywords"):value
+self:cDateReceived := self:oRS:fields:item("DateReceived"):value
+self:cDateComplete := self:oRS:fields:item("DateComplete"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 ProjectsWindow.textProjectName.Value := self:cProjectName
 ProjectsWindow.textProjectOwner.Value := self:cProjectOwner
 ProjectsWindow.textOwnerLocation.Value := self:cOwnerLocation
 ProjectsWindow.textKeywords.Value := self:cKeywords
+ProjectsWindow.dateReceived.Value := ctod(self:cDateReceived)
+ProjectsWindow.dateComplete.Value := ctod(self:cDateComplete)
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
 self:cProjectOwner := ""
 self:cOwnerLocation := ""
 self:cKeywords := ""
+self:cDateReceived := ""
+self:cDateComplete := ""
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
@@ -372,6 +384,8 @@ ProjectsWindow.textProjectName.Enabled := true
 ProjectsWindow.textProjectOwner.Enabled := true
 ProjectsWindow.textOwnerLocation.Enabled := true
 ProjectsWindow.textKeywords.Enabled := true
+ProjectsWindow.dateReceived.Enabled := true
+ProjectsWindow.dateComplete.Enabled := true
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -388,6 +402,8 @@ ProjectsWindow.textProjectName.Enabled := false
 ProjectsWindow.textProjectOwner.Enabled := false
 ProjectsWindow.textOwnerLocation.Enabled := false
 ProjectsWindow.textKeywords.Enabled := false
+ProjectsWindow.dateReceived.Enabled := false
+ProjectsWindow.dateComplete.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
