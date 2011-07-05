@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:21:05    Date : 07/05/2011
+* Time : 15:57:15    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,6 +41,7 @@ Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
 Data FindTitles init {"ﬂ·„«  „› «ÕÌ…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"}
+Data cProjectName init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -202,6 +203,20 @@ VALUE 6 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 274 ,688 LABEL lblProjectName ;
+VALUE "«”„ «·„‘—Ê⁄" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 273 ,319 TEXTBOX textProjectName;
+HEIGHT 30 ;
+WIDTH 340 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 END WINDOW
@@ -215,14 +230,19 @@ EndIF
 
 Return 0
 Method UserInterface2Class Class ProjectsClass
+self:cProjectName := ProjectsWindow.textProjectName.Value
 Return 0
 Method Class2ADO Class ProjectsClass
+self:oRS:fields:item("ProjectName"):value := self:cProjectName
 Return 0
 Method ADO2Class Class ProjectsClass
+self:cProjectName := self:oRS:fields:item("ProjectName"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
+ProjectsWindow.textProjectName.Value := self:cProjectName
 Return 0
 Method ClearRecord Class ProjectsClass
+self:cProjectName := ""
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
@@ -252,6 +272,7 @@ ProjectsWindow.btnsave.Enabled := true
 ProjectsWindow.btncancel.Enabled := true
 ProjectsWindow.btnedit.Enabled := false
 ProjectsWindow.btnadd.Enabled := false
+ProjectsWindow.textProjectName.Enabled := true
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -264,6 +285,7 @@ ProjectsWindow.btnsave.Enabled := false
 ProjectsWindow.btncancel.Enabled := false
 ProjectsWindow.btnedit.Enabled := true
 ProjectsWindow.btnadd.Enabled := true
+ProjectsWindow.textProjectName.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
