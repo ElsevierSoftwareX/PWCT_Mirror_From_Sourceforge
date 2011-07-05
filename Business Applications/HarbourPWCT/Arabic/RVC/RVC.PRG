@@ -1,13 +1,15 @@
 *---------------------------------------------------------------------------*
-* Time : 10:15:13    Date : 07/02/2011
+* Time : 14:23:12    Date : 07/05/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Programming Language    : Mahmoud Programming Language 
+* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
+* Programming Paradigm    : DoubleS (Super Server)
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
-* GUI Framework               : HarbourMiniGUI Extended
+* Compilers               : Borland C/C++ & Harbour/xHarbour
+* GUI Framework           : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -60,6 +62,7 @@ Set Procedure to "ReportBase.PRG"
 Set Procedure to "Employees2_Report.PRG"
 Set Procedure to "ListOfEmployees2_Report.PRG"
 Set Procedure to "Country_data.PRG"
+Set Procedure to "STREAMFUNCS.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
