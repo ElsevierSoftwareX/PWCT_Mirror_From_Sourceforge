@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:14:07    Date : 07/05/2011
+* Time : 15:21:15    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -191,9 +191,6 @@ MENUITEM "Œ—ÊÃ" Action closesystem()  IMAGE "image\wzclose.bmp"
 END POPUP
 IF UsersObject:userisadmin = 1
 POPUP "‰Ÿ«„"
-MENUITEM "«·„” Œœ„Ì‰" Action UsersObject:ShowWindow()
-END POPUP
-ENDIF
 POPUP "«·„ÊŸ›Ì‰"
 MENUITEM "»Ì«‰«  «·„ÊŸ›" Action Employees2DataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „ÊŸ›" Action Employees2BrowseObject:showwindow()
@@ -202,8 +199,13 @@ MENUITEM "ÃœÊ· «·Ã‰”Ì«  " Action Countrydataobject:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListofEmployees2ReportObject:ShowWindow()
 SEPARATOR
 END POPUP
+MENUITEM "«·„” Œœ„Ì‰" Action UsersObject:ShowWindow()
+END POPUP
+ENDIF
 POPUP "Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„« "
+IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject:showwindow()
+ENDIF
 END POPUP
 Return Nil
 Proc datesettings

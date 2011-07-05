@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:11:18    Date : 07/05/2011
+* Time : 15:21:05    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -61,6 +61,10 @@ Method CheckFind
 Method OnBeforeDelete
 EndClass
 Method showwindow Class ProjectsClass
+IF .not. UsersObject:CheckPermission(83)
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( ProjectsWindow )
