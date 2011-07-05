@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:40:51    Date : 07/05/2011
+* Time : 17:50:57    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,7 @@ Method GetSearchValue
 Method settimer
 Method CheckFind
 Method OnBeforeDelete
+Method CheckAttach
 EndClass
 Method showwindow Class ProjectsClass
 IF .not. UsersObject:CheckPermission(83)
@@ -298,8 +299,16 @@ WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 519 ,840 BUTTONEX btnAttachCheck;
+CAPTION "«·„—›ﬁ« ";
+ON CLICK self:checkattach()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
+myout = RightToLeftControl ( "ProjectsWindow","datereceived" )
+myout = RightToLeftControl ( "ProjectsWindow","datecomplete" )
 END WINDOW
 
 ProjectsWindow.Center ( )
@@ -418,6 +427,9 @@ self:Column := self:Columns[nIndex]
 Return 0
 Method OnBeforeDelete Class ProjectsClass
 Return myout
+Method CheckAttach Class ProjectsClass
+MyOut := MSGBOX("Text Here","Text Here")
+Return 0
 Method closewindow Class ProjectsClass
 myout = self:disconnect()
 ProjectsWindow.Release ( )
