@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:16:44    Date : 07/05/2011
+* Time : 17:03:28    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -45,6 +45,8 @@ Data cProjectName init ""
 Data cProjectOwner init ""
 Data cOwnerLocation init ""
 Data cKeywords init ""
+Data cDateReceived init ""
+Data cDateComplete init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -85,7 +87,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 45 ,4 IMAGE image1;
+@ 44 ,5 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1110 HEIGHT 520
@@ -193,7 +195,7 @@ WIDTH 1090 ;
 HEIGHT 160 ;
 HEADERS self:FindTitles;
 WIDTHS {170,120,120,150,200,210,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -270,6 +272,32 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+@ 434 ,688 LABEL lbldatereceived ;
+VALUE " «—ÌŒ «·«” Ì·«„" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 430 ,480 DATEPICKER dateReceived;
+WIDTH 180 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 474 ,688 LABEL lbldatecomplete ;
+VALUE " «—ÌŒ «·«‰ Â«¡" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 474 ,479 DATEPICKER dateComplete;
+WIDTH 180 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 END WINDOW
