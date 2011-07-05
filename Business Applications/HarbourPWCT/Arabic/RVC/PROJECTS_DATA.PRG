@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:10:46    Date : 07/05/2011
+* Time : 17:40:51    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -87,7 +87,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 44 ,5 IMAGE image1;
+@ 46 ,7 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1110 HEIGHT 520
@@ -192,7 +192,7 @@ TOOLTIP ""
 @ 93 ,13 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1090 ;
-HEIGHT 160 ;
+HEIGHT 260 ;
 HEADERS self:FindTitles;
 WIDTHS {170,120,120,150,200,210,100} ;
 FONT "Arial" SIZE 14 ;
@@ -208,7 +208,7 @@ VALUE 6 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 274 ,688 LABEL lblProjectName ;
+@ 384 ,966 LABEL lblProjectName ;
 VALUE "«”„ «·„‘—Ê⁄" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -216,7 +216,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 273 ,319 TEXTBOX textProjectName;
+@ 383 ,599 TEXTBOX textProjectName;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -224,7 +224,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 314 ,688 LABEL lblProjectOwner ;
+@ 383 ,468 LABEL lblProjectOwner ;
 VALUE "’«Õ» «·„‘—Ê⁄" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -232,7 +232,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 313 ,319 TEXTBOX textProjectOwner;
+@ 382 ,99 TEXTBOX textProjectOwner;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -240,7 +240,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 354 ,688 LABEL lblOwnerLocation ;
+@ 429 ,966 LABEL lblOwnerLocation ;
 VALUE "„Êﬁ⁄ «·„«·ﬂ" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -248,7 +248,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 353 ,319 TEXTBOX textOwnerLocation;
+@ 428 ,597 TEXTBOX textOwnerLocation;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -256,7 +256,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 394 ,688 LABEL lblKeywords ;
+@ 428 ,468 LABEL lblKeywords ;
 VALUE "ﬂ·„«  „› «ÕÌ…" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -264,7 +264,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 393 ,319 TEXTBOX textKeywords;
+@ 427 ,99 TEXTBOX textKeywords;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -272,7 +272,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 434 ,688 LABEL lbldatereceived ;
+@ 478 ,966 LABEL lbldatereceived ;
 VALUE " «—ÌŒ «·«” Ì·«„" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -280,12 +280,12 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 430 ,480 DATEPICKER dateReceived;
+@ 478 ,759 DATEPICKER dateReceived;
 WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 474 ,688 LABEL lbldatecomplete ;
+@ 477 ,468 LABEL lbldatecomplete ;
 VALUE " «—ÌŒ «·«‰ Â«¡" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -293,7 +293,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 474 ,479 DATEPICKER dateComplete;
+@ 477 ,260 DATEPICKER dateComplete;
 WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -349,8 +349,12 @@ self:cProjectName := ""
 self:cProjectOwner := ""
 self:cOwnerLocation := ""
 self:cKeywords := ""
-self:cDateReceived := ""
-self:cDateComplete := ""
+set century on
+self:cDateReceived = DATE()
+set century on
+self:cDateComplete = DATE()
+self:cDateReceived = DTOC ( self:cDateReceived )
+self:cDateComplete = DTOC ( self:cDateComplete )
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
