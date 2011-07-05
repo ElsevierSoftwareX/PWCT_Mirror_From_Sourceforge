@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:04:24    Date : 07/05/2011
+* Time : 15:11:18    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -37,11 +37,9 @@ Return
 Resistance R_PROJECTS_DATA_15speed1() code
 class ProjectsClass From SYSTEMDATABASE
 Data TableName init "projects"
-Data nID init 0
-Data cItemName init ""
 Data column init "projectname"
 Data PrimaryKey init "id"
-Data columns init {"keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ProjectID"}
+Data columns init {"keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
 Data FindTitles init {"ﬂ·„«  „› «ÕÌ…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"}
 Method showwindow
 Method closewindow
