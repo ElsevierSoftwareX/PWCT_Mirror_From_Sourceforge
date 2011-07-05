@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:58:38    Date : 07/05/2011
+* Time : 16:16:44    Date : 07/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -42,6 +42,9 @@ Data PrimaryKey init "id"
 Data columns init {"keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
 Data FindTitles init {"ﬂ·„«  „› «ÕÌ…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"}
 Data cProjectName init ""
+Data cProjectOwner init ""
+Data cOwnerLocation init ""
+Data cKeywords init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -189,8 +192,8 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1090 ;
 HEIGHT 160 ;
 HEADERS self:FindTitles;
-WIDTHS {170,120,120,150,200,200,100} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {170,120,120,150,200,210,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -219,6 +222,54 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+@ 314 ,688 LABEL lblProjectOwner ;
+VALUE "’«Õ» «·„‘—Ê⁄" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 313 ,319 TEXTBOX textProjectOwner;
+HEIGHT 30 ;
+WIDTH 340 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
+@ 354 ,688 LABEL lblOwnerLocation ;
+VALUE "„Êﬁ⁄ «·„«·ﬂ" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 353 ,319 TEXTBOX textOwnerLocation;
+HEIGHT 30 ;
+WIDTH 340 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
+@ 394 ,688 LABEL lblKeywords ;
+VALUE "ﬂ·„«  „› «ÕÌ…" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 393 ,319 TEXTBOX textKeywords;
+HEIGHT 30 ;
+WIDTH 340 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 END WINDOW
@@ -233,18 +284,33 @@ EndIF
 Return 0
 Method UserInterface2Class Class ProjectsClass
 self:cProjectName := ProjectsWindow.textProjectName.Value
+self:cProjectOwner := ProjectsWindow.textProjectOwner.Value
+self:cOwnerLocation := ProjectsWindow.textOwnerLocation.Value
+self:cKeywords := ProjectsWindow.textKeywords.Value
 Return 0
 Method Class2ADO Class ProjectsClass
 self:oRS:fields:item("ProjectName"):value := self:cProjectName
+self:oRS:fields:item("ProjectOwner"):value := self:cProjectOwner
+self:oRS:fields:item("OwnerLocation"):value := self:cOwnerLocation
+self:oRS:fields:item("Keywords"):value := self:cKeywords
 Return 0
 Method ADO2Class Class ProjectsClass
 self:cProjectName := self:oRS:fields:item("ProjectName"):value
+self:cProjectOwner := self:oRS:fields:item("ProjectOwner"):value
+self:cOwnerLocation := self:oRS:fields:item("OwnerLocation"):value
+self:cKeywords := self:oRS:fields:item("Keywords"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 ProjectsWindow.textProjectName.Value := self:cProjectName
+ProjectsWindow.textProjectOwner.Value := self:cProjectOwner
+ProjectsWindow.textOwnerLocation.Value := self:cOwnerLocation
+ProjectsWindow.textKeywords.Value := self:cKeywords
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
+self:cProjectOwner := ""
+self:cOwnerLocation := ""
+self:cKeywords := ""
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
@@ -275,6 +341,9 @@ ProjectsWindow.btncancel.Enabled := true
 ProjectsWindow.btnedit.Enabled := false
 ProjectsWindow.btnadd.Enabled := false
 ProjectsWindow.textProjectName.Enabled := true
+ProjectsWindow.textProjectOwner.Enabled := true
+ProjectsWindow.textOwnerLocation.Enabled := true
+ProjectsWindow.textKeywords.Enabled := true
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -288,6 +357,9 @@ ProjectsWindow.btncancel.Enabled := false
 ProjectsWindow.btnedit.Enabled := true
 ProjectsWindow.btnadd.Enabled := true
 ProjectsWindow.textProjectName.Enabled := false
+ProjectsWindow.textProjectOwner.Enabled := false
+ProjectsWindow.textOwnerLocation.Enabled := false
+ProjectsWindow.textKeywords.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
