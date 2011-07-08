@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:31:35    Date : 07/09/2011
+* Time : 02:03:03    Date : 07/09/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -381,6 +381,7 @@ self:cKeywords := self:oRS:fields:item("Keywords"):value
 self:cDateReceived := self:oRS:fields:item("DateReceived"):value
 self:cDateComplete := self:oRS:fields:item("DateComplete"):value
 self:cFileName := self:oRS:fields:item("filename"):value
+self:cAttachment := self:oRS:fields:item("Attachment"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 ProjectsWindow.textProjectName.Value := self:cProjectName
@@ -402,6 +403,8 @@ set century on
 self:cDateComplete = DATE()
 self:cDateReceived = DTOC ( self:cDateReceived )
 self:cDateComplete = DTOC ( self:cDateComplete )
+self:cFileName := ""
+self:cAttachment := ""
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
@@ -439,6 +442,7 @@ ProjectsWindow.dateReceived.Enabled := true
 ProjectsWindow.dateComplete.Enabled := true
 ProjectsWindow.btnAttachUpload.Enabled := True
 ProjectsWindow.btnAttachRemove.Enabled := True
+ProjectsWindow.btnAttachCheck.Enabled := false
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -459,13 +463,9 @@ ProjectsWindow.dateReceived.Enabled := false
 ProjectsWindow.dateComplete.Enabled := False
 ProjectsWindow.btnAttachUpload.Enabled := False
 ProjectsWindow.btnAttachRemove.Enabled := False
+ProjectsWindow.btnAttachCheck.Enabled := true
 ENDIF
 self:OperationMode := p1
-IF .not. empty(self:cFileName)
-ProjectsWindow.btnAttachCheck.Enabled := True
-ELSE
-ProjectsWindow.btnAttachCheck.Enabled := False
-ENDIF
 Return 0
 Method CheckFind Class ProjectsClass
 Local nIndex
