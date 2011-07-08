@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:56:22    Date : 07/08/2011
+* Time : 00:04:03    Date : 07/09/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -193,7 +193,7 @@ TOOLTIP ""
 @ 93 ,13 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1090 ;
-HEIGHT 260 ;
+HEIGHT 210 ;
 HEADERS self:FindTitles;
 WIDTHS {170,120,120,150,200,210,100} ;
 FONT "Arial" SIZE 14 ;
@@ -209,7 +209,7 @@ VALUE 6 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 384 ,966 LABEL lblProjectName ;
+@ 324 ,966 LABEL lblProjectName ;
 VALUE "«”„ «·„‘—Ê⁄" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -217,7 +217,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 383 ,599 TEXTBOX textProjectName;
+@ 323 ,599 TEXTBOX textProjectName;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -225,7 +225,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 383 ,468 LABEL lblProjectOwner ;
+@ 323 ,468 LABEL lblProjectOwner ;
 VALUE "’«Õ» «·„‘—Ê⁄" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -233,7 +233,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 382 ,99 TEXTBOX textProjectOwner;
+@ 322 ,100 TEXTBOX textProjectOwner;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -241,7 +241,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 429 ,966 LABEL lblOwnerLocation ;
+@ 369 ,966 LABEL lblOwnerLocation ;
 VALUE "„Êﬁ⁄ «·„«·ﬂ" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -249,7 +249,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 428 ,597 TEXTBOX textOwnerLocation;
+@ 368 ,597 TEXTBOX textOwnerLocation;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -257,7 +257,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 428 ,468 LABEL lblKeywords ;
+@ 368 ,468 LABEL lblKeywords ;
 VALUE "ﬂ·„«  „› «ÕÌ…" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -265,7 +265,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 427 ,99 TEXTBOX textKeywords;
+@ 366 ,100 TEXTBOX textKeywords;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -273,7 +273,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 478 ,966 LABEL lbldatereceived ;
+@ 414 ,966 LABEL lbldatereceived ;
 VALUE " «—ÌŒ «·«” Ì·«„" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -281,12 +281,12 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 478 ,759 DATEPICKER dateReceived;
+@ 413 ,759 DATEPICKER dateReceived;
 WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 478 ,468 LABEL lbldatecomplete ;
+@ 413 ,468 LABEL lbldatecomplete ;
 VALUE " «—ÌŒ «·«‰ Â«¡" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -294,32 +294,48 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 477 ,260 DATEPICKER dateComplete;
+@ 412 ,260 DATEPICKER dateComplete;
 WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 520 ,468 BUTTONEX btnAttachCheck;
+@ 451 ,260 BUTTONEX btnAttachCheck;
 CAPTION " Õ„Ì· «·„—›ﬁ« ";
 ON CLICK self:checkattach()  ;
-WIDTH 120 HEIGHT 30 ;
+WIDTH 180 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 519 ,597 BUTTONEX btnAttachupload;
+@ 452 ,468 BUTTONEX btnAttachupload;
 CAPTION "—›⁄ «·„—›ﬁ« ";
 ON CLICK self:attachupload()  ;
 WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 519 ,320 BUTTONEX btnAttachRemove;
+@ 450 ,100 BUTTONEX btnAttachRemove;
 CAPTION " Õ–› «·„—›ﬁ« ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
 ON CLICK self:attachremove()  ;
 WIDTH 120 HEIGHT 30 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
+@ 459 ,963 LABEL lblattachment ;
+VALUE "«·„—›ﬁ« " ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 452 ,599 TEXTBOX textattachment;
+HEIGHT 30 ;
+WIDTH 340 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = RightToLeftControl ( "ProjectsWindow","datereceived" )
