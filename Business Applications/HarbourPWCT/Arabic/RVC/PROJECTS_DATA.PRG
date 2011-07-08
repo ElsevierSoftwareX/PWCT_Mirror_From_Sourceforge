@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:25:08    Date : 07/09/2011
+* Time : 01:31:35    Date : 07/09/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -475,15 +475,14 @@ Return 0
 Method OnBeforeDelete Class ProjectsClass
 Return myout
 Method CheckAttach Class ProjectsClass
-mydata := self:oRS:fields:item("attachment"):value
-IF .not. empty(mydata)
+IF .not. empty(self:cAttachment)
 PutFile := PutFile (  , ;
 , ;
 , ;
 , ;
 self:cFileName )
 IF .not. empty(putfile)
-DO streamtofile WITH mydata,putfile
+DO streamtofile WITH self:cAttachment,putfile
 ELSE
 MyOut := MSGBOX(" „ ≈·€«¡ «·⁄„·Ì…","Õ”‰«")
 ENDIF
