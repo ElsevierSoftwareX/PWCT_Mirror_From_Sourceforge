@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:15:59    Date : 07/09/2011
+* Time : 01:25:08    Date : 07/09/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -461,6 +461,11 @@ ProjectsWindow.btnAttachUpload.Enabled := False
 ProjectsWindow.btnAttachRemove.Enabled := False
 ENDIF
 self:OperationMode := p1
+IF .not. empty(self:cFileName)
+ProjectsWindow.btnAttachCheck.Enabled := True
+ELSE
+ProjectsWindow.btnAttachCheck.Enabled := False
+ENDIF
 Return 0
 Method CheckFind Class ProjectsClass
 Local nIndex
@@ -476,7 +481,7 @@ PutFile := PutFile (  , ;
 , ;
 , ;
 , ;
-)
+self:cFileName )
 IF .not. empty(putfile)
 DO streamtofile WITH mydata,putfile
 ELSE
