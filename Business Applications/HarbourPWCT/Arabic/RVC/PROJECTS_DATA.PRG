@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:04:03    Date : 07/09/2011
+* Time : 00:11:08    Date : 07/09/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -346,6 +346,7 @@ ProjectsWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
 ProjectsWindow.Timer1.Enabled := false
+ProjectsWindow.textAttachment.Enabled := false
 ACTIVATE WINDOW ProjectsWindow
 EndIF
 
@@ -430,6 +431,9 @@ ProjectsWindow.textOwnerLocation.Enabled := true
 ProjectsWindow.textKeywords.Enabled := true
 ProjectsWindow.dateReceived.Enabled := true
 ProjectsWindow.dateComplete.Enabled := true
+ProjectsWindow.btnAttachCheck.Enabled := True
+ProjectsWindow.btnAttachUpload.Enabled := True
+ProjectsWindow.btnAttachRemove.Enabled := True
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -448,6 +452,9 @@ ProjectsWindow.textOwnerLocation.Enabled := false
 ProjectsWindow.textKeywords.Enabled := false
 ProjectsWindow.dateReceived.Enabled := false
 ProjectsWindow.dateComplete.Enabled := False
+ProjectsWindow.btnAttachCheck.Enabled := False
+ProjectsWindow.btnAttachUpload.Enabled := False
+ProjectsWindow.btnAttachRemove.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
