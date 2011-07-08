@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:11:15    Date : 07/09/2011
+* Time : 01:16:04    Date : 07/09/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -298,6 +298,18 @@ DO mylogo
 myout = UsersObject:SystemLogin()
 DO entersystem
 Return Nil
+Function  GetFileName ( p1 )
+Local cFileName,cLetter
+cFileName := p1
+mymax  = LEN(p1)
+FOR x = mymax TO 1 STEP -1
+cLetter = SUBSTR(P1,X,1)
+IF cLetter = "\"
+cFileName = Right(p1,mymax-x)
+Exit
+ENDIF
+Next
+Return cFileName
 
 
 End Of Resistance

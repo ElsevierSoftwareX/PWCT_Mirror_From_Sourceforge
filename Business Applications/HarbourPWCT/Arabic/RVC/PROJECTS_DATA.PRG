@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:11:08    Date : 07/09/2011
+* Time : 01:15:59    Date : 07/09/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -45,6 +45,8 @@ Data cOwnerLocation init ""
 Data cKeywords init ""
 Data cDateReceived init ""
 Data cDateComplete init ""
+Data cFileName init ""
+Data cAttachment init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -328,7 +330,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 452 ,599 TEXTBOX textattachment;
+@ 452 ,599 TEXTBOX textFileName;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -346,7 +348,7 @@ ProjectsWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
 ProjectsWindow.Timer1.Enabled := false
-ProjectsWindow.textAttachment.Enabled := false
+ProjectsWindow.textFileName.Enabled := false
 ACTIVATE WINDOW ProjectsWindow
 EndIF
 
@@ -368,6 +370,8 @@ self:oRS:fields:item("OwnerLocation"):value := self:cOwnerLocation
 self:oRS:fields:item("Keywords"):value := self:cKeywords
 self:oRS:fields:item("DateReceived"):value := self:cDateReceived
 self:oRS:fields:item("DateComplete"):value := self:cDateComplete
+self:oRS:fields:item("attachment"):value := self:cAttachment
+self:oRS:fields:item("filename"):value := Self:cFilename
 Return 0
 Method ADO2Class Class ProjectsClass
 self:cProjectName := self:oRS:fields:item("ProjectName"):value
@@ -376,6 +380,7 @@ self:cOwnerLocation := self:oRS:fields:item("OwnerLocation"):value
 self:cKeywords := self:oRS:fields:item("Keywords"):value
 self:cDateReceived := self:oRS:fields:item("DateReceived"):value
 self:cDateComplete := self:oRS:fields:item("DateComplete"):value
+self:cFileName := self:oRS:fields:item("filename"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 ProjectsWindow.textProjectName.Value := self:cProjectName
@@ -384,6 +389,7 @@ ProjectsWindow.textOwnerLocation.Value := self:cOwnerLocation
 ProjectsWindow.textKeywords.Value := self:cKeywords
 ProjectsWindow.dateReceived.Value := ctod(self:cDateReceived)
 ProjectsWindow.dateComplete.Value := ctod(self:cDateComplete)
+ProjectsWindow.textFileName.Value := self:cFileName
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
@@ -431,7 +437,6 @@ ProjectsWindow.textOwnerLocation.Enabled := true
 ProjectsWindow.textKeywords.Enabled := true
 ProjectsWindow.dateReceived.Enabled := true
 ProjectsWindow.dateComplete.Enabled := true
-ProjectsWindow.btnAttachCheck.Enabled := True
 ProjectsWindow.btnAttachUpload.Enabled := True
 ProjectsWindow.btnAttachRemove.Enabled := True
 ENDIF
@@ -452,7 +457,6 @@ ProjectsWindow.textOwnerLocation.Enabled := false
 ProjectsWindow.textKeywords.Enabled := false
 ProjectsWindow.dateReceived.Enabled := false
 ProjectsWindow.dateComplete.Enabled := False
-ProjectsWindow.btnAttachCheck.Enabled := False
 ProjectsWindow.btnAttachUpload.Enabled := False
 ProjectsWindow.btnAttachRemove.Enabled := False
 ENDIF
@@ -468,7 +472,16 @@ Return myout
 Method CheckAttach Class ProjectsClass
 mydata := self:oRS:fields:item("attachment"):value
 IF .not. empty(mydata)
-DO streamtofile WITH mydata,putfile()
+PutFile := PutFile (  , ;
+, ;
+, ;
+, ;
+)
+IF .not. empty(putfile)
+DO streamtofile WITH mydata,putfile
+ELSE
+MyOut := MSGBOX(" „ ≈·€«¡ «·⁄„·Ì…","Õ”‰«")
+ENDIF
 ELSE
 MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
@@ -481,18 +494,17 @@ GetFile := GetFile (  , ;
 )
 CheckFile := File(getfile)
 IF checkfile
-mydata = filetostream ( getfile )
-self:oRS:fields:item("attachment"):value := mydata
-self:oRS:UPDATE()
-MyOut := MSGBOX(" „ «—›«ﬁ «·„·›","Õ”‰«")
+self:cAttachment = filetostream ( getfile )
+self:cfilename = getfilename ( getfile )
+ProjectsWindow.textFileName.Value := self:cFileName
 ENDIF
 Return 0
 Method AttachRemove Class ProjectsClass
 mydata := self:oRS:fields:item("attachment"):value
 IF .not. empty(mydata)
-self:oRS:fields:item("attachment"):value := ""
-self:oRS:UPDATE()
-MyOut := MSGBOX(" „ Õ–› «·„—›ﬁ« ","Õ”‰«")
+self:cAttachment := ""
+self:cFileName := ""
+ProjectsWindow.textFileName.Value := self:cFileName
 ELSE
 MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
