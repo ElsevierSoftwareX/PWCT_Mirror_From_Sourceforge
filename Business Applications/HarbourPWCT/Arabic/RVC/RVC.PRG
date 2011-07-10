@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:55:12    Date : 07/10/2011
+* Time : 15:26:22    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -61,6 +61,7 @@ Set Procedure to "Employees2_Browse.PRG"
 Set Procedure to "ReportBase.PRG"
 Set Procedure to "Employees2_Report.PRG"
 Set Procedure to "ListOfEmployees2_Report.PRG"
+Set Procedure to "Gender_Data.PRG"
 Set Procedure to "Country_data.PRG"
 Set Procedure to "STREAMFUNCS.PRG"
 Set Procedure to "Projects_Data.PRG"
@@ -71,6 +72,7 @@ Employees2BrowseObject = Employees2BrowseClass()
 Employees2ReportObject = Employees2ReportClass()
 ListofEmployees2ReportObject = ListofEmployees2ReportClass()
 CountryDataObject = CountryDataClass()
+GenderDataObject = GenderDataClass()
 ProjectsObject = ProjectsClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
@@ -194,10 +196,11 @@ POPUP "‰Ÿ«„"
 POPUP "«·„ÊŸ›Ì‰"
 MENUITEM "»Ì«‰«  «·„ÊŸ›" Action Employees2DataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „ÊŸ›" Action Employees2BrowseObject:showwindow()
-MENUITEM " ﬁ—Ì— »«·„ÊŸ›Ì‰" Action Employees2ReportObject:ShowWindow()
-MENUITEM "ÃœÊ· «·Ã‰”Ì«  " Action Countrydataobject:showwindow()
-MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListofEmployees2ReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰ - ’›Õ… ·ﬂ· „ÊŸ›" Action Employees2ReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰ - ”ÿ— ·ﬂ· „ÊŸ›" Action ListofEmployees2ReportObject:ShowWindow()
 SEPARATOR
+MENUITEM "ÃœÊ· «·Ã‰”Ì«  " Action Countrydataobject:showwindow()
+MENUITEM "ÃœÊ· «·«ﬁ”«„ " Action Genderdataobject:showwindow()
 END POPUP
 MENUITEM "«·„” Œœ„Ì‰" Action UsersObject:ShowWindow()
 END POPUP

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:40:33    Date : 10/04/2010
+* Time : 15:26:15    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -176,6 +176,7 @@ FONTCOLOR {0,0,0}
 @ 279 ,215 TEXTBOX textCountry;
 HEIGHT 30 ;
 WIDTH 190 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -191,6 +192,7 @@ FONTCOLOR {0,0,0}
 @ 53 ,167 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 410 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -206,7 +208,7 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 410 ;
 HEIGHT 160 ;
 HEADERS {"—ﬁ„","«”„ «·ﬁ”„"};
-WIDTHS {100,200} ;
+WIDTHS {100,270} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1} ;
