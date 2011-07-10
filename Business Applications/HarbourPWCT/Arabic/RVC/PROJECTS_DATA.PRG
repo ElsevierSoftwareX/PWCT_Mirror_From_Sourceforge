@@ -1,13 +1,15 @@
 *---------------------------------------------------------------------------*
-* Time : 02:03:03    Date : 07/09/2011
+* Time : 14:37:15    Date : 07/10/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Programming Language    : Mahmoud Programming Language 
+* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
+* Programming Paradigm    : DoubleS (Super Server)
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
-* GUI Framework               : HarbourMiniGUI Extended
+* Compilers               : Borland C/C++ & Harbour/xHarbour
+* GUI Framework           : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -47,6 +49,8 @@ Data cDateReceived init ""
 Data cDateComplete init ""
 Data cFileName init ""
 Data cAttachment init ""
+Data cFileName2 init ""
+Data cAttachment2 init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -68,6 +72,9 @@ Method OnBeforeDelete
 Method CheckAttach
 Method AttachUpload
 Method AttachRemove
+Method CheckAttach2
+Method AttachUpload2
+Method AttachRemove2
 EndClass
 Method showwindow Class ProjectsClass
 IF .not. UsersObject:CheckPermission(83)
@@ -338,6 +345,35 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+@ 491 ,260 BUTTONEX btnAttachCheck2;
+CAPTION " Õ„Ì· «·„—›ﬁ« ";
+ON CLICK self:checkattach2()  ;
+WIDTH 180 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 492 ,468 BUTTONEX btnAttachupload2;
+CAPTION "—›⁄ «·„—›ﬁ« ";
+ON CLICK self:attachupload2()  ;
+WIDTH 120 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 490 ,100 BUTTONEX btnAttachRemove2;
+CAPTION " Õ–› «·„—›ﬁ« ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {255,0,0};
+ON CLICK self:attachremove2()  ;
+WIDTH 120 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 492 ,599 TEXTBOX textFileName2;
+HEIGHT 30 ;
+WIDTH 340 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = RightToLeftControl ( "ProjectsWindow","datereceived" )
@@ -349,6 +385,7 @@ myout = self:showrecord()
 myout = self:setmode(2)
 ProjectsWindow.Timer1.Enabled := false
 ProjectsWindow.textFileName.Enabled := false
+ProjectsWindow.textFileName2.Enabled := false
 ACTIVATE WINDOW ProjectsWindow
 EndIF
 
@@ -372,6 +409,8 @@ self:oRS:fields:item("DateReceived"):value := self:cDateReceived
 self:oRS:fields:item("DateComplete"):value := self:cDateComplete
 self:oRS:fields:item("attachment"):value := self:cAttachment
 self:oRS:fields:item("filename"):value := Self:cFilename
+self:oRS:fields:item("attachment2"):value := self:cAttachment2
+self:oRS:fields:item("filename2"):value := Self:cFilename2
 Return 0
 Method ADO2Class Class ProjectsClass
 self:cProjectName := self:oRS:fields:item("ProjectName"):value
@@ -382,6 +421,8 @@ self:cDateReceived := self:oRS:fields:item("DateReceived"):value
 self:cDateComplete := self:oRS:fields:item("DateComplete"):value
 self:cFileName := self:oRS:fields:item("filename"):value
 self:cAttachment := self:oRS:fields:item("Attachment"):value
+self:cFileName2 := self:oRS:fields:item("filename2"):value
+self:cAttachment2 := self:oRS:fields:item("Attachment2"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 ProjectsWindow.textProjectName.Value := self:cProjectName
@@ -391,6 +432,7 @@ ProjectsWindow.textKeywords.Value := self:cKeywords
 ProjectsWindow.dateReceived.Value := ctod(self:cDateReceived)
 ProjectsWindow.dateComplete.Value := ctod(self:cDateComplete)
 ProjectsWindow.textFileName.Value := self:cFileName
+ProjectsWindow.textFileName2.Value := self:cFileName2
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
@@ -405,6 +447,8 @@ self:cDateReceived = DTOC ( self:cDateReceived )
 self:cDateComplete = DTOC ( self:cDateComplete )
 self:cFileName := ""
 self:cAttachment := ""
+self:cFileName2 := ""
+self:cAttachment2 := ""
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
@@ -443,6 +487,9 @@ ProjectsWindow.dateComplete.Enabled := true
 ProjectsWindow.btnAttachUpload.Enabled := True
 ProjectsWindow.btnAttachRemove.Enabled := True
 ProjectsWindow.btnAttachCheck.Enabled := false
+ProjectsWindow.btnAttachUpload2.Enabled := True
+ProjectsWindow.btnAttachRemove2.Enabled := True
+ProjectsWindow.btnAttachCheck2.Enabled := false
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -464,6 +511,9 @@ ProjectsWindow.dateComplete.Enabled := False
 ProjectsWindow.btnAttachUpload.Enabled := False
 ProjectsWindow.btnAttachRemove.Enabled := False
 ProjectsWindow.btnAttachCheck.Enabled := true
+ProjectsWindow.btnAttachUpload2.Enabled := False
+ProjectsWindow.btnAttachRemove2.Enabled := False
+ProjectsWindow.btnAttachCheck2.Enabled := true
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -509,6 +559,45 @@ IF .not. empty(mydata)
 self:cAttachment := ""
 self:cFileName := ""
 ProjectsWindow.textFileName.Value := self:cFileName
+ELSE
+MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
+ENDIF
+Return 0
+Method CheckAttach2 Class ProjectsClass
+IF .not. empty(self:cAttachment2)
+PutFile := PutFile (  , ;
+, ;
+, ;
+, ;
+self:cFileName )
+IF .not. empty(putfile)
+DO streamtofile WITH self:cAttachment2,putfile
+ELSE
+MyOut := MSGBOX(" „ ≈·€«¡ «·⁄„·Ì…","Õ”‰«")
+ENDIF
+ELSE
+MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
+ENDIF
+Return 0
+Method AttachUpload2 Class ProjectsClass
+GetFile := GetFile (  , ;
+"  —›⁄ „·›" , ;
+, ;
+, ;
+)
+CheckFile := File(getfile)
+IF checkfile
+self:cAttachment2 = filetostream ( getfile )
+self:cfilename2 = getfilename ( getfile )
+ProjectsWindow.textFileName2.Value := self:cFileName2
+ENDIF
+Return 0
+Method AttachRemove2 Class ProjectsClass
+mydata := self:oRS:fields:item("attachment2"):value
+IF .not. empty(mydata)
+self:cAttachment2 := ""
+self:cFileName2 := ""
+ProjectsWindow.textFileName2.Value := self:cFileName2
 ELSE
 MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
