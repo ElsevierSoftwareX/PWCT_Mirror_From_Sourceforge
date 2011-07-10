@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:44:15    Date : 07/10/2011
+* Time : 14:55:05    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -490,6 +490,10 @@ ProjectsWindow.btnAttachCheck.Enabled := false
 ProjectsWindow.btnAttachUpload2.Enabled := True
 ProjectsWindow.btnAttachRemove2.Enabled := True
 ProjectsWindow.btnAttachCheck2.Enabled := false
+ProjectsWindow.textNameBrowse.Enabled := false
+ProjectsWindow.btn1Browse.Enabled := false
+ProjectsWindow.Grid1Browse.Enabled := false
+ProjectsWindow.ComboFind.Enabled := False
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -514,6 +518,10 @@ ProjectsWindow.btnAttachCheck.Enabled := true
 ProjectsWindow.btnAttachUpload2.Enabled := False
 ProjectsWindow.btnAttachRemove2.Enabled := False
 ProjectsWindow.btnAttachCheck2.Enabled := true
+ProjectsWindow.btn1Browse.Enabled := True
+ProjectsWindow.Grid1Browse.Enabled := True
+ProjectsWindow.ComboFind.Enabled := True
+ProjectsWindow.textNameBrowse.Enabled := true
 ENDIF
 self:OperationMode := p1
 Return 0
