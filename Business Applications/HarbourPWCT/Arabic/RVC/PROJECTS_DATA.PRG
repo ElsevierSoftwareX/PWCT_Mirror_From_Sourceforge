@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:37:15    Date : 07/10/2011
+* Time : 14:44:15    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -97,7 +97,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 45 ,8 IMAGE image1;
+@ 45 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1110 HEIGHT 520
@@ -218,7 +218,7 @@ VALUE 6 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 324 ,966 LABEL lblProjectName ;
+@ 324 ,963 LABEL lblProjectName ;
 VALUE "«”„ «·„‘—Ê⁄" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -250,7 +250,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 369 ,966 LABEL lblOwnerLocation ;
+@ 369 ,963 LABEL lblOwnerLocation ;
 VALUE "„Êﬁ⁄ «·„«·ﬂ" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -258,7 +258,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 368 ,597 TEXTBOX textOwnerLocation;
+@ 368 ,599 TEXTBOX textOwnerLocation;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -282,7 +282,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 414 ,966 LABEL lbldatereceived ;
+@ 414 ,963 LABEL lbldatereceived ;
 VALUE " «—ÌŒ «·«” Ì·«„" ;
 WIDTH 110 ;
 HEIGHT 30 ;
