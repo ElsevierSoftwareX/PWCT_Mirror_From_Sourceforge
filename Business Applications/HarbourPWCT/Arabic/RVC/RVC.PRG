@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:26:22    Date : 07/10/2011
+* Time : 15:33:34    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -195,7 +195,9 @@ IF UsersObject:userisadmin = 1
 POPUP "‰Ÿ«„"
 POPUP "«·„ÊŸ›Ì‰"
 MENUITEM "»Ì«‰«  «·„ÊŸ›" Action Employees2DataObject:showwindow()
+SEPARATOR
 MENUITEM "»ÕÀ ⁄‰ „ÊŸ›" Action Employees2BrowseObject:showwindow()
+SEPARATOR
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰ - ’›Õ… ·ﬂ· „ÊŸ›" Action Employees2ReportObject:ShowWindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰ - ”ÿ— ·ﬂ· „ÊŸ›" Action ListofEmployees2ReportObject:ShowWindow()
 SEPARATOR
