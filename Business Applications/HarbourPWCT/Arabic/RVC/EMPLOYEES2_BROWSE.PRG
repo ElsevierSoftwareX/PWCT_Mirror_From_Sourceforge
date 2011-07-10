@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:54:35    Date : 11/26/2010
+* Time : 16:18:55    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,6 +41,7 @@ Data tablename init "Employees2_All"
 Data column init "f_name"
 Data PrimaryKey init "id"
 Data columns init {"f_company","f_address","f_city","country","f_name"}
+Data columnsTitles init {"«·‘—ﬂ…","«·⁄‰Ê«‰","«·„œÌ‰…","«·œÊ·…","«·«”„"}
 Data ResultPrimaryKeys init {}
 Method showwindow
 Method closewindow
@@ -51,12 +52,13 @@ Method BeforeSearch
 Method GetSearchValue
 Method settimer
 Method SearchAdd
+Method SetColumn
 EndClass
 Method showwindow Class Employees2BrowseClass
 if !iswindowdefined( Employees2BrowseWindow )
 DEFINE WINDOW Employees2BrowseWindow ;
 AT 10 ,10 ;
-WIDTH 772 ;
+WIDTH 817 ;
 HEIGHT 361 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -70,18 +72,10 @@ BACKCOLOR {255,255,255}
 @ -13 ,-12 IMAGE image1;
 PICTURE GetStartUpFolder()+"\image\back.jpg";
 STRETCH ;
-WIDTH 780 HEIGHT 360
-@ 16 ,697 LABEL lbl1 ;
-VALUE "«·«”„" ;
-WIDTH 50 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
+WIDTH 830 HEIGHT 360
 @ 18 ,252 TEXTBOX textNameBrowse;
 HEIGHT 30 ;
-WIDTH 430 ;
+WIDTH 320 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -104,7 +98,7 @@ WIDTH 620 ;
 HEIGHT 250 ;
 HEADERS {"«·‘—ﬂ…","«·⁄‰Ê«‰","«·„œÌ‰…","«·œÊ·…","«·«”„"};
 WIDTHS {100,100,100,100,200} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -114,6 +108,15 @@ ON CLICK self:print()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 18 ,585 COMBOBOX comboFind;
+ON CHANGE self:SetColumn()  ;
+WIDTH 170 ;
+HEIGHT 100;
+ITEMS self:ColumnsTitles ;
+VALUE 5 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 Employees2BrowseWindow.Center ( )
@@ -135,6 +138,11 @@ IF .not. empty(cName)
 Employees2reportobject:filter := '((employees2_all.f_name) Like "'+cName+'*")'
 ENDIF
 myout = Employees2reportobject:ShowWindow()
+Return 0
+Method SetColumn Class Employees2BrowseClass
+Local nIndex
+nIndex := Employees2BrowseWindow.ComboFind.Value
+self:Column := self:Columns[nIndex]
 Return 0
 Method closewindow Class Employees2BrowseClass
 Employees2BrowseWindow.Release ( )
