@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:18:55    Date : 07/10/2011
+* Time : 16:32:44    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -135,7 +135,7 @@ cName := Employees2BrowseWindow.textNamebrowse.Value
 cName = ALLTRIM ( cName )
 Employees2reportobject:filter := ""
 IF .not. empty(cName)
-Employees2reportobject:filter := '((employees2_all.f_name) Like "'+cName+'*")'
+Employees2reportobject:filter := '((employees2_all.' + self:column + ') Like "'+cName+'*")'
 ENDIF
 myout = Employees2reportobject:ShowWindow()
 Return 0
