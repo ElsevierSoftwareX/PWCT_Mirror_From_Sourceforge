@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:42:42    Date : 02/07/2011
+* Time : 16:00:36    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -176,6 +176,7 @@ FONTCOLOR {0,0,0}
 @ 279 ,215 TEXTBOX textCountry;
 HEIGHT 30 ;
 WIDTH 190 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -191,6 +192,7 @@ FONTCOLOR {0,0,0}
 @ 53 ,167 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 410 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -206,7 +208,7 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 410 ;
 HEIGHT 160 ;
 HEADERS {"—ﬁ„","«”„ «·œÊ·…"};
-WIDTHS {100,200} ;
+WIDTHS {100,270} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1} ;
@@ -271,6 +273,9 @@ CountryDataWindow.btncancel.Enabled := true
 CountryDataWindow.btnedit.Enabled := false
 CountryDataWindow.btnadd.Enabled := false
 CountryDataWindow.textCountry.Enabled := true
+CountryDataWindow.textNameBrowse.Enabled := false
+CountryDataWindow.btn1Browse.Enabled := false
+CountryDataWindow.Grid1Browse.Enabled := false
 ENDIF
 IF p1 = 2
 CountryDataWindow.btnfirst.Enabled := true
@@ -284,6 +289,9 @@ CountryDataWindow.btncancel.Enabled := false
 CountryDataWindow.btnedit.Enabled := true
 CountryDataWindow.btnadd.Enabled := true
 CountryDataWindow.textCountry.Enabled := false
+CountryDataWindow.btn1Browse.Enabled := True
+CountryDataWindow.Grid1Browse.Enabled := True
+CountryDataWindow.textNameBrowse.Enabled := true
 ENDIF
 self:OperationMode := p1
 Return 0

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:26:15    Date : 07/10/2011
+* Time : 16:01:04    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -273,6 +273,9 @@ GenderDataWindow.btncancel.Enabled := true
 GenderDataWindow.btnedit.Enabled := false
 GenderDataWindow.btnadd.Enabled := false
 GenderDataWindow.textCountry.Enabled := true
+GenderDataWindow.textNameBrowse.Enabled := false
+GenderDataWindow.btn1Browse.Enabled := false
+GenderDataWindow.Grid1Browse.Enabled := false
 ENDIF
 IF p1 = 2
 GenderDataWindow.btnfirst.Enabled := true
@@ -286,6 +289,9 @@ GenderDataWindow.btncancel.Enabled := false
 GenderDataWindow.btnedit.Enabled := true
 GenderDataWindow.btnadd.Enabled := true
 GenderDataWindow.textCountry.Enabled := false
+GenderDataWindow.btn1Browse.Enabled := True
+GenderDataWindow.Grid1Browse.Enabled := True
+GenderDataWindow.textNameBrowse.Enabled := true
 ENDIF
 self:OperationMode := p1
 Return 0
