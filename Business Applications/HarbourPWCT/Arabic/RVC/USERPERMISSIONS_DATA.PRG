@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:02:21    Date : 07/11/2011
+* Time : 17:06:16    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -205,9 +205,23 @@ IF nValue < nMax
 UserPermissionsWindow.Grid1Browse.Value := nValue+1
 ENDIF
 IF nValue = nMax .and. .not. nMax = 1
-UserPermissionsWindow.Grid1Browse.Value := nValue-1
+UserPermissionsWindow.Grid1Browse.Value := 1
 ENDIF
 myout = self:OpenDataWindow()
+Return 0
+Method ReverseStatus Class UserPermissionsClass
+Local nvalue,myout
+nvalue := UserPermissionsWindow.grid1browse.Value
+IF nvalue > 0
+myout = self:ShowDataWindow(nvalue)
+tValue := UserPermissionsWindow.Grid1Browse.cell(nValue,1)
+IF tvalue = "äÚã"
+myout = self:myset("2")
+ELSE
+myout = self:myset("1")
+ENDIF
+UserPermissionsWindow.Grid1Browse.SetFocus ( )
+ENDIF
 Return 0
 Method closewindow Class UserPermissionsClass
 myout = self:disconnect()
@@ -256,20 +270,6 @@ Return 0
 Method mytimer Class UserPermissionsClass
 myout = self:search()
 UserPermissionsWindow.Timer1.Enabled := false
-Return 0
-Method ReverseStatus Class UserPermissionsClass
-Local nvalue,myout
-nvalue := UserPermissionsWindow.grid1browse.Value
-IF nvalue > 0
-myout = self:ShowDataWindow(nvalue)
-tValue := UserPermissionsWindow.Grid1Browse.cell(nValue,1)
-IF tvalue = "äÚã"
-myout = self:myset("2")
-ELSE
-myout = self:myset("1")
-ENDIF
-UserPermissionsWindow.Grid1Browse.SetFocus ( )
-ENDIF
 Return 0
 
 
