@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:55:19    Date : 12/09/2010
+* Time : 17:02:21    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -63,6 +63,7 @@ Method SearchAdd
 Method settimer
 Method GetSearchValue
 Method MySet
+Method ReverseStatus
 EndClass
 Method showwindow Class UserPermissionsClass
 IF .not. self:Userid = 0
@@ -126,7 +127,7 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 77 ,138 GRID Grid1browse;
-ON DBLCLICK self:OpenDataWindow  ;
+ON DBLCLICK self:ReverseStatus()  ;
 WIDTH 540 ;
 HEIGHT 450 ;
 HEADERS self:ColTitles;
@@ -255,6 +256,20 @@ Return 0
 Method mytimer Class UserPermissionsClass
 myout = self:search()
 UserPermissionsWindow.Timer1.Enabled := false
+Return 0
+Method ReverseStatus Class UserPermissionsClass
+Local nvalue,myout
+nvalue := UserPermissionsWindow.grid1browse.Value
+IF nvalue > 0
+myout = self:ShowDataWindow(nvalue)
+tValue := UserPermissionsWindow.Grid1Browse.cell(nValue,1)
+IF tvalue = "фку"
+myout = self:myset("2")
+ELSE
+myout = self:myset("1")
+ENDIF
+UserPermissionsWindow.Grid1Browse.SetFocus ( )
+ENDIF
 Return 0
 
 
