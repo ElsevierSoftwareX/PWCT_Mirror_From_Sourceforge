@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:58:19    Date : 12/10/2010
+* Time : 04:11:53    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -53,7 +53,7 @@ ON MAXIMIZE self:SizeReport()  ;
 ICON "PWCTICON" ;
 TITLE "«·„ÊŸ›Ì‰" ;
 CHILD ;
-BACKCOLOR {64,0,64}
+BACKCOLOR {255,255,255}
 
 @ 452 ,30 BUTTONEX btn1;
 CAPTION "«€·«ﬁ";

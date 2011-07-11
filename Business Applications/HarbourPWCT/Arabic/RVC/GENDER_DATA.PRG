@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:01:04    Date : 07/10/2011
+* Time : 17:19:44    Date : 07/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -245,6 +245,7 @@ Local nvalue,myout
 nvalue := GenderDataWindow.grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
+GenderDataWindow.Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class GenderDataClass
