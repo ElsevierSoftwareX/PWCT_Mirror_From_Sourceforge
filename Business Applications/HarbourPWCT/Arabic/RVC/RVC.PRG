@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:44:41    Date : 07/11/2011
+* Time : 05:04:04    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -66,6 +66,7 @@ Set Procedure to "Country_data.PRG"
 Set Procedure to "STREAMFUNCS.PRG"
 Set Procedure to "Projects_Data.PRG"
 Set Procedure to "ListOfProjects_Report.PRG"
+Set Procedure to "Projects_Report.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -76,6 +77,7 @@ CountryDataObject = CountryDataClass()
 GenderDataObject = GenderDataClass()
 ProjectsObject = ProjectsClass()
 ListofProjectsReportObject = ListofProjectsReportClass()
+ProjectsReportObject = ProjectsReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;

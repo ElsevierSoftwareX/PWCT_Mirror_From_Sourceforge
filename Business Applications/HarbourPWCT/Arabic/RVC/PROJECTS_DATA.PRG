@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:19:19    Date : 07/10/2011
+* Time : 05:03:57    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -75,6 +75,7 @@ Method AttachRemove
 Method CheckAttach2
 Method AttachUpload2
 Method AttachRemove2
+Method printdata
 EndClass
 Method showwindow Class ProjectsClass
 IF .not. UsersObject:CheckPermission(83)
@@ -179,9 +180,9 @@ ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                                                   «·„‘«—Ì⁄" ;
-WIDTH 1110 ;
+@ 6 ,153 LABEL lblTitle ;
+VALUE "                                                                               «·„‘«—Ì⁄" ;
+WIDTH 960 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -378,6 +379,15 @@ DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = RightToLeftControl ( "ProjectsWindow","datereceived" )
 myout = RightToLeftControl ( "ProjectsWindow","datecomplete" )
+@ 5 ,3 BUTTONEX btnPrint;
+CAPTION "ÿ»«⁄… «·»Ì«‰« ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:printdata()  ;
+WIDTH 143 HEIGHT 34 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
 END WINDOW
 
 ProjectsWindow.Center ( )
@@ -610,6 +620,18 @@ ProjectsWindow.textFileName2.Value := self:cFileName2
 ELSE
 MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
+Return 0
+Method PrintData Class ProjectsClass
+Local myid,myout
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
+Return 0
+ENDIF
+myid := self:oRS:fields:item("id"):value
+myid = STR ( myid )
+Projectsreportobject:filter := "id = "+myid
+myout = Projectsreportobject:ShowWindow()
 Return 0
 Method closewindow Class ProjectsClass
 myout = self:disconnect()
