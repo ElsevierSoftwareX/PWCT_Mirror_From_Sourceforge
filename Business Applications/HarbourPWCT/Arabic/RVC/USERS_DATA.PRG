@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:28:07    Date : 07/11/2011
+* Time : 16:35:00    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -189,7 +189,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 343 ,571 LABEL lblUserName ;
+@ 343 ,590 LABEL lblUserName ;
 VALUE "«”„ «·„” Œœ„" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -197,7 +197,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 340 ,171 TEXTBOX textUserName;
+@ 338 ,192 TEXTBOX textUserName;
 HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
@@ -215,10 +215,12 @@ FONTCOLOR {0,0,0}
 @ 53 ,185 TEXTBOX textNamebrowse;
 HEIGHT 30 ;
 WIDTH 530 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
+RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,75 BUTTONEX btn1browse;
+@ 52 ,73 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -230,13 +232,13 @@ WIDTH 740 ;
 HEIGHT 160 ;
 HEADERS {"ﬂÊœ","«”„ «·„” Œœ„"};
 WIDTHS {50,680} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-@ 381 ,571 LABEL lblPassword ;
+@ 381 ,590 LABEL lblPassword ;
 VALUE "ﬂ·„… «·”—" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -244,7 +246,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 380 ,172 TEXTBOX textPassword;
+@ 379 ,192 TEXTBOX textPassword;
 HEIGHT 30 ;
 WIDTH 390 ;
 FONT "Arial" SIZE 14 ;
@@ -254,15 +256,15 @@ FONTCOLOR {0,0,0} ;
 PASSWORD
 
 myout = self:LoadLookupTable("choice","status",@self:SystemAdminItems,"id",@self:SystemAdminItemsIDS)
-@ 305 ,571 LABEL lblSystemAdmin ;
+@ 305 ,590 LABEL lblSystemAdmin ;
 VALUE "„œÌ— «·‰Ÿ«„" ;
-WIDTH 140 ;
+WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 307 ,171 COMBOBOX comboSystemAdmin;
+@ 302 ,192 COMBOBOX comboSystemAdmin;
 WIDTH 390 ;
 HEIGHT 100;
 ITEMS self:SystemAdminitems ;
@@ -270,7 +272,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 426 ,246 BUTTONEX btnPermissions;
+@ 427 ,244 BUTTONEX btnPermissions;
 CAPTION "÷»ÿ ’·«ÕÌ«  «·„” Œœ„";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -280,15 +282,15 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 myout = self:LoadLookupTable("employees2","f_name",@self:EmployeeItems,"id",@self:EmployeeItemsIDS)
-@ 265 ,571 LABEL lblEmployee ;
+@ 265 ,590 LABEL lblEmployee ;
 VALUE "«·„ÊŸ›" ;
-WIDTH 140 ;
+WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 267 ,171 COMBOBOX comboEmployee;
+@ 266 ,192 COMBOBOX comboEmployee;
 WIDTH 390 ;
 HEIGHT 100;
 ITEMS self:Employeeitems ;
