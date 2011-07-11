@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:11:58    Date : 07/11/2011
+* Time : 04:44:41    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,7 @@ Set Procedure to "Gender_Data.PRG"
 Set Procedure to "Country_data.PRG"
 Set Procedure to "STREAMFUNCS.PRG"
 Set Procedure to "Projects_Data.PRG"
+Set Procedure to "ListOfProjects_Report.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -74,6 +75,7 @@ ListofEmployees2ReportObject = ListofEmployees2ReportClass()
 CountryDataObject = CountryDataClass()
 GenderDataObject = GenderDataClass()
 ProjectsObject = ProjectsClass()
+ListofProjectsReportObject = ListofProjectsReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -209,6 +211,8 @@ ENDIF
 POPUP "Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„« "
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject:showwindow()
+SEPARATOR
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
 ENDIF
 END POPUP
 Return Nil
