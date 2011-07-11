@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:13:50    Date : 07/11/2011
+* Time : 17:56:53    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -51,6 +51,8 @@ Data cFileName init ""
 Data cAttachment init ""
 Data cFileName2 init ""
 Data cAttachment2 init ""
+Data cEmail init ""
+Data cMobile init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -88,7 +90,7 @@ if !iswindowdefined( ProjectsWindow )
 DEFINE WINDOW ProjectsWindow ;
 AT 10 ,10 ;
 WIDTH 1127 ;
-HEIGHT 647 ;
+HEIGHT 674 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
 TITLE "«·„‘«—Ì⁄" ;
@@ -101,8 +103,8 @@ BACKCOLOR {64,0,64}
 @ 45 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 1110 HEIGHT 520
-@ 570 ,554 BUTTONEX btnFirst;
+WIDTH 1110 HEIGHT 530
+@ 590 ,554 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -111,7 +113,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,427 BUTTONEX btnNext;
+@ 590 ,427 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -120,7 +122,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,364 BUTTONEX btnLast;
+@ 590 ,364 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -129,7 +131,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,191 BUTTONEX btnClose;
+@ 590 ,191 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -138,7 +140,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,490 BUTTONEX btnPrev;
+@ 590 ,490 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -147,7 +149,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,283 BUTTONEX btnDel;
+@ 590 ,283 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -156,25 +158,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 570 ,710 BUTTONEX btnsave;
+@ 590 ,710 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,622 BUTTONEX btncancel;
+@ 590 ,622 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 32 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,788 BUTTONEX btnedit;
+@ 590 ,788 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 570 ,855 BUTTONEX btnadd;
+@ 590 ,855 BUTTONEX btnadd;
 CAPTION "«÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -284,7 +286,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 414 ,963 LABEL lbldatereceived ;
+@ 453 ,963 LABEL lbldatereceived ;
 VALUE " «—ÌŒ «·«” Ì·«„" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -292,12 +294,12 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 413 ,759 DATEPICKER dateReceived;
+@ 452 ,759 DATEPICKER dateReceived;
 WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 413 ,468 LABEL lbldatecomplete ;
+@ 452 ,468 LABEL lbldatecomplete ;
 VALUE " «—ÌŒ «·«‰ Â«¡" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -305,24 +307,24 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 412 ,260 DATEPICKER dateComplete;
+@ 451 ,260 DATEPICKER dateComplete;
 WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 451 ,260 BUTTONEX btnAttachCheck;
+@ 491 ,260 BUTTONEX btnAttachCheck;
 CAPTION " Õ„Ì· «·„—›ﬁ« ";
 ON CLICK self:checkattach()  ;
 WIDTH 180 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 452 ,468 BUTTONEX btnAttachupload;
+@ 492 ,468 BUTTONEX btnAttachupload;
 CAPTION "—›⁄ «·„—›ﬁ« ";
 ON CLICK self:attachupload()  ;
 WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 450 ,100 BUTTONEX btnAttachRemove;
+@ 490 ,100 BUTTONEX btnAttachRemove;
 CAPTION " Õ–› «·„—›ﬁ« ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -331,7 +333,7 @@ WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 459 ,963 LABEL lblattachment ;
+@ 499 ,963 LABEL lblattachment ;
 VALUE "«·„—›ﬁ« " ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -339,7 +341,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 452 ,599 TEXTBOX textFileName;
+@ 492 ,599 TEXTBOX textFileName;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -347,19 +349,19 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 491 ,260 BUTTONEX btnAttachCheck2;
+@ 531 ,260 BUTTONEX btnAttachCheck2;
 CAPTION " Õ„Ì· «·„—›ﬁ« ";
 ON CLICK self:checkattach2()  ;
 WIDTH 180 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 492 ,468 BUTTONEX btnAttachupload2;
+@ 532 ,468 BUTTONEX btnAttachupload2;
 CAPTION "—›⁄ «·„—›ﬁ« ";
 ON CLICK self:attachupload2()  ;
 WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 490 ,100 BUTTONEX btnAttachRemove2;
+@ 530 ,100 BUTTONEX btnAttachRemove2;
 CAPTION " Õ–› «·„—›ﬁ« ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -368,7 +370,39 @@ WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 492 ,599 TEXTBOX textFileName2;
+@ 532 ,599 TEXTBOX textFileName2;
+HEIGHT 30 ;
+WIDTH 340 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
+@ 412 ,967 LABEL lblemail ;
+VALUE "«·»—Ìœ «·«·ﬂ —Ê‰Ï" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 412 ,599 TEXTBOX texteMail;
+HEIGHT 30 ;
+WIDTH 340 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
+@ 412 ,471 LABEL lblMobile ;
+VALUE "«·ÃÊ«·" ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 412 ,100 TEXTBOX textMobile;
 HEIGHT 30 ;
 WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
@@ -410,6 +444,8 @@ self:cDateReceived := ProjectsWindow.dateReceived.Value
 self:cDateComplete := ProjectsWindow.dateComplete.Value
 self:cDateReceived = DTOC ( self:cDateReceived )
 self:cDateComplete = DTOC ( self:cDateComplete )
+self:cEmail := ProjectsWindow.texteMail.Value
+self:cMobile := ProjectsWindow.textMobile.Value
 Return 0
 Method Class2ADO Class ProjectsClass
 self:oRS:fields:item("ProjectName"):value := self:cProjectName
@@ -422,6 +458,8 @@ self:oRS:fields:item("attachment"):value := self:cAttachment
 self:oRS:fields:item("filename"):value := Self:cFilename
 self:oRS:fields:item("attachment2"):value := self:cAttachment2
 self:oRS:fields:item("filename2"):value := Self:cFilename2
+self:oRS:fields:item("eMail"):value := self:cEmail
+self:oRS:fields:item("Mobile"):value := self:cMobile
 Return 0
 Method ADO2Class Class ProjectsClass
 self:cProjectName := self:oRS:fields:item("ProjectName"):value
@@ -434,6 +472,8 @@ self:cFileName := self:oRS:fields:item("filename"):value
 self:cAttachment := self:oRS:fields:item("Attachment"):value
 self:cFileName2 := self:oRS:fields:item("filename2"):value
 self:cAttachment2 := self:oRS:fields:item("Attachment2"):value
+Self:cEmail := self:oRS:fields:item("eMail"):value
+Self:cMobile := self:oRS:fields:item("Mobile"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 ProjectsWindow.textProjectName.Value := self:cProjectName
@@ -444,6 +484,8 @@ ProjectsWindow.dateReceived.Value := ctod(self:cDateReceived)
 ProjectsWindow.dateComplete.Value := ctod(self:cDateComplete)
 ProjectsWindow.textFileName.Value := self:cFileName
 ProjectsWindow.textFileName2.Value := self:cFileName2
+ProjectsWindow.texteMail.Value := self:cEmail
+ProjectsWindow.textMobile.Value := self:cMobile
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
@@ -460,6 +502,8 @@ self:cFileName := ""
 self:cAttachment := ""
 self:cFileName2 := ""
 self:cAttachment2 := ""
+self:cEmail := ""
+self:cMobile := ""
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
@@ -506,6 +550,8 @@ ProjectsWindow.textNameBrowse.Enabled := false
 ProjectsWindow.btn1Browse.Enabled := false
 ProjectsWindow.Grid1Browse.Enabled := false
 ProjectsWindow.ComboFind.Enabled := False
+ProjectsWindow.texteMail.Enabled := True
+ProjectsWindow.textMobile.Enabled := True
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -534,6 +580,8 @@ ProjectsWindow.btn1Browse.Enabled := True
 ProjectsWindow.Grid1Browse.Enabled := True
 ProjectsWindow.ComboFind.Enabled := True
 ProjectsWindow.textNameBrowse.Enabled := true
+ProjectsWindow.texteMail.Enabled := False
+ProjectsWindow.textMobile.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
