@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:02:05    Date : 07/12/2011
+* Time : 01:37:19    Date : 07/12/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -71,6 +71,9 @@ Method SearchAdd
 Method GetSearchValue
 Method settimer
 Method CheckFind
+Method CheckAttach
+Method AttachUpload
+Method AttachRemove
 EndClass
 Method showwindow Class ProjectReviewsClass
 myout = self:connect()
@@ -179,6 +182,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 52 ,219 TEXTBOX textNamebrowse;
+ON ENTER self:Search()  ;
 HEIGHT 30 ;
 WIDTH 530 ;
 BACKCOLOR {0,255,128} ;
@@ -194,10 +198,10 @@ TOOLTIP ""
 @ 93 ,13 GRID Grid1browse;
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1030 ;
-HEIGHT 220 ;
+HEIGHT 290 ;
 HEADERS self:FindTitles;
 WIDTHS {150,150,150,200,250,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -213,7 +217,7 @@ FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = self:LoadLookupTable("Projects","ProjectName",@self:ProjectItems,"id",@self:ProjectItemsIDS)
-@ 322 ,710 LABEL lblProject ;
+@ 392 ,880 LABEL lblProject ;
 VALUE "«·„‘—Ê⁄" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -221,8 +225,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 322 ,285 COMBOBOX comboproject;
-WIDTH 410 ;
+@ 392 ,525 COMBOBOX comboproject;
+WIDTH 340 ;
 HEIGHT 100;
 ITEMS self:Projectitems ;
 VALUE 1 ;
@@ -230,7 +234,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Reviewers","f_name",@self:ReviewerItems,"id",@self:ReviewerItemsIDS)
-@ 365 ,709 LABEL lblReviewer ;
+@ 395 ,459 LABEL lblReviewer ;
 VALUE "«·„—«Ã⁄" ;
 WIDTH 50 ;
 HEIGHT 30 ;
@@ -238,7 +242,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 363 ,285 COMBOBOX comboreviewer;
+@ 393 ,35 COMBOBOX comboreviewer;
 WIDTH 410 ;
 HEIGHT 100;
 ITEMS self:Revieweritems ;
@@ -246,31 +250,31 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 408 ,709 LABEL lblReviewText ;
+@ 438 ,880 LABEL lblReviewText ;
 VALUE "‰’ «·„—«Ã⁄…" ;
-WIDTH 130 ;
+WIDTH 90 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 404 ,285 TEXTBOX textReviewText;
+@ 434 ,525 TEXTBOX textReviewText;
 HEIGHT 30 ;
-WIDTH 410 ;
+WIDTH 340 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 451 ,709 LABEL lblRecommendation ;
+@ 434 ,457 LABEL lblRecommendation ;
 VALUE "«· Ê’Ì…" ;
-WIDTH 190 ;
+WIDTH 60 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 450 ,285 TEXTBOX textRecommendation;
+@ 433 ,33 TEXTBOX textRecommendation;
 HEIGHT 30 ;
 WIDTH 410 ;
 FONT "Arial" SIZE 14 ;
@@ -278,7 +282,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 494 ,710 LABEL lblReviewDate ;
+@ 478 ,880 LABEL lblReviewDate ;
 VALUE " «—ÌŒ «” ·«„ «·„—«Ã⁄…" ;
 WIDTH 150 ;
 HEIGHT 30 ;
@@ -286,7 +290,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 496 ,525 DATEPICKER dateReviewDate;
+@ 479 ,695 DATEPICKER dateReviewDate;
 WIDTH 170 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -295,12 +299,50 @@ DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
 myout = RightToLeftControl ( "ProjectReviewsWindow","comboproject" )
 myout = RightToLeftControl ( "ProjectReviewsWindow","comboreviewer" )
+@ 520 ,169 BUTTONEX btnAttachCheck;
+CAPTION " Õ„Ì· «·„—›ﬁ« ";
+ON CLICK self:checkattach()  ;
+WIDTH 140 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 520 ,323 BUTTONEX btnAttachupload;
+CAPTION "—›⁄ «·„—›ﬁ« ";
+ON CLICK self:attachupload()  ;
+WIDTH 120 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 520 ,33 BUTTONEX btnAttachRemove;
+CAPTION " Õ–› «·„—›ﬁ« ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {255,0,0};
+ON CLICK self:attachremove()  ;
+WIDTH 120 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 520 ,880 LABEL lblattachment ;
+VALUE "«·„—›ﬁ« " ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 520 ,525 TEXTBOX textFileName;
+HEIGHT 30 ;
+WIDTH 340 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
 END WINDOW
 
 ProjectReviewsWindow.Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
 ProjectReviewsWindow.Timer1.Enabled := false
+ProjectReviewsWindow.textFileName.Enabled := false
 ACTIVATE WINDOW ProjectReviewsWindow
 EndIF
 
@@ -321,6 +363,8 @@ self:oRS:fields:item("Reviewerid"):value := self:nReviewer
 self:oRS:fields:item("ReviewText"):value := self:cReviewText
 self:oRS:fields:item("Recommendation"):value := self:cRecommendation
 self:oRS:fields:item("ReviewDate"):value := self:cReviewDate
+self:oRS:fields:item("attachment"):value := self:cAttachment
+self:oRS:fields:item("filename"):value := Self:cFilename
 Return 0
 Method ADO2Class Class ProjectReviewsClass
 self:nProject := self:oRS:fields:item("ProjectID"):value
@@ -328,6 +372,8 @@ self:nReviewer := self:oRS:fields:item("ReviewerID"):value
 self:cReviewText := self:oRS:fields:item("ReviewText"):value
 self:cRecommendation := self:oRS:fields:item("Recommendation"):value
 self:cReviewDate := self:oRS:fields:item("ReviewDate"):value
+self:cAttachment := self:oRS:fields:item("Attachment"):value
+self:cFileName := self:oRS:fields:item("filename"):value
 Return 0
 Method Class2UserInterface Class ProjectReviewsClass
 self:nProject = self:LookupIDToIndex(self:nProject,@self:ProjectItemsids)
@@ -337,6 +383,7 @@ ProjectReviewsWindow.ComboReviewer.Value := self:nReviewer
 ProjectReviewsWindow.textReviewText.Value := self:cReviewText
 ProjectReviewsWindow.textRecommendation.Value := self:cRecommendation
 ProjectReviewsWindow.dateReviewDate.Value := ctod(self:cReviewDate)
+ProjectReviewsWindow.textFileName.Value := self:cFileName
 Return 0
 Method ClearRecord Class ProjectReviewsClass
 self:nProject := 0
@@ -344,6 +391,8 @@ self:nReviewer := 0
 self:cReviewDate := ""
 self:cReviewText := ""
 self:cRecommendation := ""
+self:cFileName := ""
+self:cAttachment := ""
 Return 0
 Method OpenDataWindow Class ProjectReviewsClass
 Local nvalue,myout
@@ -378,6 +427,13 @@ ProjectReviewsWindow.comboReviewer.Enabled := true
 ProjectReviewsWindow.textReviewText.Enabled := true
 ProjectReviewsWindow.textRecommendation.Enabled := true
 ProjectReviewsWindow.dateReviewDate.Enabled := true
+ProjectReviewsWindow.btnAttachUpload.Enabled := True
+ProjectReviewsWindow.btnAttachRemove.Enabled := True
+ProjectReviewsWindow.btnAttachCheck.Enabled := false
+ProjectReviewsWindow.textNameBrowse.Enabled := false
+ProjectReviewsWindow.btn1Browse.Enabled := false
+ProjectReviewsWindow.Grid1Browse.Enabled := false
+ProjectReviewsWindow.ComboFind.Enabled := False
 ENDIF
 IF p1 = 2
 ProjectReviewsWindow.btnfirst.Enabled := true
@@ -395,6 +451,13 @@ ProjectReviewsWindow.comboReviewer.Enabled := False
 ProjectReviewsWindow.textReviewText.Enabled := False
 ProjectReviewsWindow.textRecommendation.Enabled := False
 ProjectReviewsWindow.dateReviewDate.Enabled := False
+ProjectReviewsWindow.btnAttachUpload.Enabled := False
+ProjectReviewsWindow.btnAttachRemove.Enabled := False
+ProjectReviewsWindow.btnAttachCheck.Enabled := true
+ProjectReviewsWindow.btn1Browse.Enabled := True
+ProjectReviewsWindow.Grid1Browse.Enabled := True
+ProjectReviewsWindow.ComboFind.Enabled := True
+ProjectReviewsWindow.textNameBrowse.Enabled := true
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -402,6 +465,45 @@ Method CheckFind Class ProjectReviewsClass
 Local nIndex
 nIndex := ProjectReviewsWindow.ComboFind.Value
 self:Column := self:Columns[nIndex]
+Return 0
+Method CheckAttach Class ProjectReviewsClass
+IF .not. empty(self:cAttachment)
+PutFile := PutFile (  , ;
+, ;
+, ;
+, ;
+self:cFileName )
+IF .not. empty(putfile)
+DO streamtofile WITH self:cAttachment,putfile
+ELSE
+MyOut := MSGBOX(" „ ≈·€«¡ «·⁄„·Ì…","Õ”‰«")
+ENDIF
+ELSE
+MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
+ENDIF
+Return 0
+Method AttachUpload Class ProjectReviewsClass
+GetFile := GetFile (  , ;
+"  —›⁄ „·›" , ;
+, ;
+, ;
+)
+CheckFile := File(getfile)
+IF checkfile
+self:cAttachment = filetostream ( getfile )
+self:cfilename = getfilename ( getfile )
+ProjectReviewsWindow.textFileName.Value := self:cFileName
+ENDIF
+Return 0
+Method AttachRemove Class ProjectReviewsClass
+mydata := self:oRS:fields:item("attachment"):value
+IF .not. empty(mydata)
+self:cAttachment := ""
+self:cFileName := ""
+ProjectReviewsWindow.textFileName.Value := self:cFileName
+ELSE
+MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
+ENDIF
 Return 0
 Method closewindow Class ProjectReviewsClass
 myout = self:disconnect()
