@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:19:01    Date : 07/11/2011
+* Time : 16:28:07    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -375,6 +375,9 @@ UsersWindow.textUserName.Enabled := true
 UsersWindow.textPassWord.Enabled := true
 UsersWindow.comboSystemAdmin.Enabled := true
 UsersWindow.comboEmployee.Enabled := true
+UsersWindow.Grid1Browse.Enabled := False
+UsersWindow.textNameBrowse.Enabled := False
+UsersWindow.btn1Browse.Enabled := False
 ENDIF
 IF p1 = 2
 UsersWindow.btnfirst.Enabled := true
@@ -391,6 +394,9 @@ UsersWindow.textUserName.Enabled := false
 UsersWindow.textPassWord.Enabled := false
 UsersWindow.comboSystemAdmin.Enabled := false
 UsersWindow.comboEmployee.Enabled := false
+UsersWindow.Grid1Browse.Enabled := True
+UsersWindow.textNameBrowse.Enabled := True
+UsersWindow.btn1Browse.Enabled := True
 ENDIF
 self:OperationMode := p1
 Return 0
