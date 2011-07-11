@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:30:14    Date : 07/11/2011
+* Time : 01:02:11    Date : 07/12/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -71,6 +71,7 @@ Set Procedure to "Reviewers_Data.PRG"
 Set Procedure to "Reviewers_Browse.PRG"
 Set Procedure to "Reviewers_Report.PRG"
 Set Procedure to "ListOfReviewers_Report.PRG"
+Set Procedure to "ProjectReviews_Data.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -86,6 +87,7 @@ ReviewersDataObject = ReviewersDataClass()
 ReviewersBrowseObject = ReviewersBrowseClass()
 ReviewersReportObject = ReviewersReportClass()
 ListofReviewersReportObject = ListofReviewersReportClass()
+ProjectReviewsObject = ProjectReviewsClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -224,6 +226,8 @@ SEPARATOR
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject:showwindow()
 ENDIF
 END POPUP
 Return Nil
