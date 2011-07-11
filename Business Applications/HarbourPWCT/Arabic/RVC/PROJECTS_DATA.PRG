@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:56:53    Date : 07/11/2011
+* Time : 20:30:07    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,7 +40,7 @@ Data TableName init "projects"
 Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
-Data FindTitles init {"ﬂ·„«  „› «ÕÌ…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"}
+Data FindTitles init {"«·ÃÊ«·","«·»—Ìœ «·«·ﬂ —Ê‰Ï","ﬂ·„«  „› «ÕÌ…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"}
 Data cProjectName init ""
 Data cProjectOwner init ""
 Data cOwnerLocation init ""
@@ -53,6 +53,7 @@ Data cFileName2 init ""
 Data cAttachment2 init ""
 Data cEmail init ""
 Data cMobile init ""
+Data findcolumns init {"mobile","email","keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -189,7 +190,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 53 ,249 TEXTBOX textNamebrowse;
+@ 53 ,254 TEXTBOX textNamebrowse;
 ON ENTER self:search()  ;
 HEIGHT 30 ;
 WIDTH 530 ;
@@ -197,7 +198,7 @@ BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 52 ,146 BUTTONEX btn1browse;
+@ 52 ,151 BUTTONEX btn1browse;
 CAPTION "»ÕÀ";
 ON CLICK self:search()  ;
 WIDTH 100 HEIGHT 30 ;
@@ -207,18 +208,18 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1090 ;
 HEIGHT 210 ;
-HEADERS self:FindTitles;
+HEADERS {"ﬂ·„«  „› «ÕÌ…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"};
 WIDTHS {170,120,120,150,200,210,100} ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 53 ,781 COMBOBOX comboFind;
+@ 53 ,786 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
-WIDTH 190 ;
+WIDTH 180 ;
 HEIGHT 200;
 ITEMS self:FindTitles ;
-VALUE 6 ;
+VALUE 8 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
@@ -588,7 +589,7 @@ Return 0
 Method CheckFind Class ProjectsClass
 Local nIndex
 nIndex := ProjectsWindow.ComboFind.Value
-self:Column := self:Columns[nIndex]
+self:Column := self:findColumns[nIndex]
 Return 0
 Method OnBeforeDelete Class ProjectsClass
 Return myout
