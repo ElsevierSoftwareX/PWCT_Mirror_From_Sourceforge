@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:22:23    Date : 02/05/2011
+* Time : 07:38:59    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -229,8 +229,8 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 740 ;
 HEIGHT 160 ;
 HEADERS {"ﬂÊœ","«”„ «·„” Œœ„"};
-WIDTHS {50,150} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {50,680} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
