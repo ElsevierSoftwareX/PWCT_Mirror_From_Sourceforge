@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:38:59    Date : 07/11/2011
+* Time : 16:19:01    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -347,6 +347,7 @@ Local nvalue,myout
 nvalue := UsersWindow.grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
+UsersWindow.Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class UsersClass
