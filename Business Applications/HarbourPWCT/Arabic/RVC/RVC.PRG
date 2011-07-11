@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:04:04    Date : 07/11/2011
+* Time : 07:27:08    Date : 07/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -67,6 +67,10 @@ Set Procedure to "STREAMFUNCS.PRG"
 Set Procedure to "Projects_Data.PRG"
 Set Procedure to "ListOfProjects_Report.PRG"
 Set Procedure to "Projects_Report.PRG"
+Set Procedure to "Reviewers_Data.PRG"
+Set Procedure to "Reviewers_Browse.PRG"
+Set Procedure to "Reviewers_Report.PRG"
+Set Procedure to "ListOfReviewers_Report.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -78,6 +82,10 @@ GenderDataObject = GenderDataClass()
 ProjectsObject = ProjectsClass()
 ListofProjectsReportObject = ListofProjectsReportClass()
 ProjectsReportObject = ProjectsReportClass()
+ReviewersDataObject = ReviewersDataClass()
+ReviewersBrowseObject = ReviewersBrowseClass()
+ReviewersReportObject = ReviewersReportClass()
+ListofReviewersReportObject = ListofReviewersReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -199,9 +207,7 @@ IF UsersObject:userisadmin = 1
 POPUP "‰Ÿ«„"
 POPUP "«·„ÊŸ›Ì‰"
 MENUITEM "»Ì«‰«  «·„ÊŸ›" Action Employees2DataObject:showwindow()
-SEPARATOR
 MENUITEM "»ÕÀ ⁄‰ „ÊŸ›" Action Employees2BrowseObject:showwindow()
-SEPARATOR
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„ÊŸ›Ì‰" Action ListofEmployees2ReportObject:ShowWindow()
 SEPARATOR
 MENUITEM "ÃœÊ· «·Ã‰”Ì«  " Action Countrydataobject:showwindow()
@@ -213,8 +219,11 @@ ENDIF
 POPUP "Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„« "
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject:showwindow()
-SEPARATOR
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
+MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
 ENDIF
 END POPUP
 Return Nil
