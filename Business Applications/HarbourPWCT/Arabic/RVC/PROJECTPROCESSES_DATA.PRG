@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:41:33    Date : 07/13/2011
+* Time : 02:03:44    Date : 07/13/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -208,8 +208,10 @@ RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
 @ 52 ,235 TEXTBOX textNamebrowse;
+ON ENTER self:Search()  ;
 HEIGHT 30 ;
 WIDTH 500 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -225,8 +227,8 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1030 ;
 HEIGHT 230 ;
 HEADERS self:FindTitles;
-WIDTHS {100,100,200,200,200,150,150,250,100,200,150} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {100,100,200,200,200,150,150,250,200,200,150} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -549,6 +551,7 @@ Local nvalue,myout
 nvalue := ProjectProcessesWindow.grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
+ProjectProcessesWindow.Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class ProjectProcessesClass
@@ -625,7 +628,7 @@ oRSProcess := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRSOrderProcesses := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRSOrders:CursorType := 1
 oRSOrders:ActiveConnection := self:oCon
-oRSOrders:open ( "Select * from Project",self:oCon,3,3 )
+oRSOrders:open ( "Select * from Projects",self:oCon,3,3 )
 oRSProcess:CursorType := 1
 oRSProcess:ActiveConnection := self:oCon
 oRSProcess:open ( "Select * from Process",self:oCon,3,3 )
@@ -656,31 +659,14 @@ oRSOrderProcesses:fields:item("RealStartDate"):value := ""
 oRSOrderProcesses:fields:item("RealFinishDate"):value := ""
 oRSOrderProcesses:fields:item("processstatusid"):value := 2
 oRSOrderProcesses:fields:item("ProcessCost"):value := ""
-temp_OrderDate := oRSOrders:fields:item("OrderDate"):value
-temp_FinishDate := oRSOrders:fields:item("FinishDate"):value
+temp_OrderDate := oRSOrders:fields:item("DateReceived"):value
+temp_FinishDate := oRSOrders:fields:item("DateComplete"):value
 temp_orderdate := ctod(temp_orderdate )
 temp_finishdate := ctod(temp_finishdate )
-temp_startcodeid := oRSProcess:fields:item("StartCodeID"):value
-temp_startpos := oRSProcess:fields:item("StartPos"):value
 temp_Duration := oRSProcess:fields:item("Duration"):value
-temp_startpos = VAL ( temp_startpos )
 temp_duration = VAL ( temp_duration )
-IF temp_startcodeid = 2
-temp_mystart := temp_orderdate - temp_startpos
-temp_myend := temp_orderdate - temp_startpos + temp_duration - 1
-ENDIF
-IF temp_startcodeid = 3
-temp_mystart := temp_orderdate + temp_startpos
-temp_myend := temp_orderdate + temp_startpos + temp_duration - 1
-ENDIF
-IF temp_startcodeid = 4
-temp_mystart := temp_finishdate - temp_startpos
-temp_myend := temp_finishdate - temp_startpos + temp_duration - 1
-ENDIF
-IF temp_startcodeid = 5
-temp_mystart := temp_finishdate + temp_startpos
-temp_myend := temp_finishdate + temp_startpos + temp_duration - 1
-ENDIF
+temp_mystart := temp_orderdate
+temp_myend := temp_orderdate+ temp_duration
 temp_mystart = DTOC ( temp_mystart )
 temp_myend = DTOC ( temp_myend )
 temp_mystart = ALLTRIM ( temp_mystart )
