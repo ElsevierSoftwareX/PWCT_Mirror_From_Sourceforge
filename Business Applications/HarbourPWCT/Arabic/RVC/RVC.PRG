@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:37:27    Date : 07/12/2011
+* Time : 03:07:14    Date : 07/12/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -72,6 +72,7 @@ Set Procedure to "Reviewers_Browse.PRG"
 Set Procedure to "Reviewers_Report.PRG"
 Set Procedure to "ListOfReviewers_Report.PRG"
 Set Procedure to "ProjectReviews_Data.PRG"
+Set Procedure to "ProjectReviews_Report.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -88,6 +89,7 @@ ReviewersBrowseObject = ReviewersBrowseClass()
 ReviewersReportObject = ReviewersReportClass()
 ListofReviewersReportObject = ListofReviewersReportClass()
 ProjectReviewsObject = ProjectReviewsClass()
+ProjectReviewsReportObject = ProjectReviewsReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;

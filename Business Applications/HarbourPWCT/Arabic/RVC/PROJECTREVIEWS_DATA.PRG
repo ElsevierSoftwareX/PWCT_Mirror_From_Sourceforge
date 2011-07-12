@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:37:19    Date : 07/12/2011
+* Time : 03:05:51    Date : 07/12/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -74,6 +74,7 @@ Method CheckFind
 Method CheckAttach
 Method AttachUpload
 Method AttachRemove
+Method printdata
 EndClass
 Method showwindow Class ProjectReviewsClass
 myout = self:connect()
@@ -174,9 +175,9 @@ ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 6 ,4 LABEL lblTitle ;
-VALUE "                                                                                         „—«Ã⁄… «·„‘«—Ì⁄" ;
-WIDTH 1050 ;
+@ 7 ,144 LABEL lblTitle ;
+VALUE "                                                                       „—«Ã⁄… «·„‘«—Ì⁄" ;
+WIDTH 910 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -336,6 +337,15 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+@ 5 ,2 BUTTONEX btnPrint;
+CAPTION "ÿ»«⁄… «·»Ì«‰« ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:printdata()  ;
+WIDTH 143 HEIGHT 34 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
 END WINDOW
 
 ProjectReviewsWindow.Center ( )
@@ -504,6 +514,18 @@ ProjectReviewsWindow.textFileName.Value := self:cFileName
 ELSE
 MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
+Return 0
+Method PrintData Class ProjectReviewsClass
+Local myid,myout
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
+Return 0
+ENDIF
+myid := self:oRS:fields:item("id"):value
+myid = STR ( myid )
+ProjectReviewsreportobject:filter := "id = "+myid
+myout = ProjectReviewsreportobject:ShowWindow()
 Return 0
 Method closewindow Class ProjectReviewsClass
 myout = self:disconnect()
