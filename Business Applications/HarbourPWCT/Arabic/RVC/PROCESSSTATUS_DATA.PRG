@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 01:46:56    Date : 10/04/2010
+* Time : 23:08:34    Date : 07/12/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -176,6 +174,7 @@ FONTCOLOR {0,0,0}
 @ 279 ,215 TEXTBOX textCountry;
 HEIGHT 30 ;
 WIDTH 190 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -189,8 +188,10 @@ BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 53 ,167 TEXTBOX textNamebrowse;
+ON ENTER self:Search()  ;
 HEIGHT 30 ;
 WIDTH 410 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -205,9 +206,9 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 410 ;
 HEIGHT 160 ;
-HEADERS {"ÑÞã","ÍÇáÉ ÇáÇÌÑÇÁ"};
-WIDTHS {100,200} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"ßæÏ ÇáÇÌÑÇÁ","ÍÇáÉ ÇáÇÌÑÇÁ"};
+WIDTHS {100,270} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1} ;
 FONTCOLOR {0,0,0}
@@ -243,6 +244,7 @@ Local nvalue,myout
 nvalue := ProcessStatusWindow.grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
+ProcessStatusWindow.Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class ProcessStatusClass
@@ -253,10 +255,6 @@ Return 0
 Method mytimer Class ProcessStatusClass
 myout = self:search()
 ProcessStatusWindow.Timer1.Enabled := false
-Return 0
-Method closewindow Class ProcessStatusClass
-myout = self:disconnect()
-ProcessStatusWindow.Release ( )
 Return 0
 Method setmode(p1) Class ProcessStatusClass
 IF p1 = 1
@@ -271,6 +269,9 @@ ProcessStatusWindow.btncancel.Enabled := true
 ProcessStatusWindow.btnedit.Enabled := false
 ProcessStatusWindow.btnadd.Enabled := false
 ProcessStatusWindow.textCountry.Enabled := true
+ProcessStatusWindow.textNameBrowse.Enabled := False
+ProcessStatusWindow.btn1Browse.Enabled := False
+ProcessStatusWindow.Grid1Browse.Enabled := False
 ENDIF
 IF p1 = 2
 ProcessStatusWindow.btnfirst.Enabled := true
@@ -284,8 +285,15 @@ ProcessStatusWindow.btncancel.Enabled := false
 ProcessStatusWindow.btnedit.Enabled := true
 ProcessStatusWindow.btnadd.Enabled := true
 ProcessStatusWindow.textCountry.Enabled := false
+ProcessStatusWindow.textNameBrowse.Enabled := True
+ProcessStatusWindow.btn1Browse.Enabled := True
+ProcessStatusWindow.Grid1Browse.Enabled := True
 ENDIF
 self:OperationMode := p1
+Return 0
+Method closewindow Class ProcessStatusClass
+myout = self:disconnect()
+ProcessStatusWindow.Release ( )
 Return 0
 Method AutoGotoRecord Class ProcessStatusClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
