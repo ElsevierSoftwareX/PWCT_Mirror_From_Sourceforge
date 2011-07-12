@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 03:35:45    Date : 07/12/2011
+* Time : 22:52:26    Date : 07/12/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -52,6 +50,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_RVC_15speed1() code
 DO datesettings
+Set MenuStyle EXTENDED
 SET PROGRAMMATICCHANGE OFF
 Set Procedure to "SystemDatabase_Base.PRG"
 Set Procedure to "Users_Data.PRG"
@@ -74,6 +73,10 @@ Set Procedure to "ListOfReviewers_Report.PRG"
 Set Procedure to "ProjectReviews_Data.PRG"
 Set Procedure to "ProjectReviews_Report.PRG"
 Set Procedure to "ListOfProjectReviews_Report.PRG"
+Set Procedure to "PROCESSSTATUS_DATA.PRG"
+Set Procedure to "PROCESSES_DATA.PRG"
+Set Procedure to "PROCESSSTATUS_REPORT.PRG"
+Set Procedure to "PROCESSES_REPORT.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -92,6 +95,10 @@ ListofReviewersReportObject = ListofReviewersReportClass()
 ProjectReviewsObject = ProjectReviewsClass()
 ProjectReviewsReportObject = ProjectReviewsReportClass()
 ListofProjectReviewsReportObject = ListofProjectReviewsReportClass()
+ProcessesObject = ProcessesClass()
+ProcessStatusObject = ProcessStatusClass()
+ProcessesReportObject = ProcessesReportClass()
+ProcessStatusReportObject = ProcessStatusReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -233,6 +240,12 @@ MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow(
 SEPARATOR
 MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject:showwindow()
 MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
+MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
+SEPARATOR
+MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
+MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
 ENDIF
 END POPUP
 Return Nil
