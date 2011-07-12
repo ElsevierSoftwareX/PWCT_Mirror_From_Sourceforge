@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:15:52    Date : 07/13/2011
+* Time : 01:41:41    Date : 07/13/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -77,6 +77,7 @@ Set Procedure to "PROCESSSTATUS_DATA.PRG"
 Set Procedure to "PROCESSES_DATA.PRG"
 Set Procedure to "PROCESSSTATUS_REPORT.PRG"
 Set Procedure to "PROCESSES_REPORT.PRG"
+Set Procedure to "PROJECTPROCESSES_DATA.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -99,6 +100,7 @@ ProcessesObject = ProcessesClass()
 ProcessStatusObject = ProcessStatusClass()
 ProcessesReportObject = ProcessesReportClass()
 ProcessStatusReportObject = ProcessStatusReportClass()
+ProjectProcessesObject = ProjectProcessesClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -246,6 +248,8 @@ MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
 SEPARATOR
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
+SEPARATOR
+MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
 ENDIF
 END POPUP
 Return Nil
