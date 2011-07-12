@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:05:51    Date : 07/12/2011
+* Time : 03:35:39    Date : 07/12/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -125,12 +125,12 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 570 ,139 BUTTONEX btnClose;
-CAPTION "Œ—ÊÃ";
+CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
 ON CLICK self:closewindow()  ;
 WIDTH 79 HEIGHT 27 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 570 ,449 BUTTONEX btnPrev;
