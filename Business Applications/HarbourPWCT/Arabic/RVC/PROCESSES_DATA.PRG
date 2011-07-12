@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:35:15    Date : 07/12/2011
+* Time : 00:15:46    Date : 07/13/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -193,8 +193,10 @@ BACKCOLOR {255,255,255} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 53 ,220 TEXTBOX textNamebrowse;
+ON ENTER self:Search()  ;
 HEIGHT 30 ;
 WIDTH 410 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -293,6 +295,7 @@ Local nvalue,myout
 nvalue := CustTypeDataWindow.grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
+CustTypeDataWindow.Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class ProcessesClass
@@ -319,6 +322,9 @@ CustTypeDataWindow.btnadd.Enabled := false
 CustTypeDataWindow.textCountry.Enabled := true
 CustTypeDataWindow.textDuration.Enabled := true
 CustTypeDataWindow.ComboDepartment.Enabled := true
+CustTypeDataWindow.textNameBrowse.Enabled := False
+CustTypeDataWindow.Btn1Browse.Enabled := False
+CustTypeDataWindow.Grid1Browse.Enabled := False
 ENDIF
 IF p1 = 2
 CustTypeDataWindow.btnfirst.Enabled := true
@@ -334,6 +340,9 @@ CustTypeDataWindow.btnadd.Enabled := true
 CustTypeDataWindow.textCountry.Enabled := false
 CustTypeDataWindow.textDuration.Enabled := false
 CustTypeDataWindow.ComboDepartment.Enabled := False
+CustTypeDataWindow.textNameBrowse.Enabled := True
+CustTypeDataWindow.Btn1Browse.Enabled := True
+CustTypeDataWindow.Grid1Browse.Enabled := True
 ENDIF
 self:OperationMode := p1
 Return 0
