@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:27:59    Date : 07/13/2011
+* Time : 02:43:54    Date : 07/13/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -588,6 +588,10 @@ ProjectProcessesWindow.CheckD1.Enabled := True
 ProjectProcessesWindow.CheckD2.Enabled := True
 ProjectProcessesWindow.CheckD3.Enabled := True
 ProjectProcessesWindow.CheckD4.Enabled := True
+ProjectProcessesWindow.textNameBrowse.Enabled := False
+ProjectProcessesWindow.btn1Browse.Enabled := False
+ProjectProcessesWindow.Grid1Browse.Enabled := False
+ProjectProcessesWindow.ComboFind.Enabled := False
 ENDIF
 IF p1 = 2
 ProjectProcessesWindow.btnfirst.Enabled := true
@@ -613,6 +617,10 @@ ProjectProcessesWindow.CheckD1.Enabled := False
 ProjectProcessesWindow.CheckD2.Enabled := False
 ProjectProcessesWindow.CheckD3.Enabled := False
 ProjectProcessesWindow.CheckD4.Enabled := False
+ProjectProcessesWindow.textNameBrowse.Enabled := True
+ProjectProcessesWindow.btn1Browse.Enabled := True
+ProjectProcessesWindow.Grid1Browse.Enabled := True
+ProjectProcessesWindow.ComboFind.Enabled := True
 ENDIF
 self:OperationMode := p1
 Return 0
