@@ -1,20 +1,18 @@
 *---------------------------------------------------------------------------*
-* Time : 12:28:07    Date : 11/26/2010
+* Time : 09:12:26    Date : 07/13/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
-Function ORDERPROCESSES_REPORT
+Function PROJECTPROCESSES_REPORT
 Public True,False 
 True = .T. 
 False = .F. 
@@ -28,27 +26,23 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_ORDERPROCESSES_REPORT_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_PROJECTPROCESSES_REPORT_15speed1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_ORDERPROCESSES_REPORT_15speed1() code
-class OrderProcessesReportClass From Report_Base
-Data ReportName init "OrderProcesses"
+Resistance R_PROJECTPROCESSES_REPORT_15speed1() code
+class ProjectProcessesReportClass From Report_Base
+Data ReportName init "ProjectProcesses"
 Method showwindow
 Method closewindow
 Method SizeReport
 Method checkchange
 EndClass
-Method ShowWindow Class OrderProcessesReportClass
-IF .not. UsersObject:CheckPermission(65)
-MyOut := MSGBOX("ÇáÏÎæá áåÐå ÇáäÇÝÐÉ ÛíÑ ãÕÑÍ Èå","ÚÝæÇ")
-Return 0
-ENDIF
-if !iswindowdefined( OrderProcessesReportWindow )
-DEFINE WINDOW OrderProcessesReportWindow ;
+Method ShowWindow Class ProjectProcessesReportClass
+if !iswindowdefined( ProjectProcessesReportWindow )
+DEFINE WINDOW ProjectProcessesReportWindow ;
 AT 10 ,10 ;
 WIDTH 1031 ;
 HEIGHT 540 ;
@@ -56,7 +50,7 @@ ON INIT self:ShowReport()  ;
 ON SIZE self:SizeReport()  ;
 ON MAXIMIZE self:SizeReport()  ;
 ICON "PWCTICON" ;
-TITLE "ÇÌÑÇÁÇÊ ÏæÑÉ" ;
+TITLE "ÇÌÑÇÁÇÊ ÇáãÔÑæÚ" ;
 CHILD ;
 BACKCOLOR {64,0,64}
 
@@ -78,7 +72,7 @@ ON CLICK self:ShowReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-self:oActiveX := TActiveX():New( "OrderProcessesReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 979 , 417)
+self:oActiveX := TActiveX():New( "ProjectProcessesReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 979 , 417)
 self:oActiveX:Load()
 @ 453 ,467 LABEL lbl1 ;
 VALUE "ãä" ;
@@ -131,38 +125,38 @@ BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
-OrderProcessesReportWindow.Maximize ( )
-ACTIVATE WINDOW OrderProcessesReportWindow
+ProjectProcessesReportWindow.Maximize ( )
+ACTIVATE WINDOW ProjectProcessesReportWindow
 EndIF
 
 Return 0
-Method CloseWindow Class OrderProcessesReportClass
-OrderProcessesReportWindow.Release ( )
+Method CloseWindow Class ProjectProcessesReportClass
+ProjectProcessesReportWindow.Release ( )
 Return 0
-Method SizeReport Class OrderProcessesReportClass
+Method SizeReport Class ProjectProcessesReportClass
 Local tempvar1,tempvar2
-tempvar1 := OrderProcessesReportWindow.Width
-tempvar2 := OrderProcessesReportWindow.Height
+tempvar1 := ProjectProcessesReportWindow.Width
+tempvar2 := ProjectProcessesReportWindow.Height
 self:oactivex:nWidth := tempvar1 - 84
 self:oactivex:nHeight := tempvar2 - 125
-OrderProcessesReportWindow.btn1.Row := tempvar2-88
-OrderProcessesReportWindow.btn2.Row := tempvar2-88
-OrderProcessesReportWindow.btn3.Row := tempvar2-88
+ProjectProcessesReportWindow.btn1.Row := tempvar2-88
+ProjectProcessesReportWindow.btn2.Row := tempvar2-88
+ProjectProcessesReportWindow.btn3.Row := tempvar2-88
 self:oactivex:Show ( )
-OrderProcessesReportWindow.lbl1.Row := tempvar2 - 88
-OrderProcessesReportWindow.lbl2.Row := tempvar2 - 88
-OrderProcessesReportWindow.check1.Row := tempvar2 - 88
-OrderProcessesReportWindow.DatePicker1.Row := tempvar2 - 88
-OrderProcessesReportWindow.DatePicker2.Row := tempvar2 - 88
-OrderProcessesReportWindow.check2.Row := tempvar2 - 88
-OrderProcessesReportWindow.text1.Row := tempvar2 - 88
+ProjectProcessesReportWindow.lbl1.Row := tempvar2 - 88
+ProjectProcessesReportWindow.lbl2.Row := tempvar2 - 88
+ProjectProcessesReportWindow.check1.Row := tempvar2 - 88
+ProjectProcessesReportWindow.DatePicker1.Row := tempvar2 - 88
+ProjectProcessesReportWindow.DatePicker2.Row := tempvar2 - 88
+ProjectProcessesReportWindow.check2.Row := tempvar2 - 88
+ProjectProcessesReportWindow.text1.Row := tempvar2 - 88
 Return 0
-Method CheckChange Class OrderProcessesReportClass
-tvalue := OrderProcessesReportWindow.Check1.Value
+Method CheckChange Class ProjectProcessesReportClass
+tvalue := ProjectProcessesReportWindow.Check1.Value
 self:filter := ""
 IF tvalue = true
-cdate1 := OrderProcessesReportWindow.Datepicker1.Value
-cdate2 := OrderProcessesReportWindow.Datepicker2.Value
+cdate1 := ProjectProcessesReportWindow.Datepicker1.Value
+cdate2 := ProjectProcessesReportWindow.Datepicker2.Value
 cdate1 = DTOC ( cdate1 )
 cdate2 = DTOC ( cdate2 )
 cdate1 = ALLTRIM ( cdate1 )
@@ -171,14 +165,14 @@ self:filter := "cdate(Orders.OrderDate) >= cdate('" + cdate1 + "') and cdate(Ord
 ELSE
 self:filter := "1 = 1"
 ENDIF
-tvalue2 := OrderProcessesReportWindow.Check2.Value
+tvalue2 := ProjectProcessesReportWindow.Check2.Value
 IF tvalue2 = true
 IF tvalue = true
 self:filter := self:filter + " and "
 ELSE
 self:filter := ""
 ENDIF
-cOrderNumber := OrderProcessesReportWindow.text1.Value
+cOrderNumber := ProjectProcessesReportWindow.text1.Value
 cOrderNumber = ALLTRIM ( cOrderNumber )
 self:filter := self:filter + " orders.ordernumber = " + cordernumber
 ENDIF
