@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:45:54    Date : 07/13/2011
+* Time : 04:38:06    Date : 07/13/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -646,6 +646,7 @@ IF nMax1 > 0
 FOR x = 1 TO nMax1 STEP 1
 IF nMax2 > 0
 oRSProcess:MOVEFIRST()
+tempcounter := 0
 FOR x2 = 1 TO nMax2 STEP 1
 nOrderNumber := oRSOrders:fields:item("ID"):value
 nProcessID := oRSProcess:fields:item("ID"):value
@@ -673,12 +674,13 @@ temp_orderdate := ctod(temp_orderdate )
 temp_finishdate := ctod(temp_finishdate )
 temp_Duration := oRSProcess:fields:item("Duration"):value
 temp_duration = VAL ( temp_duration )
-temp_mystart := temp_orderdate
-temp_myend := temp_orderdate+ temp_duration
+temp_mystart := temp_orderdate + tempcounter
+temp_myend := temp_orderdate+ temp_duration + tempcounter - 1
 temp_mystart = DTOC ( temp_mystart )
 temp_myend = DTOC ( temp_myend )
 temp_mystart = ALLTRIM ( temp_mystart )
 temp_myend = ALLTRIM ( temp_myend )
+tempcounter := tempcounter+temp_duration
 oRSOrderProcesses:fields:item("plannedstartdate"):value := temp_mystart
 oRSOrderProcesses:fields:item("PlannedFinishDate"):value := temp_myend
 oRSOrderProcesses:UPDATE()
