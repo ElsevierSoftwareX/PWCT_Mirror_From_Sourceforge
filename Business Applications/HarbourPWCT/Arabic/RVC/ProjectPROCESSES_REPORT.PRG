@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:12:26    Date : 07/13/2011
+* Time : 09:20:23    Date : 07/13/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -52,7 +52,7 @@ ON MAXIMIZE self:SizeReport()  ;
 ICON "PWCTICON" ;
 TITLE "ÇÌÑÇÁÇÊ ÇáãÔÑæÚ" ;
 CHILD ;
-BACKCOLOR {64,0,64}
+BACKCOLOR {255,255,255}
 
 @ 453 ,630 BUTTONEX btn1;
 CAPTION "ÇÛáÇÞ";
@@ -72,7 +72,7 @@ ON CLICK self:ShowReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-self:oActiveX := TActiveX():New( "ProjectProcessesReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 979 , 417)
+self:oActiveX := TActiveX():New( "ProjectProcessesReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 969 , 417)
 self:oActiveX:Load()
 @ 453 ,467 LABEL lbl1 ;
 VALUE "ãä" ;
@@ -93,7 +93,7 @@ CAPTION "ÇáÊÇÑíÎ";
 ON CHANGE self:checkchange()  ;
 WIDTH 100;
 Height 30;
-FONT "Arial" SIZE 9 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {192,192,192} ;
 FONTCOLOR {0,0,0}
 @ 453 ,363 DATEPICKER datepicker1;
@@ -116,11 +116,11 @@ BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
 @ 453 ,104 CHECKBOX check2;
-CAPTION "ÑÞã ÇáÏæÑÉ";
+CAPTION "ßæÏ ÇáãÔÑæÚ";
 ON CHANGE self:checkchange()  ;
 WIDTH 110;
 Height 30;
-FONT "Arial" SIZE 9 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
 END WINDOW
@@ -161,7 +161,7 @@ cdate1 = DTOC ( cdate1 )
 cdate2 = DTOC ( cdate2 )
 cdate1 = ALLTRIM ( cdate1 )
 cdate2 = ALLTRIM ( cdate2 )
-self:filter := "cdate(Orders.OrderDate) >= cdate('" + cdate1 + "') and cdate(Orders.OrderDate) <= cdate('" + cdate2 + "')"
+self:filter := "cdate(Projects.ReceiveDate) >= cdate('" + cdate1 + "') and cdate(Projects.ReceiveDate) <= cdate('" + cdate2 + "')"
 ELSE
 self:filter := "1 = 1"
 ENDIF
@@ -174,7 +174,7 @@ self:filter := ""
 ENDIF
 cOrderNumber := ProjectProcessesReportWindow.text1.Value
 cOrderNumber = ALLTRIM ( cOrderNumber )
-self:filter := self:filter + " orders.ordernumber = " + cordernumber
+self:filter := self:filter + " Projects.ID = " + cordernumber
 ENDIF
 Return 0
 
