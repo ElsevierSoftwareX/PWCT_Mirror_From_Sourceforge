@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:49:01    Date : 07/16/2011
+* Time : 02:08:42    Date : 07/16/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -167,6 +167,7 @@ WHITEBACKGROUND ;
 WIDTH 282 HEIGHT 104
 @ 200 ,682 IMAGE image3;
 PICTURE "image\p1.JPG";
+ON CLICK DashObject:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
 @ 443 ,669 LABEL lbl3 ;
