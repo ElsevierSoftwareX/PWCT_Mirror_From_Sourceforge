@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:09:27    Date : 07/16/2011
+* Time : 23:37:02    Date : 07/16/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -34,10 +34,12 @@ Resistance R_DASH_15speed1() code
 class DashClass From SYSTEMDATABASE
 Data datastring init "5*14*3*2*1"
 Data performancestring init "80*0*0*0*0*20"
+Data LinePer init 80
 Method ShowWindow
 Method MyTimer
 Method DrawChart
 Method CloseWindow
+Method DrawLine
 EndClass
 Method ShowWindow Class DashClass
 if !iswindowdefined( DashWindow )
@@ -54,7 +56,7 @@ NOSIZE ;
 BACKCOLOR {255,255,255}
 
 Public oActiveX
-oActiveX := TActiveX():New( "DashWindow", "RMChart.RMChartX" , 10 , 426 , 370 , 242)
+oActiveX := TActiveX():New( "DashWindow", "RMChart.RMChartX" , 10 , 476 , 270 , 130)
 oActiveX:Load()
 DEFINE TIMER Timer1 INTERVAL 200 ;
 Action self:mytimer()
@@ -200,10 +202,10 @@ FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 263 ,426 PROGRESSBAR Progress1;
+@ 263 ,476 PROGRESSBAR Progress1;
 RANGE 0 , 100 ;
 VALUE 80 ;
-WIDTH 370 ;
+WIDTH 270 ;
 HEIGHT 30 ;
 BACKCOLOR {255,255,255} ;
 FORECOLOR {0,0,0} ;
@@ -258,11 +260,16 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
+@ 146 ,477 IMAGE imageperformance;
+PICTURE "Image\performance.jpg";
+STRETCH ;
+WIDTH 270 HEIGHT 116
 END WINDOW
 
 DashWindow.timer1.Enabled := false
 DashWindow.Center ( )
 myout = self:DrawChart()
+myout = Self:DrawLine()
 ACTIVATE WINDOW DashWindow
 EndIF
 
@@ -327,6 +334,27 @@ DashWindow.timer1.Enabled := false
 oactivex:OOLE:reset ( )
 oactivex2:OOLE:reset ( )
 DashWindow.Release ( )
+Return 0
+Method DrawLine Class DashClass
+Local XF,YF
+IF self:lineper < 51
+XF := 530+(1.6*SELF:LINEPER)
+YF := 245-(1.5*SELF:LINEPER)
+XF = ROUND (XF , 0)
+YF = ROUND (YF , 0)
+ELSE
+XF := 610+(1.6*(SELF:LINEPER-50))
+YF := 170+(1.5*(SELF:LINEPER-50))
+XF = ROUND (XF , 0)
+YF = ROUND (YF , 0)
+ENDIF
+ERASE WINDOW DashWindow
+DRAW LINE IN WINDOW DashWindow;
+AT YF,XF;
+TO 245,610;
+PENCOLOR {0,255,128};
+PENWIDTH 3
+
 Return 0
 
 
