@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:19:07    Date : 07/16/2011
+* Time : 05:09:27    Date : 07/16/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -45,7 +45,6 @@ DEFINE WINDOW DashWindow ;
 AT 10 ,10 ;
 WIDTH 859 ;
 HEIGHT 653 ;
-ON INIT self:drawchart()  ;
 ICON "PWCTICON" ;
 TITLE "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« " ;
 CHILD ;
@@ -263,6 +262,7 @@ END WINDOW
 
 DashWindow.timer1.Enabled := false
 DashWindow.Center ( )
+myout = self:DrawChart()
 ACTIVATE WINDOW DashWindow
 EndIF
 
@@ -324,6 +324,8 @@ oactivex:OOLE:draw ( .T. )
 Return 0
 Method CloseWindow Class DashClass
 DashWindow.timer1.Enabled := false
+oactivex:OOLE:reset ( )
+oactivex2:OOLE:reset ( )
 DashWindow.Release ( )
 Return 0
 
