@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:37:02    Date : 07/16/2011
+* Time : 13:21:36    Date : 07/17/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -56,7 +56,7 @@ NOSIZE ;
 BACKCOLOR {255,255,255}
 
 Public oActiveX
-oActiveX := TActiveX():New( "DashWindow", "RMChart.RMChartX" , 10 , 476 , 270 , 130)
+oActiveX := TActiveX():New( "DashWindow", "RMChart.RMChartX" , 10 , 476 , 270 , 140)
 oActiveX:Load()
 DEFINE TIMER Timer1 INTERVAL 200 ;
 Action self:mytimer()
@@ -202,7 +202,7 @@ FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 263 ,476 PROGRESSBAR Progress1;
+@ 266 ,476 PROGRESSBAR Progress1;
 RANGE 0 , 100 ;
 VALUE 80 ;
 WIDTH 270 ;
@@ -210,7 +210,7 @@ HEIGHT 30 ;
 BACKCOLOR {255,255,255} ;
 FORECOLOR {0,0,0} ;
 TOOLTIP ""
-@ 303 ,517 TEXTBOX ptext6;
+@ 300 ,557 TEXTBOX ptext6;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
@@ -233,7 +233,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 304 ,594 LABEL tlbl3 ;
+@ 301 ,634 LABEL tlbl3 ;
 VALUE "‰”»… «·«œ«¡" ;
 WIDTH 100 ;
 HEIGHT 20 ;
@@ -352,7 +352,7 @@ ERASE WINDOW DashWindow
 DRAW LINE IN WINDOW DashWindow;
 AT YF,XF;
 TO 245,610;
-PENCOLOR {0,255,128};
+PENCOLOR {0,0,0};
 PENWIDTH 3
 
 Return 0
