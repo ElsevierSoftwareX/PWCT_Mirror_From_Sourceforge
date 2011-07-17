@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 20:30:07    Date : 07/11/2011
+* Time : 23:39:09    Date : 07/17/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -54,6 +52,9 @@ Data cAttachment2 init ""
 Data cEmail init ""
 Data cMobile init ""
 Data findcolumns init {"mobile","email","keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
+Data nStage init 0
+Data StageItems init {}
+Data StageItemsIDs init {}
 Method showwindow
 Method closewindow
 Method SetMode
@@ -101,7 +102,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 45 ,4 IMAGE image1;
+@ 44 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1110 HEIGHT 530
@@ -295,20 +296,20 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 452 ,759 DATEPICKER dateReceived;
-WIDTH 180 ;
+@ 453 ,789 DATEPICKER dateReceived;
+WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 452 ,468 LABEL lbldatecomplete ;
+@ 453 ,668 LABEL lbldatecomplete ;
 VALUE " «—ÌŒ «·«‰ Â«¡" ;
-WIDTH 110 ;
+WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 451 ,260 DATEPICKER dateComplete;
+@ 453 ,468 DATEPICKER dateComplete;
 WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -395,7 +396,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-@ 412 ,471 LABEL lblMobile ;
+@ 412 ,468 LABEL lblMobile ;
 VALUE "«·ÃÊ«·" ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -411,6 +412,23 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
+@ 453 ,390 LABEL lblStage ;
+VALUE "«·„—Õ·…" ;
+WIDTH 50 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+myout = self:LoadLookupTable("Stages","Stage",@self:StageItems,"id",@self:StageItemsIDS)
+@ 453 ,100 COMBOBOX comboStage;
+WIDTH 270 ;
+HEIGHT 100;
+ITEMS self:Stageitems ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = RightToLeftControl ( "ProjectsWindow","datereceived" )
@@ -424,6 +442,7 @@ WIDTH 143 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
+myout = RightToLeftControl ( "ProjectsWindow","comboStage" )
 END WINDOW
 
 ProjectsWindow.Center ( )
@@ -447,6 +466,8 @@ self:cDateReceived = DTOC ( self:cDateReceived )
 self:cDateComplete = DTOC ( self:cDateComplete )
 self:cEmail := ProjectsWindow.texteMail.Value
 self:cMobile := ProjectsWindow.textMobile.Value
+self:nStage := ProjectsWindow.ComboStage.Value
+self:nStage := self:StageItemsids[self:nStage]
 Return 0
 Method Class2ADO Class ProjectsClass
 self:oRS:fields:item("ProjectName"):value := self:cProjectName
@@ -461,6 +482,7 @@ self:oRS:fields:item("attachment2"):value := self:cAttachment2
 self:oRS:fields:item("filename2"):value := Self:cFilename2
 self:oRS:fields:item("eMail"):value := self:cEmail
 self:oRS:fields:item("Mobile"):value := self:cMobile
+self:oRS:fields:item("stageid"):value := self:nstage
 Return 0
 Method ADO2Class Class ProjectsClass
 self:cProjectName := self:oRS:fields:item("ProjectName"):value
@@ -475,6 +497,7 @@ self:cFileName2 := self:oRS:fields:item("filename2"):value
 self:cAttachment2 := self:oRS:fields:item("Attachment2"):value
 Self:cEmail := self:oRS:fields:item("eMail"):value
 Self:cMobile := self:oRS:fields:item("Mobile"):value
+self:nStage := self:oRS:fields:item("StageID"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 ProjectsWindow.textProjectName.Value := self:cProjectName
@@ -487,6 +510,8 @@ ProjectsWindow.textFileName.Value := self:cFileName
 ProjectsWindow.textFileName2.Value := self:cFileName2
 ProjectsWindow.texteMail.Value := self:cEmail
 ProjectsWindow.textMobile.Value := self:cMobile
+self:nStage = self:LookupIDToIndex(self:nStage,@self:StageItemsids)
+ProjectsWindow.ComboStage.Value := self:nStage
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
@@ -553,6 +578,7 @@ ProjectsWindow.Grid1Browse.Enabled := false
 ProjectsWindow.ComboFind.Enabled := False
 ProjectsWindow.texteMail.Enabled := True
 ProjectsWindow.textMobile.Enabled := True
+ProjectsWindow.ComboStage.Enabled := True
 ENDIF
 IF p1 = 2
 ProjectsWindow.btnfirst.Enabled := true
@@ -583,6 +609,7 @@ ProjectsWindow.ComboFind.Enabled := True
 ProjectsWindow.textNameBrowse.Enabled := true
 ProjectsWindow.texteMail.Enabled := False
 ProjectsWindow.textMobile.Enabled := False
+ProjectsWindow.ComboStage.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
