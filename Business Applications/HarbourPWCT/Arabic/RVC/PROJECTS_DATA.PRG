@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:18:39    Date : 07/19/2011
+* Time : 00:45:48    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -34,6 +34,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_PROJECTS_DATA_15speed1() code
 class ProjectsClass From SYSTEMDATABASE
+Data cWindowName init "ProjectsWindow"
 Data TableName init "projects_all"
 Data column init "projectname"
 Data PrimaryKey init "id"
@@ -90,8 +91,8 @@ Return 0
 ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
-if !iswindowdefined( ProjectsWindow )
-DEFINE WINDOW ProjectsWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 1127 ;
 HEIGHT 674 ;
@@ -213,16 +214,16 @@ WIDTH 1090 ;
 HEIGHT 210 ;
 HEADERS {"«·„—Õ·…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"};
 WIDTHS {170,120,120,150,190,210,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}
-@ 53 ,786 COMBOBOX comboFind;
+@ 53 ,785 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
 WIDTH 180 ;
 HEIGHT 200;
 ITEMS self:FindTitles ;
-VALUE 8 ;
+VALUE 9 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
@@ -433,8 +434,8 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-myout = RightToLeftControl ( "ProjectsWindow","datereceived" )
-myout = RightToLeftControl ( "ProjectsWindow","datecomplete" )
+myout = RightToLeftControl ( self:cWindowName,"datereceived" )
+myout = RightToLeftControl ( Self:cWindowName,"datecomplete" )
 @ 5 ,3 BUTTONEX btnPrint;
 CAPTION "ÿ»«⁄… «·»Ì«‰« ";
 FONTCOLOR {255,255,255};
@@ -444,31 +445,31 @@ WIDTH 143 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-myout = RightToLeftControl ( "ProjectsWindow","comboStage" )
+myout = RightToLeftControl ( self:cWindowName,"comboStage" )
 END WINDOW
 
-ProjectsWindow.Center ( )
+&(self:cWindowName).Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
-ProjectsWindow.Timer1.Enabled := false
-ProjectsWindow.textFileName.Enabled := false
-ProjectsWindow.textFileName2.Enabled := false
-ACTIVATE WINDOW ProjectsWindow
+&(self:cWindowName).Timer1.Enabled := false
+&(self:cWindowName).textFileName.Enabled := false
+&(self:cWindowName).textFileName2.Enabled := false
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method UserInterface2Class Class ProjectsClass
-self:cProjectName := ProjectsWindow.textProjectName.Value
-self:cProjectOwner := ProjectsWindow.textProjectOwner.Value
-self:cOwnerLocation := ProjectsWindow.textOwnerLocation.Value
-self:cKeywords := ProjectsWindow.textKeywords.Value
-self:cDateReceived := ProjectsWindow.dateReceived.Value
-self:cDateComplete := ProjectsWindow.dateComplete.Value
+self:cProjectName := &(self:cWindowName).textProjectName.Value
+self:cProjectOwner := &(self:cWindowName).textProjectOwner.Value
+self:cOwnerLocation := &(self:cWindowName).textOwnerLocation.Value
+self:cKeywords := &(self:cWindowName).textKeywords.Value
+self:cDateReceived := &(self:cWindowName).dateReceived.Value
+self:cDateComplete := &(self:cWindowName).dateComplete.Value
 self:cDateReceived = DTOC ( self:cDateReceived )
 self:cDateComplete = DTOC ( self:cDateComplete )
-self:cEmail := ProjectsWindow.texteMail.Value
-self:cMobile := ProjectsWindow.textMobile.Value
-self:nStage := ProjectsWindow.ComboStage.Value
+self:cEmail := &(self:cWindowName).texteMail.Value
+self:cMobile := &(self:cWindowName).textMobile.Value
+self:nStage := &(self:cWindowName).ComboStage.Value
 self:nStage := self:StageItemsids[self:nStage]
 Return 0
 Method Class2ADO Class ProjectsClass
@@ -503,18 +504,18 @@ self:nStage := self:oRS:fields:item("StageID"):value
 self:nID := self:oRS:fields:item("ID"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
-ProjectsWindow.textProjectName.Value := self:cProjectName
-ProjectsWindow.textProjectOwner.Value := self:cProjectOwner
-ProjectsWindow.textOwnerLocation.Value := self:cOwnerLocation
-ProjectsWindow.textKeywords.Value := self:cKeywords
-ProjectsWindow.dateReceived.Value := ctod(self:cDateReceived)
-ProjectsWindow.dateComplete.Value := ctod(self:cDateComplete)
-ProjectsWindow.textFileName.Value := self:cFileName
-ProjectsWindow.textFileName2.Value := self:cFileName2
-ProjectsWindow.texteMail.Value := self:cEmail
-ProjectsWindow.textMobile.Value := self:cMobile
+&(self:cWindowName).textProjectName.Value := self:cProjectName
+&(self:cWindowName).textProjectOwner.Value := self:cProjectOwner
+&(self:cWindowName).textOwnerLocation.Value := self:cOwnerLocation
+&(self:cWindowName).textKeywords.Value := self:cKeywords
+&(self:cWindowName).dateReceived.Value := ctod(self:cDateReceived)
+&(self:cWindowName).dateComplete.Value := ctod(self:cDateComplete)
+&(self:cWindowName).textFileName.Value := self:cFileName
+&(self:cWindowName).textFileName2.Value := self:cFileName2
+&(self:cWindowName).texteMail.Value := self:cEmail
+&(self:cWindowName).textMobile.Value := self:cMobile
 self:nStage = self:LookupIDToIndex(self:nStage,@self:StageItemsids)
-ProjectsWindow.ComboStage.Value := self:nStage
+&(self:cWindowName).ComboStage.Value := self:nStage
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
@@ -536,10 +537,10 @@ self:cMobile := ""
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
-nvalue := ProjectsWindow.grid1browse.Value
+nvalue := &(self:cWindowName).grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
-ProjectsWindow.Grid1Browse.SetFocus ( )
+&(self:cWindowName).Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class ProjectsClass
@@ -549,76 +550,76 @@ myout = self:ShowWindow()
 Return 0
 Method mytimer Class ProjectsClass
 myout = self:search()
-ProjectsWindow.Timer1.Enabled := false
+&(self:cWindowName).Timer1.Enabled := false
 Return 0
 Method setmode(p1) Class ProjectsClass
 IF p1 = 1
-ProjectsWindow.btnfirst.Enabled := false
-ProjectsWindow.btnnext.Enabled := false
-ProjectsWindow.btnprev.Enabled := false
-ProjectsWindow.btnlast.Enabled := false
-ProjectsWindow.btndel.Enabled := false
-ProjectsWindow.btnclose.Enabled := false
-ProjectsWindow.btnsave.Enabled := true
-ProjectsWindow.btncancel.Enabled := true
-ProjectsWindow.btnedit.Enabled := false
-ProjectsWindow.btnadd.Enabled := false
-ProjectsWindow.textProjectName.Enabled := true
-ProjectsWindow.textProjectOwner.Enabled := true
-ProjectsWindow.textOwnerLocation.Enabled := true
-ProjectsWindow.textKeywords.Enabled := true
-ProjectsWindow.dateReceived.Enabled := true
-ProjectsWindow.dateComplete.Enabled := true
-ProjectsWindow.btnAttachUpload.Enabled := True
-ProjectsWindow.btnAttachRemove.Enabled := True
-ProjectsWindow.btnAttachCheck.Enabled := false
-ProjectsWindow.btnAttachUpload2.Enabled := True
-ProjectsWindow.btnAttachRemove2.Enabled := True
-ProjectsWindow.btnAttachCheck2.Enabled := false
-ProjectsWindow.textNameBrowse.Enabled := false
-ProjectsWindow.btn1Browse.Enabled := false
-ProjectsWindow.Grid1Browse.Enabled := false
-ProjectsWindow.ComboFind.Enabled := False
-ProjectsWindow.texteMail.Enabled := True
-ProjectsWindow.textMobile.Enabled := True
-ProjectsWindow.ComboStage.Enabled := True
+&(self:cWindowName).btnfirst.Enabled := false
+&(self:cWindowName).btnnext.Enabled := false
+&(self:cWindowName).btnprev.Enabled := false
+&(self:cWindowName).btnlast.Enabled := false
+&(self:cWindowName).btndel.Enabled := false
+&(self:cWindowName).btnclose.Enabled := false
+&(self:cWindowName).btnsave.Enabled := true
+&(self:cWindowName).btncancel.Enabled := true
+&(self:cWindowName).btnedit.Enabled := false
+&(self:cWindowName).btnadd.Enabled := false
+&(self:cWindowName).textProjectName.Enabled := true
+&(self:cWindowName).textProjectOwner.Enabled := true
+&(self:cWindowName).textOwnerLocation.Enabled := true
+&(self:cWindowName).textKeywords.Enabled := true
+&(self:cWindowName).dateReceived.Enabled := true
+&(self:cWindowName).dateComplete.Enabled := true
+&(self:cWindowName).btnAttachUpload.Enabled := True
+&(self:cWindowName).btnAttachRemove.Enabled := True
+&(self:cWindowName).btnAttachCheck.Enabled := false
+&(self:cWindowName).btnAttachUpload2.Enabled := True
+&(self:cWindowName).btnAttachRemove2.Enabled := True
+&(self:cWindowName).btnAttachCheck2.Enabled := false
+&(self:cWindowName).textNameBrowse.Enabled := false
+&(self:cWindowName).btn1Browse.Enabled := false
+&(self:cWindowName).Grid1Browse.Enabled := false
+&(self:cWindowName).ComboFind.Enabled := False
+&(self:cWindowName).texteMail.Enabled := True
+&(self:cWindowName).textMobile.Enabled := True
+&(self:cWindowName).ComboStage.Enabled := True
 ENDIF
 IF p1 = 2
-ProjectsWindow.btnfirst.Enabled := true
-ProjectsWindow.btnnext.Enabled := true
-ProjectsWindow.btnprev.Enabled := true
-ProjectsWindow.btnlast.Enabled := true
-ProjectsWindow.btndel.Enabled := true
-ProjectsWindow.btnclose.Enabled := true
-ProjectsWindow.btnsave.Enabled := false
-ProjectsWindow.btncancel.Enabled := false
-ProjectsWindow.btnedit.Enabled := true
-ProjectsWindow.btnadd.Enabled := true
-ProjectsWindow.textProjectName.Enabled := false
-ProjectsWindow.textProjectOwner.Enabled := false
-ProjectsWindow.textOwnerLocation.Enabled := false
-ProjectsWindow.textKeywords.Enabled := false
-ProjectsWindow.dateReceived.Enabled := false
-ProjectsWindow.dateComplete.Enabled := False
-ProjectsWindow.btnAttachUpload.Enabled := False
-ProjectsWindow.btnAttachRemove.Enabled := False
-ProjectsWindow.btnAttachCheck.Enabled := true
-ProjectsWindow.btnAttachUpload2.Enabled := False
-ProjectsWindow.btnAttachRemove2.Enabled := False
-ProjectsWindow.btnAttachCheck2.Enabled := true
-ProjectsWindow.btn1Browse.Enabled := True
-ProjectsWindow.Grid1Browse.Enabled := True
-ProjectsWindow.ComboFind.Enabled := True
-ProjectsWindow.textNameBrowse.Enabled := true
-ProjectsWindow.texteMail.Enabled := False
-ProjectsWindow.textMobile.Enabled := False
-ProjectsWindow.ComboStage.Enabled := False
+&(self:cWindowName).btnfirst.Enabled := true
+&(self:cWindowName).btnnext.Enabled := true
+&(self:cWindowName).btnprev.Enabled := true
+&(self:cWindowName).btnlast.Enabled := true
+&(self:cWindowName).btndel.Enabled := true
+&(self:cWindowName).btnclose.Enabled := true
+&(self:cWindowName).btnsave.Enabled := false
+&(self:cWindowName).btncancel.Enabled := false
+&(self:cWindowName).btnedit.Enabled := true
+&(self:cWindowName).btnadd.Enabled := true
+&(self:cWindowName).textProjectName.Enabled := false
+&(self:cWindowName).textProjectOwner.Enabled := false
+&(self:cWindowName).textOwnerLocation.Enabled := false
+&(self:cWindowName).textKeywords.Enabled := false
+&(self:cWindowName).dateReceived.Enabled := false
+&(self:cWindowName).dateComplete.Enabled := False
+&(self:cWindowName).btnAttachUpload.Enabled := False
+&(self:cWindowName).btnAttachRemove.Enabled := False
+&(self:cWindowName).btnAttachCheck.Enabled := true
+&(self:cWindowName).btnAttachUpload2.Enabled := False
+&(self:cWindowName).btnAttachRemove2.Enabled := False
+&(self:cWindowName).btnAttachCheck2.Enabled := true
+&(self:cWindowName).btn1Browse.Enabled := True
+&(self:cWindowName).Grid1Browse.Enabled := True
+&(self:cWindowName).ComboFind.Enabled := True
+&(self:cWindowName).textNameBrowse.Enabled := true
+&(self:cWindowName).texteMail.Enabled := False
+&(self:cWindowName).textMobile.Enabled := False
+&(self:cWindowName).ComboStage.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
 Method CheckFind Class ProjectsClass
 Local nIndex
-nIndex := ProjectsWindow.ComboFind.Value
+nIndex := &(self:cWindowName).ComboFind.Value
 self:Column := self:findColumns[nIndex]
 Return 0
 Method OnBeforeDelete Class ProjectsClass
@@ -656,7 +657,7 @@ CheckFile := File(getfile)
 IF checkfile
 self:cAttachment = filetostream ( getfile )
 self:cfilename = getfilename ( getfile )
-ProjectsWindow.textFileName.Value := self:cFileName
+&(self:cWindowName).textFileName.Value := self:cFileName
 ENDIF
 Return 0
 Method AttachRemove Class ProjectsClass
@@ -664,7 +665,7 @@ mydata := self:oRS:fields:item("attachment"):value
 IF .not. empty(mydata)
 self:cAttachment := ""
 self:cFileName := ""
-ProjectsWindow.textFileName.Value := self:cFileName
+&(self:cWindowName).textFileName.Value := self:cFileName
 ELSE
 MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
@@ -695,7 +696,7 @@ CheckFile := File(getfile)
 IF checkfile
 self:cAttachment2 = filetostream ( getfile )
 self:cfilename2 = getfilename ( getfile )
-ProjectsWindow.textFileName2.Value := self:cFileName2
+&(self:cWindowName).textFileName2.Value := self:cFileName2
 ENDIF
 Return 0
 Method AttachRemove2 Class ProjectsClass
@@ -703,7 +704,7 @@ mydata := self:oRS:fields:item("attachment2"):value
 IF .not. empty(mydata)
 self:cAttachment2 := ""
 self:cFileName2 := ""
-ProjectsWindow.textFileName2.Value := self:cFileName2
+&(self:cWindowName).textFileName2.Value := self:cFileName2
 ELSE
 MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
@@ -723,7 +724,7 @@ Return 0
 Method CheckData Class ProjectsClass
 Local myret,cName
 myret := true
-cName := ProjectsWindow.TextProjectName.Value
+cName := &(self:cWindowName).TextProjectName.Value
 cName = ALLTRIM ( cName )
 IF cName == ""
 MyOut := MSGBOX("ÌÃ» ≈œŒ«· «”„ «·„‘—Ê⁄","⁄›Ê«")
@@ -732,7 +733,7 @@ ENDIF
 Return myret
 Method closewindow Class ProjectsClass
 myout = self:disconnect()
-ProjectsWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method AutoGotoRecord Class ProjectsClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
@@ -741,26 +742,26 @@ mycheck := self:oRS:EOF()
 IF mycheck = true
 self:oRS:MOVEPREVIOUS()
 ENDIF
-IF iswindowdefined( ProjectsWindow )
+IF iswindowdefined( &(self:cWindowName) )
 myout = self:showrecord()
-ProjectsWindow.SetFocus ( )
+&(self:cWindowName).SetFocus ( )
 ENDIF
 ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
 Return 0
 Method BeforeSearch Class ProjectsClass
-ProjectsWindow.grid1browse.DeleteAllItems ( )
-ProjectsWindow.grid1browse.Value := 0
+&(self:cWindowName).grid1browse.DeleteAllItems ( )
+&(self:cWindowName).grid1browse.Value := 0
 Return 0
 Method SearchAdd(temp_array) Class ProjectsClass
-ProjectsWindow.grid1browse.AddItem ( temp_array )
+&(self:cWindowName).grid1browse.AddItem ( temp_array )
 Return 0
 Method GetSearchValue Class ProjectsClass
-cName := ProjectsWindow.textNamebrowse.Value
+cName := &(self:cWindowName).textNamebrowse.Value
 Return cName
 Method SetTimer(p1) Class ProjectsClass
-ProjectsWindow.Timer1.Enabled := p1
+&(self:cWindowName).Timer1.Enabled := p1
 Return 0
 
 
