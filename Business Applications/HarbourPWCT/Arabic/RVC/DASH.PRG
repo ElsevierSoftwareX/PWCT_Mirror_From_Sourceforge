@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:24:04    Date : 07/18/2011
+* Time : 11:52:47    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,6 +54,7 @@ Method DrawChart
 Method CloseWindow
 Method DrawLine
 Method LoadData
+Method UpdateDash
 EndClass
 Method ShowWindow Class DashClass
 if !iswindowdefined( DashWindow )
@@ -278,6 +279,8 @@ FONTCOLOR {0,0,0}
 PICTURE "Image\performance.jpg";
 STRETCH ;
 WIDTH 270 HEIGHT 116
+DEFINE TIMER Timer2 INTERVAL 5000 ;
+Action self:UpdateDash()
 END WINDOW
 
 DashWindow.timer1.Enabled := false
@@ -431,6 +434,14 @@ DashWindow.ptext2.Value := self:p2
 DashWindow.ptext3.Value := self:p3
 DashWindow.ptext4.Value := self:p4
 DashWindow.ptext5.Value := self:p5
+Return 0
+Method UpdateDash Class DashClass
+myout = self:LoadData()
+oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
+oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
+oactivex:OOLE:draw ( .T. )
+oactivex2:OOLE:draw ( .T. )
+myout = Self:DrawLine()
 Return 0
 
 
