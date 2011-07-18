@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:39:09    Date : 07/17/2011
+* Time : 11:12:24    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -210,8 +210,8 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1090 ;
 HEIGHT 210 ;
 HEADERS {"ﬂ·„«  „› «ÕÌ…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"};
-WIDTHS {170,120,120,150,200,210,100} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {170,120,120,150,190,210,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1,1,1,1} ;
 FONTCOLOR {0,0,0}

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:21:36    Date : 07/17/2011
+* Time : 11:12:34    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -32,14 +32,28 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_DASH_15speed1() code
 class DashClass From SYSTEMDATABASE
-Data datastring init "5*14*3*2*1"
+Data datastring init ""
 Data performancestring init "80*0*0*0*0*20"
 Data LinePer init 80
+Data TableName init "Dash"
+Data PrimaryKey init "ID"
+Data C1 init 0
+Data C2 init 0
+Data C3 init 0
+Data C4 init 0
+Data C5 init 0
+Data P1 init 0
+Data P2 init 0
+Data P3 init 0
+Data P4 init 0
+Data P5 init 0
+Data TotalCount init 0
 Method ShowWindow
 Method MyTimer
 Method DrawChart
 Method CloseWindow
 Method DrawLine
+Method LoadData
 EndClass
 Method ShowWindow Class DashClass
 if !iswindowdefined( DashWindow )
@@ -268,6 +282,7 @@ END WINDOW
 
 DashWindow.timer1.Enabled := false
 DashWindow.Center ( )
+myout = self:LoadData()
 myout = self:DrawChart()
 myout = Self:DrawLine()
 ACTIVATE WINDOW DashWindow
@@ -355,6 +370,55 @@ TO 245,610;
 PENCOLOR {0,0,0};
 PENWIDTH 3
 
+Return 0
+Method LoadData Class DashClass
+Local nStage,nCount,cDataStr
+myout = self:Connect()
+MYMAX := SELF:oRS:RecordCount
+FOR x = 1 TO MYMAX STEP 1
+nStage := self:oRS:fields:item("StageID"):value
+nCount := self:oRS:fields:item("MyCount"):value
+IF nStage = 2
+self:c1 := nCount
+ELSEIF nStage = 3
+self:c2 := nCount
+ELSEIF nStage = 4
+self:c3 := nCount
+ELSEIF nStage = 5
+self:c4 := nCount
+ELSEIF nStage = 6
+self:c5 := nCount
+ENDIF
+self:oRS:MOVENEXT()
+Next
+myout = self:Disconnect()
+self:TotalCount := self:c1 + self:c2 + self:c3 + self:c4 + self:c5
+self:p1 := (self:c1/self:totalcount)*100
+self:p2 := (self:c2/self:totalcount)*100
+self:p3 := (self:c3/self:totalcount)*100
+self:p4 := (self:c4/self:totalcount)*100
+self:p5 := (self:c5/self:totalcount)*100
+self:C1 = STR ( self:c1 )
+self:C2 = STR ( self:c2 )
+self:C3 = STR ( self:c3 )
+self:C4 = STR ( self:c4 )
+self:C5 = STR ( self:c5 )
+self:P1 = STR ( self:P1 )
+self:P2 = STR ( self:P2 )
+self:P3 = STR ( self:P3 )
+self:P4 = STR ( self:P4 )
+self:P5 = STR ( self:P5 )
+SELF:C1 = ALLTRIM ( SELF:C1 )
+SELF:C2 = ALLTRIM ( SELF:C2 )
+SELF:C3 = ALLTRIM ( SELF:C3 )
+SELF:C4 = ALLTRIM ( SELF:C4 )
+SELF:C5 = ALLTRIM ( SELF:C5 )
+SELF:P1 = ALLTRIM ( SELF:P1 )
+SELF:P2 = ALLTRIM ( SELF:P2 )
+SELF:P3 = ALLTRIM ( SELF:P3 )
+SELF:P4 = ALLTRIM ( SELF:P4 )
+SELF:P5 = ALLTRIM ( SELF:P5 )
+self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5
 Return 0
 
 
