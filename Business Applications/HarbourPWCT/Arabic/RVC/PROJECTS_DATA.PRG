@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:12:24    Date : 07/18/2011
+* Time : 22:59:17    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -34,11 +34,11 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_PROJECTS_DATA_15speed1() code
 class ProjectsClass From SYSTEMDATABASE
-Data TableName init "projects"
+Data TableName init "projects_all"
 Data column init "projectname"
 Data PrimaryKey init "id"
-Data columns init {"keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
-Data FindTitles init {"ÇáÌæÇá","ÇáÈÑíÏ ÇáÇáßÊÑæäì","ßáãÇÊ ãİÊÇÍíÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÇÓÊíáÇã","ãæŞÚ ÇáãÇáß","ÕÇÍÈ ÇáãÔÑæÚ","ÇÓã ÇáãÔÑæÚ","ßæÏ ÇáãÔÑæÚ"}
+Data columns init {"stage","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
+Data FindTitles init {"ÇáãÑÍáÉ","ÇáÌæÇá","ÇáÈÑíÏ ÇáÇáßÊÑæäì","ßáãÇÊ ãİÊÇÍíÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÇÓÊíáÇã","ãæŞÚ ÇáãÇáß","ÕÇÍÈ ÇáãÔÑæÚ","ÇÓã ÇáãÔÑæÚ","ßæÏ ÇáãÔÑæÚ"}
 Data cProjectName init ""
 Data cProjectOwner init ""
 Data cOwnerLocation init ""
@@ -51,7 +51,7 @@ Data cFileName2 init ""
 Data cAttachment2 init ""
 Data cEmail init ""
 Data cMobile init ""
-Data findcolumns init {"mobile","email","keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
+Data findcolumns init {"stage","mobile","email","keywords","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
 Data nStage init 0
 Data StageItems init {}
 Data StageItemsIDs init {}
@@ -209,7 +209,7 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1090 ;
 HEIGHT 210 ;
-HEADERS {"ßáãÇÊ ãİÊÇÍíÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÇÓÊíáÇã","ãæŞÚ ÇáãÇáß","ÕÇÍÈ ÇáãÔÑæÚ","ÇÓã ÇáãÔÑæÚ","ßæÏ ÇáãÔÑæÚ"};
+HEADERS {"ÇáãÑÍáÉ","ÊÇÑíÎ ÇáÇäÊåÇÁ","ÊÇÑíÎ ÇáÇÓÊíáÇã","ãæŞÚ ÇáãÇáß","ÕÇÍÈ ÇáãÔÑæÚ","ÇÓã ÇáãÔÑæÚ","ßæÏ ÇáãÔÑæÚ"};
 WIDTHS {170,120,120,150,190,210,100} ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
