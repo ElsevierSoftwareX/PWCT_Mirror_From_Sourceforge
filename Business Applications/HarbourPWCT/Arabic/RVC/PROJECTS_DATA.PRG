@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:51:04    Date : 07/19/2011
+* Time : 00:59:55    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -38,6 +38,7 @@ Data cWindowName init "ProjectsWindow"
 Data TableName init "projects_all"
 Data SubTable1 init "projectprocesses"
 Data SubTable2 init "projectreviews"
+Data WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
 Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"stage","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
@@ -100,7 +101,7 @@ WIDTH 1127 ;
 HEIGHT 674 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
-TITLE "«·„‘«—Ì⁄" ;
+TITLE self:WindowTitle ;
 CHILD ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
@@ -456,6 +457,9 @@ myout = self:setmode(2)
 &(self:cWindowName).Timer1.Enabled := false
 &(self:cWindowName).textFileName.Enabled := false
 &(self:cWindowName).textFileName2.Enabled := false
+calldll32("SetWindowLong","USER32.DLL",GetFormHandle (self:cWindowName),-20,;
+NUMOR(calldll32("GetWindowLong","USER32.DLL",;
+GetFormHandle (self:cWindowName), -20),0x400000,0x100000))
 ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
