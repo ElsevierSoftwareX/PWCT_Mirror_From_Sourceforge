@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:52:47    Date : 07/18/2011
+* Time : 12:11:14    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -55,6 +55,7 @@ Method CloseWindow
 Method DrawLine
 Method LoadData
 Method UpdateDash
+Method ClearData
 EndClass
 Method ShowWindow Class DashClass
 if !iswindowdefined( DashWindow )
@@ -285,6 +286,7 @@ END WINDOW
 
 DashWindow.timer1.Enabled := false
 DashWindow.Center ( )
+myout = self:ClearData()
 myout = self:LoadData()
 myout = self:DrawChart()
 myout = Self:DrawLine()
@@ -421,7 +423,11 @@ SELF:P2 = ALLTRIM ( SELF:P2 )
 SELF:P3 = ALLTRIM ( SELF:P3 )
 SELF:P4 = ALLTRIM ( SELF:P4 )
 SELF:P5 = ALLTRIM ( SELF:P5 )
+oldDataString := self:DataString
 self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5
+IF self:DataString == OldDataString
+Return False
+ENDIF
 self:TotalCount = STR ( self:TotalCount )
 DashWindow.ptext7.Value := self:TotalCount
 DashWindow.text1.Value := self:c1
@@ -434,14 +440,29 @@ DashWindow.ptext2.Value := self:p2
 DashWindow.ptext3.Value := self:p3
 DashWindow.ptext4.Value := self:p4
 DashWindow.ptext5.Value := self:p5
-Return 0
+Return True
 Method UpdateDash Class DashClass
 myout = self:LoadData()
+IF myout = True
 oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
 oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
 oactivex:OOLE:draw ( .T. )
 oactivex2:OOLE:draw ( .T. )
 myout = Self:DrawLine()
+ENDIF
+Return 0
+Method ClearData Class DashClass
+self:DataString := ""
+self:p1 := ""
+self:p2 := ""
+self:p3 := ""
+self:p4 := ""
+self:p5 := ""
+self:c1 := ""
+self:c2 := ""
+self:c3 := ""
+self:c4 := ""
+self:c5 := ""
 Return 0
 
 
