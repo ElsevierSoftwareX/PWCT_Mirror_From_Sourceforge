@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:00:03    Date : 07/19/2011
+* Time : 01:22:55    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -105,6 +105,13 @@ ProcessStatusReportObject = ProcessStatusReportClass()
 ProjectProcessesObject = ProjectProcessesClass()
 ProjectProcessesReportObject = ProjectProcessesReportClass()
 DashObject = DashClass()
+ProjectsObject2 = ProjectsClass()
+ProjectsObject2:cWindowName := "ProjectsWindow2"
+ProjectsObject2:TableName := "Projects_All2"
+ProjectsObject2:SubTable1 := "ProjectProcesses2"
+ProjectsObject2:SubTable2 := "ProjectReviews2"
+ProjectsObject2:WindowTitle := "Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
+ProjectsObject2:PermissionID := 83
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -239,6 +246,30 @@ ENDIF
 POPUP "Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„« "
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject:showwindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
+MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject:showwindow()
+MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
+MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
+SEPARATOR
+MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
+MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
+SEPARATOR
+MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
+SEPARATOR
+MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
+ENDIF
+END POPUP
+POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
+IF UsersObject:CheckPermission(83)
+MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject2:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
 SEPARATOR
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()

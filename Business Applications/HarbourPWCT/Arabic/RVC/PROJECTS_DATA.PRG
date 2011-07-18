@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:59:55    Date : 07/19/2011
+* Time : 01:17:43    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -39,6 +39,7 @@ Data TableName init "projects_all"
 Data SubTable1 init "projectprocesses"
 Data SubTable2 init "projectreviews"
 Data WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
+Data PermissionID init 83
 Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"stage","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
@@ -88,7 +89,7 @@ Method printdata
 Method CheckData
 EndClass
 Method showwindow Class ProjectsClass
-IF .not. UsersObject:CheckPermission(83)
+IF .not. UsersObject:CheckPermission(Self:PermissionID)
 MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
 Return 0
 ENDIF
