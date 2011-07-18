@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:59:17    Date : 07/18/2011
+* Time : 23:11:50    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -80,6 +80,7 @@ Method CheckAttach2
 Method AttachUpload2
 Method AttachRemove2
 Method printdata
+Method CheckData
 EndClass
 Method showwindow Class ProjectsClass
 IF .not. UsersObject:CheckPermission(83)
@@ -710,6 +711,16 @@ myid = STR ( myid )
 Projectsreportobject:filter := "id = "+myid
 myout = Projectsreportobject:ShowWindow()
 Return 0
+Method CheckData Class ProjectsClass
+Local myret,cName
+myret := true
+cName := ProjectsWindow.TextProjectName.Value
+cName = ALLTRIM ( cName )
+IF cName == ""
+MyOut := MSGBOX("ÌÃ» ≈œŒ«· «”„ «·„‘—Ê⁄","⁄›Ê«")
+myret := False
+ENDIF
+Return myret
 Method closewindow Class ProjectsClass
 myout = self:disconnect()
 ProjectsWindow.Release ( )
