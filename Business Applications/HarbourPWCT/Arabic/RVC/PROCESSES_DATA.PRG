@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:15:46    Date : 07/13/2011
+* Time : 22:34:54    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -69,7 +69,7 @@ if !iswindowdefined( CustTypeDataWindow )
 DEFINE WINDOW CustTypeDataWindow ;
 AT 10 ,10 ;
 WIDTH 878 ;
-HEIGHT 559 ;
+HEIGHT 570 ;
 ON INIT self:search()  ;
 ICON "PWCTICON" ;
 TITLE "«·«Ã—«¡« " ;
@@ -82,8 +82,8 @@ BACKCOLOR {64,0,64}
 @ 41 ,1 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\BACK.jpg";
 STRETCH ;
-WIDTH 860 HEIGHT 416
-@ 470 ,424 BUTTONEX btnFirst;
+WIDTH 860 HEIGHT 446
+@ 492 ,424 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -92,7 +92,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 470 ,297 BUTTONEX btnNext;
+@ 492 ,297 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -101,7 +101,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 470 ,234 BUTTONEX btnLast;
+@ 492 ,234 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -110,7 +110,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 470 ,66 BUTTONEX btnClose;
+@ 492 ,66 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -119,7 +119,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 470 ,361 BUTTONEX btnPrev;
+@ 492 ,361 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -128,7 +128,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 470 ,159 BUTTONEX btnDel;
+@ 492 ,159 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -137,25 +137,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 470 ,576 BUTTONEX btnsave;
+@ 492 ,576 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 470 ,489 BUTTONEX btncancel;
+@ 492 ,489 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 470 ,656 BUTTONEX btnedit;
+@ 492 ,656 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 470 ,731 BUTTONEX btnadd;
+@ 492 ,731 BUTTONEX btnadd;
 CAPTION "≈÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -168,7 +168,7 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {128,128,0}
-@ 378 ,660 LABEL lblCountry ;
+@ 369 ,655 LABEL lblCountry ;
 VALUE "«”„ «·«Ã—«¡" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -176,9 +176,9 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 376 ,442 TEXTBOX textCountry;
+@ 367 ,198 TEXTBOX textCountry;
 HEIGHT 30 ;
-WIDTH 196 ;
+WIDTH 440 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
@@ -213,13 +213,13 @@ WIDTH 830 ;
 HEIGHT 260 ;
 HEADERS {"«·ﬁ”„","„œ… «·«Ã—«¡","«·«Ã—«¡","ﬂÊœ «·«Ã—«¡"};
 WIDTHS {300,100,300,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:mytimer()
-@ 376 ,275 LABEL lblDuration ;
+@ 442 ,655 LABEL lblDuration ;
 VALUE "„œ… «·«Ã—«¡ / ⁄œœ «·«Ì«„" ;
 WIDTH 160 ;
 HEIGHT 30 ;
@@ -227,7 +227,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 376 ,198 TEXTBOX textDuration;
+@ 444 ,568 TEXTBOX textDuration;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "Arial" SIZE 14 ;
@@ -236,7 +236,7 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 myout = self:LoadLookupTable("gender","gender",@self:departmentItems,"id",@self:departmentItemsIDS)
-@ 421 ,660 LABEL lbldepartment ;
+@ 406 ,655 LABEL lbldepartment ;
 VALUE "«·ﬁ”„" ;
 WIDTH 40 ;
 HEIGHT 30 ;
@@ -244,7 +244,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 419 ,198 COMBOBOX combodepartment;
+@ 408 ,198 COMBOBOX combodepartment;
 WIDTH 440 ;
 HEIGHT 100;
 ITEMS self:departmentitems ;
