@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:28:16    Date : 07/18/2011
+* Time : 14:16:06    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -49,6 +49,12 @@ Data TotalCount init 0
 Data ActivePerformance init 0
 Data performancestring init ""
 Data LinePer init 0
+Data TotalCount2 init 0
+Data TotalCount3 init 0
+Data TotalCount4 init 0
+Data TP2 init 0
+Data TP3 init 0
+Data TP4 init 0
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -286,7 +292,7 @@ END WINDOW
 
 DashWindow.timer1.Enabled := false
 DashWindow.Center ( )
-myout = self:ClearData()
+self:DataString := ""
 myout = self:DrawChart()
 myout = self:UpdateDash()
 ACTIVATE WINDOW DashWindow
@@ -370,7 +376,7 @@ ENDIF
 ERASE WINDOW DashWindow
 DRAW LINE IN WINDOW DashWindow;
 AT YF,XF;
-TO 245,610;
+TO 245,607;
 PENCOLOR {0,0,0};
 PENWIDTH 3
 
@@ -397,6 +403,12 @@ self:oRS:MOVENEXT()
 Next
 myout = self:Disconnect()
 self:TotalCount := self:c1 + self:c2 + self:c3 + self:c4 + self:c5
+self:TotalCount2 := self:c2 + self:c3 + self:c4 + self:c5
+self:TotalCount3 := self:c3 + self:c4 + self:c5
+self:TotalCount4 := self:c4 + self:c5
+self:Tp2 := (self:c2/self:totalcount2)*100
+self:Tp3 := (self:c3/self:totalcount3)*100
+self:Tp4 := (self:c4/self:totalcount4)*100
 self:p1 := (self:c1/self:totalcount)*100
 self:p2 := (self:c2/self:totalcount)*100
 self:p3 := (self:c3/self:totalcount)*100
@@ -441,13 +453,14 @@ DashWindow.ptext4.Value := self:p4
 DashWindow.ptext5.Value := self:p5
 Return True
 Method UpdateDash Class DashClass
+myout = self:ClearData()
 myout = self:LoadData()
 IF myout = True
 oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
 oactivex2:OOLE:draw ( .T. )
 ENDIF
 self:ActivePerformance := self:ActivePerformance+1
-IF self:activeperformance = 6
+IF self:activeperformance = 5
 self:ActivePerformance := 1
 ENDIF
 IF self:ActivePerformance = 1
@@ -457,19 +470,19 @@ Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := self:lineper + "*0*0*0*0*" + self:p1
 DashWindow.ImageDownSel1.Col := 589
 ELSEIF self:ActivePerformance = 2
-Self:LinePer := 100 - val(self:p2)
+Self:LinePer := 100 - self:Tp2
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*" + self:Lineper + "*0*0*0*" + self:p2
 DashWindow.ImageDownSel1.Col := 589-130
 ELSEIF self:ActivePerformance = 3
-Self:LinePer := 100 - val(self:p3)
+Self:LinePer := 100 - self:Tp3
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*0*" + self:lineper + " *0*0*" + self:p3
 DashWindow.ImageDownSel1.Col := 589-260
 ELSEIF self:ActivePerformance = 4
-Self:LinePer := 100 - val(self:p4)
+Self:LinePer := 100 - self:Tp4
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*0*0*" + self:lineper + "*0*" + self:p4
@@ -489,17 +502,16 @@ myout = Self:DrawLine()
 DashWindow.Progress1.Value := self:LinePer
 Return 0
 Method ClearData Class DashClass
-self:DataString := ""
-self:p1 := ""
-self:p2 := ""
-self:p3 := ""
-self:p4 := ""
-self:p5 := ""
-self:c1 := ""
-self:c2 := ""
-self:c3 := ""
-self:c4 := ""
-self:c5 := ""
+self:p1 := 0
+self:p2 := 0
+self:p3 := 0
+self:p4 := 0
+self:p5 := 0
+self:c1 := 0
+self:c2 := 0
+self:c3 := 0
+self:c4 := 0
+self:c5 := 0
 Return 0
 
 
