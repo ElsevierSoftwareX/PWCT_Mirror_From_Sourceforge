@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:11:50    Date : 07/18/2011
+* Time : 00:18:39    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -55,6 +55,7 @@ Data findcolumns init {"stage","mobile","email","keywords","datecomplete","dater
 Data nStage init 0
 Data StageItems init {}
 Data StageItemsIDs init {}
+Data nID init 0
 Method showwindow
 Method closewindow
 Method SetMode
@@ -499,6 +500,7 @@ self:cAttachment2 := self:oRS:fields:item("Attachment2"):value
 Self:cEmail := self:oRS:fields:item("eMail"):value
 Self:cMobile := self:oRS:fields:item("Mobile"):value
 self:nStage := self:oRS:fields:item("StageID"):value
+self:nID := self:oRS:fields:item("ID"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 ProjectsWindow.textProjectName.Value := self:cProjectName
@@ -620,7 +622,14 @@ nIndex := ProjectsWindow.ComboFind.Value
 self:Column := self:findColumns[nIndex]
 Return 0
 Method OnBeforeDelete Class ProjectsClass
-Return myout
+Local myProjectid
+myProjectid := self:nID
+IF .not. myProjectID= 0
+myProjectid = STR ( myProjectid )
+myout = self:oCon:execute("delete from projectprocesses where projectid = " + myprojectid)
+myout = self:oCon:execute("delete from projectreviews where projectid = " + myprojectid)
+ENDIF
+Return 0
 Method CheckAttach Class ProjectsClass
 IF .not. empty(self:cAttachment)
 PutFile := PutFile (  , ;

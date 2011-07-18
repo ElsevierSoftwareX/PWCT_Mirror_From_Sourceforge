@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 16:35:00    Date : 07/11/2011
+* Time : 00:18:02    Date : 07/19/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -78,6 +76,7 @@ Method OpenSystem
 Method ValueDetails
 Method CheckPermission
 Method CheckData
+Method OnBeforeDelete
 EndClass
 Method showwindow Class UsersClass
 IF self:UserIsAdmin = 2
@@ -329,6 +328,7 @@ self:cUserName := self:oRS:fields:item("UserName"):value
 self:cPassWord := self:oRS:fields:item("PassWord"):value
 self:nSystemAdmin := self:oRS:fields:item("SystemAdmin"):value
 self:nEmployee := self:oRS:fields:item("EmpID"):value
+self:nID := self:oRS:fields:item("ID"):value
 Return 0
 Method Class2UserInterface Class UsersClass
 UsersWindow.textUserName.Value := self:cUserName
@@ -595,14 +595,34 @@ myout = self:DisConnect()
 ENDIF
 Return myret
 Method CheckData Class UsersClass
-Local myret,nValue
+Local myret,nValue,cName,cPass
 myret := true
 nValue := UsersWindow.ComboEmployee.Value
 IF nValue = 0
 MyOut := MSGBOX("·«ÌÊÃœ „ÊŸ›  „  ÕœÌœÂ","⁄›Ê«")
 myret := false
 ENDIF
+cName := UsersWindow.textUserName.Value
+cPass := UsersWindow.textPassWord.Value
+cName = ALLTRIM ( cName )
+cPass = ALLTRIM ( cPass )
+IF cName == ""
+MyOut := MSGBOX("ÌÃ» ≈œŒ«· «”„ «·„” Œœ„","⁄›Ê«")
+myret := false
+ENDIF
+IF cPass == ""
+MyOut := MSGBOX("ÌÃ» ≈œŒ«· ﬂ·„… «·”—","⁄›Ê«")
+myret := false
+ENDIF
 Return myret
+Method OnBeforeDelete Class UsersClass
+Local myProjectid
+myUserid := self:nID
+IF .not. myUserID= 0
+myUserid = STR ( myUserid )
+myout = self:oCon:execute("delete from userpermissionsvalues where userid = " + myUserid)
+ENDIF
+Return 0
 Method closewindow Class UsersClass
 myout = self:disconnect()
 UsersWindow.Release ( )
