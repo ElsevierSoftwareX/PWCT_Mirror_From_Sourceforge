@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:16:06    Date : 07/18/2011
+* Time : 21:17:28    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -78,6 +78,10 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {255,255,255}
 
+@ 335 ,589 IMAGE imagedownsel1;
+PICTURE "image\downsel.jpg";
+STRETCH ;
+WIDTH 55 HEIGHT 48
 Public oActiveX
 oActiveX := TActiveX():New( "DashWindow", "RMChart.RMChartX" , 10 , 476 , 270 , 140)
 oActiveX:Load()
@@ -263,10 +267,6 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 335 ,589 IMAGE imagedownsel1;
-PICTURE "image\downsel.jpg";
-STRETCH ;
-WIDTH 55 HEIGHT 48
 @ 303 ,157 TEXTBOX ptext7;
 HEIGHT 30 ;
 WIDTH 70 ;
@@ -364,7 +364,7 @@ Method DrawLine Class DashClass
 Local XF,YF
 IF self:lineper < 51
 XF := 530+(1.6*SELF:LINEPER)
-YF := 245-(1.5*SELF:LINEPER)
+YF := 248-(1.5*SELF:LINEPER)
 XF = ROUND (XF , 0)
 YF = ROUND (YF , 0)
 ELSE
@@ -376,7 +376,7 @@ ENDIF
 ERASE WINDOW DashWindow
 DRAW LINE IN WINDOW DashWindow;
 AT YF,XF;
-TO 245,607;
+TO 248,607;
 PENCOLOR {0,0,0};
 PENWIDTH 3
 
