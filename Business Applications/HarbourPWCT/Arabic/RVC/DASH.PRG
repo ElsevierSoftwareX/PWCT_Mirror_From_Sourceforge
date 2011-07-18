@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:02:11    Date : 07/18/2011
+* Time : 13:28:16    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -122,25 +122,25 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 390 ,315 LABEL lbl3 ;
+@ 390 ,325 LABEL lbl3 ;
 VALUE "„—Õ·…  ‰›Ì– 1" ;
-WIDTH 110 ;
+WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 390 ,191 LABEL lbl4 ;
+@ 390 ,199 LABEL lbl4 ;
 VALUE "„—Õ·…  ‰›Ì– 2" ;
-WIDTH 110 ;
+WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 390 ,61 LABEL lbl5 ;
+@ 390 ,71 LABEL lbl5 ;
 VALUE "„—Õ·…  ‰›Ì– 3" ;
-WIDTH 110 ;
+WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -287,9 +287,8 @@ END WINDOW
 DashWindow.timer1.Enabled := false
 DashWindow.Center ( )
 myout = self:ClearData()
-myout = self:LoadData()
 myout = self:DrawChart()
-myout = Self:DrawLine()
+myout = self:UpdateDash()
 ACTIVATE WINDOW DashWindow
 EndIF
 
@@ -456,29 +455,35 @@ Self:LinePer := 100 - val(self:p1)
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := self:lineper + "*0*0*0*0*" + self:p1
+DashWindow.ImageDownSel1.Col := 589
 ELSEIF self:ActivePerformance = 2
 Self:LinePer := 100 - val(self:p2)
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*" + self:Lineper + "*0*0*0*" + self:p2
+DashWindow.ImageDownSel1.Col := 589-130
 ELSEIF self:ActivePerformance = 3
 Self:LinePer := 100 - val(self:p3)
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*0*" + self:lineper + " *0*0*" + self:p3
+DashWindow.ImageDownSel1.Col := 589-260
 ELSEIF self:ActivePerformance = 4
 Self:LinePer := 100 - val(self:p4)
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*0*0*" + self:lineper + "*0*" + self:p4
+DashWindow.ImageDownSel1.Col := 589-380
 ELSEIF self:ActivePerformance = 5
 Self:LinePer := 100 - val(self:p5)
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "*0*0*0*0*" + self:lineper + "*" + self:p5
+DashWindow.ImageDownSel1.Col := 589-500
 ENDIF
 oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
 oactivex:OOLE:draw ( .T. )
+DashWindow.pText6.Value := self:LinePer
 Self:LinePer = VAL ( self:LinePer )
 myout = Self:DrawLine()
 DashWindow.Progress1.Value := self:LinePer
