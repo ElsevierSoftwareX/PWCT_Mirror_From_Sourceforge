@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:11:14    Date : 07/18/2011
+* Time : 13:02:11    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -33,8 +33,6 @@ Return
 Resistance R_DASH_15speed1() code
 class DashClass From SYSTEMDATABASE
 Data datastring init ""
-Data performancestring init "80*0*0*0*0*20"
-Data LinePer init 80
 Data TableName init "Dash"
 Data PrimaryKey init "ID"
 Data C1 init 0
@@ -48,6 +46,9 @@ Data P3 init 0
 Data P4 init 0
 Data P5 init 0
 Data TotalCount init 0
+Data ActivePerformance init 0
+Data performancestring init ""
+Data LinePer init 0
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -220,7 +221,6 @@ FONTCOLOR {0,0,0}
 
 @ 266 ,476 PROGRESSBAR Progress1;
 RANGE 0 , 100 ;
-VALUE 80 ;
 WIDTH 270 ;
 HEIGHT 30 ;
 BACKCOLOR {255,255,255} ;
@@ -444,12 +444,44 @@ Return True
 Method UpdateDash Class DashClass
 myout = self:LoadData()
 IF myout = True
-oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
 oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
-oactivex:OOLE:draw ( .T. )
 oactivex2:OOLE:draw ( .T. )
-myout = Self:DrawLine()
 ENDIF
+self:ActivePerformance := self:ActivePerformance+1
+IF self:activeperformance = 6
+self:ActivePerformance := 1
+ENDIF
+IF self:ActivePerformance = 1
+Self:LinePer := 100 - val(self:p1)
+Self:LinePer = STR ( self:LinePer )
+Self:LinePer = ALLTRIM ( self:LinePer )
+self:PerformanceString := self:lineper + "*0*0*0*0*" + self:p1
+ELSEIF self:ActivePerformance = 2
+Self:LinePer := 100 - val(self:p2)
+Self:LinePer = STR ( self:LinePer )
+Self:LinePer = ALLTRIM ( self:LinePer )
+self:PerformanceString := "0*" + self:Lineper + "*0*0*0*" + self:p2
+ELSEIF self:ActivePerformance = 3
+Self:LinePer := 100 - val(self:p3)
+Self:LinePer = STR ( self:LinePer )
+Self:LinePer = ALLTRIM ( self:LinePer )
+self:PerformanceString := "0*0*" + self:lineper + " *0*0*" + self:p3
+ELSEIF self:ActivePerformance = 4
+Self:LinePer := 100 - val(self:p4)
+Self:LinePer = STR ( self:LinePer )
+Self:LinePer = ALLTRIM ( self:LinePer )
+self:PerformanceString := "0*0*0*" + self:lineper + "*0*" + self:p4
+ELSEIF self:ActivePerformance = 5
+Self:LinePer := 100 - val(self:p5)
+Self:LinePer = STR ( self:LinePer )
+Self:LinePer = ALLTRIM ( self:LinePer )
+self:PerformanceString := "*0*0*0*0*" + self:lineper + "*" + self:p5
+ENDIF
+oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
+oactivex:OOLE:draw ( .T. )
+Self:LinePer = VAL ( self:LinePer )
+myout = Self:DrawLine()
+DashWindow.Progress1.Value := self:LinePer
 Return 0
 Method ClearData Class DashClass
 self:DataString := ""
