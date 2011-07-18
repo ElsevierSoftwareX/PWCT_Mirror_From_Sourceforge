@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:45:48    Date : 07/19/2011
+* Time : 00:51:04    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -36,6 +36,8 @@ Resistance R_PROJECTS_DATA_15speed1() code
 class ProjectsClass From SYSTEMDATABASE
 Data cWindowName init "ProjectsWindow"
 Data TableName init "projects_all"
+Data SubTable1 init "projectprocesses"
+Data SubTable2 init "projectreviews"
 Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"stage","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
@@ -627,8 +629,8 @@ Local myProjectid
 myProjectid := self:nID
 IF .not. myProjectID= 0
 myProjectid = STR ( myProjectid )
-myout = self:oCon:execute("delete from projectprocesses where projectid = " + myprojectid)
-myout = self:oCon:execute("delete from projectreviews where projectid = " + myprojectid)
+myout = self:oCon:execute("delete from " + self:subtable1 + " where projectid = " + myprojectid)
+myout = self:oCon:execute("delete from " + self:subtable2 + " where projectid = " + myprojectid)
 ENDIF
 Return 0
 Method CheckAttach Class ProjectsClass
