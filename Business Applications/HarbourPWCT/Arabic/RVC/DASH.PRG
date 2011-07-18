@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:12:34    Date : 07/18/2011
+* Time : 11:24:04    Date : 07/18/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -146,70 +146,70 @@ FONTCOLOR {0,0,0}
 Public oActiveX2
 oActiveX2 := TActiveX():New( "DashWindow", "RMChart.RMChartX" , 10 , 52 , 370 , 282)
 oActiveX2:Load()
-@ 524 ,585 TEXTBOX text1;
+@ 494 ,585 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 524 ,459 TEXTBOX text2;
+@ 494 ,459 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 524 ,332 TEXTBOX text3;
+@ 494 ,332 TEXTBOX text3;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 524 ,206 TEXTBOX text4;
+@ 494 ,206 TEXTBOX text4;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 524 ,77 TEXTBOX text5;
+@ 494 ,77 TEXTBOX text5;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 493 ,585 TEXTBOX ptext1;
+@ 525 ,585 TEXTBOX ptext1;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 493 ,459 TEXTBOX ptext2;
+@ 525 ,459 TEXTBOX ptext2;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 492 ,332 TEXTBOX ptext3;
+@ 524 ,332 TEXTBOX ptext3;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 494 ,206 TEXTBOX ptext4;
+@ 526 ,206 TEXTBOX ptext4;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 492 ,77 TEXTBOX ptext5;
+@ 524 ,77 TEXTBOX ptext5;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
@@ -419,6 +419,18 @@ SELF:P3 = ALLTRIM ( SELF:P3 )
 SELF:P4 = ALLTRIM ( SELF:P4 )
 SELF:P5 = ALLTRIM ( SELF:P5 )
 self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5
+self:TotalCount = STR ( self:TotalCount )
+DashWindow.ptext7.Value := self:TotalCount
+DashWindow.text1.Value := self:c1
+DashWindow.text2.Value := self:c2
+DashWindow.text3.Value := self:c3
+DashWindow.text4.Value := self:c4
+DashWindow.text5.Value := self:c5
+DashWindow.ptext1.Value := self:p1
+DashWindow.ptext2.Value := self:p2
+DashWindow.ptext3.Value := self:p3
+DashWindow.ptext4.Value := self:p4
+DashWindow.ptext5.Value := self:p5
 Return 0
 
 
