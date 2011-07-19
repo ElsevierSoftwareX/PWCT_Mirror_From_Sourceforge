@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:20:20    Date : 07/19/2011
+* Time : 06:47:34    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -160,6 +160,9 @@ ProjectProcessesReportObject2 = ProjectProcessesReportClass()
 ProjectProcessesReportObject2:ReportName := "ProjectProcesses2"
 ProjectProcessesReportObject2:cWindowName := "ProjectProcessesReportWindow2"
 ProjectProcessesReportObject2:ProjectsTable := "Projects2"
+DashObject2 = DashClass()
+DashObject2:cWindowName := "DashWindow2"
+DashObject2:TableName := "Dash2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -217,6 +220,9 @@ ProjectProcessesReportObject3 = ProjectProcessesReportClass()
 ProjectProcessesReportObject3:ReportName := "ProjectProcesses3"
 ProjectProcessesReportObject3:cWindowName := "ProjectProcessesReportWindow3"
 ProjectProcessesReportObject3:ProjectsTable := "Projects3"
+DashObject3 = DashClass()
+DashObject3:cWindowName := "DashWindow3"
+DashObject3:TableName := "Dash3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -274,6 +280,9 @@ ProjectProcessesReportObject4 = ProjectProcessesReportClass()
 ProjectProcessesReportObject4:ReportName := "ProjectProcesses4"
 ProjectProcessesReportObject4:cWindowName := "ProjectProcessesReportWindow4"
 ProjectProcessesReportObject4:ProjectsTable := "Projects4"
+DashObject4 = DashClass()
+DashObject4:cWindowName := "DashWindow4"
+DashObject4:TableName := "Dash4"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -450,7 +459,7 @@ SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject2:showwindow()
 MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject2:showwindow()
 SEPARATOR
-MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
+MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject2:showwindow()
 ENDIF
 END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
@@ -474,7 +483,7 @@ SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject3:showwindow()
 MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject3:showwindow()
 SEPARATOR
-MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
+MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject3:showwindow()
 ENDIF
 END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
@@ -498,7 +507,7 @@ SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject4:showwindow()
 MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject4:showwindow()
 SEPARATOR
-MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
+MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject4:showwindow()
 ENDIF
 END POPUP
 Return Nil

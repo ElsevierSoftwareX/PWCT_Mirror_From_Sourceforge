@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:17:28    Date : 07/18/2011
+* Time : 06:47:26    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -55,6 +55,9 @@ Data TotalCount4 init 0
 Data TP2 init 0
 Data TP3 init 0
 Data TP4 init 0
+Data cWindowName init "DashWindow"
+Data oActiveX init 0
+Data oActiveX2 init 0
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -65,8 +68,8 @@ Method UpdateDash
 Method ClearData
 EndClass
 Method ShowWindow Class DashClass
-if !iswindowdefined( DashWindow )
-DEFINE WINDOW DashWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 859 ;
 HEIGHT 653 ;
@@ -82,9 +85,8 @@ BACKCOLOR {255,255,255}
 PICTURE "image\downsel.jpg";
 STRETCH ;
 WIDTH 55 HEIGHT 48
-Public oActiveX
-oActiveX := TActiveX():New( "DashWindow", "RMChart.RMChartX" , 10 , 476 , 270 , 140)
-oActiveX:Load()
+self:oActiveX := TActiveX():New( self:cWindowName, "RMChart.RMChartX" , 10 , 476 , 270 , 140)
+self:oActiveX:Load()
 DEFINE TIMER Timer1 INTERVAL 200 ;
 Action self:mytimer()
 @ 570 ,332 BUTTONEX btnClose;
@@ -156,9 +158,8 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-Public oActiveX2
-oActiveX2 := TActiveX():New( "DashWindow", "RMChart.RMChartX" , 10 , 52 , 370 , 282)
-oActiveX2:Load()
+self:oActiveX2 := TActiveX():New( self:cWindowName, "RMChart.RMChartX" , 10 , 52 , 370 , 282)
+self:oActiveX2:Load()
 @ 494 ,585 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 70 ;
@@ -290,75 +291,75 @@ DEFINE TIMER Timer2 INTERVAL 5000 ;
 Action self:UpdateDash()
 END WINDOW
 
-DashWindow.timer1.Enabled := false
-DashWindow.Center ( )
+&(self:cWindowName).timer1.Enabled := false
+&(self:cWindowName).Center ( )
 self:DataString := ""
 myout = self:DrawChart()
 myout = self:UpdateDash()
-ACTIVATE WINDOW DashWindow
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method MyTimer Class DashClass
-myangle := oactivex:OOLE:region(1):gridlessseries:StartAngle
+myangle := self:oactivex:OOLE:region(1):gridlessseries:StartAngle
 IF myangle < 360
-oactivex:OOLE:region(1):gridlessseries:StartAngle := myangle + 1
-oactivex2:OOLE:region(1):gridlessseries:StartAngle := myangle + 1
+self:oactivex:OOLE:region(1):gridlessseries:StartAngle := myangle + 1
+self:oactivex2:OOLE:region(1):gridlessseries:StartAngle := myangle + 1
 ELSE
-oactivex:OOLE:region(1):gridlessseries:StartAngle := 0
-oactivex2:OOLE:region(1):gridlessseries:StartAngle := 0
+self:oactivex:OOLE:region(1):gridlessseries:StartAngle := 0
+self:oactivex2:OOLE:region(1):gridlessseries:StartAngle := 0
 ENDIF
-oactivex:OOLE:draw ( .T. )
-oactivex2:OOLE:draw ( .T. )
+self:oactivex:OOLE:draw ( .T. )
+self:oactivex2:OOLE:draw ( .T. )
 Return 0
 Method DrawChart Class DashClass
-oactivex:OOLE:font := "Tahoma"
-oactivex:OOLE:RMCstyle := 0
-oactivex:OOLE:RMCUserWatermark := ""
-oactivex:OOLE:addregion ( )
-oactivex:OOLE:region(1):footer := ""
-oactivex:OOLE:region(1):addcaption ( )
-oactivex:OOLE:region(1):caption():titel := ""
-oactivex:OOLE:region(1):caption():fontsize := 20
-oactivex:OOLE:region(1):caption():bold := .t.
-oactivex:OOLE:region(1) :addgridlessseries ( )
-oactivex:OOLE:region(1):gridlessseries:SeriesStyle := 56
-oactivex:OOLE:region(1):gridlessseries:Alignment := 1
-oactivex:OOLE:region(1):gridlessseries:Explodemode := 0
-oactivex:OOLE:region(1):gridlessseries:Lucent := .F.
-oactivex:OOLE:region(1):gridlessseries:ValueLabelOn := 6
-oactivex:OOLE:region(1):gridlessseries:HatchMode := 0
-oactivex:OOLE:region(1):gridlessseries:StartAngle := 0
-oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
-oactivex2:OOLE:font := "Tahoma"
-oactivex2:OOLE:RMCstyle := 0
-oactivex2:OOLE:RMCUserWatermark := ""
-oactivex2:OOLE:addregion ( )
-oactivex2:OOLE:region(1):footer := ""
-oactivex2:OOLE:region(1):addcaption ( )
-oactivex2:OOLE:region(1):caption():titel := ""
-oactivex2:OOLE:region(1):caption():fontsize := 20
-oactivex2:OOLE:region(1):caption():bold := .t.
-oactivex2:OOLE:region(1) :addgridlessseries ( )
-oactivex2:OOLE:region(1):gridlessseries:SeriesStyle := 52
-oactivex2:OOLE:region(1):gridlessseries:Alignment := 1
-oactivex2:OOLE:region(1):gridlessseries:Explodemode := 0
-oactivex2:OOLE:region(1):gridlessseries:Lucent := .F.
-oactivex2:OOLE:region(1):gridlessseries:ValueLabelOn := 6
-oactivex2:OOLE:region(1):gridlessseries:HatchMode := 0
-oactivex2:OOLE:region(1):gridlessseries:StartAngle := 0
-oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
-oactivex2:OOLE:RMCBACKCOLOR := "&HFFFFFFFF"
-oactivex2:OOLE:draw ( .T. )
-DashWindow.timer1.Enabled := True
-oactivex:OOLE:RMCBACKCOLOR := "&HFFFFFFFF"
-oactivex:OOLE:draw ( .T. )
+self:oactivex:OOLE:font := "Tahoma"
+self:oactivex:OOLE:RMCstyle := 0
+self:oactivex:OOLE:RMCUserWatermark := ""
+self:oactivex:OOLE:addregion ( )
+self:oactivex:OOLE:region(1):footer := ""
+self:oactivex:OOLE:region(1):addcaption ( )
+self:oactivex:OOLE:region(1):caption():titel := ""
+self:oactivex:OOLE:region(1):caption():fontsize := 20
+self:oactivex:OOLE:region(1):caption():bold := .t.
+self:oactivex:OOLE:region(1) :addgridlessseries ( )
+self:oactivex:OOLE:region(1):gridlessseries:SeriesStyle := 56
+self:oactivex:OOLE:region(1):gridlessseries:Alignment := 1
+self:oactivex:OOLE:region(1):gridlessseries:Explodemode := 0
+self:oactivex:OOLE:region(1):gridlessseries:Lucent := .F.
+self:oactivex:OOLE:region(1):gridlessseries:ValueLabelOn := 6
+self:oactivex:OOLE:region(1):gridlessseries:HatchMode := 0
+self:oactivex:OOLE:region(1):gridlessseries:StartAngle := 0
+self:oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
+self:oactivex2:OOLE:font := "Tahoma"
+self:oactivex2:OOLE:RMCstyle := 0
+self:oactivex2:OOLE:RMCUserWatermark := ""
+self:oactivex2:OOLE:addregion ( )
+self:oactivex2:OOLE:region(1):footer := ""
+self:oactivex2:OOLE:region(1):addcaption ( )
+self:oactivex2:OOLE:region(1):caption():titel := ""
+self:oactivex2:OOLE:region(1):caption():fontsize := 20
+self:oactivex2:OOLE:region(1):caption():bold := .t.
+self:oactivex2:OOLE:region(1) :addgridlessseries ( )
+self:oactivex2:OOLE:region(1):gridlessseries:SeriesStyle := 52
+self:oactivex2:OOLE:region(1):gridlessseries:Alignment := 1
+self:oactivex2:OOLE:region(1):gridlessseries:Explodemode := 0
+self:oactivex2:OOLE:region(1):gridlessseries:Lucent := .F.
+self:oactivex2:OOLE:region(1):gridlessseries:ValueLabelOn := 6
+self:oactivex2:OOLE:region(1):gridlessseries:HatchMode := 0
+self:oactivex2:OOLE:region(1):gridlessseries:StartAngle := 0
+self:oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
+self:oactivex2:OOLE:RMCBACKCOLOR := "&HFFFFFFFF"
+self:oactivex2:OOLE:draw ( .T. )
+&(self:cWindowName).timer1.Enabled := True
+self:oactivex:OOLE:RMCBACKCOLOR := "&HFFFFFFFF"
+self:oactivex:OOLE:draw ( .T. )
 Return 0
 Method CloseWindow Class DashClass
-DashWindow.timer1.Enabled := false
-oactivex:OOLE:reset ( )
-oactivex2:OOLE:reset ( )
-DashWindow.Release ( )
+&(self:cWindowName).timer1.Enabled := false
+self:oactivex:OOLE:reset ( )
+self:oactivex2:OOLE:reset ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method DrawLine Class DashClass
 Local XF,YF
@@ -373,8 +374,8 @@ YF := 170+(1.5*(SELF:LINEPER-50))
 XF = ROUND (XF , 0)
 YF = ROUND (YF , 0)
 ENDIF
-ERASE WINDOW DashWindow
-DRAW LINE IN WINDOW DashWindow;
+ERASE WINDOW &(self:cWindowName)
+DRAW LINE IN WINDOW &(self:cWindowName);
 AT YF,XF;
 TO 248,607;
 PENCOLOR {0,0,0};
@@ -440,24 +441,24 @@ IF self:DataString == OldDataString
 Return False
 ENDIF
 self:TotalCount = STR ( self:TotalCount )
-DashWindow.ptext7.Value := self:TotalCount
-DashWindow.text1.Value := self:c1
-DashWindow.text2.Value := self:c2
-DashWindow.text3.Value := self:c3
-DashWindow.text4.Value := self:c4
-DashWindow.text5.Value := self:c5
-DashWindow.ptext1.Value := self:p1
-DashWindow.ptext2.Value := self:p2
-DashWindow.ptext3.Value := self:p3
-DashWindow.ptext4.Value := self:p4
-DashWindow.ptext5.Value := self:p5
+&(self:cWindowName).ptext7.Value := self:TotalCount
+&(self:cWindowName).text1.Value := self:c1
+&(self:cWindowName).text2.Value := self:c2
+&(self:cWindowName).text3.Value := self:c3
+&(self:cWindowName).text4.Value := self:c4
+&(self:cWindowName).text5.Value := self:c5
+&(self:cWindowName).ptext1.Value := self:p1
+&(self:cWindowName).ptext2.Value := self:p2
+&(self:cWindowName).ptext3.Value := self:p3
+&(self:cWindowName).ptext4.Value := self:p4
+&(self:cWindowName).ptext5.Value := self:p5
 Return True
 Method UpdateDash Class DashClass
 myout = self:ClearData()
 myout = self:LoadData()
 IF myout = True
-oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
-oactivex2:OOLE:draw ( .T. )
+self:oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
+self:oactivex2:OOLE:draw ( .T. )
 ENDIF
 self:ActivePerformance := self:ActivePerformance+1
 IF self:activeperformance = 5
@@ -468,38 +469,38 @@ Self:LinePer := 100 - val(self:p1)
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := self:lineper + "*0*0*0*0*" + self:p1
-DashWindow.ImageDownSel1.Col := 589
+&(self:cWindowName).ImageDownSel1.Col := 589
 ELSEIF self:ActivePerformance = 2
 Self:LinePer := 100 - self:Tp2
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*" + self:Lineper + "*0*0*0*" + self:p2
-DashWindow.ImageDownSel1.Col := 589-130
+&(self:cWindowName).ImageDownSel1.Col := 589-130
 ELSEIF self:ActivePerformance = 3
 Self:LinePer := 100 - self:Tp3
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*0*" + self:lineper + " *0*0*" + self:p3
-DashWindow.ImageDownSel1.Col := 589-260
+&(self:cWindowName).ImageDownSel1.Col := 589-260
 ELSEIF self:ActivePerformance = 4
 Self:LinePer := 100 - self:Tp4
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*0*0*" + self:lineper + "*0*" + self:p4
-DashWindow.ImageDownSel1.Col := 589-380
+&(self:cWindowName).ImageDownSel1.Col := 589-380
 ELSEIF self:ActivePerformance = 5
 Self:LinePer := 100 - val(self:p5)
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "*0*0*0*0*" + self:lineper + "*" + self:p5
-DashWindow.ImageDownSel1.Col := 589-500
+&(self:cWindowName).ImageDownSel1.Col := 589-500
 ENDIF
-oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
-oactivex:OOLE:draw ( .T. )
-DashWindow.pText6.Value := self:LinePer
+self:oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
+self:oactivex:OOLE:draw ( .T. )
+&(self:cWindowName).pText6.Value := self:LinePer
 Self:LinePer = VAL ( self:LinePer )
 myout = Self:DrawLine()
-DashWindow.Progress1.Value := self:LinePer
+&(self:cWindowName).Progress1.Value := self:LinePer
 Return 0
 Method ClearData Class DashClass
 self:p1 := 0
