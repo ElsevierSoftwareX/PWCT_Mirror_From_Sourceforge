@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:12:50    Date : 07/19/2011
+* Time : 04:33:33    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -135,6 +135,9 @@ ProjectReviewsObject2:ReportName := "ProjectReviews2"
 ProjectReviewsObject2:ReportWindowName := "ProjectReviewsReportWindow2"
 ProjectReviewsObject2:ProjectsTable := "Projects2"
 ProjectReviewsObject2:ReviewersTable := "Reviewers2"
+ListofProjectReviewsReportObject2 = ListofProjectReviewsReportClass()
+ListofProjectReviewsReportObject2:ReportName := "ListOfProjectReviews2"
+ListofProjectReviewsReportObject2:cWindowName := "ListOfProjectReviewsReportWindow2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -167,6 +170,9 @@ ProjectReviewsObject3:ReportName := "ProjectReviews3"
 ProjectReviewsObject3:ReportWindowName := "ProjectReviewsReportWindow3"
 ProjectReviewsObject3:ProjectsTable := "Projects3"
 ProjectReviewsObject3:ReviewersTable := "Reviewers3"
+ListofProjectReviewsReportObject3 = ListofProjectReviewsReportClass()
+ListofProjectReviewsReportObject3:ReportName := "ListOfProjectReviews3"
+ListofProjectReviewsReportObject3:cWindowName := "ListOfProjectReviewsReportWindow3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -199,6 +205,9 @@ ProjectReviewsObject4:ReportName := "ProjectReviews4"
 ProjectReviewsObject4:ReportWindowName := "ProjectReviewsReportWindow4"
 ProjectReviewsObject4:ProjectsTable := "Projects4"
 ProjectReviewsObject4:ReviewersTable := "Reviewers4"
+ListofProjectReviewsReportObject4 = ListofProjectReviewsReportClass()
+ListofProjectReviewsReportObject4:ReportName := "ListOfProjectReviews4"
+ListofProjectReviewsReportObject4:cWindowName := "ListOfProjectReviewsReportWindow4"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -364,7 +373,7 @@ MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject2:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject2:ShowWindow()
 SEPARATOR
 MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject2:showwindow()
-MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject2:ShowWindow()
 SEPARATOR
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
@@ -388,7 +397,7 @@ MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject3:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject3:ShowWindow()
 SEPARATOR
 MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject3:showwindow()
-MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject3:ShowWindow()
 SEPARATOR
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
@@ -412,7 +421,7 @@ MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject4:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject4:ShowWindow()
 SEPARATOR
 MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject4:showwindow()
-MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject4:ShowWindow()
 SEPARATOR
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
