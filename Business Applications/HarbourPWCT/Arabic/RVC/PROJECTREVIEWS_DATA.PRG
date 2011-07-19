@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 03:35:39    Date : 07/12/2011
+* Time : 04:02:35    Date : 07/19/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -36,7 +34,10 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_PROJECTREVIEWS_DATA_15speed1() code
 class ProjectReviewsClass From SYSTEMDATABASE
+Data cWindowName init "ProjectReviewsWindow"
 Data TableName init "ProjectReviews_All"
+Data ReportName init "ProjectReviews"
+Data ReportWindowName init "ProjectReviewsReportWindow"
 Data nID init 0
 Data column init "ProjectName"
 Data PrimaryKey init "id"
@@ -79,8 +80,8 @@ EndClass
 Method showwindow Class ProjectReviewsClass
 myout = self:connect()
 myout = self:AutoGotoRecord()
-if !iswindowdefined( ProjectReviewsWindow )
-DEFINE WINDOW ProjectReviewsWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 1073 ;
 HEIGHT 647 ;
@@ -298,8 +299,8 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-myout = RightToLeftControl ( "ProjectReviewsWindow","comboproject" )
-myout = RightToLeftControl ( "ProjectReviewsWindow","comboreviewer" )
+myout = RightToLeftControl ( self:cWindowName,"comboproject" )
+myout = RightToLeftControl ( Self:cWindowName,"comboreviewer" )
 @ 520 ,169 BUTTONEX btnAttachCheck;
 CAPTION " Õ„Ì· «·„—›ﬁ« ";
 ON CLICK self:checkattach()  ;
@@ -348,23 +349,23 @@ NOXPSTYLE ;
 TOOLTIP ""
 END WINDOW
 
-ProjectReviewsWindow.Center ( )
+&(self:cWindowName).Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
-ProjectReviewsWindow.Timer1.Enabled := false
-ProjectReviewsWindow.textFileName.Enabled := false
-ACTIVATE WINDOW ProjectReviewsWindow
+&(self:cWindowName).Timer1.Enabled := false
+&(self:cWindowName).textFileName.Enabled := false
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method UserInterface2Class Class ProjectReviewsClass
-self:nProject := ProjectReviewsWindow.ComboProject.Value
+self:nProject := &(self:cWindowName).ComboProject.Value
 self:nProject := self:ProjectItemsids[self:nProject]
-self:nReviewer := ProjectReviewsWindow.ComboReviewer.Value
+self:nReviewer := &(self:cWindowName).ComboReviewer.Value
 self:nReviewer := self:ReviewerItemsids[self:nReviewer]
-self:cReviewText := ProjectReviewsWindow.textReviewText.Value
-self:cRecommendation := ProjectReviewsWindow.textRecommendation.Value
-self:cReviewDate := ProjectReviewsWindow.dateReviewDate.Value
+self:cReviewText := &(self:cWindowName).textReviewText.Value
+self:cRecommendation := &(self:cWindowName).textRecommendation.Value
+self:cReviewDate := &(self:cWindowName).dateReviewDate.Value
 self:cReviewDate := dtoc(self:cReviewDate)
 Return 0
 Method Class2ADO Class ProjectReviewsClass
@@ -387,13 +388,13 @@ self:cFileName := self:oRS:fields:item("filename"):value
 Return 0
 Method Class2UserInterface Class ProjectReviewsClass
 self:nProject = self:LookupIDToIndex(self:nProject,@self:ProjectItemsids)
-ProjectReviewsWindow.ComboProject.Value := self:nProject
+&(self:cWindowName).ComboProject.Value := self:nProject
 self:nReviewer = self:LookupIDToIndex(self:nReviewer,@self:ReviewerItemsids)
-ProjectReviewsWindow.ComboReviewer.Value := self:nReviewer
-ProjectReviewsWindow.textReviewText.Value := self:cReviewText
-ProjectReviewsWindow.textRecommendation.Value := self:cRecommendation
-ProjectReviewsWindow.dateReviewDate.Value := ctod(self:cReviewDate)
-ProjectReviewsWindow.textFileName.Value := self:cFileName
+&(self:cWindowName).ComboReviewer.Value := self:nReviewer
+&(self:cWindowName).textReviewText.Value := self:cReviewText
+&(self:cWindowName).textRecommendation.Value := self:cRecommendation
+&(self:cWindowName).dateReviewDate.Value := ctod(self:cReviewDate)
+&(self:cWindowName).textFileName.Value := self:cFileName
 Return 0
 Method ClearRecord Class ProjectReviewsClass
 self:nProject := 0
@@ -406,7 +407,7 @@ self:cAttachment := ""
 Return 0
 Method OpenDataWindow Class ProjectReviewsClass
 Local nvalue,myout
-nvalue := ProjectReviewsWindow.grid1browse.Value
+nvalue := &(self:cWindowName).grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
 ENDIF
@@ -418,62 +419,62 @@ myout = self:ShowWindow()
 Return 0
 Method mytimer Class ProjectReviewsClass
 myout = self:search()
-ProjectReviewsWindow.Timer1.Enabled := false
+&(self:cWindowName).Timer1.Enabled := false
 Return 0
 Method setmode(p1) Class ProjectReviewsClass
 IF p1 = 1
-ProjectReviewsWindow.btnfirst.Enabled := false
-ProjectReviewsWindow.btnnext.Enabled := false
-ProjectReviewsWindow.btnprev.Enabled := false
-ProjectReviewsWindow.btnlast.Enabled := false
-ProjectReviewsWindow.btndel.Enabled := false
-ProjectReviewsWindow.btnclose.Enabled := false
-ProjectReviewsWindow.btnsave.Enabled := true
-ProjectReviewsWindow.btncancel.Enabled := true
-ProjectReviewsWindow.btnedit.Enabled := false
-ProjectReviewsWindow.btnadd.Enabled := false
-ProjectReviewsWindow.comboProject.Enabled := true
-ProjectReviewsWindow.comboReviewer.Enabled := true
-ProjectReviewsWindow.textReviewText.Enabled := true
-ProjectReviewsWindow.textRecommendation.Enabled := true
-ProjectReviewsWindow.dateReviewDate.Enabled := true
-ProjectReviewsWindow.btnAttachUpload.Enabled := True
-ProjectReviewsWindow.btnAttachRemove.Enabled := True
-ProjectReviewsWindow.btnAttachCheck.Enabled := false
-ProjectReviewsWindow.textNameBrowse.Enabled := false
-ProjectReviewsWindow.btn1Browse.Enabled := false
-ProjectReviewsWindow.Grid1Browse.Enabled := false
-ProjectReviewsWindow.ComboFind.Enabled := False
+&(self:cWindowName).btnfirst.Enabled := false
+&(self:cWindowName).btnnext.Enabled := false
+&(self:cWindowName).btnprev.Enabled := false
+&(self:cWindowName).btnlast.Enabled := false
+&(self:cWindowName).btndel.Enabled := false
+&(self:cWindowName).btnclose.Enabled := false
+&(self:cWindowName).btnsave.Enabled := true
+&(self:cWindowName).btncancel.Enabled := true
+&(self:cWindowName).btnedit.Enabled := false
+&(self:cWindowName).btnadd.Enabled := false
+&(self:cWindowName).comboProject.Enabled := true
+&(self:cWindowName).comboReviewer.Enabled := true
+&(self:cWindowName).textReviewText.Enabled := true
+&(self:cWindowName).textRecommendation.Enabled := true
+&(self:cWindowName).dateReviewDate.Enabled := true
+&(self:cWindowName).btnAttachUpload.Enabled := True
+&(self:cWindowName).btnAttachRemove.Enabled := True
+&(self:cWindowName).btnAttachCheck.Enabled := false
+&(self:cWindowName).textNameBrowse.Enabled := false
+&(self:cWindowName).btn1Browse.Enabled := false
+&(self:cWindowName).Grid1Browse.Enabled := false
+&(self:cWindowName).ComboFind.Enabled := False
 ENDIF
 IF p1 = 2
-ProjectReviewsWindow.btnfirst.Enabled := true
-ProjectReviewsWindow.btnnext.Enabled := true
-ProjectReviewsWindow.btnprev.Enabled := true
-ProjectReviewsWindow.btnlast.Enabled := true
-ProjectReviewsWindow.btndel.Enabled := true
-ProjectReviewsWindow.btnclose.Enabled := true
-ProjectReviewsWindow.btnsave.Enabled := false
-ProjectReviewsWindow.btncancel.Enabled := false
-ProjectReviewsWindow.btnedit.Enabled := true
-ProjectReviewsWindow.btnadd.Enabled := true
-ProjectReviewsWindow.comboProject.Enabled := False
-ProjectReviewsWindow.comboReviewer.Enabled := False
-ProjectReviewsWindow.textReviewText.Enabled := False
-ProjectReviewsWindow.textRecommendation.Enabled := False
-ProjectReviewsWindow.dateReviewDate.Enabled := False
-ProjectReviewsWindow.btnAttachUpload.Enabled := False
-ProjectReviewsWindow.btnAttachRemove.Enabled := False
-ProjectReviewsWindow.btnAttachCheck.Enabled := true
-ProjectReviewsWindow.btn1Browse.Enabled := True
-ProjectReviewsWindow.Grid1Browse.Enabled := True
-ProjectReviewsWindow.ComboFind.Enabled := True
-ProjectReviewsWindow.textNameBrowse.Enabled := true
+&(self:cWindowName).btnfirst.Enabled := true
+&(self:cWindowName).btnnext.Enabled := true
+&(self:cWindowName).btnprev.Enabled := true
+&(self:cWindowName).btnlast.Enabled := true
+&(self:cWindowName).btndel.Enabled := true
+&(self:cWindowName).btnclose.Enabled := true
+&(self:cWindowName).btnsave.Enabled := false
+&(self:cWindowName).btncancel.Enabled := false
+&(self:cWindowName).btnedit.Enabled := true
+&(self:cWindowName).btnadd.Enabled := true
+&(self:cWindowName).comboProject.Enabled := False
+&(self:cWindowName).comboReviewer.Enabled := False
+&(self:cWindowName).textReviewText.Enabled := False
+&(self:cWindowName).textRecommendation.Enabled := False
+&(self:cWindowName).dateReviewDate.Enabled := False
+&(self:cWindowName).btnAttachUpload.Enabled := False
+&(self:cWindowName).btnAttachRemove.Enabled := False
+&(self:cWindowName).btnAttachCheck.Enabled := true
+&(self:cWindowName).btn1Browse.Enabled := True
+&(self:cWindowName).Grid1Browse.Enabled := True
+&(self:cWindowName).ComboFind.Enabled := True
+&(self:cWindowName).textNameBrowse.Enabled := true
 ENDIF
 self:OperationMode := p1
 Return 0
 Method CheckFind Class ProjectReviewsClass
 Local nIndex
-nIndex := ProjectReviewsWindow.ComboFind.Value
+nIndex := &(self:cWindowName).ComboFind.Value
 self:Column := self:Columns[nIndex]
 Return 0
 Method CheckAttach Class ProjectReviewsClass
@@ -502,7 +503,7 @@ CheckFile := File(getfile)
 IF checkfile
 self:cAttachment = filetostream ( getfile )
 self:cfilename = getfilename ( getfile )
-ProjectReviewsWindow.textFileName.Value := self:cFileName
+&(self:cWindowName).textFileName.Value := self:cFileName
 ENDIF
 Return 0
 Method AttachRemove Class ProjectReviewsClass
@@ -510,13 +511,13 @@ mydata := self:oRS:fields:item("attachment"):value
 IF .not. empty(mydata)
 self:cAttachment := ""
 self:cFileName := ""
-ProjectReviewsWindow.textFileName.Value := self:cFileName
+&(self:cWindowName).textFileName.Value := self:cFileName
 ELSE
 MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
 Return 0
 Method PrintData Class ProjectReviewsClass
-Local myid,myout
+Local myid,myout,ProjectReviewsreportobject
 mymax := self:oRS:RecordCount
 IF mymax = 0
 MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
@@ -524,12 +525,15 @@ Return 0
 ENDIF
 myid := self:oRS:fields:item("id"):value
 myid = STR ( myid )
+ProjectReviewsreportobject = ProjectReviewsreportClass()
 ProjectReviewsreportobject:filter := "id = "+myid
+ProjectReviewsreportobject:ReportName := self:ReportName
+ProjectReviewsreportobject:cWindowName := self:ReportWindowName
 myout = ProjectReviewsreportobject:ShowWindow()
 Return 0
 Method closewindow Class ProjectReviewsClass
 myout = self:disconnect()
-ProjectReviewsWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method AddRecord Class ProjectReviewsClass
 self:addrec := true
@@ -544,26 +548,26 @@ mycheck := self:oRS:EOF()
 IF mycheck = true
 self:oRS:MOVEPREVIOUS()
 ENDIF
-IF iswindowdefined( ProjectReviewsWindow )
+IF iswindowdefined( &(self:cWindowName) )
 myout = self:showrecord()
-ProjectReviewsWindow.SetFocus ( )
+&(self:cWindowName).SetFocus ( )
 ENDIF
 ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
 Return 0
 Method BeforeSearch Class ProjectReviewsClass
-ProjectReviewsWindow.grid1browse.DeleteAllItems ( )
-ProjectReviewsWindow.grid1browse.Value := 0
+&(self:cWindowName).grid1browse.DeleteAllItems ( )
+&(self:cWindowName).grid1browse.Value := 0
 Return 0
 Method SearchAdd(temp_array) Class ProjectReviewsClass
-ProjectReviewsWindow.grid1browse.AddItem ( temp_array )
+&(self:cWindowName).grid1browse.AddItem ( temp_array )
 Return 0
 Method GetSearchValue Class ProjectReviewsClass
-cName := ProjectReviewsWindow.textNamebrowse.Value
+cName := &(self:cWindowName).textNamebrowse.Value
 Return cName
 Method SetTimer(p1) Class ProjectReviewsClass
-ProjectReviewsWindow.Timer1.Enabled := p1
+&(self:cWindowName).Timer1.Enabled := p1
 Return 0
 
 
