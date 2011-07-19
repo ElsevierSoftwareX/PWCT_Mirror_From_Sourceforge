@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 17:11:44    Date : 07/11/2011
+* Time : 03:33:13    Date : 07/19/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -36,13 +34,16 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_REVIEWERS_BROWSE_15speed1() code
 class ReviewersBrowseClass From SYSTEMDATABASE
+Data ResultPrimaryKeys init {}
 Data databasename init ""
-Data tablename init "Reviewers"
 Data column init "f_name"
 Data PrimaryKey init "id"
 Data columns init {"f_company","f_address","f_city","f_email","f_name"}
 Data columnsTitles init {"ÇáÌÇãÚÉ","ÇáÚäæÇä","ÇáãÏíäÉ","ÇáÇíãíá","ÇáÇÓã"}
-Data ResultPrimaryKeys init {}
+Data cWindowName init "ReviewersBrowseWindow"
+Data tablename init "Reviewers"
+Data ReportName init "Reviewers"
+Data ReportWindowName init "ReviewersBReportWindow"
 Method showwindow
 Method closewindow
 Method OpenDataWindow
@@ -55,8 +56,8 @@ Method SearchAdd
 Method SetColumn
 EndClass
 Method showwindow Class ReviewersBrowseClass
-if !iswindowdefined( ReviewersBrowseWindow )
-DEFINE WINDOW ReviewersBrowseWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 875 ;
 HEIGHT 361 ;
@@ -120,8 +121,8 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
-ReviewersBrowseWindow.Center ( )
-ACTIVATE WINDOW ReviewersBrowseWindow
+&(self:cWindowName).Center ( )
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
@@ -131,42 +132,45 @@ ReviewersDataObject:CFindExpr := self:primarykey+"= '"+self:resultprimarykeys[nv
 myout = ReviewersDataObject:ShowWindow()
 Return 0
 Method Print Class ReviewersBrowseClass
-Local cName,myout
-cName := ReviewersBrowseWindow.textNamebrowse.Value
+Local cName,myout,Reviewersreportobject
+cName := &(self:cWindowName).textNamebrowse.Value
 cName = ALLTRIM ( cName )
+Reviewersreportobject = ReviewersreportClass()
 Reviewersreportobject:filter := ""
 IF .not. empty(cName)
-Reviewersreportobject:filter := '((Reviewers.' + self:column + ') Like "'+cName+'*")'
+Reviewersreportobject:filter := '(('+self:tablename+'.' + self:column + ') Like "'+cName+'*")'
 ENDIF
+reviewersreportobject:reportname := self:reportname
+reviewersreportobject:cWindowName := self:reportWindowName
 myout = Reviewersreportobject:ShowWindow()
 Return 0
 Method SetColumn Class ReviewersBrowseClass
 Local nIndex
-nIndex := ReviewersBrowseWindow.ComboFind.Value
+nIndex := &(self:cWindowName).ComboFind.Value
 self:Column := self:Columns[nIndex]
 Return 0
 Method closewindow Class ReviewersBrowseClass
-ReviewersBrowseWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method OpenDataWindow Class ReviewersBrowseClass
 Local nvalue,myout
-nvalue := ReviewersBrowseWindow.grid1browse.Value
+nvalue := &(self:cWindowName).grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
 ENDIF
 Return 0
 Method GetSearchValue Class ReviewersBrowseClass
-cName := ReviewersBrowseWindow.textNamebrowse.Value
+cName := &(self:cWindowName).textNamebrowse.Value
 Return cName
 Method SetTimer(p1) Class ReviewersBrowseClass
-ReviewersBrowseWindow.Timer1.Enabled := p1
+&(self:cWindowName).Timer1.Enabled := p1
 Return 0
 Method BeforeSearch Class ReviewersBrowseClass
-ReviewersBrowseWindow.grid1browse.DeleteAllItems ( )
-ReviewersBrowseWindow.grid1browse.Value := 0
+&(self:cWindowName).grid1browse.DeleteAllItems ( )
+&(self:cWindowName).grid1browse.Value := 0
 Return 0
 Method SearchAdd(temp_array) Class ReviewersBrowseClass
-ReviewersBrowseWindow.grid1browse.AddItem ( temp_array )
+&(self:cWindowName).grid1browse.AddItem ( temp_array )
 Return 0
 
 
