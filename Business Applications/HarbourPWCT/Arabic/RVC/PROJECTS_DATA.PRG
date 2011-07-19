@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:17:43    Date : 07/19/2011
+* Time : 02:22:53    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,6 +40,8 @@ Data SubTable1 init "projectprocesses"
 Data SubTable2 init "projectreviews"
 Data WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
 Data PermissionID init 83
+Data ReportName init "Projects"
+Data ReportWindowName init "ProjectsReportWindow"
 Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"stage","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
@@ -717,7 +719,7 @@ MyOut := MSGBOX("·«ÌÊÃœ „—›ﬁ« ","⁄›Ê«")
 ENDIF
 Return 0
 Method PrintData Class ProjectsClass
-Local myid,myout
+Local myid,myout,ProjectsReportObject
 mymax := self:oRS:RecordCount
 IF mymax = 0
 MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
@@ -725,7 +727,10 @@ Return 0
 ENDIF
 myid := self:oRS:fields:item("id"):value
 myid = STR ( myid )
+ProjectsReportObject = ProjectsReportClass()
 Projectsreportobject:filter := "id = "+myid
+Projectsreportobject:reportname := self:reportname
+Projectsreportobject:cWindowName := self:ReportWindowName
 myout = Projectsreportobject:ShowWindow()
 Return 0
 Method CheckData Class ProjectsClass

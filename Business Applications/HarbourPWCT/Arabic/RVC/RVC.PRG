@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:22:55    Date : 07/19/2011
+* Time : 02:23:00    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -90,7 +90,6 @@ CountryDataObject = CountryDataClass()
 GenderDataObject = GenderDataClass()
 ProjectsObject = ProjectsClass()
 ListofProjectsReportObject = ListofProjectsReportClass()
-ProjectsReportObject = ProjectsReportClass()
 ReviewersDataObject = ReviewersDataClass()
 ReviewersBrowseObject = ReviewersBrowseClass()
 ReviewersReportObject = ReviewersReportClass()
@@ -112,6 +111,26 @@ ProjectsObject2:SubTable1 := "ProjectProcesses2"
 ProjectsObject2:SubTable2 := "ProjectReviews2"
 ProjectsObject2:WindowTitle := "Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 ProjectsObject2:PermissionID := 83
+ProjectsObject2:ReportName := "Projects2"
+ProjectsObject2:ReportWindowName := "Projects2ReportWindow"
+ProjectsObject3 = ProjectsClass()
+ProjectsObject3:cWindowName := "ProjectsWindow3"
+ProjectsObject3:TableName := "Projects_All3"
+ProjectsObject3:SubTable1 := "ProjectProcesses3"
+ProjectsObject3:SubTable2 := "ProjectReviews3"
+ProjectsObject3:WindowTitle := "Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
+ProjectsObject3:PermissionID := 83
+ProjectsObject3:ReportName := "Projects3"
+ProjectsObject3:ReportWindowName := "Projects3ReportWindow"
+ProjectsObject4 = ProjectsClass()
+ProjectsObject4:cWindowName := "ProjectsWindow4"
+ProjectsObject4:TableName := "Projects_All4"
+ProjectsObject4:SubTable1 := "ProjectProcesses4"
+ProjectsObject4:SubTable2 := "ProjectReviews4"
+ProjectsObject4:WindowTitle := "Õ«÷‰… «· ﬁ‰Ì«  «·‰”«∆Ì…"
+ProjectsObject4:PermissionID := 83
+ProjectsObject4:ReportName := "Projects4"
+ProjectsObject4:ReportWindowName := "Projects4ReportWindow"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -270,6 +289,54 @@ END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject2:showwindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
+MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject:showwindow()
+MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
+MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
+SEPARATOR
+MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
+MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
+SEPARATOR
+MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
+SEPARATOR
+MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
+ENDIF
+END POPUP
+POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
+IF UsersObject:CheckPermission(83)
+MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject3:showwindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
+MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject:showwindow()
+MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject:ShowWindow()
+SEPARATOR
+MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
+MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
+SEPARATOR
+MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
+MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
+SEPARATOR
+MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
+SEPARATOR
+MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
+ENDIF
+END POPUP
+POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·‰”«∆Ì…"
+IF UsersObject:CheckPermission(83)
+MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject4:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
 SEPARATOR
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
