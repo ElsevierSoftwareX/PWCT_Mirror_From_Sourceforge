@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:34:54    Date : 07/18/2011
+* Time : 05:22:42    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -34,6 +34,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_PROCESSES_DATA_15speed1() code
 class ProcessesClass From SYSTEMDATABASE
+Data cWindowName init "ProcessesDataWindow"
 Data TableName init "Process_All"
 Data cid init ""
 Data cCountry init ""
@@ -65,8 +66,8 @@ EndClass
 Method showwindow Class ProcessesClass
 myout = self:connect()
 myout = self:AutoGotoRecord()
-if !iswindowdefined( CustTypeDataWindow )
-DEFINE WINDOW CustTypeDataWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 878 ;
 HEIGHT 570 ;
@@ -254,19 +255,19 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
-CustTypeDataWindow.Center ( )
+&(self:cWindowName).Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
-CustTypeDataWindow.Timer1.Enabled := false
-RightToLeftControl ( "CustTypeDataWindow","ComboDepartment" )
-ACTIVATE WINDOW CustTypeDataWindow
+&(self:cWindowName).Timer1.Enabled := false
+RightToLeftControl ( self:cWindowName,"ComboDepartment" )
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method UserInterface2Class Class ProcessesClass
-self:cCountry := CustTypeDataWindow.textCountry.Value
-self:cDuration := CustTypeDataWindow.textDuration.Value
-self:nDepartment := CustTypeDataWindow.comboDepartment.Value
+self:cCountry := &(self:cWindowName).textCountry.Value
+self:cDuration := &(self:cWindowName).textDuration.Value
+self:nDepartment := &(self:cWindowName).comboDepartment.Value
 self:nDepartment := self:DepartmentItemsIDS[self:nDepartment]
 Return 0
 Method Class2ADO Class ProcessesClass
@@ -280,10 +281,10 @@ self:cDuration := self:oRS:fields:item("Duration"):value
 self:nDepartment := self:oRS:fields:item("GenderID"):value
 Return 0
 Method Class2UserInterface Class ProcessesClass
-CustTypeDataWindow.textCountry.Value := self:cCountry
-CustTypeDataWindow.textDuration.Value := self:cDuration
+&(self:cWindowName).textCountry.Value := self:cCountry
+&(self:cWindowName).textDuration.Value := self:cDuration
 self:nDepartment = self:LookupIDToIndex(self:nDepartment,@self:DepartmentItemsIDS)
-CustTypeDataWindow.comboDepartment.Value := self:nDepartment
+&(self:cWindowName).comboDepartment.Value := self:nDepartment
 Return 0
 Method ClearRecord Class ProcessesClass
 self:cCountry := ""
@@ -292,10 +293,10 @@ self:nDepartment := 0
 Return 0
 Method OpenDataWindow Class ProcessesClass
 Local nvalue,myout
-nvalue := CustTypeDataWindow.grid1browse.Value
+nvalue := &(self:cWindowName).grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
-CustTypeDataWindow.Grid1Browse.SetFocus ( )
+&(self:cWindowName).Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class ProcessesClass
@@ -305,57 +306,57 @@ myout = self:ShowWindow()
 Return 0
 Method mytimer Class ProcessesClass
 myout = self:search()
-CustTypeDataWindow.Timer1.Enabled := false
+&(self:cWindowName).Timer1.Enabled := false
 Return 0
 Method setmode(p1) Class ProcessesClass
 IF p1 = 1
-CustTypeDataWindow.btnfirst.Enabled := false
-CustTypeDataWindow.btnnext.Enabled := false
-CustTypeDataWindow.btnprev.Enabled := false
-CustTypeDataWindow.btnlast.Enabled := false
-CustTypeDataWindow.btndel.Enabled := false
-CustTypeDataWindow.btnclose.Enabled := false
-CustTypeDataWindow.btnsave.Enabled := true
-CustTypeDataWindow.btncancel.Enabled := true
-CustTypeDataWindow.btnedit.Enabled := false
-CustTypeDataWindow.btnadd.Enabled := false
-CustTypeDataWindow.textCountry.Enabled := true
-CustTypeDataWindow.textDuration.Enabled := true
-CustTypeDataWindow.ComboDepartment.Enabled := true
-CustTypeDataWindow.textNameBrowse.Enabled := False
-CustTypeDataWindow.Btn1Browse.Enabled := False
-CustTypeDataWindow.Grid1Browse.Enabled := False
+&(self:cWindowName).btnfirst.Enabled := false
+&(self:cWindowName).btnnext.Enabled := false
+&(self:cWindowName).btnprev.Enabled := false
+&(self:cWindowName).btnlast.Enabled := false
+&(self:cWindowName).btndel.Enabled := false
+&(self:cWindowName).btnclose.Enabled := false
+&(self:cWindowName).btnsave.Enabled := true
+&(self:cWindowName).btncancel.Enabled := true
+&(self:cWindowName).btnedit.Enabled := false
+&(self:cWindowName).btnadd.Enabled := false
+&(self:cWindowName).textCountry.Enabled := true
+&(self:cWindowName).textDuration.Enabled := true
+&(self:cWindowName).ComboDepartment.Enabled := true
+&(self:cWindowName).textNameBrowse.Enabled := False
+&(self:cWindowName).Btn1Browse.Enabled := False
+&(self:cWindowName).Grid1Browse.Enabled := False
 ENDIF
 IF p1 = 2
-CustTypeDataWindow.btnfirst.Enabled := true
-CustTypeDataWindow.btnnext.Enabled := true
-CustTypeDataWindow.btnprev.Enabled := true
-CustTypeDataWindow.btnlast.Enabled := true
-CustTypeDataWindow.btndel.Enabled := true
-CustTypeDataWindow.btnclose.Enabled := true
-CustTypeDataWindow.btnsave.Enabled := false
-CustTypeDataWindow.btncancel.Enabled := false
-CustTypeDataWindow.btnedit.Enabled := true
-CustTypeDataWindow.btnadd.Enabled := true
-CustTypeDataWindow.textCountry.Enabled := false
-CustTypeDataWindow.textDuration.Enabled := false
-CustTypeDataWindow.ComboDepartment.Enabled := False
-CustTypeDataWindow.textNameBrowse.Enabled := True
-CustTypeDataWindow.Btn1Browse.Enabled := True
-CustTypeDataWindow.Grid1Browse.Enabled := True
+&(self:cWindowName).btnfirst.Enabled := true
+&(self:cWindowName).btnnext.Enabled := true
+&(self:cWindowName).btnprev.Enabled := true
+&(self:cWindowName).btnlast.Enabled := true
+&(self:cWindowName).btndel.Enabled := true
+&(self:cWindowName).btnclose.Enabled := true
+&(self:cWindowName).btnsave.Enabled := false
+&(self:cWindowName).btncancel.Enabled := false
+&(self:cWindowName).btnedit.Enabled := true
+&(self:cWindowName).btnadd.Enabled := true
+&(self:cWindowName).textCountry.Enabled := false
+&(self:cWindowName).textDuration.Enabled := false
+&(self:cWindowName).ComboDepartment.Enabled := False
+&(self:cWindowName).textNameBrowse.Enabled := True
+&(self:cWindowName).Btn1Browse.Enabled := True
+&(self:cWindowName).Grid1Browse.Enabled := True
 ENDIF
 self:OperationMode := p1
 Return 0
 Method CheckData Class ProcessesClass
 Local myRet,cValue,nValue
 myRet := True
-cValue := CustTypeDataWindow.textCountry.Value
+cValue := &(self:cWindowName).textCountry.Value
 cValue := cValue
 IF cValue == ""
 MyOut := MSGBOX("ÌÃ» «œŒ«· «”„ «·«Ã—«¡","⁄›Ê«")
 myRet := False
 ENDIF
-cValue := CustTypeDataWindow.textDuration.Value
+cValue := &(self:cWindowName).textDuration.Value
 nValue = VAL ( cValue )
 IF nValue < 1
 MyOut := MSGBOX("„œ… «·«Ã—«¡ ·«  ﬁ· ⁄‰ ÌÊ„ Ê«Õœ","⁄›Ê«")
@@ -364,7 +365,7 @@ ENDIF
 Return myret
 Method closewindow Class ProcessesClass
 myout = self:disconnect()
-CustTypeDataWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method AutoGotoRecord Class ProcessesClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
@@ -373,26 +374,26 @@ mycheck := self:oRS:EOF()
 IF mycheck = true
 self:oRS:MOVEPREVIOUS()
 ENDIF
-IF iswindowdefined( CustTypeDataWindow )
+IF iswindowdefined( &(self:cWindowName) )
 myout = self:showrecord()
-CustTypeDataWindow.SetFocus ( )
+&(self:cWindowName).SetFocus ( )
 ENDIF
 ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
 Return 0
 Method BeforeSearch Class ProcessesClass
-CustTypeDataWindow.grid1browse.DeleteAllItems ( )
-CustTypeDataWindow.grid1browse.Value := 0
+&(self:cWindowName).grid1browse.DeleteAllItems ( )
+&(self:cWindowName).grid1browse.Value := 0
 Return 0
 Method SearchAdd(temp_array) Class ProcessesClass
-CustTypeDataWindow.grid1browse.AddItem ( temp_array )
+&(self:cWindowName).grid1browse.AddItem ( temp_array )
 Return 0
 Method SetTimer(p1) Class ProcessesClass
-CustTypeDataWindow.Timer1.Enabled := p1
+&(self:cWindowName).Timer1.Enabled := p1
 Return 0
 Method GetSearchValue Class ProcessesClass
-cName := CustTypeDataWindow.textNamebrowse.Value
+cName := &(self:cWindowName).textNamebrowse.Value
 Return cName
 
 

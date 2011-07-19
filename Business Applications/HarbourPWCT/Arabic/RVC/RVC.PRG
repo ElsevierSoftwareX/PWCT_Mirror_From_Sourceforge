@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:12:43    Date : 07/19/2011
+* Time : 05:23:02    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -144,6 +144,9 @@ ProcessStatusObject2:TableName := "ProcessStatus2"
 ProcessStatusReportObject2 = ProcessStatusReportClass()
 ProcessStatusReportObject2:ReportName := "ProcessStatus2"
 ProcessStatusReportObject2:cWindowName := "ProcessStatusReportWindow2"
+ProcessesObject2 = ProcessesClass()
+ProcessesObject2:cWindowName := "ProcessesDataWindow2"
+ProcessesObject2:TableName := "Process_All2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -185,6 +188,9 @@ ProcessStatusObject3:TableName := "ProcessStatus3"
 ProcessStatusReportObject3 = ProcessStatusReportClass()
 ProcessStatusReportObject3:ReportName := "ProcessStatus3"
 ProcessStatusReportObject3:cWindowName := "ProcessStatusReportWindow3"
+ProcessesObject3 = ProcessesClass()
+ProcessesObject3:cWindowName := "ProcessesDataWindow3"
+ProcessesObject3:TableName := "Process_All3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -226,6 +232,9 @@ ProcessStatusObject4:TableName := "ProcessStatus4"
 ProcessStatusReportObject4 = ProcessStatusReportClass()
 ProcessStatusReportObject4:ReportName := "ProcessStatus4"
 ProcessStatusReportObject4:cWindowName := "ProcessStatusReportWindow4"
+ProcessesObject4 = ProcessesClass()
+ProcessesObject4:cWindowName := "ProcessesDataWindow4"
+ProcessesObject4:TableName := "Process_All4"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -396,7 +405,7 @@ SEPARATOR
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject2:showwindow()
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject2:showwindow()
 SEPARATOR
-MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
+MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject2:showwindow()
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
 SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
@@ -420,7 +429,7 @@ SEPARATOR
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject3:showwindow()
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject3:showwindow()
 SEPARATOR
-MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
+MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject3:showwindow()
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
 SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
@@ -444,7 +453,7 @@ SEPARATOR
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject4:showwindow()
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject4:showwindow()
 SEPARATOR
-MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
+MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject4:showwindow()
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
 SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
