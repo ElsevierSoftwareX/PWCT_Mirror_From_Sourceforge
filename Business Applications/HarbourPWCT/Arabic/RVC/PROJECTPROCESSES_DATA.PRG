@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:38:06    Date : 07/13/2011
+* Time : 05:57:37    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,8 +41,12 @@ Data LFindRecord init false
 Data CFindExpr init ""
 Data OperationMode init 2
 Data ResultPrimaryKeys init {}
-Data DatabaseName init ""
 Data TableName init "ProjectProcesses_All"
+Data cWindowName init "ProjectProcessesWindow"
+Data ProjectsTable init "Projects"
+Data ProcessTable init "Process"
+Data ProcessStatusTable init "ProcessStatus"
+Data DatabaseName init ""
 Data nID init 0
 Data column init "ProjectName"
 Data PrimaryKey init "id"
@@ -89,8 +93,8 @@ EndClass
 Method showwindow Class ProjectProcessesClass
 myout = self:connect()
 myout = self:AutoGotoRecord()
-if !iswindowdefined( ProjectProcessesWindow )
-DEFINE WINDOW ProjectProcessesWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 1071 ;
 HEIGHT 628 ;
@@ -258,7 +262,7 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
 FONTCOLOR {0,0,0}
-myout = self:LoadLookupTable("Projects","ProjectName",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
+myout = self:LoadLookupTable(self:ProjectsTable,"ProjectName",@self:OrderNumberItems,"id",@self:OrderNumberItemsIDS)
 @ 329 ,884 LABEL lblOrderNumber ;
 VALUE "ÇÓã ÇáãÔÑæÚ" ;
 WIDTH 130 ;
@@ -275,7 +279,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-myout = self:LoadLookupTable("Process","processname",@self:processItems,"id",@self:processItemsIDS)
+myout = self:LoadLookupTable(self:ProcessTable,"processname",@self:processItems,"id",@self:processItemsIDS)
 @ 366 ,884 LABEL lblProcess ;
 VALUE "ÇáÇÌÑÇÁ" ;
 WIDTH 90 ;
@@ -331,7 +335,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-myout = self:LoadLookupTable("ProcessStatus","processStatus",@self:processStatusItems,"id",@self:processStatusItemsIDS)
+myout = self:LoadLookupTable(self:ProcessStatusTable,"processStatus",@self:processStatusItems,"id",@self:processStatusItemsIDS)
 @ 406 ,561 COMBOBOX comboProcessStatus;
 WIDTH 310 ;
 HEIGHT 100;
@@ -371,9 +375,9 @@ BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
-myout = RightToLeftControl ( "ProjectProcessesWindow","comboOrderNumber" )
-myout = RightToLeftControl ( "ProjectProcessesWindow","comboProcess" )
-myout = RightToLeftControl ( "ProjectProcessesWindow","comboProcessStatus" )
+myout = RightToLeftControl ( self:cWindowName,"comboOrderNumber" )
+myout = RightToLeftControl ( self:cWindowName,"comboProcess" )
+myout = RightToLeftControl ( self:cWindowName,"comboProcessStatus" )
 @ 329 ,453 CHECKBOX checkd1;
 CAPTION "ÊÝÚíá";
 WIDTH 60;
@@ -413,35 +417,35 @@ NOXPSTYLE ;
 TOOLTIP ""
 END WINDOW
 
-ProjectProcessesWindow.Center ( )
+&(self:cWindowName).Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
-ProjectProcessesWindow.Timer1.Enabled := false
-ACTIVATE WINDOW ProjectProcessesWindow
+&(self:cWindowName).Timer1.Enabled := false
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method UserInterface2Class Class ProjectProcessesClass
-self:nOrderNumber := ProjectProcessesWindow.ComboOrderNumber.Value
+self:nOrderNumber := &(self:cWindowName).ComboOrderNumber.Value
 self:nOrderNumber := self:OrderNumberItemsids[self:nOrderNumber]
-self:nProcess := ProjectProcessesWindow.ComboProcess.Value
+self:nProcess := &(self:cWindowName).ComboProcess.Value
 self:nProcess := self:ProcessItemsids[self:nProcess]
-self:cNotes := ProjectProcessesWindow.textNotes.Value
-self:nProcessStatus := ProjectProcessesWindow.ComboProcessStatus.Value
+self:cNotes := &(self:cWindowName).textNotes.Value
+self:nProcessStatus := &(self:cWindowName).ComboProcessStatus.Value
 self:nProcessStatus := self:ProcessStatusItemsids[self:nProcessStatus]
-self:cPlannedStartDate := ProjectProcessesWindow.datePlannedStartDate.Value
+self:cPlannedStartDate := &(self:cWindowName).datePlannedStartDate.Value
 self:cPlannedStartDate := dtoc(self:cPlannedStartDate)
-self:cPlannedFinishDate := ProjectProcessesWindow.datePlannedFinishDate.Value
+self:cPlannedFinishDate := &(self:cWindowName).datePlannedFinishDate.Value
 self:cPlannedFinishDate := dtoc(self:cPlannedFinishDate)
-self:cRealStartDate := ProjectProcessesWindow.dateRealStartDate.Value
+self:cRealStartDate := &(self:cWindowName).dateRealStartDate.Value
 self:cRealStartDate := dtoc(self:cRealStartDate)
-self:cRealFinishDate := ProjectProcessesWindow.dateRealFinishDate.Value
+self:cRealFinishDate := &(self:cWindowName).dateRealFinishDate.Value
 self:cRealFinishDate := dtoc(self:cRealFinishDate)
-self:cProcessCost := ProjectProcessesWindow.textProcessCost.Value
-self:CheckD1 := ProjectProcessesWindow.CheckD1.Value
-self:CheckD2 := ProjectProcessesWindow.CheckD2.Value
-self:CheckD3 := ProjectProcessesWindow.CheckD3.Value
-self:CheckD4 := ProjectProcessesWindow.CheckD4.Value
+self:cProcessCost := &(self:cWindowName).textProcessCost.Value
+self:CheckD1 := &(self:cWindowName).CheckD1.Value
+self:CheckD2 := &(self:cWindowName).CheckD2.Value
+self:CheckD3 := &(self:cWindowName).CheckD3.Value
+self:CheckD4 := &(self:cWindowName).CheckD4.Value
 Return 0
 Method Class2ADO Class ProjectProcessesClass
 self:oRS:fields:item("processid"):value := self:nprocess
@@ -515,21 +519,21 @@ ENDIF
 Return 0
 Method Class2UserInterface Class ProjectProcessesClass
 self:nOrderNumber = self:LookupIDToIndex(self:nOrderNumber,@self:OrderNumberItemsids)
-ProjectProcessesWindow.ComboOrderNumber.Value := self:nOrderNumber
+&(self:cWindowName).ComboOrderNumber.Value := self:nOrderNumber
 self:nProcess = self:LookupIDToIndex(self:nProcess,@self:ProcessItemsids)
-ProjectProcessesWindow.ComboProcess.Value := self:nProcess
+&(self:cWindowName).ComboProcess.Value := self:nProcess
 self:nProcessStatus = self:LookupIDToIndex(self:nProcessStatus,@self:ProcessStatusItemsids)
-ProjectProcessesWindow.ComboProcessStatus.Value := self:nProcessStatus
-ProjectProcessesWindow.textNotes.Value := self:cNotes
-ProjectProcessesWindow.datePlannedStartDate.Value := ctod(self:cPlannedStartDate)
-ProjectProcessesWindow.datePlannedFinishDate.Value := ctod(self:cPlannedFinishDate)
-ProjectProcessesWindow.dateRealStartDate.Value := ctod(self:cRealStartDate)
-ProjectProcessesWindow.dateRealFinishDate.Value := ctod(self:cRealFinishDate)
-ProjectProcessesWindow.textProcessCost.Value := self:cProcessCost
-ProjectProcessesWindow.CheckD1.Value := self:CheckD1
-ProjectProcessesWindow.CheckD2.Value := self:CheckD2
-ProjectProcessesWindow.CheckD3.Value := self:CheckD3
-ProjectProcessesWindow.CheckD4.Value := self:CheckD4
+&(self:cWindowName).ComboProcessStatus.Value := self:nProcessStatus
+&(self:cWindowName).textNotes.Value := self:cNotes
+&(self:cWindowName).datePlannedStartDate.Value := ctod(self:cPlannedStartDate)
+&(self:cWindowName).datePlannedFinishDate.Value := ctod(self:cPlannedFinishDate)
+&(self:cWindowName).dateRealStartDate.Value := ctod(self:cRealStartDate)
+&(self:cWindowName).dateRealFinishDate.Value := ctod(self:cRealFinishDate)
+&(self:cWindowName).textProcessCost.Value := self:cProcessCost
+&(self:cWindowName).CheckD1.Value := self:CheckD1
+&(self:cWindowName).CheckD2.Value := self:CheckD2
+&(self:cWindowName).CheckD3.Value := self:CheckD3
+&(self:cWindowName).CheckD4.Value := self:CheckD4
 Return 0
 Method ClearRecord Class ProjectProcessesClass
 self:nOrderNumber := 0
@@ -548,10 +552,10 @@ self:CheckD4 := False
 Return 0
 Method OpenDataWindow Class ProjectProcessesClass
 Local nvalue,myout
-nvalue := ProjectProcessesWindow.grid1browse.Value
+nvalue := &(self:cWindowName).grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
-ProjectProcessesWindow.Grid1Browse.SetFocus ( )
+&(self:cWindowName).Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class ProjectProcessesClass
@@ -561,72 +565,72 @@ myout = self:ShowWindow()
 Return 0
 Method mytimer Class ProjectProcessesClass
 myout = self:search()
-ProjectProcessesWindow.Timer1.Enabled := false
+&(self:cWindowName).Timer1.Enabled := false
 Return 0
 Method setmode(p1) Class ProjectProcessesClass
 IF p1 = 1
-ProjectProcessesWindow.btnfirst.Enabled := false
-ProjectProcessesWindow.btnnext.Enabled := false
-ProjectProcessesWindow.btnprev.Enabled := false
-ProjectProcessesWindow.btnlast.Enabled := false
-ProjectProcessesWindow.btndel.Enabled := false
-ProjectProcessesWindow.btnclose.Enabled := false
-ProjectProcessesWindow.btnsave.Enabled := true
-ProjectProcessesWindow.btncancel.Enabled := true
-ProjectProcessesWindow.btnedit.Enabled := false
-ProjectProcessesWindow.btnadd.Enabled := false
-ProjectProcessesWindow.comboOrderNumber.Enabled := true
-ProjectProcessesWindow.comboProcess.Enabled := true
-ProjectProcessesWindow.textNotes.Enabled := true
-ProjectProcessesWindow.dateplannedStartDate.Enabled := true
-ProjectProcessesWindow.comboProcessStatus.Enabled := true
-ProjectProcessesWindow.dateplannedFinishDate.Enabled := true
-ProjectProcessesWindow.dateRealStartDate.Enabled := true
-ProjectProcessesWindow.dateRealFinishDate.Enabled := true
-ProjectProcessesWindow.textProcessCost.Enabled := true
-ProjectProcessesWindow.CheckD1.Enabled := True
-ProjectProcessesWindow.CheckD2.Enabled := True
-ProjectProcessesWindow.CheckD3.Enabled := True
-ProjectProcessesWindow.CheckD4.Enabled := True
-ProjectProcessesWindow.textNameBrowse.Enabled := False
-ProjectProcessesWindow.btn1Browse.Enabled := False
-ProjectProcessesWindow.Grid1Browse.Enabled := False
-ProjectProcessesWindow.ComboFind.Enabled := False
+&(self:cWindowName).btnfirst.Enabled := false
+&(self:cWindowName).btnnext.Enabled := false
+&(self:cWindowName).btnprev.Enabled := false
+&(self:cWindowName).btnlast.Enabled := false
+&(self:cWindowName).btndel.Enabled := false
+&(self:cWindowName).btnclose.Enabled := false
+&(self:cWindowName).btnsave.Enabled := true
+&(self:cWindowName).btncancel.Enabled := true
+&(self:cWindowName).btnedit.Enabled := false
+&(self:cWindowName).btnadd.Enabled := false
+&(self:cWindowName).comboOrderNumber.Enabled := true
+&(self:cWindowName).comboProcess.Enabled := true
+&(self:cWindowName).textNotes.Enabled := true
+&(self:cWindowName).dateplannedStartDate.Enabled := true
+&(self:cWindowName).comboProcessStatus.Enabled := true
+&(self:cWindowName).dateplannedFinishDate.Enabled := true
+&(self:cWindowName).dateRealStartDate.Enabled := true
+&(self:cWindowName).dateRealFinishDate.Enabled := true
+&(self:cWindowName).textProcessCost.Enabled := true
+&(self:cWindowName).CheckD1.Enabled := True
+&(self:cWindowName).CheckD2.Enabled := True
+&(self:cWindowName).CheckD3.Enabled := True
+&(self:cWindowName).CheckD4.Enabled := True
+&(self:cWindowName).textNameBrowse.Enabled := False
+&(self:cWindowName).btn1Browse.Enabled := False
+&(self:cWindowName).Grid1Browse.Enabled := False
+&(self:cWindowName).ComboFind.Enabled := False
 ENDIF
 IF p1 = 2
-ProjectProcessesWindow.btnfirst.Enabled := true
-ProjectProcessesWindow.btnnext.Enabled := true
-ProjectProcessesWindow.btnprev.Enabled := true
-ProjectProcessesWindow.btnlast.Enabled := true
-ProjectProcessesWindow.btndel.Enabled := true
-ProjectProcessesWindow.btnclose.Enabled := true
-ProjectProcessesWindow.btnsave.Enabled := false
-ProjectProcessesWindow.btncancel.Enabled := false
-ProjectProcessesWindow.btnedit.Enabled := true
-ProjectProcessesWindow.btnadd.Enabled := true
-ProjectProcessesWindow.comboOrderNumber.Enabled := false
-ProjectProcessesWindow.comboProcess.Enabled := false
-ProjectProcessesWindow.textNotes.Enabled := false
-ProjectProcessesWindow.comboProcessStatus.Enabled := false
-ProjectProcessesWindow.datePlannedStartDate.Enabled := false
-ProjectProcessesWindow.datePlannedFinishDate.Enabled := false
-ProjectProcessesWindow.dateRealStartDate.Enabled := false
-ProjectProcessesWindow.dateRealFinishDate.Enabled := false
-ProjectProcessesWindow.textProcessCost.Enabled := False
-ProjectProcessesWindow.CheckD1.Enabled := False
-ProjectProcessesWindow.CheckD2.Enabled := False
-ProjectProcessesWindow.CheckD3.Enabled := False
-ProjectProcessesWindow.CheckD4.Enabled := False
-ProjectProcessesWindow.textNameBrowse.Enabled := True
-ProjectProcessesWindow.btn1Browse.Enabled := True
-ProjectProcessesWindow.Grid1Browse.Enabled := True
-ProjectProcessesWindow.ComboFind.Enabled := True
+&(self:cWindowName).btnfirst.Enabled := true
+&(self:cWindowName).btnnext.Enabled := true
+&(self:cWindowName).btnprev.Enabled := true
+&(self:cWindowName).btnlast.Enabled := true
+&(self:cWindowName).btndel.Enabled := true
+&(self:cWindowName).btnclose.Enabled := true
+&(self:cWindowName).btnsave.Enabled := false
+&(self:cWindowName).btncancel.Enabled := false
+&(self:cWindowName).btnedit.Enabled := true
+&(self:cWindowName).btnadd.Enabled := true
+&(self:cWindowName).comboOrderNumber.Enabled := false
+&(self:cWindowName).comboProcess.Enabled := false
+&(self:cWindowName).textNotes.Enabled := false
+&(self:cWindowName).comboProcessStatus.Enabled := false
+&(self:cWindowName).datePlannedStartDate.Enabled := false
+&(self:cWindowName).datePlannedFinishDate.Enabled := false
+&(self:cWindowName).dateRealStartDate.Enabled := false
+&(self:cWindowName).dateRealFinishDate.Enabled := false
+&(self:cWindowName).textProcessCost.Enabled := False
+&(self:cWindowName).CheckD1.Enabled := False
+&(self:cWindowName).CheckD2.Enabled := False
+&(self:cWindowName).CheckD3.Enabled := False
+&(self:cWindowName).CheckD4.Enabled := False
+&(self:cWindowName).textNameBrowse.Enabled := True
+&(self:cWindowName).btn1Browse.Enabled := True
+&(self:cWindowName).Grid1Browse.Enabled := True
+&(self:cWindowName).ComboFind.Enabled := True
 ENDIF
 self:OperationMode := p1
 Return 0
 Method CheckFind Class ProjectProcessesClass
 Local nIndex
-nIndex := ProjectProcessesWindow.ComboFind.Value
+nIndex := &(self:cWindowName).ComboFind.Value
 self:Column := self:Columns[nIndex]
 Return 0
 Method AutoAdd Class ProjectProcessesClass
@@ -636,10 +640,10 @@ oRSProcess := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRSOrderProcesses := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRSOrders:CursorType := 1
 oRSOrders:ActiveConnection := self:oCon
-oRSOrders:open ( "Select * from Projects",self:oCon,3,3 )
+oRSOrders:open ( "Select * from " + self:ProjectsTable,self:oCon,3,3 )
 oRSProcess:CursorType := 1
 oRSProcess:ActiveConnection := self:oCon
-oRSProcess:open ( "Select * from Process",self:oCon,3,3 )
+oRSProcess:open ( "Select * from " + Self:ProcessTable,self:oCon,3,3 )
 nMax1 := oRSOrders:RecordCount
 nMax2 := oRSProcess:RecordCount
 IF nMax1 > 0
@@ -654,7 +658,7 @@ cOrderNumber = STR ( nOrderNumber )
 cProcessID = STR ( nProcessID )
 oRSOrderProcesses:CursorType := 1
 oRSOrderProcesses:ActiveConnection := self:oCon
-oRSOrderProcesses:open ( "Select * from ProjectProcesses_ALL where ProjectID = " + cOrderNumber + " and ProcessID = " + cProcessID,self:oCon,3,3 )
+oRSOrderProcesses:open ( "Select * from " + self:TableName + " where ProjectID = " + cOrderNumber + " and ProcessID = " + cProcessID,self:oCon,3,3 )
 nMax3 := oRSOrderProcesses:RecordCount
 IF nMax3 = 0
 oRSOrderProcesses:ADDNEW()
@@ -699,7 +703,7 @@ myout = self:Search()
 Return 0
 Method closewindow Class ProjectProcessesClass
 myout = self:disconnect()
-ProjectProcessesWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method AutoGotoRecord Class ProjectProcessesClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
@@ -708,26 +712,26 @@ mycheck := self:oRS:EOF()
 IF mycheck = true
 self:oRS:MOVEPREVIOUS()
 ENDIF
-IF iswindowdefined( ProjectProcessesWindow )
+IF iswindowdefined( &(self:cWindowName) )
 myout = self:showrecord()
-ProjectProcessesWindow.SetFocus ( )
+&(self:cWindowName).SetFocus ( )
 ENDIF
 ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
 Return 0
 Method BeforeSearch Class ProjectProcessesClass
-ProjectProcessesWindow.grid1browse.DeleteAllItems ( )
-ProjectProcessesWindow.grid1browse.Value := 0
+&(self:cWindowName).grid1browse.DeleteAllItems ( )
+&(self:cWindowName).grid1browse.Value := 0
 Return 0
 Method SearchAdd(temp_array) Class ProjectProcessesClass
-ProjectProcessesWindow.grid1browse.AddItem ( temp_array )
+&(self:cWindowName).grid1browse.AddItem ( temp_array )
 Return 0
 Method GetSearchValue Class ProjectProcessesClass
-cName := ProjectProcessesWindow.textNamebrowse.Value
+cName := &(self:cWindowName).textNamebrowse.Value
 Return cName
 Method SetTimer(p1) Class ProjectProcessesClass
-ProjectProcessesWindow.Timer1.Enabled := p1
+&(self:cWindowName).Timer1.Enabled := p1
 Return 0
 
 
