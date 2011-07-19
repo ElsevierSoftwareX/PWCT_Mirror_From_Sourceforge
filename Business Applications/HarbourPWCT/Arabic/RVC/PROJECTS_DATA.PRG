@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:22:53    Date : 07/19/2011
+* Time : 08:04:14    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -91,10 +91,6 @@ Method printdata
 Method CheckData
 EndClass
 Method showwindow Class ProjectsClass
-IF .not. UsersObject:CheckPermission(Self:PermissionID)
-MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
-Return 0
-ENDIF
 myout = self:connect()
 myout = self:AutoGotoRecord()
 if !iswindowdefined( &(self:cWindowName) )

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:55:24    Date : 07/19/2011
+* Time : 08:06:27    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -164,6 +164,7 @@ DashObject2 = DashClass()
 DashObject2:cWindowName := "DashWindow2"
 DashObject2:TableName := "Dash2"
 DashObject2:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
+DashObject2:PermissionID := 110
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -225,6 +226,7 @@ DashObject3 = DashClass()
 DashObject3:cWindowName := "DashWindow3"
 DashObject3:TableName := "Dash3"
 DashObject3:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
+DashObject3:PermissionID := 124
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -286,6 +288,7 @@ DashObject4 = DashClass()
 DashObject4:cWindowName := "DashWindow4"
 DashObject4:TableName := "Dash4"
 DashObject4:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
+DashObject4:PermissionID := 138
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -420,6 +423,7 @@ END POPUP
 MENUITEM "«·„” Œœ„Ì‰" Action UsersObject:ShowWindow()
 END POPUP
 ENDIF
+IF UsersObject:CheckPermission(1)
 POPUP "Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„« "
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject:showwindow()
@@ -470,6 +474,8 @@ IF UsersObject:CheckPermission(96)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
 ENDIF
 END POPUP
+ENDIF
+IF UsersObject:CheckPermission(80)
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 IF UsersObject:CheckPermission(97)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject2:showwindow()
@@ -520,6 +526,8 @@ IF UsersObject:CheckPermission(110)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject2:showwindow()
 ENDIF
 END POPUP
+ENDIF
+IF UsersObject:CheckPermission(81)
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
 IF UsersObject:CheckPermission(111)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject3:showwindow()
@@ -570,6 +578,8 @@ IF UsersObject:CheckPermission(124)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject3:showwindow()
 ENDIF
 END POPUP
+ENDIF
+IF UsersObject:CheckPermission(82)
 POPUP "Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
 IF UsersObject:CheckPermission(125)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject4:showwindow()
@@ -620,6 +630,7 @@ IF UsersObject:CheckPermission(138)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject4:showwindow()
 ENDIF
 END POPUP
+ENDIF
 Return Nil
 Proc datesettings
 set date japan

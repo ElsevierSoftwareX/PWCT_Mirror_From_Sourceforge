@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:55:10    Date : 07/19/2011
+* Time : 08:07:19    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -59,6 +59,7 @@ Data cWindowName init "DashWindow"
 Data oActiveX init 0
 Data oActiveX2 init 0
 Data cWindowTitle init "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
+Data PermissionID init 96
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -69,6 +70,10 @@ Method UpdateDash
 Method ClearData
 EndClass
 Method ShowWindow Class DashClass
+IF .not. UsersObject:CheckPermission(Self:PermissionID)
+MyOut := MSGBOX("«·œŒÊ· ·Â–Â «·‰«›–… €Ì— „’—Õ »Â","⁄›Ê«")
+Return 0
+ENDIF
 if !iswindowdefined( &(self:cWindowName) )
 DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
