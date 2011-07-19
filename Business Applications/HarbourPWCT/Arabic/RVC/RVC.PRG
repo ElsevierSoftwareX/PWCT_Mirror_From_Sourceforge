@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:03:19    Date : 07/19/2011
+* Time : 04:12:50    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -131,8 +131,10 @@ ListOfReviewersReportObject2:cWindowName := "ListOfReviewersReportWindow2"
 ProjectReviewsObject2 = ProjectReviewsClass()
 ProjectReviewsObject2:cWindowName := "ProjectReviewsWindow2"
 ProjectReviewsObject2:TableName := "ProjectReviews_All2"
-ProjectReviewsObject2:ReportName := "ProjectReviews"
+ProjectReviewsObject2:ReportName := "ProjectReviews2"
 ProjectReviewsObject2:ReportWindowName := "ProjectReviewsReportWindow2"
+ProjectReviewsObject2:ProjectsTable := "Projects2"
+ProjectReviewsObject2:ReviewersTable := "Reviewers2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -163,6 +165,8 @@ ProjectReviewsObject3:cWindowName := "ProjectReviewsWindow3"
 ProjectReviewsObject3:TableName := "ProjectReviews_All3"
 ProjectReviewsObject3:ReportName := "ProjectReviews3"
 ProjectReviewsObject3:ReportWindowName := "ProjectReviewsReportWindow3"
+ProjectReviewsObject3:ProjectsTable := "Projects3"
+ProjectReviewsObject3:ReviewersTable := "Reviewers3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -193,6 +197,8 @@ ProjectReviewsObject4:cWindowName := "ProjectReviewsWindow4"
 ProjectReviewsObject4:TableName := "ProjectReviews_All4"
 ProjectReviewsObject4:ReportName := "ProjectReviews4"
 ProjectReviewsObject4:ReportWindowName := "ProjectReviewsReportWindow4"
+ProjectReviewsObject4:ProjectsTable := "Projects4"
+ProjectReviewsObject4:ReviewersTable := "Reviewers4"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:02:35    Date : 07/19/2011
+* Time : 04:07:24    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -38,6 +38,8 @@ Data cWindowName init "ProjectReviewsWindow"
 Data TableName init "ProjectReviews_All"
 Data ReportName init "ProjectReviews"
 Data ReportWindowName init "ProjectReviewsReportWindow"
+Data ProjectsTable init "Projects"
+Data ReviewersTable init "Reviewers"
 Data nID init 0
 Data column init "ProjectName"
 Data PrimaryKey init "id"
@@ -218,7 +220,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
-myout = self:LoadLookupTable("Projects","ProjectName",@self:ProjectItems,"id",@self:ProjectItemsIDS)
+myout = self:LoadLookupTable(self:ProjectsTable,"ProjectName",@self:ProjectItems,"id",@self:ProjectItemsIDS)
 @ 392 ,880 LABEL lblProject ;
 VALUE "«·„‘—Ê⁄" ;
 WIDTH 80 ;
@@ -235,7 +237,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-myout = self:LoadLookupTable("Reviewers","f_name",@self:ReviewerItems,"id",@self:ReviewerItemsIDS)
+myout = self:LoadLookupTable(Self:ReviewersTable,"f_name",@self:ReviewerItems,"id",@self:ReviewerItemsIDS)
 @ 395 ,459 LABEL lblReviewer ;
 VALUE "«·„—«Ã⁄" ;
 WIDTH 50 ;
