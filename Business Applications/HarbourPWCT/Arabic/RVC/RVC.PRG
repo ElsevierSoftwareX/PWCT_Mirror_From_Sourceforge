@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:47:34    Date : 07/19/2011
+* Time : 06:56:12    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -163,6 +163,7 @@ ProjectProcessesReportObject2:ProjectsTable := "Projects2"
 DashObject2 = DashClass()
 DashObject2:cWindowName := "DashWindow2"
 DashObject2:TableName := "Dash2"
+DashObject2:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -223,6 +224,7 @@ ProjectProcessesReportObject3:ProjectsTable := "Projects3"
 DashObject3 = DashClass()
 DashObject3:cWindowName := "DashWindow3"
 DashObject3:TableName := "Dash3"
+DashObject3:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -283,6 +285,7 @@ ProjectProcessesReportObject4:ProjectsTable := "Projects4"
 DashObject4 = DashClass()
 DashObject4:cWindowName := "DashWindow4"
 DashObject4:TableName := "Dash4"
+DashObject4:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -357,6 +360,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 200 ,234 IMAGE image2;
 PICTURE "image\p2.JPG";
+ON CLICK DashObject3:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
 @ 443 ,248 LABEL lbl2 ;
@@ -368,6 +372,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 200 ,458 IMAGE image4;
 PICTURE "image\p3.JPG";
+ON CLICK DashObject2:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
 @ 443 ,476 LABEL lbl4 ;
@@ -379,6 +384,7 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 200 ,10 IMAGE image7;
 PICTURE "image\p4.JPG";
+ON CLICK DashObject4:ShowWindow()  ;
 STRETCH ;
 WIDTH 193 HEIGHT 229
 @ 443 ,32 LABEL lbl7 ;
