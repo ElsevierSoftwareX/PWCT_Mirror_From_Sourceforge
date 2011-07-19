@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:10:53    Date : 07/19/2011
+* Time : 06:20:11    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -163,7 +163,7 @@ cdate1 = DTOC ( cdate1 )
 cdate2 = DTOC ( cdate2 )
 cdate1 = ALLTRIM ( cdate1 )
 cdate2 = ALLTRIM ( cdate2 )
-self:filter := "cdate("+ self:ProjectsTable+".ReceiveDate) >= cdate('" + cdate1 + "') and cdate("+self:ProjectsTable+".ReceiveDate) <= cdate('" + cdate2 + "')"
+self:filter := "cdate("+ self:ProjectsTable+".DateReceived) >= cdate('" + cdate1 + "') and cdate("+self:ProjectsTable+".DateReceived) <= cdate('" + cdate2 + "')"
 ELSE
 self:filter := "1 = 1"
 ENDIF
