@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 03:35:02    Date : 07/12/2011
+* Time : 03:00:10    Date : 07/19/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -36,6 +34,9 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_REVIEWERS_DATA_15speed1() code
 class ReviewersDataClass From SYSTEMDATABASE
+Data cWindowName init "ReviewersDataWindow"
+Data ReportName init "Reviewers"
+Data ReportWindowName init "ReviewersReportWindow"
 Data TableName init "Reviewers"
 Data cname init ""
 Data caddress init ""
@@ -64,8 +65,8 @@ EndClass
 Method showwindow Class ReviewersDataClass
 myout = self:connect()
 myout = self:AutoGotoRecord()
-if !iswindowdefined( ReviewersDataWindow )
-DEFINE WINDOW ReviewersDataWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 774 ;
 HEIGHT 591 ;
@@ -369,7 +370,7 @@ WIDTH 143 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-myout = RightToLeftControl ( "ReviewersDataWindow","editnotes" )
+myout = RightToLeftControl ( self:cWindowName,"editnotes" )
 @ 7 ,790 BUTTONEX btnCustOrders;
 CAPTION "œÊ—«  «·„œ—»";
 FONTCOLOR {255,255,255};
@@ -381,27 +382,27 @@ NOXPSTYLE ;
 TOOLTIP ""
 END WINDOW
 
-ReviewersDataWindow.Center ( )
+&(self:cWindowName).Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
-ACTIVATE WINDOW ReviewersDataWindow
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method UserInterface2Class Class ReviewersDataClass
-self:cName := ReviewersDataWindow.textName.Value
-self:cAddress := ReviewersDataWindow.textAddress.Value
-self:cCity := ReviewersDataWindow.textCity.Value
-self:cWebsite := ReviewersDataWindow.textWebsite.Value
-self:cPhone := ReviewersDataWindow.textPhone.Value
-self:cEMAIL := ReviewersDataWindow.textEMAIL.Value
-self:cPHONE2 := ReviewersDataWindow.textPHONE2.Value
-self:cFax := ReviewersDataWindow.textFax.Value
-self:cMobile := ReviewersDataWindow.textMobile.Value
-self:cZip := ReviewersDataWindow.textZip.Value
-self:cMobile2 := ReviewersDataWindow.textMobile2.Value
-self:cCompany := ReviewersDataWindow.textCompany.Value
-self:cNotes := ReviewersDataWindow.editNotes.Value
+self:cName := &(self:cWindowName).textName.Value
+self:cAddress := &(self:cWindowName).textAddress.Value
+self:cCity := &(self:cWindowName).textCity.Value
+self:cWebsite := &(self:cWindowName).textWebsite.Value
+self:cPhone := &(self:cWindowName).textPhone.Value
+self:cEMAIL := &(self:cWindowName).textEMAIL.Value
+self:cPHONE2 := &(self:cWindowName).textPHONE2.Value
+self:cFax := &(self:cWindowName).textFax.Value
+self:cMobile := &(self:cWindowName).textMobile.Value
+self:cZip := &(self:cWindowName).textZip.Value
+self:cMobile2 := &(self:cWindowName).textMobile2.Value
+self:cCompany := &(self:cWindowName).textCompany.Value
+self:cNotes := &(self:cWindowName).editNotes.Value
 Return 0
 Method Class2ADO Class ReviewersDataClass
 self:oRS:fields:item("f_name"):value := self:cName
@@ -434,19 +435,19 @@ self:ccompany := self:oRS:fields:item("f_company"):value
 self:cNotes := self:oRS:fields:item("f_notes"):value
 Return 0
 Method Class2UserInterface Class ReviewersDataClass
-ReviewersDataWindow.textName.Value := self:cname
-ReviewersDataWindow.textAddress.Value := self:cAddress
-ReviewersDataWindow.textCity.Value := self:cCity
-ReviewersDataWindow.textWebsite.Value := self:cWebsite
-ReviewersDataWindow.textPhone.Value := self:cPhone
-ReviewersDataWindow.texteMail.Value := self:ceMail
-ReviewersDataWindow.textPhone2.Value := self:cphone2
-ReviewersDataWindow.textFax.Value := self:cFax
-ReviewersDataWindow.textMobile.Value := self:cMobile
-ReviewersDataWindow.textZip.Value := self:cZip
-ReviewersDataWindow.textMobile2.Value := self:cMobile2
-ReviewersDataWindow.textCompany.Value := self:cCompany
-ReviewersDataWindow.editNotes.Value := self:cNotes
+&(self:cWindowName).textName.Value := self:cname
+&(self:cWindowName).textAddress.Value := self:cAddress
+&(self:cWindowName).textCity.Value := self:cCity
+&(self:cWindowName).textWebsite.Value := self:cWebsite
+&(self:cWindowName).textPhone.Value := self:cPhone
+&(self:cWindowName).texteMail.Value := self:ceMail
+&(self:cWindowName).textPhone2.Value := self:cphone2
+&(self:cWindowName).textFax.Value := self:cFax
+&(self:cWindowName).textMobile.Value := self:cMobile
+&(self:cWindowName).textZip.Value := self:cZip
+&(self:cWindowName).textMobile2.Value := self:cMobile2
+&(self:cWindowName).textCompany.Value := self:cCompany
+&(self:cWindowName).editNotes.Value := self:cNotes
 Return 0
 Method ClearRecord Class ReviewersDataClass
 self:cname := ""
@@ -464,7 +465,7 @@ self:cCompany := ""
 self:cNotes := ""
 Return 0
 Method PrintData Class ReviewersDataClass
-Local myid,myout
+Local myid,myout,reviewersreportobject
 mymax := self:oRS:RecordCount
 IF mymax = 0
 MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
@@ -472,63 +473,66 @@ Return 0
 ENDIF
 myid := self:oRS:fields:item("id"):value
 myid = STR ( myid )
+reviewersreportobject = reviewersreportclass()
 Reviewersreportobject:filter := "id = "+myid
+Reviewersreportobject:reportname := self:reportname
+Reviewersreportobject:cWindowName := self:reportwindowname
 myout = Reviewersreportobject:ShowWindow()
 Return 0
 Method closewindow Class ReviewersDataClass
 myout = self:disconnect()
-ReviewersDataWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method setmode(p1) Class ReviewersDataClass
 IF p1 = 1
-ReviewersDataWindow.btnfirst.Enabled := false
-ReviewersDataWindow.btnnext.Enabled := false
-ReviewersDataWindow.btnprev.Enabled := false
-ReviewersDataWindow.btnlast.Enabled := false
-ReviewersDataWindow.btndel.Enabled := false
-ReviewersDataWindow.btnclose.Enabled := false
-ReviewersDataWindow.btnsave.Enabled := true
-ReviewersDataWindow.btncancel.Enabled := true
-ReviewersDataWindow.btnedit.Enabled := false
-ReviewersDataWindow.btnadd.Enabled := false
-ReviewersDataWindow.textName.Enabled := true
-ReviewersDataWindow.textCity.Enabled := true
-ReviewersDataWindow.textAddress.Enabled := true
-ReviewersDataWindow.textZip.Enabled := true
-ReviewersDataWindow.textFax.Enabled := true
-ReviewersDataWindow.texteMail.Enabled := true
-ReviewersDataWindow.textCompany.Enabled := true
-ReviewersDataWindow.textWebsite.Enabled := true
-ReviewersDataWindow.textPhone.Enabled := true
-ReviewersDataWindow.textphone2.Enabled := true
-ReviewersDataWindow.textmobile.Enabled := true
-ReviewersDataWindow.textmobile2.Enabled := true
-ReviewersDataWindow.editNotes.Enabled := true
+&(self:cWindowName).btnfirst.Enabled := false
+&(self:cWindowName).btnnext.Enabled := false
+&(self:cWindowName).btnprev.Enabled := false
+&(self:cWindowName).btnlast.Enabled := false
+&(self:cWindowName).btndel.Enabled := false
+&(self:cWindowName).btnclose.Enabled := false
+&(self:cWindowName).btnsave.Enabled := true
+&(self:cWindowName).btncancel.Enabled := true
+&(self:cWindowName).btnedit.Enabled := false
+&(self:cWindowName).btnadd.Enabled := false
+&(self:cWindowName).textName.Enabled := true
+&(self:cWindowName).textCity.Enabled := true
+&(self:cWindowName).textAddress.Enabled := true
+&(self:cWindowName).textZip.Enabled := true
+&(self:cWindowName).textFax.Enabled := true
+&(self:cWindowName).texteMail.Enabled := true
+&(self:cWindowName).textCompany.Enabled := true
+&(self:cWindowName).textWebsite.Enabled := true
+&(self:cWindowName).textPhone.Enabled := true
+&(self:cWindowName).textphone2.Enabled := true
+&(self:cWindowName).textmobile.Enabled := true
+&(self:cWindowName).textmobile2.Enabled := true
+&(self:cWindowName).editNotes.Enabled := true
 ENDIF
 IF p1 = 2
-ReviewersDataWindow.btnfirst.Enabled := true
-ReviewersDataWindow.btnnext.Enabled := true
-ReviewersDataWindow.btnprev.Enabled := true
-ReviewersDataWindow.btnlast.Enabled := true
-ReviewersDataWindow.btndel.Enabled := true
-ReviewersDataWindow.btnclose.Enabled := true
-ReviewersDataWindow.btnsave.Enabled := false
-ReviewersDataWindow.btncancel.Enabled := false
-ReviewersDataWindow.btnedit.Enabled := true
-ReviewersDataWindow.btnadd.Enabled := true
-ReviewersDataWindow.textName.Enabled := false
-ReviewersDataWindow.textCity.Enabled := false
-ReviewersDataWindow.textAddress.Enabled := false
-ReviewersDataWindow.textZip.Enabled := false
-ReviewersDataWindow.textFax.Enabled := false
-ReviewersDataWindow.texteMail.Enabled := false
-ReviewersDataWindow.textCompany.Enabled := false
-ReviewersDataWindow.textWebsite.Enabled := false
-ReviewersDataWindow.textPhone.Enabled := false
-ReviewersDataWindow.textphone2.Enabled := false
-ReviewersDataWindow.textmobile.Enabled := false
-ReviewersDataWindow.textmobile2.Enabled := false
-ReviewersDataWindow.editNotes.Enabled := false
+&(self:cWindowName).btnfirst.Enabled := true
+&(self:cWindowName).btnnext.Enabled := true
+&(self:cWindowName).btnprev.Enabled := true
+&(self:cWindowName).btnlast.Enabled := true
+&(self:cWindowName).btndel.Enabled := true
+&(self:cWindowName).btnclose.Enabled := true
+&(self:cWindowName).btnsave.Enabled := false
+&(self:cWindowName).btncancel.Enabled := false
+&(self:cWindowName).btnedit.Enabled := true
+&(self:cWindowName).btnadd.Enabled := true
+&(self:cWindowName).textName.Enabled := false
+&(self:cWindowName).textCity.Enabled := false
+&(self:cWindowName).textAddress.Enabled := false
+&(self:cWindowName).textZip.Enabled := false
+&(self:cWindowName).textFax.Enabled := false
+&(self:cWindowName).texteMail.Enabled := false
+&(self:cWindowName).textCompany.Enabled := false
+&(self:cWindowName).textWebsite.Enabled := false
+&(self:cWindowName).textPhone.Enabled := false
+&(self:cWindowName).textphone2.Enabled := false
+&(self:cWindowName).textmobile.Enabled := false
+&(self:cWindowName).textmobile2.Enabled := false
+&(self:cWindowName).editNotes.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
@@ -539,9 +543,9 @@ mycheck := self:oRS:EOF()
 IF mycheck = true
 self:oRS:MOVEPREVIOUS()
 ENDIF
-IF iswindowdefined( ReviewersDataWindow )
+IF iswindowdefined( &(self:cWindowName) )
 myout = self:showrecord()
-ReviewersDataWindow.SetFocus ( )
+&(self:cWindowName).SetFocus ( )
 ENDIF
 ENDIF
 self:LFindRecord := false

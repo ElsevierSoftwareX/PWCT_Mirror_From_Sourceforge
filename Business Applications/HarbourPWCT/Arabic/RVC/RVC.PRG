@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:41:39    Date : 07/19/2011
+* Time : 03:02:44    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -92,7 +92,6 @@ ProjectsObject = ProjectsClass()
 ListofProjectsReportObject = ListofProjectsReportClass()
 ReviewersDataObject = ReviewersDataClass()
 ReviewersBrowseObject = ReviewersBrowseClass()
-ReviewersReportObject = ReviewersReportClass()
 ListofReviewersReportObject = ListofReviewersReportClass()
 ProjectReviewsObject = ProjectReviewsClass()
 ProjectReviewsReportObject = ProjectReviewsReportClass()
@@ -116,6 +115,11 @@ ProjectsObject2:ReportWindowName := "Projects2ReportWindow"
 ListofProjectsReportObject2 = ListofProjectsReportClass()
 ListofProjectsReportObject2:cWindowName := "ListOfProjectsReportWindow2"
 ListofProjectsReportObject2:ReportName := "ListOfProjects2"
+ReviewersDataObject2 = ReviewersDataClass()
+ReviewersDataObject2:TableName := "Reviewers2"
+ReviewersDataObject2:ReportName := "Reviewers2"
+ReviewersDataObject2:cWindowName := "ReviewersDataWindow2"
+ReviewersDataObject2:ReportWindowName := "ReviewersReportWindow2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -128,6 +132,11 @@ ProjectsObject3:ReportWindowName := "Projects3ReportWindow"
 ListofProjectsReportObject3 = ListofProjectsReportClass()
 ListofProjectsReportObject3:cWindowName := "ListOfProjectsReportWindow3"
 ListofProjectsReportObject3:ReportName := "ListOfProjects3"
+ReviewersDataObject3 = ReviewersDataClass()
+ReviewersDataObject3:TableName := "Reviewers3"
+ReviewersDataObject3:ReportName := "Reviewers3"
+ReviewersDataObject3:cWindowName := "ReviewersDataWindow3"
+ReviewersDataObject3:ReportWindowName := "ReviewersReportWindow3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -140,6 +149,11 @@ ProjectsObject4:ReportWindowName := "Projects4ReportWindow"
 ListofProjectsReportObject4 = ListofProjectsReportClass()
 ListofProjectsReportObject4:cWindowName := "ListOfProjectsReportWindow4"
 ListofProjectsReportObject4:ReportName := "ListOfProjects4"
+ReviewersDataObject4 = ReviewersDataClass()
+ReviewersDataObject4:TableName := "Reviewers4"
+ReviewersDataObject4:ReportName := "Reviewers4"
+ReviewersDataObject4:cWindowName := "ReviewersDataWindow4"
+ReviewersDataObject4:ReportWindowName := "ReviewersReportWindow4"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -300,7 +314,7 @@ IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject2:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject2:ShowWindow()
 SEPARATOR
-MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
+MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject2:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
 SEPARATOR
@@ -324,7 +338,7 @@ IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject3:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject3:ShowWindow()
 SEPARATOR
-MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
+MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject3:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
 SEPARATOR
@@ -348,7 +362,7 @@ IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject4:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject4:ShowWindow()
 SEPARATOR
-MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
+MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject4:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
 SEPARATOR
