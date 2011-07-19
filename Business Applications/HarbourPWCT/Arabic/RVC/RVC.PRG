@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:56:12    Date : 07/19/2011
+* Time : 07:55:24    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -423,96 +423,200 @@ ENDIF
 POPUP "Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„« "
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(84)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(85)
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(86)
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(87)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(88)
 MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(89)
 MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(90)
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(91)
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(92)
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(93)
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(94)
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(95)
 MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(96)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
 ENDIF
 END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
-IF UsersObject:CheckPermission(83)
+IF UsersObject:CheckPermission(97)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject2:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(98)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject2:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(99)
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject2:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(100)
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject2:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(101)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject2:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(102)
 MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject2:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(103)
 MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject2:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(104)
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject2:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(105)
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject2:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(106)
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject2:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(107)
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject2:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(108)
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject2:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(109)
 MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject2:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(110)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject2:showwindow()
 ENDIF
 END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
-IF UsersObject:CheckPermission(83)
+IF UsersObject:CheckPermission(111)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject3:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(112)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject3:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(113)
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject3:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(114)
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject3:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(115)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject3:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(116)
 MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject3:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(117)
 MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject3:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(118)
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject3:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(119)
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject3:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(120)
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject3:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(121)
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject3:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(122)
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject3:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(123)
 MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject3:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(124)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject3:showwindow()
 ENDIF
 END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
-IF UsersObject:CheckPermission(83)
+IF UsersObject:CheckPermission(125)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject4:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(126)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject4:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(127)
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject4:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(128)
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject4:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(129)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„—«Ã⁄Ì‰" Action ListOfReviewersReportObject4:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(130)
 MENUITEM "„—«Ã⁄… «·„‘«—Ì⁄" Action ProjectReviewsObject4:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(131)
 MENUITEM " ﬁ—Ì— „—«Ã⁄… «·„‘«—Ì⁄" Action ListOfProjectReviewsReportObject4:ShowWindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(132)
 MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject4:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(133)
 MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject4:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(134)
 MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject4:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(135)
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject4:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(136)
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject4:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(137)
 MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject4:showwindow()
 SEPARATOR
+ENDIF
+IF UsersObject:CheckPermission(138)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject4:showwindow()
 ENDIF
 END POPUP
