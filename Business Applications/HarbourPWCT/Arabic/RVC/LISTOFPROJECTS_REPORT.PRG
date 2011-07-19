@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 04:43:25    Date : 07/11/2011
+* Time : 02:41:34    Date : 07/19/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -37,13 +35,14 @@ Return
 Resistance R_LISTOFPROJECTS_REPORT_15speed1() code
 class ListOfProjectsReportClass From Report_Base
 Data ReportName init "ListOfProjects"
+Data cWindowName init "ListOfProjectsReportWindow"
 Method showwindow
 Method closewindow
 Method SizeReport
 EndClass
 Method ShowWindow Class ListOfProjectsReportClass
-if !iswindowdefined( ListOfProjectsReportWindow )
-DEFINE WINDOW ListOfProjectsReportWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 743 ;
 HEIGHT 542 ;
@@ -73,27 +72,27 @@ ON CLICK self:ShowReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-self:oActiveX := TActiveX():New( "ListOfProjectsReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 659 , 417)
+self:oActiveX := TActiveX():New( self:cWindowName, "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 659 , 417)
 self:oActiveX:Load()
 END WINDOW
 
-ListOfProjectsReportWindow.Maximize ( )
-ACTIVATE WINDOW ListOfProjectsReportWindow
+&(self:cWindowName).Maximize ( )
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method CloseWindow Class ListOfProjectsReportClass
-ListOfProjectsReportWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method SizeReport Class ListOfProjectsReportClass
 Local tempvar1,tempvar2
-tempvar1 := ListOfProjectsReportWindow.Width
-tempvar2 := ListOfProjectsReportWindow.Height
+tempvar1 := &(self:cWindowName).Width
+tempvar2 := &(self:cWindowName).Height
 self:oactivex:nWidth := tempvar1 - 84
 self:oactivex:nHeight := tempvar2 - 125
-ListOfProjectsReportWindow.btn1.Row := tempvar2-88
-ListOfProjectsReportWindow.btn2.Row := tempvar2-88
-ListOfProjectsReportWindow.btn3.Row := tempvar2-88
+&(self:cWindowName).btn1.Row := tempvar2-88
+&(self:cWindowName).btn2.Row := tempvar2-88
+&(self:cWindowName).btn3.Row := tempvar2-88
 self:oactivex:Show ( )
 Return 0
 

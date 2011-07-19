@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:23:00    Date : 07/19/2011
+* Time : 02:41:39    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -109,28 +109,37 @@ ProjectsObject2:cWindowName := "ProjectsWindow2"
 ProjectsObject2:TableName := "Projects_All2"
 ProjectsObject2:SubTable1 := "ProjectProcesses2"
 ProjectsObject2:SubTable2 := "ProjectReviews2"
-ProjectsObject2:WindowTitle := "Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
+ProjectsObject2:WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 ProjectsObject2:PermissionID := 83
 ProjectsObject2:ReportName := "Projects2"
 ProjectsObject2:ReportWindowName := "Projects2ReportWindow"
+ListofProjectsReportObject2 = ListofProjectsReportClass()
+ListofProjectsReportObject2:cWindowName := "ListOfProjectsReportWindow2"
+ListofProjectsReportObject2:ReportName := "ListOfProjects2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
 ProjectsObject3:SubTable1 := "ProjectProcesses3"
 ProjectsObject3:SubTable2 := "ProjectReviews3"
-ProjectsObject3:WindowTitle := "Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
+ProjectsObject3:WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
 ProjectsObject3:PermissionID := 83
 ProjectsObject3:ReportName := "Projects3"
 ProjectsObject3:ReportWindowName := "Projects3ReportWindow"
+ListofProjectsReportObject3 = ListofProjectsReportClass()
+ListofProjectsReportObject3:cWindowName := "ListOfProjectsReportWindow3"
+ListofProjectsReportObject3:ReportName := "ListOfProjects3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
 ProjectsObject4:SubTable1 := "ProjectProcesses4"
 ProjectsObject4:SubTable2 := "ProjectReviews4"
-ProjectsObject4:WindowTitle := "Õ«÷‰… «· ﬁ‰Ì«  «·‰”«∆Ì…"
+ProjectsObject4:WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·‰”«∆Ì…"
 ProjectsObject4:PermissionID := 83
 ProjectsObject4:ReportName := "Projects4"
 ProjectsObject4:ReportWindowName := "Projects4ReportWindow"
+ListofProjectsReportObject4 = ListofProjectsReportClass()
+ListofProjectsReportObject4:cWindowName := "ListOfProjectsReportWindow4"
+ListofProjectsReportObject4:ReportName := "ListOfProjects4"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -289,7 +298,7 @@ END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject2:showwindow()
-MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject2:ShowWindow()
 SEPARATOR
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
@@ -313,7 +322,7 @@ END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject3:showwindow()
-MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject3:ShowWindow()
 SEPARATOR
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
@@ -337,7 +346,7 @@ END POPUP
 POPUP "Õ«÷‰… «· ﬁ‰Ì«  «·‰”«∆Ì…"
 IF UsersObject:CheckPermission(83)
 MENUITEM "«·„‘«—Ì⁄" Action ProjectsObject4:showwindow()
-MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject4:ShowWindow()
 SEPARATOR
 MENUITEM "»Ì«‰«  «·„—«Ã⁄Ì‰" Action ReviewersDataObject:showwindow()
 MENUITEM "»ÕÀ ⁄‰ „—«Ã⁄" Action ReviewersBrowseObject:showwindow()
