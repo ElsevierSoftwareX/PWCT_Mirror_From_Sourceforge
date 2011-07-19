@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:08:34    Date : 07/12/2011
+* Time : 05:00:32    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -34,6 +34,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_PROCESSSTATUS_DATA_15speed1() code
 class ProcessStatusClass From SYSTEMDATABASE
+Data cWindowName init "ProcessStatusWindow"
 Data TableName init "ProcessStatus"
 Data cid init ""
 Data cCountry init ""
@@ -60,8 +61,8 @@ EndClass
 Method showwindow Class ProcessStatusClass
 myout = self:connect()
 myout = self:AutoGotoRecord()
-if !iswindowdefined( ProcessStatusWindow )
-DEFINE WINDOW ProcessStatusWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 774 ;
 HEIGHT 426 ;
@@ -216,16 +217,16 @@ DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:mytimer()
 END WINDOW
 
-ProcessStatusWindow.Center ( )
+&(self:cWindowName).Center ( )
 myout = self:showrecord()
 myout = self:setmode(2)
-ProcessStatusWindow.Timer1.Enabled := false
-ACTIVATE WINDOW ProcessStatusWindow
+&(self:cWindowName).Timer1.Enabled := false
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method UserInterface2Class Class ProcessStatusClass
-self:cCountry := ProcessStatusWindow.textCountry.Value
+self:cCountry := &(self:cWindowName).textCountry.Value
 Return 0
 Method Class2ADO Class ProcessStatusClass
 self:oRS:fields:item("ProcessStatus"):value := self:cCountry
@@ -234,17 +235,17 @@ Method ADO2Class Class ProcessStatusClass
 self:cCountry := self:oRS:fields:item("ProcessStatus"):value
 Return 0
 Method Class2UserInterface Class ProcessStatusClass
-ProcessStatusWindow.textCountry.Value := self:cCountry
+&(self:cWindowName).textCountry.Value := self:cCountry
 Return 0
 Method ClearRecord Class ProcessStatusClass
 self:cCountry := ""
 Return 0
 Method OpenDataWindow Class ProcessStatusClass
 Local nvalue,myout
-nvalue := ProcessStatusWindow.grid1browse.Value
+nvalue := &(self:cWindowName).grid1browse.Value
 IF nvalue > 0
 myout = self:ShowDataWindow(nvalue)
-ProcessStatusWindow.Grid1Browse.SetFocus ( )
+&(self:cWindowName).Grid1Browse.SetFocus ( )
 ENDIF
 Return 0
 Method ShowDataWindow(nvalue) Class ProcessStatusClass
@@ -254,46 +255,46 @@ myout = self:ShowWindow()
 Return 0
 Method mytimer Class ProcessStatusClass
 myout = self:search()
-ProcessStatusWindow.Timer1.Enabled := false
+&(self:cWindowName).Timer1.Enabled := false
 Return 0
 Method setmode(p1) Class ProcessStatusClass
 IF p1 = 1
-ProcessStatusWindow.btnfirst.Enabled := false
-ProcessStatusWindow.btnnext.Enabled := false
-ProcessStatusWindow.btnprev.Enabled := false
-ProcessStatusWindow.btnlast.Enabled := false
-ProcessStatusWindow.btndel.Enabled := false
-ProcessStatusWindow.btnclose.Enabled := false
-ProcessStatusWindow.btnsave.Enabled := true
-ProcessStatusWindow.btncancel.Enabled := true
-ProcessStatusWindow.btnedit.Enabled := false
-ProcessStatusWindow.btnadd.Enabled := false
-ProcessStatusWindow.textCountry.Enabled := true
-ProcessStatusWindow.textNameBrowse.Enabled := False
-ProcessStatusWindow.btn1Browse.Enabled := False
-ProcessStatusWindow.Grid1Browse.Enabled := False
+&(self:cWindowName).btnfirst.Enabled := false
+&(self:cWindowName).btnnext.Enabled := false
+&(self:cWindowName).btnprev.Enabled := false
+&(self:cWindowName).btnlast.Enabled := false
+&(self:cWindowName).btndel.Enabled := false
+&(self:cWindowName).btnclose.Enabled := false
+&(self:cWindowName).btnsave.Enabled := true
+&(self:cWindowName).btncancel.Enabled := true
+&(self:cWindowName).btnedit.Enabled := false
+&(self:cWindowName).btnadd.Enabled := false
+&(self:cWindowName).textCountry.Enabled := true
+&(self:cWindowName).textNameBrowse.Enabled := False
+&(self:cWindowName).btn1Browse.Enabled := False
+&(self:cWindowName).Grid1Browse.Enabled := False
 ENDIF
 IF p1 = 2
-ProcessStatusWindow.btnfirst.Enabled := true
-ProcessStatusWindow.btnnext.Enabled := true
-ProcessStatusWindow.btnprev.Enabled := true
-ProcessStatusWindow.btnlast.Enabled := true
-ProcessStatusWindow.btndel.Enabled := true
-ProcessStatusWindow.btnclose.Enabled := true
-ProcessStatusWindow.btnsave.Enabled := false
-ProcessStatusWindow.btncancel.Enabled := false
-ProcessStatusWindow.btnedit.Enabled := true
-ProcessStatusWindow.btnadd.Enabled := true
-ProcessStatusWindow.textCountry.Enabled := false
-ProcessStatusWindow.textNameBrowse.Enabled := True
-ProcessStatusWindow.btn1Browse.Enabled := True
-ProcessStatusWindow.Grid1Browse.Enabled := True
+&(self:cWindowName).btnfirst.Enabled := true
+&(self:cWindowName).btnnext.Enabled := true
+&(self:cWindowName).btnprev.Enabled := true
+&(self:cWindowName).btnlast.Enabled := true
+&(self:cWindowName).btndel.Enabled := true
+&(self:cWindowName).btnclose.Enabled := true
+&(self:cWindowName).btnsave.Enabled := false
+&(self:cWindowName).btncancel.Enabled := false
+&(self:cWindowName).btnedit.Enabled := true
+&(self:cWindowName).btnadd.Enabled := true
+&(self:cWindowName).textCountry.Enabled := false
+&(self:cWindowName).textNameBrowse.Enabled := True
+&(self:cWindowName).btn1Browse.Enabled := True
+&(self:cWindowName).Grid1Browse.Enabled := True
 ENDIF
 self:OperationMode := p1
 Return 0
 Method closewindow Class ProcessStatusClass
 myout = self:disconnect()
-ProcessStatusWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method AutoGotoRecord Class ProcessStatusClass
 IF self:LFindRecord = true .and. self:OperationMode = 2
@@ -302,26 +303,26 @@ mycheck := self:oRS:EOF()
 IF mycheck = true
 self:oRS:MOVEPREVIOUS()
 ENDIF
-IF iswindowdefined( ProcessStatusWindow )
+IF iswindowdefined( &(self:cWindowName) )
 myout = self:showrecord()
-ProcessStatusWindow.SetFocus ( )
+&(self:cWindowName).SetFocus ( )
 ENDIF
 ENDIF
 self:LFindRecord := false
 self:CFindExpr := ""
 Return 0
 Method BeforeSearch Class ProcessStatusClass
-ProcessStatusWindow.grid1browse.DeleteAllItems ( )
-ProcessStatusWindow.grid1browse.Value := 0
+&(self:cWindowName).grid1browse.DeleteAllItems ( )
+&(self:cWindowName).grid1browse.Value := 0
 Return 0
 Method SearchAdd(temp_array) Class ProcessStatusClass
-ProcessStatusWindow.grid1browse.AddItem ( temp_array )
+&(self:cWindowName).grid1browse.AddItem ( temp_array )
 Return 0
 Method SetTimer(p1) Class ProcessStatusClass
-ProcessStatusWindow.Timer1.Enabled := p1
+&(self:cWindowName).Timer1.Enabled := p1
 Return 0
 Method GetSearchValue Class ProcessStatusClass
-cName := ProcessStatusWindow.textNamebrowse.Value
+cName := &(self:cWindowName).textNamebrowse.Value
 Return cName
 
 
