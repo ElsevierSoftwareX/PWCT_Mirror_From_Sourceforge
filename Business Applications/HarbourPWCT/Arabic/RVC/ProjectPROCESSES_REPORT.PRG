@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:20:23    Date : 07/13/2011
+* Time : 06:10:53    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,14 +35,16 @@ Return
 Resistance R_PROJECTPROCESSES_REPORT_15speed1() code
 class ProjectProcessesReportClass From Report_Base
 Data ReportName init "ProjectProcesses"
+Data cWindowName init "ProjectProcessesReportWindow"
+Data ProjectsTable init "Projects"
 Method showwindow
 Method closewindow
 Method SizeReport
 Method checkchange
 EndClass
 Method ShowWindow Class ProjectProcessesReportClass
-if !iswindowdefined( ProjectProcessesReportWindow )
-DEFINE WINDOW ProjectProcessesReportWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 1031 ;
 HEIGHT 540 ;
@@ -72,7 +74,7 @@ ON CLICK self:ShowReport()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-self:oActiveX := TActiveX():New( "ProjectProcessesReportWindow", "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 969 , 417)
+self:oActiveX := TActiveX():New( self:cWindowName, "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 969 , 417)
 self:oActiveX:Load()
 @ 453 ,467 LABEL lbl1 ;
 VALUE "гд" ;
@@ -125,56 +127,56 @@ BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
-ProjectProcessesReportWindow.Maximize ( )
-ACTIVATE WINDOW ProjectProcessesReportWindow
+&(self:cWindowName).Maximize ( )
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method CloseWindow Class ProjectProcessesReportClass
-ProjectProcessesReportWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method SizeReport Class ProjectProcessesReportClass
 Local tempvar1,tempvar2
-tempvar1 := ProjectProcessesReportWindow.Width
-tempvar2 := ProjectProcessesReportWindow.Height
+tempvar1 := &(self:cWindowName).Width
+tempvar2 := &(self:cWindowName).Height
 self:oactivex:nWidth := tempvar1 - 84
 self:oactivex:nHeight := tempvar2 - 125
-ProjectProcessesReportWindow.btn1.Row := tempvar2-88
-ProjectProcessesReportWindow.btn2.Row := tempvar2-88
-ProjectProcessesReportWindow.btn3.Row := tempvar2-88
+&(self:cWindowName).btn1.Row := tempvar2-88
+&(self:cWindowName).btn2.Row := tempvar2-88
+&(self:cWindowName).btn3.Row := tempvar2-88
 self:oactivex:Show ( )
-ProjectProcessesReportWindow.lbl1.Row := tempvar2 - 88
-ProjectProcessesReportWindow.lbl2.Row := tempvar2 - 88
-ProjectProcessesReportWindow.check1.Row := tempvar2 - 88
-ProjectProcessesReportWindow.DatePicker1.Row := tempvar2 - 88
-ProjectProcessesReportWindow.DatePicker2.Row := tempvar2 - 88
-ProjectProcessesReportWindow.check2.Row := tempvar2 - 88
-ProjectProcessesReportWindow.text1.Row := tempvar2 - 88
+&(self:cWindowName).lbl1.Row := tempvar2 - 88
+&(self:cWindowName).lbl2.Row := tempvar2 - 88
+&(self:cWindowName).check1.Row := tempvar2 - 88
+&(self:cWindowName).DatePicker1.Row := tempvar2 - 88
+&(self:cWindowName).DatePicker2.Row := tempvar2 - 88
+&(self:cWindowName).check2.Row := tempvar2 - 88
+&(self:cWindowName).text1.Row := tempvar2 - 88
 Return 0
 Method CheckChange Class ProjectProcessesReportClass
-tvalue := ProjectProcessesReportWindow.Check1.Value
+tvalue := &(self:cWindowName).Check1.Value
 self:filter := ""
 IF tvalue = true
-cdate1 := ProjectProcessesReportWindow.Datepicker1.Value
-cdate2 := ProjectProcessesReportWindow.Datepicker2.Value
+cdate1 := &(self:cWindowName).Datepicker1.Value
+cdate2 := &(self:cWindowName).Datepicker2.Value
 cdate1 = DTOC ( cdate1 )
 cdate2 = DTOC ( cdate2 )
 cdate1 = ALLTRIM ( cdate1 )
 cdate2 = ALLTRIM ( cdate2 )
-self:filter := "cdate(Projects.ReceiveDate) >= cdate('" + cdate1 + "') and cdate(Projects.ReceiveDate) <= cdate('" + cdate2 + "')"
+self:filter := "cdate("+ self:ProjectsTable+".ReceiveDate) >= cdate('" + cdate1 + "') and cdate("+self:ProjectsTable+".ReceiveDate) <= cdate('" + cdate2 + "')"
 ELSE
 self:filter := "1 = 1"
 ENDIF
-tvalue2 := ProjectProcessesReportWindow.Check2.Value
+tvalue2 := &(self:cWindowName).Check2.Value
 IF tvalue2 = true
 IF tvalue = true
 self:filter := self:filter + " and "
 ELSE
 self:filter := ""
 ENDIF
-cOrderNumber := ProjectProcessesReportWindow.text1.Value
+cOrderNumber := &(self:cWindowName).text1.Value
 cOrderNumber = ALLTRIM ( cOrderNumber )
-self:filter := self:filter + " Projects.ID = " + cordernumber
+self:filter := self:filter + " " + self:ProjectsTable + ".ID = " + cordernumber
 ENDIF
 Return 0
 

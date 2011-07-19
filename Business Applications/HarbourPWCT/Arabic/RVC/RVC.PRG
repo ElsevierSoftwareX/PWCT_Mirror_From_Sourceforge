@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:59:09    Date : 07/19/2011
+* Time : 06:13:28    Date : 07/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -156,6 +156,10 @@ ProjectProcessesObject2:cWindowName := "ProjectProcessesWindow2"
 ProjectProcessesObject2:ProjectsTable := "Projects2"
 ProjectProcessesObject2:ProcessTable := "Process2"
 ProjectProcessesObject2:ProcessStatusTable := "ProcessStatus2"
+ProjectProcessesReportObject2 = ProjectProcessesReportClass()
+ProjectProcessesReportObject2:ReportName := "ProjectProcesses2"
+ProjectProcessesReportObject2:cWindowName := "ProjectProcessesReportWindow2"
+ProjectProcessesReportObject2:ProjectsTable := "Projects2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -209,6 +213,10 @@ ProjectProcessesObject3:cWindowName := "ProjectProcessesWindow3"
 ProjectProcessesObject3:ProjectsTable := "Projects3"
 ProjectProcessesObject3:ProcessTable := "Process3"
 ProjectProcessesObject3:ProcessStatusTable := "ProcessStatus3"
+ProjectProcessesReportObject3 = ProjectProcessesReportClass()
+ProjectProcessesReportObject3:ReportName := "ProjectProcesses3"
+ProjectProcessesReportObject3:cWindowName := "ProjectProcessesReportWindow3"
+ProjectProcessesReportObject3:ProjectsTable := "Projects3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -262,6 +270,10 @@ ProjectProcessesObject4:cWindowName := "ProjectProcessesWindow4"
 ProjectProcessesObject4:ProjectsTable := "Projects4"
 ProjectProcessesObject4:ProcessTable := "Process4"
 ProjectProcessesObject4:ProcessStatusTable := "ProcessStatus4"
+ProjectProcessesReportObject4 = ProjectProcessesReportClass()
+ProjectProcessesReportObject4:ReportName := "ProjectProcesses4"
+ProjectProcessesReportObject4:cWindowName := "ProjectProcessesReportWindow4"
+ProjectProcessesReportObject4:ProjectsTable := "Projects4"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -436,7 +448,7 @@ MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject2:showwindow()
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject2:showwindow()
 SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject2:showwindow()
-MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject2:showwindow()
 SEPARATOR
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
 ENDIF
@@ -460,7 +472,7 @@ MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject3:showwindow()
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject3:showwindow()
 SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject3:showwindow()
-MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject3:showwindow()
 SEPARATOR
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
 ENDIF
@@ -484,7 +496,7 @@ MENUITEM " ⁄—Ì› «·«Ã—«¡« " Action ProcessesObject4:showwindow()
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject4:showwindow()
 SEPARATOR
 MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject4:showwindow()
-MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject4:showwindow()
 SEPARATOR
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
 ENDIF
