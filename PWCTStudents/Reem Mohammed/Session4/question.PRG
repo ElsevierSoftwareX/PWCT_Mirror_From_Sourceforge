@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:27:21    Date : 07/26/2011
+* Time : 06:33:41    Date : 07/26/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -33,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_RECTANGULAR_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_QUESTION_15speed1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -48,14 +48,14 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_RECTANGULAR_15speed1() code
+Resistance R_QUESTION_15speed1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 579 ;
 HEIGHT 557 ;
 ICON "PWCTICON" ;
-TITLE "Qustion" ;
+TITLE "Question" ;
 MAIN ;
 TOPMOST ;
 NOMAXIMIZE ;
@@ -98,7 +98,7 @@ Return Nil
 
 End Of Resistance
 
-INIT PROCEDURE Init_RECTANGULAR
+INIT PROCEDURE Init_QUESTION
 START DOUBLES
 Return
 *-------------------------------------------------------------------*
