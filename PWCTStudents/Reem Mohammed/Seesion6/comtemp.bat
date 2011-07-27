@@ -1,0 +1,1 @@
+CALL sscom2.bat  "COPY"  /X /l calldll  > _temp.txt
