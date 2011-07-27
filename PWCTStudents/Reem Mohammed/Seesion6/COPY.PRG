@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:26:43    Date : 07/27/2011
+* Time : 15:34:58    Date : 07/27/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -96,7 +96,7 @@ WIDTH 130 HEIGHT 48 ;
 FONT "Jokerman" SIZE 22 ;
 TOOLTIP ""
 @ 75 ,293 BUTTONEX btnD;
-CAPTION "Delet";
+CAPTION "Delete";
 FONTCOLOR {255,0,128};
 ON CLICK mydelet()  ;
 WIDTH 123 HEIGHT 50 ;
