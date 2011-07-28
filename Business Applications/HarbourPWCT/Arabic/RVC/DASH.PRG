@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:07:19    Date : 07/19/2011
+* Time : 08:59:32    Date : 07/28/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -88,7 +88,7 @@ NOSIZE ;
 BACKCOLOR {255,255,255}
 
 @ 335 ,589 IMAGE imagedownsel1;
-PICTURE "image\downsel.jpg";
+PICTURE GetStartUpFolder()+"\image\downsel.jpg";
 STRETCH ;
 WIDTH 55 HEIGHT 48
 self:oActiveX := TActiveX():New( self:cWindowName, "RMChart.RMChartX" , 10 , 476 , 270 , 140)
@@ -105,23 +105,23 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 418 ,570 IMAGE image1;
-PICTURE "image\c1.jpg";
+PICTURE GetStartUpFolder()+"\image\c1.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 418 ,189 IMAGE image2;
-PICTURE "image\c2.jpg";
+PICTURE GetStartUpFolder()+"\image\c2.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 418 ,443 IMAGE image3;
-PICTURE "image\c3.jpg";
+PICTURE GetStartUpFolder()+"\image\c3.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 418 ,316 IMAGE image4;
-PICTURE "image\c4.jpg";
+PICTURE GetStartUpFolder()+"\image\c4.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 418 ,62 IMAGE image5;
-PICTURE "image\c5.jpg";
+PICTURE GetStartUpFolder()+"\image\c5.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 390 ,591 LABEL lbl1 ;
@@ -290,7 +290,7 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 146 ,477 IMAGE imageperformance;
-PICTURE "Image\performance.jpg";
+PICTURE GetStartUpFolder()+"\Image\performance.jpg";
 STRETCH ;
 WIDTH 270 HEIGHT 116
 DEFINE TIMER Timer2 INTERVAL 5000 ;

@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 17:06:16    Date : 07/11/2011
+* Time : 08:58:32    Date : 07/28/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -86,7 +84,7 @@ NOSIZE ;
 BACKCOLOR {64,0,64}
 
 @ 40 ,5 IMAGE image1;
-PICTURE "Image\back.jpg";
+PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 780 HEIGHT 500
 @ 205 ,26 BUTTONEX btnClose;

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:18:02    Date : 07/19/2011
+* Time : 08:58:06    Date : 07/28/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -100,7 +100,7 @@ NOSIZE ;
 BACKCOLOR {64,0,64}
 
 @ 45 ,5 IMAGE image1;
-PICTURE "Image\back.jpg";
+PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 870 HEIGHT 430
 @ 485 ,437 BUTTONEX btnFirst;
