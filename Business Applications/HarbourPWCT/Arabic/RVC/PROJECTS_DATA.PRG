@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:18:46    Date : 07/29/2011
+* Time : 12:37:25    Date : 07/29/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -295,7 +295,7 @@ RIGHTALIGN ;
 FONTCOLOR {0,0,0}
 
 @ 453 ,963 LABEL lbldatereceived ;
-VALUE " «—ÌŒ «·«” Ì·«„" ;
+VALUE " «—ÌŒ «·«” ·«„" ;
 WIDTH 110 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
@@ -316,7 +316,7 @@ FONTCOLOR {0,0,0}
 CAPTION " «—ÌŒ «·«‰ Â«¡";
 WIDTH 120;
 Height 30;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
 @ 491 ,260 BUTTONEX btnAttachCheck;
