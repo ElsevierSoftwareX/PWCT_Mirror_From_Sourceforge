@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:04:14    Date : 07/19/2011
+* Time : 12:18:46    Date : 07/29/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -42,6 +42,7 @@ Data WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
 Data PermissionID init 83
 Data ReportName init "Projects"
 Data ReportWindowName init "ProjectsReportWindow"
+Data checkboxdatecomplete init false
 Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"stage","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
@@ -306,18 +307,17 @@ WIDTH 150 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 453 ,668 LABEL lbldatecomplete ;
-VALUE " «—ÌŒ «·«‰ Â«¡" ;
-WIDTH 100 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
 @ 453 ,468 DATEPICKER dateComplete;
 WIDTH 180 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 452 ,657 CHECKBOX checkboxDateComplete;
+CAPTION " «—ÌŒ «·«‰ Â«¡";
+WIDTH 120;
+Height 30;
+FONT "arial" SIZE 14 ;
+BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
 @ 491 ,260 BUTTONEX btnAttachCheck;
 CAPTION " Õ„Ì· «·„—›ﬁ« ";
@@ -476,6 +476,7 @@ self:cEmail := &(self:cWindowName).texteMail.Value
 self:cMobile := &(self:cWindowName).textMobile.Value
 self:nStage := &(self:cWindowName).ComboStage.Value
 self:nStage := self:StageItemsids[self:nStage]
+self:CheckBoxDateComplete := &(self:cWindowName).CheckBoxDateComplete.Value
 Return 0
 Method Class2ADO Class ProjectsClass
 self:oRS:fields:item("ProjectName"):value := self:cProjectName
@@ -483,7 +484,6 @@ self:oRS:fields:item("ProjectOwner"):value := self:cProjectOwner
 self:oRS:fields:item("OwnerLocation"):value := self:cOwnerLocation
 self:oRS:fields:item("Keywords"):value := self:cKeywords
 self:oRS:fields:item("DateReceived"):value := self:cDateReceived
-self:oRS:fields:item("DateComplete"):value := self:cDateComplete
 self:oRS:fields:item("attachment"):value := self:cAttachment
 self:oRS:fields:item("filename"):value := Self:cFilename
 self:oRS:fields:item("attachment2"):value := self:cAttachment2
@@ -491,6 +491,12 @@ self:oRS:fields:item("filename2"):value := Self:cFilename2
 self:oRS:fields:item("eMail"):value := self:cEmail
 self:oRS:fields:item("Mobile"):value := self:cMobile
 self:oRS:fields:item("stageid"):value := self:nstage
+self:oRS:fields:item("checkboxdatecomplete"):value := self:CheckboxDateComplete
+IF self:checkboxdatecomplete = true
+self:oRS:fields:item("DateComplete"):value := self:cDateComplete
+ELSE
+self:oRS:fields:item("DateComplete"):value := ""
+ENDIF
 Return 0
 Method ADO2Class Class ProjectsClass
 self:cProjectName := self:oRS:fields:item("ProjectName"):value
@@ -507,6 +513,7 @@ Self:cEmail := self:oRS:fields:item("eMail"):value
 Self:cMobile := self:oRS:fields:item("Mobile"):value
 self:nStage := self:oRS:fields:item("StageID"):value
 self:nID := self:oRS:fields:item("ID"):value
+self:CheckBoxDateComplete := self:oRS:fields:item("CheckBoxDateComplete"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 &(self:cWindowName).textProjectName.Value := self:cProjectName
@@ -514,13 +521,16 @@ Method Class2UserInterface Class ProjectsClass
 &(self:cWindowName).textOwnerLocation.Value := self:cOwnerLocation
 &(self:cWindowName).textKeywords.Value := self:cKeywords
 &(self:cWindowName).dateReceived.Value := ctod(self:cDateReceived)
-&(self:cWindowName).dateComplete.Value := ctod(self:cDateComplete)
 &(self:cWindowName).textFileName.Value := self:cFileName
 &(self:cWindowName).textFileName2.Value := self:cFileName2
 &(self:cWindowName).texteMail.Value := self:cEmail
 &(self:cWindowName).textMobile.Value := self:cMobile
 self:nStage = self:LookupIDToIndex(self:nStage,@self:StageItemsids)
 &(self:cWindowName).ComboStage.Value := self:nStage
+&(self:cWindowName).CheckBoxDateComplete.Value := self:CheckBoxDateComplete
+IF self:checkboxdatecomplete = true
+&(self:cWindowName).dateComplete.Value := ctod(self:cDateComplete)
+ENDIF
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
@@ -539,6 +549,7 @@ self:cFileName2 := ""
 self:cAttachment2 := ""
 self:cEmail := ""
 self:cMobile := ""
+self:CheckBoxDateComplete := False
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
@@ -588,6 +599,7 @@ IF p1 = 1
 &(self:cWindowName).texteMail.Enabled := True
 &(self:cWindowName).textMobile.Enabled := True
 &(self:cWindowName).ComboStage.Enabled := True
+&(self:cWindowName).CheckBoxDateComplete.Enabled := true
 ENDIF
 IF p1 = 2
 &(self:cWindowName).btnfirst.Enabled := true
@@ -619,6 +631,7 @@ IF p1 = 2
 &(self:cWindowName).texteMail.Enabled := False
 &(self:cWindowName).textMobile.Enabled := False
 &(self:cWindowName).ComboStage.Enabled := False
+&(self:cWindowName).CheckBoxDateComplete.Enabled := false
 ENDIF
 self:OperationMode := p1
 Return 0
