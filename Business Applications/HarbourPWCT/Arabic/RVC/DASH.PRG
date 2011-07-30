@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:13:05    Date : 07/30/2011
+* Time : 07:12:27    Date : 07/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -61,8 +61,12 @@ Data oActiveX2 init 0
 Data cWindowTitle init "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
 Data PermissionID init 96
 Data C6 init 0
+Data P6 init 0
 Data C7 init 0
+Data P7 init 0
 Data C8 init 0
+Data P8 init 0
+Data TotalCount1 init 0
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -315,6 +319,20 @@ FONTCOLOR {0,0,0}
 PICTURE GetStartUpFolder()+"\image\c6.jpg";
 STRETCH ;
 WIDTH 80 HEIGHT 70
+@ 514 ,970 TEXTBOX textfirstget;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
+@ 545 ,970 TEXTBOX textfirstgetper;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
 @ 409 ,874 LABEL lblrefuse ;
 VALUE "„—›Ê÷" ;
 WIDTH 70 ;
@@ -327,6 +345,20 @@ FONTCOLOR {0,0,0}
 PICTURE GetStartUpFolder()+"\image\c7.jpg";
 STRETCH ;
 WIDTH 80 HEIGHT 70
+@ 514 ,865 TEXTBOX textrefuse;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
+@ 545 ,865 TEXTBOX textrefuseper;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
 @ 378 ,14 LABEL lblinvest ;
 VALUE "    «·«Õ ÷«‰ «·≈” À„«—Ì ··„‰ Ã" ;
 WIDTH 200 ;
@@ -338,6 +370,20 @@ FONTCOLOR {255,255,255}
 PICTURE GetStartUpFolder()+"\image\c8.jpg";
 STRETCH ;
 WIDTH 197 HEIGHT 96
+@ 514 ,75 TEXTBOX textinvest;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
+@ 545 ,75 TEXTBOX textinvestper;
+HEIGHT 30 ;
+WIDTH 70 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
 @ 378 ,1074 LABEL lblthestage ;
 VALUE "     «·„—Õ·…" ;
 WIDTH 100 ;
@@ -472,13 +518,14 @@ ENDIF
 self:oRS:MOVENEXT()
 Next
 myout = self:Disconnect()
-self:TotalCount := self:c1 + self:c2 + self:c3 + self:c4 + self:c5
-self:TotalCount2 := self:c2 + self:c3 + self:c4 + self:c5
-self:TotalCount3 := self:c3 + self:c4 + self:c5
-self:TotalCount4 := self:c4 + self:c5
+self:TotalCount := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c6 + self:c7 + self:c8
+self:TotalCount2 := self:c2 + self:c3 + self:c4 + self:c5 + self:c7
+self:TotalCount3 := self:c3 + self:c4 + self:c5 + self:c7
+self:TotalCount4 := self:c4 + self:c5 + self:c7
 self:Tp2 := (self:c2/self:totalcount2)*100
 self:Tp3 := (self:c3/self:totalcount3)*100
 self:Tp4 := (self:c4/self:totalcount4)*100
+self:TotalCount1 := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c7
 self:p1 := (self:c1/self:totalcount)*100
 self:p2 := (self:c2/self:totalcount)*100
 self:p3 := (self:c3/self:totalcount)*100
@@ -504,8 +551,23 @@ SELF:P2 = ALLTRIM ( SELF:P2 )
 SELF:P3 = ALLTRIM ( SELF:P3 )
 SELF:P4 = ALLTRIM ( SELF:P4 )
 SELF:P5 = ALLTRIM ( SELF:P5 )
+self:p6 := (self:c6/self:totalcount)*100
+self:C6 = STR ( self:c6 )
+self:P6 = STR ( self:P6 )
+SELF:C6 = ALLTRIM ( SELF:C6 )
+SELF:P6 = ALLTRIM ( SELF:P6 )
+self:p7 := (self:c7/self:totalcount)*100
+self:C7 = STR ( self:c7 )
+self:P7 = STR ( self:P7 )
+SELF:C7 = ALLTRIM ( SELF:C7 )
+SELF:P7 = ALLTRIM ( SELF:P7 )
+self:p8 := (self:c8/self:totalcount)*100
+self:C8 = STR ( self:c8 )
+self:P8 = STR ( self:P8 )
+SELF:C8 = ALLTRIM ( SELF:C8 )
+SELF:P8 = ALLTRIM ( SELF:P8 )
 oldDataString := self:DataString
-self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5
+self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5+"*"+self:c7+"*"+self:c6+"*"+self:c8
 IF self:DataString == OldDataString
 Return False
 ENDIF
@@ -521,6 +583,12 @@ self:TotalCount = STR ( self:TotalCount )
 &(self:cWindowName).ptext3.Value := self:p3
 &(self:cWindowName).ptext4.Value := self:p4
 &(self:cWindowName).ptext5.Value := self:p5
+&(self:cWindowName).textFirstGet.Value := self:c6
+&(self:cWindowName).textFirstGetPer.Value := self:p6
+&(self:cWindowName).textInvest.Value := self:c7
+&(self:cWindowName).textInvestPer.Value := self:p7
+&(self:cWindowName).textRefuse.Value := self:c8
+&(self:cWindowName).textRefusePer.Value := self:p8
 Return True
 Method UpdateDash Class DashClass
 myout = self:ClearData()
@@ -582,6 +650,12 @@ self:c2 := 0
 self:c3 := 0
 self:c4 := 0
 self:c5 := 0
+self:C6 := 0
+self:C7 := 0
+self:C8 := 0
+self:P6 := 0
+self:P7 := 0
+self:P8 := 0
 Return 0
 
 
