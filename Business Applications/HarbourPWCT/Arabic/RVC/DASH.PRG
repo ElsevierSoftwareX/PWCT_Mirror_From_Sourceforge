@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:59:32    Date : 07/28/2011
+* Time : 04:53:18    Date : 07/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -78,7 +78,7 @@ if !iswindowdefined( &(self:cWindowName) )
 DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 859 ;
-HEIGHT 653 ;
+HEIGHT 658 ;
 ICON "PWCTICON" ;
 TITLE self:cWindowTitle ;
 CHILD ;
@@ -95,7 +95,7 @@ self:oActiveX := TActiveX():New( self:cWindowName, "RMChart.RMChartX" , 10 , 476
 self:oActiveX:Load()
 DEFINE TIMER Timer1 INTERVAL 200 ;
 Action self:mytimer()
-@ 570 ,332 BUTTONEX btnClose;
+@ 580 ,332 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {150,252,196};
@@ -104,43 +104,43 @@ WIDTH 196 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 418 ,570 IMAGE image1;
+@ 438 ,570 IMAGE image1;
 PICTURE GetStartUpFolder()+"\image\c1.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 418 ,189 IMAGE image2;
+@ 438 ,189 IMAGE image2;
 PICTURE GetStartUpFolder()+"\image\c2.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 418 ,443 IMAGE image3;
+@ 438 ,443 IMAGE image3;
 PICTURE GetStartUpFolder()+"\image\c3.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 418 ,316 IMAGE image4;
+@ 438 ,316 IMAGE image4;
 PICTURE GetStartUpFolder()+"\image\c4.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 418 ,62 IMAGE image5;
+@ 438 ,62 IMAGE image5;
 PICTURE GetStartUpFolder()+"\image\c5.jpg";
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 390 ,591 LABEL lbl1 ;
-VALUE "«·Õ«÷‰…" ;
+@ 410 ,584 LABEL lbl1 ;
+VALUE "«· ﬁÌÌ„ «·›‰Ï" ;
 WIDTH 70 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 390 ,461 LABEL lbl2 ;
-VALUE "«·«” À„«—" ;
-WIDTH 80 ;
+@ 409 ,438 LABEL lbl2 ;
+VALUE "«· ﬁÌÌ„ «·«” À„«—Ì" ;
+WIDTH 120 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 390 ,325 LABEL lbl3 ;
+@ 410 ,325 LABEL lbl3 ;
 VALUE "„—Õ·…  ‰›Ì– 1" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -148,7 +148,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 390 ,199 LABEL lbl4 ;
+@ 410 ,199 LABEL lbl4 ;
 VALUE "„—Õ·…  ‰›Ì– 2" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -156,7 +156,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 390 ,71 LABEL lbl5 ;
+@ 410 ,71 LABEL lbl5 ;
 VALUE "„—Õ·…  ‰›Ì– 3" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -166,70 +166,70 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 self:oActiveX2 := TActiveX():New( self:cWindowName, "RMChart.RMChartX" , 10 , 52 , 370 , 282)
 self:oActiveX2:Load()
-@ 494 ,585 TEXTBOX text1;
+@ 514 ,585 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 494 ,459 TEXTBOX text2;
+@ 514 ,459 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 494 ,332 TEXTBOX text3;
+@ 514 ,332 TEXTBOX text3;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 494 ,206 TEXTBOX text4;
+@ 514 ,206 TEXTBOX text4;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 494 ,77 TEXTBOX text5;
+@ 514 ,77 TEXTBOX text5;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 525 ,585 TEXTBOX ptext1;
+@ 545 ,585 TEXTBOX ptext1;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 525 ,459 TEXTBOX ptext2;
+@ 545 ,459 TEXTBOX ptext2;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 524 ,332 TEXTBOX ptext3;
+@ 544 ,332 TEXTBOX ptext3;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 526 ,206 TEXTBOX ptext4;
+@ 546 ,206 TEXTBOX ptext4;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 524 ,77 TEXTBOX ptext5;
+@ 544 ,77 TEXTBOX ptext5;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
@@ -250,7 +250,7 @@ FONT "arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 491 ,688 LABEL tlbl1 ;
+@ 511 ,688 LABEL tlbl1 ;
 VALUE "⁄œœ «·„‘«—Ì⁄" ;
 WIDTH 100 ;
 HEIGHT 40 ;
@@ -258,7 +258,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 529 ,687 LABEL tlbl2 ;
+@ 549 ,687 LABEL tlbl2 ;
 VALUE "‰”»… «·„‘«—Ì⁄" ;
 WIDTH 100 ;
 HEIGHT 40 ;
@@ -295,6 +295,13 @@ STRETCH ;
 WIDTH 270 HEIGHT 116
 DEFINE TIMER Timer2 INTERVAL 5000 ;
 Action self:UpdateDash()
+@ 378 ,60 LABEL tlblstages ;
+VALUE "                      «Õ ÷«‰ «· ÿÊÌ— ··„‰ Ã" ;
+WIDTH 360 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {64,0,64} ;
+FONTCOLOR {255,255,255}
 END WINDOW
 
 &(self:cWindowName).timer1.Enabled := false
@@ -395,15 +402,15 @@ MYMAX := SELF:oRS:RecordCount
 FOR x = 1 TO MYMAX STEP 1
 nStage := self:oRS:fields:item("StageID"):value
 nCount := self:oRS:fields:item("MyCount"):value
-IF nStage = 2
+IF nStage = 3
 self:c1 := nCount
-ELSEIF nStage = 3
-self:c2 := nCount
 ELSEIF nStage = 4
-self:c3 := nCount
+self:c2 := nCount
 ELSEIF nStage = 5
-self:c4 := nCount
+self:c3 := nCount
 ELSEIF nStage = 6
+self:c4 := nCount
+ELSEIF nStage = 7
 self:c5 := nCount
 ENDIF
 self:oRS:MOVENEXT()
