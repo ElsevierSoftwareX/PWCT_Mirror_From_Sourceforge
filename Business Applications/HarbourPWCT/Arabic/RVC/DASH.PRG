@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:12:27    Date : 07/30/2011
+* Time : 08:43:59    Date : 07/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -67,6 +67,7 @@ Data P7 init 0
 Data C8 init 0
 Data P8 init 0
 Data TotalCount1 init 0
+Data TP1 init 0
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -526,6 +527,7 @@ self:Tp2 := (self:c2/self:totalcount2)*100
 self:Tp3 := (self:c3/self:totalcount3)*100
 self:Tp4 := (self:c4/self:totalcount4)*100
 self:TotalCount1 := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c7
+self:Tp1 := (self:c1/self:totalcount1)*100
 self:p1 := (self:c1/self:totalcount)*100
 self:p2 := (self:c2/self:totalcount)*100
 self:p3 := (self:c3/self:totalcount)*100
@@ -602,7 +604,7 @@ IF self:activeperformance = 5
 self:ActivePerformance := 1
 ENDIF
 IF self:ActivePerformance = 1
-Self:LinePer := 100 - val(self:p1)
+Self:LinePer := 100 - self:TP1
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := self:lineper + "*0*0*0*0*" + self:p1
