@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:44:53    Date : 07/30/2011
+* Time : 03:23:27    Date : 07/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,7 +43,7 @@ Data ReviewersTable init "Reviewers"
 Data nID init 0
 Data column init "ProjectName"
 Data PrimaryKey init "id"
-Data columns init {"Recommend","ReviewText","ReviewDate","f_name","ProjectName","ID"}
+Data columns init {"Recommend","f_name","ProjectName","ID"}
 Data nProject init 0
 Data Projectitems init {}
 Data Projectitemsids init {}
@@ -54,7 +54,7 @@ Data cReviewDate init ""
 Data cReviewText init ""
 Data cAttachment init ""
 Data cFileName init ""
-Data FindTitles init {"«· Ê’Ì…","‰’ «·„—«Ã⁄…"," «—ÌŒ «·„—«Ã⁄…","«”„ «·„—«Ã⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„—«Ã⁄…"}
+Data FindTitles init {"«· Ê’Ì…","«”„ «·„—«Ã⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„—«Ã⁄…"}
 Data nRecommend init 0
 Data Recommenditems init {}
 Data Recommenditemsids init {}
@@ -206,18 +206,18 @@ ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1030 ;
 HEIGHT 290 ;
 HEADERS self:FindTitles;
-WIDTHS {150,150,150,200,250,100} ;
-FONT "Arial" SIZE 14 ;
+WIDTHS {300,200,400,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 51 ,753 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
 WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:FindTitles ;
-VALUE 5 ;
-FONT "Arial" SIZE 14 ;
+VALUE 3 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
