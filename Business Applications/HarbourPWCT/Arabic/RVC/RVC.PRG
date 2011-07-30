@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:23:34    Date : 07/30/2011
+* Time : 03:32:13    Date : 07/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -456,11 +456,11 @@ SEPARATOR
 ENDIF
 END POPUP
 POPUP "«Ã—«¡«  «·„‘«—Ì⁄"
-IF UsersObject:CheckPermission(90)
-MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
+IF UsersObject:CheckPermission(94)
+MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(91)
-MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
+IF UsersObject:CheckPermission(95)
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
 SEPARATOR
 ENDIF
 IF UsersObject:CheckPermission(92)
@@ -470,11 +470,11 @@ IF UsersObject:CheckPermission(93)
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject:showwindow()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(94)
-MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject:showwindow()
+IF UsersObject:CheckPermission(90)
+MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(95)
-MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject:showwindow()
+IF UsersObject:CheckPermission(91)
+MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject:showwindow()
 SEPARATOR
 ENDIF
 END POPUP
@@ -516,11 +516,11 @@ SEPARATOR
 ENDIF
 END POPUP
 POPUP "«Ã—«¡«  «·„‘«—Ì⁄"
-IF UsersObject:CheckPermission(104)
-MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject2:showwindow()
+IF UsersObject:CheckPermission(108)
+MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject2:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(105)
-MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject2:showwindow()
+IF UsersObject:CheckPermission(109)
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject2:showwindow()
 SEPARATOR
 ENDIF
 IF UsersObject:CheckPermission(106)
@@ -530,11 +530,11 @@ IF UsersObject:CheckPermission(107)
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject2:showwindow()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(108)
-MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject2:showwindow()
+IF UsersObject:CheckPermission(104)
+MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject2:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(109)
-MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject2:showwindow()
+IF UsersObject:CheckPermission(105)
+MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject2:showwindow()
 SEPARATOR
 ENDIF
 END POPUP
@@ -576,11 +576,11 @@ SEPARATOR
 ENDIF
 END POPUP
 POPUP "«Ã—«¡«  «·„‘«—Ì⁄"
-IF UsersObject:CheckPermission(118)
-MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject3:showwindow()
+IF UsersObject:CheckPermission(122)
+MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject3:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(119)
-MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject3:showwindow()
+IF UsersObject:CheckPermission(123)
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject3:showwindow()
 SEPARATOR
 ENDIF
 IF UsersObject:CheckPermission(120)
@@ -590,11 +590,11 @@ IF UsersObject:CheckPermission(121)
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject3:showwindow()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(122)
-MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject3:showwindow()
+IF UsersObject:CheckPermission(118)
+MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject3:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(123)
-MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject3:showwindow()
+IF UsersObject:CheckPermission(119)
+MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject3:showwindow()
 SEPARATOR
 ENDIF
 END POPUP
@@ -636,11 +636,11 @@ SEPARATOR
 ENDIF
 END POPUP
 POPUP "«Ã—«¡«  «·„‘«—Ì⁄"
-IF UsersObject:CheckPermission(132)
-MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject4:showwindow()
+IF UsersObject:CheckPermission(136)
+MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject4:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(133)
-MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject4:showwindow()
+IF UsersObject:CheckPermission(137)
+MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject4:showwindow()
 SEPARATOR
 ENDIF
 IF UsersObject:CheckPermission(134)
@@ -650,11 +650,11 @@ IF UsersObject:CheckPermission(135)
 MENUITEM " ﬁ—Ì— »«·«Ã—«¡« " Action ProcessesReportObject4:showwindow()
 SEPARATOR
 ENDIF
-IF UsersObject:CheckPermission(136)
-MENUITEM "«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesObject4:showwindow()
+IF UsersObject:CheckPermission(132)
+MENUITEM "Õ«·«  «·«Ã—«¡« " Action ProcessStatusObject4:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(137)
-MENUITEM " ﬁ—Ì— »«Ã—«¡«  «·„‘«—Ì⁄" Action ProjectProcessesReportObject4:showwindow()
+IF UsersObject:CheckPermission(133)
+MENUITEM " ﬁ—Ì— Õ«·«  «·«Ã—«¡« " Action ProcessStatusReportObject4:showwindow()
 SEPARATOR
 ENDIF
 END POPUP
