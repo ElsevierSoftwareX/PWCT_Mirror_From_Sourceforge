@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:43:59    Date : 07/30/2011
+* Time : 08:51:14    Date : 07/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -607,25 +607,25 @@ IF self:ActivePerformance = 1
 Self:LinePer := 100 - self:TP1
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
-self:PerformanceString := self:lineper + "*0*0*0*0*" + self:p1
+self:PerformanceString := self:lineper + "*0*0*0*0*" + alltrim(str(self:tp1))
 &(self:cWindowName).ImageDownSel1.Col := 759
 ELSEIF self:ActivePerformance = 2
 Self:LinePer := 100 - self:Tp2
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
-self:PerformanceString := "0*" + self:Lineper + "*0*0*0*" + self:p2
+self:PerformanceString := "0*" + self:Lineper + "*0*0*0*" + alltrim(str(self:tp2))
 &(self:cWindowName).ImageDownSel1.Col := 759-130
 ELSEIF self:ActivePerformance = 3
 Self:LinePer := 100 - self:Tp3
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
-self:PerformanceString := "0*0*" + self:lineper + " *0*0*" + self:p3
+self:PerformanceString := "0*0*" + self:lineper + " *0*0*" + alltrim(str(self:tp3))
 &(self:cWindowName).ImageDownSel1.Col := 759-260
 ELSEIF self:ActivePerformance = 4
 Self:LinePer := 100 - self:Tp4
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
-self:PerformanceString := "0*0*0*" + self:lineper + "*0*" + self:p4
+self:PerformanceString := "0*0*0*" + self:lineper + "*0*" + alltrim(str(self:tp4))
 &(self:cWindowName).ImageDownSel1.Col := 759-380
 ELSEIF self:ActivePerformance = 5
 Self:LinePer := 100 - val(self:p5)
