@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:51:14    Date : 07/30/2011
+* Time : 09:03:54    Date : 07/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -68,6 +68,8 @@ Data C8 init 0
 Data P8 init 0
 Data TotalCount1 init 0
 Data TP1 init 0
+Data TotalCount5 init 0
+Data TP5 init 0
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -251,7 +253,7 @@ HEIGHT 30 ;
 BACKCOLOR {255,255,255} ;
 FORECOLOR {0,0,0} ;
 TOOLTIP ""
-@ 300 ,557 TEXTBOX ptext6;
+@ 300 ,485 TEXTBOX ptext6;
 HEIGHT 30 ;
 WIDTH 70 ;
 FONT "arial" SIZE 14 ;
@@ -272,10 +274,10 @@ HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
 FONTCOLOR {255,255,255}
-@ 301 ,634 LABEL tlbl3 ;
-VALUE "‰”»… «·«œ«¡" ;
-WIDTH 100 ;
-HEIGHT 20 ;
+@ 300 ,562 LABEL tlbl3 ;
+VALUE "‰”»… «· —ÕÌ· ··„—«Õ· «· «·Ì…" ;
+WIDTH 190 ;
+HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
@@ -528,6 +530,8 @@ self:Tp3 := (self:c3/self:totalcount3)*100
 self:Tp4 := (self:c4/self:totalcount4)*100
 self:TotalCount1 := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c7
 self:Tp1 := (self:c1/self:totalcount1)*100
+self:TotalCount5 := self:c5 + self:c7
+self:Tp5 := (self:c5/self:totalcount5)*100
 self:p1 := (self:c1/self:totalcount)*100
 self:p2 := (self:c2/self:totalcount)*100
 self:p3 := (self:c3/self:totalcount)*100
@@ -600,7 +604,7 @@ self:oactivex2:OOLE:region(1):gridlessseries:DataString := self:datastring
 self:oactivex2:OOLE:draw ( .T. )
 ENDIF
 self:ActivePerformance := self:ActivePerformance+1
-IF self:activeperformance = 5
+IF self:activeperformance = 6
 self:ActivePerformance := 1
 ENDIF
 IF self:ActivePerformance = 1
@@ -628,10 +632,10 @@ Self:LinePer = ALLTRIM ( self:LinePer )
 self:PerformanceString := "0*0*0*" + self:lineper + "*0*" + alltrim(str(self:tp4))
 &(self:cWindowName).ImageDownSel1.Col := 759-380
 ELSEIF self:ActivePerformance = 5
-Self:LinePer := 100 - val(self:p5)
+Self:LinePer := 100 - self:tp5
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
-self:PerformanceString := "*0*0*0*0*" + self:lineper + "*" + self:p5
+self:PerformanceString := "*0*0*0*0*" + self:lineper + "*" + alltrim(str(self:tp5))
 &(self:cWindowName).ImageDownSel1.Col := 759-500
 ENDIF
 self:oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
