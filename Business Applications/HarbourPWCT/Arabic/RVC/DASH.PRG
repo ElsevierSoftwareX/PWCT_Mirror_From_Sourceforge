@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:41:56    Date : 07/30/2011
+* Time : 14:06:45    Date : 07/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -753,7 +753,7 @@ ELSEIF self:ActivePerformance = 5
 Self:LinePer := 100 - self:tp5
 Self:LinePer = STR ( self:LinePer )
 Self:LinePer = ALLTRIM ( self:LinePer )
-self:PerformanceString := "*0*0*0*0*" + self:lineper + "*" + alltrim(str(self:tp5))
+self:PerformanceString := "0*0*0*0*" + self:lineper + "*" + alltrim(str(self:tp5))
 &(self:cWindowName).ImageDownSel1.Col := 759-500
 ENDIF
 self:oactivex:OOLE:region(1):gridlessseries:DataString := self:performancestring
