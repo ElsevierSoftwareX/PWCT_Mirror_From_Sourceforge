@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:39:18    Date : 07/31/2011
+* Time : 15:05:59    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -193,7 +193,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 6 ,183 LABEL lblTitle ;
 VALUE "                                                                  «·„‘«—Ì⁄" ;
-WIDTH 750 ;
+WIDTH 530 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -449,7 +449,7 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 myout = RightToLeftControl ( self:cWindowName,"comboStage" )
-@ 5 ,943 BUTTONEX btnPrint2;
+@ 5 ,718 BUTTONEX btnPrint2;
 CAPTION "ÿ»«⁄… »Ì«‰«  «·„‘«—Ì⁄";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -458,6 +458,14 @@ WIDTH 173 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
+@ 8 ,894 COMBOBOX comboPrint;
+WIDTH 220 ;
+HEIGHT 300;
+ITEMS {"’›Õ… ·ﬂ· „‘—Ê⁄","«ﬂÀ— „‰ „‘—Ê⁄ ›Ï «·’›Õ…"} ;
+VALUE 1 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
 END WINDOW
 
 &(self:cWindowName).Center ( )
