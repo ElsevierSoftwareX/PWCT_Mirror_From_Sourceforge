@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:37:25    Date : 07/29/2011
+* Time : 09:53:18    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -45,7 +45,7 @@ Data ReportWindowName init "ProjectsReportWindow"
 Data checkboxdatecomplete init false
 Data column init "projectname"
 Data PrimaryKey init "id"
-Data columns init {"stage","datecomplete","datereceived","ownerlocation","projectowner","projectname","ID"}
+Data columns init {"stage","projectowner","projectname","ID"}
 Data FindTitles init {"«·„—Õ·…","«·ÃÊ«·","«·»—Ìœ «·«·ﬂ —Ê‰Ï","ﬂ·„«  „› «ÕÌ…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"}
 Data cProjectName init ""
 Data cProjectOwner init ""
@@ -215,11 +215,11 @@ TOOLTIP ""
 ON DBLCLICK self:OpenDataWindow  ;
 WIDTH 1090 ;
 HEIGHT 210 ;
-HEADERS {"«·„—Õ·…"," «—ÌŒ «·«‰ Â«¡"," «—ÌŒ «·«” Ì·«„","„Êﬁ⁄ «·„«·ﬂ","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"};
-WIDTHS {170,120,120,150,190,210,100} ;
-FONT "Arial" SIZE 14 ;
+HEADERS {"«·„—Õ·…","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"};
+WIDTHS {260,290,410,100} ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-JUSTIFY {1,1,1,1,1,1,1} ;
+JUSTIFY {1,1,1,1} ;
 FONTCOLOR {0,0,0}
 @ 53 ,785 COMBOBOX comboFind;
 ON CHANGE self:CheckFind()  ;
