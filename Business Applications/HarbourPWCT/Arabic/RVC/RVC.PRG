@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:59:07    Date : 07/31/2011
+* Time : 11:33:33    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -110,7 +110,6 @@ ProjectsObject2:TableName := "Projects_All2"
 ProjectsObject2:SubTable1 := "ProjectProcesses2"
 ProjectsObject2:SubTable2 := "ProjectReviews2"
 ProjectsObject2:WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
-ProjectsObject2:PermissionID := 83
 ProjectsObject2:ReportName := "Projects2"
 ProjectsObject2:ReportWindowName := "Projects2ReportWindow"
 ListofProjectsReportObject2 = ListofProjectsReportClass()
@@ -176,7 +175,6 @@ ProjectsObject3:TableName := "Projects_All3"
 ProjectsObject3:SubTable1 := "ProjectProcesses3"
 ProjectsObject3:SubTable2 := "ProjectReviews3"
 ProjectsObject3:WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
-ProjectsObject3:PermissionID := 83
 ProjectsObject3:ReportName := "Projects3"
 ProjectsObject3:ReportWindowName := "Projects3ReportWindow"
 ListofProjectsReportObject3 = ListofProjectsReportClass()
@@ -242,7 +240,6 @@ ProjectsObject4:TableName := "Projects_All4"
 ProjectsObject4:SubTable1 := "ProjectProcesses4"
 ProjectsObject4:SubTable2 := "ProjectReviews4"
 ProjectsObject4:WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·‰”«∆Ì…"
-ProjectsObject4:PermissionID := 83
 ProjectsObject4:ReportName := "Projects4"
 ProjectsObject4:ReportWindowName := "Projects4ReportWindow"
 ListofProjectsReportObject4 = ListofProjectsReportClass()

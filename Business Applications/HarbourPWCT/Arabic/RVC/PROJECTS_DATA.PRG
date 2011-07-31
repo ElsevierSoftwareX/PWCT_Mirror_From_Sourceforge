@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:53:18    Date : 07/31/2011
+* Time : 11:32:57    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -39,7 +39,6 @@ Data TableName init "projects_all"
 Data SubTable1 init "projectprocesses"
 Data SubTable2 init "projectreviews"
 Data WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
-Data PermissionID init 83
 Data ReportName init "Projects"
 Data ReportWindowName init "ProjectsReportWindow"
 Data checkboxdatecomplete init false
