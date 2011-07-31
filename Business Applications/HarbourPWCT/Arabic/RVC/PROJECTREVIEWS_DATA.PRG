@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:23:27    Date : 07/30/2011
+* Time : 19:55:39    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -58,6 +58,7 @@ Data FindTitles init {"«· Ê’Ì…","«”„ «·„—«Ã⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„—«Ã⁄…"}
 Data nRecommend init 0
 Data Recommenditems init {}
 Data Recommenditemsids init {}
+Data CheckBoxReviewDate init false
 Method showwindow
 Method closewindow
 Method SetMode
@@ -87,7 +88,7 @@ myout = self:AutoGotoRecord()
 if !iswindowdefined( &(self:cWindowName) )
 DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
-WIDTH 1073 ;
+WIDTH 1066 ;
 HEIGHT 665 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
@@ -98,7 +99,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64}
 
-@ 42 ,3 IMAGE image1;
+@ 42 ,2 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
 WIDTH 1050 HEIGHT 540
@@ -180,7 +181,7 @@ ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 7 ,144 LABEL lblTitle ;
+@ 7 ,143 LABEL lblTitle ;
 VALUE "                                                                       „—«Ã⁄… «·„‘«—Ì⁄" ;
 WIDTH 910 ;
 HEIGHT 30 ;
@@ -207,7 +208,7 @@ WIDTH 1030 ;
 HEIGHT 290 ;
 HEADERS self:FindTitles;
 WIDTHS {300,200,400,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -217,13 +218,13 @@ WIDTH 200 ;
 HEIGHT 100;
 ITEMS self:FindTitles ;
 VALUE 3 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = self:LoadLookupTable(self:ProjectsTable,"ProjectName",@self:ProjectItems,"id",@self:ProjectItemsIDS)
-@ 392 ,880 LABEL lblProject ;
+@ 392 ,870 LABEL lblProject ;
 VALUE "«·„‘—Ê⁄" ;
 WIDTH 80 ;
 HEIGHT 30 ;
@@ -231,7 +232,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 392 ,456 COMBOBOX comboproject;
+@ 392 ,446 COMBOBOX comboproject;
 WIDTH 410 ;
 HEIGHT 100;
 ITEMS self:Projectitems ;
@@ -256,7 +257,7 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 471 ,880 LABEL lblReviewText ;
+@ 471 ,870 LABEL lblReviewText ;
 VALUE "‰’ «·„—«Ã⁄…" ;
 WIDTH 90 ;
 HEIGHT 30 ;
@@ -265,7 +266,7 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 465 ,36 EDITBOX textReviewText;
-WIDTH 830 ;
+WIDTH 820 ;
 HEIGHT 70;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
@@ -287,20 +288,19 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 431 ,880 LABEL lblReviewDate ;
-VALUE " «—ÌŒ «” ·«„ «·„—«Ã⁄…" ;
-WIDTH 150 ;
-HEIGHT 30 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {236,233,216} ;
-TRANSPARENT ;
-FONTCOLOR {0,0,0}
-@ 431 ,696 DATEPICKER dateReviewDate;
+@ 431 ,686 DATEPICKER dateReviewDate;
 WIDTH 170 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 DATEFORMAT "dd/MM/yyyy" ;
+FONTCOLOR {0,0,0}
+@ 430 ,870 CHECKBOX checkboxReviewDate;
+CAPTION " «—ÌŒ ≈” ·«„ «·„—«Ã⁄…";
+WIDTH 170;
+Height 30;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
 myout = RightToLeftControl ( self:cWindowName,"comboproject" )
 myout = RightToLeftControl ( Self:cWindowName,"comboreviewer" )
@@ -325,7 +325,7 @@ WIDTH 120 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 544 ,880 LABEL lblattachment ;
+@ 544 ,870 LABEL lblattachment ;
 VALUE "«·„—›ﬁ« " ;
 WIDTH 110 ;
 HEIGHT 30 ;
@@ -335,7 +335,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 544 ,456 TEXTBOX textFileName;
 HEIGHT 30 ;
-WIDTH 410 ;
+WIDTH 400 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
@@ -371,15 +371,21 @@ self:cReviewDate := &(self:cWindowName).dateReviewDate.Value
 self:cReviewDate := dtoc(self:cReviewDate)
 self:nRecommend := &(self:cWindowName).ComboRecommend.Value
 self:nRecommend := self:RecommendItemsids[self:nRecommend]
+self:CheckBoxReviewDate := &(self:cWindowName).CheckBoxReviewDate.Value
 Return 0
 Method Class2ADO Class ProjectReviewsClass
 self:oRS:fields:item("Projectid"):value := self:nProject
 self:oRS:fields:item("Reviewerid"):value := self:nReviewer
 self:oRS:fields:item("ReviewText"):value := self:cReviewText
-self:oRS:fields:item("ReviewDate"):value := self:cReviewDate
 self:oRS:fields:item("attachment"):value := self:cAttachment
 self:oRS:fields:item("filename"):value := Self:cFilename
 self:oRS:fields:item("Recommendid"):value := self:nRecommend
+self:oRS:fields:item("CheckBoxReviewDate"):value := self:CheckBoxReviewDate
+IF self:CheckBoxReviewDate = True
+self:oRS:fields:item("ReviewDate"):value := self:cReviewDate
+ELSE
+self:oRS:fields:item("ReviewDate"):value := ""
+ENDIF
 Return 0
 Method ADO2Class Class ProjectReviewsClass
 self:nProject := self:oRS:fields:item("ProjectID"):value
@@ -389,6 +395,7 @@ self:cReviewDate := self:oRS:fields:item("ReviewDate"):value
 self:cAttachment := self:oRS:fields:item("Attachment"):value
 self:cFileName := self:oRS:fields:item("filename"):value
 self:nRecommend := self:oRS:fields:item("RecommendID"):value
+self:CheckBoxReviewDate := self:oRS:fields:item("CheckBoxReviewDate"):value
 Return 0
 Method Class2UserInterface Class ProjectReviewsClass
 self:nProject = self:LookupIDToIndex(self:nProject,@self:ProjectItemsids)
@@ -396,10 +403,13 @@ self:nProject = self:LookupIDToIndex(self:nProject,@self:ProjectItemsids)
 self:nReviewer = self:LookupIDToIndex(self:nReviewer,@self:ReviewerItemsids)
 &(self:cWindowName).ComboReviewer.Value := self:nReviewer
 &(self:cWindowName).textReviewText.Value := self:cReviewText
-&(self:cWindowName).dateReviewDate.Value := ctod(self:cReviewDate)
 &(self:cWindowName).textFileName.Value := self:cFileName
 self:nRecommend = self:LookupIDToIndex(self:nRecommend,@self:RecommendItemsids)
 &(self:cWindowName).ComboRecommend.Value := self:nRecommend
+&(self:cWindowName).CheckboxReviewDate.Value := self:CheckBoxReviewDate
+IF Self:CheckboxReviewDate = True
+&(self:cWindowName).dateReviewDate.Value := ctod(self:cReviewDate)
+ENDIF
 Return 0
 Method ClearRecord Class ProjectReviewsClass
 self:nProject := 0
@@ -409,6 +419,7 @@ self:cReviewText := ""
 self:cFileName := ""
 self:cAttachment := ""
 self:nRecommend := 0
+self:CheckBoxReviewDate := False
 Return 0
 Method OpenDataWindow Class ProjectReviewsClass
 Local nvalue,myout
@@ -450,6 +461,7 @@ IF p1 = 1
 &(self:cWindowName).Grid1Browse.Enabled := false
 &(self:cWindowName).ComboFind.Enabled := False
 &(self:cWindowName).comboRecommend.Enabled := true
+&(self:cWindowName).CheckboxReviewDate.Enabled := True
 ENDIF
 IF p1 = 2
 &(self:cWindowName).btnfirst.Enabled := true
@@ -474,6 +486,7 @@ IF p1 = 2
 &(self:cWindowName).ComboFind.Enabled := True
 &(self:cWindowName).textNameBrowse.Enabled := true
 &(self:cWindowName).comboRecommend.Enabled := false
+&(self:cWindowName).CheckboxReviewDate.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
