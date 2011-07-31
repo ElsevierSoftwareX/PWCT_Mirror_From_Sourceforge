@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:33:33    Date : 07/31/2011
+* Time : 12:25:47    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -166,6 +166,12 @@ DashObject2:TableName := "Dash2"
 DashObject2:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 DashObject2:PermissionID := 110
 DashObject2:BasicDataTableName := "BasicData2"
+DashObject2:PW_TableName := "Projects_All2"
+DashObject2:PW_SubTable1 := "ProjectProcesses2"
+DashObject2:PW_SubTable2 := "ProjectReviews2"
+DashObject2:PW_WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
+DashObject2:PW_ReportName := "Projects2"
+DashObject2:PW_ReportWindowName := "DashProjects2ReportWindow"
 BasicDataObject2 = BasicDataClass()
 BasicDataObject2:TableName := "BasicData2"
 BasicDataObject2:cWindowName := "BasicDataWindow2"
@@ -231,6 +237,12 @@ DashObject3:TableName := "Dash3"
 DashObject3:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
 DashObject3:PermissionID := 124
 DashObject3:BasicDataTableName := "BasicData3"
+DashObject3:PW_TableName := "Projects_All3"
+DashObject3:PW_SubTable1 := "ProjectProcesses3"
+DashObject3:PW_SubTable2 := "ProjectReviews3"
+DashObject3:PW_WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
+DashObject3:PW_ReportName := "Projects3"
+DashObject3:PW_ReportWindowName := "DashProjects3ReportWindow"
 BasicDataObject3 = BasicDataClass()
 BasicDataObject3:TableName := "BasicData3"
 BasicDataObject3:cWindowName := "BasicDataWindow3"
@@ -296,6 +308,12 @@ DashObject4:TableName := "Dash4"
 DashObject4:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
 DashObject4:PermissionID := 138
 DashObject4:BasicDataTableName := "BasicData4"
+DashObject4:PW_TableName := "Projects_All4"
+DashObject4:PW_SubTable1 := "ProjectProcesses4"
+DashObject4:PW_SubTable2 := "ProjectReviews4"
+DashObject4:PW_WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
+DashObject4:PW_ReportName := "Projects4"
+DashObject4:PW_ReportWindowName := "DashProjects4ReportWindow"
 BasicDataObject4 = BasicDataClass()
 BasicDataObject4:TableName := "BasicData4"
 BasicDataObject4:cWindowName := "BasicDataWindow4"

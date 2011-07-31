@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:58:57    Date : 07/31/2011
+* Time : 12:25:38    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -71,6 +71,12 @@ Data TP1 init 0
 Data TotalCount5 init 0
 Data TP5 init 0
 Data BasicDataTableName init "BasicData"
+Data PW_TableName init "projects_all"
+Data PW_SubTable1 init "projectprocesses"
+Data PW_SubTable2 init "projectreviews"
+Data PW_WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
+Data PW_ReportName init "Projects"
+Data PW_ReportWindowName init "DashProjectsReportWindow"
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -835,7 +841,13 @@ Method OpenProjectsWindow(p1) Class DashClass
 Local mypwobj
 mypwobj = projectsclass()
 mypwobj:complexsearch := " and StageID =  " + p1
-mypwobj:cWindowName := "pwobj"+p1
+mypwobj:cWindowName := "pwobj"+p1+self:cWindowName
+mypwobj:TableName := self:pw_TableName
+mypwobj:SubTable1 := self:pw_SubTable1
+mypwobj:SubTable2 := self:pw_SubTable2
+mypwobj:WindowTitle := self:pw_WindowTitle
+mypwobj:ReportName := self:pw_ReportName
+mypwobj:ReportWindowName := self:pw_ReportWindowName
 myout = mypwobj:ShowWindow()
 Return 0
 

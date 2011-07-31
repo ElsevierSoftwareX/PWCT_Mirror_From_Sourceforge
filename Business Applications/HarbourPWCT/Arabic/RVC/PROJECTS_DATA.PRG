@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 11:32:57    Date : 07/31/2011
+* Time : 12:12:28    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,7 +41,6 @@ Data SubTable2 init "projectreviews"
 Data WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
 Data ReportName init "Projects"
 Data ReportWindowName init "ProjectsReportWindow"
-Data checkboxdatecomplete init false
 Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"stage","projectowner","projectname","ID"}
@@ -63,6 +62,7 @@ Data nStage init 0
 Data StageItems init {}
 Data StageItemsIDs init {}
 Data nID init 0
+Data checkboxdatecomplete init false
 Method showwindow
 Method closewindow
 Method SetMode
