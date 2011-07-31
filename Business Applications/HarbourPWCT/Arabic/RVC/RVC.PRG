@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:16:42    Date : 07/31/2011
+* Time : 06:29:11    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -495,7 +495,7 @@ END POPUP
 IF UsersObject:CheckPermission(96)
 MENUITEM "ãÊÇÈÚÉ ÍÇáÉ ÇáãÔÇÑíÚ" Action DashObject:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(96)
+IF UsersObject:CheckPermission(139)
 MENUITEM "ÚÏÏ ÇáãÔÇÑíÚ İì ÇáÎØÉ" Action BasicDataObject:showwindow()
 ENDIF
 END POPUP
@@ -558,7 +558,7 @@ END POPUP
 IF UsersObject:CheckPermission(110)
 MENUITEM "ãÊÇÈÚÉ ÍÇáÉ ÇáãÔÇÑíÚ" Action DashObject2:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(110)
+IF UsersObject:CheckPermission(140)
 MENUITEM "ÚÏÏ ÇáãÔÇÑíÚ İì ÇáÎØÉ" Action BasicDataObject2:showwindow()
 ENDIF
 END POPUP
@@ -621,7 +621,7 @@ END POPUP
 IF UsersObject:CheckPermission(124)
 MENUITEM "ãÊÇÈÚÉ ÍÇáÉ ÇáãÔÇÑíÚ" Action DashObject3:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(124)
+IF UsersObject:CheckPermission(141)
 MENUITEM "ÚÏÏ ÇáãÔÇÑíÚ İì ÇáÎØÉ" Action BasicDataObject3:showwindow()
 ENDIF
 END POPUP
@@ -684,7 +684,7 @@ END POPUP
 IF UsersObject:CheckPermission(138)
 MENUITEM "ãÊÇÈÚÉ ÍÇáÉ ÇáãÔÇÑíÚ" Action DashObject4:showwindow()
 ENDIF
-IF UsersObject:CheckPermission(138)
+IF UsersObject:CheckPermission(142)
 MENUITEM "ÚÏÏ ÇáãÔÇÑíÚ İì ÇáÎØÉ" Action BasicDataObject4:showwindow()
 ENDIF
 END POPUP

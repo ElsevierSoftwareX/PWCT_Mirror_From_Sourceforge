@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:12:35    Date : 07/31/2011
+* Time : 06:24:05    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -93,6 +93,7 @@ FONTCOLOR {0,0,0}
 @ 23 ,30 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 340 ;
+READONLY ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 RIGHTALIGN ;
