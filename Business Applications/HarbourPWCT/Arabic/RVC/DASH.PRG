@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:06:45    Date : 07/30/2011
+* Time : 07:35:56    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -70,6 +70,7 @@ Data TotalCount1 init 0
 Data TP1 init 0
 Data TotalCount5 init 0
 Data TP5 init 0
+Data BasicDataTableName init "BasicData"
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -429,7 +430,8 @@ WIDTH 50 ;
 READONLY ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} ;
+NUMERIC
 
 @ 97 ,148 TEXTBOX textDT12;
 HEIGHT 30 ;
@@ -461,7 +463,8 @@ WIDTH 50 ;
 READONLY ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} ;
+NUMERIC
 
 @ 145 ,148 TEXTBOX textDT22;
 HEIGHT 30 ;
@@ -613,7 +616,7 @@ PENWIDTH 3
 
 Return 0
 Method LoadData Class DashClass
-Local nStage,nCount,cDataStr
+Local nStage,nCount,cDataStr,oRS
 myout = self:Connect()
 MYMAX := SELF:oRS:RecordCount
 FOR x = 1 TO MYMAX STEP 1
@@ -638,7 +641,6 @@ self:c8 := nCount
 ENDIF
 self:oRS:MOVENEXT()
 Next
-myout = self:Disconnect()
 self:TotalCount := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c6 + self:c7 + self:c8
 self:TotalCount2 := self:c2 + self:c3 + self:c4 + self:c5 + self:c7
 self:TotalCount3 := self:c3 + self:c4 + self:c5 + self:c7
@@ -690,6 +692,16 @@ self:C8 = STR ( self:c8 )
 self:P8 = STR ( self:P8 )
 SELF:C8 = ALLTRIM ( SELF:C8 )
 SELF:P8 = ALLTRIM ( SELF:P8 )
+oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+oRS:CursorType := 1
+oRS:ActiveConnection := self:oCon
+oRS:open ( "Select * from " + self:BasicDataTableName,self:oCon,3,3 )
+oRS:MOVEFIRST()
+num1 := oRS:fields:item("num1"):value
+num2 := oRS:fields:item("num2"):value
+oRS:Close()
+&(self:cWindowName).textDT11.Value := num1
+&(self:cWindowName).textDT21.Value := num2
 oldDataString := self:DataString
 self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5+"*"+self:c7+"*"+self:c6+"*"+self:c8
 IF self:DataString == OldDataString
@@ -713,6 +725,7 @@ self:TotalCount = STR ( self:TotalCount )
 &(self:cWindowName).textInvestPer.Value := self:p7
 &(self:cWindowName).textRefuse.Value := self:c8
 &(self:cWindowName).textRefusePer.Value := self:p8
+myout = self:Disconnect()
 Return True
 Method UpdateDash Class DashClass
 myout = self:ClearData()
