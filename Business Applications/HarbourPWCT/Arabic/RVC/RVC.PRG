@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:06:10    Date : 07/31/2011
+* Time : 17:45:47    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -173,9 +173,11 @@ DashObject2:PW_WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 DashObject2:PW_ReportName := "Projects2"
 DashObject2:PW_ReportWindowName := "DashProjects2ReportWindow"
 DashObject2:PW_PermissionID := 144
+DashObject2:PW_ReportName2 := "ListOfProjects2"
 BasicDataObject2 = BasicDataClass()
 BasicDataObject2:TableName := "BasicData2"
 BasicDataObject2:cWindowName := "BasicDataWindow2"
+ProjectsObject2:ReportName2 := "ListOfProjects2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -245,9 +247,11 @@ DashObject3:PW_WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
 DashObject3:PW_ReportName := "Projects3"
 DashObject3:PW_ReportWindowName := "DashProjects3ReportWindow"
 DashObject3:PW_PermissionID := 145
+DashObject3:PW_ReportName2 := "ListOfProjects3"
 BasicDataObject3 = BasicDataClass()
 BasicDataObject3:TableName := "BasicData3"
 BasicDataObject3:cWindowName := "BasicDataWindow3"
+ProjectsObject3:ReportName2 := "ListOfProjects3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -317,9 +321,11 @@ DashObject4:PW_WindowTitle := "„‘«—Ì⁄ Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
 DashObject4:PW_ReportName := "Projects4"
 DashObject4:PW_ReportWindowName := "DashProjects4ReportWindow"
 DashObject4:PW_PermissionID := 146
+DashObject4:PW_ReportName2 := "ListOfProjects4"
 BasicDataObject4 = BasicDataClass()
 BasicDataObject4:TableName := "BasicData4"
 BasicDataObject4:cWindowName := "BasicDataWindow4"
+ProjectsObject4:ReportName2 := "ListOfProjects4"
 UsersWindowObject = UsersClass()
 BasicDataObject = BasicDataClass()
 BasicDataObject:TableName := "BasicData"

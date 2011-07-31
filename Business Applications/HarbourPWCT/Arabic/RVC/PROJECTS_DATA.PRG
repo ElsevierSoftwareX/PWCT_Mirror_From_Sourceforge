@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:05:59    Date : 07/31/2011
+* Time : 17:45:37    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,6 +41,7 @@ Data SubTable2 init "projectreviews"
 Data WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
 Data ReportName init "Projects"
 Data ReportWindowName init "ProjectsReportWindow"
+Data ReportName2 init "ListOfProjects"
 Data column init "projectname"
 Data PrimaryKey init "id"
 Data columns init {"stage","projectowner","projectname","ID"}
@@ -785,11 +786,14 @@ MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
 Return 0
 ENDIF
 ProjectsReportObject = ProjectsReportClass()
-Projectsreportobject:reportname := self:reportname
 Projectsreportobject:cWindowName := self:ReportWindowName
+IF &(self:cWindowName).ComboPrint.Value = 1
+Projectsreportobject:reportname := self:reportname
+ELSE
+Projectsreportobject:reportname := self:reportname2
+ENDIF
 cName := &(self:cWindowName).textNamebrowse.Value
 cName = ALLTRIM ( cName )
-Projectsreportobject:filter := ""
 IF .not. empty(cName)
 Projectsreportobject:filter := self:column + ' Like "'+cName+'*"' + self:complexsearch
 ELSE
