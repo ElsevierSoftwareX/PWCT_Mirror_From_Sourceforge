@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:56:12    Date : 07/31/2011
+* Time : 06:16:42    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -166,6 +166,9 @@ DashObject2:cWindowName := "DashWindow2"
 DashObject2:TableName := "Dash2"
 DashObject2:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì«  «·ÕÌÊÌ…"
 DashObject2:PermissionID := 110
+BasicDataObject2 = BasicDataClass()
+BasicDataObject2:TableName := "BasicData2"
+BasicDataObject2:cWindowName := "BasicDataWindow2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -228,6 +231,9 @@ DashObject3:cWindowName := "DashWindow3"
 DashObject3:TableName := "Dash3"
 DashObject3:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì«  «·Â‰œ”Ì…"
 DashObject3:PermissionID := 124
+BasicDataObject3 = BasicDataClass()
+BasicDataObject3:TableName := "BasicData3"
+BasicDataObject3:cWindowName := "BasicDataWindow3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -290,8 +296,13 @@ DashObject4:cWindowName := "DashWindow4"
 DashObject4:TableName := "Dash4"
 DashObject4:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
 DashObject4:PermissionID := 138
+BasicDataObject4 = BasicDataClass()
+BasicDataObject4:TableName := "BasicData4"
+BasicDataObject4:cWindowName := "BasicDataWindow4"
 UsersWindowObject = UsersClass()
 BasicDataObject = BasicDataClass()
+BasicDataObject:TableName := "BasicData"
+BasicDataObject:cWindowName := "BasicDataWindow"
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -547,6 +558,9 @@ END POPUP
 IF UsersObject:CheckPermission(110)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject2:showwindow()
 ENDIF
+IF UsersObject:CheckPermission(110)
+MENUITEM "⁄œœ «·„‘«—Ì⁄ ›Ï «·Œÿ…" Action BasicDataObject2:showwindow()
+ENDIF
 END POPUP
 ENDIF
 IF UsersObject:CheckPermission(81)
@@ -607,6 +621,9 @@ END POPUP
 IF UsersObject:CheckPermission(124)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject3:showwindow()
 ENDIF
+IF UsersObject:CheckPermission(124)
+MENUITEM "⁄œœ «·„‘«—Ì⁄ ›Ï «·Œÿ…" Action BasicDataObject3:showwindow()
+ENDIF
 END POPUP
 ENDIF
 IF UsersObject:CheckPermission(82)
@@ -666,6 +683,9 @@ ENDIF
 END POPUP
 IF UsersObject:CheckPermission(138)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject4:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(138)
+MENUITEM "⁄œœ «·„‘«—Ì⁄ ›Ï «·Œÿ…" Action BasicDataObject4:showwindow()
 ENDIF
 END POPUP
 ENDIF

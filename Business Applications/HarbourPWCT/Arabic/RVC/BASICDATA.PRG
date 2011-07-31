@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:54:21    Date : 07/31/2011
+* Time : 06:12:35    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,14 +35,15 @@ Return
 Resistance R_BASICDATA_15speed1() code
 class BasicDataClass From SystemDatabase
 Data TableName init "BasicData"
+Data cWindowName init "BasicDataWindow"
 Method showwindow
 Method closewindow
 Method LoadData
 Method SaveData
 EndClass
 Method showwindow Class BasicDataClass
-if !iswindowdefined( BasicDataWindow )
-DEFINE WINDOW BasicDataWindow ;
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 513 ;
 HEIGHT 266 ;
@@ -123,27 +124,27 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
-BasicDataWindow.Center ( )
-ACTIVATE WINDOW BasicDataWindow
+&(self:cWindowName).Center ( )
+ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
 Return 0
 Method closewindow Class BasicDataClass
-BasicDataWindow.Release ( )
+&(self:cWindowName).Release ( )
 Return 0
 Method LoadData Class BasicDataClass
 myout = self:Connect()
 self:oRS:MOVEFIRST()
-BasicDataWindow.text1.value := self:oRS:fields:item("IncName"):value
-BasicDataWindow.text2.value := self:oRS:fields:item("num1"):value
-BasicDataWindow.text3.value := self:oRS:fields:item("Num2"):value
+&(self:cWindowName).text1.value := self:oRS:fields:item("IncName"):value
+&(self:cWindowName).text2.value := self:oRS:fields:item("num1"):value
+&(self:cWindowName).text3.value := self:oRS:fields:item("Num2"):value
 myout = self:DisConnect()
 Return 0
 Method SaveData Class BasicDataClass
 myout = self:Connect()
 self:oRS:MOVEFIRST()
-self:oRS:fields:item("num1"):value := BasicDataWindow.text2.value
-self:oRS:fields:item("Num2"):value := BasicDataWindow.text3.value
+self:oRS:fields:item("num1"):value := &(self:cWindowName).text2.value
+self:oRS:fields:item("Num2"):value := &(self:cWindowName).text3.value
 self:oRS:UPDATE()
 myout = self:CloseWindow()
 Return 0
