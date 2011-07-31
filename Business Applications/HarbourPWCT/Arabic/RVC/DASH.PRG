@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:25:38    Date : 07/31/2011
+* Time : 14:01:51    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -77,6 +77,7 @@ Data PW_SubTable2 init "projectreviews"
 Data PW_WindowTitle init "„‘«—Ì⁄ Õ«÷‰…  ﬁ‰Ì… «·„⁄·Ê„«  Ê«·« ’«·« "
 Data PW_ReportName init "Projects"
 Data PW_ReportWindowName init "DashProjectsReportWindow"
+Data PW_PermissionID init 143
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -848,6 +849,7 @@ mypwobj:SubTable2 := self:pw_SubTable2
 mypwobj:WindowTitle := self:pw_WindowTitle
 mypwobj:ReportName := self:pw_ReportName
 mypwobj:ReportWindowName := self:pw_ReportWindowName
+mypwobj:PermissionID := self:pw_PermissionID
 myout = mypwobj:ShowWindow()
 Return 0
 

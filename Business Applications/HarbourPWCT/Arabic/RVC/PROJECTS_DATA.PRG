@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:12:28    Date : 07/31/2011
+* Time : 14:39:18    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -63,6 +63,7 @@ Data StageItems init {}
 Data StageItemsIDs init {}
 Data nID init 0
 Data checkboxdatecomplete init false
+Data PermissionID init 143
 Method showwindow
 Method closewindow
 Method SetMode
@@ -89,6 +90,7 @@ Method AttachUpload2
 Method AttachRemove2
 Method printdata
 Method CheckData
+Method print
 EndClass
 Method showwindow Class ProjectsClass
 myout = self:connect()
@@ -189,9 +191,9 @@ ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 6 ,153 LABEL lblTitle ;
-VALUE "                                                                               «·„‘«—Ì⁄" ;
-WIDTH 960 ;
+@ 6 ,183 LABEL lblTitle ;
+VALUE "                                                                  «·„‘«—Ì⁄" ;
+WIDTH 750 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -216,7 +218,7 @@ WIDTH 1090 ;
 HEIGHT 210 ;
 HEADERS {"«·„—Õ·…","’«Õ» «·„‘—Ê⁄","«”„ «·„‘—Ê⁄","ﬂÊœ «·„‘—Ê⁄"};
 WIDTHS {260,290,410,100} ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 JUSTIFY {1,1,1,1} ;
 FONTCOLOR {0,0,0}
@@ -438,15 +440,24 @@ Action self:myTimer()
 myout = RightToLeftControl ( self:cWindowName,"datereceived" )
 myout = RightToLeftControl ( Self:cWindowName,"datecomplete" )
 @ 5 ,3 BUTTONEX btnPrint;
-CAPTION "ÿ»«⁄… «·»Ì«‰« ";
+CAPTION "ÿ»«⁄… »Ì«‰«  «·„‘—Ê⁄";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
 ON CLICK self:printdata()  ;
-WIDTH 143 HEIGHT 34 ;
+WIDTH 173 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 myout = RightToLeftControl ( self:cWindowName,"comboStage" )
+@ 5 ,943 BUTTONEX btnPrint2;
+CAPTION "ÿ»«⁄… »Ì«‰«  «·„‘«—Ì⁄";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:print()  ;
+WIDTH 173 HEIGHT 34 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
 END WINDOW
 
 &(self:cWindowName).Center ( )
@@ -458,6 +469,13 @@ myout = self:setmode(2)
 calldll32("SetWindowLong","USER32.DLL",GetFormHandle (self:cWindowName),-20,;
 NUMOR(calldll32("GetWindowLong","USER32.DLL",;
 GetFormHandle (self:cWindowName), -20),0x400000,0x100000))
+IF .not. UsersObject:CheckPermission(self:PermissionID)
+&(self:cWindowName).BtnAdd.Visible := false
+&(self:cWindowName).BtnEdit.Visible := false
+&(self:cWindowName).BtnDel.Visible := false
+&(self:cWindowName).BtnSave.Visible := false
+&(self:cWindowName).BtnCancel.Visible := false
+ENDIF
 ACTIVATE WINDOW &(self:cWindowName)
 EndIF
 
@@ -751,6 +769,26 @@ MyOut := MSGBOX("ÌÃ» ≈œŒ«· «”„ «·„‘—Ê⁄","⁄›Ê«")
 myret := False
 ENDIF
 Return myret
+Method Print Class ProjectsClass
+Local cName,myout,mymax,projectsreportobject
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
+Return 0
+ENDIF
+ProjectsReportObject = ProjectsReportClass()
+Projectsreportobject:reportname := self:reportname
+Projectsreportobject:cWindowName := self:ReportWindowName
+cName := &(self:cWindowName).textNamebrowse.Value
+cName = ALLTRIM ( cName )
+Projectsreportobject:filter := ""
+IF .not. empty(cName)
+Projectsreportobject:filter := self:column + ' Like "'+cName+'*"' + self:complexsearch
+ELSE
+Projectsreportobject:filter := "1 = 1 " + self:complexsearch
+ENDIF
+myout = Projectsreportobject:ShowWindow()
+Return 0
 Method closewindow Class ProjectsClass
 myout = self:disconnect()
 &(self:cWindowName).Release ( )

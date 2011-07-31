@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:58:32    Date : 07/28/2011
+* Time : 14:06:40    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -41,7 +41,7 @@ Data columns init {"Status","PermissionName"}
 Data nID init 0
 Data cName init ""
 Data ColTitles init {"«·Õ«·…","«”„ «·’·«ÕÌ…"}
-Data ColWidths init {115,400}
+Data ColWidths init {85,430}
 Data Userid init 0
 Data complexsearch init ""
 Method showwindow
@@ -97,7 +97,7 @@ FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 6 ,4 LABEL lblTitle ;
-VALUE "                                                  ’·«ÕÌ«  «·„” Œœ„Ì‰" ;
+VALUE "                                                                   ’·«ÕÌ«  «·„” Œœ„Ì‰" ;
 WIDTH 780 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
