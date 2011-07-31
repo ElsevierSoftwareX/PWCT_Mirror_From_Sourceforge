@@ -1,0 +1,1 @@
+CALL sscom2.bat  "SERVER"  /X /l calldll  /C > _temp.txt
