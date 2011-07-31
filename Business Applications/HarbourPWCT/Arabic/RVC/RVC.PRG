@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:06:53    Date : 07/30/2011
+* Time : 05:56:12    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -80,6 +80,7 @@ Set Procedure to "PROCESSES_REPORT.PRG"
 Set Procedure to "PROJECTPROCESSES_DATA.PRG"
 Set Procedure to "PROJECTPROCESSES_Report.PRG"
 Set Procedure to "Dash.PRG"
+Set Procedure to "BasicData.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -290,6 +291,7 @@ DashObject4:TableName := "Dash4"
 DashObject4:cWindowTitle := "„ «»⁄… Õ«·… «·„‘«—Ì⁄ ›Ï Õ«÷‰… «· ﬁ‰Ì… «·‰”«∆Ì…"
 DashObject4:PermissionID := 138
 UsersWindowObject = UsersClass()
+BasicDataObject = BasicDataClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -481,6 +483,9 @@ ENDIF
 END POPUP
 IF UsersObject:CheckPermission(96)
 MENUITEM "„ «»⁄… Õ«·… «·„‘«—Ì⁄" Action DashObject:showwindow()
+ENDIF
+IF UsersObject:CheckPermission(96)
+MENUITEM "⁄œœ «·„‘«—Ì⁄ ›Ï «·Œÿ…" Action BasicDataObject:showwindow()
 ENDIF
 END POPUP
 ENDIF
