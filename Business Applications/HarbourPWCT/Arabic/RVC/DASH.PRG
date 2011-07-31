@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 08:49:46    Date : 07/31/2011
+* Time : 09:04:06    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -428,7 +428,7 @@ WIDTH 435 HEIGHT 196
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -437,7 +437,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {150,252,196} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -446,7 +446,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {150,252,196} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -455,7 +455,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
@@ -463,7 +463,7 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -472,7 +472,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {150,252,196} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -481,7 +481,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {150,252,196} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -490,7 +490,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
@@ -498,7 +498,7 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {150,252,196} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -507,7 +507,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {150,252,196} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -516,7 +516,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {150,252,196} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC
@@ -525,7 +525,7 @@ NUMERIC
 HEIGHT 30 ;
 WIDTH 50 ;
 READONLY ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
@@ -718,6 +718,18 @@ num4 := val(self:c7)
 &(self:cWindowName).textDT13.Value := num3-num1
 &(self:cWindowName).textDT23.Value := num4-num2
 &(self:cWindowName).textDT33.Value := (num3+num4)-(num1+num2)
+num5 := (num3/num1)*100
+num6 := (num4/num2)*100
+num7 := ((num3+num4)/(num1+num2))*100
+num5 = STR ( num5 )
+num6 = STR ( num6 )
+num7 = STR ( num7 )
+num5 = ALLTRIM ( num5 )
+num6 = ALLTRIM ( num6 )
+num7 = ALLTRIM ( num7 )
+&(self:cWindowName).textDT14.Value := num5
+&(self:cWindowName).textDT24.Value := num6
+&(self:cWindowName).textDT34.Value := num7
 oldDataString := self:DataString
 self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5+"*"+self:c7+"*"+self:c6+"*"+self:c8
 IF self:DataString == OldDataString
