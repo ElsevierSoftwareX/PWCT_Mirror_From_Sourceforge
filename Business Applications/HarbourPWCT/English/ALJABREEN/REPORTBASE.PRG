@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 05:29:21    Date : 12/08/2010
+* Time : 10:46:33    Date : 12/03/2010
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -43,9 +43,11 @@ Data oActiveX init 0
 Data Filter init ""
 Data dbpassword init "systemdatabase123"
 Data outputfile2 init GetStartUpFolder()+"\tempfile.html"
+Data outputfile3 init GetStartUpFolder()+"\tempfile.xls"
 Method showreport
 Method printreport
 Method exportreport
+Method exportreport2
 EndClass
 Method ShowReport Class Report_Base
 StartUpFolder := GetStartUpFolder()
@@ -81,6 +83,20 @@ ENDIF
 self:myaccessobj:DoCmd:OutputTo ( 3,,"HTML(*.html)",self:outputfile2 )
 self:myaccessobj:Quit ( )
 Execute File self:outputfile2
+Return 0
+Method ExportReport2 Class Report_Base
+StartUpFolder := GetStartUpFolder()
+self:myaccessobj := TOLEAUTO():NEW( "Access.Application" )
+self:myaccessobj:OpenCurrentDatabase ( self:database,false,self:dbpassword )
+self:myaccessobj:DoCmd:OpenReport ( self:ReportName,1 )
+IF .not. empty(alltrim(self:filter))
+self:myaccessobj:Reports(Self:ReportName):Filter := Self:Filter
+ELSE
+self:myaccessobj:Reports(Self:ReportName):Filter := "1 = 1"
+ENDIF
+self:myaccessobj:DoCmd:OutputTo ( 3,,"Microsoft Excel 97-2002 (*.xls)",self:outputfile3 )
+self:myaccessobj:Quit ( )
+Execute File self:outputfile3
 Return 0
 
 
