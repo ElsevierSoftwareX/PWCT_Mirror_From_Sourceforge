@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:53:40    Date : 07/31/2011
+* Time : 10:58:57    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -835,6 +835,7 @@ Method OpenProjectsWindow(p1) Class DashClass
 Local mypwobj
 mypwobj = projectsclass()
 mypwobj:complexsearch := " and StageID =  " + p1
+mypwobj:cWindowName := "pwobj"+p1
 myout = mypwobj:ShowWindow()
 Return 0
 
