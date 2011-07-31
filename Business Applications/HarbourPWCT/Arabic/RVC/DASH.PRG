@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:04:06    Date : 07/31/2011
+* Time : 10:53:40    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -79,6 +79,7 @@ Method DrawLine
 Method LoadData
 Method UpdateDash
 Method ClearData
+Method OpenProjectsWindow
 EndClass
 Method ShowWindow Class DashClass
 IF .not. UsersObject:CheckPermission(Self:PermissionID)
@@ -117,22 +118,27 @@ NOXPSTYLE ;
 TOOLTIP ""
 @ 438 ,740 IMAGE image1;
 PICTURE GetStartUpFolder()+"\image\c1.jpg";
+ON CLICK self:openprojectswindow("3")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 438 ,359 IMAGE image2;
 PICTURE GetStartUpFolder()+"\image\c2.jpg";
+ON CLICK self:openprojectswindow("6")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 438 ,613 IMAGE image3;
 PICTURE GetStartUpFolder()+"\image\c3.jpg";
+ON CLICK self:openprojectswindow("4")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 438 ,486 IMAGE image4;
 PICTURE GetStartUpFolder()+"\image\c4.jpg";
+ON CLICK self:openprojectswindow("5")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 438 ,232 IMAGE image5;
 PICTURE GetStartUpFolder()+"\image\c5.jpg";
+ON CLICK self:openprojectswindow("7")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
 @ 409 ,754 LABEL lbl1 ;
@@ -333,6 +339,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 438 ,968 IMAGE imagegetproject;
 PICTURE GetStartUpFolder()+"\image\c6.jpg";
+ON CLICK self:openprojectswindow("2")  ;
 STRETCH ;
 WIDTH 80 HEIGHT 70
 @ 514 ,970 TEXTBOX textfirstget;
@@ -361,6 +368,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 @ 438 ,859 IMAGE imagerefuseproject;
 PICTURE GetStartUpFolder()+"\image\c7.jpg";
+ON CLICK self:openprojectswindow("9")  ;
 STRETCH ;
 WIDTH 80 HEIGHT 70
 @ 514 ,865 TEXTBOX textrefuse;
@@ -388,6 +396,7 @@ BACKCOLOR {64,0,64} ;
 FONTCOLOR {255,255,255}
 @ 417 ,15 IMAGE imageinvest;
 PICTURE GetStartUpFolder()+"\image\c8.jpg";
+ON CLICK self:openprojectswindow("8")  ;
 STRETCH ;
 WIDTH 197 HEIGHT 96
 @ 514 ,75 TEXTBOX textinvest;
@@ -821,6 +830,12 @@ self:C8 := 0
 self:P6 := 0
 self:P7 := 0
 self:P8 := 0
+Return 0
+Method OpenProjectsWindow(p1) Class DashClass
+Local mypwobj
+mypwobj = projectsclass()
+mypwobj:complexsearch := " and StageID =  " + p1
+myout = mypwobj:ShowWindow()
 Return 0
 
 
