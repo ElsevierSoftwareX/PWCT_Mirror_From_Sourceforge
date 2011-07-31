@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:35:56    Date : 07/31/2011
+* Time : 07:48:05    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -496,7 +496,8 @@ WIDTH 50 ;
 READONLY ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {150,252,196} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} ;
+NUMERIC
 
 @ 193 ,148 TEXTBOX textDT32;
 HEIGHT 30 ;
@@ -702,6 +703,7 @@ num2 := oRS:fields:item("num2"):value
 oRS:Close()
 &(self:cWindowName).textDT11.Value := num1
 &(self:cWindowName).textDT21.Value := num2
+&(self:cWindowName).textDT31.Value := (num1 + num2)
 oldDataString := self:DataString
 self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5+"*"+self:c7+"*"+self:c6+"*"+self:c8
 IF self:DataString == OldDataString
