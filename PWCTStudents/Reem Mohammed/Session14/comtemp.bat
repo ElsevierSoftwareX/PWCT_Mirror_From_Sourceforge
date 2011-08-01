@@ -1,0 +1,1 @@
+CALL sscom2.bat  "COUNTER ATOU"  /X /l calldll  > _temp.txt
