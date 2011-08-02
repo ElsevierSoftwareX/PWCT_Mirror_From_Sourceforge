@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 20:33:51    Date : 07/01/2011
+* Time : 22:56:14    Date : 07/31/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -126,12 +124,18 @@ oRS:Close()
 oCon:CLOSE()
 Return 0
 Method connect Class SYSTEMDATABASE
+TRY
 self:oCon := TOLEAUTO():NEW( "ADODB.Connection" )
 self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn='+self:DataSourceName+';uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
 self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 self:oRS:CursorType := 1
 self:oRS:ActiveConnection := self:oCon
 self:oRS:open ( "Select * from " + self:TableName + " where 1 = 1 " + self:complexsearch,self:oCon,3,3 )
+CATCH cError
+cError := cError:description
+MyOut := MSGBOX("«·‰Ÿ«„ €Ì— ﬁ«œ— ⁄·Ï «·« ’«· »ﬁ«⁄œ… «·»Ì«‰« ","⁄›Ê«")
+Quit
+END
 Return 0
 Method disconnect Class SYSTEMDATABASE
 self:oRS:Close()

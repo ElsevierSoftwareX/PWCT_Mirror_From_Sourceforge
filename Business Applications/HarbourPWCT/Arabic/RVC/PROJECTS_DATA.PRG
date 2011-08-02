@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:45:37    Date : 07/31/2011
+* Time : 22:54:02    Date : 07/31/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -720,7 +720,7 @@ PutFile := PutFile (  , ;
 , ;
 , ;
 , ;
-self:cFileName )
+self:cFileName2 )
 IF .not. empty(putfile)
 DO streamtofile WITH self:cAttachment2,putfile
 ELSE
