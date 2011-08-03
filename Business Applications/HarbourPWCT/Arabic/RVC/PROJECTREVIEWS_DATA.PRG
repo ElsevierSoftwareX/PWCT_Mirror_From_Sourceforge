@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:22:11    Date : 08/03/2011
+* Time : 14:47:39    Date : 08/03/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -560,6 +560,12 @@ ProjectReviewsreportobject:cWindowName := self:ReportWindowName
 myout = ProjectReviewsreportobject:ShowWindow()
 Return 0
 Method SendMail Class ProjectReviewsClass
+mymax := self:oRS:RecordCount
+IF mymax = 0
+MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
+Return 0
+ENDIF
+sendmailtooneobject:recEMail := self:oRS:fields:item("f_email"):value
 myout = SendMailtoOneObject:ShowWindow()
 Return 0
 Method closewindow Class ProjectReviewsClass

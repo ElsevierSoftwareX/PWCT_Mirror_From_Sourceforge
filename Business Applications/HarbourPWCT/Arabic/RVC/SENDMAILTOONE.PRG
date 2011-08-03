@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:26:46    Date : 08/03/2011
+* Time : 14:46:26    Date : 08/03/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -34,7 +34,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_SENDMAILTOONE_15speed1() code
 class SendMailtoOneClass From MailSMTPServer
-Data TableName init "Production_All"
+Data RecEMail init ""
 Method ShowWindow
 Method msgSend
 Method msgAttach
@@ -124,6 +124,7 @@ PASSWORD
 @ 172 ,77 TEXTBOX text4;
 HEIGHT 30 ;
 WIDTH 410 ;
+VALUE self:RecEMail ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
