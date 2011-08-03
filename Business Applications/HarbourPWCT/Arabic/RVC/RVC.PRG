@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:07:15    Date : 08/02/2011
+* Time : 13:26:52    Date : 08/03/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -81,6 +81,8 @@ Set Procedure to "PROJECTPROCESSES_DATA.PRG"
 Set Procedure to "PROJECTPROCESSES_Report.PRG"
 Set Procedure to "Dash.PRG"
 Set Procedure to "BasicData.PRG"
+Set Procedure to "sendmail.PRG"
+Set Procedure to "SendMailToOne.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -330,6 +332,7 @@ UsersWindowObject = UsersClass()
 BasicDataObject = BasicDataClass()
 BasicDataObject:TableName := "BasicData"
 BasicDataObject:cWindowName := "BasicDataWindow"
+SendMailToOneObject = SendMailtoOneClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;

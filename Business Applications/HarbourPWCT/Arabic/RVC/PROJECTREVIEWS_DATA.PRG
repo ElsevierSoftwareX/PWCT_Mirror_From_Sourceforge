@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 19:55:39    Date : 07/31/2011
+* Time : 13:22:11    Date : 08/03/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -81,6 +81,7 @@ Method CheckAttach
 Method AttachUpload
 Method AttachRemove
 Method printdata
+Method SendMail
 EndClass
 Method showwindow Class ProjectReviewsClass
 myout = self:connect()
@@ -183,7 +184,7 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 7 ,143 LABEL lblTitle ;
 VALUE "                                                                       „—«Ã⁄… «·„‘«—Ì⁄" ;
-WIDTH 910 ;
+WIDTH 680 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
@@ -347,6 +348,15 @@ FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
 ON CLICK self:printdata()  ;
 WIDTH 143 HEIGHT 34 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 5 ,822 BUTTONEX btnSendMail;
+CAPTION "«—”«· »—Ìœ «·ﬂ —Ê‰Ï ··„—«Ã⁄";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:sendmail()  ;
+WIDTH 233 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
@@ -548,6 +558,9 @@ ProjectReviewsreportobject:filter := "id = "+myid
 ProjectReviewsreportobject:ReportName := self:ReportName
 ProjectReviewsreportobject:cWindowName := self:ReportWindowName
 myout = ProjectReviewsreportobject:ShowWindow()
+Return 0
+Method SendMail Class ProjectReviewsClass
+myout = SendMailtoOneObject:ShowWindow()
 Return 0
 Method closewindow Class ProjectReviewsClass
 myout = self:disconnect()
