@@ -1890,7 +1890,8 @@ ShellExecute(0,"open","HELP\DoubleS.pdf","","",1)
 endif
 if S_MENU = "DoubleS Framework"
 s_menu = "1_0"
-ShellExecute(0,"open","HELP\PWCTHelp.chm","","",1)
+*ShellExecute(0,"open","HELP\PWCTHelp.chm","","",1)
+ShellExecute(0,"open","http://doublesvsoop.sourceforge.net","","",1)
 ENDIF
 if S_Menu = "DoubleS Lecture"
 s_menu = "1_0"
@@ -2220,115 +2221,125 @@ endif
 endif
 * open server
 if s_menu == "1_2" .or. FILE(myfiletoopen)
-myfile = myfiletoopen
-IF FILE(myfiletoopen)
-lmyfiletoopen = .t.
-myfiletoopen = ""
-ELSE
-lmyfiletoopen = .f.
-ENDIF
-s_menu = "1_0"
-IF application.ActiveForm.name = "IPWRITER"
-		application.ActiveForm.COMMAND3.CLICK
-		RETURN
-	ENDIF
-	IF application.ActiveForm.name = "TRANSDFORM"
-		application.ActiveForm.MENULABEL2.CLICK
-		RETURN
-	ENDIF
-  IF application.ActiveForm.name = "INTERDFORM"
-		application.ActiveForm.LABEL8.CLICK
-		RETURN
-	ENDIF
-IF FS_SW = 1
-	MYMSG = MESSAGEBOX("Save Changes ?",4,"Save")
-	IF mymsg = 6
-		if .not. mysys_file = "No Name"
-		do form upload
-		delete file (mySYS_FILE)
-		select 23
-		copy to (MYSYS_FILE)
-				GOTO bottom
-		ELSE
-		IF lmyfiletoopen = .f.
-				myfile = GETFILE("SuperServerFile:SSF","File Name","Save",1,"Save As")
-		ENDIF
-IF .not. testfile(myfile,1111) = .t.
-RETURN
-ENDIF
-if .not. empty(myfile)
-myifile = LEFT(myfile,LEN(myfile)-4)+".trf"
-IF FILE(myifile)
-stmsg("Transporter File with the same name already exist in the same folder, it's not possible to have server file & transporter file in the same folder with the same name")
-RETURN
-ENDIF
-myifile = LEFT(myfile,LEN(myfile)-4)+".idf"
-IF FILE(myifile)
-stmsg("Interaction Page File with the same name already exist in the same folder, it's not possible to have server file & Interaction Page file in the same folder with the same name")
-RETURN
-ENDIF
-if file(myfile)
-mymsg = messagebox(sysmsg(284),36,sysmsg(285))
-if mymsg = 6
-delete file (myfile)
-do form upload
-select 23
-copy to (myfile)
-		GOTO bottom
-MYSYS_FILE = MYFILE
-myswform.text1.value =  "(File :" + mysys_file + " )"
-endif
-else
-do form upload
-select 23
-copy to (myfile)
-		GOTO bottom
-MYSYS_FILE = MYFILE
-myswform.text1.value ="(File :" + mysys_file + " )"
-endif
-endif
-		endif
-	ENDIF
-	FS_SW = 0
-ENDIF
-IF s_mem3 = .f. 
-IF lmyfiletoopen = .f.
-myfile = GETFILE("SuperServerFile:SSF","File Name ","Open",0,"Open Server")
-ENDIF
-ELSE
-myfile = s_mem
-s_mem3 = .f.
-SELECT 0
-myfvar = ALLTRIM(t47->tfile)
-IF LEFT(myfvar,1) = "\"
-myfvar = application.DefaultFilePath + myfvar
-ENDIF
-DO Cpzero WITH (myfvar),CPCURRENT(1)
-USE (myfvar)
-copy to (s_mem)
-		GOTO bottom
-USE
-SELECT t23
-ENDIF
-IF .not. testfile(myfile,1111) = .t.
-RETURN
-ENDIF
-IF .not. testfile(myfile,22) = .t.
-RETURN
-ENDIF
-if .not. empty(myfile)
-* closing current server before opening another one
-IF win_transd = .t.
-FOR I = 1 TO APPLICATION.Forms.Count 
-	IF APPLICATION.Forms.Item(I).NAME = "TRANSDFORM"
-  		APPLICATION.Forms.Item(I).closebtn.click
-		EXIT
-	ENDIF
-NEXT
-ENDIF
-close database
-myswform.load()
-myswform.OLETREE.Visible = .F.
+				myfile = myfiletoopen
+				IF FILE(myfiletoopen)
+							lmyfiletoopen = .t.
+							myfiletoopen = ""
+				ELSE
+							lmyfiletoopen = .f.
+				ENDIF
+				s_menu = "1_0"
+				IF application.ActiveForm.name = "IPWRITER"
+						application.ActiveForm.COMMAND3.CLICK
+						RETURN
+				ENDIF
+				IF application.ActiveForm.name = "TRANSDFORM"
+						application.ActiveForm.MENULABEL2.CLICK
+						RETURN
+				ENDIF
+			  IF application.ActiveForm.name = "INTERDFORM"
+						application.ActiveForm.LABEL8.CLICK
+						RETURN
+				ENDIF
+				IF FS_SW = 1
+						MYMSG = MESSAGEBOX("Save Changes ?",4,"Save")
+						IF mymsg = 6
+								if .not. mysys_file = "No Name"
+										do form upload
+										delete file (mySYS_FILE)
+										select 23
+										copy to (MYSYS_FILE)
+										GOTO bottom
+								ELSE
+										IF lmyfiletoopen = .f.
+												myfile = GETFILE("SuperServerFile:SSF","File Name","Save",1,"Save As")
+										ENDIF
+										IF .not. testfile(myfile,1111) = .t.
+												RETURN
+										ENDIF
+										if .not. empty(myfile)
+												myifile = LEFT(myfile,LEN(myfile)-4)+".trf"
+												IF FILE(myifile)
+														stmsg("Transporter File with the same name already exist in the same folder, it's not possible to have server file & transporter file in the same folder with the same name")
+														RETURN
+												ENDIF
+												myifile = LEFT(myfile,LEN(myfile)-4)+".idf"
+												IF FILE(myifile)
+														stmsg("Interaction Page File with the same name already exist in the same folder, it's not possible to have server file & Interaction Page file in the same folder with the same name")
+														RETURN
+												ENDIF
+												if file(myfile)
+														mymsg = messagebox(sysmsg(284),36,sysmsg(285))
+														if mymsg = 6
+																delete file (myfile)
+																do form upload
+																select 23
+																copy to (myfile)
+																GOTO bottom
+																MYSYS_FILE = MYFILE
+																myswform.text1.value =  "(File :" + mysys_file + " )"
+														endif
+												else
+														do form upload
+														select 23
+														copy to (myfile)
+														GOTO bottom
+														MYSYS_FILE = MYFILE
+														myswform.text1.value ="(File :" + mysys_file + " )"
+												endif
+										endif
+								endif
+						ENDIF
+						FS_SW = 0
+				ENDIF
+				IF s_mem3 = .f. 
+						IF lmyfiletoopen = .f.
+								myfile = GETFILE("SuperServerFile:SSF","File Name ","Open",0,"Open Server")
+						ENDIF
+				ELSE
+								myfile = s_mem
+								s_mem3 = .f.
+								SELECT 0
+								myfvar = ALLTRIM(t47->tfile)
+								IF LEFT(myfvar,1) = "\"
+										myfvar = application.DefaultFilePath + myfvar
+								ENDIF
+								DO Cpzero WITH (myfvar),CPCURRENT(1)
+								USE (myfvar)
+								copy to (s_mem)
+								GOTO bottom
+								USE
+								SELECT t23
+				ENDIF
+				IF .not. testfile(myfile,1111) = .t.
+							RETURN
+				ENDIF
+				IF .not. testfile(myfile,22) = .t.
+								RETURN
+				ENDIF
+				if .not. empty(myfile)
+								* closing current server before opening another one
+								IF win_transd = .t.
+										FOR I = 1 TO APPLICATION.Forms.Count 
+													IF APPLICATION.Forms.Item(I).NAME = "TRANSDFORM"
+  															APPLICATION.Forms.Item(I).closebtn.click
+																EXIT
+													ENDIF
+												
+										NEXT
+								ENDIF
+															
+								FOR I = 1 TO APPLICATION.Forms.Count 
+												
+													IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+																APPLICATION.Forms.Item(I).closebtn.click
+																	EXIT
+													ENDIF
+										NEXT
+								
+								close database
+								myswform.load()
+								myswform.OLETREE.Visible = .F.
 FT = .T.
 o = myswform.oletree
 o.nodes.remove("2_")
@@ -2762,6 +2773,23 @@ next
 * adding file name to window title
 myswform.text1.value = "(File :" + mysys_file + " )"
 myswform.OLETREE.Visible = .T.
+
+
+IF win_rpwi = .f.
+DO FORM rpwi
+ENDIF
+
+FOR I = 1 TO APPLICATION.Forms.Count 
+
+	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+			APPLICATION.Forms.Item(I).SHOW()
+		EXIT
+	ENDIF
+NEXT
+
+
+
+
 endif
 endif
 * NEW SERVER
@@ -2867,8 +2895,19 @@ ENDIF
 		  		APPLICATION.Forms.Item(I).closebtn.click
 					EXIT
 				ENDIF
+					
 			NEXT
 	  ENDIF
+	  
+	  	FOR I = 1 TO APPLICATION.Forms.Count 
+												
+													IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+																APPLICATION.Forms.Item(I).closebtn.click
+																	EXIT
+													ENDIF
+										NEXT
+	  		
+	  
 		close database
 
 		myswform.load()
@@ -3005,8 +3044,19 @@ FOR I = 1 TO APPLICATION.Forms.Count
   		APPLICATION.Forms.Item(I).closebtn.click
 		EXIT
 	ENDIF
+			
 NEXT
+
+	FOR I = 1 TO APPLICATION.Forms.Count 
+												
+													IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+																APPLICATION.Forms.Item(I).closebtn.click
+																	EXIT
+													ENDIF
+										NEXT
 ENDIF
+
+
 
 myswform.load()
 myswform.text1.Value = "File : NoName"

@@ -3,7 +3,7 @@ PUBLIC myfiletoopen
 IF PCOUNT() = 1
 myfiletoopen = pmyfile
 ELSE
-myfiletoopen = ""
+myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
 ENDIF
 application.DefaultFilePath = JUSTPATH(application.ServerName)
 DECLARE INTEGER ShellExecute IN shell32.dll ; 
