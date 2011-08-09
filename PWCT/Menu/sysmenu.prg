@@ -667,11 +667,11 @@ DEFINE BAR 2 OF (a_menupops[17]) PROMPT "\-"
 *!*	DEFINE BAR 12 OF (a_menupops[17]) PROMPT sysmsg(1369)
 *!*	DEFINE BAR 18 OF (a_menupops[17]) PROMPT sysmsg(1581)
 *!*	DEFINE BAR 16 OF (a_menupops[17]) PROMPT "\-"
-DEFINE BAR 17 OF (a_menupops[17]) PROMPT sysmsg(1488)
-DEFINE BAR 13 OF (a_menupops[17]) PROMPT "\-"
+*!*	DEFINE BAR 17 OF (a_menupops[17]) PROMPT sysmsg(1488)
+*!*	DEFINE BAR 13 OF (a_menupops[17]) PROMPT "\-"
 DEFINE BAR 14 OF (a_menupops[17]) PROMPT sysmsg(1370)
 *!*	ON SELECTION BAR 18 OF (a_menupops[17]) do myalleg in sysmenu.prg
-ON SELECTION BAR 17 OF (a_menupops[17]) do projteam in sysmenu.prg
+*!*	ON SELECTION BAR 17 OF (a_menupops[17]) do projteam in sysmenu.prg
 *!*	ON SELECTION BAR 15 OF (a_menupops[17]) DO _25j0f6yuu in sysmenu.prg
 ON SELECTION BAR 1 OF (a_menupops[17]) ;
 	DO _25j0f6yvd in sysmenu.prg
