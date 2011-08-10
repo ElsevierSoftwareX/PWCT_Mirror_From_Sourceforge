@@ -171,7 +171,7 @@ ON PAD _25j0f6ysq OF (m.cMenuName) ACTIVATE POPUP (a_menupops[15])
 *ON PAD _25j0f6ysr OF (m.cMenuName) ACTIVATE POPUP (a_menupops[16])
 ON PAD _25j0f6yss OF (m.cMenuName) ACTIVATE POPUP (a_menupops[17])
 
-DEFINE POPUP (a_menupops[1]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE POPUP (a_menupops[1]) MARGIN RELATIVE SHADOW  COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[1]) PROMPT sysmsg(1250) ;
 	PICTURE "new.bmp"
 DEFINE BAR 2 OF (a_menupops[1]) PROMPT sysmsg(1251)  ;

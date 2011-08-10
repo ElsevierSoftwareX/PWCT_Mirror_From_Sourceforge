@@ -170,8 +170,11 @@ ON PAD _25j0f6ysp OF (m.cMenuName) ACTIVATE POPUP (a_menupops[14])
 ON PAD _25j0f6ysq OF (m.cMenuName) ACTIVATE POPUP (a_menupops[15])
 *ON PAD _25j0f6ysr OF (m.cMenuName) ACTIVATE POPUP (a_menupops[16])
 ON PAD _25j0f6yss OF (m.cMenuName) ACTIVATE POPUP (a_menupops[17])
-
-DEFINE POPUP (a_menupops[1]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
+*COLOR SCHEME 4
+DEFINE POPUP (a_menupops[1]) MARGIN RELATIVE SHADOW  COLOR ;
+  RGB(0,128,0,255,255,255), ;
+  RGB(0,0,255,255,255,255),,,, ;
+  RGB(255,255,255,128,128,0)
 DEFINE BAR 1 OF (a_menupops[1]) PROMPT sysmsg(1250) ;
 	PICTURE "new.bmp"
 DEFINE BAR 2 OF (a_menupops[1]) PROMPT sysmsg(1251)  ;
@@ -671,7 +674,7 @@ DEFINE BAR 2 OF (a_menupops[17]) PROMPT "\-"
 *!*	DEFINE BAR 13 OF (a_menupops[17]) PROMPT "\-"
 DEFINE BAR 14 OF (a_menupops[17]) PROMPT sysmsg(1370)
 *!*	ON SELECTION BAR 18 OF (a_menupops[17]) do myalleg in sysmenu.prg
-ON SELECTION BAR 17 OF (a_menupops[17]) do projteam in sysmenu.prg
+*!*	ON SELECTION BAR 17 OF (a_menupops[17]) do projteam in sysmenu.prg
 *!*	ON SELECTION BAR 15 OF (a_menupops[17]) DO _25j0f6yuu in sysmenu.prg
 ON SELECTION BAR 1 OF (a_menupops[17]) ;
 	DO _25j0f6yvd in sysmenu.prg

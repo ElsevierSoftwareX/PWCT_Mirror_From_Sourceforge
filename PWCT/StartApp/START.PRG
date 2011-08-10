@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 04:46:56    Date : 08/10/2011
+* Time : 17:42:24    Date : 08/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : xHarbourPWCT 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"

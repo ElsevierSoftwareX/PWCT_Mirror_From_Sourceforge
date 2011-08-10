@@ -590,7 +590,7 @@ goto PARPARSE
   echo %MV_HRB%\lib\hbpp.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbpcre.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbct.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\hbmisc.lib + >> _temp.rsp
+rem  echo %MV_HRB%\lib\hbmisc.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbole.lib + >> _temp.rsp
   if %MV_INTMODE%==C goto RSPEND
   echo %MV_HRB%\lib\hbprinter.lib + >> _temp.rsp
