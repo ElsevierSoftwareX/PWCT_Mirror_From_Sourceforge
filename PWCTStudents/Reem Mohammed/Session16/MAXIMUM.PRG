@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:29:21    Date : 08/09/2011
+* Time : 07:09:11    Date : 08/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.7 (Sharp) [2006-2010]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,48 +54,57 @@ Resistance R_MAXIMUM_15speed1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 500 ;
-HEIGHT 400 ;
+WIDTH 599 ;
+HEIGHT 514 ;
 ICON "PWCTICON" ;
 TITLE "maximum" ;
 MAIN ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
-BACKCOLOR {236,233,216} 
+BACKCOLOR {255,255,255} 
 
-@ 322 ,370 BUTTONEX btn1;
+@ 5 ,79 IMAGE image1;
+PICTURE "MAXI.JPG";
+STRETCH ;
+WIDTH 421 HEIGHT 118
+@ 428 ,477 BUTTONEX btn1;
 CAPTION "Max";
 ON CLICK mymax()  ;
-WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 9 ;
+WIDTH 105 HEIGHT 37 ;
+FONT "Ravie" SIZE 16 ;
 TOOLTIP ""
-@ 116 ,123 LISTBOX list1;
-WIDTH 260 ;
-HEIGHT 201 ;
-FONT "Arial" SIZE 9 ;
+@ 216 ,171 LISTBOX list1;
+WIDTH 334 ;
+HEIGHT 206 ;
+FONT "Cooper Black" SIZE 18 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
-@ 48 ,35 LABEL lbl1 ;
+FONTCOLOR {255,0,128}
+@ 155 ,29 LABEL lbl1 ;
 VALUE "the number" ;
-WIDTH 100 ;
-HEIGHT 20 ;
-FONT "Arial" SIZE 9  ;
-BACKCOLOR {236,233,216} ;
-FONTCOLOR {0,0,0}
-@ 39 ,372 BUTTONEX btn2;
+WIDTH 151 ;
+HEIGHT 38 ;
+FONT "Jokerman" SIZE 18  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {128,0,255}
+@ 153 ,402 BUTTONEX btn2;
 CAPTION "add number";
 ON CLICK myadd()  ;
-WIDTH 100 HEIGHT 30 ;
-FONT "arial" SIZE 9 ;
+WIDTH 177 HEIGHT 35 ;
+FONT "Ravie" SIZE 16 ;
 TOOLTIP ""
-@ 41 ,135 TEXTBOX text1;
-HEIGHT 38 ;
-WIDTH 215 ;
+@ 155 ,186 TEXTBOX text1;
+HEIGHT 40 ;
+WIDTH 211 ;
+FONT "Cooper Black" SIZE 18 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
+FONTCOLOR {255,0,128} ;
 NUMERIC 
 
+@ 209 ,2 IMAGE image2;
+PICTURE "NOSA.JPG";
+STRETCH ;
+WIDTH 148 HEIGHT 236
 END WINDOW
 
 ACTIVATE WINDOW win1
@@ -126,7 +135,7 @@ mymax := myitem
 ENDIF
 Next
 mymax = STR ( mymax )
-MyOut := MSGBOX(mymax,"ÇßÈÑ ÑÞã")
+MyOut := MSGBOX(mymax,"maximum")
 Return Nil
 
 
