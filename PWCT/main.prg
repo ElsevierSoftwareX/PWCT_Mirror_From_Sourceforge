@@ -46,6 +46,7 @@ FS_SW = 0
 PUBLIC s_mem3
 s_mem3 = .f.
 ON KEY label  F1 S_MENU = "DoubleS Framework"
+
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
 ELSE
