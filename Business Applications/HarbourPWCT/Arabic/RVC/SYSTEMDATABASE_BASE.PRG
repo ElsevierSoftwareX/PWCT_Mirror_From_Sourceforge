@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 22:56:14    Date : 07/31/2011
+* Time : 17:52:02    Date : 08/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
@@ -26,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_SYSTEMDATABASE_BASE_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_SYSTEMDATABASE_BASE_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_SYSTEMDATABASE_BASE_15speed1() code
+Resistance R_SYSTEMDATABASE_BASE_18smart1() code
 Class SYSTEMDATABASE
 Data oCon init 0
 Data oRS init 0
@@ -124,18 +124,17 @@ oRS:Close()
 oCon:CLOSE()
 Return 0
 Method connect Class SYSTEMDATABASE
-TRY
+BEGIN SEQUENCE WITH { |e| break(e) }
 self:oCon := TOLEAUTO():NEW( "ADODB.Connection" )
 self:oCon:open ( 'Provider=MSDASQL.1;Persist Security Info=True;Extended Properties="dsn='+self:DataSourceName+';uid='+self:username+';pwd='+self:password+'";Initial Catalog='+self:databasename )
 self:oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 self:oRS:CursorType := 1
 self:oRS:ActiveConnection := self:oCon
 self:oRS:open ( "Select * from " + self:TableName + " where 1 = 1 " + self:complexsearch,self:oCon,3,3 )
-CATCH cError
-cError := cError:description
+RECOVER USING cError
 MyOut := MSGBOX("«·‰Ÿ«„ €Ì— ﬁ«œ— ⁄·Ï «·« ’«· »ﬁ«⁄œ… «·»Ì«‰« ","⁄›Ê«")
 Quit
-END
+END SEQUENCE
 Return 0
 Method disconnect Class SYSTEMDATABASE
 self:oRS:Close()

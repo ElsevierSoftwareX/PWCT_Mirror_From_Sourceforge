@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 14:47:47    Date : 08/03/2011
+* Time : 06:31:32    Date : 08/11/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
@@ -33,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_RVC_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_RVC_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -48,7 +48,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_RVC_15speed1() code
+Resistance R_RVC_18smart1() code
 DO datesettings
 Set MenuStyle EXTENDED
 SET PROGRAMMATICCHANGE OFF

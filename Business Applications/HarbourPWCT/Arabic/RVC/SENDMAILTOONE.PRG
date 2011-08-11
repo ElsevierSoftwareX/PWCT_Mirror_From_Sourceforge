@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 14:46:26    Date : 08/03/2011
+* Time : 17:51:41    Date : 08/10/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
@@ -26,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_SENDMAILTOONE_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_SENDMAILTOONE_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_SENDMAILTOONE_15speed1() code
+Resistance R_SENDMAILTOONE_18smart1() code
 class SendMailtoOneClass From MailSMTPServer
 Data RecEMail init ""
 Method ShowWindow
@@ -221,11 +221,11 @@ cTO := "<" + alltrim(SendMailToOneWindow.text4.value) + ">"
 cSubject := SendMailToOneWindow.text5.value
 cMsgBody := SendMailToOneWindow.edit1.value
 cAttach := SendMailToOneWindow.text8.value
-TRY
+BEGIN SEQUENCE WITH { |e| break(e) }
 DO sendmailtoclient WITH cSMTP,nPort,cUserID,cPassword,cFrom,CTo,cSubject,cMsgBody,cAttach
-CATCH
+RECOVER
 MyOut := MSGBOX("Œÿ« ›Ï ⁄„·Ì… «·«—”«· ","⁄›Ê«")
-END
+END SEQUENCE
 Return 0
 Method msgAttach Class SendMailtoOneClass
 GetFile := GetFile (  , ;
