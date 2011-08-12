@@ -4,7 +4,7 @@
 *
 *  DoubleS Project (DoubleS Paradigm,DoubleS Framework & DoubleS Library)
 *
-*  Copyright(C) 2006-2010, Mahmoud Fayed (msfclipper@hotmail.com)
+*  Copyright(C) 2006-2007, Mahmoud Fayed (msfclipper@hotmail.com)
 *
 *  TCPIP SERVER - USED FOR VETO SYSTEM LEVEL 3 (VSL3)
 *-------------------------------------------------------------------------*
@@ -169,7 +169,7 @@ LOCAL MYPATH
  waitconnection = .f.
  multisend = .f. && when send = send to all clients (not applied now , value = .f.)
  feedback = .f.   && send what you recive (now applied now, value = .f.)
-InetInit()
+HB_INETInit()
 osocketclient = ""
 
 MYPATH = MEMOREAD("VETOPATH.TXT")
@@ -197,11 +197,11 @@ Resistance RUZSLC2() code
  myport := GET_ACTIVE_ELECTRON_VALUE
  CLEAR CHANNEL
  CLOSE CHANNEL
-osocket = InetConnect( myaddress,VAL(myport) )
+osocket = HB_INETConnect( myaddress,VAL(myport) )
 ? " Connect "
 ? " Address : " + myaddress
 ? " Port         : " + myport
-InetSetTimeout( OSOCKET, 100 )
+HB_INETTIMEOUT( OSOCKET, 100 )
 aadd(cconsarr,osocket)
 End Of Resistance
 
@@ -218,33 +218,33 @@ if multisend = .t.
 if .not. len(sconsarr) = 0
 for x = 1 to len(sconsarr)
 osocketclient = sconsarr[x]
-InetSend( osocketclient, mydata )
+HB_INETSend( osocketclient, mydata )
 ? " Send Data :" + mydata
 ? " Error Code : "
-?? INETERRORCODE(OSOCKETCLIENT)
+?? HB_INETERRORCODE(OSOCKETCLIENT)
 next
 endif
 else
-InetSend( osocketclient, mydata )
+HB_INETSend( osocketclient, mydata )
 ? " Send Data :" + mydata
 
 ? " Error Code : "
-?? INETERRORCODE(OSOCKETCLIENT)
+?? HB_INETERRORCODE(OSOCKETCLIENT)
 endif
 Endif
 
 if islisten = 0
-InetSend( osocket, mydata )
+HB_INETSend( osocket, mydata )
 ? " Send Data :" + mydata
 ? " Error Code : "
-?? INETERRORCODE(OSOCKET)
+?? HB_INETERRORCODE(OSOCKET)
 endif
 End Of Resistance
 
 * Resistance Code Unit : Circuits\C1\B2\CLOSE
 Resistance RUZSLC4() code
 
-InetClose( oSOCKET )
+HB_INETClose( oSOCKET )
 End Of Resistance
 
 * Resistance Code Unit : Circuits\C1\B3\ENGINE
@@ -255,7 +255,7 @@ if waitconnection = .t.
 VFUNCNAME = SS_GRFUNC("CIRCUITS\C1\B2\ACCEPT")
 VFUNCNAME = ALLTRIM(VFUNCNAME)
 VFUNCNAME = LEFT(VFUNCNAME,LEN(VFUNCNAME)-2)
-STARTTHREAD(VFUNCNAME,@mysocket,@osocketclient,@islisten,@sconsarr,@waitconnection)
+hb_threadstart(VFUNCNAME,@mysocket,@osocketclient,@islisten,@sconsarr,@waitconnection)
  waitconnection = .f.
 endif
 * server side
@@ -264,7 +264,7 @@ if .not. len(sconsarr) = 0
 for x = 1 to len(sconsarr)
 osocketclient = sconsarr[x]
       MYSTR := space(50)
-      InetRecv( osocketclient, @MYSTR  )
+      HB_INETRecv( osocketclient, @MYSTR  )
        if .not. empty(alltrim(mystr)) 
         if .NOT. upper(left(mystr,13)) == "[(*VETOSYS*)]"
           START REPLY 
@@ -279,16 +279,16 @@ osocketclient = sconsarr[x]
          ENDIF
           ? " Data Arrival :" + mystr
           ? " Error Code : "
-          ?? INETERRORCODE(OSOCKETCLIENT)
+          ?? HB_INETERRORCODE(OSOCKETCLIENT)
         if feedback = .t.
             OLDSOCKET = OSOCKETCLIENT
             if .not. len(sconsarr) = 0
               for y = 1 to len(sconsarr)
                  osocketclient = sconsarr[y]
-                 InetSend( osocketclient, mystr )
+                 HB_INETSend( osocketclient, mystr )
                 ? " Send Data :" + mystr
                 ? " Error Code : "
-                ?? INETERRORCODE(OSOCKETCLIENT)
+                ?? HB_INETERRORCODE(OSOCKETCLIENT)
              next
            endif
            OSOCKETCLIENT = OLDSOCKET
@@ -305,7 +305,7 @@ if .not. len(cconsarr) = 0
 for x = 1 to len(cconsarr)
 osocket = cconsarr[x]
       MYSTR := space(128)
-            InetRecv( osocket, @MYSTR  )
+            HB_INETRecv( osocket, @MYSTR  )
  if .not. empty(alltrim(mystr)) 
   if .NOT. upper(left(mystr,13)) == "[(*VETOSYS*)]"
           START REPLY 
@@ -321,7 +321,7 @@ osocket = cconsarr[x]
 ENDIF
 ? " Data Arrival :" + mystr
 ? " Error Code : "
-?? INETERRORCODE(OSOCKET)
+?? HB_INETERRORCODE(OSOCKET)
  endif
 next
 endif
@@ -347,7 +347,8 @@ LOCAL MYADDRESS,MYPORT
  myport := GET_ACTIVE_ELECTRON_VALUE
  CLEAR CHANNEL
  CLOSE CHANNEL
-MYSOCKET = InetServer(VAL(myport),myaddress)
+*MYSOCKET = HB_INETServer(VAL(myport),myaddress)
+MYSOCKET = HB_INETServer(VAL(myport))
 ? " BIND "
 ? " Address : " + myaddress
 ? " Port         : " + myport
@@ -359,9 +360,9 @@ End Of Resistance
 Resistance RUZSLC8() code
 parameters p_mysocket,p_osocketclient,p_islisten,p_sconsarr,p_waitconnection
 ? "before accept"
-p_osocketclient := InetAccept( p_MYSOCKET )
+p_osocketclient := HB_INETAccept( p_MYSOCKET )
 ? "after accept"
-InetSetTimeout( p_OSOCKETCLIENT, 100 )
+HB_INETTIMEOUT( p_OSOCKETCLIENT, 100 )
 ? "Send welcome"
 p_islisten = 2
 aadd(p_sconsarr,p_osocketclient)
@@ -407,24 +408,24 @@ if multisend = .t.
 if .not. len(sconsarr) = 0
 for x = 1 to len(sconsarr)
 osocketclient = sconsarr[x]
-InetSend( osocketclient, mydata )
+HB_INETSend( osocketclient, mydata )
 ? " Send Data :" + mydata
 ? " Error Code : "
-?? INETERRORCODE(OSOCKETCLIENT)
+?? HB_INETERRORCODE(OSOCKETCLIENT)
 next
 endif
 else
-InetSend( osocketclient, mydata )
+HB_INETSend( osocketclient, mydata )
 ? " Send Data :" + mydata
 ? " Error Code : "
-?? INETERRORCODE(OSOCKETCLIENT)
+?? HB_INETERRORCODE(OSOCKETCLIENT)
 endif
 Endif
 if islisten = 0
-InetSend( osocket, mydata )
+HB_INETSend( osocket, mydata )
 ? " Send Data :" + mydata
 ? " Error Code : "
-?? INETERRORCODE(OSOCKET)
+?? HB_INETERRORCODE(OSOCKET)
 endif
 End Of Resistance
 
