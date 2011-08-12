@@ -1,0 +1,1 @@
+CALL sscom2.bat  "MESSGE_BOX"  /X /l calldll  > _temp.txt
