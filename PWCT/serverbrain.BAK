@@ -2325,14 +2325,17 @@ if s_menu == "1_2" .or. FILE(myfiletoopen)
   															APPLICATION.Forms.Item(I).closebtn.click
 																EXIT
 													ENDIF
+												
+										NEXT
+								ENDIF
+															
+								FOR I = 1 TO APPLICATION.Forms.Count 
+												
 													IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
 																APPLICATION.Forms.Item(I).closebtn.click
 																	EXIT
 													ENDIF
 										NEXT
-								ENDIF
-															
-								
 								
 								close database
 								myswform.load()
@@ -2892,13 +2895,17 @@ ENDIF
 		  		APPLICATION.Forms.Item(I).closebtn.click
 					EXIT
 				ENDIF
-					IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
-																APPLICATION.Forms.Item(I).closebtn.click
-																	EXIT
-					ENDIF
+					
 			NEXT
 	  ENDIF
 	  
+	  	FOR I = 1 TO APPLICATION.Forms.Count 
+												
+													IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+																APPLICATION.Forms.Item(I).closebtn.click
+																	EXIT
+													ENDIF
+										NEXT
 	  		
 	  
 		close database
@@ -3037,11 +3044,16 @@ FOR I = 1 TO APPLICATION.Forms.Count
   		APPLICATION.Forms.Item(I).closebtn.click
 		EXIT
 	ENDIF
-			IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+			
+NEXT
+
+	FOR I = 1 TO APPLICATION.Forms.Count 
+												
+													IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
 																APPLICATION.Forms.Item(I).closebtn.click
 																	EXIT
-			ENDIF
-NEXT
+													ENDIF
+										NEXT
 ENDIF
 
 

@@ -143,6 +143,13 @@ ENDIF
 * tool bar events
 IF S_TOOL == "CUT"
 S_TOOL = "0"
+FOR I = 1 TO APPLICATION.Forms.Count 
+	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+			APPLICATION.Forms.Item(I).SHOW()
+		EXIT
+	ENDIF
+NEXT
+
 *SYS(1500,"_med_cut","_medit")
 	IF application.ActiveForm.name = "RPWIFORM"
 		application.ActiveForm.COMMAND10.CLICK
@@ -152,6 +159,14 @@ KEYBOARD CHR(24)
 endif
 IF S_TOOL == "COPY"
 S_TOOL = "0"
+FOR I = 1 TO APPLICATION.Forms.Count 
+
+	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+			APPLICATION.Forms.Item(I).SHOW()
+		EXIT
+	ENDIF
+NEXT
+
 *SYS(1500,"_med_copy","_medit")
 	IF application.ActiveForm.name = "RPWIFORM"
 		application.ActiveForm.COMMAND8.CLICK
@@ -162,6 +177,14 @@ KEYBOARD CHR(3)
 endif
 IF S_TOOL == "PASTE"
 S_TOOL = "0"
+FOR I = 1 TO APPLICATION.Forms.Count 
+
+	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+			APPLICATION.Forms.Item(I).SHOW()
+		EXIT
+	ENDIF
+NEXT
+
 	IF application.ActiveForm.name = "RPWIFORM"
 		application.ActiveForm.COMMAND9.CLICK
 		RETURN
