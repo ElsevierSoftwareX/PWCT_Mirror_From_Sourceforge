@@ -87,20 +87,22 @@ RETURN
 
 FUNCTION SS_VSL4SENDDATA(mydata)
 
+	MYDATA = MYDATA + CHR(13) + CHR(10)
+
 	// Server Side
 	if VSL4_islisten = 2
 		if VSL4_multisend = .t.
 			if .not. len(VSL4_sconsarr) = 0
 				for x = 1 to len(VSL4_sconsarr)
 					VSL4_osocketclient = VSL4_sconsarr[x]
-					HB_INETSend( VSL4_osocketclient, mydata )
+					HB_INETSend( VSL4_osocketclient, mydata  )
 					? " Send Data :" + mydata
 					? " Error Code : "
 					?? HB_INETERRORCODE(VSL4_osocketCLIENT)
 				next
 			endif
 		else
-			HB_INETSend( VSL4_osocketclient, mydata )
+			HB_INETSend( VSL4_osocketclient, mydata  )
 			? " Send Data :" + mydata
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocketCLIENT)
@@ -133,9 +135,11 @@ FUNCTION SS_VSL4ENGINE()
 	if VSL4_islisten = 2
 		if .not. len(VSL4_sconsarr) = 0
 			for x = 1 to len(VSL4_sconsarr)
+
 				VSL4_osocketclient = VSL4_sconsarr[x]
 			        MYSTR := space(50)
-			        HB_INETRecv( VSL4_osocketclient, @MYSTR  )
+			        MYSTR = HB_INETRecvLine( VSL4_osocketclient)
+	
 			        if .not. empty(alltrim(mystr)) 
 				        if .NOT. upper(left(mystr,13)) == "[(*VETOSYS*)]"
 					         SS_VSL4DataCome(mystr)
@@ -151,7 +155,7 @@ FUNCTION SS_VSL4ENGINE()
 				            if .not. len(VSL4_sconsarr) = 0
 					              for y = 1 to len(VSL4_sconsarr)
 						                 VSL4_osocketclient = VSL4_sconsarr[y]
-						                 HB_INETSend( VSL4_osocketclient, mystr )
+						                 HB_INETSend( VSL4_osocketclient, mystr + CHR(13) + CHR(10) )
 						                 ? " Send Data :" + mystr
 						                 ? " Error Code : "
 						                 ?? HB_INETERRORCODE(VSL4_osocketCLIENT)
@@ -170,7 +174,8 @@ FUNCTION SS_VSL4ENGINE()
 			for x = 1 to len(VSL4_cconsarr)
 				VSL4_osocket = VSL4_cconsarr[x]
 			        MYSTR := space(128)
-		                HB_INETRecv( VSL4_osocket, @MYSTR  )
+		                MYSTR := HB_INETRecvLine( VSL4_osocket  )
+				
 				if .not. empty(alltrim(mystr)) 
 					if .NOT. upper(left(mystr,13)) == "[(*VETOSYS*)]"
 					          SS_VSL4DataCome(mystr)
@@ -239,7 +244,9 @@ FUNCTION SS_VSL4VSL4_feedbackOFF()
 RETURN
 
 FUNCTION SS_VSL4SENDVETO(myveto)
-	MYDATA =  "[(*VETOSYS*)]" + myveto
+
+	MYDATA =  "[(*VETOSYS*)]" + myveto + CHR(13) + CHR(10)
+
 	if VSL4_islisten = 2
 		if VSL4_multisend = .t.
 			if .not. len(VSL4_sconsarr) = 0
