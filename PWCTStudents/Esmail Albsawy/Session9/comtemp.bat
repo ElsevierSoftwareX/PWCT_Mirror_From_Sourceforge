@@ -1,0 +1,1 @@
+CALL sscom2.bat  "LOGIN USER"  /X /l calldll  > _temp.txt
