@@ -1,3 +1,5 @@
+set path=%path%;c:\ssbuild\borland\bcc55\bin\
+
 del sslib.obj
 del errorsys.obj
 del taxprg.obj
@@ -25,9 +27,9 @@ del taxprg.lib
 copy c:\ssbuild\sslib\sslib.obj
 copy c:\ssbuild\sslib\errorsys.obj
 copy c:\ssbuild\sslib\taxprg.obj
-lib sslib +sslib.obj
-lib sserror +errorsys.obj
-lib taxprg +taxprg.obj
+Tlib sslib +sslib.obj
+Tlib sserror +errorsys.obj
+Tlib taxprg +taxprg.obj
 copy sslib.lib c:\ssbuild\sslib\lib
 copy sserror.lib c:\ssbuild\sslib\lib
 copy taxprg.lib c:\ssbuild\sslib\lib
