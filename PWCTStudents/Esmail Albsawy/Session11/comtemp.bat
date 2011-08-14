@@ -1,0 +1,1 @@
+CALL sscom2.bat  "DESIGN_WINDOW"  /X /l calldll  > _temp.txt
