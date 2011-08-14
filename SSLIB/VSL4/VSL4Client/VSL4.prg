@@ -49,10 +49,13 @@ function SS_VSL4STARTUP()
 	public VSL4_cconsarr		&& Client Connections Array
 	public VSL4_islisten		&& 0 = Client Side 
 					&& 1 = Server Side - Bind 		
-					&& 2 = Server Side - Accepted Connection                       
+					&& 2 = Server Side - Accepted Connection
+					&& 3 = New Connection waiting Acceptance                       
 	public VSL4_waitconnection      && True : Bind  - False : Accepted Connection           
 	public VSL4_multisend           && when send = send to all clients (not applied now , value = .f.)          
 	public VSL4_feedback  		&& send what you recive (now applied now, value = .f.)
+
+	public VSL4_CONREQSTATUS 	&& Connection Request Status
 
 	VSL4_sconsarr = {}		
 	VSL4_cconsarr = {}		
@@ -60,6 +63,7 @@ function SS_VSL4STARTUP()
 	VSL4_waitconnection = .f.
 	VSL4_multisend = .f. 		
 	VSL4_feedback = .f.   		
+	VSL4_CONREQSTATUS = .f.
 
 	HB_INETInit()
 
@@ -82,6 +86,18 @@ FUNCTION SS_VSL4CONNECT(myaddress,myport)
 	? " Port         : " 	+ myport
 
 	aadd(VSL4_cconsarr,VSL4_osocket)	&& Add socket object to client connections array
+
+	? "Send Server Name : " + SS_SERVERS[SS_AS][1]
+	? "Send Server Type : " + SS_SERVERS[SS_AS][2]
+	? "Send Server Eigen Value : " + SS_SERVERS[SS_AS][3]
+
+	HB_INETSend( VSL4_osocket, SS_SERVERS[SS_AS][1] + CHR(13) + CHR(10) + ;
+				   SS_SERVERS[SS_AS][2] + CHR(13) + CHR(10) + ;
+				   SS_SERVERS[SS_AS][3] + CHR(13) + CHR(10)  )
+
+	T_ConnectionStatus = HB_INETRecvLine( VSL4_osocket)
+	? "Connection Status : " + T_ConnectionStatus
+
 
 RETURN
 
@@ -122,16 +138,89 @@ FUNCTION SS_VSL4ClientCLOSE()
 	HB_INETClose( VSL4_osocket )
 RETURN
 
+Function SS_VSL4AcceptConnection()
+	VSL4_CONREQSTATUS = .t.
+return
+
+Function SS_VSL4RefuseConnection()
+	VSL4_CONREQSTATUS = .f.
+return
+
+
+Function SS_VSL4ConnectionRequest()
+
+	Local X2,P1,C_NAME,B_NAME,R_NAME,R_ADDRESS
+
+	VSL4_CONREQSTATUS = .t.
+
+	* Call Receiver Veto - REQUEST TYPE = Connection Request
+ 	FOR X2 = 1 TO Len(SS_VETOS)
+                  P1 = SS_SERVERS[SS_AS][23]
+                  IF SS_VETOS[X2][1] = SS_AS .AND. ;
+                     AllTrim(Upper(SS_VETOS[X2][3])) == AllTrim(Upper(P1))
+                     C_NAME = SS_VETOS[X2][5]
+                     B_NAME = SS_VETOS[X2][6]
+                     R_NAME = SS_VETOS[X2][7]
+                     * INVOKE THE RESISTANCE
+                     R_ADDRESS = "Circuits\" + ;
+                                 C_NAME+"\"+B_NAME+"\"+R_NAME
+                     SS_SERVERS[SS_AS][25] = 1 && REQUEST TYPE = Connection Request
+                     SS_CALLR(R_ADDRESS)
+                  ENDIF
+        NEXT
+
+
+Return .t.
+
 FUNCTION SS_VSL4ENGINE()
 
 	local mystr,mystr2,x,y
 	hb_gcall()
 	if VSL4_waitconnection = .t.
-		hb_threadstart("SS_VSL4ACCEPT",@VSL4_mysocket,@VSL4_osocketclient,@VSL4_islisten,@VSL4_sconsarr,@VSL4_waitconnection)
-		VSL4_waitconnection = .f.
+			hb_threadstart("SS_VSL4ACCEPT",@VSL4_mysocket,@VSL4_osocketclient,@VSL4_islisten,@VSL4_sconsarr,@VSL4_waitconnection)
+			VSL4_waitconnection = .f.
 	endif
 
 	* server side
+	if VSL4_islisten = 3
+
+
+		if .not. len(VSL4_sconsarr) = 0
+			p_VSL4_osocketclient = VSL4_sconsarr[len(VSL4_sconsarr)]
+		else
+			return
+		endif
+
+		T_ServerName := space(50)
+		T_ServerName = HB_INETRecvLine( p_VSL4_osocketclient)
+		? "Sender Server Name : " + T_ServerName
+
+		T_ServerType := space(50)
+		T_ServerType = HB_INETRecvLine( p_VSL4_osocketclient)
+		? "Sender Server Type : " + T_ServerType
+
+		T_ServerEigenValue := space(50)
+		T_ServerEigenValue = HB_INETRecvLine( p_VSL4_osocketclient)
+		? "Sender Server Eigen Value : " + T_ServerEigenValue
+
+		SS_VSL4ConnectionRequest()
+		
+		if VSL4_CONREQSTATUS = .t.
+			HB_INETSend( p_VSL4_osocketclient, "Connection Accepted" + CHR(13) + CHR(10) )
+			VSL4_islisten = 2
+		else
+			? "Connection Refused"
+			
+  			HB_INETSend( p_VSL4_osocketclient, "Connection Refused" + CHR(13) + CHR(10) )
+			HB_INETClose( p_VSL4_osocketclient )
+			p_VSL4_osocketclient = NIL
+			
+			Adel (VSL4_sconsarr, len(VSL4_sconsarr) )
+			Asize (VSL4_sconsarr, len(VSL4_sconsarr) - 1 )
+			VSL4_waitconnection = .t.
+		endif
+		
+	endif
 	if VSL4_islisten = 2
 		if .not. len(VSL4_sconsarr) = 0
 			for x = 1 to len(VSL4_sconsarr)
@@ -307,15 +396,19 @@ FUNCTION SS_VSL4BIND(myport)
 RETURN
 
 FUNCTION SS_VSL4ACCEPT()
+
 	parameters p_VSL4_mysocket,p_VSL4_osocketclient,p_VSL4_islisten,p_VSL4_sconsarr,p_VSL4_waitconnection
 	? "before accept"
 	p_VSL4_osocketclient := HB_INETAccept( p_VSL4_mysocket )
 	? "after accept"
 	HB_INETTIMEOUT( p_VSL4_osocketCLIENT, 100 )
 	? "Send welcome"
-	p_VSL4_islisten = 2
+	p_VSL4_islisten = 3
 	aadd(p_VSL4_sconsarr,p_VSL4_osocketclient)
 	p_VSL4_waitconnection = .t.
+
+	
+
 RETURN
 
 FUNCTION SS_VSL4VSL4_multisendON()
