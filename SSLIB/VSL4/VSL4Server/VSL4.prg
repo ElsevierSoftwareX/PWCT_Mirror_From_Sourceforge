@@ -193,18 +193,109 @@ FUNCTION SS_VSL4ENGINE()
 RETURN
 
 Function SS_VSL4DataCome(mydata)
-	//START REPLY 
-        //CON_SENDDATA (MYDAta)
-        //CON_SENDVETO DATA_ARRIVAL
-        //END REPLY
+
         ? "Data : " + mydata
+	
+	* Call Receiver Veto - REQUEST TYPE = SENDDATA
+ 	FOR X2 = 1 TO Len(SS_VETOS)
+                  P1 = SS_SERVERS[SS_AS][23]
+                  IF SS_VETOS[X2][1] = SS_AS .AND. ;
+                     AllTrim(Upper(SS_VETOS[X2][3])) == AllTrim(Upper(P1))
+                     C_NAME = SS_VETOS[X2][5]
+                     B_NAME = SS_VETOS[X2][6]
+                     R_NAME = SS_VETOS[X2][7]
+                     * INVOKE THE RESISTANCE
+                     R_ADDRESS = "Circuits\" + ;
+                                 C_NAME+"\"+B_NAME+"\"+R_NAME
+                     SS_SERVERS[SS_AS][25] = 2 && REQUEST TYPE = SENDDATA
+                     SS_CALLR(R_ADDRESS)
+                  ENDIF
+        NEXT
+
+	* GET DATA - Add data to Server-Input Channel
+               P1 = mydata && DATA
+               ICH_NAME = SS_SERVERS[SS_AS][21]
+               * {SERVER ID , CHANNEL ID , CHANNELNAME , CHANNELTYPE , ATOM , SHELL , SUBSHELL }
+               IF .NOT. Empty(SS_CHANNELS)
+                  FOR X3 = 1 TO Len(SS_CHANNELS)
+                     IF SS_CHANNELS[X3][1] = SS_AS .AND. ;
+                        alltrim(Upper(SS_CHANNELS[X3][3])) == alltrim(Upper(ICH_NAME))
+                        A_NAME = SS_CHANNELS[X3][5]
+                        SH_NAME = SS_CHANNELS[X3][6]
+                        SUB_NAME = SS_CHANNELS[X3][7]
+                        * 1 - GET ATOM ID
+                        FOR X4 = 1 TO LEN(SS_ATOMS)
+                             IF alltrim(UPPER(SS_ATOMS[X4][3])) = alltrim(UPPER(A_NAME))
+                                  V_ATOMID = SS_ATOMS[X4][2]
+                               EXIT
+                          ENDIF
+                        NEXT
+                        * 2 - GET SHELL ID
+                        FOR X4 = 1 TO LEN(SS_SHELLS)
+                          IF SS_SHELLS[X4][2] = V_ATOMID .AND. alltrim(UPPER(SS_SHELLS[X4][4])) == alltrim(UPPER(SH_NAME))
+                               V_SHELLID = SS_SHELLS[X4][3]
+                               EXIT
+                          ENDIF
+                        NEXT
+                        * 3 - GET SUBSHELL ID
+                        FOR X4 = 1 TO LEN(SS_SUBSHELLS)
+                             IF SS_SUBSHELLS[X4][2] = V_ATOMID  .AND. ;
+                                SS_SUBSHELLS[X4][3] = V_SHELLID .AND. UPPER(alltrim(SS_SUBSHELLS[X4][5])) == UPPER(alltrim(SUB_NAME))
+                                V_SUBSHELLID = SS_SUBSHELLS[X4][4]
+                                EXIT
+                             ENDIF
+                        NEXT
+                        * ADD DATABLOCK ELECTRON TO SUBSHELL
+                        * {SERVER ID , ATOM ID , SHELL ID , SUBSHELL ID , ELECTRON ID , ELECTRON TYPE , ELECTRON NAME , VALUE}
+                        SS_SERVERS[SS_AS][7] = SS_SERVERS[SS_AS][7] + 1
+                        AAdd(SS_VARS,{SS_AS,V_ATOMID,V_SHELLID,V_SUBSHELLID,SS_SERVERS[SS_AS][7],2,"DATA_BLOCK",P1})
+                        EXIT
+                     ENDIF
+                  NEXT
+               ENDIF
+
+
+
 Return
 
 Function SS_VSL4VetoCome(myveto)
- 	//START REPLY 
-	// CON_SENDVETO (MYVETO)
-	// END REPLY
+ 	
 	? "Veto : " + myveto
+
+ 	* Call Receiver Veto
+	* GET RESISTANCE ADDRESS OF VETO
+        * {SERVER ID , VETO ID , VETONAME , VETOTYPE , CIRCUIT , BRANCH , RESISTANCE }
+        FOR X2 = 1 TO Len(SS_VETOS)
+                  P1 = SS_SERVERS[SS_AS][23] && RECEIVING VETO
+                  IF SS_VETOS[X2][1] = SS_AS .AND. ;
+                  	AllTrim(Upper(SS_VETOS[X2][3])) == AllTrim(Upper(P1))
+                     	C_NAME = SS_VETOS[X2][5]
+                     	B_NAME = SS_VETOS[X2][6]
+                     	R_NAME = SS_VETOS[X2][7]
+                     	* INVOKE THE RESISTANCE
+                     	R_ADDRESS = "Circuits\" + ;
+                                 C_NAME+"\"+B_NAME+"\"+R_NAME
+                     	SS_SERVERS[SS_AS][25] = 3 && REQUEST TYPE = SENDVETO
+                     	SS_CALLR(R_ADDRESS)
+                  ENDIF
+        NEXT
+
+	* Call Veto
+        FOR X2 = 1 TO Len(SS_VETOS)
+                  P1 = AllTrim(myveto) && required VETO
+                  IF SS_VETOS[X2][1] = SS_AS .AND. ;
+                     	Upper(SS_VETOS[X2][3]) = Upper(P1)
+                     	C_NAME = SS_VETOS[X2][5]
+                     	B_NAME = SS_VETOS[X2][6]
+                     	R_NAME = SS_VETOS[X2][7]
+			* INVOKE THE RESISTANCE
+               		R_ADDRESS = "Circuits\" + ;
+                                 C_NAME+"\"+B_NAME+"\"+R_NAME
+                     SS_CALLR(R_ADDRESS)
+                  ENDIF
+        NEXT
+               
+
 Return
 
 FUNCTION SS_VSL4BIND(myport)
