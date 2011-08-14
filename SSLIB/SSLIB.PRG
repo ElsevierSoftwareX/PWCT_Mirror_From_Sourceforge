@@ -1,3 +1,4 @@
+
 *-------------------------------------------------------------------------*
 *
 *  http://www.sourceforge.net/projects/doublesvsoop
@@ -2507,6 +2508,10 @@ FUNCTION SS_CCONNECT()      && CONNECTION_CONNECT
    SS_SYSMEM[26] = SS_SERVERS[SS_AS][2] && SERVER TYPE
    SS_SYSMEM[27] = SS_SERVERS[SS_AS][3] && SERVER EIGEN VALUE
    MYSERVERS = SS_SYSMEM[24]
+
+	* select input channel based on connection input channel
+	SS_SERVERS[SS_AS][21] = SS_CONNECTIONS[X][5]
+	
 
    IF SS_GVSL() = 4
 	IF .NOT. Empty(MYSERVERS)
