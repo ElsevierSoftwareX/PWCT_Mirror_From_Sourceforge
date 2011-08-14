@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 17:51:41    Date : 08/10/2011
+* Time : 15:33:04    Date : 08/14/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -35,6 +35,7 @@ Return
 Resistance R_SENDMAILTOONE_18smart1() code
 class SendMailtoOneClass From MailSMTPServer
 Data RecEMail init ""
+Data SecretCode init ""
 Method ShowWindow
 Method msgSend
 Method msgAttach
@@ -132,6 +133,7 @@ FONTCOLOR {0,0,0}
 @ 216 ,77 TEXTBOX text5;
 HEIGHT 30 ;
 WIDTH 410 ;
+VALUE "RVC - Dear Reviewer " ;
 BACKCOLOR {255,255,255} ;
 RIGHTALIGN ;
 FONTCOLOR {0,0,0}
@@ -139,7 +141,8 @@ FONTCOLOR {0,0,0}
 @ 303 ,77 EDITBOX edit1;
 WIDTH 410 ;
 HEIGHT 120;
-FONT "Arial" SIZE 14 ;
+VALUE "http://localhost:1517/RVCWeb/default.aspx?SecretCode=" + self:SecretCode ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 266 ,79 BUTTONEX btnLoad;

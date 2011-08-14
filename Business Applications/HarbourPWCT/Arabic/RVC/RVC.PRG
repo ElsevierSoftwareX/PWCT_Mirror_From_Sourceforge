@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:31:32    Date : 08/11/2011
+* Time : 15:33:10    Date : 08/14/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -137,6 +137,7 @@ ProjectReviewsObject2:ReportName := "ProjectReviews2"
 ProjectReviewsObject2:ReportWindowName := "ProjectReviewsReportWindow2"
 ProjectReviewsObject2:ProjectsTable := "Projects2"
 ProjectReviewsObject2:ReviewersTable := "Reviewers2"
+ProjectReviewsObject2:DeptCode := 2
 ListofProjectReviewsReportObject2 = ListofProjectReviewsReportClass()
 ListofProjectReviewsReportObject2:ReportName := "ListOfProjectReviews2"
 ListofProjectReviewsReportObject2:cWindowName := "ListOfProjectReviewsReportWindow2"
@@ -211,6 +212,7 @@ ProjectReviewsObject3:ReportName := "ProjectReviews3"
 ProjectReviewsObject3:ReportWindowName := "ProjectReviewsReportWindow3"
 ProjectReviewsObject3:ProjectsTable := "Projects3"
 ProjectReviewsObject3:ReviewersTable := "Reviewers3"
+ProjectReviewsObject3:DeptCode := 3
 ListofProjectReviewsReportObject3 = ListofProjectReviewsReportClass()
 ListofProjectReviewsReportObject3:ReportName := "ListOfProjectReviews3"
 ListofProjectReviewsReportObject3:cWindowName := "ListOfProjectReviewsReportWindow3"
@@ -285,6 +287,7 @@ ProjectReviewsObject4:ReportName := "ProjectReviews4"
 ProjectReviewsObject4:ReportWindowName := "ProjectReviewsReportWindow4"
 ProjectReviewsObject4:ProjectsTable := "Projects4"
 ProjectReviewsObject4:ReviewersTable := "Reviewers4"
+ProjectReviewsObject4:DeptCode := 4
 ListofProjectReviewsReportObject4 = ListofProjectReviewsReportClass()
 ListofProjectReviewsReportObject4:ReportName := "ListOfProjectReviews4"
 ListofProjectReviewsReportObject4:cWindowName := "ListOfProjectReviewsReportWindow4"

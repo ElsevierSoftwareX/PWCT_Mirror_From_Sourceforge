@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 14:47:39    Date : 08/03/2011
+* Time : 15:25:53    Date : 08/14/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
@@ -26,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_PROJECTREVIEWS_DATA_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_PROJECTREVIEWS_DATA_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_PROJECTREVIEWS_DATA_15speed1() code
+Resistance R_PROJECTREVIEWS_DATA_18smart1() code
 class ProjectReviewsClass From SYSTEMDATABASE
 Data cWindowName init "ProjectReviewsWindow"
 Data TableName init "ProjectReviews_All"
@@ -40,6 +40,7 @@ Data ReportName init "ProjectReviews"
 Data ReportWindowName init "ProjectReviewsReportWindow"
 Data ProjectsTable init "Projects"
 Data ReviewersTable init "Reviewers"
+Data DeptCode init 1
 Data nID init 0
 Data column init "ProjectName"
 Data PrimaryKey init "id"
@@ -566,6 +567,10 @@ MyOut := MSGBOX("·«ÌÊÃœ ”Ã·« ","⁄›Ê«")
 Return 0
 ENDIF
 sendmailtooneobject:recEMail := self:oRS:fields:item("f_email"):value
+t_id := self:oRS:fields:item("ID"):value
+t_id = STR ( t_id )
+t_id = ALLTRIM ( t_id )
+sendmailtooneobject:SecretCode := alltrim(str(int(rand()*10000000000)))+alltrim(str(self:deptcode))+t_id
 myout = SendMailtoOneObject:ShowWindow()
 Return 0
 Method closewindow Class ProjectReviewsClass

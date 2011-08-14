@@ -13,9 +13,9 @@ rem
 rem ===========================================================================
 
 rem If no parameters, display command syntax.
-if "%1"==""   goto SYNTAX
-if "%1"=="?"  goto SYNTAX
-if "%1"=="/?" goto SYNTAX
+rem if "%1"==""   goto SYNTAX
+rem if "%1"=="?"  goto SYNTAX
+rem if "%1"=="/?" goto SYNTAX
 goto PARPARSE
 
 :SYNTAX
