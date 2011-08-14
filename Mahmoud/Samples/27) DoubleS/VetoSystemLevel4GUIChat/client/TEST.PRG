@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:46:57    Date : 08/14/2011
+* Time : 12:32:50    Date : 08/14/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -58,7 +58,7 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 				SubShell D
 		Connection myconnection
 				Type          Network to Network
-				InputChannel  outchannel2
+				InputChannel  inchannel
 				OutputChannel outchannel2
 				ReceivingVeto nothing
 				SendingVeto   nothing
@@ -101,7 +101,7 @@ WIDTH 500 ;
 HEIGHT 400 ;
 ON INIT vetostart()  ;
 ICON "PWCTICON" ;
-TITLE "Chat based on Veto System Level (3) - GUI " ;
+TITLE "Chat based on Veto System Level (4) - GUI " ;
 MAIN ;
 BACKCOLOR {236,233,216} 
 
@@ -132,15 +132,14 @@ ACTIVATE WINDOW win1
 EndIF
 
 Proc mystart
-//BEGIN SEQUENCE WITH { |e| break(e) }
-? "I AM HERE"
+BEGIN SEQUENCE WITH { |e| break(e) }
 win1.timer1.Enabled := false
 mydata := win1.text1.Value
 CON_SENDDATA (mydata)
 CON_SENDVETO myveto
 win1.timer1.Enabled := true
-//RECOVER
-//END SEQUENCE
+RECOVER
+END SEQUENCE
 Return Nil
 Proc myservice
 CHECK_VETO_SERVICES

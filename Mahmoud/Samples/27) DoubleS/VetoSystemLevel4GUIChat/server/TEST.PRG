@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:46:00    Date : 08/14/2011
+* Time : 12:33:42    Date : 08/14/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -101,7 +101,7 @@ WIDTH 500 ;
 HEIGHT 400 ;
 ON INIT vetostart()  ;
 ICON "PWCTICON" ;
-TITLE "Chat based on Veto System Level (3) - GUI " ;
+TITLE "Chat based on Veto System Level (4) - GUI " ;
 MAIN ;
 BACKCOLOR {236,233,216} 
 
@@ -150,6 +150,7 @@ Return Nil
 Proc vetostart
 SET VETO SYSTEM LEVEL 4
 Declare server "Server1" address "127.0.0.1" port 1200
+select input channel inchannel
 START BIND
 Return Nil
 
@@ -158,7 +159,6 @@ End Of Resistance
 
 * Resistance Code Unit : Circuits\Main\Main\myresistance
 Resistance R_TEST_18smart2() code
-select input channel inchannel
 Open Channel inchannel
 GOTO FIRST ELECTRON
 mymax := GET_ACTIVE_ELECTRONS_COUNT
