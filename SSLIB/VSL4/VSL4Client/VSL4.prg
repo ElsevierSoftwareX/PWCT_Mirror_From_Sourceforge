@@ -16,8 +16,8 @@
 *  3 - SS_VSL4SENDDATA(mydata)		&& Send data using the active connection
 *  4 - SS_VSL4ClientCLOSE()		&& Close Active Connection - Client
 *  5 - SS_VSL4ENGINE()			&& Accept Connections (Server), Get Data (Client/Server) & Get Veto (Client/Server)
-*  6 - SS_VSL4DataCome(mydata)		&& Called when data come 
-*  7 - SS_VSL4VetoCome(myveto)		&& Called when veto come
+*  6 - SS_VSL4DataCome(mydata)		&& Called when data come - Internal Function
+*  7 - SS_VSL4VetoCome(myveto)		&& Called when veto come - Internal Function
 *  8 - SS_VSL4BIND(myport)		&& Bind a port
 *  9 - SS_VSL4ACCEPT()			&& Accept connection ( Internal function called from SS_VSL4ENGINE() )
 * 10 - SS_VSL4VSL4_multisendON()	&& set multisend on
@@ -25,6 +25,9 @@
 * 12 - SS_VSL4VSL4_feedbackON()		&& set feedback on
 * 13 - SS_VSL4VSL4_feedbackOFF()	&& set feedback off
 * 14 - SS_VSL4SENDVETO(myveto)		&& send veto using the active connection
+* 15 - SS_VSL4AcceptConnection()	&& Accept Connection - Server Side
+* 16 - SS_VSL4RefuseConnection()	&& Refuse Connection - Server Side
+* 17 - SS_VSL4ConnectionRequest()	&& Call Receiver Veto - Connection Request ( Internal Function )
 
 * using at Server side
 * 	1 - SS_VSL4STARTUP()
@@ -55,7 +58,11 @@ function SS_VSL4STARTUP()
 	public VSL4_multisend           && when send = send to all clients (not applied now , value = .f.)          
 	public VSL4_feedback  		&& send what you recive (now applied now, value = .f.)
 
-	public VSL4_CONREQSTATUS 	&& Connection Request Status
+	public VSL4_CONREQSTATUS 	&& Connection Request Status - Server Side
+	public VSL4_CLICONSTATUS	&& Client Connection Status
+					&& 0 = No Connection - or Connection Refused
+					&& 1 = Waiting for accepting connection
+					&& 2 = Accepted Connection 
 
 	VSL4_sconsarr = {}		
 	VSL4_cconsarr = {}		
@@ -64,6 +71,7 @@ function SS_VSL4STARTUP()
 	VSL4_multisend = .f. 		
 	VSL4_feedback = .f.   		
 	VSL4_CONREQSTATUS = .f.
+	VSL4_CLICONSTATUS = 0
 
 	HB_INETInit()
 
@@ -77,6 +85,8 @@ function SS_VSL4STARTUP()
 RETURN
 
 FUNCTION SS_VSL4CONNECT(myaddress,myport)
+
+	VSL4_CLICONSTATUS = 1
 
 	VSL4_osocket = HB_INETConnect( myaddress,VAL(myport) )
 	HB_INETTIMEOUT( VSL4_osocket, 100 )
@@ -97,7 +107,11 @@ FUNCTION SS_VSL4CONNECT(myaddress,myport)
 
 	T_ConnectionStatus = HB_INETRecvLine( VSL4_osocket)
 	? "Connection Status : " + T_ConnectionStatus
-
+	IF UPPER(ALLTRIM(T_ConnectionStatus)) == "CONNECTION ACCEPTED"
+		VSL4_CLICONSTATUS = 2
+	ELSE
+		VSL4_CLICONSTATUS = 0
+	ENDIF
 
 RETURN
 
@@ -127,10 +141,14 @@ FUNCTION SS_VSL4SENDDATA(mydata)
 
 	// Client Side
 	if VSL4_islisten = 0
-		HB_INETSend( VSL4_osocket, mydata )
-		? " Send Data :" + mydata
-		? " Error Code : "
-		?? HB_INETERRORCODE(VSL4_osocket)
+		IF VSL4_CLICONSTATUS = 2
+			HB_INETSend( VSL4_osocket, mydata )
+			? " Send Data :" + mydata
+			? " Error Code : "
+			?? HB_INETERRORCODE(VSL4_osocket)
+		ELSE
+			? " No Connection To Send Data "
+		ENDIF
 	endif
 RETURN
 
@@ -431,6 +449,7 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 
 	MYDATA =  "[(*VETOSYS*)]" + myveto + CHR(13) + CHR(10)
 
+	* Server Side
 	if VSL4_islisten = 2
 		if VSL4_multisend = .t.
 			if .not. len(VSL4_sconsarr) = 0
@@ -449,11 +468,17 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 			?? HB_INETERRORCODE(VSL4_osocketCLIENT)
 		endif
 	Endif
+
+	* Client Side
 	if VSL4_islisten = 0
-		HB_INETSend( VSL4_osocket, mydata )
-		? " Send Data :" + mydata
-		? " Error Code : "
-		?? HB_INETERRORCODE(VSL4_osocket)
+		IF VSL4_CLICONSTATUS = 2
+			HB_INETSend( VSL4_osocket, mydata )
+			? " Send Data :" + mydata
+			? " Error Code : "
+			?? HB_INETERRORCODE(VSL4_osocket)
+		Else	
+			? " No Connection To Send Veto "
+		Endif
 	endif
 RETURN
 

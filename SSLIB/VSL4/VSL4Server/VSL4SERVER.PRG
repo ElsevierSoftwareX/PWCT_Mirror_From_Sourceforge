@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:23:47    Date : 08/14/2011
+* Time : 06:01:36    Date : 08/14/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -54,7 +54,6 @@ Set Procedure to "VSL4.PRG"
 ? " Welcome to VSL4 Server "
 INKEY(1)
 SS_VSL4STARTUP ()
-SS_VSL4VSL4_feedbackON ()
 SS_VSL4BIND ( "5080" )
 DO WHILE  True
 SS_VSL4ENGINE ()
