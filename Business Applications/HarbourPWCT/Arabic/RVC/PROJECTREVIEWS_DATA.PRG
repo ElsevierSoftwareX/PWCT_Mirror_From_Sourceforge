@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:25:53    Date : 08/14/2011
+* Time : 09:25:28    Date : 08/15/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -514,6 +514,10 @@ PutFile := PutFile (  , ;
 , ;
 self:cFileName )
 IF .not. empty(putfile)
+IF file(putfile)
+MyOut := MSGBOX("ÌÊÃœ „·› »‰›” «·«”„","⁄›Ê«")
+Return 0
+ENDIF
 DO streamtofile WITH self:cAttachment,putfile
 ELSE
 MyOut := MSGBOX(" „ ≈·€«¡ «·⁄„·Ì…","Õ”‰«")
