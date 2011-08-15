@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 08:48:17    Date : 08/15/2011
+* Time : 11:24:59    Date : 08/15/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_PATIENT_FILE_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_PATIENT_FILE_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,21 +48,24 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_PATIENT_FILE_15speed1() code
+Resistance R_PATIENT_FILE_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 925 ;
-HEIGHT 496 ;
+HEIGHT 513 ;
 ICON "PWCTICON" ;
-TITLE "Window Title" ;
+TITLE "patient database" ;
 MAIN ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
 BACKCOLOR {255,255,255} 
 
-@ -4 ,-6 IMAGE image2;
+@ -5 ,-14 IMAGE image2;
 PICTURE "HOSPITAL1.JPG";
 STRETCH ;
-WIDTH 937 HEIGHT 472
+WIDTH 947 HEIGHT 495
 @ 151 ,79 LABEL lbl1 ;
 VALUE "phone" ;
 WIDTH 89 ;
@@ -90,21 +91,21 @@ FONTCOLOR {240,0,120}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} 
+FONTCOLOR {0,0,128} 
 
-@ 109 ,191 TEXTBOX text2;
+@ 109 ,196 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} 
+FONTCOLOR {0,0,128} 
 
-@ 155 ,188 TEXTBOX text3;
+@ 155 ,193 TEXTBOX text3;
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} 
+FONTCOLOR {0,0,128} 
 
-@ 207 ,232 BUTTONEX btn1;
+@ 268 ,232 BUTTONEX btn1;
 CAPTION "save record";
 ON CLICK saverec()  ;
 WIDTH 106 HEIGHT 33 ;
@@ -116,21 +117,34 @@ ON CLICK myClose()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Britannic Bold" SIZE 14 ;
 TOOLTIP ""
-@ 31 ,470 GRID Grid1;
-WIDTH 385 ;
-HEIGHT 234 ;
-HEADERS {"Patient name","address","phone"};
-WIDTHS {100,100,100} ;
-FONT "Arial" SIZE 9 ;
+@ 30 ,439 GRID Grid1;
+WIDTH 420 ;
+HEIGHT 259 ;
+HEADERS {"Patient name","address","phone","Gender"};
+WIDTHS {120,100,100,100} ;
+FONT "Comic Sans MS" SIZE 12 ;
 BACKCOLOR {255,213,234} ;
 EDIT INPLACE {} ;
 FONTCOLOR {0,0,0}
-@ 286 ,708 BUTTONEX btn3;
+@ 303 ,715 BUTTONEX btn3;
 CAPTION "show Records";
 ON CLICK showrec()  ;
 WIDTH 126 HEIGHT 30 ;
 FONT "Britannic Bold" SIZE 14 ;
 TOOLTIP ""
+@ 204 ,76 LABEL lbl4 ;
+VALUE "Gender" ;
+WIDTH 89 ;
+HEIGHT 32 ;
+FONT "Ravie" SIZE 12  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {240,0,120}
+@ 205 ,191 TEXTBOX text4;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,128} 
+
 END WINDOW
 
 ACTIVATE WINDOW win1
@@ -152,9 +166,11 @@ oRS:ADDNEW()
 oname := win1.text1.Value
 oaddress := win1.text2.Value
 ophone := win1.text3.Value
+ogender := win1.text4.Value
 oRS:fields:item("patient name"):value := oname
 oRS:fields:item("address"):value := oaddress
 oRS:fields:item("phone"):value := ophone
+oRS:fields:item("Gender"):value := ogender
 oRS:UPDATE()
 oRS:Close()
 oCon:CLOSE()
@@ -170,12 +186,13 @@ oRS:CursorType := 1
 oRS:ActiveConnection := oCon
 oRS:open ( "Select * from patient",oCon,3,3 )
 mymax := oRS:RecordCount
-oRS:MOVEFIRST()
+win1.grid1.DeleteAllItems ( )
 FOR x = 1 TO mymax STEP 1
 oname := oRS:fields:item("patient name"):value
 oaddress := oRS:fields:item("address"):value
 ophone := oRS:fields:item("phone"):value
-win1.grid1.AddItem ( {oname,oaddress,ophone} )
+ogender := oRS:fields:item("gender"):value
+win1.grid1.AddItem ( {oname,oaddress,ophone,ogender} )
 oRS:MOVENEXT()
 Next
 Return Nil
