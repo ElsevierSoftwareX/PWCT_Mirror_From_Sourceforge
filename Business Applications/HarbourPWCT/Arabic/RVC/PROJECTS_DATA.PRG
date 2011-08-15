@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 22:54:02    Date : 07/31/2011
+* Time : 09:19:17    Date : 08/15/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
@@ -26,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_PROJECTS_DATA_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_PROJECTS_DATA_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_PROJECTS_DATA_15speed1() code
+Resistance R_PROJECTS_DATA_18smart1() code
 class ProjectsClass From SYSTEMDATABASE
 Data cWindowName init "ProjectsWindow"
 Data TableName init "projects_all"
@@ -683,6 +683,10 @@ PutFile := PutFile (  , ;
 , ;
 self:cFileName )
 IF .not. empty(putfile)
+IF file(putfile)
+MyOut := MSGBOX("Â‰«ﬂ „·› „ÊÃÊœ »‰›” «·«”„","⁄›Ê«")
+Return 0
+ENDIF
 DO streamtofile WITH self:cAttachment,putfile
 ELSE
 MyOut := MSGBOX(" „ ≈·€«¡ «·⁄„·Ì…","Õ”‰«")
@@ -722,6 +726,10 @@ PutFile := PutFile (  , ;
 , ;
 self:cFileName2 )
 IF .not. empty(putfile)
+IF file(putfile)
+MyOut := MSGBOX("Â‰«ﬂ „·› „ÊÃÊœ »‰›” «·«”„","⁄›Ê«")
+Return 0
+ENDIF
 DO streamtofile WITH self:cAttachment2,putfile
 ELSE
 MyOut := MSGBOX(" „ ≈·€«¡ «·⁄„·Ì…","Õ”‰«")
