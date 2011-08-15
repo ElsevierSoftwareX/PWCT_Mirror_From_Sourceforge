@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:25:35    Date : 08/15/2011
+* Time : 10:48:03    Date : 08/15/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -83,6 +83,7 @@ Set Procedure to "Dash.PRG"
 Set Procedure to "BasicData.PRG"
 Set Procedure to "sendmail.PRG"
 Set Procedure to "SendMailToOne.PRG"
+Set Procedure to "LOPStyle2_Report.PRG"
 UsersObject = UsersClass()
 UserPermissionsObject = UserPermissionsClass()
 Employees2DataObject = Employees2DataClass()
@@ -181,6 +182,9 @@ BasicDataObject2 = BasicDataClass()
 BasicDataObject2:TableName := "BasicData2"
 BasicDataObject2:cWindowName := "BasicDataWindow2"
 ProjectsObject2:ReportName2 := "ListOfProjects2"
+LOPStyle2ReportObject2 = LOPStyle2ReportClass()
+LOPStyle2ReportObject2:cWindowName := "LOPStyle2ReportWindow2"
+LOPStyle2ReportObject2:ReportName := "lopstyle2i2"
 ProjectsObject3 = ProjectsClass()
 ProjectsObject3:cWindowName := "ProjectsWindow3"
 ProjectsObject3:TableName := "Projects_All3"
@@ -256,6 +260,9 @@ BasicDataObject3 = BasicDataClass()
 BasicDataObject3:TableName := "BasicData3"
 BasicDataObject3:cWindowName := "BasicDataWindow3"
 ProjectsObject3:ReportName2 := "ListOfProjects3"
+LOPStyle2ReportObject3 = LOPStyle2ReportClass()
+LOPStyle2ReportObject3:cWindowName := "LOPStyle2ReportWindow3"
+LOPStyle2ReportObject3:ReportName := "lopstyle2i3"
 ProjectsObject4 = ProjectsClass()
 ProjectsObject4:cWindowName := "ProjectsWindow4"
 ProjectsObject4:TableName := "Projects_All4"
@@ -331,11 +338,15 @@ BasicDataObject4 = BasicDataClass()
 BasicDataObject4:TableName := "BasicData4"
 BasicDataObject4:cWindowName := "BasicDataWindow4"
 ProjectsObject4:ReportName2 := "ListOfProjects4"
+LOPStyle2ReportObject4 = LOPStyle2ReportClass()
+LOPStyle2ReportObject4:cWindowName := "LOPStyle2ReportWindow4"
+LOPStyle2ReportObject4:ReportName := "lopstyle2i4"
 UsersWindowObject = UsersClass()
 BasicDataObject = BasicDataClass()
 BasicDataObject:TableName := "BasicData"
 BasicDataObject:cWindowName := "BasicDataWindow"
 SendMailToOneObject = SendMailtoOneClass()
+LOPStyle2ReportObject = LOPStyle2ReportClass()
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -480,6 +491,8 @@ ENDIF
 IF UsersObject:CheckPermission(84)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject:ShowWindow()
 SEPARATOR
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄ - „Œ ’—" Action LOPStyle2ReportObject:ShowWindow()
+SEPARATOR
 ENDIF
 END POPUP
 ENDIF
@@ -556,6 +569,8 @@ MENUITEM "»Ì«‰«  «·„‘«—Ì⁄" Action ProjectsObject2:showwindow()
 ENDIF
 IF UsersObject:CheckPermission(98)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject2:ShowWindow()
+SEPARATOR
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄ - „Œ ’—" Action LOPStyle2ReportObject2:ShowWindow()
 SEPARATOR
 ENDIF
 END POPUP
@@ -634,6 +649,8 @@ ENDIF
 IF UsersObject:CheckPermission(112)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject3:ShowWindow()
 SEPARATOR
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄ - „Œ ’—" Action LOPStyle2ReportObject3:ShowWindow()
+SEPARATOR
 ENDIF
 END POPUP
 ENDIF
@@ -710,6 +727,8 @@ MENUITEM "»Ì«‰«  «·„‘«—Ì⁄" Action ProjectsObject4:showwindow()
 ENDIF
 IF UsersObject:CheckPermission(126)
 MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄" Action ListofProjectsReportObject4:ShowWindow()
+SEPARATOR
+MENUITEM " ﬁ—Ì— »Ì«‰«  «·„‘«—Ì⁄ - „Œ ’—" Action LOPStyle2ReportObject4:ShowWindow()
 SEPARATOR
 ENDIF
 END POPUP
