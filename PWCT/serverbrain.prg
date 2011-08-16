@@ -800,16 +800,37 @@ ENDIF
 
 IF S_Menu == "1_1"
 S_Menu = "1_0"
-	IF application.ActiveForm.name = "IPWRITER"
-		application.ActiveForm.COMMAND15.CLICK
+	IF s_lastactivewindow = 4 .or. application.ActiveForm.name = "IPWRITER"  
+	
+		FOR I = 1 TO APPLICATION.Forms.Count 
+					IF APPLICATION.Forms.Item(I).NAME = "IPWRITER" 
+  						APPLICATION.Forms.Item(I).COMMAND15.CLICK
+  						EXIT
+					ENDIF
+		NEXT
+		
 		RETURN
 	ENDIF
-	IF application.ActiveForm.name = "TRANSDFORM"
-		application.ActiveForm.MENULABEL1.CLICK
+	IF s_lastactivewindow = 3 .or. application.ActiveForm.name = "TRANSDFORM"  
+	
+	FOR I = 1 TO APPLICATION.Forms.Count 
+					IF APPLICATION.Forms.Item(I).NAME = "TRANSDFORM"
+  						APPLICATION.Forms.Item(I).MENULABEL1.CLICK
+  						EXIT
+					ENDIF
+		NEXT
+	
 		RETURN
 	ENDIF
-  IF application.ActiveForm.name = "INTERDFORM"
-		application.ActiveForm.LABEL7.CLICK
+  IF s_lastactivewindow = 2 .or. application.ActiveForm.name = "INTERDFORM"  
+  
+  	FOR I = 1 TO APPLICATION.Forms.Count 
+					IF APPLICATION.Forms.Item(I).NAME = "INTERDFORM" 
+  						APPLICATION.Forms.Item(I).LABEL7.CLICK
+  						EXIT
+					ENDIF
+		NEXT
+  
 		RETURN
 	ENDIF
 DO FORM newfile.scx
@@ -2252,16 +2273,39 @@ if s_menu == "1_2" .or. FILE(myfiletoopen)
 							lmyfiletoopen = .f.
 				ENDIF
 				s_menu = "1_0"
-				IF application.ActiveForm.name = "IPWRITER"
-						application.ActiveForm.COMMAND3.CLICK
+				IF  s_lastactivewindow = 4 .or. application.ActiveForm.name = "IPWRITER" 
+				
+					FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "IPWRITER" 
+  							APPLICATION.Forms.Item(I).COMMAND3.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+				
+				
 						RETURN
 				ENDIF
-				IF application.ActiveForm.name = "TRANSDFORM"
-						application.ActiveForm.MENULABEL2.CLICK
+				IF s_lastactivewindow = 3 .or. application.ActiveForm.name = "TRANSDFORM"   
+				
+						FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "TRANSDFORM" 
+  							APPLICATION.Forms.Item(I).MENULABEL2.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+				
 						RETURN
 				ENDIF
-			  IF application.ActiveForm.name = "INTERDFORM"
-						application.ActiveForm.LABEL8.CLICK
+			  IF s_lastactivewindow = 2 .or. application.ActiveForm.name = "INTERDFORM"  
+			  
+			  		FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "INTERDFORM"
+  							APPLICATION.Forms.Item(I).LABEL8.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+			  
+						
 						RETURN
 				ENDIF
 				IF FS_SW = 1
@@ -2997,16 +3041,40 @@ endif
 * close server
 if s_menu == "1_3"
 s_menu = "1_0"
-	IF application.ActiveForm.name = "IPWRITER"
-		application.ActiveForm.COMMAND17.CLICK
+	IF s_lastactivewindow = 4 .or. application.ActiveForm.name = "IPWRITER"  
+	
+			FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "IPWRITER" 
+  							APPLICATION.Forms.Item(I).COMMAND17.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+	
+		
 		RETURN
 	ENDIF
-		IF application.ActiveForm.name = "TRANSDFORM"
-		application.ActiveForm.MENULABEL5.CLICK
+		IF s_lastactivewindow = 3 .or. application.ActiveForm.name = "TRANSDFORM"  
+		
+			FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "TRANSDFORM"  
+  							APPLICATION.Forms.Item(I).MENULABEL5.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+		
+	
 		RETURN
 	ENDIF
-			IF application.ActiveForm.name = "INTERDFORM"
-		application.ActiveForm.LABEL11.CLICK
+			IF s_lastactivewindow = 2 .or.  application.ActiveForm.name = "INTERDFORM" 
+			
+			FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "INTERDFORM"   
+  							APPLICATION.Forms.Item(I).LABEL11.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+		
+			
 		RETURN
 	ENDIF
 IF FS_SW = 1
@@ -3127,16 +3195,38 @@ endif
 * save server data 
 if s_menu == "1_4"
 s_menu = "1_0"
-IF application.ActiveForm.name = "IPWRITER"
-		application.ActiveForm.COMMAND5.CLICK
+IF s_lastactivewindow = 4 .or. application.ActiveForm.name = "IPWRITER"  
+
+	FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "IPWRITER"   
+  							APPLICATION.Forms.Item(I).COMMAND5.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+
 		RETURN
 	ENDIF
-		IF application.ActiveForm.name = "TRANSDFORM"
-		application.ActiveForm.MENULABEL3.CLICK
+		IF  s_lastactivewindow = 3 .or. application.ActiveForm.name = "TRANSDFORM" 
+		
+		FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "TRANSDFORM"   
+  							APPLICATION.Forms.Item(I).MENULABEL3.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+		
 		RETURN
 	ENDIF
-	IF application.ActiveForm.name = "INTERDFORM"
-		application.ActiveForm.LABEL9.CLICK
+	IF  s_lastactivewindow = 2 .or. application.ActiveForm.name = "INTERDFORM" 
+	
+		FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "INTERDFORM"   
+  							APPLICATION.Forms.Item(I).LABEL9.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+		
+	
 		RETURN
 	ENDIF
 FS_SW = 0
@@ -3153,16 +3243,38 @@ endif
 * save as
 if s_menu == "1_5"
 s_menu = "1_0"
-IF application.ActiveForm.name = "IPWRITER"
-		application.ActiveForm.COMMAND16.CLICK
+IF s_lastactivewindow = 4 .or. application.ActiveForm.name = "IPWRITER"  
+
+	FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "IPWRITER"   
+  							APPLICATION.Forms.Item(I).COMMAND16.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+
+		
 		RETURN
 	ENDIF
-		IF application.ActiveForm.name = "TRANSDFORM"
-		application.ActiveForm.MENULABEL4.CLICK
+		IF  s_lastactivewindow = 3 .or. application.ActiveForm.name = "TRANSDFORM" 
+		
+			FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME =  "TRANSDFORM"  
+  							APPLICATION.Forms.Item(I).MENULABEL4.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+		
 		RETURN
 	ENDIF
-			IF application.ActiveForm.name = "INTERDFORM"
-		application.ActiveForm.LABEL10.CLICK
+			IF s_lastactivewindow = 2 .or. application.ActiveForm.name = "INTERDFORM"  
+			
+				FOR I = 1 TO APPLICATION.Forms.Count 
+						IF APPLICATION.Forms.Item(I).NAME = "INTERDFORM"   
+  							APPLICATION.Forms.Item(I).LABEL10.CLICK
+  							EXIT
+						ENDIF
+					NEXT
+			
 		RETURN
 	ENDIF
 FS_SW = 0

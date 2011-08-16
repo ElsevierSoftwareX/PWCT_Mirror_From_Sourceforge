@@ -45,7 +45,10 @@ FS_TD = 0
 FS_SW = 0
 PUBLIC s_mem3
 s_mem3 = .f.
-ON KEY label  F1 S_MENU = "DoubleS Framework"
+ON KEY label F1 S_MENU = "DoubleS Framework"
+
+PUBLIC s_lastactivewindow && used to help file-open,save,save as & close to know that active window
+			 s_lastactivewindow = 1 && Server Units Window
 
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
