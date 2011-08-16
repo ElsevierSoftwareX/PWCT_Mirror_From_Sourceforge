@@ -1,0 +1,1 @@
+CALL sscom2.bat  "COUNTER APP"  /X /l calldll  > _temp.txt
