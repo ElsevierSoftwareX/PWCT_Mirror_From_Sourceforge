@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:33:42    Date : 08/14/2011
+* Time : 06:38:56    Date : 08/16/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -150,7 +150,7 @@ Return Nil
 Proc vetostart
 SET VETO SYSTEM LEVEL 4
 Declare server "Server1" address "127.0.0.1" port 1200
-select input channel inchannel
+Select Input Channel  inchannel
 START BIND
 Return Nil
 
