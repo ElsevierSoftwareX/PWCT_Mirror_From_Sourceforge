@@ -1,1 +1,1 @@
-CALL sscom2.bat  "IZDEHAR"  /X /l calldll  > _temp.txt
+CALL sscom2.bat  "IZDEHAR" /x  /l calldll  > _temp.txt
