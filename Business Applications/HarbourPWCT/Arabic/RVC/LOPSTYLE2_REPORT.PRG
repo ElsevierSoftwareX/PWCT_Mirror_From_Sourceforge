@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:34:28    Date : 08/15/2011
+* Time : 12:30:44    Date : 08/17/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -34,7 +34,7 @@ Return
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_LOPSTYLE2_REPORT_18smart1() code
 class LOPStyle2ReportClass From Report_Base
-Data ReportName init "lopstyle2i1"
+Data ReportName init "lopstyle4i1"
 Data cWindowName init "LOPStyle2ReportWindow"
 Method showwindow
 Method closewindow
