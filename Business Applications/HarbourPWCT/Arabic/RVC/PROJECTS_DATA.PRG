@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:19:17    Date : 08/15/2011
+* Time : 06:44:35    Date : 08/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -310,13 +310,13 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 @ 453 ,468 DATEPICKER dateComplete;
-WIDTH 180 ;
+WIDTH 120 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 452 ,657 CHECKBOX checkboxDateComplete;
-CAPTION " «—ÌŒ «·«‰ Â«¡";
-WIDTH 120;
+@ 452 ,599 CHECKBOX checkboxDateComplete;
+CAPTION " «—ÌŒ »œ«Ì… «·„—Õ·…";
+WIDTH 150;
 Height 30;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {236,233,216} ;
@@ -429,7 +429,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 myout = self:LoadLookupTable("Stages","Stage",@self:StageItems,"id",@self:StageItemsIDS)
 @ 453 ,100 COMBOBOX comboStage;
-WIDTH 270 ;
+WIDTH 280 ;
 HEIGHT 100;
 ITEMS self:Stageitems ;
 VALUE 1 ;
