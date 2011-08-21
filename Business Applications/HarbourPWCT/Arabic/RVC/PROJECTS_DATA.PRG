@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:44:35    Date : 08/21/2011
+* Time : 07:53:29    Date : 08/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -65,6 +65,7 @@ Data StageItemsIDs init {}
 Data nID init 0
 Data checkboxdatecomplete init false
 Data PermissionID init 143
+Data cNotes init ""
 Method showwindow
 Method closewindow
 Method SetMode
@@ -100,7 +101,7 @@ if !iswindowdefined( &(self:cWindowName) )
 DEFINE WINDOW &(self:cWindowName) ;
 AT 10 ,10 ;
 WIDTH 1127 ;
-HEIGHT 674 ;
+HEIGHT 694 ;
 ON INIT self:Search()  ;
 ICON "PWCTICON" ;
 TITLE self:WindowTitle ;
@@ -113,8 +114,8 @@ BACKCOLOR {64,0,64}
 @ 44 ,4 IMAGE image1;
 PICTURE GetStartUpFolder()+"\Image\back.jpg";
 STRETCH ;
-WIDTH 1110 HEIGHT 530
-@ 590 ,554 BUTTONEX btnFirst;
+WIDTH 1110 HEIGHT 560
+@ 610 ,554 BUTTONEX btnFirst;
 CAPTION "»œ«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -123,7 +124,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 590 ,427 BUTTONEX btnNext;
+@ 610 ,427 BUTTONEX btnNext;
 CAPTION " «·Ï";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -132,7 +133,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 590 ,364 BUTTONEX btnLast;
+@ 610 ,364 BUTTONEX btnLast;
 CAPTION "‰Â«Ì…";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -141,7 +142,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 590 ,191 BUTTONEX btnClose;
+@ 610 ,191 BUTTONEX btnClose;
 CAPTION "«€·«ﬁ";
 FONTCOLOR {0,0,0};
 BACKCOLOR {132,242,179};
@@ -150,7 +151,7 @@ WIDTH 80 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 590 ,490 BUTTONEX btnPrev;
+@ 610 ,490 BUTTONEX btnPrev;
 CAPTION "”«»ﬁ";
 FONTCOLOR {255,255,255};
 BACKCOLOR {64,0,64};
@@ -159,7 +160,7 @@ WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 590 ,283 BUTTONEX btnDel;
+@ 610 ,283 BUTTONEX btnDel;
 CAPTION "Õ–›";
 FONTCOLOR {255,255,255};
 BACKCOLOR {255,0,0};
@@ -168,25 +169,25 @@ WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 590 ,710 BUTTONEX btnsave;
+@ 610 ,710 BUTTONEX btnsave;
 CAPTION "Õ›Ÿ";
 ON CLICK self:saverecord()  ;
 WIDTH 70 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 590 ,622 BUTTONEX btncancel;
+@ 610 ,622 BUTTONEX btncancel;
 CAPTION "«·€«¡";
 ON CLICK self:cancelrecord()  ;
 WIDTH 80 HEIGHT 32 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 590 ,788 BUTTONEX btnedit;
+@ 610 ,788 BUTTONEX btnedit;
 CAPTION " ⁄œÌ·";
 ON CLICK self:editrecord()  ;
 WIDTH 60 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
-@ 590 ,855 BUTTONEX btnadd;
+@ 610 ,855 BUTTONEX btnadd;
 CAPTION "«÷«›…";
 ON CLICK self:addrecord()  ;
 WIDTH 70 HEIGHT 30 ;
@@ -436,6 +437,21 @@ VALUE 1 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+@ 571 ,962 LABEL lblNotes ;
+VALUE "„·«ÕŸ« " ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 568 ,99 TEXTBOX textNotes;
+HEIGHT 30 ;
+WIDTH 840 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
 DEFINE TIMER Timer1 INTERVAL 1000 ;
 Action self:myTimer()
 myout = RightToLeftControl ( self:cWindowName,"datereceived" )
@@ -503,6 +519,7 @@ self:cMobile := &(self:cWindowName).textMobile.Value
 self:nStage := &(self:cWindowName).ComboStage.Value
 self:nStage := self:StageItemsids[self:nStage]
 self:CheckBoxDateComplete := &(self:cWindowName).CheckBoxDateComplete.Value
+self:cNotes := &(self:cWindowName).textNotes.Value
 Return 0
 Method Class2ADO Class ProjectsClass
 self:oRS:fields:item("ProjectName"):value := self:cProjectName
@@ -518,6 +535,7 @@ self:oRS:fields:item("eMail"):value := self:cEmail
 self:oRS:fields:item("Mobile"):value := self:cMobile
 self:oRS:fields:item("stageid"):value := self:nstage
 self:oRS:fields:item("checkboxdatecomplete"):value := self:CheckboxDateComplete
+self:oRS:fields:item("Notes"):value := self:cNotes
 IF self:checkboxdatecomplete = true
 self:oRS:fields:item("DateComplete"):value := self:cDateComplete
 ELSE
@@ -540,6 +558,7 @@ Self:cMobile := self:oRS:fields:item("Mobile"):value
 self:nStage := self:oRS:fields:item("StageID"):value
 self:nID := self:oRS:fields:item("ID"):value
 self:CheckBoxDateComplete := self:oRS:fields:item("CheckBoxDateComplete"):value
+Self:cNotes := self:oRS:fields:item("Notes"):value
 Return 0
 Method Class2UserInterface Class ProjectsClass
 &(self:cWindowName).textProjectName.Value := self:cProjectName
@@ -557,6 +576,7 @@ self:nStage = self:LookupIDToIndex(self:nStage,@self:StageItemsids)
 IF self:checkboxdatecomplete = true
 &(self:cWindowName).dateComplete.Value := ctod(self:cDateComplete)
 ENDIF
+&(self:cWindowName).textNotes.Value := self:cNotes
 Return 0
 Method ClearRecord Class ProjectsClass
 self:cProjectName := ""
@@ -576,6 +596,7 @@ self:cAttachment2 := ""
 self:cEmail := ""
 self:cMobile := ""
 self:CheckBoxDateComplete := False
+self:cNotes := ""
 Return 0
 Method OpenDataWindow Class ProjectsClass
 Local nvalue,myout
@@ -626,6 +647,7 @@ IF p1 = 1
 &(self:cWindowName).textMobile.Enabled := True
 &(self:cWindowName).ComboStage.Enabled := True
 &(self:cWindowName).CheckBoxDateComplete.Enabled := true
+&(self:cWindowName).textNotes.Enabled := True
 ENDIF
 IF p1 = 2
 &(self:cWindowName).btnfirst.Enabled := true
@@ -658,6 +680,7 @@ IF p1 = 2
 &(self:cWindowName).textMobile.Enabled := False
 &(self:cWindowName).ComboStage.Enabled := False
 &(self:cWindowName).CheckBoxDateComplete.Enabled := false
+&(self:cWindowName).textNotes.Enabled := False
 ENDIF
 self:OperationMode := p1
 Return 0
