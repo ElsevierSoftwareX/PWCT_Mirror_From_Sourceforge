@@ -35,9 +35,13 @@ myalias = ALIAS()
 										ENDIF
 																			
 								ENDIF
+				ELSE
+					GOTO top					
 				ENDIF
 				SELECT T38
 	ENDSCAN
+	GOTO top
+	
 	IF .not. myrec = 0 .and. .not. myrec > RECCOUNT()
 	GOTO myrec
 	ENDIF

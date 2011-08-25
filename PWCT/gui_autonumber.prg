@@ -1,5 +1,5 @@
 FUNCTION sys_autonumber(p1)
-LOCAL myfile,idf_file,myrec,mynum,TRF_FILE,X,MYIIDARRAY,DOADD
+LOCAL myfile,idf_file,myrec,mynum,TRF_FILE,X,MYIIDARRAY,DOADD,myrec2
 myalias = ALIAS()
 	IF AT("<AUTONUMBER>",UPPER(p1)) > 0
 	myfile = MLINE(m_files,apage)
@@ -15,6 +15,7 @@ myalias = ALIAS()
 		GOTO TOP
 	SCAN
 	      SELECT t46
+	      myrec2 = RECNO()
 				GOTO top
 				locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(T38->STEPINTERID))
 				IF FOUND()
@@ -38,6 +39,10 @@ myalias = ALIAS()
 				ELSE
 					GOTO top					
 				ENDIF
+				IF .not. myrec2 = 0 .and. .not. myrec2 > RECCOUNT()
+						GOTO myrec2
+				ENDIF
+				
 				SELECT T38
 	ENDSCAN
 	GOTO top
