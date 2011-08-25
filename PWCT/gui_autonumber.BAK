@@ -38,7 +38,9 @@ myalias = ALIAS()
 				ENDIF
 				SELECT T38
 	ENDSCAN
+	IF .not. myrec = 0 .and. .not. myrec > RECCOUNT()
 	GOTO myrec
+	ENDIF
 	
 	p1 = STRTRAN(P1,"<AUTONUMBER>",ALLTRIM(STR(MYNUM)))
 		p1 = STRTRAN(P1,"<autonumber>",ALLTRIM(STR(MYNUM)))
