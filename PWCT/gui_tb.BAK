@@ -6,8 +6,10 @@ PROCEDURE rightclick
 DEFINE POPUP mencontex SHORTCUT RELATIVE FROM MROW(),MCOL()
 DEFINE BAR 1 OF mencontex PROMPT  sysmsg(1508)
 DEFINE BAR 2 OF mencontex PROMPT  sysmsg(1509)
+DEFINE BAR 3 OF mencontex PROMPT  sysmsg(1576)
 ON SELECTION BAR 1 OF mencontex _selec=1
 ON SELECTION BAR 2 OF mencontex _selec=2
+ON SELECTION BAR 3 OF mencontex _selec=3
 _selec=0
 ACTIVATE POPUP mencontex
 DO case
@@ -23,6 +25,11 @@ DO case
    IF .not. EMPTY(myfont)
       x = AT(",",myfont)
       this.value = '"' + SUBSTR(myfont,1,x-1) + '"'
+   ENDIF
+   CASE _selec = 3
+   myfile = GETFILE()
+      IF .not. EMPTY(myfile)
+         this.value = '"' + myfile + '"'
    ENDIF
 ENDCASE
 RETURN
