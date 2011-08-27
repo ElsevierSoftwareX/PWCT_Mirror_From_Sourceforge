@@ -9,9 +9,11 @@ DEFINE POPUP mencontex SHORTCUT RELATIVE FROM MROW(),MCOL()
 DEFINE BAR 1 OF mencontex PROMPT  sysmsg(1508)
 DEFINE BAR 2 OF mencontex PROMPT  sysmsg(1509)
 DEFINE BAR 3 OF mencontex PROMPT  sysmsg(1576)
+DEFINE BAR 4 OF mencontex PROMPT  "Select Object"
 ON SELECTION BAR 1 OF mencontex _selec=1
 ON SELECTION BAR 2 OF mencontex _selec=2
 ON SELECTION BAR 3 OF mencontex _selec=3
+ON SELECTION BAR 4 OF mencontex _selec=4
 _selec=0
 ACTIVATE POPUP mencontex
 DO case
@@ -32,7 +34,9 @@ DO case
    myfile = GETFILE()
       IF .not. EMPTY(myfile)
          this.value = '"' + myfile + '"'
-   ENDIF
+  	 ENDIF
+    CASE _selec = 4
+    	DO FORM selobj.scx
 ENDCASE
 RETURN
 ENDDEFINE
