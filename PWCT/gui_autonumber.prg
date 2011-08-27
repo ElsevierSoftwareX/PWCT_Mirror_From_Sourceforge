@@ -9,8 +9,8 @@ myalias = ALIAS()
 	DIMENSION MYIIDARRAY(1)
 	MYIIDARRAY(1) = "0"
 	
-		mynum = 1 && the number to increment based on control count
-		mynummax = 1 && the maximum number extracted from controls names
+		mynum = 0 && the number to increment based on control count
+		mynummax = 0 && the maximum number extracted from controls names
 		
 		SELECT t38
 		myrec = RECNO()
