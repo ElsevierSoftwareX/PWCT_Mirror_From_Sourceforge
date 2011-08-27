@@ -36,7 +36,10 @@ DO case
          this.value = '"' + myfile + '"'
   	 ENDIF
     CASE _selec = 4
+     PUBLIC objfromlist 
+     objfromlist = ""
     	DO FORM selobj.scx
+    	this.value = objfromlist
 ENDCASE
 RETURN
 ENDDEFINE
