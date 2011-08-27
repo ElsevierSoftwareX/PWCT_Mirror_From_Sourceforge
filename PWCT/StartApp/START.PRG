@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:57:42    Date : 08/27/2011
+* Time : 17:15:45    Date : 08/27/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -70,7 +70,7 @@ FONTCOLOR {0,0,0}
 CAPTION "Close Window";
 ON CLICK myclose()  ;
 WIDTH 160 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
