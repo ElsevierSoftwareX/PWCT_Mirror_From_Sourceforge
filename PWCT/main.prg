@@ -49,6 +49,8 @@ ON KEY label F1 S_MENU = "DoubleS Framework"
 
 PUBLIC s_lastactivewindow && used to help file-open,save,save as & close to know that active window
 			 s_lastactivewindow = 1 && Server Units Window
+PUBLIC Sys_selsercaller && 1 = goal designer 2 =  form designer
+Sys_selsercaller = 1
 
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
