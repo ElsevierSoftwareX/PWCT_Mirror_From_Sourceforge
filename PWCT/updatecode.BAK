@@ -386,7 +386,7 @@ FOR X = 1 TO MYLAST
 	  MYVAR = ""
   ENDIF
   
-  IF UPPER(LEFT(MYVAR,26)) == "<RPWI:REPLACEVARSBYVALUES>"
+  IF UPPER(LEFT(MYVAR,28)) == "<RPWI:REPLACEVARSWITHVALUES>"
   	RPWICMD = .T.
 		IF .NOT. RPWI_VARS_COUNT = 1
 			FOR TV_X = 2 TO RPWI_VARS_COUNT
@@ -405,6 +405,35 @@ FOR X = 1 TO MYLAST
      MYVAR = ""
      ENDIF
 	ENDIF
+
+		********************* Select step by name - this amazing command enable us to create related components (Very useful for C#PWCT)
+		IF UPPER(LEFT(MYVAR,23)) == "<RPWI:SELECTSTEPBYNAME>"
+  		RPWICMD = .T.
+		MYVALUE = ALLTRIM(SUBSTR(MYVAR,24))
+		
+			* save the current step code
+ 			SELECT T38
+		REPLACE STEPCODE WITH STEPCODE + MYMEMO2
+		mygframe.page4.edit1.Value = PSTEPCODE
+     replace stepinf WITH STEPINF +  MYINFRES 
+   MYINFRES = ""
+   	MYMEMO2 = ""
+		* goto the step that is determined by the Name
+			SELECT T38
+			LOCATE FOR UPPER(ALLTRIM(stepid)) = UPPER(ALLTRIM(LV_LEVEL2CODE)) .and. ;
+			UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle))
+			LV_stepinterid = stepinterid
+			LOCATE FOR UPPER(ALLTRIM(stepinterid)) = UPPER(ALLTRIM(LV_STEPINTERID)) .and. ;
+			UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. ;
+			upper(alltrim(STEPNAME)) = UPPER(ALLTRIM(MYVALUE))
+			if found()
+		   		mygstree.Nodes.item(UPPER(ALLTRIM(stepID))).Selected = .T.
+				MYVAR = ""
+			endif
+	ENDIF
+	**********************
+
+
 	IF UPPER(LEFT(MYVAR,14)) == "<RPWI:SETMARK>"
   	RPWICMD = .T.
 		MYVALUE = VAL(ALLTRIM(SUBSTR(MYVAR,15)))
