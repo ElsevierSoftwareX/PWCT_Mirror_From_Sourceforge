@@ -425,7 +425,7 @@ DEFINE BAR 9 OF (a_menupops[10]) PROMPT sysmsg(1312)
 DEFINE BAR 10 OF (a_menupops[10]) PROMPT sysmsg(1313)
 DEFINE BAR 11 OF (a_menupops[10]) PROMPT sysmsg(1314)
 DEFINE BAR 12 OF (a_menupops[10]) PROMPT "\-"
-DEFINE BAR 13 OF (a_menupops[10]) PROMPT sysmsg(1315)
+*DEFINE BAR 13 OF (a_menupops[10]) PROMPT sysmsg(1315)
 DEFINE BAR 14 OF (a_menupops[10]) PROMPT sysmsg(1316)
 DEFINE BAR 15 OF (a_menupops[10]) PROMPT "\-"
 DEFINE BAR 16 OF (a_menupops[10]) PROMPT sysmsg(1317)
@@ -457,8 +457,8 @@ ON SELECTION BAR 10 OF (a_menupops[10]) ;
 ON SELECTION BAR 11 OF (a_menupops[10]) ;
 	DO _25j0f6yue in sysmenu.prg
 
-ON SELECTION BAR 13 OF (a_menupops[10]) ;
-	DO _25j0f6yuf in sysmenu.prg
+* ON SELECTION BAR 13 OF (a_menupops[10]) ;
+*	DO _25j0f6yuf in sysmenu.prg
 
 ON SELECTION BAR 14 OF (a_menupops[10]) ;
 	DO _25j0f6yug in sysmenu.prg

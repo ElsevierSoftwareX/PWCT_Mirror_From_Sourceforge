@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:20:31    Date : 09/06/2011
+* Time : 02:25:51    Date : 09/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -21,6 +21,7 @@ New Server Server1 Type Slave Server Eigen Value 000
  * Get parameters from command line Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 	DataUnit :
 	CodeUnit :
+		Main Circuit    Main                          
 			Circuit        Main                          
 				Branch     Main                          
 					Resistance Main                          
