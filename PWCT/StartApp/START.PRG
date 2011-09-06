@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:36:28    Date : 09/05/2011
+* Time : 22:00:31    Date : 09/06/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -51,21 +51,21 @@ Resistance R_START_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 519 ;
-HEIGHT 399 ;
+WIDTH 464 ;
+HEIGHT 350 ;
 ICON "PWCTICON" ;
 TITLE "Welcome to PWCT" ;
 MAIN ;
 BACKCOLOR {255,255,255} 
 
-@ 141 ,169 LABEL lbl1 ;
+@ 116 ,142 LABEL lbl1 ;
 VALUE "Welcome to PWCT" ;
 WIDTH 170 ;
 HEIGHT 39 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-@ 188 ,169 BUTTONEX btn1;
+@ 163 ,142 BUTTONEX btn1;
 CAPTION "Close Window";
 ON CLICK myclose()  ;
 WIDTH 160 HEIGHT 30 ;
