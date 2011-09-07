@@ -1,64 +1,105 @@
-* Programming Without Coding Technology
-* http://doublesvsoop.sourceforge.net
-* Mahmoud Fayed, msfclipper@yahoo.com
+*---------------------------------------------------------------------------*
+* Time : 04:56:25    Date : 09/07/2011
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Visual Programming Language : HarbourPWCT 
+*---------------------------------------------------------------------------*
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
+New Server Server1 Type Slave Server Eigen Value 000
+ Details :
+* Get parameters from command line
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance Main                          
+	VetoUnit :
+End Of Server 
 
-#include <minigui.ch>
+	Resistance WIN32EVENTS() Address Code Unit : WIN32EVENTS
 
-function main()
+  ADD RESISTANCE WIN32EVENTS 
 
+
+Resistance R_MAIN_18smart1() address Code Unit : Circuits\Main\Main\Main
+
+
+CALL RESISTANCE Circuits\Main\Main\Main
+Return 
+
+  FUNCTION STARTSERVER()
+   	Server FireON
+  RETURN
+
+  RESISTANCE WIN32EVENTS() CODE
+	   DO EVENTS
+  RETURN
+
+* Resistance Code Unit : Circuits\Main\Main\Main
+Resistance R_MAIN_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 599 ;
-HEIGHT 442 ;
+HEIGHT 422 ;
+ON INIT mycodeex()  ;
+ON SIZE myadjust()  ;
+ON MAXIMIZE myadjust()  ;
 ICON "PWCTICON" ;
 TITLE "Code Extractor Application" ;
 MAIN ;
-on init mycodeex();
-on size  myadjust();
-on maximize  myadjust();
-BACKCOLOR {236,233,216} 
+BACKCOLOR {255,255,255} 
 
+win1.Center ( )
 DEFINE TAB Tab1;
-AT 13 ,10;
+AT 10 ,10;
 WIDTH 566;
 HEIGHT 330;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
-
 PAGE "Code"
-
 @ 49 ,29 EDITBOX edit1;
 WIDTH 500 ;
 HEIGHT 250;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-
 END PAGE
-
 PAGE "Steps Tree"
-
 @ 49 ,29 EDITBOX edit2;
 WIDTH 500 ;
 HEIGHT 250;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-
 END PAGE
 END TAB
-
-@ 360 ,476 BUTTONEX btn1;
+@ 343 ,476 BUTTONEX btn1;
 CAPTION "Close";
-on click win1.release();
+ON CLICK myclose()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 9 ;
+FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
-return nil
+procedure myclose()
+win1.Release ( )
+return
 
 function myadjust()
 declare window win1
@@ -183,3 +224,12 @@ endif
 ENDDO
 return mydarr
    
+
+
+
+End Of Resistance
+
+INIT PROCEDURE Init_MAIN
+START DOUBLES
+Return
+*-------------------------------------------------------------------*
