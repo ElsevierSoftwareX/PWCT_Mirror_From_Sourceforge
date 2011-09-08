@@ -142,8 +142,8 @@ DEFINE MENU (m.cMenuName) IN (m.oFormRef.Name) BAR
 DEFINE PAD MS_FILE OF (m.cMenuName) PROMPT sysmsg(1237) COLOR SCHEME 3 ;
 	NEGOTIATE  RIGHT, RIGHT ;
 	KEY ALT+F, ""
-*!*	DEFINE PAD _25j0f6ysh OF (m.cMenuName) PROMPT sysmsg(1238) COLOR SCHEME 3 ;
-*!*		KEY ALT+E, ""
+DEFINE PAD _25j0f6ysh OF (m.cMenuName) PROMPT sysmsg(1238) COLOR SCHEME 3 ;
+	KEY ALT+E, ""
 DEFINE PAD _25j0f6ysk OF (m.cMenuName) PROMPT sysmsg(1241) COLOR SCHEME 3 ;
 	KEY ALT+D, ""
 DEFINE PAD _25j0f6ysl OF (m.cMenuName) PROMPT sysmsg(1242) COLOR SCHEME 3 ;
@@ -158,12 +158,12 @@ DEFINE PAD _25j0f6ysp OF (m.cMenuName) PROMPT sysmsg(1246) COLOR SCHEME 3 ;
 	KEY ALT+T, ""
 DEFINE PAD _25j0f6ysq OF (m.cMenuName) PROMPT sysmsg(1247) COLOR SCHEME 3 ;
 	KEY ALT+P, ""
-*DEFINE PAD _25j0f6ysr OF (m.cMenuName) PROMPT sysmsg(1248) COLOR SCHEME 3 ;
-*	KEY ALT+T, ""
+DEFINE PAD _25j0f6ysr OF (m.cMenuName) PROMPT sysmsg(1248) COLOR SCHEME 3 ;
+	KEY ALT+T, ""
 DEFINE PAD _25j0f6yss OF (m.cMenuName) PROMPT sysmsg(1249) COLOR SCHEME 3 ;
 	KEY ALT+H, ""
 ON PAD MS_FILE OF (m.cMenuName) ACTIVATE POPUP (a_menupops[1])
-*ON PAD _25j0f6ysh OF (m.cMenuName) ACTIVATE POPUP (a_menupops[2])
+ON PAD _25j0f6ysh OF (m.cMenuName) ACTIVATE POPUP (a_menupops[2])
 ON PAD _25j0f6ysk OF (m.cMenuName) ACTIVATE POPUP (a_menupops[6])
 ON PAD _25j0f6ysl OF (m.cMenuName) ACTIVATE POPUP (a_menupops[10])
 ON PAD _25j0f6ysm OF (m.cMenuName) ACTIVATE POPUP (a_menupops[11])
@@ -171,7 +171,7 @@ ON PAD _25j0f6ysm OF (m.cMenuName) ACTIVATE POPUP (a_menupops[11])
 ON PAD _25j0f6yso OF (m.cMenuName) ACTIVATE POPUP (a_menupops[13])
 ON PAD _25j0f6ysp OF (m.cMenuName) ACTIVATE POPUP (a_menupops[14])
 ON PAD _25j0f6ysq OF (m.cMenuName) ACTIVATE POPUP (a_menupops[15])
-*ON PAD _25j0f6ysr OF (m.cMenuName) ACTIVATE POPUP (a_menupops[16])
+ON PAD _25j0f6ysr OF (m.cMenuName) ACTIVATE POPUP (a_menupops[16])
 ON PAD _25j0f6yss OF (m.cMenuName) ACTIVATE POPUP (a_menupops[17])
 ON PAD _25component OF (m.cMenuName) ACTIVATE POPUP (a_menupops[18])
 
@@ -201,40 +201,45 @@ ON SELECTION BAR 6 OF (a_menupops[1]) ;
 ON SELECTION BAR 8 OF (a_menupops[1]) ;
 	DO _25j0f6ysy in sysmenu.prg
 
-*!*	DEFINE POPUP (a_menupops[2]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
-*!*	DEFINE BAR 1 OF (a_menupops[2]) PROMPT sysmsg(1256) ;
-*!*		KEY CTRL+X, "CTRL+X" ;
-*!*		PICTURE "cut.bmp"
-*!*	DEFINE BAR 2 OF (a_menupops[2]) PROMPT sysmsg(1257) ;
-*!*		KEY CTRL+C, "CTRL+C" ;
-*!*		PICTURE "copy.bmp"
-*!*	DEFINE BAR 3 OF (a_menupops[2]) PROMPT sysmsg(1258) ;
-*!*		KEY CTRL+V, "CTRL+V" ;
-*!*		PICTURE "paste.bmp"
-*!*	DEFINE BAR 4 OF (a_menupops[2]) PROMPT "\-"
+DEFINE POPUP (a_menupops[2]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF (a_menupops[2]) PROMPT sysmsg(1256) ;
+	KEY CTRL+X, "CTRL+X" ;
+	PICTURE "cut.bmp"
+DEFINE BAR 2 OF (a_menupops[2]) PROMPT sysmsg(1257) ;
+	KEY CTRL+C, "CTRL+C" ;
+	PICTURE "copy.bmp"
+DEFINE BAR 3 OF (a_menupops[2]) PROMPT sysmsg(1258) ;
+	KEY CTRL+V, "CTRL+V" ;
+	PICTURE "paste.bmp"
+DEFINE BAR 4 OF (a_menupops[2]) PROMPT "\-"
 *DEFINE BAR _med_clear OF (a_menupops[2]) PROMPT sysmsg(1259)
 *DEFINE BAR 6 OF (a_menupops[2]) PROMPT "\-"
-*!*	DEFINE BAR 7 OF (a_menupops[2]) PROMPT sysmsg(1398) ;
-*!*		PICTURE "wzlocate.bmp"
-*!*	ON SELECTION BAR 1 OF (a_menupops[2])  S_TOOL = "CUT"
-*!*	ON SELECTION BAR 2 OF (a_menupops[2])  S_TOOL = "COPY"
-*!*	ON SELECTION BAR 3 OF (a_menupops[2])  S_TOOL = "PASTE"
-*!*	ON BAR 7 OF (a_menupops[2]) ACTIVATE POPUP (a_menupops[3])
+DEFINE BAR 7 OF (a_menupops[2]) PROMPT sysmsg(1398) ;
+	PICTURE "wzlocate.bmp"
+ON SELECTION BAR 1 OF (a_menupops[2])  S_TOOL = "CUT"
+ON SELECTION BAR 2 OF (a_menupops[2])  S_TOOL = "COPY"
+ON SELECTION BAR 3 OF (a_menupops[2])  S_TOOL = "PASTE"
+ON BAR 7 OF (a_menupops[2]) ACTIVATE POPUP (a_menupops[3])
 
-*!*	DEFINE POPUP (a_menupops[3]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
-*!*	DEFINE BAR 1 OF (a_menupops[3]) PROMPT sysmsg(1260)
-*!*	DEFINE BAR 2 OF (a_menupops[3]) PROMPT sysmsg(1261)
-*!*	DEFINE BAR 3 OF (a_menupops[3]) PROMPT sysmsg(1262)
-*!*	DEFINE BAR 4 OF (a_menupops[3]) PROMPT sysmsg(1263)
-*!*	ON SELECTION BAR 1 OF (a_menupops[3]) ;
-*!*		DO _25j0f6ysz in sysmenu.prg
+DEFINE POPUP (a_menupops[3]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 1 OF (a_menupops[3]) PROMPT sysmsg(1260)
+DEFINE BAR 2 OF (a_menupops[3]) PROMPT sysmsg(1261)
+DEFINE BAR 3 OF (a_menupops[3]) PROMPT sysmsg(1262)
+DEFINE BAR 4 OF (a_menupops[3]) PROMPT sysmsg(1263)
+DEFINE BAR 5 OF (a_menupops[3]) PROMPT "In RPWI unit"
 
-*!*	ON SELECTION BAR 2 OF (a_menupops[3]) ;
-*!*		DO _25j0f6yt0 in sysmenu.prg
-*!*	ON SELECTION BAR 3 OF (a_menupops[3]) ;
-*!*		DO _25j0f6yt1 in sysmenu.prg
-*!*	ON SELECTION BAR 4 OF (a_menupops[3]) ;
-*!*		DO _25j0f6yt2 in sysmenu.prg
+ON SELECTION BAR 1 OF (a_menupops[3]) ;
+	DO _25j0f6ysz in sysmenu.prg
+
+ON SELECTION BAR 2 OF (a_menupops[3]) ;
+	DO _25j0f6yt0 in sysmenu.prg
+ON SELECTION BAR 3 OF (a_menupops[3]) ;
+	DO _25j0f6yt1 in sysmenu.prg
+ON SELECTION BAR 4 OF (a_menupops[3]) ;
+	DO _25j0f6yt2 in sysmenu.prg
+	
+	ON SELECTION BAR 5 OF (a_menupops[3]) ;
+	DO _25j0f6yt3_edit in sysmenu.prg
 
 DEFINE POPUP (a_menupops[4]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[4]) PROMPT sysmsg(1264)
@@ -628,7 +633,7 @@ ON SELECTION BAR 5 OF (a_menupops[15]) ;
 	DO _25j0f6yv9 in sysmenu.prg
 
 
-*!*	DEFINE POPUP (a_menupops[16]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE POPUP (a_menupops[16]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 *!*	DEFINE BAR 1 OF (a_menupops[16]) PROMPT sysmsg(1352)
 *!*	DEFINE BAR 2 OF (a_menupops[16]) PROMPT "\-"
 *!*	DEFINE BAR 3 OF (a_menupops[16]) PROMPT sysmsg(1353)
@@ -638,13 +643,17 @@ ON SELECTION BAR 5 OF (a_menupops[15]) ;
 *!*	DEFINE BAR 7 OF (a_menupops[16]) PROMPT "\-"
 *!*	DEFINE BAR 8 OF (a_menupops[16]) PROMPT sysmsg(1357)
 *!*	DEFINE BAR 9 OF (a_menupops[16]) PROMPT "\-"
-*!*	DEFINE BAR 13 OF (a_menupops[16]) PROMPT sysmsg(1545)
-*!*	DEFINE BAR 14 OF (a_menupops[16]) PROMPT "\-"
-*!*	DEFINE BAR 10 OF (a_menupops[16]) PROMPT sysmsg(1358)
-*!*	DEFINE BAR 11 OF (a_menupops[16]) PROMPT sysmsg(1359)
-*!*	DEFINE BAR 12 OF (a_menupops[16]) PROMPT sysmsg(1360)
-*!*	ON SELECTION BAR 13 OF (a_menupops[16]) ;
-*!*		DO APPLICATION.DefaultFilePath + "\obrowser\objectbrowser.exe"
+DEFINE BAR 13 OF (a_menupops[16]) PROMPT "Supernova programming language - Arabic "
+DEFINE BAR 15 OF (a_menupops[16]) PROMPT "Supernova programming language - English"
+DEFINE BAR 14 OF (a_menupops[16]) PROMPT "\-"
+DEFINE BAR 10 OF (a_menupops[16]) PROMPT sysmsg(1358)
+DEFINE BAR 11 OF (a_menupops[16]) PROMPT sysmsg(1359)
+DEFINE BAR 12 OF (a_menupops[16]) PROMPT sysmsg(1360)
+ON SELECTION BAR 13 OF (a_menupops[16]) ;
+	DO _25j0f6yva_nova2
+	
+	ON SELECTION BAR 15 OF (a_menupops[16]) ;
+	DO _25j0f6yva_nova
 *!*		
 *!*	ON SELECTION BAR 1 OF (a_menupops[16]) do form toolse
 *!*	ON SELECTION BAR 3 OF (a_menupops[16]) do form toolfd
@@ -652,14 +661,14 @@ ON SELECTION BAR 5 OF (a_menupops[15]) ;
 *!*	ON SELECTION BAR 5 OF (a_menupops[16]) do form toolrd
 *!*	ON SELECTION BAR 6 OF (a_menupops[16]) do form tooldm
 *!*	ON SELECTION BAR 8 OF (a_menupops[16]) do form toolsw
-*!*	ON SELECTION BAR 10 OF (a_menupops[16]) ;
-*!*		DO _25j0f6yva in sysmenu.prg
+ON SELECTION BAR 10 OF (a_menupops[16]) ;
+	DO _25j0f6yva in sysmenu.prg
 
-*!*	ON SELECTION BAR 11 OF (a_menupops[16]) ;
-*!*		DO _25j0f6yvb in sysmenu.prg
+ON SELECTION BAR 11 OF (a_menupops[16]) ;
+	DO _25j0f6yvb in sysmenu.prg
 
-*!*	ON SELECTION BAR 12 OF (a_menupops[16]) ;
-*!*		DO _25j0f6yvc in sysmenu.prg
+ON SELECTION BAR 12 OF (a_menupops[16]) ;
+	DO _25j0f6yvc in sysmenu.prg
 
 
 DEFINE POPUP (a_menupops[17]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
@@ -887,6 +896,8 @@ s_menu = "Search 3"
 PROCEDURE _25j0f6yt2
 s_menu = "Search 4"
 
+PROCEDURE _25j0f6yt3_edit
+s_menu = "Search 5"
 
 
 *       *********************************************************
@@ -2370,6 +2381,12 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
+PROCEDURE _25j0f6yva_nova
+S_menu = "Supernova"
+
+PROCEDURE _25j0f6yva_nova2
+S_menu = "ArabicSupernova"
+
 PROCEDURE _25j0f6yva
 S_menu = "Calculator"
 

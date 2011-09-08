@@ -143,12 +143,13 @@ ENDIF
 * tool bar events
 IF S_TOOL == "CUT"
 S_TOOL = "0"
-FOR I = 1 TO APPLICATION.Forms.Count 
-	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
-			APPLICATION.Forms.Item(I).SHOW()
-		EXIT
-	ENDIF
-NEXT
+
+*!*	FOR I = 1 TO APPLICATION.Forms.Count 
+*!*		IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+*!*				APPLICATION.Forms.Item(I).SHOW()
+*!*			EXIT
+*!*		ENDIF
+*!*	NEXT
 
 *SYS(1500,"_med_cut","_medit")
 	IF application.ActiveForm.name = "RPWIFORM"
@@ -159,13 +160,14 @@ KEYBOARD CHR(24)
 endif
 IF S_TOOL == "COPY"
 S_TOOL = "0"
-FOR I = 1 TO APPLICATION.Forms.Count 
 
-	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
-			APPLICATION.Forms.Item(I).SHOW()
-		EXIT
-	ENDIF
-NEXT
+*!*	FOR I = 1 TO APPLICATION.Forms.Count 
+
+*!*		IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+*!*				APPLICATION.Forms.Item(I).SHOW()
+*!*			EXIT
+*!*		ENDIF
+*!*	NEXT
 
 *SYS(1500,"_med_copy","_medit")
 	IF application.ActiveForm.name = "RPWIFORM"
@@ -177,13 +179,14 @@ KEYBOARD CHR(3)
 endif
 IF S_TOOL == "PASTE"
 S_TOOL = "0"
-FOR I = 1 TO APPLICATION.Forms.Count 
 
-	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
-			APPLICATION.Forms.Item(I).SHOW()
-		EXIT
-	ENDIF
-NEXT
+*!*	FOR I = 1 TO APPLICATION.Forms.Count 
+
+*!*		IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+*!*				APPLICATION.Forms.Item(I).SHOW()
+*!*			EXIT
+*!*		ENDIF
+*!*	NEXT
 
 	IF application.ActiveForm.name = "RPWIFORM"
 		application.ActiveForm.COMMAND9.CLICK
@@ -1949,6 +1952,14 @@ IF S_menu = "DoubleS FAQ"
 s_menu = "1_0"
 ShellExecute(0,"open","HELP\DoubleSFAQ.TXT","","",1)
 ENDIF
+IF s_menu = "Supernova"
+s_menu = "1_0"
+ShellExecute(0,"open",APPLICATION.DefaultFilePath + "\supernova\Simple_IDE.exe","","",1)
+ENDIF
+IF s_menu = "ArabicSupernova"
+s_menu = "1_0"
+ShellExecute(0,"open",APPLICATION.DefaultFilePath + "\supernovaar\Simple_IDE.exe","","",1)
+endif
 if s_menu = "Calculator"
 s_menu = "1_0"
 ShellExecute(0,"open","calc.Exe","","",1)
@@ -3404,6 +3415,10 @@ endif
 if s_menu == "Search 4"
 s_menu = "1_0"
 do form search with 4
+ENDIF
+if s_menu == "Search 5"
+s_menu = "1_0"
+do form search with 5
 endif
 if s_menu = "kill"
 s_menu = "1_0"
