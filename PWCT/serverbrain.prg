@@ -2444,7 +2444,7 @@ s.image = "world"
 s = o.nodes.add(,1,"10_","Veto Unit : Connections",0)
 s.image = "world"
 s = o.nodes.add(,1,"11_","RPWI Unit : Goals",0)
-s.image = "world"
+s.image = "nicegoal"
 myswform.REFRESH()
 myswform.Pageframe1.page1.activate()
 myswform.Pageframe1.Page1.Pageframe1.Page1.activate()
@@ -3015,7 +3015,7 @@ ENDIF
 		s = o.nodes.add(,1,"10_","Veto Unit : Connections",0)
 		s.image = "world"
 		s = o.nodes.add(,1,"11_","RPWI Unit : Goals",0)
-		s.image = "world"
+		s.image = "nicegoal"
 		select 22
 		replace servertype with vvar3
 		myswform.Pageframe1.activepage = 1
@@ -3189,7 +3189,7 @@ s.image = "world"
 s = o.nodes.add(,1,"10_","Veto Unit : Connections",0)
 s.image = "world"
 s = o.nodes.add(,1,"11_","RPWI Unit : Goals",0)
-s.image = "world"
+s.image = "nicegoal"
 myswform.Pageframe1.activepage = 1
 myswform.Pageframe1.page1.activate()
 myswform.Pageframe1.Page1.Pageframe1.Page1.activate()
