@@ -103,7 +103,7 @@ ENDIF
 IF m.cTypeParm2 = "C" AND !EMPTY(m.getMenuName)
 	m.cMenuName = m.getMenuName
 ENDIF
-DIMENSION a_menupops[17]
+DIMENSION a_menupops[18]
 IF TYPE("m.lUniquePopups")="L" AND m.lUniquePopups
 	FOR nTotPops = 1 TO ALEN(a_menupops)
 		a_menupops[m.nTotPops]= SYS(2015)
@@ -121,11 +121,12 @@ ELSE
 	a_menupops[10]="codeunit"
 	a_menupops[11]="vetounit"
 	a_menupops[12]="system"
-	a_menupops[13]="rpwi"
+	a_menupops[13]="goal"
 	a_menupops[14]="transporte"
 	a_menupops[15]="package"
 	a_menupops[16]="tools"
 	a_menupops[17]="help"
+		a_menupops[18]="DomainTree"
 ENDIF
 
 
@@ -149,8 +150,10 @@ DEFINE PAD _25j0f6ysl OF (m.cMenuName) PROMPT sysmsg(1242) COLOR SCHEME 3 ;
 	KEY ALT+C, ""
 DEFINE PAD _25j0f6ysm OF (m.cMenuName) PROMPT sysmsg(1243) COLOR SCHEME 3 ;
 	KEY ALT+V, ""
+DEFINE PAD _25Component OF (m.cMenuName) PROMPT "Domain Tree" COLOR SCHEME 3 ;
+	KEY ALT+O, ""
 DEFINE PAD _25j0f6yso OF (m.cMenuName) PROMPT sysmsg(1245) COLOR SCHEME 3 ;
-	KEY ALT+R, ""
+	KEY ALT+G, ""
 DEFINE PAD _25j0f6ysp OF (m.cMenuName) PROMPT sysmsg(1246) COLOR SCHEME 3 ;
 	KEY ALT+T, ""
 DEFINE PAD _25j0f6ysq OF (m.cMenuName) PROMPT sysmsg(1247) COLOR SCHEME 3 ;
@@ -170,6 +173,7 @@ ON PAD _25j0f6ysp OF (m.cMenuName) ACTIVATE POPUP (a_menupops[14])
 ON PAD _25j0f6ysq OF (m.cMenuName) ACTIVATE POPUP (a_menupops[15])
 *ON PAD _25j0f6ysr OF (m.cMenuName) ACTIVATE POPUP (a_menupops[16])
 ON PAD _25j0f6yss OF (m.cMenuName) ACTIVATE POPUP (a_menupops[17])
+ON PAD _25component OF (m.cMenuName) ACTIVATE POPUP (a_menupops[18])
 
 DEFINE POPUP (a_menupops[1]) MARGIN RELATIVE SHADOW  COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[1]) PROMPT sysmsg(1250) ;
@@ -528,6 +532,24 @@ ON SELECTION BAR 2 OF (a_menupops[12]) S_Menu = "Open SS System"
 ON SELECTION BAR 4 OF (a_menupops[12]) ;
 	DO _25j0f6yuu in sysmenu.prg
 
+DEFINE POPUP (a_menupops[18]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
+DEFINE BAR 7 OF (a_menupops[18]) PROMPT sysmsg(1337)
+DEFINE BAR 6 OF (a_menupops[18]) PROMPT "\-"
+DEFINE BAR 8 OF (a_menupops[18]) PROMPT sysmsg(1338)
+DEFINE BAR 9 OF (a_menupops[18]) PROMPT sysmsg(1339)
+DEFINE BAR 10 OF (a_menupops[18]) PROMPT sysmsg(1340)
+
+ON SELECTION BAR 7 OF (a_menupops[18]) ;
+	DO _25j0f6yuz in sysmenu.prg
+
+ON SELECTION BAR 8 OF (a_menupops[18]) ;
+	DO _25j0f6yv0 in sysmenu.prg
+
+ON SELECTION BAR 9 OF (a_menupops[18]) ;
+	DO _25j0f6yv1 in sysmenu.prg
+
+ON SELECTION BAR 10 OF (a_menupops[18]) ;
+	DO _25j0f6yv2 in sysmenu.prg
 
 DEFINE POPUP (a_menupops[13]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[13]) PROMPT sysmsg(1333)
@@ -537,11 +559,6 @@ DEFINE BAR 3 OF (a_menupops[13]) PROMPT sysmsg(1334)
 DEFINE BAR 4 OF (a_menupops[13]) PROMPT sysmsg(1335)
 DEFINE BAR 5 OF (a_menupops[13]) PROMPT sysmsg(1336)
 DEFINE BAR 6 OF (a_menupops[13]) PROMPT "\-"
-DEFINE BAR 7 OF (a_menupops[13]) PROMPT sysmsg(1337)
-DEFINE BAR 8 OF (a_menupops[13]) PROMPT sysmsg(1338)
-DEFINE BAR 9 OF (a_menupops[13]) PROMPT sysmsg(1339)
-DEFINE BAR 10 OF (a_menupops[13]) PROMPT sysmsg(1340)
-DEFINE BAR 11 OF (a_menupops[13]) PROMPT "\-"
 *!*	DEFINE BAR 12 OF (a_menupops[13]) PROMPT sysmsg(1341)
 *!*	DEFINE BAR 13 OF (a_menupops[13]) PROMPT sysmsg(1342)
 *!*	DEFINE BAR 14 OF (a_menupops[13]) PROMPT sysmsg(1343)
@@ -561,17 +578,7 @@ ON SELECTION BAR 4 OF (a_menupops[13]) ;
 ON SELECTION BAR 5 OF (a_menupops[13]) ;
 	DO _25j0f6yuy in sysmenu.prg
 
-ON SELECTION BAR 7 OF (a_menupops[13]) ;
-	DO _25j0f6yuz in sysmenu.prg
 
-ON SELECTION BAR 8 OF (a_menupops[13]) ;
-	DO _25j0f6yv0 in sysmenu.prg
-
-ON SELECTION BAR 9 OF (a_menupops[13]) ;
-	DO _25j0f6yv1 in sysmenu.prg
-
-ON SELECTION BAR 10 OF (a_menupops[13]) ;
-	DO _25j0f6yv2 in sysmenu.prg
 
 *!*	ON SELECTION BAR 12 OF (a_menupops[13]) do form danalysis.scx
 *!*	ON SELECTION BAR 13 OF (a_menupops[13]) do form contwr.scx
@@ -2019,6 +2026,7 @@ DO FORM rpwi
 ELSE
 FOR I = 1 TO APPLICATION.Forms.Count
 	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+		APPLICATION.Forms.Item(I).show()
 		APPLICATION.Forms.Item(I).WINDOWSTATE = 2
 		EXIT
 	ENDIF
