@@ -672,7 +672,7 @@ ON SELECTION BAR 12 OF (a_menupops[16]) ;
 
 
 DEFINE POPUP (a_menupops[17]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
-DEFINE BAR 1 OF (a_menupops[17]) PROMPT "PWCT Website";
+DEFINE BAR 1 OF (a_menupops[17]) PROMPT "PWCT on the Web";
 	KEY F1, "F1"
 DEFINE BAR 2 OF (a_menupops[17]) PROMPT "\-"
 *!*	DEFINE BAR 8 OF (a_menupops[17]) PROMPT sysmsg(1366)

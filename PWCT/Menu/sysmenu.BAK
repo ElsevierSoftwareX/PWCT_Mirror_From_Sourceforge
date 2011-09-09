@@ -226,7 +226,7 @@ DEFINE BAR 1 OF (a_menupops[3]) PROMPT sysmsg(1260)
 DEFINE BAR 2 OF (a_menupops[3]) PROMPT sysmsg(1261)
 DEFINE BAR 3 OF (a_menupops[3]) PROMPT sysmsg(1262)
 DEFINE BAR 4 OF (a_menupops[3]) PROMPT sysmsg(1263)
-DEFINE BAR 5 OF (a_menupops[3]) PROMPT "In RPWI unit"
+DEFINE BAR 5 OF (a_menupops[3]) PROMPT "In Goal unit"
 
 ON SELECTION BAR 1 OF (a_menupops[3]) ;
 	DO _25j0f6ysz in sysmenu.prg
