@@ -246,7 +246,22 @@ SCAN
 SELECT t33
 ENDSCAN
 ENDIF
-RETURN MYFH
+myfh2 = ""
+MYTABS = 0
+ V_MYMAX = MEMLINES(myfh)
+ 		FOR  v_ln = 1 TO V_MYMAX 
+        		V_DATA = MLINE(myfh,v_ln)
+			IF UPPER(ALLTRIM(V_DATA)) == "<RPWI:TABPUSH>"
+				MYTABS = MYTABS+1
+			ELSE
+				IF UPPER(ALLTRIM(V_DATA)) == "<RPWI:TABPOP>"
+					MYTABS = MAX(MYTABS-1,0)
+				ELSE
+		  		      myfh2 =  myfh2 + replicate(chr(9),mytabs)+ V_DATA + chr(13) + chr(10)
+				endif
+			ENDIF
+		NEXT
+RETURN MYFH2
 
 
 *------------------------*
@@ -374,8 +389,22 @@ NEXT
 
 ENDSCAN
 ENDIF
-RETURN MYFH
-
+myfh2 = ""
+MYTABS = 0
+ V_MYMAX = MEMLINES(myfh)
+ 		FOR  v_ln = 1 TO V_MYMAX 
+        		V_DATA = MLINE(myfh,v_ln)
+			IF UPPER(ALLTRIM(V_DATA)) == "<RPWI:TABPUSH>"
+				MYTABS = MYTABS+1
+			ELSE
+				IF UPPER(ALLTRIM(V_DATA)) == "<RPWI:TABPOP>"
+					MYTABS = MAX(MYTABS-1,0)
+				ELSE
+		  		      myfh2 =  myfh2 + replicate(chr(9),mytabs)+ V_DATA + chr(13) + chr(10)
+				endif
+			ENDIF
+		NEXT
+RETURN MYFH2
 
 
 

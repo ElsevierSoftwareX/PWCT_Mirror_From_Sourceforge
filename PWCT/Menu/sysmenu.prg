@@ -144,12 +144,16 @@ DEFINE PAD MS_FILE OF (m.cMenuName) PROMPT sysmsg(1237) COLOR SCHEME 3 ;
 	KEY ALT+F, ""
 DEFINE PAD _25j0f6ysh OF (m.cMenuName) PROMPT sysmsg(1238) COLOR SCHEME 3 ;
 	KEY ALT+E, ""
+
+IF  Sys_ShowDoubleS = .T.
 DEFINE PAD _25j0f6ysk OF (m.cMenuName) PROMPT sysmsg(1241) COLOR SCHEME 3 ;
 	KEY ALT+D, ""
 DEFINE PAD _25j0f6ysl OF (m.cMenuName) PROMPT sysmsg(1242) COLOR SCHEME 3 ;
 	KEY ALT+C, ""
 DEFINE PAD _25j0f6ysm OF (m.cMenuName) PROMPT sysmsg(1243) COLOR SCHEME 3 ;
 	KEY ALT+V, ""
+	endif
+	
 DEFINE PAD _25Component OF (m.cMenuName) PROMPT "Domain Tree" COLOR SCHEME 3 ;
 	KEY ALT+O, ""
 DEFINE PAD _25j0f6yso OF (m.cMenuName) PROMPT sysmsg(1245) COLOR SCHEME 3 ;
@@ -164,9 +168,13 @@ DEFINE PAD _25j0f6yss OF (m.cMenuName) PROMPT sysmsg(1249) COLOR SCHEME 3 ;
 	KEY ALT+H, ""
 ON PAD MS_FILE OF (m.cMenuName) ACTIVATE POPUP (a_menupops[1])
 ON PAD _25j0f6ysh OF (m.cMenuName) ACTIVATE POPUP (a_menupops[2])
+
+IF  Sys_ShowDoubleS = .T.
 ON PAD _25j0f6ysk OF (m.cMenuName) ACTIVATE POPUP (a_menupops[6])
 ON PAD _25j0f6ysl OF (m.cMenuName) ACTIVATE POPUP (a_menupops[10])
 ON PAD _25j0f6ysm OF (m.cMenuName) ACTIVATE POPUP (a_menupops[11])
+endif
+
 *ON PAD _25j0f6ysn OF (m.cMenuName) ACTIVATE POPUP (a_menupops[12])
 ON PAD _25j0f6yso OF (m.cMenuName) ACTIVATE POPUP (a_menupops[13])
 ON PAD _25j0f6ysp OF (m.cMenuName) ACTIVATE POPUP (a_menupops[14])
@@ -211,15 +219,22 @@ DEFINE BAR 2 OF (a_menupops[2]) PROMPT sysmsg(1257) ;
 DEFINE BAR 3 OF (a_menupops[2]) PROMPT sysmsg(1258) ;
 	KEY CTRL+V, "CTRL+V" ;
 	PICTURE "paste.bmp"
-DEFINE BAR 4 OF (a_menupops[2]) PROMPT "\-"
+
 *DEFINE BAR _med_clear OF (a_menupops[2]) PROMPT sysmsg(1259)
 *DEFINE BAR 6 OF (a_menupops[2]) PROMPT "\-"
+
+IF  Sys_ShowDoubleS = .t.
+DEFINE BAR 4 OF (a_menupops[2]) PROMPT "\-"
 DEFINE BAR 7 OF (a_menupops[2]) PROMPT sysmsg(1398) ;
 	PICTURE "wzlocate.bmp"
+endif
+	
 ON SELECTION BAR 1 OF (a_menupops[2])  S_TOOL = "CUT"
 ON SELECTION BAR 2 OF (a_menupops[2])  S_TOOL = "COPY"
 ON SELECTION BAR 3 OF (a_menupops[2])  S_TOOL = "PASTE"
+IF  Sys_ShowDoubleS = .t.
 ON BAR 7 OF (a_menupops[2]) ACTIVATE POPUP (a_menupops[3])
+endif
 
 DEFINE POPUP (a_menupops[3]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[3]) PROMPT sysmsg(1260)

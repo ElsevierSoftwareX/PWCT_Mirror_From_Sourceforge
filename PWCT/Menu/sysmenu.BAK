@@ -164,9 +164,13 @@ DEFINE PAD _25j0f6yss OF (m.cMenuName) PROMPT sysmsg(1249) COLOR SCHEME 3 ;
 	KEY ALT+H, ""
 ON PAD MS_FILE OF (m.cMenuName) ACTIVATE POPUP (a_menupops[1])
 ON PAD _25j0f6ysh OF (m.cMenuName) ACTIVATE POPUP (a_menupops[2])
+
+IF  Sys_ShowDoubleS = .T.
 ON PAD _25j0f6ysk OF (m.cMenuName) ACTIVATE POPUP (a_menupops[6])
 ON PAD _25j0f6ysl OF (m.cMenuName) ACTIVATE POPUP (a_menupops[10])
 ON PAD _25j0f6ysm OF (m.cMenuName) ACTIVATE POPUP (a_menupops[11])
+endif
+
 *ON PAD _25j0f6ysn OF (m.cMenuName) ACTIVATE POPUP (a_menupops[12])
 ON PAD _25j0f6yso OF (m.cMenuName) ACTIVATE POPUP (a_menupops[13])
 ON PAD _25j0f6ysp OF (m.cMenuName) ACTIVATE POPUP (a_menupops[14])
@@ -214,12 +218,19 @@ DEFINE BAR 3 OF (a_menupops[2]) PROMPT sysmsg(1258) ;
 DEFINE BAR 4 OF (a_menupops[2]) PROMPT "\-"
 *DEFINE BAR _med_clear OF (a_menupops[2]) PROMPT sysmsg(1259)
 *DEFINE BAR 6 OF (a_menupops[2]) PROMPT "\-"
+
+IF  Sys_ShowDoubleS = .t.
+
 DEFINE BAR 7 OF (a_menupops[2]) PROMPT sysmsg(1398) ;
 	PICTURE "wzlocate.bmp"
+endif
+	
 ON SELECTION BAR 1 OF (a_menupops[2])  S_TOOL = "CUT"
 ON SELECTION BAR 2 OF (a_menupops[2])  S_TOOL = "COPY"
 ON SELECTION BAR 3 OF (a_menupops[2])  S_TOOL = "PASTE"
+IF  Sys_ShowDoubleS = .t.
 ON BAR 7 OF (a_menupops[2]) ACTIVATE POPUP (a_menupops[3])
+endif
 
 DEFINE POPUP (a_menupops[3]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[3]) PROMPT sysmsg(1260)
@@ -672,7 +683,7 @@ ON SELECTION BAR 12 OF (a_menupops[16]) ;
 
 
 DEFINE POPUP (a_menupops[17]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
-DEFINE BAR 1 OF (a_menupops[17]) PROMPT "PWCT Website";
+DEFINE BAR 1 OF (a_menupops[17]) PROMPT "PWCT on the Web";
 	KEY F1, "F1"
 DEFINE BAR 2 OF (a_menupops[17]) PROMPT "\-"
 *!*	DEFINE BAR 8 OF (a_menupops[17]) PROMPT sysmsg(1366)

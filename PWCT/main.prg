@@ -52,6 +52,9 @@ PUBLIC s_lastactivewindow && used to help file-open,save,save as & close to know
 PUBLIC Sys_selsercaller && 1 = goal designer 2 =  form designer
 Sys_selsercaller = 1
 
+PUBLIC Sys_ShowDoubleS
+Sys_ShowDoubleS = .T.
+
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
 ELSE
