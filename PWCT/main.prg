@@ -53,7 +53,14 @@ PUBLIC Sys_selsercaller && 1 = goal designer 2 =  form designer
 Sys_selsercaller = 1
 
 PUBLIC Sys_ShowDoubleS
+
+IF FILE(application.DefaultFilePath + "\chpath.txt")
+
+Sys_ShowDoubleS = .f.
+ELSE
+
 Sys_ShowDoubleS = .T.
+ENDIF
 
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
