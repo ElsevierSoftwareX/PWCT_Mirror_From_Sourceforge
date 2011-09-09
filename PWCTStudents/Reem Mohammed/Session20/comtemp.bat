@@ -1,0 +1,1 @@
+CALL sscom2.bat  "STUDENT  FILE"  /X /l calldll  > _temp.txt
