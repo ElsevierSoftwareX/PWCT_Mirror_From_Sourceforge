@@ -1,5 +1,25 @@
 PARAMETERS noe_myinput
 LOCAL noe_mymsg
+
+**************** RPWI Only
+
+IF Sys_ShowDoubleS = .f.
+
+		IF EMPTY(noe_myinput)
+				STMSG(sysmsg(1546))
+				?? CHR(7)
+				RETURN .f.
+		ENDIF
+
+		RETURN .T.
+
+ENDIF
+
+**************************
+
+
+
+
 noe_myinput = LOWER(ALLTRIM(noe_myinput))
 noe_oldinput = noe_myinput 
 
