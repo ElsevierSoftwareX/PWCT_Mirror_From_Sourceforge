@@ -1,1 +1,1 @@
-C:\SSBUILD\Supernova\NovaRun.bat "START"
+C:\SSBUILD\Supernova\NovaRun.bat "START.nova"
