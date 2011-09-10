@@ -1,1 +1,1 @@
-C:\SSRPWI\Python\Batch\mybuild.bat "START"
+C:\SSRPWI\Python\Batch\mybuild.bat "START.py"
