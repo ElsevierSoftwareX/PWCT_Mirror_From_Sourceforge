@@ -2061,12 +2061,25 @@ myswform.oletree.SelectedItem.text = alltrim(vetoname)
 myswform.oletree.refresh
 endif
 if S_menu == "New_Goal_Save"
-FS_SW = 1
-select 35
+
 S_Menu = "1_0"
+FS_SW = 1
+IF Sys_ShowDoubleS = .t.
+select 35
 myswform.oleTree.Nodes.item(alltrim(goalhandle)).Selected = .T.
 myswform.oletree.SelectedItem.text = alltrim(goalname)
 myswform.oletree.refresh
+else
+FOR I = 1 TO APPLICATION.Forms.Count 
+	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+			APPLICATION.Forms.Item(I).SHOW()
+			APPLICATION.Forms.Item(I).init()
+		EXIT
+	ENDIF
+NEXT
+ENDIF
+
+
 endif
 if s_menu = "Delete Veto"
 FS_SW = 1

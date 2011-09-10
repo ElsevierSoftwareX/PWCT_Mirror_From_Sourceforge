@@ -2024,9 +2024,9 @@ ELSE && RPWI Only
 	SELECT 35
 	IF RECCOUNT() > 0
 			do form editgoal.scx
-			ELSE
-			stmsg("Sorry, No goal to edit.")
+						
 	ELSE
+			stmsg("Sorry, No goal to edit.")
 	endif
 
 ENDIF
@@ -2067,6 +2067,17 @@ S_Menu = "1_0"
 myswform.oleTree.Nodes.item(alltrim(goalhandle)).Selected = .T.
 myswform.oletree.SelectedItem.text = alltrim(goalname)
 myswform.oletree.refresh
+
+FOR I = 1 TO APPLICATION.Forms.Count 
+
+
+	IF APPLICATION.Forms.Item(I).NAME = "RPWIFORM"
+			APPLICATION.Forms.Item(I).SHOW()
+		EXIT
+	ENDIF
+NEXT
+
+
 endif
 if s_menu = "Delete Veto"
 FS_SW = 1
@@ -2096,7 +2107,8 @@ endif
 if s_menu = "Delete Goal"
 FS_SW = 1
 s_menu = "1_0"
-s_menu = "1_0"
+
+IF Sys_ShowDoubleS = .t. && HarbourPWCT & DoubleS
 o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
@@ -2124,7 +2136,36 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 		endif
 else
 STMSG(sysmsg(242))
-endif
+ENDIF
+
+
+ELSE && RPWI Only
+	SELECT 35
+	IF RECCOUNT() > 0
+	
+			mymsg = messagebox(sysmsg(263),36,sysmsg(202))
+			if mymsg = 6
+  	   SELECT t38
+       DELETE ALL FOR goalid == t33->goalhandle
+       		GOTO bottom
+       SELECT t33
+  	   DELETE
+  	   SELECT t38
+  	   PACK
+  	   		GOTO bottom
+  	   SELECT t33
+ 		  PACK
+ 		  		GOTO bottom
+      endif
+			
+	ELSE
+			stmsg("Sorry, No goal to delete.")
+	endif
+
+ENDIF
+
+
+
 endif
 
 if s_menu == "First Veto"
