@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 00:27:28    Date : 09/10/2011
+* Time : 14:18:23    Date : 09/10/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_STUDENT__FILE_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_STUDENT__FILE_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,12 +48,12 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_STUDENT__FILE_15speed1() code
+Resistance R_STUDENT__FILE_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 500 ;
-HEIGHT 400 ;
+WIDTH 532 ;
+HEIGHT 429 ;
 ICON "PWCTICON" ;
 TITLE "Student Search" ;
 MAIN ;
@@ -81,13 +79,13 @@ ON CLICK search()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Bauhaus 93" SIZE 14 ;
 TOOLTIP ""
-@ 172 ,28 LISTBOX list1;
-WIDTH 288 ;
-HEIGHT 185 ;
+@ 168 ,12 LISTBOX list1;
+WIDTH 286 ;
+HEIGHT 215 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {233,233,233} ;
 FONTCOLOR {0,0,0}
-@ 159 ,310 IMAGE image1;
+@ 187 ,347 IMAGE image1;
 PICTURE "A_GIRL_CARRYING_A_STACK_OF_BOOKS_0521-1005-0821-5935_SMU.JPG";
 STRETCH ;
 WIDTH 173 HEIGHT 197
@@ -114,13 +112,14 @@ oRS:CursorType := 1
 oRS:ActiveConnection := oCon
 oRS:open ( "Select * from students where name like '"+ oname+ "%'",oCon,3,3 )
 mymax := oRS:RecordCount
+win1.list1.DeleteAllItems ( )
 IF mymax >0
 FOR x = 1 TO mymax STEP 1
-oname := oRS:fields:item("student name"):value
+oname := oRS:fields:item("name"):value
 onan := oRS:fields:item("nationalty"):value
-ogread := oRS:fields:item("gread"):value
-onum := oRS:fields:item("student number"):value
-win1.list1.AddItem ( oname+"-"+onan+"-"+ogread+"-"+onum+"-" )
+ograde := oRS:fields:item("grade"):value
+onum := oRS:fields:item("number"):value
+win1.list1.AddItem ( oname+"-"+onan+"-"+ograde+"-"+onum+"-" )
 oRS:MOVENEXT()
 Next
 ELSE
