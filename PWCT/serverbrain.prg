@@ -2003,6 +2003,8 @@ endif
 If s_menu = "Edit Goal"
 FS_SW = 1
 s_menu = "1_0"
+
+IF Sys_ShowDoubleS = .t. && HarbourPWCT & DoubleS
 o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
@@ -2016,7 +2018,19 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 		endif
 else
 STMSG(sysmsg(242))
-endif
+ENDIF
+
+ELSE && RPWI Only
+	SELECT 35
+	IF RECCOUNT() > 0
+			do form editgoal.scx
+						
+	ELSE
+			stmsg("Sorry, No goal to edit.")
+	endif
+
+ENDIF
+
 endif
 
 *!*	if s_menu =  "New_Veto_Ok"
@@ -2082,7 +2096,8 @@ endif
 if s_menu = "Delete Goal"
 FS_SW = 1
 s_menu = "1_0"
-s_menu = "1_0"
+
+IF Sys_ShowDoubleS = .t. && HarbourPWCT & DoubleS
 o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
@@ -2110,7 +2125,36 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 		endif
 else
 STMSG(sysmsg(242))
-endif
+ENDIF
+
+
+ELSE && RPWI Only
+	SELECT 35
+	IF RECCOUNT() > 0
+	
+			mymsg = messagebox(sysmsg(263),36,sysmsg(202))
+			if mymsg = 6
+  	   SELECT t38
+       DELETE ALL FOR goalid == t33->goalhandle
+       		GOTO bottom
+       SELECT t33
+  	   DELETE
+  	   SELECT t38
+  	   PACK
+  	   		GOTO bottom
+  	   SELECT t33
+ 		  PACK
+ 		  		GOTO bottom
+      endif
+			
+	ELSE
+			stmsg("Sorry, No goal to delete.")
+	endif
+
+ENDIF
+
+
+
 endif
 
 if s_menu == "First Veto"

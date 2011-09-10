@@ -2003,6 +2003,8 @@ endif
 If s_menu = "Edit Goal"
 FS_SW = 1
 s_menu = "1_0"
+
+IF Sys_ShowDoubleS = .t. && HarbourPWCT & DoubleS
 o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
@@ -2016,7 +2018,19 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 		endif
 else
 STMSG(sysmsg(242))
-endif
+ENDIF
+
+ELSE && RPWI Only
+	SELECT 35
+	IF RECCOUNT() > 0
+			do form editgoal.scx
+			ELSE
+			stmsg("Sorry, No goal to edit.")
+	ELSE
+	endif
+
+ENDIF
+
 endif
 
 *!*	if s_menu =  "New_Veto_Ok"
@@ -2443,7 +2457,7 @@ s = o.nodes.add(,1,"9_","Veto Unit : Channels",0)
 s.image = "world"
 s = o.nodes.add(,1,"10_","Veto Unit : Connections",0)
 s.image = "world"
-s = o.nodes.add(,1,"11_","RPWI Unit : Goals",0)
+s = o.nodes.add(,1,"11_","Goal Unit : Goals",0)
 s.image = "nicegoal"
 myswform.REFRESH()
 myswform.Pageframe1.page1.activate()
@@ -3014,7 +3028,7 @@ ENDIF
 		s.image = "world"
 		s = o.nodes.add(,1,"10_","Veto Unit : Connections",0)
 		s.image = "world"
-		s = o.nodes.add(,1,"11_","RPWI Unit : Goals",0)
+		s = o.nodes.add(,1,"11_","Goal Unit : Goals",0)
 		s.image = "nicegoal"
 		select 22
 		replace servertype with vvar3
@@ -3188,7 +3202,7 @@ s = o.nodes.add(,1,"9_","Veto Unit : Channels",0)
 s.image = "world"
 s = o.nodes.add(,1,"10_","Veto Unit : Connections",0)
 s.image = "world"
-s = o.nodes.add(,1,"11_","RPWI Unit : Goals",0)
+s = o.nodes.add(,1,"11_","Goal Unit : Goals",0)
 s.image = "nicegoal"
 myswform.Pageframe1.activepage = 1
 myswform.Pageframe1.page1.activate()
