@@ -21,7 +21,7 @@ IF SYSMETRIC(2) = 480 .and. SYSMETRIC(1) = 640
 MESSAGEBOX("Sorry the application can't work in resoultion 640*480",0,"DoubleS")
 CANCEL
 ENDIF
-SET MEMOWIDTH TO 200
+SET MEMOWIDTH TO 900
 SET SAFETY OFF 
 SET CPDIALOG OFF 
 SET RESOURCE OFF 
@@ -53,7 +53,14 @@ PUBLIC Sys_selsercaller && 1 = goal designer 2 =  form designer
 Sys_selsercaller = 1
 
 PUBLIC Sys_ShowDoubleS
+
+IF FILE(application.DefaultFilePath + "\chpath.txt")
+
+Sys_ShowDoubleS = .f.
+ELSE
+
 Sys_ShowDoubleS = .T.
+ENDIF
 
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
