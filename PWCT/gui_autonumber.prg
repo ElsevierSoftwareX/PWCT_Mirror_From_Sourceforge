@@ -9,8 +9,8 @@ myalias = ALIAS()
 	DIMENSION MYIIDARRAY(1)
 	MYIIDARRAY(1) = "0"
 	
-		mynum = 0 && the number to increment based on control count
-		mynummax = 0 && the maximum number extracted from controls names
+		mynum = 0 						&& the number to increment based on control count
+		mynummax = 0 				 && the maximum number extracted from controls names
 		
 		SELECT t38
 		myrec = RECNO()
@@ -42,7 +42,7 @@ myalias = ALIAS()
 											  numcach = ""
 												FOR x = 10 TO tv_max
 													tv_myline1 = MLINE(F_MYHIS,x)
-													IF AT("NAME",tv_myline1) > 0
+													IF AT("NAME",UPPER(tv_myline1)) > 0
 														IF AT("=",tv_myline1) > 0
 															FOR x2= AT("=",tv_myline1) TO LEN(tv_myline1)
 																tv_letter = SUBSTR(tv_myline1,x2,1)
@@ -53,7 +53,7 @@ myalias = ALIAS()
 															  ENDIF
 															NEXT
 														endif
-														exit
+														*exit
 													ENDIF
 													
 												next
@@ -83,7 +83,7 @@ myalias = ALIAS()
 	endif
 	
 	p1 = STRTRAN(P1,"<AUTONUMBER>",ALLTRIM(STR(MYNUM)))
-		p1 = STRTRAN(P1,"<autonumber>",ALLTRIM(STR(MYNUM)))
+	p1 = STRTRAN(P1,"<autonumber>",ALLTRIM(STR(MYNUM)))
 			 		ENDIF
 			 		SELECT (myalias)
 RETURN p1
