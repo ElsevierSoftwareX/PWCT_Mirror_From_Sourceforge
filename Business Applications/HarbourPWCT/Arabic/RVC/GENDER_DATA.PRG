@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 17:19:44    Date : 07/10/2011
+* Time : 13:36:31    Date : 09/12/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -28,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_GENDER_DATA_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_GENDER_DATA_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_GENDER_DATA_15speed1() code
+Resistance R_GENDER_DATA_18smart1() code
 class GenderDataClass From SYSTEMDATABASE
 Data TableName init "Gender"
 Data cid init ""
@@ -204,7 +202,7 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 99 ,165 GRID Grid1browse;
-ON DBLCLICK self:OpenDataWindow  ;
+ON CHANGE self:OpenDataWindow  ;
 WIDTH 410 ;
 HEIGHT 160 ;
 HEADERS {"—ﬁ„","«”„ «·ﬁ”„"};
