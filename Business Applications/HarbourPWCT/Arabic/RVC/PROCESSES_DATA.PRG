@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 05:30:10    Date : 07/19/2011
+* Time : 13:37:13    Date : 09/12/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
@@ -26,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_PROCESSES_DATA_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_PROCESSES_DATA_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_PROCESSES_DATA_15speed1() code
+Resistance R_PROCESSES_DATA_18smart1() code
 class ProcessesClass From SYSTEMDATABASE
 Data cWindowName init "ProcessesDataWindow"
 Data TableName init "Process_All"
@@ -209,7 +209,7 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 99 ,15 GRID Grid1browse;
-ON DBLCLICK self:OpenDataWindow  ;
+ON CHANGE self:OpenDataWindow  ;
 WIDTH 830 ;
 HEIGHT 260 ;
 HEADERS {"«·ﬁ”„","„œ… «·«Ã—«¡","«·«Ã—«¡","ﬂÊœ «·«Ã—«¡"};
