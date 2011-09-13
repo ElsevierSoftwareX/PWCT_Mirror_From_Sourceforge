@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:25:28    Date : 08/15/2011
+* Time : 13:34:27    Date : 09/12/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -205,7 +205,7 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 93 ,13 GRID Grid1browse;
-ON DBLCLICK self:OpenDataWindow  ;
+ON CHANGE self:OpenDataWindow  ;
 WIDTH 1030 ;
 HEIGHT 290 ;
 HEADERS self:FindTitles;
