@@ -39,7 +39,9 @@ DO case
      PUBLIC objfromlist 
      objfromlist = ""
     	DO FORM selobj.scx
+    	IF .not. EMPTY(objfromlist)
     	this.value = objfromlist
+    	endif
 ENDCASE
 RETURN
 ENDDEFINE
