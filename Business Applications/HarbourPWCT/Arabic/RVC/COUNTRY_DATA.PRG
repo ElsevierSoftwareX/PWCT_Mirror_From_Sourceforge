@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 00:07:28    Date : 07/13/2011
+* Time : 13:35:08    Date : 09/12/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
@@ -26,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_COUNTRY_DATA_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_COUNTRY_DATA_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_COUNTRY_DATA_15speed1() code
+Resistance R_COUNTRY_DATA_18smart1() code
 class CountryDataClass From SYSTEMDATABASE
 Data TableName init "COUNTRY"
 Data cid init ""
@@ -202,7 +202,7 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 @ 99 ,165 GRID Grid1browse;
-ON DBLCLICK self:OpenDataWindow  ;
+ON CHANGE self:OpenDataWindow  ;
 WIDTH 410 ;
 HEIGHT 160 ;
 HEADERS {"—ﬁ„","«”„ «·œÊ·…"};
