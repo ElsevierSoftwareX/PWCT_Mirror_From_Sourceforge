@@ -144,12 +144,16 @@ DEFINE PAD MS_FILE OF (m.cMenuName) PROMPT sysmsg(1237) COLOR SCHEME 3 ;
 	KEY ALT+F, ""
 DEFINE PAD _25j0f6ysh OF (m.cMenuName) PROMPT sysmsg(1238) COLOR SCHEME 3 ;
 	KEY ALT+E, ""
+
+IF  Sys_ShowDoubleS = .T.
 DEFINE PAD _25j0f6ysk OF (m.cMenuName) PROMPT sysmsg(1241) COLOR SCHEME 3 ;
 	KEY ALT+D, ""
 DEFINE PAD _25j0f6ysl OF (m.cMenuName) PROMPT sysmsg(1242) COLOR SCHEME 3 ;
 	KEY ALT+C, ""
 DEFINE PAD _25j0f6ysm OF (m.cMenuName) PROMPT sysmsg(1243) COLOR SCHEME 3 ;
 	KEY ALT+V, ""
+	endif
+	
 DEFINE PAD _25Component OF (m.cMenuName) PROMPT "Domain Tree" COLOR SCHEME 3 ;
 	KEY ALT+O, ""
 DEFINE PAD _25j0f6yso OF (m.cMenuName) PROMPT sysmsg(1245) COLOR SCHEME 3 ;
@@ -215,12 +219,12 @@ DEFINE BAR 2 OF (a_menupops[2]) PROMPT sysmsg(1257) ;
 DEFINE BAR 3 OF (a_menupops[2]) PROMPT sysmsg(1258) ;
 	KEY CTRL+V, "CTRL+V" ;
 	PICTURE "paste.bmp"
-DEFINE BAR 4 OF (a_menupops[2]) PROMPT "\-"
+
 *DEFINE BAR _med_clear OF (a_menupops[2]) PROMPT sysmsg(1259)
 *DEFINE BAR 6 OF (a_menupops[2]) PROMPT "\-"
 
 IF  Sys_ShowDoubleS = .t.
-
+DEFINE BAR 4 OF (a_menupops[2]) PROMPT "\-"
 DEFINE BAR 7 OF (a_menupops[2]) PROMPT sysmsg(1398) ;
 	PICTURE "wzlocate.bmp"
 endif
@@ -661,10 +665,10 @@ DEFINE BAR 10 OF (a_menupops[16]) PROMPT sysmsg(1358)
 DEFINE BAR 11 OF (a_menupops[16]) PROMPT sysmsg(1359)
 DEFINE BAR 12 OF (a_menupops[16]) PROMPT sysmsg(1360)
 ON SELECTION BAR 13 OF (a_menupops[16]) ;
-	DO _25j0f6yva_nova2
+	DO mysysmenu_nova2 in sysmenu.prg
 	
 	ON SELECTION BAR 15 OF (a_menupops[16]) ;
-	DO _25j0f6yva_nova
+	DO mysysmenu_nova in sysmenu.prg
 *!*		
 *!*	ON SELECTION BAR 1 OF (a_menupops[16]) do form toolse
 *!*	ON SELECTION BAR 3 OF (a_menupops[16]) do form toolfd
@@ -693,12 +697,12 @@ DEFINE BAR 2 OF (a_menupops[17]) PROMPT "\-"
 *!*	DEFINE BAR 11 OF (a_menupops[17]) PROMPT sysmsg(1368)
 *!*	DEFINE BAR 12 OF (a_menupops[17]) PROMPT sysmsg(1369)
 *!*	DEFINE BAR 18 OF (a_menupops[17]) PROMPT sysmsg(1581)
-*!*	DEFINE BAR 16 OF (a_menupops[17]) PROMPT "\-"
-*!*	DEFINE BAR 17 OF (a_menupops[17]) PROMPT sysmsg(1488)
+	DEFINE BAR 16 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 17 OF (a_menupops[17]) PROMPT sysmsg(1488)
 *!*	DEFINE BAR 13 OF (a_menupops[17]) PROMPT "\-"
 DEFINE BAR 14 OF (a_menupops[17]) PROMPT sysmsg(1370)
 *!*	ON SELECTION BAR 18 OF (a_menupops[17]) do myalleg in sysmenu.prg
-*!*	ON SELECTION BAR 17 OF (a_menupops[17]) do projteam in sysmenu.prg
+ON SELECTION BAR 17 OF (a_menupops[17]) do projteam in sysmenu.prg
 *!*	ON SELECTION BAR 15 OF (a_menupops[17]) DO _25j0f6yuu in sysmenu.prg
 ON SELECTION BAR 1 OF (a_menupops[17]) ;
 	DO _25j0f6yvd in sysmenu.prg
@@ -2392,11 +2396,13 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _25j0f6yva_nova
+PROCEDURE mysysmenu_nova
 S_menu = "Supernova"
+RETURN
 
-PROCEDURE _25j0f6yva_nova2
+PROCEDURE mysysmenu_nova2
 S_menu = "ArabicSupernova"
+RETURN
 
 PROCEDURE _25j0f6yva
 S_menu = "Calculator"

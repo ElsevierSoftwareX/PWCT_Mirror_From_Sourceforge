@@ -10,10 +10,15 @@ DEFINE BAR 1 OF mencontex PROMPT  sysmsg(1508)
 DEFINE BAR 2 OF mencontex PROMPT  sysmsg(1509)
 DEFINE BAR 3 OF mencontex PROMPT  sysmsg(1576)
 DEFINE BAR 4 OF mencontex PROMPT  "Select Object"
+DEFINE BAR 5 OF mencontex PROMPT  " = True "
+DEFINE BAR 6 OF mencontex PROMPT  " = False "
+
 ON SELECTION BAR 1 OF mencontex _selec=1
 ON SELECTION BAR 2 OF mencontex _selec=2
 ON SELECTION BAR 3 OF mencontex _selec=3
 ON SELECTION BAR 4 OF mencontex _selec=4
+ON SELECTION BAR 4 OF mencontex _selec=5
+ON SELECTION BAR 4 OF mencontex _selec=6
 _selec=0
 ACTIVATE POPUP mencontex
 DO case
@@ -25,7 +30,7 @@ DO case
    this.value = "{"+ALLTRIM(STR(myr)) + ;
    "," + ALLTRIM(STR(myg)) + "," + ALLTRIM(STR(myb)) + "}"
    CASE _selec = 2
-   myfont = GETFONT()
+   myfont = GETFONT("Times New Roman")
    IF .not. EMPTY(myfont)
       x = AT(",",myfont)
       this.value = '"' + SUBSTR(myfont,1,x-1) + '"'
@@ -39,7 +44,13 @@ DO case
      PUBLIC objfromlist 
      objfromlist = ""
     	DO FORM selobj.scx
+    	IF .not. EMPTY(objfromlist)
     	this.value = objfromlist
+    	ENDIF
+    CASE _selec = 5
+    	this.value = "True "
+    	CASE _selec = 6
+    	this.value = "False "
 ENDCASE
 RETURN
 ENDDEFINE

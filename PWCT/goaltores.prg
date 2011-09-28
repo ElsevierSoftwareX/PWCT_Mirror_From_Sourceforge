@@ -334,34 +334,82 @@ return
 ******************************************************
 * version 1.5 (Speed)
 ******************************************************
-function myfastgoalscode()
+function myfastgoalscode() && USED BY RPWI Unit Only
+
 PRIVATE MYTREE
+
 myfh = ""
 SELECT t33
 IF .not. RECCOUNT() = 0
 SCAN
+
+*********************** To support the Time Machine - i.e. to be able to run program from any time frame
+
+TEMP_TM_IID = 0
+
+DIMENSION SYS_GOALSTIMEFRAME(ALEN(SYS_GOALSTIMEFRAME,1),2)
+
+FOR x = 1 TO ALEN(sys_goalstimeframe,1)
+	IF UPPER(ALLTRIM(sys_goalstimeframe(x,1))) == UPPER(ALLTRIM(goalname))
+			Temp_TM_IID = sys_goalstimeframe(x,2)
+			EXIT
+	ENDIF
+NEXT
+
+
+
+***********************
+
+
+
    SELECT t38
-   SET FILTER TO ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE)
-   GOTO TOP
-      COUNT FOR ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) TO MYSIZE
+    IF .not. Temp_TM_IID  = 0
+       SET FILTER TO ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .AND. VAL(StepInterID) <= Temp_TM_IID 
+  		 GOTO TOP
+       COUNT FOR ( ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .AND. VAL(StepInterID) <= Temp_TM_IID ) TO MYSIZE  
+    ELSE
+    
+   		SET FILTER TO ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE)
+  		 GOTO TOP
+   	   COUNT FOR ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) TO MYSIZE
+    ENDIF
+      
       DIMENSION mytree(1,3)
       mytree(1,1) = "NOPARENT"
       mytree(1,2) = "SP_"
       mytree(1,3) = ""
       
       DIMENSION mytree(MYSIZE+1,3)
+      
+      FOR t = 1 TO ALEN(mytree,1)
+					  mytree(T,1) = ""
+	          mytree(T,2) = ""
+      		  mytree(T,3) = ""
+			NEXT
+			
       mytree(1,1) = "NOPARENT"
       mytree(1,2) = "SP_"
       mytree(1,3) = ""
 
+
+
       FOR t = 1 TO mysize
       mystate = mytree(t,2) && STEPID
       T2 = T+1  && PLACE TO INSERT BEFORE
-	   SET FILTER TO ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .and. ALLTRIM(PARENTID) == ALLTRIM(MYSTATE)
-   	GOTO TOP
-   	COUNT FOR ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .and. ALLTRIM(PARENTID) == ALLTRIM(MYSTATE) TO MYSIZE2
-       IF .NOT. MYSIZE2 = 0
-		SCAN
+      
+        IF .not. Temp_TM_IID  = 0
+        			SET FILTER TO ALLTRIM(T38->GOALID) == ALLTRIM(T33->GOALHANDLE) .AND. VAL(T38->StepInterID) <= Temp_TM_IID .and. ALLTRIM(T38->PARENTID) == ALLTRIM(MYSTATE)
+   						GOTO TOP
+   						COUNT FOR ( ALLTRIM(T38->GOALID) == ALLTRIM(T33->GOALHANDLE) .AND. VAL(T38->StepInterID) <= Temp_TM_IID .and. ALLTRIM(T38->PARENTID) == ALLTRIM(MYSTATE) ) TO MYSIZE2
+        ELSE
+        
+	   				SET FILTER TO ALLTRIM(T38->GOALID) == ALLTRIM(T33->GOALHANDLE) .and. ALLTRIM(T38->PARENTID) == ALLTRIM(MYSTATE)
+   					GOTO TOP
+   					COUNT FOR ALLTRIM(T38->GOALID) == ALLTRIM(T33->GOALHANDLE) .and. ALLTRIM(T38->PARENTID) == ALLTRIM(MYSTATE) TO MYSIZE2
+   	ENDIF
+   	
+      IF .NOT. MYSIZE2 = 0
+		  SCAN
    
       	  AINS(MYTREE,T2)
             mytree(T2,1) = PARENTID
@@ -375,6 +423,13 @@ SCAN
             T2 = T2+ 1
 
        ENDSCAN
+       ELSE && fix problem with the Time Machine when we run the program from a location 
+*!*	      			IF t2 = ALEN(mytree,1) .and. .not. Temp_TM_IID  = 0 
+*!*	      		  mytree(T2,1) = ""
+*!*	            mytree(T2,2) = ""
+*!*	      		  mytree(T2,3) = ""
+*!*	          
+*!*	            endif
        ENDIF
        
       NEXT
@@ -409,14 +464,39 @@ RETURN MYFH2
 
 
 function myfastcodeex(MYPARA1) && MYPARA1 = CIRCUIT ADDRESS
+LOCAL TEMP_TM_IID, X
 PRIVATE MYTREE
 
 SELECT t33
 myfh = ""
 
+*********************** To support the Time Machine - i.e. to be able to run program from any time frame
+
+
+TEMP_TM_IID = 0
+
+DIMENSION SYS_GOALSTIMEFRAME(ALEN(SYS_GOALSTIMEFRAME,1),2)
+
+FOR x = 1 TO ALEN(sys_goalstimeframe,1)
+	IF UPPER(ALLTRIM(sys_goalstimeframe(x,1))) == UPPER(ALLTRIM(goalname))
+			Temp_TM_IID = sys_goalstimeframe(x,2)
+			EXIT
+	ENDIF
+NEXT
+
+
+
+***********************
+
+
    SELECT t38
   
-       COUNT FOR ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) TO MYSIZE
+  		 IF .not. Temp_TM_IID  = 0
+       COUNT FOR ( ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .AND. VAL(StepInterID) <= Temp_TM_IID ) TO MYSIZE
+       ELSE
+        COUNT FOR ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) TO MYSIZE
+       ENDIF
+       
       
       DIMENSION mytree(MYSIZE+1,4)
       mytree(1,1) = "NOPARENT"
@@ -427,11 +507,18 @@ myfh = ""
       FOR t = 1 TO mysize
       mystate = mytree(t,2) && STEPID
       T2 = T+1  && PLACE TO INSERT BEFORE
-	   SET FILTER TO ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .and. ALLTRIM(PARENTID) == ALLTRIM(MYSTATE)
-   	GOTO TOP
-   	COUNT FOR ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .and. ALLTRIM(PARENTID) == ALLTRIM(MYSTATE) TO MYSIZE2
+      IF .not. Temp_TM_IID  = 0
+	  			 SET FILTER TO ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .AND. VAL(StepInterID) <= Temp_TM_IID .and. ALLTRIM(PARENTID) == ALLTRIM(MYSTATE)
+	  			 GOTO TOP
+   				COUNT FOR ( ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .AND. VAL(StepInterID) <= Temp_TM_IID .and. ALLTRIM(PARENTID) == ALLTRIM(MYSTATE) ) TO MYSIZE2
+   	ELSE
+  				SET FILTER TO ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE)  .and. ALLTRIM(PARENTID) == ALLTRIM(MYSTATE)
+	   		 GOTO TOP
+      		COUNT FOR ALLTRIM(GOALID) == ALLTRIM(T33->GOALHANDLE) .and. ALLTRIM(PARENTID) == ALLTRIM(MYSTATE) TO MYSIZE2  	
+   	ENDIF
+   	
        IF .NOT. MYSIZE2 = 0
-		SCAN
+					SCAN
    
       	  AINS(MYTREE,T2)
             mytree(T2,1) = PARENTID
@@ -447,8 +534,15 @@ myfh = ""
  	      
             T2 = T2+ 1
 
-       ENDSCAN
-     ENDIF
+       		ENDSCAN
+      ELSE && fix problem with the Time Machine when we run the program from a location 
+      			IF t2 = ALEN(mytree,1) .and. .not. Temp_TM_IID  = 0 
+      		  mytree(T2,1) = ""
+            mytree(T2,2) = ""
+      		  mytree(T2,3) = ""
+            mytree(T2,4) = ""
+            endif
+     	ENDIF
        
       NEXT
   
@@ -458,8 +552,39 @@ myfh = ""
           IF .NOT. ALEN(MYTREE,1) = 0
   		 MYEND = ALEN(MYTREE,1)
        	FOR X2 = 1 TO MYEND
+       	
+ 			
     				    IF .not. EMPTY(ALLTRIM(mytree(x2,3)))
-			 			  myfh= myfH + ALLTRIM(mytree(x2,3)) 
+    				    * myfh= myfH + ALLTRIM(mytree(x2,3)) && commented because it's inside error system block of code
+			 			  
+			 			  
+			 			  ***** Error System
+			 			  
+			 			   	errmap3(err3_t,1) = MYPARA1
+											 errmap3(err3_t,2) = STRTRAN(ALLTRIM(mytree(x2,4)),'"',"'")
+							  			 errmap3(err3_t,3) = 0
+											 errmap3(err3_t,4) = 0
+								 
+								       IF EMPTY(MYFH)
+									   errmap3(err3_t,3) = MEMLINES(MYFH) + 1
+								       ELSE
+								       errmap3(err3_t,3) = MEMLINES(MYFH)
+								       ENDIF
+								       
+						 			  myfh= myfH + ALLTRIM(mytree(x2,3)) 
+						 			  
+						 	  		 errmap3(err3_t,4) =  errmap3(err3_t,3) + MEMLINES(ALLTRIM(mytree(x2,3))) - 2
+								  		 
+							     
+       	            err3_t = err3_t + 1
+										 DIMENSION errmap3(err3_t,4)
+			 			  
+			 			  
+			 			  *******************
+			 			  
+			 			  
+			 			  
+			 			  
 				      ENDIF
 
    	 	  NEXT
