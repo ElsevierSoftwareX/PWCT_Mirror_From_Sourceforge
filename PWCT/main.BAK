@@ -5,23 +5,33 @@ myfiletoopen = pmyfile
 ELSE
 myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
 ENDIF
+
+SYS_VFP_DEBUG = .T.
+
+IF SYS_VFP_DEBUG = .F.
 application.DefaultFilePath = JUSTPATH(application.ServerName)
+ENDIF
+
 DECLARE INTEGER ShellExecute IN shell32.dll ; 
   INTEGER hndWin, STRING cAction, STRING cFileName, ; 
   STRING cParams, STRING cDir, INTEGER nShowWin
-_screen.visible = .f.
+
 ON SHUTDOWN quit
 SET ESCAPE OFF
 SET CENTURY on
 SET SYSMENU to
+
+IF SYS_VFP_DEBUG = .F.
 _screen.visible = .F.
 _screen.Caption = "Programming Without Coding Technology"
 _SCREEN.Icon = '\BMP\SUN.ICO'
+ENDIF
+
 IF SYSMETRIC(2) = 480 .and. SYSMETRIC(1) = 640
 MESSAGEBOX("Sorry the application can't work in resoultion 640*480",0,"DoubleS")
 CANCEL
 ENDIF
-SET MEMOWIDTH TO 900
+SET MEMOWIDTH TO 300
 SET SAFETY OFF 
 SET CPDIALOG OFF 
 SET RESOURCE OFF 
@@ -53,6 +63,12 @@ PUBLIC Sys_selsercaller && 1 = goal designer 2 =  form designer
 Sys_selsercaller = 1
 
 PUBLIC Sys_ShowDoubleS
+PUBLIC sys_soundobject
+PUBLIC sys_goalstimeframe
+
+DIMENSION sys_goalstimeframe(1,2)
+sys_goalstimeframe(1,1) = "" && Goal Name
+sys_goalstimeframe(1,2) = 0  && Interaction ID - The Time Machine
 
 IF FILE(application.DefaultFilePath + "\chpath.txt")
 

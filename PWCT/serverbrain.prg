@@ -2775,12 +2775,20 @@ for x = 1 to reccount()
  ENDIF
  IF t0->rectype = 46
  SELECT t46
+ GOTO top
+ LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t0->reg1)) && fix problem related to repeated history as a result of bad paste steps code in  goal designer
+ IF .not. FOUND() 																						&& this problem fixed starting from PWCT 1.8 (Smart)
  APPEND BLANK 
  replace f_iid WITH t0->reg1
  replace f_stepid WITH t0->reg2
  replace f_hisdate WITH t0->reg3
  replace f_histime WITH t0->reg4
  replace f_myhis WITH t0->reg12
+ ELSE
+ GOTO top
+ endif
+ 
+ 
  ENDIF
 select 23
 skip 1
