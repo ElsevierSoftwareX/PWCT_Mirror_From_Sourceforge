@@ -1,0 +1,1260 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Programming Without Coding</title>
+<script language="javascript" type="text/javascript">
+function showHide(shID) {
+	if (document.getElementById(shID)) {
+		if (document.getElementById(shID+'-show').style.display != 'none') {
+			document.getElementById(shID+'-show').style.display = 'none';
+			document.getElementById(shID).style.display = 'block';
+		}
+		else {
+			document.getElementById(shID+'-show').style.display = 'inline';
+			document.getElementById(shID).style.display = 'none';
+		}
+	}
+}
+</script>
+
+</head>
+<style type="text/css">
+	
+	/* This CSS is used for the Show/Hide functionality. */
+	.more {
+		display: none;
+		border-top: 1px solid #666;
+		border-bottom: 1px solid #666; }
+	a.showLink, a.hideLink {
+		text-decoration: none;
+		color: white;
+		padding-left: 8px;
+		background: transparent url(down.gif) no-repeat left; }
+	a.hideLink {
+		background: transparent url(up.gif) no-repeat left; }
+	a.showLink:hover, a.hideLink:hover {
+		border-bottom: 1px dotted #36f; }
+</style>
+
+<link rel=Stylesheet type="text/css" media=all href=style.css>
+<style>
+    <!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Trebuchet MS";
+	panose-1:2 11 6 3 2 2 2 2 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	font-size:26.5pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	font-size:10.5pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+h5
+	{mso-style-link:"Heading 5 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{font-family:"Tahoma","sans-serif";
+	color:#5A768D;
+	font-weight:bold;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{font-family:"Tahoma","sans-serif";
+	color:#5A768D;
+	font-weight:bold;
+	text-decoration:underline;}
+p
+	{margin-top:19pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:14.4pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+    }
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Cambria","serif";
+	color:#4F81BD;
+	font-weight:bold;
+	font-style:italic;}
+span.Heading5Char
+	{mso-style-name:"Heading 5 Char";
+	mso-style-link:"Heading 5";
+	font-family:"Cambria","serif";
+	color:#243F60;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+p.white-text, li.white-text, div.white-text
+	{mso-style-name:white-text;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.p, li.p, div.p
+	{mso-style-name:p;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.p1, li.p1, div.p1
+	{mso-style-name:p1;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.p2, li.p2, div.p2
+	{mso-style-name:p2;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.bg1, li.bg1, div.bg1
+	{mso-style-name:bg1;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	background:black;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.bg2, li.bg2, div.bg2
+	{mso-style-name:bg2;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	background:black;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.bord, li.bord, div.bord
+	{mso-style-name:bord;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	border:none;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.menu, li.menu, div.menu
+	{mso-style-name:menu;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.blye-text-underline, li.blye-text-underline, div.blye-text-underline
+	{mso-style-name:blye-text-underline;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.blye-text-regular, li.blye-text-regular, div.blye-text-regular
+	{mso-style-name:blye-text-regular;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.yellow-text-regular, li.yellow-text-regular, div.yellow-text-regular
+	{mso-style-name:yellow-text-regular;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.yellow-text-underline, li.yellow-text-underline, div.yellow-text-underline
+	{mso-style-name:yellow-text-underline;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.orange-text-regular, li.orange-text-regular, div.orange-text-regular
+	{mso-style-name:orange-text-regular;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.orange-text-underline, li.orange-text-underline, div.orange-text-underline
+	{mso-style-name:orange-text-underline;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.broun-text-regular, li.broun-text-regular, div.broun-text-regular
+	{mso-style-name:broun-text-regular;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.broun-text-underline, li.broun-text-underline, div.broun-text-underline
+	{mso-style-name:broun-text-underline;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.red-text-regular, li.red-text-regular, div.red-text-regular
+	{mso-style-name:red-text-regular;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.red-text-underline, li.red-text-underline, div.red-text-underline
+	{mso-style-name:red-text-underline;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.black-text-regular, li.black-text-regular, div.black-text-regular
+	{mso-style-name:black-text-regular;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.black-text-underline, li.black-text-underline, div.black-text-underline
+	{mso-style-name:black-text-underline;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.gray-text-underline, li.gray-text-underline, div.gray-text-underline
+	{mso-style-name:gray-text-underline;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.gray-text-regular, li.gray-text-regular, div.gray-text-regular
+	{mso-style-name:gray-text-regular;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.green-text, li.green-text, div.green-text
+	{mso-style-name:green-text;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.green-text-underline, li.green-text-underline, div.green-text-underline
+	{mso-style-name:green-text-underline;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:normal;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:14.4pt;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+span.blye-text-regular1
+	{mso-style-name:blye-text-regular1;
+	color:#5A768D;
+	text-decoration:none none;}
+span.realname
+	{mso-style-name:realname;}
+span.style1
+	{
+        width: 311pt;
+    }
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.Section1
+	{page:Section1;}
+    .style1
+    {
+        width: 189pt;
+    }
+    .style3
+    {
+        font-size: x-large;
+    }
+    .style4
+    {
+        text-align: center;
+    }
+    .style8
+    {
+        font-size: large;
+    }
+    .style9
+    {
+        height: 40.9pt;
+        width: 89pt;
+    }
+    .style13
+    {
+        font-family: "Times New Roman";
+        font-weight: bold;
+    }
+    .style14
+    {
+        font-family: "Times New Roman";
+    }
+    .style16
+    {
+        font-size: 14pt;
+    }
+    .style17
+    {
+        font-family: "Times New Roman";
+        font-size: 12pt;
+        color: #FEFFFF;
+    }
+    .style18
+    {
+        font-size: 12pt;
+    }
+    .style19
+    {
+        font-family: "Times New Roman";
+        font-size: 12pt;
+        height: 36px;
+        color: #FEFFFF;
+    }
+    .style20
+    {
+        color: #FEFFFF;
+    }
+    .style21
+    {
+        font-family: "Times New Roman";
+        color: #FEFFFF;
+    }
+    .style22
+    {
+        font-family: "Times New Roman";
+        color: white;
+        font-size: 14pt;
+        text-align: justify;
+        font-weight: normal;
+    }
+    .style23
+    {
+        width: 110%;
+        height: 164px;
+    }
+    .style24
+    {
+        color: #FEFFFF;
+        font-weight: bold;
+    }
+    .style25
+    {
+        width: 110%;
+        height: 40px;
+    }
+    .style26
+    {
+        height: 198.9pt;
+        width: 559pt;
+    }
+    .style27
+    {
+        text-align: center;
+        font-size: large;
+    }
+-->
+</style>
+
+</head>
+
+<body bgcolor="#282828" lang=EN-US link="#5A768D" vlink="#5A768D" leftmargin=0
+topmargin=0 marginwidth=0 marginheight=0>
+
+<div class=Section1>
+
+<div align=center>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=1000
+ style='width:750.0pt'>
+ <tr>
+  <td style='background:#282828;padding:0cm 0cm 0cm 0cm'>
+  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="98%"
+   style='width:98.4%'>
+   <tr>
+    <td width="75%" style='width:75.6%;padding:0cm 0cm 0cm 0cm'>
+    <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+    color:white'><img width=573 src="images/index_01.gif" style="height: 127px"></span></b></p>
+    </td>
+    <td width="24%" style='width:24.4%;padding:0cm 0cm 0cm 0cm'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:20.0pt;font-family:"Tahoma","sans-serif";color:#CCFFCC'>&nbsp;</span></b></p>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:20.0pt;font-family:"Tahoma","sans-serif";color:#CCFFCC'>PWCT.ORG
+    </span></b></p>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:20.0pt;font-family:"Tahoma","sans-serif";color:white'>[2006-2011]</span></b></p>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:20.0pt;font-family:"Tahoma","sans-serif";color:lime'>&nbsp;</span></b></p>
+    </td>
+   </tr>
+  </table>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:0cm 0cm 0cm 0cm'>
+  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=888
+   style='width:666.3pt'>
+   <tr style='height:40.9pt'>
+    <td width=264 style='width:198.3pt;padding:0cm 0cm 0cm 0cm;height:40.9pt'>
+    <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+    color:white'>&nbsp;</span></b></p>
+    </td>
+    <td width=104 style='width:78.0pt;padding:0cm 0cm 0cm 0cm;height:40.9pt'>
+    <p class=MsoNormal><a
+    href="http://sourceforge.net/projects/doublesvsoop/files/PWCT%20For%20MS-Windows/PWCT%201.7%20%28Sharp%29%202010.09.15/Fayed_PWCT_1.7_Sharp.zip/download"><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";text-decoration:
+    none'><img border=0 width=101 height=41 src="images/index_12.gif"></span></b></a></p>
+    </td>
+    <td width=104 style='width:78.0pt;padding:0cm 0cm 0cm 0cm;height:40.9pt'>
+    <p class=MsoNormal><a href="TUT.html"><b><span style='font-size:8.5pt;
+    font-family:"Tahoma","sans-serif";text-decoration:none'><img border=0
+    width=102 height=41 src="images/index_13.gif"></span></b></a></p>
+    </td>
+    <td width=104 style='width:78.0pt;padding:0cm 0cm 0cm 0cm;height:40.9pt'>
+    <p class=MsoNormal><b>
+      <span style='font-family:"Tahoma","sans-serif";
+  color:white' class="style3">  <a href="downmovie.html">
+      <span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";text-decoration:
+    none'><img border=0 width=102 height=41 src="images/movies.GIF"></span></a></span></b></p>
+    </td>
+    <td style='padding:0cm 0cm 0cm 0cm;' class="style9">
+    <p class=MsoNormal>&nbsp; <span class="style3"><b>
+        <span style='font-family:"Tahoma","sans-serif";
+  color:white' class="style3">  <a href="arabicsite/index.htm">
+        <span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";text-decoration:
+    none'><img border=0 height=41 src="images/ARABIC.gif" style="width: 98px"></span></a></span></b></span></p>
+    </td>
+    <td width=104 style='width:78.0pt;padding:0cm 0cm 0cm 0cm;height:40.9pt'></td>
+   </tr>
+  </table>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:0cm 0cm 0cm 0cm' background="images/index_17.gif">
+  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="99%"
+   style='width:99.6%; height: 500px;'>
+   <tr style='height:198.9pt'>
+    <td style='padding:0cm 0cm 0cm 0cm;' class="style26">
+    <table class=MsoNormalTable border=0 cellspacing=10 cellpadding=0 
+            style='width:734pt; height: 216px;'>
+     <tr>
+      <td style='padding:0cm 0cm 0cm 0cm' class="style25">
+      <h2 class="style4">&nbsp;</h2>
+          <h2 class="style4">
+              <span style='font-family:"Tahoma","sans-serif";
+      color:#CCFFCC' class="style8">P</span><span style='font-family:"Tahoma","sans-serif";
+      color:white' class="style8">rogramming</span><span style='font-family:
+      "Tahoma","sans-serif";color:silver' class="style8"> </span>
+          <span style='font-family:"Tahoma","sans-serif";color:#CCFFCC' class="style8">W</span><span
+      style='font-family:"Tahoma","sans-serif";color:white' class="style8">ithout</span><span
+      style='font-family:"Tahoma","sans-serif";color:silver' class="style8"> </span>
+          <span
+      style='font-family:"Tahoma","sans-serif";color:#CCFFCC' class="style8">C</span><span
+      style='font-family:"Tahoma","sans-serif";color:white' class="style8">oding</span><span
+      style='font-family:"Tahoma","sans-serif";color:silver' class="style8"> </span>
+          <span
+      style='font-family:"Tahoma","sans-serif";color:#CCFFCC' class="style8">T</span><span
+      style='font-family:"Tahoma","sans-serif";color:white' class="style8">echnology 
+          (PWCT)</span></h2>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:0cm 0cm 0cm 0cm' class="style23" colspan="1" 
+             rowspan="1">
+      <p class=style22>
+          <b>
+            <span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+            <img
+    border=0 src="index_files/shot.png" 
+                style="height: 426px; width: 954px"></span></b></p>
+          <p class=style22>
+Free-Open Source Visual Programming Language Framework for MS-Windows which you can use to 
+          create new Visual Programming Languages (VPLs) .
+              The project goal is developing new VPLs that are a practical alternative to Text 
+              Programming Languages (TPLs) and this done through providing a perfect solution 
+              to the common VPLs disadvantages when compared with TPLs.
+              PWCT comes with new programming paradigm (DoubleS = Super Server) which take in 
+              mind complex data structure, event-driven systems, client-server, 
+              object-oriented programming simulation (OOP Simulation) &amp; visual programming 
+              languages (VPLs).&nbsp;&nbsp;<span class="style14">PWCT</span><span style='color:white' 
+              class="style14"> comes with General Purpose Visual Programming Language <span style='color:white' 
+              class="style14"> (HarbourPWCT)</span> ready for use 
+          by professional software developers. </span>PWCT comes with many samples, Order Tracking System (Database Application), and 
+              new text based programming language (Supernova programming language) developed 
+              using HarbourPWCT to clear that the HarbourPWCT visual programming language is 
+              practical general purpose visual programming language.</p>
+      </td>
+     </tr>
+    </table>
+    </td>
+   </tr>
+  </table>
+  
+  <div id="wrap">
+        <h1 class="style4"> &nbsp;</h1>
+        <h1 class="style4"> <b>
+            <span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+            <img
+    border=0 src="index_files/fayedpwctlogo.jpg" alt="PWCT_logo" 
+                style="height: 355px; width: 681px"></span></b></h1>
+        <p class="style4"> &quot;We open the door towards the golden age of Visual Programming 
+            Languages&quot; .... 2010, Mahmoud Fayed</p>
+        <h1 class="style4"> <b>
+            <span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+            <img
+    border=0 src="pwctcan.png" alt="PWCT_logo" style="height: 355px; width: 681px"></span></b></h1>
+        <p class="style4"> This diagram is the answer to what PWCT offers to the Computer 
+            Programmers &amp; Software Developers ?</p>
+	</div>
+      <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> 
+	 
+	 
+	 <div id="wrap3">
+		<h1 class="style27"> <span style='font-family:"Tahoma","sans-serif";color:white'> HarbourPWCT</span></h1>
+         <p class="style4"> 
+             <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> 
+         </p>
+		
+
+  
+  <p class=MsoNormal align=center style='text-align:center; height: 27px;'>HarbourPWCT 
+      (Develop applications using Programming Without Coding Technology - then get 
+      Harbour Code)</p>
+      <p class=MsoNormal align=center style='text-align:center; height: 25px;'>The 
+          HarbourPWCT 
+          is Free-Open Source and Included with PWCT 1.7 Sharp </p>
+		  
+		
+		<a href="#" id="example3-show" class="showLink" onclick="showHide('example3');return false;">	 <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'>	See HarbourPWCT Screen shots.</a></p>
+	
+	<div id="example3" class="more">
+			
+		
+  		  
+  <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+  <p class=MsoNormal>&nbsp;</p>
+  <p class=MsoNormal align=center style='text-align:center'><b><i><span
+  style='font-size:14.0pt;font-family:"Tahoma","sans-serif";color:#CCFFCC'>H</span><span
+  style='font-size:14.0pt;font-family:"Tahoma","sans-serif";color:white'>ello </span><span
+  style='font-size:14.0pt;font-family:"Tahoma","sans-serif";color:#CCFFCC'>W</span><span
+  style='font-size:14.0pt;font-family:"Tahoma","sans-serif";color:white'>orld </span><span
+  style='font-size:14.0pt;font-family:"Tahoma","sans-serif";color:#CCFFCC'>Program 
+      Using HarbourPWCT</span></i></b></p>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>&nbsp;</span></b></p>
+  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+   style='border-collapse:collapse'>
+   <tr>
+    <td width=250 valign=top style='width:187.3pt;border:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 width=221 height=164 src="index_files/image002.jpg" alt=p10></span></b></p>
+    </td>
+    <td width=250 valign=top style='width:187.3pt;border:solid windowtext 1.0pt;
+    border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 width=221 height=166 src="index_files/image003.jpg" alt=p11></span></b></p>
+    </td>
+    <td width=250 valign=top style='width:187.3pt;border:solid windowtext 1.0pt;
+    border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 width=221 height=166 src="index_files/image004.jpg" alt=p12></span></b></p>
+    </td>
+    <td width=250 valign=top style='width:187.35pt;border:solid windowtext 1.0pt;
+    border-left:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 width=222 height=167 src="index_files/image006.jpg" alt=p13></span></b></p>
+    </td>
+   </tr>
+   <tr>
+    <td width=250 valign=top style='width:187.3pt;border:solid windowtext 1.0pt;
+    border-top:none;padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 width=213 height=160 src="index_files/image008.jpg" alt=p14></span></b></p>
+    </td>
+    <td width=250 valign=top style='width:187.3pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 width=214 height=162 src="index_files/image010.jpg" alt=p15></span></b></p>
+    </td>
+    <td width=250 valign=top style='width:187.3pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 width=221 height=165 src="index_files/image012.jpg" alt=p16></span></b></p>
+    </td>
+    <td width=250 valign=top style='width:187.35pt;border-top:none;border-left:
+    none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt'>
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 width=216 height=160 src="index_files/image014.jpg" alt=p18></span></b></p>
+    </td>
+   </tr>
+  </table>
+  
+			
+			
+			<p><a href="#" id="example3-hide" class="hideLink" onclick="showHide('example3');return false;">  <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> Hide HarbourPWCT Screen shots </a></p>
+		</div>
+	</div>
+	  
+	  
+	  <div id="wrap4">
+		<h1 class="style27"> <span style='font-family:"Tahoma","sans-serif";color:white'> Aljabreen Order Tracking System </h1>
+          </span> <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> 
+   <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>&nbsp;</span></b></p>
+  <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+  color:white'>&nbsp;</span></b></p>
+
+      <p class=MsoNormal align=center style='text-align:center'>Order Tracking System 
+      (Developed using Programming Without Coding Technology - HarbourPWCT )</p>
+      <p class=MsoNormal align=center style='text-align:center'>The Order Tracking System 
+          is Free-Open Source and Included with PWCT 1.7 Sharp </p>
+		
+		<a href="#" id="example4-show" class="showLink" onclick="showHide('example4');return false;">	 <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'>	See Aljabreen Screen shots.</a></p>
+	
+	<div id="example4" class="more">
+			
+		
+   
+		  
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>&nbsp;<img
+    border=0 src="index_files/p1.jpg" alt=p13 style="width: 979px; height: 536px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/p2.jpg" alt=p13 style="width: 979px; height: 536px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/p3.jpg" alt=p13 style="width: 979px; height: 536px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/p4.jpg" alt=p13 style="width: 979px; height: 536px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/p5.jpg" alt=p13 style="width: 979px; height: 536px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+   style='border-collapse:collapse'>
+   <tr>
+    <td valign=top 
+           style='border-right: 1.0pt solid windowtext; border-top: 1.0pt solid windowtext; border-bottom: 1.0pt solid windowtext; padding: 0cm 5.4pt; border-left-style: none; border-left-color: inherit; border-left-width: medium;' 
+           class="style1">
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+        <img
+    border=0 src="index_files/p6.jpg" alt=p13 style="width: 979px; height: 536px"></span></b></p>
+        <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+    </td>
+   </tr>
+   <tr>
+    <td valign=top 
+           style='border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+    padding:0cm 5.4pt 0cm 5.4pt; border-left-style: none; border-left-color: inherit; border-left-width: medium; border-top-style: none; border-top-color: inherit; border-top-width: medium;' 
+           class="style1">
+    <p class=MsoNormal align=center style='text-align:center'><b><span
+    style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+        <img
+    border=0 src="index_files/p7.jpg" alt=p13 style="width: 979px; height: 536px"></span></b></p>
+        <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+        <p class=MsoNormal align=center style='text-align:center; width: 975px;'>&nbsp;</p>
+        <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+  
+			
+    </td>
+   </tr>
+  </table>
+  	
+			
+			<p><a href="#" id="example4-hide" class="hideLink" onclick="showHide('example4');return false;">  <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> Hide Aljabreen Order Tracking system Screen shots </a></p>
+		</div>
+	</div>
+
+<div id="wrap5">
+		<h1 class="style27"> <span style='font-family:"Tahoma","sans-serif";color:white'> Supernova programming language</span></h1>
+        <p class="style4"> 
+            <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> 
+        </p>
+		
+
+    <p class=MsoNormal align=center 
+            style='text-align:center; width: 895px; height: 27px;'>Supernova 
+      Programming Language 
+      (Developed using Programming Without Coding Technology - HarbourPWCT )</p>
+      <p class=MsoNormal align=center style='text-align:center; width: 892px;'>The 
+          Supernova programming language 
+          is Free-Open Source and Included with PWCT 1.7 Sharp </p>
+        <p class=MsoNormal align=center style='text-align:center; width: 892px;'>After development using HarbourPWCT - Supernova ported to Linux using HarbourQt</p>
+		
+		  
+		
+		<a href="#" id="example5-show" class="showLink" onclick="showHide('example5');return false;">	 <span style='font-size:12.5pt;font-family:"Tahoma","sans-serif";color:white'>	See Supernova&nbsp; Screen shots.</a></p>
+	
+	<div id="example5" class="more">
+			
+		
+   <p class=MsoNormal align=center style='text-align:center; width: 811px;'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>&nbsp;<img
+    border=0 src="index_files/sn3.jpg" alt=p13 style="width: 979px; height: 580px"></span></b></p>
+        <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+        <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+            <img
+    border=0 src="index_files/sn1.jpg" alt=p13 style="width: 979px; height: 580px"></span></b></p>
+        <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+	
+  <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>&nbsp;<span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'><img
+    border=0 src="index_files/sn2.jpg" alt=p13 style="width: 979px; height: 580px"></span></span></b></p>		
+			
+			<p><a href="#" id="example5-hide" class="hideLink" onclick="showHide('example5');return false;">  <span style='font-size:12.5pt;font-family:"Tahoma","sans-serif";color:white'> Hide Supernova programming language Screen shots </a></p>
+		</div>
+	</div>
+	 	
+	  
+
+	
+<div id="wrap6">
+		<span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> 
+        <span style='font-size:12.5pt;font-family:"Tahoma","sans-serif";color:white'>	
+        <div id="wrap7">
+            <h1 class="style27"> 
+                CSharpPWCT</h1>
+		
+
+  <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+  color:white'>&nbsp;</span></b></p>
+      <p class=MsoNormal>&nbsp;</p>
+  <p class=MsoNormal align=center style='text-align:center; height: 27px;'>CSharpPWCT 
+      (Develop applications using Programming Without Coding Technology - then get 
+      C#.NET Code)</p>
+      <p class=MsoNormal align=center style='text-align:center; height: 25px;'>The 
+          CSharpPWCT 
+          is Free-Open Source and Included with PWCT 1.7 Sharp </p>
+		  
+		
+		<a href="#" id="example-show" class="showLink" onclick="showHide('example');return false;">	 <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'>	See CSharpPWCT Screen shots.</span></a></p>
+	
+	<div id="example" class="more">
+			
+		
+   <p class=MsoNormal align=center style='text-align:center; width: 811px;'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/csshot1.png" alt=p13 style="width: 1000px; height: 615px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/csshot2.png" alt=p13 style="width: 1000px; height: 615px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/csshot3.png" alt=p13 style="width: 1000px; height: 615px"></span></b></p>
+      <p class=MsoNormal>&nbsp;</p>
+      <p class=MsoNormal>&nbsp;</p>		
+			
+			
+			<p><a href="#" id="example-hide" class="hideLink" onclick="showHide('example');return false;">  <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> Hide CSharpPWCT Screen shots 
+                </span> </a></p>
+		</div>
+	</div>
+	
+	
+		  
+        </span></span></span></span></span></span></span></span></span></span></span>
+        </span><span style='font-size:12.5pt;font-family:"Tahoma","sans-serif";'>	
+        <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";'> 
+	
+	
+		  
+    <div id="wrap2">
+        <p class="style27"> 
+            PythonPWCT</p>
+		
+        </span></span>
+        <span style='font-size:12.5pt;font-family:"Tahoma","sans-serif";color:white'>	
+        <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> 
+		
+  <p class=MsoNormal align=center style='text-align:center; height: 27px;'>PythonPWCT 
+      (Develop applications using Programming Without Coding Technology - then get 
+      Python Code)</p>
+      <p class=MsoNormal align=center style='text-align:center; height: 25px;'>The 
+          PythonPWCT 
+          is Free-Open Source and Included with PWCT 1.7 Sharp </p>
+  
+		  
+		
+		<a href="#" id="example2-show" class="showLink" onclick="showHide('example2');return false;">	 <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'>	See PythonPWCT Screen shots.</span></a></p>
+	
+	<div id="example2" class="more">
+			
+		
+     <p class=MsoNormal align=center style='text-align:center; width: 811px;'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/shot2.png" alt=p13 style="width: 1000px; height: 615px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/shot1.png" alt=p13 style="width: 979px; height: 580px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/shot3.png" alt=p13 style="width: 979px; height: 580px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/shot4.png" alt=p13 style="width: 979px; height: 580px"></span></b></p>
+  <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+      <p class=MsoNormal>&nbsp;</p>
+      <p class=MsoNormal>&nbsp;</p>
+	  
+			
+			
+			<p><a href="#" id="example2-hide" class="hideLink" onclick="showHide('example2');return false;">  <span style='font-size:14.5pt;font-family:"Tahoma","sans-serif";color:white'> Hide PythonPWCT Screen shots 
+                </span> </a></p>
+		</div>
+	</div>
+	 
+	 
+		<h1 class="style27"> SupernovaPWCT</h1>
+		
+
+		  
+  
+	
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+  <p class=MsoNormal align=center style='text-align:center; height: 27px;'>SupernovaPWCT (Develop applications using Programming Without Coding Technology - 
+      then get Supernova Code)</p>
+      <p class=MsoNormal align=center style='text-align:center; height: 25px;'>The 
+          SupernovaPWCT 
+          is Free-Open Source and Included with PWCT 1.7 Sharp </p>
+		  
+		
+		<a href="#" id="example6-show" class="showLink" onclick="showHide('example6');return false;">	 <span style='font-size:12.5pt;font-family:"Tahoma","sans-serif";color:white'>	See SupernovaPWCT Screen shots.</span></a><div 
+            id="wrap8">
+        <p class="style4"> &nbsp;</p>
+        <h1 class="style4"> 
+            &nbsp;</h1>
+		
+
+	</div>
+	
+	
+		  
+        </p>
+	
+	<div id="example6" class="more">
+			
+	
+		  
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/snshot1.png" alt=p13 style="width: 979px; height: 580px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'>&nbsp;</p>
+      <p class=MsoNormal align=center style='text-align:center; width: 811px;'><b><span
+  style='font-size:8.5pt;font-family:"Tahoma","sans-serif";color:white'>
+          <img
+    border=0 src="index_files/snshot2.png" alt=p13 style="width: 979px; height: 580px"></span></b></p>
+      <p class=MsoNormal align=center style='text-align:center'>&nbsp;</p>
+      <p c&nbsp;</p>
+	  
+			
+			<p><a href="#" id="example6-hide" class="hideLink" onclick="showHide('example6');return false;">  <span style='font-size:12.5pt;font-family:"Tahoma","sans-serif";color:white'> Hide SupernovaPWCT Screen shots </a></p>
+		</div>
+	</div>
+	 		  
+		  
+   
+	  
+	  
+		  
+
+  
+ 
+		  
+		 
+  
+  
+  
+
+		
+       
+		
+	
+	  
+	  
+	  
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+<div align=center>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=1000
+ style='width:750.0pt'>
+ <tr>
+  <td style='padding:22.5pt 37.5pt 22.5pt 22.5pt'>
+  <table class=MsoNormalTable border=0 cellspacing=10 cellpadding=0 width="100%"
+   style='width:100.0%'>
+   <tr>
+    <td width="33%" valign=top style='width:33.0%;padding:0cm 0cm 0cm 0cm'>
+    <table class=MsoNormalTable border=0 cellspacing=10 cellpadding=0
+     width="100%" style='width:100.0%'>
+     <tr>
+      <td style='padding:0cm 0cm 0cm 0cm'>
+      <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:white'>
+          <img border=0 width=191 height=49 src="images/index_21.gif"></span></b></p>
+      </td>
+     </tr>
+        <tr>
+            <td style='padding:0cm 0cm 0cm 15.0pt'>
+                <p class=MsoNormal>
+                    &nbsp;<b><u><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:white'><br></span></u><span class="style14">You can use PWCT to </span>
+                    <span style='color:white' class="style14">Build Console/GUI/Mixed applications&nbsp; 
+                    then you can distribute your applications as standalone executable files</span></b></p>
+                <p class=MsoNormal>
+                    &nbsp;</p>
+                <p class=MsoNormal>
+                    <span class="style14">Inside PWCT environment you will </span>
+                    <span style='color:white' class="style13">&nbsp;Build your applications 100% without coding 
+                    but you can&nbsp; See, Add and/or modify the code&nbsp; if you want (it&#39;s a 
+                    feature - it&#39;s optional) </span></p>
+                <p class=MsoNormal>
+                    &nbsp;</p>
+      <p class=MsoNormal><span class="style14">Using PWCT </span>
+          <span style='color:white' class="style13">you will Work faster than coding by 
+          hand and you can add new components&nbsp; to the environment </span></p>
+                <p class=MsoNormal>&nbsp;</p>
+      <p class=MsoNormal><span class="style14">PWCT is general purpose tool and you can 
+          </span><span style='color:white' class="style13">Build different kind of software</span></p>
+      <p class=MsoNormal>&nbsp;</p>
+      <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:lime'>&nbsp;</span></b></p>
+      <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:white'>&nbsp;</span></b></p>
+      <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:white'>&nbsp;</span></b></p>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:0cm 0cm 0cm 0cm'>
+      <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:white'&nbsp;</span></b></p>
+      </td>
+     </tr>
+    </table>
+    </td>
+    <td width=10 valign=top style='width:7.2pt;background:#3C4750;padding:0cm 0cm 0cm 0cm'>
+    <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+    color:white'><img border=0 width=1 height=1 src="images/spacer.gif"></span></b></p>
+    </td>
+    <td width="33%" valign=top style='width:33.0%;padding:0cm 0cm 0cm 0cm'>
+    <table class=MsoNormalTable border=0 cellspacing=10 cellpadding=0
+     width="100%" style='width:100.0%'>
+     <tr>
+      <td style='padding:0cm 0cm 0cm 0cm'>
+      <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:white'><img border=0 width=155 height=46 src="images/index_23.gif"></span></b></p>
+      </td>
+     </tr>
+     <tr style='height:122.75pt'>
+      <td style='padding:0cm 0cm 0cm 15.0pt;height:122.75pt'>
+          <p class=style20>[1] Researchers Team</p>
+          <p class=MsoNormal><span class="style20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dr. Atif M. 
+              Alamri </p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Muhammad S. 
+              Al-Qurishi</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mahmoud Fayed 
+              </span> </p>
+          <p class=style20>[2] Architecture &amp; Development</p>
+          <p class=style20>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mahmoud Fayed 
+              (Founder)</p>
+          <p class=style20>[3]&nbsp;Test &amp; Marketing Team</p>
+          <p class=MsoNormal><span class="style20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Arcangelo Molinaro</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stephen France</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sameh Kamel</span></p>
+          <p class=MsoNormal>
+              <span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; " 
+                  class="style24">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span 
+                  class="style20">&nbsp;&nbsp;
+              </span>
+              <span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; " 
+                  class="style24">Amine Debabsia</span></p>
+          <p class=MsoNormal><span class="style20">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; Aboelsoud Abd Alraouf</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ahmed Omar</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Abdulrazak 
+              Hussein</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Djardi Masoud</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mouaddh Mebarki</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ibrahim 
+              Abdelelah</p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dale Jones&nbsp;</span></p>
+          <p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p>
+      </td>
+     </tr>
+     </table>
+    </td>
+    <td width=10 valign=top style='width:7.2pt;background:#3C4750;padding:0cm 0cm 0cm 0cm'>
+    <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+    color:white'><img border=0 width=1 height=1 src="images/spacer.gif"></span></b></p>
+    </td>
+    <td width="34%" valign=top style='width:34.0%;padding:0cm 0cm 0cm 0cm'>
+    <table class=MsoNormalTable border=0 cellspacing=10 cellpadding=0
+     width="100%" style='width:100.0%'>
+     <tr>
+      <td style='padding:0cm 0cm 0cm 0cm'>
+      <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:white'><img border=0 width=214 height=42 src="images/index_25.gif"></span></b></p>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:0cm 0cm 0cm 0cm'>
+      <table class=MsoNormalTable border=0 cellspacing=10 cellpadding=0
+       width="100%" style='width:100.0%'>
+       <tr>
+        <td style='padding:0cm 0cm 0cm 0cm' class="style19">
+            <p class=style18><span class=blye-text-regular1 style="color: #FEFFFF">
+                <span class="style13">2010.09.15</span></span><b><span class="style20"><br 
+                class="style14">
+            </span><span class="style21">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        PWCT 1.7 (Sharp) Released !!!</span></b></p>
+        </td>
+       </tr>
+       <tr>
+        <td style='padding:0cm 0cm 0cm 0cm' class="style17">
+        <p class=style16><span class=blye-text-regular1 style="color: #FEFFFF">
+            <span class="style13"><font size="3">2010.06.29</font></span></span><b><font 
+                size="3"><span class="style20"><br class="style14">
+            </span></font><span class="style21"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        New Website !!!</font></span></b><span class="style20"><font size="3">&nbsp;</font></span></p>
+        </td>
+       </tr>
+       <tr>
+        <td style='padding:0cm 0cm 0cm 0cm' class="style17">
+        </td>
+       </tr>
+      </table>
+      </td>
+     </tr>
+     <tr>
+      <td style='padding:0cm 0cm 0cm 0cm'>
+      <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+      color:white'>&nbsp;</span></b></p>
+      </td>
+     </tr>
+    </table>
+    </td>
+   </tr>
+  </table>
+  </td>
+ </tr>
+ <tr>
+  <td style='padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal><b><span style='font-size:8.5pt;font-family:"Tahoma","sans-serif";
+  color:white'><img border=0 width=1000 height=30 src="images/index_34.gif"></span></b></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span style='display:none'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
