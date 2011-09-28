@@ -1,10 +1,23 @@
-PARAMETERS P_IID
+PARAMETERS P_IID,lRefreshsteps
+
+* The idea behind using lRefreshSteps is to fix a problem related to updating steps based on components updates
+* the problem is when the interaction page contains listbox and this listbox returns item instead of index
+* in this case the update code must open the interaction page file to map the listbox index to listbox item
+* then the listbox item is used for updating the code mask instead of listbox index to avoid bad code generation. 
+
+IF PCOUNT() > 1
+lRefreshSteps = .t.
+ELSE
+lRefreshSteps = .f.
+ENDIF
 
 PSTEPCODE = ""
 PINF = ""
 
 * prepare t46
 SELECT T46
+GOTO TOP
+
 LOCATE FOR UPPER(ALLTRIM(F_IID)) == UPPER(ALLTRIM(P_IID))
 AX_MYHIS = F_MYHIS
 MYHIS = F_MYHIS
@@ -25,8 +38,73 @@ GOTO top
 m_mask = t_trf->f_mask
 m_pair1 = t_trf->f_pair1
 m_pair2 = t_trf->f_pair2
+IF lRefreshSteps = .t.
+m_pages = t_trf->f_pages
+m_files = t_trf->f_files
+endif
 USE
 ENDIF
+
+*****************************
+IF lRefreshSteps = .t.
+FOR tv_x1 = 1 TO MEMLINES(m_files)
+myfile = MLINE(m_files,tv_x1)
+mypstr = "[" + ALLTRIM(mLINE(m_pages,tv_x1)) + "] "
+IF FILE(myfile)
+	SELECT 0
+	USE (myfile) ALIAS "idf_open"
+	SCAN
+	  
+		IF rectype = 3
+		
+
+		IF idf_open->o_trans = 0
+
+		ELSE
+
+						tvar_vname = mypstr + ALLTRIM(idf_open->o_var)
+						tvar_options = idf_open->o_options
+						
+						* update the history to replace list index with list item
+						ax_max = MEMLINES(ax_myhis)
+						FOR ax_x = 13 TO ax_max
+  						
+									  axline = MLINE(AX_MYHIS,ax_x)
+  									axline = UPPER(ALLTRIM(axline))
+									  axline = LEFT(axline,AT("=",axline)-1)
+									  
+							 	   IF UPPER(ALLTRIM(tvar_vname)) == UPPER(ALLTRIM(axline))
+							 	   
+											 	  axline = MLINE(AX_MYHIS,ax_x)
+									    	   myvalue = SUBSTR(axline,AT("=",axline)+1)
+									    	   mynewvalue = ALLTRIM(MLINE(tvar_options,VAL(myvalue)))
+									    	   mynewaxline = UPPER(ALLTRIM(tvar_vname)) +"=" + mynewvalue
+									    	   
+									    	   MESSAGEBOX(MYNEWAXLINE,0,AXLINE)
+									    	   
+		 										  ax_myhis = STRTRAN(ax_myhis,axline,mynewaxline)
+		 										  
+		 										  exit
+									  ENDIF
+  							
+						NEXT
+						
+						***********************************************************
+						
+		ENDIF
+
+   ENDIF
+
+  	SELECT idf_open
+ 	ENDSCAN
+ 	GOTO bottom
+	USE
+ENDIF
+
+NEXT
+ENDIF
+
+
 ************ LET MASK VARIABLES BE IN CAPITAL LETTERS
 LV_MYMAX = MEMLINES(M_MASK)
 LV_RES = ""
@@ -633,11 +711,16 @@ GOTO myrec
 **** [End of updating ]   ********************************************************
 SELECT T46
 LOCATE FOR UPPER(ALLTRIM(F_IID)) == UPPER(ALLTRIM(P_IID))
+IF lRefreshSteps = .f. && history when refreshing steps is not changed , what changed is the components code mask
 REPLACE F_MYHIS WITH AX_MYHIS
+ENDIF
+
 SELECT t38
 IF .not. UPPER(ALLTRIM(t46->f_stepid)) == "SP_"
 LOCATE FOR UPPER(STEPID) == UPPER(ALLTRIM(t46->f_stepid))
-REPLACE STEPHIS WITH AX_MYHIS
+IF lRefreshSteps = .f. && history when refreshing steps is not changed , what changed is the components code mask
+	REPLACE STEPHIS WITH AX_MYHIS
+endif
 ENDIF
 
 ENDIF
