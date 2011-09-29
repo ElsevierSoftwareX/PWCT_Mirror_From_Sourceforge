@@ -25,28 +25,31 @@ public class win1 : Form
 		edit1.GotFocus += new System.EventHandler (this.edit1_GotFocus);
 		edit1.LostFocus += new System.EventHandler (this.edit1_LostFocus);
 		this.edit1.Top = 10 ;
-		this.edit1.Left = 11 ;
-		this.edit1.Width = 360 ;
-		this.edit1.Height = 334 ;
+		this.edit1.Left = 10 ;
+		this.edit1.Width = 364 ;
+		this.edit1.Height = 344 ;
 		this.edit1.Text = " " ;
 		int[] edit1acolorsfc = {0,0,0} ;
 		this.edit1.ForeColor = System.Drawing.Color.FromArgb (edit1acolorsfc[0],edit1acolorsfc[1],edit1acolorsfc[2]);
 		int[] edit1acolorsbc = {255,255,255} ;
 		this.edit1.BackColor = System.Drawing.Color.FromArgb (edit1acolorsbc[0],edit1acolorsbc[1],edit1acolorsbc[2]);
-		this.edit1.Font = new Font( "Arial" , 10) ;
+		this.edit1.Font = new Font( "Times New Roman" , 10) ;
 	}
 	private void win1_Click( object sender, System.EventArgs e )
 	{
 	}
 	private void win1_Load( object sender, System.EventArgs e )
 	{
-		int [] acolors = {64,0,64} ;
+		int [] acolors = {255,255,255} ;
+		this.BackColor = System.Drawing.SystemColors.Control;
+		this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+		this.WindowState = System.Windows.Forms.FormWindowState.Normal;
 		this.Top = 10 ;	
 		this.Left = 10;
 		this.Width = 400 ;
 		this.Height = 400 ;
-		this.Text = "Hello World " ;
-		this.BackColor = System.Drawing.Color.FromArgb (acolors[0],acolors[1],acolors[2]);
+		this.Text = "Editbox Test" ;
+		this.Opacity = 100 ;
 	}
 	protected void edit1_Click (  object sender, System.EventArgs e)
 	{

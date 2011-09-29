@@ -34,7 +34,7 @@ public class win1 : Form
 		this.edit1.ForeColor = System.Drawing.Color.FromArgb (edit1acolorsfc[0],edit1acolorsfc[1],edit1acolorsfc[2]);
 		int[] edit1acolorsbc = {244,208,241} ;
 		this.edit1.BackColor = System.Drawing.Color.FromArgb (edit1acolorsbc[0],edit1acolorsbc[1],edit1acolorsbc[2]);
-		this.edit1.Font = new Font( "Arial" , 14) ;
+		this.edit1.Font = new Font( "Times New Roman" , 14) ;
 		this.btn1 = new System.Windows.Forms.Button ( );
 		this.Controls.Add (btn1);
 		btn1.Click += new System.EventHandler (this.btn1_Click);
@@ -47,20 +47,23 @@ public class win1 : Form
 		this.btn1.ForeColor = System.Drawing.Color.FromArgb (btn1acolorsfc[0],btn1acolorsfc[1],btn1acolorsfc[2]);
 		int[] btn1acolorsbc = {41,208,222} ;
 		this.btn1.BackColor = System.Drawing.Color.FromArgb (btn1acolorsbc[0],btn1acolorsbc[1],btn1acolorsbc[2]);
-		this.btn1.Font = new Font( "Arial" , 14) ;
+		this.btn1.Font = new Font( "Times New Roman" , 14) ;
 	}
 	private void win1_Click( object sender, System.EventArgs e )
 	{
 	}
 	private void win1_Load( object sender, System.EventArgs e )
 	{
-		int [] acolors = {252,190,242} ;
+		int [] acolors = {255,255,255} ;
+		this.BackColor = System.Drawing.SystemColors.Control;
+		this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+		this.WindowState = System.Windows.Forms.FormWindowState.Normal;
 		this.Top = 10 ;	
 		this.Left = 10;
 		this.Width = 400 ;
 		this.Height = 400 ;
-		this.Text = "Editbox and Button " ;
-		this.BackColor = System.Drawing.Color.FromArgb (acolors[0],acolors[1],acolors[2]);
+		this.Text = "Window Title" ;
+		this.Opacity = 100 ;
 	}
 	protected void edit1_Click (  object sender, System.EventArgs e)
 	{
