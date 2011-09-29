@@ -1,0 +1,1 @@
+C:\SSRPWI\Supernova\NovaRun.bat "demo.nova"
