@@ -1,7 +1,9 @@
 * EDIT CUSTOM SHELL & CUSTOM SUBSHELL
+LOCAL O
 IF S_menu == "edit_shell"
 FS_SW = 1
 S_menu = "0"
+
 o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
@@ -12,9 +14,15 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 		  locate for alltrim(atomhandle) == alltrim(t2->atomhandle)
 		  SELECT 2
 	    v_shell = INPUTBOX(sysmsg(239),sysmsg(240),shellname)
+	    IF EMPTY(alltrim(v_shell))
+					MESSAGEBOX("Empty shell name is not allowed",0,"Sorry")
+					RETURN
+			ENDIF
+			 SELECT 2
 	    v_shell = ALLTRIM(v_shell)
 			replace shellname with alltrim(v_shell)
 	 	 o.SelectedItem.text = alltrim(v_shell)
+	 	 RETURN
 		ELSE
 		GOTO bottom
 		STMSG(sysmsg(241))
@@ -25,9 +33,12 @@ mymsg = STMSG(sysmsg(142))
 return		
 endif
 ENDIF
+
 IF S_menu == "edit_subshell"
+
 FS_SW = 1
 S_menu = "0"
+
 o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
@@ -40,9 +51,15 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	  locate for alltrim(atomhandle) == alltrim(t2->atomhandle)
 	  SELECT 3
     v_shell = INPUTBOX(sysmsg(243),sysmsg(244),subshellname)
+    IF EMPTY(alltrim(v_shell))
+					MESSAGEBOX("Empty shell name is not allowed",0,"Sorry")
+					RETURN
+		ENDIF
+		SELECT 3
     v_shell = ALLTRIM(v_shell)
 		replace subshellname with alltrim(v_shell)
  	 o.SelectedItem.text = alltrim(v_shell)
+ 	 RETURN
 		ELSE
 		GOTO bottom
 		STMSG(sysmsg(245))
@@ -873,7 +890,7 @@ FS_SW = 1
 s_menu = "1_0"
 * duplication test
 select 1
-locate for alltrim(atomname) == alltrim(s_mem)
+locate for UPPER(alltrim(atomname)) == UPPER(alltrim(s_mem))
 if found()
 STMSG(sysmsg(266))
 RETURN
