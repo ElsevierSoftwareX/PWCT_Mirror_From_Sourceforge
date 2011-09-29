@@ -15,7 +15,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 		  SELECT 2
 	    v_shell = INPUTBOX(sysmsg(239),sysmsg(240),shellname)
 	    IF EMPTY(alltrim(v_shell))
-					MESSAGEBOX("Empty shell name is not allowed",0,"Sorry")
+					*stmsg("Empty shell name is not allowed")
 					RETURN
 			ENDIF
 			 SELECT 2
@@ -43,7 +43,7 @@ o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
 	select 3
-	locate for alltrim(subshellhandle) == alltrim(myvar)	
+	locate for UPPER(alltrim(subshellhandle)) == UPPER(alltrim(myvar))
 		if found()
 		select 2
 	  locate for alltrim(shellhandle) == alltrim(t3->shellhandle)
@@ -52,7 +52,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	  SELECT 3
     v_shell = INPUTBOX(sysmsg(243),sysmsg(244),subshellname)
     IF EMPTY(alltrim(v_shell))
-					MESSAGEBOX("Empty shell name is not allowed",0,"Sorry")
+				*	stmsg("Empty Subshell name is not allowed")
 					RETURN
 		ENDIF
 		SELECT 3
@@ -84,12 +84,14 @@ o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
 	select 2
-	locate for alltrim(shellhandle) == alltrim(myvar)
+	GOTO TOP
+	locate for UPPER(alltrim(shellhandle)) == UPPER(alltrim(myvar))
 	if found()
 		myhandle = alltrim(myvar)
 		myhandle = left(myhandle,len(myhandle)-1) + "1_"+UPPER(v_shell)
 		select 3
-		locate for alltrim(subshellhandle) == alltrim(myhandle)
+		GOTO TOP
+		locate for UPPER(alltrim(subshellNAME)) == UPPER(alltrim(V_SHELL))
 		if .not. found()
 			kk=		o.nodes.add(myvar,4,myhandle,v_shell,0)
 			kk.image = "dbf"
@@ -100,7 +102,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 			replace subshellhandle with myhandle
 		ELSE
 				GOTO bottom
-		   STMSG(v_shell+ sysmsg(247) + "(" + alltrim(t2->SHELLNAME) + ")")
+		   STMSG("Subshell name duplication is not allowed")
 		endif
 	ELSE
 			GOTO bottom
@@ -124,7 +126,8 @@ o = myswform.oletree
 IF !ISNULL(myswform.oletree.SelectedItem)
 	myvar = o.selecteditem.key
 	select 1
-	locate for alltrim(atomhandle) == alltrim(myvar)
+	GOTO TOP
+	locate for UPPER(alltrim(atomhandle)) == UPPER(alltrim(myvar))
 	if found()
 	for s = 1 to len(atomhandle)
 		if substr(atomhandle,s,1) = "_"
@@ -135,7 +138,8 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	S = ALLTRIM(STR(myATOMNUM)) + "_"
 		myhandle = "2"+S+"00_"+UPPER(v_shell)
 		select 2
-		locate for alltrim(shellhandle) == alltrim(myhandle)
+		GOTO TOP
+		locate for UPPER(alltrim(shellNAME)) == UPPER(alltrim(V_SHELL))
 		if .not. found()
 		kk =	o.nodes.add("2"+S+"1_",4,myhandle,v_shell,0)
 		kk.image = "db"
@@ -146,7 +150,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 			replace shellhandle with myhandle
 		ELSE
 				GOTO bottom
-		  STMSG(v_shell+sysmsg(250) + "(" + alltrim(t1->ATOMNAME) + ")" )
+		  STMSG("Shell name duplication is not allowed" )
 		endif
 	ELSE
 			GOTO bottom
@@ -1224,6 +1228,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
      		  locate for alltrim(subshellhandle) = alltrim(mem_subshellhandle)   
 		 	    if  found()
 		 	    mymsg = messagebox(sysmsg(268),36,sysmsg(202))
+		 	    SELECT 3
 					if .not. mymsg = 6
 					return
 					endif
@@ -1258,6 +1263,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
      		  locate for alltrim(shellhandle) = alltrim(mem_shellhandle)   
 		 	    if  found()
 		 	    mymsg = messagebox(sysmsg(269),36,sysmsg(202))
+		 	    SELECT 2
 					if .not. mymsg = 6
 					return
 					endif
@@ -1303,6 +1309,7 @@ mem_atomhandle = myswform.oletree.SelectedItem.key
 locate for alltrim(atomhandle) = alltrim(mem_atomhandle)
 if found()
 	mymsg = messagebox(sysmsg(271),36,sysmsg(202))
+	SELECT 1
 	if .not. mymsg = 6
 	return
 	endif
@@ -1362,6 +1369,7 @@ s_menu = "1_0"
 select 1
 if reccount() = 0
 mymsg = messagebox(sysmsg(150),6,sysmsg(151))
+SELECT 1
 endif
 do form newvessel.scx
 
@@ -1413,6 +1421,7 @@ o = myswform.oletree
 								select 5
 					if .not. reccount() = 0
 					mymsg = messagebox(sysmsg(152),36,sysmsg(140))
+					SELECT 5
 					if .not. mymsg = 6
 					return
 					endif
@@ -1532,6 +1541,7 @@ o = myswform.oletree
 								select 7
 							if .not. reccount() = 0
 							mymsg = messagebox(sysmsg(166),36,sysmsg(167))
+							SELECT 7
 							if .not. mymsg = 6
 							return
 							endif
@@ -1642,6 +1652,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	locate for alltrim(circuithandle) == alltrim(myvar)	
 		if found()
   	  mymsg = messagebox(sysmsg(263),36,sysmsg(202))
+  	  SELECT 13
 			if mymsg = 6
   	   o.nodes.remove(myvar)
   	   select 14
@@ -1693,9 +1704,11 @@ if found()
 do form newbranch.scx
 else
 mymsg = messagebox(sysmsg(182),6,sysmsg(136))
+SELECT 13
 endif
 else
 mymsg = messagebox(sysmsg(183),6,sysmsg(136))
+SELECT 13
 endif
 
 
@@ -1732,6 +1745,7 @@ o = myswform.oletree
 	
 					if .not. reccount() = 0
 				mymsg = messagebox(sysmsg(184),36,sysmsg(135))
+				
 				if .not. mymsg = 6
 				return
 				endif
@@ -1892,9 +1906,11 @@ if found()
 do form newresistance.scx
 else
 mymsg = messagebox(sysmsg(199),6,sysmsg(136))
+SELECT 14
 endif
 else
 mymsg = messagebox(sysmsg(200),6,sysmsg(136))
+SELECT 14
 endif
 
 
@@ -2109,6 +2125,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	locate for alltrim(vetohandle) == alltrim(myvar)	
 		if found()
   	  mymsg = messagebox(sysmsg(263),36,sysmsg(202))
+  	  SELECT 16
 			if mymsg = 6
   	   o.nodes.remove(myvar)
   	   delete
@@ -2135,6 +2152,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	locate for ALLTRIM(goalhandle) == alltrim(myvar)	
 		if found()
   	  mymsg = messagebox(sysmsg(263),36,sysmsg(202))
+  	  SELECT 35
 			if mymsg = 6
   	   o.nodes.remove(myvar)
        SELECT t38
@@ -2163,6 +2181,7 @@ ELSE && RPWI Only
 	IF RECCOUNT() > 0
 	
 			mymsg = messagebox(sysmsg(263),36,sysmsg(202))
+			SELECT 35
 			if mymsg = 6
   	   SELECT t38
        DELETE ALL FOR goalid == t33->goalhandle
@@ -2229,6 +2248,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	locate for alltrim(channelhandle) == alltrim(myvar)	
 		if found()
   	  mymsg = messagebox(sysmsg(263),36,sysmsg(202))
+  	  SELECT 17
 			if mymsg = 6
   	   o.nodes.remove(myvar)
   	   delete
@@ -2329,6 +2349,7 @@ IF !ISNULL(myswform.oletree.SelectedItem)
 	locate for alltrim(connectionhandle) == alltrim(myvar)	
 		if found()
   	  mymsg = messagebox(sysmsg(263),36,sysmsg(202))
+  	  SELECT 18
 			if mymsg = 6
   	   o.nodes.remove(myvar)
   	   select 19
