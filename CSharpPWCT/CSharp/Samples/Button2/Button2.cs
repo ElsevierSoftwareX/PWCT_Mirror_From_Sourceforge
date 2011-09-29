@@ -27,7 +27,7 @@ public class win1 : Form
 		this.btn1.ForeColor = System.Drawing.Color.FromArgb (btn1acolorsfc[0],btn1acolorsfc[1],btn1acolorsfc[2]);
 		int[] btn1acolorsbc = {72,249,231} ;
 		this.btn1.BackColor = System.Drawing.Color.FromArgb (btn1acolorsbc[0],btn1acolorsbc[1],btn1acolorsbc[2]);
-		this.btn1.Font = new Font( "Arial" , 14) ;
+		this.btn1.Font = new Font( "Times New Roman" , 14) ;
 	}
 	private void win1_Click( object sender, System.EventArgs e )
 	{
