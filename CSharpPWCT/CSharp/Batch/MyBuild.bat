@@ -1,5 +1,6 @@
 set path=%path%;C:\WINDOWS\Microsoft.NET\Framework\v3.5
-csc /target:exe  %1.cs
+rem set path=%path%;C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319
+csc /target:exe  %~n1.cs
 rem pause
 cls
 "%~n1.exe"
