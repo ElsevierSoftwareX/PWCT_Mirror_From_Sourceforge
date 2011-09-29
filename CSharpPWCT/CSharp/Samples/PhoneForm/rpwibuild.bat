@@ -1,1 +1,1 @@
-C:\SSRPWI\CSharp\Batch\MyBuild PhoneForm
+C:\SSRPWI\CSharp\Batch\MyBuild PHONEFORM
