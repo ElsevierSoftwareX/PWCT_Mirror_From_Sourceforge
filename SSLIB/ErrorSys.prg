@@ -1,3 +1,7 @@
+* 2011, Modified for PWCT by Mahmoud Fayed <msfclipper@yahoo.com>
+* To show Goal Name & Step Name
+
+
 /*----------------------------------------------------------------------------
  MINIGUI - Harbour Win32 GUI library source code
 
@@ -105,8 +109,10 @@ STATIC FUNCTION DefError( oError )
    cText = ai
    WHILE ! Empty( ProcName( n ) )
 	Htmtext := SS_ESMAP(ProcName( n ) , ProcLine( n++ ) )
-      cText += HtmText
-      Html_LineText(HtmArch, HtmText)
+	IF .NOT. EMPTY(ALLTRIM(HTMTEXT))
+     		 cText += HtmText
+      		 Html_LineText(HtmArch, HtmText)
+	ENDIF
    ENDDO
    Html_Line(HtmArch)
    Html_End(HtmArch)
@@ -299,19 +305,23 @@ PROCEDURE _SetErrorLogFile( cFile )
    _HMG_ErrorLogFile := IFEMPTY(cFile, GetStartUpFolder() + "\ErrorLog.htm", cFile)
 RETURN
 
+
+* Author : Mahmoud Fayed <msfclipper@yahoo.com>
+
 FUNCTION SS_ESMAP(P1,P2) && Map Procedure name, line number to RPWI
 LOCAL X,MYRET
 p1 = p1 + "()"
 MYRET = ""
 RPWI = .F.
+STEPFOUND = .F.
 * get file name
 		FOR X2 = 1 TO LEN(SS_RESISTANCES)
-			IF UPPER(ALLTRIM(SS_RESISTANCES[X2][2])) == UPPER(ALLTRIM(P1))
+			IF UPPER(ALLTRIM(SS_RESISTANCES[X2][2])) == UPPER(ALLTRIM(P1)) .or. X2 = LEN(SS_RESISTANCES)
 				MYRES = SS_RESISTANCES[X2][3]
 				FOR X4 = 1 TO LEN(SS_ESGOAL)
 					IF UPPER(ALLTRIM(MYRES)) == UPPER(ALLTRIM(SS_ESGOAL[X4][1]))
 						MYGOAL = SS_ESGOAL[X4][2]
-						MYRET = MYRET + " Goal: " + MYGOAL
+						MYRET = MYRET + " Goal: " + MYGOAL + CHR(13) + CHR(10)
 						RPWI = .T.
 						EXIT
 					ENDIF
@@ -324,12 +334,14 @@ RPWI = .F.
 							FOR X5 = 1 TO LEN(SS_ESSTEP)
 								IF UPPER(ALLTRIM(SS_ESSTEP[X5][1])) == UPPER(ALLTRIM(MYRES)) .AND. ;
 									MYLINE >= SS_ESSTEP[X5][3] .AND. MYLINE <= SS_ESSTEP[X5][4]
-										MYRET = MYRET + " Step: " + SS_ESSTEP[X5][2]
+										MYRET = MYRET + " Step: " + SS_ESSTEP[X5][2] + CHR(13) + CHR(10)
+										STEPFOUND = .T.
 										EXIT
 								ENDIF
 							NEXT
 						ENDIF
-						MYRET = MYRET + " Resistance: " + MYRES + " Line: " + ALLTRIM(STR(MYLINE)) + " ( " + P1 + " , " + ALLTRIM(STR(P2))+ " ) "  + CHR(13) + CHR(10)
+						*MYRET = MYRET + " Resistance: " + MYRES + " Line: " + ALLTRIM(STR(MYLINE)) + " ( " + P1 + " , " + ALLTRIM(STR(P2))+ " ) "  + CHR(13) + CHR(10)
+						MYRET = MYRET + " Resistance: " + MYRES  + CHR(13) + CHR(10) + " ( " + P1 + " , " + ALLTRIM(STR(P2))+ " ) "  + CHR(13) + CHR(10)
 						EXIT
 					ENDIF
 				NEXT
@@ -339,6 +351,9 @@ RPWI = .F.
 * get goal name
 * get step name
 IF .NOT. EMPTY(ALLTRIM(MYRET))
-MYRET = "Called From: " + MYRET
+	MYRET = CHR(13) + CHR(10) + " Called From: " + MYRET
+ENDIF
+IF STEPFOUND = .F.
+	MYRET = ""
 ENDIF
 RETURN MYRET
