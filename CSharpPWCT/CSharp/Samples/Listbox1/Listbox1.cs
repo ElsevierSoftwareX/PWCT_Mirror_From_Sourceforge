@@ -28,7 +28,7 @@ public class win1 : Form
 		this.list1.ForeColor = System.Drawing.Color.FromArgb (list1acolorsfc[0],list1acolorsfc[1],list1acolorsfc[2]);
 		int[] list1acolorsbc = {255,255,255} ;
 		this.list1.BackColor = System.Drawing.Color.FromArgb (list1acolorsbc[0],list1acolorsbc[1],list1acolorsbc[2]);
-		this.list1.Font = new Font( "Arial" , 10) ;
+		this.list1.Font = new Font( "Times New Roman" , 10) ;
 	}
 	private void win1_Click( object sender, System.EventArgs e )
 	{
@@ -36,12 +36,15 @@ public class win1 : Form
 	private void win1_Load( object sender, System.EventArgs e )
 	{
 		int [] acolors = {255,255,255} ;
+		this.BackColor = System.Drawing.SystemColors.Control;
+		this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+		this.WindowState = System.Windows.Forms.FormWindowState.Normal;
 		this.Top = 10 ;	
 		this.Left = 10;
 		this.Width = 400 ;
 		this.Height = 400 ;
-		this.Text = "Listbox " ;
-		this.BackColor = System.Drawing.Color.FromArgb (acolors[0],acolors[1],acolors[2]);
+		this.Text = "Listbox" ;
+		this.Opacity = 100 ;
 		list1.Items.Add( "wow" ) ;
 		list1.Items.Add( "wow" ) ;
 		list1.Items.Add( "wow" ) ;
