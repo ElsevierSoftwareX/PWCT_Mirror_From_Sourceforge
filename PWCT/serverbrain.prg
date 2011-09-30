@@ -3396,64 +3396,79 @@ myfile = GETFILE("SuperServerFile:SSF","File Name","Save",1,"Save As")
 IF .not. testfile(myfile,1111) = .t.
 RETURN
 ENDIF
-if .not. empty(myfile)
-myifile = LEFT(myfile,LEN(myfile)-4)+".trf"
-IF FILE(myifile)
-stmsg("Transporter File with the same name already exist in the same folder, it's not possible to have server file & transporter file in the same folder with the same name")
-RETURN
-ENDIF
-myifile = LEFT(myfile,LEN(myfile)-4)+".idf"
-IF FILE(myifile)
-stmsg("Interaction Page File with the same name already exist in the same folder, it's not possible to have server file & Interaction Page file in the same folder with the same name")
-RETURN
-ENDIF
-if file(myfile)
-mymsg = messagebox(sysmsg(284),36,sysmsg(285))
-if mymsg = 6
-delete file (myfile)
-do form upload
-select 23
-copy to (myfile)
-		GOTO bottom
-MYSYS_FILE = MYFILE
-myswform.text1.value =  "(File :" + mysys_file + " )"
-		v_file = ALLTRIM(UPPER(myswform.TEXt1.Value))
-		v_file = SUBSTR(v_file,2,LEN(v_file)-2)
-		v_file = STRTRAN(v_file,"FILE :","")
-		*************** Configuration FILE COPYING
-		myp = application.DefaultFilePath
-		v1 = application.DefaultFilePath + "\config.txt"
-		v2 = ALLTRIM(v_file)
-		v3 = JUSTPATH(v2)
-		v4 = v3 + "\" + "config.txt"
-		IF .not. FILE(v4)
-				COPY FILE (v1) TO (v4)
+	if .not. empty(myfile)
+		myifile = LEFT(myfile,LEN(myfile)-4)+".trf"
+		IF FILE(myifile)
+				stmsg("Transporter File with the same name already exist in the same folder, it's not possible to have server file & transporter file in the same folder with the same name")
+				RETURN
 		ENDIF
-		***************
-endif
-else
-do form upload
-select 23
-copy to (myfile)
-		GOTO bottom
-MYSYS_FILE = MYFILE
-myswform.text1.value ="(File :" + mysys_file + " )"
-		v_file = ALLTRIM(UPPER(myswform.TEXt1.Value))
-		v_file = SUBSTR(v_file,2,LEN(v_file)-2)
-		v_file = STRTRAN(v_file,"FILE :","")
-		*************** Configuration FILE COPYING
-		myp = application.DefaultFilePath
-		v1 = application.DefaultFilePath + "\config.txt"
-		v2 = ALLTRIM(v_file)
-		v3 = JUSTPATH(v2)
-		v4 = v3 + "\" + "config.txt"
-		IF .not. FILE(v4)
-				COPY FILE (v1) TO (v4)
+		myifile = LEFT(myfile,LEN(myfile)-4)+".idf"
+		IF FILE(myifile)
+				stmsg("Interaction Page File with the same name already exist in the same folder, it's not possible to have server file & Interaction Page file in the same folder with the same name")
+				RETURN
 		ENDIF
-		***************
-endif
-endif
+		if file(myfile)
+				mymsg = messagebox(sysmsg(284),36,sysmsg(285))
+					if mymsg = 6
+							delete file (myfile)
+					ELSE
+							RETURN
+					ENDIF
+		endif
 
+		do form upload
+		select 23
+		copy to (myfile)
+		GOTO bottom
+		MYSYS_FILE = MYFILE
+		myswform.text1.value ="(File :" + mysys_file + " )"
+		v_file = ALLTRIM(UPPER(myswform.TEXt1.Value))
+		v_file = SUBSTR(v_file,2,LEN(v_file)-2)
+		v_file = STRTRAN(v_file,"FILE :","")
+		
+		*************** Configuration FILE COPYING
+		IF Sys_ShowDoubleS = .T.
+					myp = application.DefaultFilePath
+					v1 = application.DefaultFilePath + "\config.txt"
+					v2 = ALLTRIM(v_file)
+					v3 = JUSTPATH(v2)
+					v4 = v3 + "\" + "config.txt"
+					IF .not. FILE(v4)
+							COPY FILE (v1) TO (v4)
+					ENDIF
+		********************** RPWI Only
+		ELSE
+		
+				IF FILE(APPLICATION.DefaultFilePath+"\chpath.txt")
+								
+								sys_CHFILE = FILETOSTR(APPLICATION.DefaultFilePath+"\chpath.txt")
+								sys_pkNAME = MLINE(sys_CHFILE,2)
+								sys_pkNAME = ALLTRIM(sys_pkNAME)
+								sys_pkEXT = MLINE(sys_CHFILE,3)
+								sys_pkEXT = ALLTRIM(sys_pkEXT)
+								sys_pkPATH = MLINE(sys_CHFILE,4)
+								sys_pkPATH = ALLTRIM(sys_pkPATH)
+			
+								v_file = myfile
+								v1 = application.DefaultFilePath + "\configbase.txt"
+								v2 = ALLTRIM(v_file)
+								v3 = JUSTPATH(v2)
+								v4 = v3 + "\" + "config.txt"
+								IF .not. FILE(v4)
+										COPY FILE (v1) TO (v4)
+										myconfig = FILETOSTR(v4)
+										mysrc = UPPER(JUSTFNAME(myfile))
+										mysrc = STRTRAN(MYSRC,".SSF","")
+										myconfig = myconfig + CHR(13) + CHR(10) + "output: " + mysrc +sys_pkEXT +CHR(13)+CHR(10)+;
+										SYS_PKPATH+ " " + CHR(34) + mysrc + sys_pkEXT +CHR(34) +CHR(13)+CHR(10)
+										STRTOFILE(myconfig,v4)
+								ENDIF
+				ENDIF
+		
+		ENDIF
+		***************
+		
+	endif
 endif
 if s_menu == "Server Details"
 s_menu = "1_0"
