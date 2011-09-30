@@ -6,7 +6,7 @@ ELSE
 myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
 ENDIF
 
-SYS_VFP_DEBUG = .T.
+SYS_VFP_DEBUG = .F.
 
 IF SYS_VFP_DEBUG = .F.
 application.DefaultFilePath = JUSTPATH(application.ServerName)
@@ -16,7 +16,7 @@ DECLARE INTEGER ShellExecute IN shell32.dll ;
   INTEGER hndWin, STRING cAction, STRING cFileName, ; 
   STRING cParams, STRING cDir, INTEGER nShowWin
 
-ON SHUTDOWN quit
+*ON SHUTDOWN quit
 SET ESCAPE OFF
 SET CENTURY on
 SET SYSMENU to
@@ -85,5 +85,10 @@ do form DoubleS
 ENDIF
 
 read events
-CANCEL
+MESSAGEBOX("WOW",0,"WOW")
+CLEAR ALL
+RELEASE ALL
+CLOSE ALL
+QUIT
+
 
