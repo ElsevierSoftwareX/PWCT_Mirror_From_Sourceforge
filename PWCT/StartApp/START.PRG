@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:08:41    Date : 09/30/2011
+* Time : 06:52:17    Date : 09/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -97,7 +97,6 @@ Select Address test:k:s
 Load Active SubShell From Memory
 MyOut := MSGBOX(x,"Text Here")
 MyOut := MSGBOX(name,"Text Here")
-Return 0
 
 
 End Of Resistance
@@ -127,6 +126,5 @@ SS_ESASTEP("Circuits\Main\Main\Main","Select Address test:k:s",37,37)
 SS_ESASTEP("Circuits\Main\Main\Main","Load Active SubShell From Memory",38,38)
 SS_ESASTEP("Circuits\Main\Main\Main","Show Message x Title 'Text Here' Type: Message Box",39,39)
 SS_ESASTEP("Circuits\Main\Main\Main","Show Message name Title 'Text Here' Type: Message Box",40,40)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",41,41)
 Return
 *-------------------------------------------------------------------*
