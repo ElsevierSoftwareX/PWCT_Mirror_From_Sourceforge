@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:03:25    Date : 09/15/2011
+* Time : 06:23:52    Date : 10/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -33,6 +33,7 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\RT_ControlStructure
 Resistance R_CONTROLSTRUCTURE_18smart1() code
+MYCVALUE2 = substr(MYCVALUE,1)
 Proc RT_ControlStructure
 Local mypos,cobjname,mycounterblock,cobjfrom,cobjto,cobjstep,cforvalue,varvalue,myvalue
 IF myopcode = 3000
@@ -236,6 +237,7 @@ ELSE
 mypara := "CALLDLL32(VARVALUE,RT_DLLNAME)"
 ENDIF
 mypara := &mypara
+temp_mypara = FixVariableParameters ( VARVALUE2 )
 IF VALTYPE(mypara) = "N"
 mypara = STR ( mypara )
 mypara = ALLTRIM ( mypara )
@@ -318,7 +320,16 @@ ELSE
 MYPARA := "RT_COMOBJS["+ALLTRIM(STR(RT_COMOBJNAME))+"]:"+ALLTRIM(VARVALUE) +"()"
 ENDIF
 MYPARA := &MYPARA
+IF VALTYPE(mypara) = "N"
+mypara = STR ( mypara )
+mypara = ALLTRIM ( mypara )
+ENDIF
+IF VALTYPE(mypara) = "U"
+mypara := ""
+ENDIF
 VARPOS = RT_VARPOS ( "output" )
+RT_DATA[VarPos][2] := mypara
+VARPOS = RT_VARPOS ( "«·Œ—Ã" )
 RT_DATA[VarPos][2] := mypara
 ENDIF
 Return Nil
@@ -347,6 +358,35 @@ mypara := mypara + "'" + varv + "'"
 ENDIF
 IF vartype = "number" .or. vartype = "—ﬁ„"
 mypara := mypara + varv
+ENDIF
+IF vartype = "variable" .or. vartype = "„ €Ì—"
+VARPOS = RT_VARPOS ( VARVALUE2+"-"+ALLTRIM(sTR(X)) + "-2" )
+mypara := mypara + "@RT_DATA["+alltrim(str(VarPos))+"][2]"
+ENDIF
+Next
+Return mypara
+Function  FixVariableParameters ( varvalue2 )
+Local x,mymax,vartype,varv,MYCVALUE
+MYMAX = RT_VARVALUE ( VARVALUE2 )
+mymax := val(mymax)
+IF MYMAX = 0
+Return NIL
+ENDIF
+FOR x = 1 TO MYMAX STEP 1
+VARTYPE := VARVALUE2+"-"+ALLTRIM(sTR(X)) + "-1"
+vartype := RT_VarValue(VarType)
+vartype = LOWER ( vartype )
+vartype = ALLTRIM ( vartype )
+IF vartype = "variable" .or. vartype = "„ €Ì—"
+temp_expr := "["+varvalue2+"]\("+alltrim(str(x))+")\(2)"
+DO RT_ReadExpr WITH temp_expr,"RightSide"
+MYCVALUE := "   "
+MYCVALUE = RT_GetExprValue ( RT_RS_DATA )
+MYPOS = RT_VARPOS ( VARVALUE2+"-"+ALLTRIM(sTR(X)) + "-2" )
+ADEL( RT_DATA , MYPOS)
+ASIZE( RT_DATA , LEN( RT_DATA ) - 1 )
+MYCVALUE2 := MYCVALUE
+AADD( RT_DATA , {VARVALUE2+"-"+ALLTRIM(sTR(X)) + "-2",MYCVALUE2})
 ENDIF
 Next
 Return mypara

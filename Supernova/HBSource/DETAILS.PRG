@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 12:15:15    Date : 09/15/2011
+* Time : 01:30:31    Date : 10/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -590,6 +590,7 @@ AADD( myOperations , {"SCAVD","picturewidthis",154,0})
 AADD( myOperations , {"SCAVD","pictureheightis",155,0})
 AADD( myOperations , {"SCAVD","picturenameis",156,0})
 AADD( myOperations , {"SDI","pictureselected",157,0})
+AADD( myOperations , {"SCAVD","picturefilefrom",158,0})
 AADD( myOperations , {"SPVC","iwanttextbox",200,0})
 AADD( myOperations , {"SCAVD","textboxvalueis",201,0})
 AADD( myOperations , {"SCAVD","textboxtopis",202,0})

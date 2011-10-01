@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 08:13:14    Date : 05/10/2010
+* Time : 00:42:34    Date : 10/01/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -28,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Runtime                       
 	VetoUnit :
 
-Resistance R_RUNTIME_15speed1() address Code Unit : Circuits\Main\Main\Runtime
+Resistance R_RUNTIME_18smart1() address Code Unit : Circuits\Main\Main\Runtime
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Runtime
-Resistance R_RUNTIME_15speed1() code
+Resistance R_RUNTIME_18smart1() code
 Proc myRuntime
 Local m,myexemax,mytempproc,mytemplevel,myoldproc,oldobjscount
 myExeMax  = LEN(myExecutable)
@@ -64,6 +62,8 @@ myactiveproc = STRTRAN(myactiveproc,"«· Õ—ﬂ","move")
 myactiveproc = STRTRAN(myactiveproc,"«⁄«œ…«· ÕÃÌ„","resize")
 myactiveproc = STRTRAN(myactiveproc,"«· ﬂ»Ì—","maximize")
 myactiveproc = STRTRAN(myactiveproc,"«· ’€Ì—","minimize")
+myactiveproc = STRTRAN(myactiveproc,"«·«‰Â«¡","release")
+myactiveproc = STRTRAN(myactiveproc,"«·≈‰Â«¡","release")
 DO myRuntimeUrgent
 DO myRuntime
 myactiveproc := myoldproc

@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 08:16:24    Date : 05/10/2010
+* Time : 00:51:49    Date : 10/01/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -28,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance CodeGen                       
 	VetoUnit :
 
-Resistance R_CODEGEN_15speed1() address Code Unit : Circuits\Main\Main\CodeGen
+Resistance R_CODEGEN_18smart1() address Code Unit : Circuits\Main\Main\CodeGen
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\CodeGen
-Resistance R_CODEGEN_15speed1() code
+Resistance R_CODEGEN_18smart1() code
 Proc myCodeGen
 myOpMax  = LEN(myOperations)
 FOR R = 1 TO myOpMax STEP 1
@@ -61,6 +59,8 @@ myopproc = STRTRAN(myopproc,"«· Õ—ﬂ","move")
 myopproc = STRTRAN(myopproc,"«⁄«œ…«· ÕÃÌ„","resize")
 myopproc = STRTRAN(myopproc,"«· ﬂ»Ì—","maximize")
 myopproc = STRTRAN(myopproc,"«· ’€Ì—","minimize")
+myopproc = STRTRAN(myopproc,"«·«‰Â«¡","release")
+myopproc = STRTRAN(myopproc,"«·≈‰Â«¡","release")
 ENDIF
 IF myOperations[R][3] = -1001
 stacklen  = LEN(myopprocstack)

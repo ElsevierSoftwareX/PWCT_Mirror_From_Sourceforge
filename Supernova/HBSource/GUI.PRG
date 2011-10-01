@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 15:47:38    Date : 09/26/2011
+* Time : 06:20:24    Date : 10/01/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -977,7 +977,7 @@ Return 0
 ENDIF
 DO RT_GUIDIM WITH 120,MyOpObjectName
 ENDIF
-IF myopcode >= 150 .and. myopcode <= 157
+IF myopcode >= 150 .and. myopcode <= 158
 oldvalue := MyOpObjectName
 MyOpObjectName := ObjSelArray[3]
 IF myopcode != 150
@@ -1000,6 +1000,7 @@ mymouseclickblock := "RT_DoEvent('picture','" + cobjname+"','mouseclick')"
 PARENT  &myopwinname ;
 PICTURE "";
 ON CLICK &mymouseclickblock  ;
+STRETCH ;
 WIDTH 100 HEIGHT 100
 AADD( MyOpObjsMap , {"picture",cobjname,"NULL","NOEVENTS",myopwinname})
 ObjSelArray[3] := MyOpObjectName
@@ -1039,6 +1040,12 @@ Return 0
 ENDIF
 IF myopcode = 157
 DO RT_SelectObject WITH 3,"picture"
+Return 0
+ENDIF
+IF myopcode = 158
+DO RT_ReadExpr WITH myopdata[1],"RightSide"
+VARVALUE = RT_GetExprValue ( RT_RS_DATA )
+DO setproperty WITH MyOpWinName,MyOpObjectName,"picture",varvalue
 Return 0
 ENDIF
 ENDIF

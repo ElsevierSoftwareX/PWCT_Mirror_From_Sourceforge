@@ -551,9 +551,12 @@ goto PARPARSE
 
 :HCRSP
   rem Add to RSP file for Harbour console EXE
-  echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
+
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
-  echo %MG_SSLIB%\SSERROR.lib + >> _temp.rsp
+ echo %MG_SSLIB%\SSERRORCONSOLE.lib + >> _temp.rsp
+ 
+  echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
+
   goto HRSPREST
 
 :HMRSP
