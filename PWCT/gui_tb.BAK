@@ -17,18 +17,28 @@ ON SELECTION BAR 1 OF mencontex _selec=1
 ON SELECTION BAR 2 OF mencontex _selec=2
 ON SELECTION BAR 3 OF mencontex _selec=3
 ON SELECTION BAR 4 OF mencontex _selec=4
-ON SELECTION BAR 4 OF mencontex _selec=5
-ON SELECTION BAR 4 OF mencontex _selec=6
+ON SELECTION BAR 5 OF mencontex _selec=5
+ON SELECTION BAR 6 OF mencontex _selec=6
 _selec=0
 ACTIVATE POPUP mencontex
 DO case
    CASE _selec = 1 
+   
+   cStartColor = "{"
+   cEndColor = "}"
+   IF .not. EMPTY(ALLTRIM(this.value)) 
+   	IF LEN(ALLTRIM(this.value)) > 2
+   		cStartColor = LEFT(EMPTY(ALLTRIM(this.value)),1)
+   		cEndColor = Right(EMPTY(ALLTRIM(this.value)),1)
+   	ENDIF
+   endif
+   
    mycolor = GETCOLOR()
    myg = INT(BITand(mycolor,RGB(0,255,0))/256) 
    myr = INT(BITand(mycolor,RGB(255,0,0))) 
    myb = INT(BITand(mycolor,RGB(0,0,255))/(256*256)) 
-   this.value = "{"+ALLTRIM(STR(myr)) + ;
-   "," + ALLTRIM(STR(myg)) + "," + ALLTRIM(STR(myb)) + "}"
+   this.value = cStartColor+ALLTRIM(STR(myr)) + ;
+   "," + ALLTRIM(STR(myg)) + "," + ALLTRIM(STR(myb)) + cEndColor
    CASE _selec = 2
    myfont = GETFONT("Times New Roman")
    IF .not. EMPTY(myfont)

@@ -23,12 +23,22 @@ _selec=0
 ACTIVATE POPUP mencontex
 DO case
    CASE _selec = 1 
+   
+   cStartColor = "{"
+   cEndColor = "}"
+   IF .not. EMPTY(ALLTRIM(this.value))
+   	IF LEN(ALLTRIM(this.value)) > 2
+   		cStartColor = LEFT(ALLTRIM(this.value),1)
+   		cEndColor = Right(ALLTRIM(this.value),1)
+   	ENDIF
+   endif
+   
    mycolor = GETCOLOR()
    myg = INT(BITand(mycolor,RGB(0,255,0))/256) 
    myr = INT(BITand(mycolor,RGB(255,0,0))) 
    myb = INT(BITand(mycolor,RGB(0,0,255))/(256*256)) 
-   this.value = "{"+ALLTRIM(STR(myr)) + ;
-   "," + ALLTRIM(STR(myg)) + "," + ALLTRIM(STR(myb)) + "}"
+   this.value = cStartColor+ALLTRIM(STR(myr)) + ;
+   "," + ALLTRIM(STR(myg)) + "," + ALLTRIM(STR(myb)) + cEndColor
    CASE _selec = 2
    myfont = GETFONT("Times New Roman")
    IF .not. EMPTY(myfont)
