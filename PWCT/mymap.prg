@@ -12,7 +12,7 @@ RETURN
 function domap(p1)
 mymax = ALEN(mymap,1)
 FOR x = 1 TO mymax
-IF VAL(ALLTRIM(mymap(x,1))) = VAL(ALLTRIM(p1))
+IF upper(ALLTRIM(mymap(x,1))) == upper(ALLTRIM(p1))
 RETURN ALLTRIM(mymap(x,2))
 ENDIF
 NEXT
