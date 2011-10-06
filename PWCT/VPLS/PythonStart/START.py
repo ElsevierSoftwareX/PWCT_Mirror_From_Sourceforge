@@ -10,6 +10,7 @@ def buttonslist():
 		myarray[x]["bg"] = tk_rgb
 		myarray[x].place(x=10, y=30*(x+1) , height=25, width=100)
 from Tkinter import *
+from PIL import Image, ImageTk
 master = Tk()
 master.wm_title("Main Window")
 master.geometry("909x358")
@@ -34,8 +35,9 @@ tk_rgb = "#%02x%02x%02x" % (0,255,128)
 Lbl1["bg"] = tk_rgb
 Lbl1.place(x=6, y=96 , height=64, width=315)
 image1 = Label(frame_1)
-image = PhotoImage(file="C:\USERS\MAHMOUD\DESKTOP\TEST.GIF")
-image1['image'] = image
+temp_image = Image.open("C:\USERS\MAHMOUD\DESKTOP\TEST.JPG")
+temp_photo = ImageTk.PhotoImage(temp_image)
+image1['image'] = temp_photo
 image1.place(  x=329, y=15 , height=307, width=315)
 Btn13 = Button(frame_1, text=" Test ", font=("Arial", 14))
 tk_rgb = "#%02x%02x%02x" % (0,0,0)
@@ -43,7 +45,8 @@ Btn13["fg"] = tk_rgb
 tk_rgb = "#%02x%02x%02x" % (0,255,64)
 Btn13["bg"] = tk_rgb
 Btn13.place(x=6, y=217 , height=30, width=315)
-Text1 = Entry(frame_1, text=" Text Here ", font=("Arial", 14))
+text1 = ""
+Text1 = Entry(frame_1, text=text1, font=("Arial", 14))
 tk_rgb = "#%02x%02x%02x" % (0,0,0)
 Text1["fg"] = tk_rgb
 tk_rgb = "#%02x%02x%02x" % (255,255,255)
@@ -56,14 +59,19 @@ tk_rgb = "#%02x%02x%02x" % (255,255,255)
 Edit1["bg"] = tk_rgb
 Edit1.insert(INSERT, " Text Here ")
 Edit1.place(x=657, y=15 , height=305, width=231)
-List1 = Listbox(frame_1, font=("Arial", 10))
-tk_rgb = "#%02x%02x%02x" % (0,255,128)
+List1frame = Frame(frame_1, bd=2, relief=SUNKEN)
+List1scrollbar = Scrollbar(List1frame)
+List1scrollbar.pack(side=RIGHT, fill=Y)
+List1 = Listbox(List1frame , yscrollcommand=List1scrollbar.set , font=("Arial", 10) )
+tk_rgb = "#%02x%02x%02x" % (0,0,0)
 List1["fg"] = tk_rgb
-tk_rgb = "#%02x%02x%02x" % (255,128,64)
+tk_rgb = "#%02x%02x%02x" % (255,255,255)
 List1["bg"] = tk_rgb
-for item in ["one","two","three"]:
+for item in ["one","two","three","4","5","6","7","8","9"]:
 	List1.insert(END, item)
-List1.place(x=9, y=15 , height=74, width=311)
+List1.pack(fill=BOTH)
+List1scrollbar.config(command=List1.yview)
+List1frame.place(x=9, y=15 , height=74, width=311)
 VariableName = IntVar()
 Check1 = Checkbutton(frame_1, text="I LIKE PWCT", variable=VariableName , font=("Arial", 10))
 tk_rgb = "#%02x%02x%02x" % (0,0,0)
@@ -99,7 +107,7 @@ tk_rgb = "#%02x%02x%02x" % (64,0,64)
 btn1["fg"] = tk_rgb
 tk_rgb = "#%02x%02x%02x" % (0,255,128)
 btn1["bg"] = tk_rgb
-btn1.place(x=202, y=15 , height=35, width=202)
+btn1.place(x=203, y=15 , height=35, width=202)
 btn2 = Button(master, text=" One ", font=("Arial", 10))
 tk_rgb = "#%02x%02x%02x" % (255,255,255)
 btn2["fg"] = tk_rgb
