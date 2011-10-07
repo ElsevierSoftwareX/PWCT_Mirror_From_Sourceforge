@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:14:27    Date : 10/06/2011
+* Time : 15:49:37    Date : 10/07/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -86,18 +86,7 @@ ACTIVATE WINDOW win1
 EndIF
 
 Proc MyClose
-myobj = myclass()
-myout = myobj:mymethod()
-Return Nil
-Class myclass
-Method mymethod
-EndClass
-Method mymethod Class myclass
-Select Address test:k:s
-Load Active SubShell From Memory
-MyOut := MSGBOX(x,"Text Here")
-MyOut := MSGBOX(name,"Text Here")
-Return 0
+win1.Release ( )
 
 
 End Of Resistance
@@ -116,17 +105,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",21,23)
 SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure MyClose",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Create Object myobj of Class myclass",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","myout = myobj.mymethod()",31,31)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",32,32)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Class myclass",33,33)
-SS_ESASTEP("Circuits\Main\Main\Main","Method mymethod",34,34)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Class",35,35)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method mymethod Class myclass",36,36)
-SS_ESASTEP("Circuits\Main\Main\Main","Select Address test:k:s",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","Load Active SubShell From Memory",38,38)
-SS_ESASTEP("Circuits\Main\Main\Main","Show Message x Title 'Text Here' Type: Message Box",39,39)
-SS_ESASTEP("Circuits\Main\Main\Main","Show Message name Title 'Text Here' Type: Message Box",40,40)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",41,41)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
 Return
 *-------------------------------------------------------------------*
