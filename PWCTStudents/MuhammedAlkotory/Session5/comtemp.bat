@@ -1,0 +1,1 @@
+CALL sscom2.bat  "UR  SPEED"  /X /l calldll  > _temp.txt
