@@ -1,0 +1,120 @@
+*---------------------------------------------------------------------------*
+* Time : 17:57:49    Date : 10/14/2011
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Programming Language    : Mahmoud Programming Language 
+* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
+* Programming Paradigm    : DoubleS (Super Server)
+*---------------------------------------------------------------------------*
+* Compilers               : Borland C/C++ & Harbour/xHarbour
+* GUI Framework           : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
+New Server Server1 Type Slave Server Eigen Value 000
+ Details :
+ * (Noun) *
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance Main                          
+	VetoUnit :
+End Of Server 
+
+	Resistance WIN32EVENTS() Address Code Unit : WIN32EVENTS
+
+  ADD RESISTANCE WIN32EVENTS 
+
+
+Resistance R_WELCOME_15speed1() address Code Unit : Circuits\Main\Main\Main
+
+
+CALL RESISTANCE Circuits\Main\Main\Main
+Return 
+
+  FUNCTION STARTSERVER()
+   	Server FireON
+  RETURN
+
+  RESISTANCE WIN32EVENTS() CODE
+	   DO EVENTS
+  RETURN
+
+* Resistance Code Unit : Circuits\Main\Main\Main
+Resistance R_WELCOME_15speed1() code
+if !iswindowdefined( win1 )
+DEFINE WINDOW win1 ;
+AT 10 ,10 ;
+WIDTH 411 ;
+HEIGHT 270 ;
+ICON "PWCTICON" ;
+TITLE "welocme" ;
+MAIN ;
+BACKCOLOR {236,233,216} 
+
+DEFINE MAIN MENU
+POPUP "file"
+MENUITEM "exit" Action myexit()
+END POPUP
+END MENU
+DEFINE STATUSBAR 
+
+STATUSITEM "ready"
+
+DATE
+
+CLOCK
+
+END STATUSBAR
+
+@ 46 ,42 LABEL lbl1 ;
+VALUE "name" ;
+WIDTH 106 ;
+HEIGHT 32 ;
+FONT "Arial" SIZE 16  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 45 ,150 TEXTBOX text1;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0} 
+
+@ 145 ,114 BUTTONEX btn1;
+CAPTION "welcome";
+ON CLICK welcome()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+END WINDOW
+
+ACTIVATE WINDOW win1
+EndIF
+
+Proc myexit
+win1.Release ( )
+Return Nil
+Proc welcome
+mytext := win1.text1.Value
+mytext = ALLTRIM ( mytext )
+mytext := "welcome    "+mytext
+MyOut := MSGBOX(mytext,"welcome")
+Return Nil
+
+
+End Of Resistance
+
+INIT PROCEDURE Init_WELCOME
+START DOUBLES
+Return
+*-------------------------------------------------------------------*
