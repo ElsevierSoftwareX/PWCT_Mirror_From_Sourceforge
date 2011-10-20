@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:27:21    Date : 10/13/2011
+* Time : 01:52:05    Date : 10/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -256,7 +256,7 @@ FOR LV1 = LV1MIN TO LV1MAX STEP 1
 FOR LV2 = LV2MIN TO LV2MAX STEP 1
 out = TESTHOUR ( LV1,LV2 )
 IF OUT = True
-MYRESULT ( LV1,LV2 )
+out = MYRESULT ( LV1,LV2 )
 ENDIF
 Next
 Next
@@ -315,9 +315,8 @@ myresult := myresult + CV1 + " =  F ( " + CV2 + " , " + CV3 + ")" + new + line
 Return
 Proc clearhis
 win1.list1.DeleteAllItems ( )
+win1.text6.Value := ""
 amcfirst := True
-win1.text6.Value := ""
-win1.text6.Value := ""
 amcvalue := 0
 amcstr := ""
 Return Nil
@@ -475,7 +474,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From LV1 = LV1MIN To LV1MAX Ste
 SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From LV2 = LV2MIN To LV2MAX Step 1)",207,207)
 SS_ESASTEP("Circuits\Main\Main\Main","out = Call Function TESTHOUR ( LV1,LV2 )",208,208)
 SS_ESASTEP("Circuits\Main\Main\Main","IF ( OUT = True )",209,209)
-SS_ESASTEP("Circuits\Main\Main\Main","Call Function MYRESULT ( LV1,LV2 )",210,210)
+SS_ESASTEP("Circuits\Main\Main\Main","out = Call Function MYRESULT ( LV1,LV2 )",210,210)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",211,211)
 SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",212,212)
 SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",213,213)
@@ -534,44 +533,43 @@ SS_ESASTEP("Circuits\Main\Main\Main","myresult = myresult + CV1 + ' =  F ( ' + C
 SS_ESASTEP("Circuits\Main\Main\Main","End of Function",266,266)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure clearhis",267,267)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.list1.DeleteAllItems ( )",268,268)
-SS_ESASTEP("Circuits\Main\Main\Main","amcfirst = True",269,269)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text6.Value := ''",270,270)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text6.Value := ''",271,271)
-SS_ESASTEP("Circuits\Main\Main\Main","amcvalue = 0",272,272)
-SS_ESASTEP("Circuits\Main\Main\Main","amcstr = ''",273,273)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",274,274)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Function testhour ( p1,p2 )",275,275)
-SS_ESASTEP("Circuits\Main\Main\Main","Declare Array qreq",276,276)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 92.59 To Array qreq",277,277)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 128.82 To Array qreq",278,278)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.text6.Value := ''",269,269)
+SS_ESASTEP("Circuits\Main\Main\Main","amcfirst = True",270,270)
+SS_ESASTEP("Circuits\Main\Main\Main","amcvalue = 0",271,271)
+SS_ESASTEP("Circuits\Main\Main\Main","amcstr = ''",272,272)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",273,273)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Function testhour ( p1,p2 )",274,274)
+SS_ESASTEP("Circuits\Main\Main\Main","Declare Array qreq",275,275)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 92.59 To Array qreq",276,276)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 128.82 To Array qreq",277,277)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 163.08 To Array qreq",278,278)
 SS_ESASTEP("Circuits\Main\Main\Main","Add item 163.08 To Array qreq",279,279)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 163.08 To Array qreq",280,280)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 199.31 To Array qreq",281,281)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 265.63 To Array qreq",282,282)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 259.61 To Array qreq",283,283)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 233.45 To Array qreq",284,284)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 159.03 To Array qreq",285,285)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 128.82 To Array qreq",286,286)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 120.72 To Array qreq",287,287)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item 92.59 To Array qreq",288,288)
-SS_ESASTEP("Circuits\Main\Main\Main","hmin = (qreq[1] * 24) / (QPC * p1)",289,289)
-SS_ESASTEP("Circuits\Main\Main\Main","hmax = hmin",290,290)
-SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 12 Step 1)",291,291)
-SS_ESASTEP("Circuits\Main\Main\Main","hnew = (qreq[x] * 24) / (QPC * p1)",292,292)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( hnew < hmin )",293,293)
-SS_ESASTEP("Circuits\Main\Main\Main","hmin = hnew",294,294)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",295,295)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( hnew > hmax )",296,296)
-SS_ESASTEP("Circuits\Main\Main\Main","hmax = hnew",297,297)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",298,298)
-SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",299,299)
-SS_ESASTEP("Circuits\Main\Main\Main","myret = False",300,300)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( p2 >= hmin .and. p2 <= hmax )",301,301)
-SS_ESASTEP("Circuits\Main\Main\Main","myret = True",302,302)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",303,303)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( myret = false )",304,304)
-SS_ESASTEP("Circuits\Main\Main\Main","MYRESULT = MYRESULT + ' F ( ' + alltrim(str(P1)) + ',' + alltrim(str(P2)) + ')' + ' hours out of range  (' + alltrim(str(hmin)) + ',' + alltrim(str(hmax)) + ')' + chr(13) + chr(10)",305,305)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",306,306)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Function (Return myret)",307,307)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 199.31 To Array qreq",280,280)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 265.63 To Array qreq",281,281)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 259.61 To Array qreq",282,282)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 233.45 To Array qreq",283,283)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 159.03 To Array qreq",284,284)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 128.82 To Array qreq",285,285)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 120.72 To Array qreq",286,286)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 92.59 To Array qreq",287,287)
+SS_ESASTEP("Circuits\Main\Main\Main","hmin = (qreq[1] * 24) / (QPC * p1)",288,288)
+SS_ESASTEP("Circuits\Main\Main\Main","hmax = hmin",289,289)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 12 Step 1)",290,290)
+SS_ESASTEP("Circuits\Main\Main\Main","hnew = (qreq[x] * 24) / (QPC * p1)",291,291)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( hnew < hmin )",292,292)
+SS_ESASTEP("Circuits\Main\Main\Main","hmin = hnew",293,293)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",294,294)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( hnew > hmax )",295,295)
+SS_ESASTEP("Circuits\Main\Main\Main","hmax = hnew",296,296)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",297,297)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",298,298)
+SS_ESASTEP("Circuits\Main\Main\Main","myret = False",299,299)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( p2 >= hmin .and. p2 <= hmax )",300,300)
+SS_ESASTEP("Circuits\Main\Main\Main","myret = True",301,301)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",302,302)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( myret = false )",303,303)
+SS_ESASTEP("Circuits\Main\Main\Main","MYRESULT = MYRESULT + ' F ( ' + alltrim(str(P1)) + ',' + alltrim(str(P2)) + ')' + ' hours out of range  (' + alltrim(str(hmin)) + ',' + alltrim(str(hmax)) + ')' + chr(13) + chr(10)",304,304)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",305,305)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Function (Return myret)",306,306)
 Return
 *-------------------------------------------------------------------*
