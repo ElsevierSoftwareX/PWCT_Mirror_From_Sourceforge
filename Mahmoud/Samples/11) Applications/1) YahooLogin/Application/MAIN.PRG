@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:47:03    Date : 10/12/2011
+* Time : 23:50:06    Date : 10/20/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -106,7 +106,7 @@ ACTIVATE WINDOW win1
 EndIF
 
 Proc mywork
-win1.timer2.Enabled := .f.
+win1.timer2.Enabled := False
 if !iswindowdefined( win2 )
 DEFINE WINDOW win2 ;
 AT 10 ,10 ;
@@ -116,6 +116,7 @@ TITLE "Mail Browser" ;
 CHILD ;
 NOSYSMENU 
 
+Public oActiveX
 oActiveX := TActiveX():New( "Win2", "Shell.Explorer.2" , 8 , 6 , 764 , 394)
 oActiveX:Load()
 DEFINE TIMER Timer1 INTERVAL 1000 ;
@@ -124,30 +125,29 @@ Action mywork2()
 CAPTION "Exit";
 ON CLICK win1.release()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
 win2.Center ( )
-myfile = strtran(getexefilename(),"MAIN.exe","test.htm")
-
-
-
+StartUpFolder := GetStartUpFolder()
+myfile := startupfolder + "\test.htm"
 oactivex:OOLE:navigate ( myfile )
 ACTIVATE WINDOW win2
 EndIF
 
 Return Nil
 Proc mywork2
-win2.timer1.Enabled := .f.
-mydata = filestr("Data.txt")
-myemail = alltrim(memoline(mydata,,1))
-mypassword = alltrim(memoline(mydata,,2))
-
-
+win2.timer1.Enabled := False
+mydata := FILESTR( "data.txt" )
+myemail = MEMOLINE( mydata , 254 , 1 )
+myemail = ALLTRIM ( myemail )
+mypassword = MEMOLINE( mydata , 254 , 2 )
+mypassword = ALLTRIM ( mypassword )
 oactivex:OOLE:Document:All:username:value := myemail
 oactivex:OOLE:Document:All:passwd:value := mypassword
 oactivex:OOLE:Document:All:dotsave:click ( )
+Return Nil
 
 
 End Of Resistance
@@ -172,25 +172,31 @@ SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",52,52)
 SS_ESASTEP("Circuits\Main\Main\Main","Right-To-Left, Window 'win1'",53,55)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",56,58)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork",59,59)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.timer2.Enabled := .f.",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer2.Enabled := False",60,60)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win2 ) , Title : 'Mail Browser'",61,65)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",66,69)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",70,71)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",72,73)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3 ) , Caption : 'Exit'",74,75)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action win1.release()",76,76)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",77,79)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",80,81)
-SS_ESASTEP("Circuits\Main\Main\Main","win2.Center ( )",82,82)
-SS_ESASTEP("Circuits\Main\Main\Main","Set File Name & Path",83,86)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.navigate ( myfile )",87,87)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",88,90)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",91,91)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork2",92,92)
-SS_ESASTEP("Circuits\Main\Main\Main","win2.timer1.Enabled := .f.",93,93)
-SS_ESASTEP("Circuits\Main\Main\Main","mydata",94,98)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.Document:All:username:value := myemail",99,99)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.Document:All:passwd:value := mypassword",100,100)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.Document:All:dotsave:click ( )",101,101)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",70,72)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",73,74)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3 ) , Caption : 'Exit'",75,76)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action win1.release()",77,77)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",78,80)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",81,82)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.Center ( )",83,83)
+SS_ESASTEP("Circuits\Main\Main\Main","StartUpFolder := Get StartUp Folder",84,84)
+SS_ESASTEP("Circuits\Main\Main\Main","myfile = startupfolder + '\test.htm'",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.navigate ( myfile )",86,86)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",87,89)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",90,90)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork2",91,91)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.timer1.Enabled := False",92,92)
+SS_ESASTEP("Circuits\Main\Main\Main","mydata := Read File 'data.txt'",93,93)
+SS_ESASTEP("Circuits\Main\Main\Main","myemail = LINE 1 FROM MEMO mydata",94,94)
+SS_ESASTEP("Circuits\Main\Main\Main","myemail = All Trim myemail",95,95)
+SS_ESASTEP("Circuits\Main\Main\Main","mypassword = LINE 2 FROM MEMO mydata",96,96)
+SS_ESASTEP("Circuits\Main\Main\Main","mypassword = All Trim mypassword",97,97)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.Document:All:username:value := myemail",98,98)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.Document:All:passwd:value := mypassword",99,99)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.Document:All:dotsave:click ( )",100,100)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",101,101)
 Return
 *-------------------------------------------------------------------*

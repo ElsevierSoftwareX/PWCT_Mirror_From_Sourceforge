@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:34:17    Date : 10/12/2011
+* Time : 23:17:31    Date : 10/20/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -262,6 +262,7 @@ win1.text1.Value := mytext
 Return Nil
 Proc myexit
 win1.Release ( )
+Return Nil
 
 
 End Of Resistance
@@ -389,5 +390,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","win1.text1.Value := mytext",212,212)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",213,213)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myexit",214,214)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",215,215)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",216,216)
 Return
 *-------------------------------------------------------------------*
