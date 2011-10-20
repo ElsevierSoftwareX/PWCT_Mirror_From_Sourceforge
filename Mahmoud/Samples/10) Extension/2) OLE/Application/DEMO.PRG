@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 15:33:18    Date : 09/26/2008
+* Time : 20:05:45    Date : 10/13/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RUZSLC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,27 +46,30 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RUZSLC1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 0 ,0 ;
 WIDTH 500 ;
 HEIGHT 400 ;
 TITLE "Ole Test" ;
-MAIN 
+MAIN ;
+BACKCOLOR {255,255,255} 
 
-@ 10 ,10 BUTTON btn1;
+@ 10 ,10 BUTTONEX btn1;
 CAPTION "Test";
 ON CLICK testole()  ;
 WIDTH 100 HEIGHT 30 ;
+FONT "Times New Roman" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
-Proc testole
+Proc TESTOLE
 oWord := TOLEAUTO():NEW( "Word.Application" )
-myout := oword:documents:add (  )
-oWord:visible := .t.
+oWord:visible := True
 Return Nil
 
 
@@ -72,24 +77,18 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,7)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button btn1",8,9)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",10,10)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",11,12)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",13,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",15,16)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure testole",17,17)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Create OLE Object oWord of Type 'Word.Application'",18,18)
-SS_ESASTEP("Circuits\Main\Main\Main","myout = oword.documents:add (  )",19,19)
-SS_ESASTEP("Circuits\Main\Main\Main","oWord.visible := .t.",20,20)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",21,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Ole Test'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,9)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Test'",10,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action testole()",12,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",13,15)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",16,17)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",18,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure TESTOLE",21,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Create OLE Object oWord of Type 'Word.Application'",22,22)
+SS_ESASTEP("Circuits\Main\Main\Main","oWord.visible := True",23,23)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",24,24)
 Return
 *-------------------------------------------------------------------*

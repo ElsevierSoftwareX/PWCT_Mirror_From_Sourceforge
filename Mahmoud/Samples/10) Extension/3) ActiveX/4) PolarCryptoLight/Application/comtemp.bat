@@ -1,1 +1,1 @@
-CALL sscom2.bat  "DEMO"  /X  /l calldll  > _temp.txt
+CALL sscom2.bat  "DEMO2"  /mt /l hbnetio /l zlib /l ws2_32 /l calldll   > _temp.txt

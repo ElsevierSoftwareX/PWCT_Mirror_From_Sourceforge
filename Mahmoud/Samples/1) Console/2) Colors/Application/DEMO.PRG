@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 10:59:42    Date : 10/11/2011
+* Time : 14:38:27    Date : 10/15/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -49,6 +49,7 @@ INKEY(3)
 Set Color To W/G,U/U,,,U/U
 Clear
 ? "Green"
+INKEY(3)
 
 
 End Of Resistance
@@ -68,5 +69,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","WAIT ( 3 SECONDS)",8,8)
 SS_ESASTEP("Circuits\Main\Main\Main","Set Color Standard( White , Green ) Enhanced ( Black , Black ) Unselected ( Black , Black )",9,9)
 SS_ESASTEP("Circuits\Main\Main\Main","Clear Screen",10,10)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text ('Green') to console",11,11)
+SS_ESASTEP("Circuits\Main\Main\Main","WAIT ( 3 SECONDS)",12,12)
 Return
 *-------------------------------------------------------------------*

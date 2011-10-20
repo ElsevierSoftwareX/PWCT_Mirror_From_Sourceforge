@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 16:34:13    Date : 11/22/2008
+* Time : 22:21:32    Date : 10/13/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RUZSLC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RUZSLC1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 250 ;
@@ -84,6 +87,7 @@ END WINDOW
 
 win1.Center ( )
 ACTIVATE WINDOW win1
+EndIF
 
 Proc mywork
 oactivex:OOLE:filestoprocess := "t1.txt | t2.txt "
@@ -93,7 +97,7 @@ oactivex:OOLE:zipfilename := currentfolder+"\test.zip"
 oactivex:OOLE:add ( )
 oactivex:OOLE:extractdirectory := "output"
 oactivex:OOLE:extract ( )
-MSGBOX("Opearion Done !!!","Ok")
+MyOut := MSGBOX("Opearion Done !!!","Ok")
 Return Nil
 
 
@@ -101,38 +105,30 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",13,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",15,19)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 )",20,21)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",22,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",27,28)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",30,32)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",33,35)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",36,37)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",38,38)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",39,40)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork",41,41)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.filestoprocess := 't1.txt | t2.txt '",42,42)
-SS_ESASTEP("Circuits\Main\Main\Main","CurrentFolder := Get Current Folder",43,43)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.sourcedirectory := currentfolder",44,44)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.zipfilename := currentfolder+'\test.zip'",45,45)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.add ( )",46,46)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.extractdirectory := 'output'",47,47)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.extract ( )",48,48)
-SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Opearion Done !!!' Title 'Ok' Type: Message Box",49,49)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",50,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'PolarZipLight'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Add t1.txt and t2.txt to Test.zip'",14,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",16,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 ) , Caption : 'Extract Test.zip , Extract Folder = Output'",21,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",23,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Do the operation'",28,29)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mywork()",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",31,33)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",34,36)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",37,38)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",39,39)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",40,42)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork",43,43)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.filestoprocess := 't1.txt | t2.txt '",44,44)
+SS_ESASTEP("Circuits\Main\Main\Main","CurrentFolder := Get Current Folder",45,45)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.sourcedirectory := currentfolder",46,46)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.zipfilename := currentfolder+'\test.zip'",47,47)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.add ( )",48,48)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.extractdirectory := 'output'",49,49)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.extract ( )",50,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Opearion Done !!!' Title 'Ok' Type: Message Box",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",52,52)
 Return
 *-------------------------------------------------------------------*

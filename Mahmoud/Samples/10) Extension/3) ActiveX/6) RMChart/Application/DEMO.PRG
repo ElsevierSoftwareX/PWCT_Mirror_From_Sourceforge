@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 12:37:47    Date : 12/02/2008
+* Time : 20:59:02    Date : 10/13/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RPEPPI1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RPEPPI1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 500 ;
@@ -64,6 +67,7 @@ oActiveX:Load()
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 Proc drawchart
 oactivex:OOLE:font := "Tahoma"
@@ -74,57 +78,50 @@ oactivex:OOLE:region(1):footer := "http://doublesvsoop.sourceforge.net"
 oactivex:OOLE:region(1):addcaption ( )
 oactivex:OOLE:region(1):caption():titel := "PWCT Test"
 oactivex:OOLE:region(1):caption():fontsize := 10
-oactivex:OOLE:region(1):caption():bold := .t.
+oactivex:OOLE:region(1):caption():bold := True
 oactivex:OOLE:region(1) :addgridlessseries ( )
 oactivex:OOLE:region(1):gridlessseries:SeriesStyle := 52
 oactivex:OOLE:region(1):gridlessseries:Alignment := 1
 oactivex:OOLE:region(1):gridlessseries:Explodemode := 0
-oactivex:OOLE:region(1):gridlessseries:Lucent := .F.
+oactivex:OOLE:region(1):gridlessseries:Lucent := False
 oactivex:OOLE:region(1):gridlessseries:ValueLabelOn := 6
 oactivex:OOLE:region(1):gridlessseries:HatchMode := 0
 oactivex:OOLE:region(1):gridlessseries:StartAngle := 0
 oactivex:OOLE:region(1):gridlessseries:DataString := "30*15*40*35"
-oactivex:OOLE:draw ( .T. )
-Return Nil
+oactivex:OOLE:draw ( True )
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",5,5)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",14,16)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",17,18)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",19,20)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure drawchart",21,21)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.font := 'Tahoma'",22,22)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.RMCstyle := 0",23,23)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.RMCUserWatermark := 'PWCT'",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.addregion ( )",25,25)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):footer := 'http://doublesvsoop.sourceforge.net'",26,26)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):addcaption ( )",27,27)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):caption():titel := 'PWCT Test'",28,28)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):caption():fontsize := 10",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):caption():bold := .t.",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1) :addgridlessseries ( )",31,31)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:SeriesStyle := 52",32,32)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:Alignment := 1",33,33)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:Explodemode := 0",34,34)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:Lucent := .F.",35,35)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:ValueLabelOn := 6",36,36)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:HatchMode := 0",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:StartAngle := 0",38,38)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:DataString := '30*15*40*35'",39,39)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.draw ( .T. )",40,40)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",41,41)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'RMChart ActiveX - Sample'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action drawchart()",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",15,17)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",18,19)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",20,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure drawchart",23,23)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.font := 'Tahoma'",24,24)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.RMCstyle := 0",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.RMCUserWatermark := 'PWCT'",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.addregion ( )",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):footer := 'http://doublesvsoop.sourceforge.net'",28,28)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):addcaption ( )",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):caption():titel := 'PWCT Test'",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):caption():fontsize := 10",31,31)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):caption():bold := True",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1) :addgridlessseries ( )",33,33)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:SeriesStyle := 52",34,34)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:Alignment := 1",35,35)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:Explodemode := 0",36,36)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:Lucent := False",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:ValueLabelOn := 6",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:HatchMode := 0",39,39)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:StartAngle := 0",40,40)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:DataString := '30*15*40*35'",41,41)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.draw ( True )",42,42)
 Return
 *-------------------------------------------------------------------*

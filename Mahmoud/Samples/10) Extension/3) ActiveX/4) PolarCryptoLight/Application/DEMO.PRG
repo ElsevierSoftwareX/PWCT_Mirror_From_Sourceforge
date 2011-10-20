@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 00:35:16    Date : 11/22/2008
+* Time : 21:49:35    Date : 10/13/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RUZSLC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RUZSLC1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 532 ;
@@ -57,7 +60,6 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
 
-Public oActiveX
 oActiveX := TActiveX():New( "Win1", "CryptoLight.CryptoLight.2.5" , 10 , 10 , 1 , 1)
 oActiveX:Load()
 @ 31 ,69 LABEL lbl1 ;
@@ -84,21 +86,23 @@ FONTCOLOR {0,0,0}
 @ 28 ,116 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 400 ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} 
+
 @ 74 ,116 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 400 ;
-FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} 
+
 @ 120 ,116 TEXTBOX text3;
 HEIGHT 30 ;
 WIDTH 400 ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} 
+
 @ 185 ,150 BUTTONEX btn1;
 CAPTION "Encryption";
 ON CLICK myencryption()  ;
@@ -114,6 +118,7 @@ TOOLTIP ""
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 Proc myencryption
 mykey := win1.text1.Value
@@ -135,72 +140,56 @@ myoutput := oactivex:OOLE:decode ( mycipher,1 )
 myoutput := oactivex:OOLE:decrypt ( myoutput )
 myoutput := oactivex:OOLE:encode ( myoutput,3 )
 win1.text2.Value := myoutput
-Return Nil
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",13,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",16,17)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'PolarCryptoLight'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",14,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Key'",16,17)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",18,22)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 )",23,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 ) , Caption : 'Plain Text'",23,24)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",25,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl3 )",30,31)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl3 ) , Caption : 'Cipher Text'",30,31)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",32,36)
 SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",38,42)
-SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text2  )",43,43)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",44,48)
-SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text3  )",49,49)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",50,54)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",55,56)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",57,57)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",58,60)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 )",61,62)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",63,63)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",64,66)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",67,68)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",69,70)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myencryption",71,71)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","mykey = win1.text1.Value",72,72)
-SS_ESASTEP("Circuits\Main\Main\Main","mykey = All Trim mykey",73,73)
-SS_ESASTEP("Circuits\Main\Main\Main","myplain = win1.text2.Value",74,74)
-SS_ESASTEP("Circuits\Main\Main\Main","myplain = All Trim myplain",75,75)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.password := mykey",76,76)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encrypt ( myplain )",77,77)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encode ( myoutput,1 )",78,78)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text3.Value := myoutput",79,79)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",80,80)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydecryption",81,81)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","mykey = win1.text1.Value",82,82)
-SS_ESASTEP("Circuits\Main\Main\Main","mykey = All Trim mykey",83,83)
-SS_ESASTEP("Circuits\Main\Main\Main","mycipher = win1.text3.Value",84,84)
-SS_ESASTEP("Circuits\Main\Main\Main","mycipher = All Trim mycipher",85,85)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.password := mykey",86,86)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.decode ( mycipher,1 )",87,87)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.decrypt ( myoutput )",88,88)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encode ( myoutput,3 )",89,89)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text2.Value := myoutput",90,90)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",91,91)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",38,43)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text2  )",44,44)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",45,49)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text3  )",50,50)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",51,56)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Encryption'",57,58)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myencryption()",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",60,62)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Decryption'",63,64)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mydecryption()",65,65)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",66,68)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",69,70)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",71,73)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myencryption",74,74)
+SS_ESASTEP("Circuits\Main\Main\Main","mykey = win1.text1.Value",75,75)
+SS_ESASTEP("Circuits\Main\Main\Main","mykey = All Trim mykey",76,76)
+SS_ESASTEP("Circuits\Main\Main\Main","myplain = win1.text2.Value",77,77)
+SS_ESASTEP("Circuits\Main\Main\Main","myplain = All Trim myplain",78,78)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.password := mykey",79,79)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encrypt ( myplain )",80,80)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encode ( myoutput,1 )",81,81)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.text3.Value := myoutput",82,82)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",83,83)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydecryption",84,84)
+SS_ESASTEP("Circuits\Main\Main\Main","mykey = win1.text1.Value",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","mykey = All Trim mykey",86,86)
+SS_ESASTEP("Circuits\Main\Main\Main","mycipher = win1.text3.Value",87,87)
+SS_ESASTEP("Circuits\Main\Main\Main","mycipher = All Trim mycipher",88,88)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.password := mykey",89,89)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.decode ( mycipher,1 )",90,90)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.decrypt ( myoutput )",91,91)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encode ( myoutput,3 )",92,92)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.text2.Value := myoutput",93,93)
 Return
 *-------------------------------------------------------------------*

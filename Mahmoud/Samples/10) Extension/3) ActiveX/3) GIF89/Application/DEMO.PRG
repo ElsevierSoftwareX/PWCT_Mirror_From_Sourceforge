@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 00:07:07    Date : 11/21/2008
+* Time : 20:55:09    Date : 10/13/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RNQEIC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RNQEIC1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 523 ;
@@ -65,13 +68,14 @@ oActiveX2 := TActiveX():New( "Win1", "GIF89.Gif89.1" , 75 , 107 , 309 , 46)
 oActiveX2:Load()
 END WINDOW
 
-oactivex:OOLE:glass := .t.
-oactivex:OOLE:autosize := .f.
+oactivex:OOLE:glass := True
+oactivex:OOLE:autosize := True
 oactivex:OOLE:FileName := "test.gif"
-oactivex2:OOLE:glass := .t.
-oactivex2:OOLE:autosize := .f.
+oactivex2:OOLE:glass := True
+oactivex2:OOLE:autosize := True
 oactivex2:OOLE:FileName := "test2.gif"
 ACTIVATE WINDOW win1
+EndIF
 
 
 
@@ -79,22 +83,19 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",13,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX2 )",16,18)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",19,20)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.glass := .t.",21,21)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.autosize := .f.",22,22)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.FileName := 'test.gif'",23,23)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex2.glass := .t.",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex2.autosize := .f.",25,25)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex2.FileName := 'test2.gif'",26,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",27,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Gif'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX2 )",17,19)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",20,21)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.glass := True",22,22)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.autosize := True",23,23)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.FileName := 'test.gif'",24,24)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex2.glass := True",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex2.autosize := True",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex2.FileName := 'test2.gif'",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",28,30)
 Return
 *-------------------------------------------------------------------*

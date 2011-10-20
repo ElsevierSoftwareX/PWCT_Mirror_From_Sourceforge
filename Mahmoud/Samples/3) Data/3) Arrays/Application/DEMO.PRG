@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 12:40:24    Date : 09/24/2008
+* Time : 23:07:45    Date : 10/18/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -24,7 +26,7 @@ New Server Server1 Type Slave Server Eigen Value 000
 	VetoUnit :
 End Of Server 
 
-Resistance RPEPPI1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -35,7 +37,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RPEPPI1() code
+Resistance R_DEMO_18smart1() code
 myarray := {}
 AADD( myarray , "Ahmed")
 AADD( myarray , "Ali")
@@ -53,9 +55,8 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",38)
+SS_ESARES("Circuits\Main\Main\Main",40)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Declare Array myarray",1,1)
 SS_ESASTEP("Circuits\Main\Main\Main","Add item 'Ahmed' To Array myarray",2,2)
 SS_ESASTEP("Circuits\Main\Main\Main","Add item 'Ali' To Array myarray",3,3)
@@ -64,7 +65,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","Add item 'Fady' To Array myarray",5,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Add item 'Shady' To Array myarray",6,6)
 SS_ESASTEP("Circuits\Main\Main\Main","Add item 'Maher' To Array myarray",7,7)
 SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 6 Step 1)",8,8)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (myarray[x]) to console",9,9)
 SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",10,10)
 SS_ESASTEP("Circuits\Main\Main\Main","WAIT ( 3 SECONDS)",11,11)

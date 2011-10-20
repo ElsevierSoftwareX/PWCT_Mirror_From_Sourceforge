@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:05:57    Date : 10/12/2011
+* Time : 15:28:09    Date : 10/19/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -51,6 +51,7 @@ OPEN CONNECTION MyCon SERVER 'doublesvsoop.sourceforge.net' PORT 80 HTTP
 GET URL "/" TO Response CONNECTION MyCon
 CLOSE CONNECTION MyCon
 ? response
+INKEY(100)
 
 
 End Of Resistance
@@ -63,5 +64,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","(HTTP) Open Connection (MyCon) Server ('do
 SS_ESASTEP("Circuits\Main\Main\Main","(HTTP) Get URL ('/') Connection (MyCon) Variable-Response (Response)",2,2)
 SS_ESASTEP("Circuits\Main\Main\Main","(HTTP) Close Connection (MyCon)",3,3)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (response) to console",4,4)
+SS_ESASTEP("Circuits\Main\Main\Main","WAIT ( 100 SECONDS)",5,5)
 Return
 *-------------------------------------------------------------------*
