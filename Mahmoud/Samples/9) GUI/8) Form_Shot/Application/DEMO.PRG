@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 19:04:04    Date : 10/26/2008
+* Time : 19:48:03    Date : 10/21/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RRXXHY1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RRXXHY1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 500 ;
@@ -56,14 +59,17 @@ BACKCOLOR {236,233,216}
 
 @ 165 ,195 BUTTONEX btn1;
 CAPTION "Get Form Shot";
+FONTCOLOR {0,0,0};
+BACKCOLOR {236,233,216};
 ON CLICK getshot()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
 
 win1.Center ( )
 ACTIVATE WINDOW win1
+EndIF
 
 Proc getshot
 PutFile := PutFile ( {{"Image","*.JPG" } } , ;
@@ -79,25 +85,19 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,9)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",10,11)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",12,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",13,15)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",16,17)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",18,18)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",19,20)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure getshot",21,21)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","PutFile := Put File",22,26)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.SaveAs ( putfile )",27,27)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",28,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Window Title'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Get Form Shot'",11,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action getshot",15,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",16,18)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",19,20)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",21,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",22,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure getshot",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","PutFile := Put File",26,30)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.SaveAs ( putfile )",31,31)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",32,32)
 Return
 *-------------------------------------------------------------------*

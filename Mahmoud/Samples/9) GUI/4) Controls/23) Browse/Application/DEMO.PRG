@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 15:48:30    Date : 09/26/2008
+* Time : 01:25:50    Date : 10/22/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RUZSLC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,17 +46,20 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RUZSLC1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 600 ;
 HEIGHT 400 ;
 ON INIT opendb()  ;
+ICON "PWCTICON" ;
 TITLE "Browse" ;
-MAIN 
+MAIN ;
+BACKCOLOR {255,255,255} 
 
 TRANS_TEMP = "tel"
-@ 10 ,10 ;
+@ 8 ,10 ;
 BROWSE browse1 ;
 WIDTH 500 ;
 HEIGHT 300 ;
@@ -63,15 +68,16 @@ WIDTHS {100,100,150} ;
 WORKAREA &TRANS_TEMP ;
 FIELDS {'name','address','telephone'} ;
 VALUE 1 ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 8 ;
 BOLD ;
+BACKCOLOR {255,255,255} ;
 Edit InPlace ;
 IMAGE "" 
 
 END WINDOW
 
-win1.browse1.FontSize := 8
 ACTIVATE WINDOW win1
+EndIF
 
 Proc opendb
 Use tel
@@ -83,24 +89,18 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",5,5)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,8)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Browse ( browse1 )",9,20)
-SS_ESASTEP("Circuits\Main\Main\Main","Browse Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Browse Properties",21,23)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.browse1.FontSize := 8",26,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",27,28)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure opendb",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Open Table tel",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","Goto First Record",31,31)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Browse'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action opendb",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Browse ( browse1 )",12,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Browse Properties",25,27)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",28,29)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",30,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure opendb",33,33)
+SS_ESASTEP("Circuits\Main\Main\Main","Open Table tel",34,34)
+SS_ESASTEP("Circuits\Main\Main\Main","Goto First Record",35,35)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",36,36)
 Return
 *-------------------------------------------------------------------*

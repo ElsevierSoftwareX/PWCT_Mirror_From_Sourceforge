@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:01:35    Date : 10/13/2011
+* Time : 04:57:03    Date : 10/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -40,6 +40,7 @@ Return
 Resistance R_DEMO_18smart1() code
 ? "Play Sample.wav"
 myout = CALLDLL32("sndPlaySoundA","WINMM.DLL","sample.wav" , 0)
+INKEY(3)
 
 
 End Of Resistance
@@ -50,5 +51,6 @@ SS_ESARES("Circuits\Main\Main\Main",40)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Print text ('Play Sample.wav') to console",1,1)
 SS_ESASTEP("Circuits\Main\Main\Main","myout = Call DLL 'WINMM.DLL' , Function 'sndPlaySoundA' , Parameters 'sample.wav' , 0",2,2)
+SS_ESASTEP("Circuits\Main\Main\Main","WAIT ( 3 SECONDS)",3,3)
 Return
 *-------------------------------------------------------------------*

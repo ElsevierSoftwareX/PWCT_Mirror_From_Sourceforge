@@ -4,16 +4,18 @@ rem ===========================================================================
 rem
 rem Compile.bat
 rem
-rem Kevin Carmody - 2008.01.07
+rem Kevin Carmody - 2011.07.25
 rem
 rem Revised by Grigory Filatov
+rem
+rem Changes for PWCT by Mahmoud Fayed - 2011.08.11
 rem
 rem ===========================================================================
 
 rem If no parameters, display command syntax.
-if "%1"==""   goto SYNTAX
-if "%1"=="?"  goto SYNTAX
-if "%1"=="/?" goto SYNTAX
+rem if "%1"==""   goto SYNTAX
+rem if "%1"=="?"  goto SYNTAX
+rem if "%1"=="/?" goto SYNTAX
 goto PARPARSE
 
 :SYNTAX
@@ -23,8 +25,8 @@ goto PARPARSE
   echo Compiles and links a PRG into an EXE, then runs the EXE.
   echo.
   echo Syntax:
-  echo Compile (source) [?] [/X] [/-X] [/D] [/C] [/CG] [/T] [/E] [/P]
-  echo         [/NC] [/NL] [/NX] [/ND] [/CO] [/RO] [/LO] [/DO] [/XI] [/XW]
+  echo Compile (source) [?] [/X] [/-X] [/D] [/C] [/CG] [/MT] [/T] [/E] [/P]
+  echo         [/NC] [/NL] [/NX] [/NM] [/ND] [/CO] [/RO] [/LO] [/DO] [/XI] [/XW]
   echo         [/S (opt) [...]] [/B (obj) [...]] [/O] [/Z] [/A] [/M]
   echo         [/L (lib) [...]] [/LG (lib) [...]] [/R (res) [...]]
   echo         [/XS (opt) [...]]
@@ -37,13 +39,15 @@ goto PARPARSE
   echo   /D          Create debug EXE
   echo   /C          Create console EXE
   echo   /CG         Create mixed console and GUI EXE
+  echo   /MT         Create multi threaded EXE
   echo   /T          Use Turbo Assembler during C compile
   echo   /E          Send compile and link error output to (source).ERR
   echo   /P          Pause at end
-  pause
+  rem pause
   echo   /NC         No C compile or link or run, [x]Harbour compile only
   echo   /NL         No link or run, compile only
   echo   /NX         No run, compile and link only
+  echo   /NM         Do not compile as a main PRG
   echo   /ND         Do not delete temporary files after compile and link
   echo   /CO         C compile only, no link or run, requires (source).C only
   echo   /RO         Resource compile only, requires (source).RC only
@@ -51,7 +55,7 @@ goto PARPARSE
   echo   /DO         Delete temporary files only, no compile or link
   echo   /XI         Run EXE in immediate mode (without START)
   echo   /XW         Run EXE in wait mode (with START /W)
-  pause
+  rem pause
   echo   /S          Use additional compiler switch
   echo   (opt)       Compiler switch
   echo   /B          Link additional object file
@@ -60,6 +64,7 @@ goto PARPARSE
   echo   /Z          Link Zip libraries
   echo   /A          Link ADS libraries
   echo   /M          Link MySql libraries
+  echo   /PG         Link PostgreSQL libraries
   echo   /L          Link additional [x]Harbour library
   echo   (lib)       Name of additional library without extension
   echo   /LG         Link additional MiniGui library
@@ -69,7 +74,7 @@ goto PARPARSE
   echo   /XS         Add argument to EXE command line
   echo   (arg)       EXE command line argument
   echo.
-  pause
+  rem pause
   echo   /S (opt), /B (obj), /L (lib), /LG (lib), R (res), /XS (arg) may be repeated.
   echo   Spacing between parameters must be as shown.
   echo.
@@ -77,7 +82,7 @@ goto PARPARSE
   echo Locations in these variables must not have a trailing backslash.
   echo.
   echo   MG_BCC      Location of BCC, default C:\Borland\BCC55
-  echo   MG_ROOT     Location of MinuGui, default C:\MiniGui
+  echo   MG_ROOT     Location of MinuGui, default C:\ssbuild\MiniGui
   echo   MG_HRB      Location of Harbour, default (MG_ROOT)\Harbour
   echo   MG_LIB      Location of Harbour MiniGui libraries, default (MG_ROOT)\Lib
   echo   MG_XHRB     Location of xHarbour, default C:\xHarbour
@@ -85,7 +90,7 @@ goto PARPARSE
   echo   MG_CMP      If set to XHARBOUR, then use xHarbour by default,
   echo                 /X is not necessary, may be overridden by /-X
   echo.
-  pause
+  rem pause
   echo The following files are optional and are used only if present.
   echo.
   echo   (source).RC    Used as resource file, required only if /RO used
@@ -106,11 +111,13 @@ goto PARPARSE
   set MV_USEXHRB=N
   set MV_INTMODE=G
   set MV_DEBUG=N
+  set MV_MTHREAD=N
   set MV_USETASM=N
   set MV_ERRFILE=N
   set MV_PAUSE=N
   set MV_DOCCOMP=Y
   set MV_DOCONLY=N
+  set MV_DOCMAIN=Y
   set MV_DORONLY=N
   set MV_DOLINK=Y
   set MV_DOLONLY=N
@@ -130,7 +137,6 @@ goto PARPARSE
   if "%MG_XLIB%"=="" set MG_XLIB=%MG_ROOT%\xlib
   set MG_SSLIB=c:\SSBUILD\SSLIB\LIB
   set MG_XSSLIB=c:\SSBUILD\SSLIB\XLIB
-
   rem Initialize local variables.
   if %MV_USEXHRB%==N set MV_HRB=%MG_HRB%
   if %MV_USEXHRB%==N set MV_LIB=%MG_LIB%
@@ -144,7 +150,7 @@ goto PARPARSE
 :PARMORE
   rem Start of parameter parse loop, test for end of parameters
   shift
-  if "%1"=="" goto SRCCHECK
+  if "%1"=="" goto DEFCHECK
   rem Test for individual parameters: branch down when found, then loop back
   if %1==?   goto SYNTAX
   if %1==/?  goto SYNTAX
@@ -158,6 +164,8 @@ goto PARPARSE
   if %1==/CG goto CONSGUISET
   if %1==/d  goto DEBSET
   if %1==/D  goto DEBSET
+  if %1==/mt goto MTHREADSET
+  if %1==/MT goto MTHREADSET
   if %1==/t  goto TASMSET
   if %1==/T  goto TASMSET
   if %1==/e  goto ERRSET
@@ -176,6 +184,8 @@ goto PARPARSE
   if %1==/LO goto LONLYSET
   if %1==/nx goto EXESET
   if %1==/NX goto EXESET
+  if %1==/nm goto MAINSET
+  if %1==/NM goto MAINSET
   if %1==/nd goto DELSET
   if %1==/ND goto DELSET
   if %1==/do goto DONLYSET
@@ -196,6 +206,8 @@ goto PARPARSE
   if %1==/A  goto ADSLIB
   if %1==/m  goto MYSQLLIB
   if %1==/M  goto MYSQLLIB
+  if %1==/PG goto PGSQLLIB
+  if %1==/pg goto PGSQLLIB
   if %1==/l  goto ADDLIB
   if %1==/L  goto ADDLIB
   if %1==/lg goto ADDGLIB
@@ -229,6 +241,10 @@ goto PARPARSE
 
 :DEBSET
   set MV_DEBUG=Y
+  goto PARMORE
+
+:MTHREADSET
+  set MV_MTHREAD=Y
   goto PARMORE
 
 :TASMSET
@@ -265,6 +281,10 @@ goto PARPARSE
 
 :EXESET
   set MV_DOEXE=N
+  goto PARMORE
+
+:MAINSET
+  set MV_DOCMAIN=N
   goto PARMORE
 
 :DELSET
@@ -321,6 +341,11 @@ goto PARPARSE
   echo %MV_HRB%\lib\libmysql.lib + >> _templib.rsp
   goto PARMORE
 
+:PGSQLLIB
+  echo %MV_HRB%\lib\libpq.lib + >> _templib.rsp
+  echo %MV_HRB%\lib\hbpgsql.lib + >> _templib.rsp
+  goto PARMORE
+
 :ADDLIB
   shift
   if "%1"=="" goto ARGMISS
@@ -349,6 +374,14 @@ goto PARPARSE
 :ARGMISS
   echo Missing argument after %0 option.
   goto SYNTERR
+
+:DEFCHECK
+  rem Check for additional compiler defines
+  if %MV_DOCMAIN%==N                  goto SRCCHECK
+  if %MV_INTMODE%==G if %MV_DEBUG%==N goto SRCCHECK
+  if %MV_INTMODE%==C                  goto SRCCHECK
+  if not "%MV_SWITCH%"== "" set MV_SWITCH=%MV_SWITCH% -d_MIXEDMODE_
+  if     "%MV_SWITCH%"== "" set MV_SWITCH=-d_MIXEDMODE_
 
 :SRCCHECK
   rem Check that source file exists
@@ -483,7 +516,7 @@ goto PARPARSE
 :RSPSTART
   rem Constuct RSP file for link
   if exist _temp.rsp del _temp.rsp
-  echo c0w32.obj + >> _temp.rsp
+  echo c0w32.obj + > _temp.rsp
   echo %MV_SRC%.obj + >> _temp.rsp
   if exist _tempobj.rsp type _tempobj.rsp >> _temp.rsp
   echo , + >> _temp.rsp
@@ -503,10 +536,14 @@ goto PARPARSE
 
 :HGRSP
   rem Add to RSP file for Harbour GUI EXE
+
+  echo %MG_SSLIB%\SSERROR.lib + >> _temp.rsp
+
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
+
   echo %MG_SSLIB%\taxprg.lib + >> _temp.rsp
   echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
@@ -514,16 +551,24 @@ goto PARPARSE
 
 :HCRSP
   rem Add to RSP file for Harbour console EXE
+
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
+ echo %MG_SSLIB%\SSERRORCONSOLE.lib + >> _temp.rsp
+ 
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
+
   goto HRSPREST
 
 :HMRSP
   rem Add to RSP file for Harbour mixed mode EXE
+
+  echo %MG_SSLIB%\SSERROR.lib + >> _temp.rsp
+
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
+
   echo %MG_SSLIB%\taxprg.lib + >> _temp.rsp
   echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
@@ -541,13 +586,14 @@ goto PARPARSE
 
 :XGRSP
   rem Add to RSP file for xHarbour GUI EXE
-  echo C:\SSBUILD\allegro\lib\alleg.lib + >> _temp.rsp
-  echo C:\SSBUILD\allegro\lib\alld.lib + >> _temp.rsp
-  echo C:\SSBUILD\allegro\lib\allp.lib + >> _temp.rsp
+
+  echo %MG_XSSLIB%\SSERROR.lib + >> _temp.rsp
+
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
+
   echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
   echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
@@ -555,33 +601,33 @@ goto PARPARSE
 
 :XCRSP
   rem Add to RSP file for xHarbour console EXE
-  echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
-  echo c0x32.obj + >> _temp.rsp
+  echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
+  echo %MG_XSSLIB%\SSERROR.lib + >> _temp.rsp
   goto XRSPREST
 
 :XMRSP
   rem Add to RSP file for xHarbour mixed mode EXE
-  echo C:\SSBUILD\allegro\lib\alleg.lib + >> _temp.rsp
-  echo C:\SSBUILD\allegro\lib\alld.lib + >> _temp.rsp
-  echo C:\SSBUILD\allegro\lib\allp.lib + >> _temp.rsp
+
+  echo %MG_XSSLIB%\SSERROR.lib + >> _temp.rsp
+
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
+
   echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
   echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
-  echo c0x32.obj + >> _temp.rsp
   goto XRSPREST
-
 
 :HRSPREST
   rem Continue RSP file for Harbour EXE
   echo %MV_HRB%\lib\hbcplr.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbrtl.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\hbvm.lib + >> _temp.rsp
+  if %MV_MTHREAD%==N echo %MV_HRB%\lib\hbvm.lib + >> _temp.rsp
+  if %MV_MTHREAD%==Y echo %MV_HRB%\lib\hbvmmt.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hblang.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbcpage.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbmacro.lib + >> _temp.rsp
@@ -596,14 +642,13 @@ goto PARPARSE
   echo %MV_HRB%\lib\hbpp.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbpcre.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbct.lib + >> _temp.rsp
-  echo %MV_HRB%\lib\hbmisc.lib + >> _temp.rsp
+  rem echo %MV_HRB%\lib\hbmisc.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbole.lib + >> _temp.rsp
   if %MV_INTMODE%==C goto RSPEND
   echo %MV_HRB%\lib\hbprinter.lib + >> _temp.rsp
   echo %MV_HRB%\lib\miniprint.lib + >> _temp.rsp
   echo %MV_HRB%\lib\socket.lib + >> _temp.rsp
   goto RSPEND
-
 
 :XRSPREST
   rem Continue RSP file for xHarbour EXE
@@ -631,7 +676,8 @@ goto PARPARSE
 :RSPEND
   rem Finish RSP file
   if exist _templib.rsp type _templib.rsp >> _temp.rsp
-  echo cw32.lib + >> _temp.rsp
+  if %MV_MTHREAD%==N echo cw32.lib + >> _temp.rsp
+  if %MV_MTHREAD%==Y echo cw32mt.lib + >> _temp.rsp
   echo import32.lib, >> _temp.rsp
   if exist %MV_SRC%.res echo %MV_SRC%.res + >> _temp.rsp
   if exist _tempres.rsp type _tempres.rsp >> _temp.rsp
@@ -682,18 +728,29 @@ goto PARPARSE
   if %MV_DOLINK%==Y if %MV_DOLONLY%==N                    if exist %MV_SRC%.obj del %MV_SRC%.obj
 
 :EXESTART
+  rem Start EXE
+  if %MV_DOCONLY%==Y goto END
+  if %MV_DOCCOMP%==N goto END
+  if %MV_DORONLY%==Y goto END
+  if %MV_DOLINK%==N  goto END
+  if %MV_DOEXE%==N   goto END
+  if %MV_DODONLY%==Y goto END
+  rem if     exist %MV_SRC%.bat                       %MV_EXECMD% %MV_SRC%.bat %MV_ARG%
+  rem if not exist %MV_SRC%.bat if exist %MV_SRC%.exe %MV_EXECMD% %MV_SRC%.exe %MV_ARG%
 
 :END
   rem Delete local variables
-rem  if %MV_PAUSE%==Y pause
+  rem if %MV_PAUSE%==Y pause
   set MV_USEXHRB=
   set MV_INTMODE=
   set MV_DEBUG=
+  set MV_MTHREAD=
   set MV_USETASM=
   set MV_ERRFILE=
   set MV_PAUSE=
   set MV_DOCCOMP=
   set MV_DOCONLY=
+  set MV_DOCMAIN=
   set MV_DORONLY=
   set MV_DOLINK=
   set MV_DOLONLY=

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:49:35    Date : 10/13/2011
+* Time : 03:45:10    Date : 10/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -60,6 +60,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
 
+Public oActiveX
 oActiveX := TActiveX():New( "Win1", "CryptoLight.CryptoLight.2.5" , 10 , 10 , 1 , 1)
 oActiveX:Load()
 @ 31 ,69 LABEL lbl1 ;
@@ -86,7 +87,7 @@ FONTCOLOR {0,0,0}
 @ 28 ,116 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 400 ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
 
@@ -99,7 +100,7 @@ FONTCOLOR {0,0,0}
 @ 120 ,116 TEXTBOX text3;
 HEIGHT 30 ;
 WIDTH 400 ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
 
@@ -107,13 +108,13 @@ FONTCOLOR {0,0,0}
 CAPTION "Encryption";
 ON CLICK myencryption()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 TOOLTIP ""
 @ 185 ,272 BUTTONEX btn2;
 CAPTION "Decryption";
 ON CLICK mydecryption()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
 
@@ -140,6 +141,7 @@ myoutput := oactivex:OOLE:decode ( mycipher,1 )
 myoutput := oactivex:OOLE:decrypt ( myoutput )
 myoutput := oactivex:OOLE:encode ( myoutput,3 )
 win1.text2.Value := myoutput
+Return Nil
 
 
 End Of Resistance
@@ -150,46 +152,47 @@ SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'PolarCryptoLight'",1,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",14,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Key'",16,17)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",18,22)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 ) , Caption : 'Plain Text'",23,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",25,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl3 ) , Caption : 'Cipher Text'",30,31)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",32,36)
-SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",38,43)
-SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text2  )",44,44)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",45,49)
-SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text3  )",50,50)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",51,56)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Encryption'",57,58)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myencryption()",59,59)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",60,62)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Decryption'",63,64)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mydecryption()",65,65)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",66,68)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",69,70)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",71,73)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myencryption",74,74)
-SS_ESASTEP("Circuits\Main\Main\Main","mykey = win1.text1.Value",75,75)
-SS_ESASTEP("Circuits\Main\Main\Main","mykey = All Trim mykey",76,76)
-SS_ESASTEP("Circuits\Main\Main\Main","myplain = win1.text2.Value",77,77)
-SS_ESASTEP("Circuits\Main\Main\Main","myplain = All Trim myplain",78,78)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.password := mykey",79,79)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encrypt ( myplain )",80,80)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encode ( myoutput,1 )",81,81)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text3.Value := myoutput",82,82)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",83,83)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydecryption",84,84)
-SS_ESASTEP("Circuits\Main\Main\Main","mykey = win1.text1.Value",85,85)
-SS_ESASTEP("Circuits\Main\Main\Main","mykey = All Trim mykey",86,86)
-SS_ESASTEP("Circuits\Main\Main\Main","mycipher = win1.text3.Value",87,87)
-SS_ESASTEP("Circuits\Main\Main\Main","mycipher = All Trim mycipher",88,88)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.password := mykey",89,89)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.decode ( mycipher,1 )",90,90)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.decrypt ( myoutput )",91,91)
-SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encode ( myoutput,3 )",92,92)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text2.Value := myoutput",93,93)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Key'",17,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 ) , Caption : 'Plain Text'",24,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",26,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl3 ) , Caption : 'Cipher Text'",31,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",33,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",39,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text2  )",45,45)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",46,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text3  )",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",52,57)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Encryption'",58,59)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myencryption()",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",61,63)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Decryption'",64,65)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mydecryption()",66,66)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",67,69)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",70,71)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",72,74)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myencryption",75,75)
+SS_ESASTEP("Circuits\Main\Main\Main","mykey = win1.text1.Value",76,76)
+SS_ESASTEP("Circuits\Main\Main\Main","mykey = All Trim mykey",77,77)
+SS_ESASTEP("Circuits\Main\Main\Main","myplain = win1.text2.Value",78,78)
+SS_ESASTEP("Circuits\Main\Main\Main","myplain = All Trim myplain",79,79)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.password := mykey",80,80)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encrypt ( myplain )",81,81)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encode ( myoutput,1 )",82,82)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.text3.Value := myoutput",83,83)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",84,84)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydecryption",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","mykey = win1.text1.Value",86,86)
+SS_ESASTEP("Circuits\Main\Main\Main","mykey = All Trim mykey",87,87)
+SS_ESASTEP("Circuits\Main\Main\Main","mycipher = win1.text3.Value",88,88)
+SS_ESASTEP("Circuits\Main\Main\Main","mycipher = All Trim mycipher",89,89)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.password := mykey",90,90)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.decode ( mycipher,1 )",91,91)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.decrypt ( myoutput )",92,92)
+SS_ESASTEP("Circuits\Main\Main\Main","myoutput = oactivex.encode ( myoutput,3 )",93,93)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.text2.Value := myoutput",94,94)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",95,95)
 Return
 *-------------------------------------------------------------------*

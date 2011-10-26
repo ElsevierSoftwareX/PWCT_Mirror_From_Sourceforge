@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:15:54    Date : 10/13/2011
+* Time : 03:03:02    Date : 10/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -50,29 +50,30 @@ Resistance R_DEMO_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 725 ;
-HEIGHT 544 ;
+WIDTH 942 ;
+HEIGHT 481 ;
+ON INIT mywebsite()  ;
 ICON "PWCTICON" ;
 TITLE "ActiveX (Internet.Explorer.2)" ;
 MAIN ;
 BACKCOLOR {236,233,216} 
 
 Public oActiveX
-oActiveX := TActiveX():New( "Win1", "Internet.Explorer.2" , 48 , 11 , 669 , 417)
+oActiveX := TActiveX():New( "Win1", "Internet.Explorer.2" , 48 , 11 , 909 , 387)
 oActiveX:Load()
 @ 10 ,11 BUTTONEX btn1;
 CAPTION "Google";
-ON CLICK mygoogle()  ;
+ON CLICK mywebsite()  ;
 WIDTH 180 HEIGHT 30 ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
 
 ACTIVATE WINDOW win1
 EndIF
 
-Proc mygoogle
-oactivex:OOLE:navigate ( "PWCT.ORG" )
+Proc mywebsite
+oactivex:OOLE:navigate ( "google.com" )
 Return Nil
 
 
@@ -83,15 +84,16 @@ START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'ActiveX (Internet.Explorer.2)'",1,5)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",11,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Google'",14,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mygoogle()",16,16)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",17,19)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",20,21)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",22,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mygoogle",25,25)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.navigate ( 'PWCT.ORG' )",26,26)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action mywebsite",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",12,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Google'",15,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mywebsite()",17,17)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",18,20)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",21,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",23,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywebsite",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.navigate ( 'google.com' )",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",28,28)
 Return
 *-------------------------------------------------------------------*

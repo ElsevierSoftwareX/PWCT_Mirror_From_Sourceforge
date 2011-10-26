@@ -1,1 +1,1 @@
-CALL sscom2.bat  "LISTBOXARRAY"  /X /l calldll  > _temp.txt
+CALL sscom2.bat  "LISTBOXARRAY"  /mt /l hbnetio /l zlib /l ws2_32 /l calldll   > _temp.txt

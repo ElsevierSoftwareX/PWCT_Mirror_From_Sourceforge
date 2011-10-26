@@ -1,1 +1,1 @@
-CALL sscom2.bat  "ATTRIBUTES"  /X /l calldll  /C > _temp.txt
+CALL sscom2.bat  "ATTRIBUTES"  /mt /l hbnetio /l zlib /l ws2_32 /l calldll   /C > _temp.txt

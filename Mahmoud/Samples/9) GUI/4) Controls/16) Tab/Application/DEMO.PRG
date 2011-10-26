@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 00:47:21    Date : 09/26/2008
+* Time : 00:47:28    Date : 10/22/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RGMHKE1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RGMHKE1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 500 ;
@@ -57,7 +60,7 @@ DEFINE TAB Tab1;
 AT 10 ,9;
 WIDTH 440;
 HEIGHT 325;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 TOOLTIP ""
 PAGE "Text Here"
 @ 60 ,40 LABEL lbl1 ;
@@ -73,14 +76,17 @@ PAGE "Text Here"
 @ 50 ,30 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 200 ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} ;
+INPUTMASK "" 
+
 END PAGE
 END TAB
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 
 
@@ -88,31 +94,22 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,8)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Tab ( Tab1 )",9,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Properties",13,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Pages",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Page ( 'Text Here' )",15,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",16,17)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",18,23)
-SS_ESASTEP("Circuits\Main\Main\Main","End Page",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Page ( 'Text Here' )",25,25)
-SS_ESASTEP("Circuits\Main\Main\Main","Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",26,26)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",27,31)
-SS_ESASTEP("Circuits\Main\Main\Main","End Page",32,32)
-SS_ESASTEP("Circuits\Main\Main\Main","End Tab",33,33)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",34,35)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",36,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Window Title'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,9)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Tab ( Tab1 )",10,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",14,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Page ( 'Text Here' )",16,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Text Here'",17,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,24)
+SS_ESASTEP("Circuits\Main\Main\Main","End Page",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Page ( 'Text Here' )",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",28,34)
+SS_ESASTEP("Circuits\Main\Main\Main","End Page",35,35)
+SS_ESASTEP("Circuits\Main\Main\Main","End Tab",36,36)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",37,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",39,41)
 Return
 *-------------------------------------------------------------------*

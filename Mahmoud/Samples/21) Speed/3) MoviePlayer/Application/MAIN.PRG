@@ -1,20 +1,18 @@
+*---------------------------------------------------------------------------*
+* Time : 13:41:03    Date : 10/22/2011
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Visual Programming Language : HarbourPWCT 
+*---------------------------------------------------------------------------*
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
 Function Main
-*---------------------------------------------------------------------------*
-* Time : 18:06:00    Date : 09/20/2009
-*---------------------------------------------------------------------------*
-* Programming without coding technology 1.4 (Nova) [2006-2009]  
-* URL : http://www.sourceforge.net/projects/doublesvsoop   
-*---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
-*---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
-*---------------------------------------------------------------------------*
 Public True,False 
 True = .T. 
 False = .F. 
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R8555908324_1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_MAIN_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +48,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R8555908324_1() code
+Resistance R_MAIN_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 636 ;
@@ -101,6 +100,7 @@ TOOLTIP ""
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 Proc myopen
 myhandle := GetFormHandle("win1")
@@ -108,20 +108,20 @@ myhandle = STR ( myhandle )
 myhandle = ALLTRIM ( myhandle )
 mycmd := 'open "test.avi" type AVIvideo  alias mymovie style child parent '
 mycmd := mycmd + myhandle
-CALLDLL32("mciSendString","winmm.dll",mycmd,0&,128,0&)
+myout = CALLDLL32("mciSendString","winmm.dll",mycmd,0,128,0)
 Return Nil
 Proc myplay
-CALLDLL32("mciSendString","winmm.dll",'put mymovie window client at 90 50 400 300 ',0,128,0)
-CALLDLL32("mciSendString","winmm.dll",'play mymovie',0,128,0)
+myout = CALLDLL32("mciSendString","winmm.dll",'put mymovie window client at 90 50 400 300 ',0,128,0)
+myout = CALLDLL32("mciSendString","winmm.dll",'play mymovie',0,128,0)
 Return Nil
 Proc mypause
-CALLDLL32("mciSendString","winmm.dll",'pause mymovie',0,128,0)
+myout = CALLDLL32("mciSendString","winmm.dll",'pause mymovie',0,128,0)
 Return Nil
 Proc myresume
-CALLDLL32("mciSendString","winmm.dll",'resume mymovie',0,128,0)
+myout = CALLDLL32("mciSendString","winmm.dll",'resume mymovie',0,128,0)
 Return Nil
 Proc myclose
-CALLDLL32("mciSendString","winmm.dll",'close mymovie',0,128,0)
+myout = CALLDLL32("mciSendString","winmm.dll",'close mymovie',0,128,0)
 Return Nil
 
 
@@ -129,61 +129,47 @@ End Of Resistance
 
 INIT PROCEDURE Init_MAIN
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESARES("Circuits\Main\Main\Main",51)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnPlay )",13,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",16,16)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",17,19)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnPause )",20,22)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",23,23)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",24,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnOpen )",27,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",31,33)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnResume )",34,36)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",38,40)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnClose )",41,43)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",44,44)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",45,47)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",48,49)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",50,51)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myopen",52,52)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","myhandle = Get Window ('win1') Handle",53,53)
-SS_ESASTEP("Circuits\Main\Main\Main","myhandle = CONVERT myhandle TO STRING",54,54)
-SS_ESASTEP("Circuits\Main\Main\Main","myhandle = All Trim myhandle",55,55)
-SS_ESASTEP("Circuits\Main\Main\Main","mycmd = 'open 'test.avi' type AVIvideo  alias mymovie style child parent '",56,56)
-SS_ESASTEP("Circuits\Main\Main\Main","mycmd = mycmd + myhandle",57,57)
-SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters mycmd,0&,128,0&",58,58)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",59,59)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myplay",60,60)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'put mymovie window client at 90 50 400 300 ',0,128,0",61,61)
-SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'play mymovie',0,128,0",62,62)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",63,63)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mypause",64,64)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'pause mymovie',0,128,0",65,65)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",66,66)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myresume",67,67)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'resume mymovie',0,128,0",68,68)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",69,69)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose",70,70)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'close mymovie',0,128,0",71,71)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",72,72)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Movie Sample'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnPlay ) , Caption : '[2] Play'",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myplay",17,17)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",18,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnPause ) , Caption : '[3] Pause'",21,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mypause",24,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",25,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnOpen ) , Caption : '[1] Open'",28,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myopen",31,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",32,34)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnResume ) , Caption : '[4] Resume'",35,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myresume",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",39,41)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnClose ) , Caption : '[5] Close'",42,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",45,45)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",46,48)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",49,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",51,53)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myopen",54,54)
+SS_ESASTEP("Circuits\Main\Main\Main","myhandle = Get Window ('win1') Handle",55,55)
+SS_ESASTEP("Circuits\Main\Main\Main","myhandle = CONVERT myhandle TO STRING",56,56)
+SS_ESASTEP("Circuits\Main\Main\Main","myhandle = All Trim myhandle",57,57)
+SS_ESASTEP("Circuits\Main\Main\Main","mycmd = 'open 'test.avi' type AVIvideo  alias mymovie style child parent '",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","mycmd = mycmd + myhandle",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","myout = Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters mycmd,0,128,0",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",61,61)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myplay",62,62)
+SS_ESASTEP("Circuits\Main\Main\Main","myout = Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'put mymovie window client at 90 50 400 300 ',0,128,0",63,63)
+SS_ESASTEP("Circuits\Main\Main\Main","myout = Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'play mymovie',0,128,0",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",65,65)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mypause",66,66)
+SS_ESASTEP("Circuits\Main\Main\Main","myout = Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'pause mymovie',0,128,0",67,67)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",68,68)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myresume",69,69)
+SS_ESASTEP("Circuits\Main\Main\Main","myout = Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'resume mymovie',0,128,0",70,70)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",71,71)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose",72,72)
+SS_ESASTEP("Circuits\Main\Main\Main","myout = Call DLL 'winmm.dll' , Function 'mciSendString' , Parameters 'close mymovie',0,128,0",73,73)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",74,74)
 Return
 *-------------------------------------------------------------------*

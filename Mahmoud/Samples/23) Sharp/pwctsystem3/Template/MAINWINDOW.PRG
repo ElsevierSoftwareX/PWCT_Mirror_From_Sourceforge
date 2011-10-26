@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 21:30:06    Date : 06/03/2010
+* Time : 19:59:55    Date : 10/24/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_MAINWINDOW_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_MAINWINDOW_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,8 +48,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_MAINWINDOW_15speed1() code
-Set Procedure to "Sub.PRG"
+Resistance R_MAINWINDOW_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -85,12 +82,30 @@ EndIF
 
 Proc closesystem
 win1.Release ( )
-Return Nil
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_MAINWINDOW
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'System'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","START OF MAIN MENU",11,11)
+SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'File'",12,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Close System' )",13,13)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",14,14)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF MAIN MENU",15,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Statusbar",16,17)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New StatusItem ( 'Ready' )",18,19)
+SS_ESASTEP("Circuits\Main\Main\Main","Keyboard",20,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Clock",22,23)
+SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",24,25)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",26,27)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Maximize ( )",28,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",29,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure closesystem",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",33,33)
 Return
 *-------------------------------------------------------------------*

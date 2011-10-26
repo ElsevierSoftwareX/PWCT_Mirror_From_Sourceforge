@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:54:11    Date : 09/03/2011
+* Time : 04:33:51    Date : 10/23/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -94,5 +94,24 @@ End Of Resistance
 
 INIT PROCEDURE Init_ENDOFEDITBOX
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'End of Editbox'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action mystart",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,14)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",15,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Editbox ( edit1 )",16,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Editbox Properties",17,21)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",22,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",24,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart - Event : INIT",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 100 Step 1)",28,28)
+SS_ESASTEP("Circuits\Main\Main\Main","x2 = CONVERT x TO STRING",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","x2 = All Trim x2",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Print text (x2) to Editbox (Edit1) of Window (Win1)",31,35)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",36,36)
+SS_ESASTEP("Circuits\Main\Main\Main","myhandle = Call Function GetControlHandle ( 'edit1','win1' )",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","myout = Call Function SendMessage ( myhandle,277,7,0 )",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",39,39)
 Return
 *-------------------------------------------------------------------*

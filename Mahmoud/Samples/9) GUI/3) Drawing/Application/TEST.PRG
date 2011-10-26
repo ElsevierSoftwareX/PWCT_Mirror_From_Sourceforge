@@ -1,21 +1,25 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 11:17:33    Date : 12/11/2008
+* Time : 18:53:39    Date : 10/21/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
+* Get parameters from command line
+ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 	DataUnit :
 	CodeUnit :
 			Circuit        Main                          
@@ -29,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RUZSLC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_TEST_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,18 +48,24 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RUZSLC1() code
+Resistance R_TEST_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 800 ;
 HEIGHT 600 ;
+ON INIT draw()  ;
 ICON "PWCTICON" ;
-TITLE "Draw Examples" ;
+TITLE "Draw Examples - by Stephen France" ;
 MAIN ;
 BACKCOLOR {236,233,216} 
 
 END WINDOW
 
+ACTIVATE WINDOW win1
+EndIF
+
+Proc Draw
 DRAW LINE IN WINDOW win1;
 AT 250,300;
 TO 400,450;
@@ -125,34 +135,33 @@ DRAWPOLYGON("win1" , {{10,400},{90,420},{170,500},{130,400},{170,300},{90,380}} 
 4 , ;
 {228,228,228} ;
 )
-ACTIVATE WINDOW win1
-
+Return Nil
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_TEST
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",51)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,9)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",10,11)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Line from 300,250 to 450,400",12,17)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Rectangle from 620,30 to 752,280",18,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Round Rectangle from 600,10 to 772,300",25,32)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Ellipse from 10,400 to 150,550",33,39)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw ARCellipse from 200,300 to 350,450  Cut vector from 80,475 to 686,155",40,45)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw ARCellipse from 390,200 to 550,350  Cut vector from 686,155 to 80,475",46,51)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw PIEellipse from 620,400 to 772,550  From center, vector to 240,250  From center, vector to 772,",52,58)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Panel AT 10,10 TO 210,60",59,61)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Text 'Panel'",62,67)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Box from 80,80 to 120,280",68,70)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Text 'BOX'",71,75)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Polygon Co-ords Y,X {{10,400},{90,420},{170,500},{130,400},{170,300},{90,380}}",76,80)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",81,82)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Draw Examples - by Stephen France'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action draw",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",12,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure Draw",17,17)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Line from 300,250 to 450,400",18,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Rectangle from 620,30 to 752,280",24,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Round Rectangle from 600,10 to 772,300",31,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Ellipse from 10,400 to 150,550",39,45)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw ARCellipse from 200,300 to 350,450  Cut vector from 80,475 to 686,155",46,51)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw ARCellipse from 390,200 to 550,350  Cut vector from 686,155 to 80,475",52,57)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw PIEellipse from 620,400 to 772,550  From center, vector to 240,250  From center, vector to 772,",58,64)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Panel AT 10,10 TO 210,60",65,67)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Text 'Panel'",68,73)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Box from 80,80 to 120,280",74,76)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Text 'BOX'",77,81)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Polygon Co-ords Y,X {{10,400},{90,420},{170,500},{130,400},{170,300},{90,380}}",82,86)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",87,87)
 Return
 *-------------------------------------------------------------------*

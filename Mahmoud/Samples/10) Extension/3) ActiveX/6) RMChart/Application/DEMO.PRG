@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:59:02    Date : 10/13/2011
+* Time : 04:23:38    Date : 10/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -89,6 +89,7 @@ oactivex:OOLE:region(1):gridlessseries:HatchMode := 0
 oactivex:OOLE:region(1):gridlessseries:StartAngle := 0
 oactivex:OOLE:region(1):gridlessseries:DataString := "30*15*40*35"
 oactivex:OOLE:draw ( True )
+Return Nil
 
 
 End Of Resistance
@@ -123,5 +124,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:HatchMod
 SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:StartAngle := 0",40,40)
 SS_ESASTEP("Circuits\Main\Main\Main","oactivex.region(1):gridlessseries:DataString := '30*15*40*35'",41,41)
 SS_ESASTEP("Circuits\Main\Main\Main","oactivex.draw ( True )",42,42)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",43,43)
 Return
 *-------------------------------------------------------------------*

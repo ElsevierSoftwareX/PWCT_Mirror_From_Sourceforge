@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 17:05:04    Date : 11/09/2008
+* Time : 19:39:29    Date : 10/21/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance ROJWQI1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance ROJWQI1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 532 ;
@@ -58,6 +61,7 @@ BACKCOLOR {236,233,216}
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 Proc mydraw
 FOR x = 1 TO 255 STEP 1
@@ -67,43 +71,32 @@ TO x,200;
 PENCOLOR {x,x,x};
 PENWIDTH 1
 
-Next
-FOR x = 255 TO 1 STEP -1
+y := 256-x
 DRAW LINE IN WINDOW win1;
-AT x,x+255;
-TO x,455;
-PENCOLOR {x,x,x};
+AT y,y+255;
+TO y,455;
+PENCOLOR {y,y,y};
 PENWIDTH 1
 
 Next
-Return Nil
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",5,5)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",11,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",13,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydraw",15,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 255 Step 1)",16,16)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Line AT x,x TO x,200",17,22)
-SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",23,23)
-SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 255 To 1 Step -1)",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Line AT x,x+255 TO x,455",25,30)
-SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",31,31)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Draw Gradient'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action mydraw",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",12,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydraw",17,17)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 255 Step 1)",18,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Line AT x,x TO x,200",19,24)
+SS_ESASTEP("Circuits\Main\Main\Main","y = 256-x",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Line AT y,y+255 TO y,455",26,31)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",32,32)
 Return
 *-------------------------------------------------------------------*

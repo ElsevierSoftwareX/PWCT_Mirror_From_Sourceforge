@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 00:41:50    Date : 09/26/2008
+* Time : 00:30:01    Date : 10/22/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RHQNDZ1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RHQNDZ1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 500 ;
@@ -66,6 +69,7 @@ Action mytimer()
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 Proc mytimer
 thetime = TIME()
@@ -77,24 +81,18 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,9)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",10,11)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",12,16)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",17,18)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",19,20)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",21,22)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mytimer",23,23)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","thetime = System Time",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.lbl1.Value := thetime",25,25)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Window Title'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : ''",11,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",13,17)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",18,19)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",20,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",22,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mytimer",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","thetime = System Time",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.lbl1.Value := thetime",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",28,28)
 Return
 *-------------------------------------------------------------------*

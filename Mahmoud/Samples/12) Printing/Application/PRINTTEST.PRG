@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 13:51:28    Date : 12/09/2008
+* Time : 02:07:12    Date : 10/22/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RQYAPN1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_PRINTTEST_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,28 +46,34 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RQYAPN1() code
+Resistance R_PRINTTEST_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 206 ;
+WIDTH 286 ;
 HEIGHT 124 ;
 ICON "PWCTICON" ;
 TITLE "Printing Sample" ;
 MAIN ;
 BACKCOLOR {255,255,255} 
 
-@ 27 ,48 BUTTONEX btn1;
+@ 0 ,-4 IMAGE image1;
+PICTURE "back.jpg";
+STRETCH ;
+WIDTH 290 HEIGHT 90
+@ 27 ,88 BUTTONEX btn1;
 CAPTION "Start";
-FONTCOLOR {255,255,255};
-BACKCOLOR {255,128,192};
+FONTCOLOR {0,0,0};
+BACKCOLOR {116,241,169};
 ON CLICK MYPRINT()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "arial" SIZE 14 ;
+FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 Proc MYPRINT
 #include "winprint.ch"
@@ -161,65 +169,52 @@ End Of Resistance
 
 INIT PROCEDURE Init_PRINTTEST
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,9)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",10,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",14,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",15,18)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",19,20)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",21,22)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure MYPRINT",23,23)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Init Print System",24,25)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","vPrinter = Select Printer by Dialog , Preview",26,27)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( vPrinter == '' )",28,28)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Operation Canceled by user' Title 'Ok' Type: Message Box",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Return 0",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",31,31)
-SS_ESASTEP("Circuits\Main\Main\Main","Set Units (MM)",32,32)
-SS_ESASTEP("Circuits\Main\Main\Main","Start Document",33,33)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Set Page Orientation (PORTRAIT)",34,34)
-SS_ESASTEP("Circuits\Main\Main\Main","Start Page",35,41)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 25 Step 1)",42,42)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Text 'Page [1]' , Y(10*x), X(10) , Font('arial',20,50) , Color ({30*x,30*x,255}) to Print",43,47)
-SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",48,48)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Page",49,49)
-SS_ESASTEP("Circuits\Main\Main\Main","Start Page",50,56)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Picture 'C:\SSRPWI\DOUBLES\RPWI1\SAMPLES\12) PRINTING\IMAGE.JPG' (Top 0 Left 0 Height 100 Width",57,57)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Page",58,58)
-SS_ESASTEP("Circuits\Main\Main\Main","Start Page",59,65)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 5 Step 1)",66,66)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Text 'Page [3]' , Y(10*x), X(10) , Font('arial',20,50) , Color ({255,30*x,60*x}) to Print",67,71)
-SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",72,72)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Page",73,73)
-SS_ESASTEP("Circuits\Main\Main\Main","Start Page",74,80)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 10, X 10, Height 200, Width 200 ) PenWidth (2) Color ({0,0,255}) to Print",81,83)
-SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 50, X 50, Height 150, Width 150 ) PenWidth (2) Color ({238,183,142}) to Print",84,86)
-SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 80, X 80, Height 120, Width 120 ) PenWidth (2) Color ({0,255,128}) to Print",87,89)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Page",90,90)
-SS_ESASTEP("Circuits\Main\Main\Main","Start Page",91,97)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 10, X 10, Height 50, Width 200 ) PenWidth (1) Color ({0,255,0}) to Print",98,100)
-SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 60, X 60, Height 110, Width 200 ) PenWidth (10) Color ({0,0,0}) to Print",101,103)
-SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 120, X 60, Height 150, Width 200 ) PenWidth (50) Color ({0,0,255}) to Print",104,106)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Page",107,107)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Document",108,108)
-SS_ESASTEP("Circuits\Main\Main\Main","Release Print System",109,109)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",110,110)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Printing Sample'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image1 ) , Image : 'back.jpg'",11,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",13,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Start'",15,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action MYPRINT",19,19)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",20,23)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure MYPRINT",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","Init Print System",30,31)
+SS_ESASTEP("Circuits\Main\Main\Main","vPrinter = Select Printer by Dialog , Preview",32,33)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( vPrinter == '' )",34,34)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Operation Canceled by user' Title 'Ok' Type: Message Box",35,35)
+SS_ESASTEP("Circuits\Main\Main\Main","Return 0",36,36)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Set Units (MM)",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Start Document",39,39)
+SS_ESASTEP("Circuits\Main\Main\Main","Set Page Orientation (PORTRAIT)",40,40)
+SS_ESASTEP("Circuits\Main\Main\Main","Start Page",41,47)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 25 Step 1)",48,48)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Text 'Page [1]' , Y(10*x), X(10) , Font('arial',20,50) , Color ({30*x,30*x,255}) to Print",49,53)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",54,54)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Page",55,55)
+SS_ESASTEP("Circuits\Main\Main\Main","Start Page",56,62)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Picture 'C:\SSRPWI\DOUBLES\RPWI1\SAMPLES\12) PRINTING\IMAGE.JPG' (Top 0 Left 0 Height 100 Width 100 ) TO PRINT",63,63)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Page",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","Start Page",65,71)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 5 Step 1)",72,72)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Text 'Page [3]' , Y(10*x), X(10) , Font('arial',20,50) , Color ({255,30*x,60*x}) to Print",73,77)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",78,78)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Page",79,79)
+SS_ESASTEP("Circuits\Main\Main\Main","Start Page",80,86)
+SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 10, X 10, Height 200, Width 200 ) PenWidth (2) Color ({0,0,255}) to Print",87,89)
+SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 50, X 50, Height 150, Width 150 ) PenWidth (2) Color ({238,183,142}) to Print",90,92)
+SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 80, X 80, Height 120, Width 120 ) PenWidth (2) Color ({0,255,128}) to Print",93,95)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Page",96,96)
+SS_ESASTEP("Circuits\Main\Main\Main","Start Page",97,103)
+SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 10, X 10, Height 50, Width 200 ) PenWidth (1) Color ({0,255,0}) to Print",104,106)
+SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 60, X 60, Height 110, Width 200 ) PenWidth (10) Color ({0,0,0}) to Print",107,109)
+SS_ESASTEP("Circuits\Main\Main\Main","Rectangle (Y 120, X 60, Height 150, Width 200 ) PenWidth (50) Color ({0,0,255}) to Print",110,112)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Page",113,113)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Document",114,114)
+SS_ESASTEP("Circuits\Main\Main\Main","Release Print System",115,115)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",116,116)
 Return
 *-------------------------------------------------------------------*

@@ -536,10 +536,14 @@ goto PARPARSE
 
 :HGRSP
   rem Add to RSP file for Harbour GUI EXE
+
+  echo %MG_SSLIB%\SSERROR.lib + >> _temp.rsp
+
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
+
   echo %MG_SSLIB%\taxprg.lib + >> _temp.rsp
   echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
@@ -547,16 +551,24 @@ goto PARPARSE
 
 :HCRSP
   rem Add to RSP file for Harbour console EXE
-  echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
+
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
+ echo %MG_SSLIB%\SSERRORCONSOLE.lib + >> _temp.rsp
+ 
+  echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
+
   goto HRSPREST
 
 :HMRSP
   rem Add to RSP file for Harbour mixed mode EXE
+
+  echo %MG_SSLIB%\SSERROR.lib + >> _temp.rsp
+
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_SSLIB%\SSLIB.lib + >> _temp.rsp
+
   echo %MG_SSLIB%\taxprg.lib + >> _temp.rsp
   echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
@@ -574,10 +586,14 @@ goto PARPARSE
 
 :XGRSP
   rem Add to RSP file for xHarbour GUI EXE
+
+  echo %MG_XSSLIB%\SSERROR.lib + >> _temp.rsp
+
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
+
   echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
   echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtgui.lib + >> _temp.rsp
@@ -587,14 +603,19 @@ goto PARPARSE
   rem Add to RSP file for xHarbour console EXE
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp
   echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
+  echo %MG_XSSLIB%\SSERROR.lib + >> _temp.rsp
   goto XRSPREST
 
 :XMRSP
   rem Add to RSP file for xHarbour mixed mode EXE
+
+  echo %MG_XSSLIB%\SSERROR.lib + >> _temp.rsp
+
   echo %MV_LIB%\tsbrowse.lib + >> _temp.rsp
   echo %MV_LIB%\propgrid.lib + >> _temp.rsp
   echo %MV_LIB%\minigui.lib + >> _temp.rsp
   echo %MG_XSSLIB%\SSLIB.lib + >> _temp.rsp
+
   echo %MG_XSSLIB%\taxprg.lib + >> _temp.rsp
   echo %MV_HRB%\lib\dll.lib + >> _temp.rsp
   echo %MV_HRB%\lib\gtwin.lib + >> _temp.rsp

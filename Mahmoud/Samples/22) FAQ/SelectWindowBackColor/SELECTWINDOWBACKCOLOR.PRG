@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 10:12:41    Date : 12/03/2010
+* Time : 15:13:47    Date : 10/23/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_SELECTWINDOWBACKCOLOR_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_SELECTWINDOWBACKCOLOR_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +48,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_SELECTWINDOWBACKCOLOR_15speed1() code
+Resistance R_SELECTWINDOWBACKCOLOR_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -83,5 +81,19 @@ End Of Resistance
 
 INIT PROCEDURE Init_SELECTWINDOWBACKCOLOR
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Select Window Back Color'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Select Color'",11,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mywork()",13,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",17,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",19,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork",22,22)
+SS_ESASTEP("Circuits\Main\Main\Main","GetColor := Get Color",23,23)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Backcolor := getcolor",24,24)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.SetFocus ( )",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",26,26)
 Return
 *-------------------------------------------------------------------*

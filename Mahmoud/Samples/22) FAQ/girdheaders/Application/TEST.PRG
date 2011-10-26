@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 21:46:52    Date : 06/24/2010
+* Time : 04:48:42    Date : 10/23/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_TEST_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_TEST_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,10 +48,12 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_TEST_15speed1() code
+Resistance R_TEST_18smart1() code
 myheaders := {}
 FOR x = 1 TO 20 STEP 1
-AADD( myheaders , "Header " + str(x))
+x2 = STR ( x )
+x2 = ALLTRIM ( x2 )
+AADD( myheaders , "Header " + x2)
 Next
 mywidths := {}
 FOR x = 1 TO 20 STEP 1
@@ -65,7 +65,7 @@ AT 10 ,10 ;
 WIDTH 542 ;
 HEIGHT 563 ;
 ICON "PWCTICON" ;
-TITLE "Window Title" ;
+TITLE "Many Grid Columns sample" ;
 MAIN ;
 BACKCOLOR {236,233,216} 
 
@@ -90,5 +90,24 @@ End Of Resistance
 
 INIT PROCEDURE Init_TEST
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Declare Array myheaders",1,1)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 20 Step 1)",2,2)
+SS_ESASTEP("Circuits\Main\Main\Main","x2 = CONVERT x TO STRING",3,3)
+SS_ESASTEP("Circuits\Main\Main\Main","x2 = All Trim x2",4,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 'Header ' + x2 To Array myheaders",5,5)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Declare Array mywidths",7,7)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 20 Step 1)",8,8)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item 100 To Array mywidths",9,9)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",10,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Many Grid Columns sample'",11,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",16,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 ) , HEADERS : myheaders",21,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",22,29)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",30,31)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.grid1.Width := win1.grid1.width + 1",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",33,35)
 Return
 *-------------------------------------------------------------------*

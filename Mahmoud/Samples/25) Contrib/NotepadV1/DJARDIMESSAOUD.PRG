@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 19:11:47    Date : 08/25/2011
+* Time : 05:01:46    Date : 10/24/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_DJARDIMESSAOUD_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DJARDIMESSAOUD_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +48,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_DJARDIMESSAOUD_15speed1() code
+Resistance R_DJARDIMESSAOUD_18smart1() code
+SET AUTOADJUST ON
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -69,41 +68,34 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 Set MenuStyle EXTENDED
 DEFINE MAIN MENU
-POPUP "„·›"
-MENUITEM "› Õ" Action myload()
+POPUP "File"
+MENUITEM "Open" Action myload()
 SEPARATOR
-MENUITEM "Õ›Ÿ" Action mysave()
+MENUITEM "Save As" Action mysave()
 SEPARATOR
-MENUITEM "Œ—ÊÃ" Action mybye()
+MENUITEM "Exit" Action mybye()
 END POPUP
-POPUP " ⁄œÌ·"
-MENUITEM " ⁄œÌ· «·Œÿ" Action myfont()
+POPUP "View"
+MENUITEM "Font" Action myfont()
 SEPARATOR
-MENUITEM " ⁄œÌ· ·Ê‰ «·Œÿ" Action mycolor()
+MENUITEM "Font color" Action mycolor()
 SEPARATOR
-MENUITEM " ⁄œÌ· ·Ê‰ «·Œ·›Ì…" Action mybcolor()
+MENUITEM "Back color" Action mybcolor()
 END POPUP
-POPUP "ÕÊ·..."
-MENUITEM "ÕÊ· «·»—‰«„Ã..." Action myabout()  IMAGE "NotePad"
+POPUP "About"
+MENUITEM "About application" Action myabout()  IMAGE "NotePad"
 SEPARATOR
-MENUITEM "≈”„ ﬂ„»ÌÊ —ﬂ" Action myadd()
+MENUITEM "Computer name" Action myadd()
 END POPUP
 END MENU
-DEFINE TIMER Timer1 INTERVAL 1000 ;
-Action mytimer()
-mytime = TIME()
 DEFINE STATUSBAR 
 
-STATUSITEM mytime
+CLOCK
 
 END STATUSBAR
 
 END WINDOW
 
-calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("win1"),-20,;
-NUMOR(calldll32("GetWindowLong","USER32.DLL",;
-GetFormHandle ("win1"), -20),0x400000,0x100000))
-SET AUTOADJUST ON
 ACTIVATE WINDOW win1
 EndIF
 
@@ -136,7 +128,7 @@ mystr := FILESTR( GetFile )
 win1.edit1.Value := mystr
 Return Nil
 Proc mybye
-MyOut := MSGYESNO("Â·  —Ìœ «·Œ—ÊÃ „‰ «·»—‰«„Ã ø"," √ﬂÌœ «·Œ—ÊÃ")
+MyOut := MSGYESNO(" Are you sure ?","Close applicaiton ")
 IF MyOut = False
 Return 0
 ELSE
@@ -175,15 +167,11 @@ GetColor := GetColor ( {0,0,0} )
 win1.edit1.BackColor := GetColor
 Return Nil
 Proc myabout
-MyOuut := MSGINFO(" „  »—„Ã… Â–« «·»—‰«„Ã „‰ ÿ—› Ã—œÌ „”⁄Êœ » ﬁ‰Ì… «·»—„Ã… »œÊ‰ ﬂÊœ","PWCT NotePad : By Djardi Messaoud - PWCT TEAM")
+MyOuut := MSGINFO("PWCT NotePad : By Djardi Messaoud - PWCT TEAM","PWCT NotePad")
 Return Nil
 Proc myadd
-Mynote := MSGINFO("Â–« »—‰«„Ã ≈÷«›Ì  „ ≈÷«› Â „⁄ «·„›ﬂ—… («⁄ »—ÊÂ« ÂœÌ… »„‰«”»…  ‘Â— —„÷«‰ Ê —„÷«‰ ﬂ—Ì„ ··Ã„Ì⁄)","„·«ÕŸ… :")
 ComputerName := GetComputerName()
-Mycomname := MSGINFO("≈”„ ﬂ„»ÌÊ —ﬂ ÂÊ : " + ComputerName,ComputerName)
-Return Nil
-Proc mytimer
-mytime = TIME()
+Mycomname := MSGINFO("Computer Name : " + ComputerName,ComputerName)
 Return Nil
 
 
@@ -191,5 +179,84 @@ End Of Resistance
 
 INIT PROCEDURE Init_DJARDIMESSAOUD
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Set AutoAdjust ON",1,1)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'PWCT NotePad v1.0'",2,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Editbox ( edit1 )",12,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Editbox Properties",13,17)
+SS_ESASTEP("Circuits\Main\Main\Main","Set Menu Style EXTENDED",18,18)
+SS_ESASTEP("Circuits\Main\Main\Main","START OF MAIN MENU",19,19)
+SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'File'",20,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Open' )      SEPARATOR",21,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Save As' )      SEPARATOR",23,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Exit' )",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'View'",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Font' )      SEPARATOR",28,29)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Font color' )      SEPARATOR",30,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Back color' )",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",33,33)
+SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'About'",34,34)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'About application' )  IMAGE 'NotePad'    SEPARATOR",35,36)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Computer name' )",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF MAIN MENU",39,39)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Statusbar",40,41)
+SS_ESASTEP("Circuits\Main\Main\Main","Clock",42,43)
+SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",44,45)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",46,47)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",48,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mysave",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","mystr = win1.edit1.Value",52,52)
+SS_ESASTEP("Circuits\Main\Main\Main","PutFile := Put File",53,57)
+SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File PutFile",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( CheckFile )",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","Return 0",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",61,61)
+SS_ESASTEP("Circuits\Main\Main\Main","write String mystr to File PutFile",62,64)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",65,65)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myload",66,66)
+SS_ESASTEP("Circuits\Main\Main\Main","GetFile := Get File",67,71)
+SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File GetFile",72,72)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( CheckFile = False )",73,73)
+SS_ESASTEP("Circuits\Main\Main\Main","Return 0",74,74)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",75,75)
+SS_ESASTEP("Circuits\Main\Main\Main","mystr := Read File GetFile",76,76)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.edit1.Value := mystr",77,77)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",78,78)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mybye",79,79)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message ' Are you sure ?' Title 'Close applicaiton ' Type: Message Yes/No",80,80)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( MyOut = False )",81,81)
+SS_ESASTEP("Circuits\Main\Main\Main","Return 0",82,82)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",83,83)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",84,84)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",86,86)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myfont",87,87)
+SS_ESASTEP("Circuits\Main\Main\Main","GetFont := Get Font",88,95)
+SS_ESASTEP("Circuits\Main\Main\Main","Output: (FontName,FontSize,FontBold,FontItalic,FontColor,FontUnderLine,FontStrickOut,FontCharSet)",96,103)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.edit1.FontName := FontName",104,104)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.edit1.FontSize := FontSize",105,105)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.edit1.FontBold := FontBold",106,106)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.edit1.FontItalic := FontItalic",107,107)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.edit1.FontUnderline := FontUnderline",108,108)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",109,109)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mycolor",110,110)
+SS_ESASTEP("Circuits\Main\Main\Main","GetColor := Get Color, Init Color : {0,0,0}",111,111)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.edit1.FontColor := GetColor",112,112)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",113,113)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mybcolor",114,114)
+SS_ESASTEP("Circuits\Main\Main\Main","GetColor := Get Color, Init Color : {0,0,0}",115,115)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.edit1.BackColor := GetColor",116,116)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",117,117)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myabout",118,118)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'PWCT NotePad : By Djardi Messaoud - PWCT TEAM' Title 'PWCT NotePad' Type: Message Info",119,119)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",120,120)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myadd",121,121)
+SS_ESASTEP("Circuits\Main\Main\Main","ComputerName := Get Computer Name",122,122)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Computer Name : ' + ComputerName Title ComputerName Type: Message Info",123,123)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",124,124)
 Return
 *-------------------------------------------------------------------*

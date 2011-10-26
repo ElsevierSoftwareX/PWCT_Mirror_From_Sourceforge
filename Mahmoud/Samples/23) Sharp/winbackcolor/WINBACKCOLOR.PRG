@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 01:17:33    Date : 08/30/2011
+* Time : 02:19:45    Date : 10/24/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -55,7 +55,7 @@ AT 10 ,10 ;
 WIDTH 500 ;
 HEIGHT 400 ;
 ICON "PWCTICON" ;
-TITLE "Window - Back Color" ;
+TITLE "Window - Random Back Color" ;
 MAIN ;
 BACKCOLOR {236,233,216} 
 
@@ -71,12 +71,23 @@ v1 := rand()*100
 v2 := rand()*100
 v3 := rand()*100
 win1.Backcolor := {v1,v2,v3}
-Return Nil
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_WINBACKCOLOR
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Window - Random Back Color'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",11,12)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",13,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",15,17)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure setbackcolor",18,18)
+SS_ESASTEP("Circuits\Main\Main\Main","v1 = rand()*100",19,19)
+SS_ESASTEP("Circuits\Main\Main\Main","v2 = rand()*100",20,20)
+SS_ESASTEP("Circuits\Main\Main\Main","v3 = rand()*100",21,21)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Backcolor := {v1,v2,v3}",22,22)
 Return
 *-------------------------------------------------------------------*

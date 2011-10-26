@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 20:31:22    Date : 06/03/2010
+* Time : 18:40:29    Date : 10/24/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -28,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_SUB_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_SUB_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_SUB_15speed1() code
+Resistance R_SUB_18smart1() code
 Class windowwelcome
 Method showwindow
 Method closewindow
@@ -62,8 +60,8 @@ FONTCOLOR {0,0,0}
 HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0} ;
-INPUTMASK ""
+FONTCOLOR {0,0,0} 
+
 @ 70 ,63 BUTTONEX btn1;
 CAPTION "Say Hello";
 ON CLICK self:sayhello()  ;
@@ -89,7 +87,6 @@ Return 0
 Method sayhello Class windowwelcome
 myname := winwelcome.text1.Value
 MyOut := MSGBOX("Hello " + myname,"Welcome")
-Return 0
 
 
 End Of Resistance

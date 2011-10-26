@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 06:18:01    Date : 05/30/2011
+* Time : 04:32:57    Date : 10/23/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_TEST_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_TEST_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +48,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_TEST_15speed1() code
+Resistance R_TEST_18smart1() code
 Set Exclusive Off
 Use tel
 myobj = myclassname()
@@ -137,5 +135,43 @@ End Of Resistance
 
 INIT PROCEDURE Init_TEST
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Set Exclusive Off",1,1)
+SS_ESASTEP("Circuits\Main\Main\Main","Open Table tel",2,2)
+SS_ESASTEP("Circuits\Main\Main\Main","Create Object myobj of Class myclassname",3,3)
+SS_ESASTEP("Circuits\Main\Main\Main","myout = myobj.ShowWindow()",4,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Class MyClassName",5,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Data reportname Init Value 'report1.rpt'",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Data databasename Init Value 'tel.dbf'",7,7)
+SS_ESASTEP("Circuits\Main\Main\Main","Data oActiveX Init Value 0",8,8)
+SS_ESASTEP("Circuits\Main\Main\Main","Method showwindow",9,9)
+SS_ESASTEP("Circuits\Main\Main\Main","Method closewindow",10,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Method showreport",11,11)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Class",12,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method showwindow Class MyClassName",13,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( MyWindowName )",14,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",19,19)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",20,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnClose )",28,29)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",31,33)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( self:oActiveX )",34,35)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",36,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",39,41)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Browse ( browse1 )",42,53)
+SS_ESASTEP("Circuits\Main\Main\Main","Browse Properties",54,57)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",58,59)
+SS_ESASTEP("Circuits\Main\Main\Main","MyWindowName.Center ( )",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",61,63)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method closewindow Class MyClassName",65,65)
+SS_ESASTEP("Circuits\Main\Main\Main","MyWindowName.Release ( )",66,66)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",67,67)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method showreport Class MyClassName",68,68)
+SS_ESASTEP("Circuits\Main\Main\Main","StartUpFolder := Get StartUp Folder",69,69)
+SS_ESASTEP("Circuits\Main\Main\Main","Crystal Reports 10, Object self:oActivex, View Report self:reportname , Database Location = startupfolder+'\'+self:databasename",70,79)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",80,80)
 Return
 *-------------------------------------------------------------------*

@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 21:38:40    Date : 06/03/2010
+* Time : 19:05:22    Date : 10/24/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_TEST_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_TEST_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +48,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_TEST_15speed1() code
+Resistance R_TEST_18smart1() code
 Set Procedure to "testsub.PRG"
 myobj = subwindow()
 if !iswindowdefined( win1 )
@@ -94,5 +92,28 @@ End Of Resistance
 
 INIT PROCEDURE Init_TEST
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Set Procedure to 'testsub.PRG'",1,1)
+SS_ESASTEP("Circuits\Main\Main\Main","Create Object myobj of Class subwindow",2,2)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",3,7)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",8,12)
+SS_ESASTEP("Circuits\Main\Main\Main","START OF MAIN MENU",13,13)
+SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'File'",14,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Call Sub' )",15,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Close System' )",16,16)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",17,17)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF MAIN MENU",18,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Statusbar",19,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New StatusItem ( 'Ready' )",21,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Keyboard",23,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Clock",25,26)
+SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",27,28)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",29,30)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Maximize ( )",31,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",32,34)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure closesystem",35,35)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",36,36)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",37,37)
 Return
 *-------------------------------------------------------------------*

@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 19:11:53    Date : 09/14/2010
+* Time : 01:53:05    Date : 10/24/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_TEST_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_TEST_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +48,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_TEST_15speed1() code
+Resistance R_TEST_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -85,5 +83,19 @@ End Of Resistance
 
 INIT PROCEDURE Init_TEST
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Shell Explorer'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",11,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'go'",14,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action test()",16,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",17,19)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",20,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",22,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure test",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","StartUpFolder := Get StartUp Folder",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.navigate ( startupfolder + '\tempfile.html' )",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",28,28)
 Return
 *-------------------------------------------------------------------*

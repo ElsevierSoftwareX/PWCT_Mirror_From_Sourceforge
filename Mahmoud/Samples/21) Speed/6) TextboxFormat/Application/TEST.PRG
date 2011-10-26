@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 00:35:15    Date : 03/27/2010
+* Time : 16:16:13    Date : 10/22/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.5 (Speed) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_TEST_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_TEST_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +48,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_TEST_15speed1() code
+Resistance R_TEST_18smart1() code
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 537 ;
@@ -84,5 +82,15 @@ End Of Resistance
 
 INIT PROCEDURE Init_TEST
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,9)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",10,10)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",11,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",17,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,27)
 Return
 *-------------------------------------------------------------------*

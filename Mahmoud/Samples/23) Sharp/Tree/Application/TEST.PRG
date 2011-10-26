@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 06:57:05    Date : 08/10/2010
+* Time : 02:03:29    Date : 10/24/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -35,7 +33,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_TEST_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_TEST_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -50,7 +48,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_TEST_15speed1() code
+Resistance R_TEST_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -58,7 +56,7 @@ WIDTH 525 ;
 HEIGHT 309 ;
 ON INIT mycheck()  ;
 ICON "PWCTICON" ;
-TITLE "Items Tree" ;
+TITLE "Tree Manager sample" ;
 MAIN ;
 NOMINIMIZE ;
 NOMAXIMIZE ;
@@ -165,5 +163,69 @@ End Of Resistance
 
 INIT PROCEDURE Init_TEST
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Tree Manager sample'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action mycheck()",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Tree ( tree1 )",15,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Tree Properties",17,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Add Item (Root)'",25,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myaddroot()",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",28,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Add Item (Child)'",31,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myaddchild()",33,33)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",34,36)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3 ) , Caption : 'Edit'",37,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myedit()",39,39)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",40,42)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn4 ) , Caption : 'Delete'",43,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mydelete()",45,45)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",46,48)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",49,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",51,53)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myaddroot",54,54)
+SS_ESASTEP("Circuits\Main\Main\Main","myvalue = Input Box prompt 'Name :'",55,59)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.tree1.AddItem ( myvalue,0 )",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure mycheck",61,61)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",62,62)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myaddchild",63,63)
+SS_ESASTEP("Circuits\Main\Main\Main","myvalue = Input Box prompt 'Name :'",64,68)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.tree1.AddItem ( myvalue,win1.tree1.value )",69,69)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( .not. win1.tree1.value = 0 )",70,70)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.tree1.Expand ( win1.tree1.value )",71,71)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",72,72)
+SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure mycheck",73,73)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",74,74)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydelete",75,75)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( win1.tree1.value = 0 )",76,76)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Please select the item' Title 'Sorry' Type: Message Box",77,77)
+SS_ESASTEP("Circuits\Main\Main\Main","Return 0",78,78)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",79,79)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.tree1.DeleteItem ( win1.tree1.value )",80,80)
+SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure mycheck",81,81)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",82,82)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myedit",83,83)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( win1.tree1.value = 0 )",84,84)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Please select the item' Title 'Sorry' Type: Message Box",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","Return 0",86,86)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",87,87)
+SS_ESASTEP("Circuits\Main\Main\Main","myvalue = win1.tree1.item(win1.tree1.value)",88,88)
+SS_ESASTEP("Circuits\Main\Main\Main","myvalue = Input Box prompt win1.tree1.value",89,93)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.tree1.item(win1.tree1.value) := myvalue",94,94)
+SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure mycheck",95,95)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",96,96)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mycheck",97,97)
+SS_ESASTEP("Circuits\Main\Main\Main","mycount = win1.tree1.ItemCount",98,98)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( mycount = 0 )",99,99)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.btn2.Enabled := false",100,100)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.btn3.Enabled := false",101,101)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.btn4.Enabled := false",102,102)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",103,103)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.btn2.Enabled := true",104,104)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.btn3.Enabled := true",105,105)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.btn4.Enabled := true",106,106)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",107,107)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",108,108)
 Return
 *-------------------------------------------------------------------*

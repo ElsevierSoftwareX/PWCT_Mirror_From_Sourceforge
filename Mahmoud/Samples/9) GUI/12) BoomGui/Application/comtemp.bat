@@ -1,1 +1,1 @@
-CALL sscom2.bat  "BOOMGUI"  /X /l calldll  > _temp.txt
+CALL sscom2.bat  "BOOMGUI"  /mt /l hbnetio /l zlib /l ws2_32 /l calldll   > _temp.txt

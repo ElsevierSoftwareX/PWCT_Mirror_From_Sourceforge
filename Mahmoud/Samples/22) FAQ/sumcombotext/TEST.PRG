@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:46:19    Date : 10/26/2011
+* Time : 05:26:15    Date : 10/26/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -115,7 +115,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Combobox Properties",12,17)
 SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",18,18)
 SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",19,23)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Sum'",24,25)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mywork()",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mywork",26,26)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",27,29)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblSum ) , Caption : ''",30,31)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",32,36)

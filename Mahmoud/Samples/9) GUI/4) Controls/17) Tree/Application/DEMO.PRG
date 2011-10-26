@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 16:05:34    Date : 09/26/2008
+* Time : 00:53:15    Date : 10/22/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RQYAPN1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RQYAPN1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 500 ;
@@ -70,6 +73,7 @@ FOR x = 0 TO 10 STEP 1
 win1.tree1.AddItem ( "wow",x )
 Next
 ACTIVATE WINDOW win1
+EndIF
 
 
 
@@ -77,21 +81,16 @@ End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,9)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Tree ( tree1 )",10,11)
-SS_ESASTEP("Circuits\Main\Main\Main","Tree Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Tree Properties",12,19)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",20,21)
-SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 0 To 10 Step 1)",22,22)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.tree1.AddItem ( 'wow',x )",23,23)
-SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",25,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Window Title'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Tree ( tree1 )",11,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Tree Properties",13,20)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",21,22)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 0 To 10 Step 1)",23,23)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.tree1.AddItem ( 'wow',x )",24,24)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
 Return
 *-------------------------------------------------------------------*

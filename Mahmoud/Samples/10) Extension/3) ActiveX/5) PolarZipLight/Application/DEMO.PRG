@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:21:32    Date : 10/13/2011
+* Time : 04:14:15    Date : 10/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -78,7 +78,7 @@ FONTCOLOR {0,0,0}
 CAPTION "Do the operation";
 ON CLICK mywork()  ;
 WIDTH 200 HEIGHT 30 ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 TOOLTIP ""
 Public oActiveX
 oActiveX := TActiveX():New( "Win1", "PolarZIPLight.ZIPLight.5" , 10 , 10 , 1 , 1)

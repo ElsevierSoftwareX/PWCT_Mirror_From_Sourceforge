@@ -1,19 +1,18 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function MYLIB
 *---------------------------------------------------------------------------*
-* Time : 22:13:26    Date : 12/14/2008
+* Time : 02:36:12    Date : 10/22/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.1 (Magic)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function MYLIB
 Public True,False 
 True = .T. 
 False = .F. 
@@ -25,19 +24,19 @@ False = .F.
 					Resistance Main                          
 	VetoUnit :
 
-Resistance RUZSLC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_MYLIB_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RUZSLC1() code
+Resistance R_MYLIB_18smart1() code
 Proc myfunc
 ? "The First Line "
 ? "The Second Line "
 WAIT "Press any key to continue"
-Return Nil
 
 
 End Of Resistance
 
+*-------------------------------------------------------------------*

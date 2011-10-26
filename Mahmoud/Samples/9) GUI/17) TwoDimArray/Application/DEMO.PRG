@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 13:52:21    Date : 12/17/2008
+* Time : 21:02:41    Date : 10/21/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RUZSLC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,14 +46,15 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RUZSLC1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 553 ;
 HEIGHT 301 ;
 ON INIT mywork()  ;
 ICON "PWCTICON" ;
-TITLE "Two Dimension Array (10,10)" ;
+TITLE "Two Dimensional Array (10,10)" ;
 MAIN ;
 BACKCOLOR {236,233,216} 
 
@@ -60,13 +63,14 @@ WIDTH 530 ;
 HEIGHT 240 ;
 HEADERS {"1","2","3","4","5","6","7","8","9","10"};
 WIDTHS {50,50,50,50,50,50,50,50,50,50} ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 EDIT INPLACE {} ;
 FONTCOLOR {0,0,0}
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 Proc mywork
 myarray := {}
@@ -82,44 +86,34 @@ myarray[x][y] := cx+","+cy
 Next
 win1.grid1.AddItem ( myarray[x] )
 Next
-Return Nil
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",5,5)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 )",11,11)
-SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Properties",12,19)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",20,21)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",22,23)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Declare Array myarray",25,25)
-SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 10 Step 1)",26,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item {} To Array myarray",27,27)
-SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From y = 1 To 10 Step 1)",28,28)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Add item '' To Array myarray[x]",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","cx = CONVERT x TO STRING",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","cy = CONVERT y TO STRING",31,31)
-SS_ESASTEP("Circuits\Main\Main\Main","cx = All Trim cx",32,32)
-SS_ESASTEP("Circuits\Main\Main\Main","cy = All Trim cy",33,33)
-SS_ESASTEP("Circuits\Main\Main\Main","myarray[x][y] = cx+','+cy",34,34)
-SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",35,35)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.grid1.AddItem ( myarray[x] )",36,36)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Two Dimensional Array (10,10)'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action mywork",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 ) , HEADERS : {'1','2','3','4','5','6','7','8','9','10'}",12,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",13,20)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",21,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",23,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Declare Array myarray",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To 10 Step 1)",28,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item {} To Array myarray",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From y = 1 To 10 Step 1)",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Add item '' To Array myarray[x]",31,31)
+SS_ESASTEP("Circuits\Main\Main\Main","cx = CONVERT x TO STRING",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","cy = CONVERT y TO STRING",33,33)
+SS_ESASTEP("Circuits\Main\Main\Main","cx = All Trim cx",34,34)
+SS_ESASTEP("Circuits\Main\Main\Main","cy = All Trim cy",35,35)
+SS_ESASTEP("Circuits\Main\Main\Main","myarray[x][y] = cx+','+cy",36,36)
 SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.grid1.AddItem ( myarray[x] )",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",39,39)
 Return
 *-------------------------------------------------------------------*

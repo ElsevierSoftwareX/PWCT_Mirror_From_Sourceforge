@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:30:40    Date : 10/13/2011
+* Time : 04:43:24    Date : 10/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -57,13 +57,14 @@ TITLE "Crystal Reports 10 Sample" ;
 MAIN ;
 BACKCOLOR {236,233,216} 
 
+Public oActiveX
 oActiveX := TActiveX():New( "Win1", "CrystalReports10.ActiveXReportViewer.1" , 10 , 10 , 726 , 364)
 oActiveX:Load()
 @ 390 ,225 BUTTONEX btn1;
 CAPTION "View Report";
 ON CLICK mywork()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
 
@@ -78,6 +79,7 @@ myreport := TOLEAUTO():NEW( "CrystalDesignRuntime.Report" )
 myreport := myobj:openreport ( "Report1.rpt" )
 oactivex:OOLE:reportsource := myreport
 oactivex:OOLE:viewreport ( )
+Return Nil
 
 
 End Of Resistance
@@ -88,19 +90,20 @@ SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Crystal Reports 10 Sample'",1,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",11,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'View Report'",13,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mywork()",15,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",16,18)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",19,20)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",21,21)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",22,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork",25,25)
-SS_ESASTEP("Circuits\Main\Main\Main","Public myobj,myreport",26,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Create OLE Object myobj of Type 'CrystalDesignRuntime.Application'",27,27)
-SS_ESASTEP("Circuits\Main\Main\Main","Create OLE Object myreport of Type 'CrystalDesignRuntime.Report'",28,28)
-SS_ESASTEP("Circuits\Main\Main\Main","myreport = myobj.openreport ( 'Report1.rpt' )",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.reportsource := myreport",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.viewreport ( )",31,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",11,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'View Report'",14,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mywork()",16,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",17,19)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",20,21)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",22,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",23,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywork",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Public myobj,myreport",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Create OLE Object myobj of Type 'CrystalDesignRuntime.Application'",28,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Create OLE Object myreport of Type 'CrystalDesignRuntime.Report'",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","myreport = myobj.openreport ( 'Report1.rpt' )",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.reportsource := myreport",31,31)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.viewreport ( )",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",33,33)
 Return
 *-------------------------------------------------------------------*

@@ -1,19 +1,21 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 15:14:07    Date : 11/09/2008
+* Time : 20:23:42    Date : 10/21/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.0 (Final)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
 New Server Server1 Type Slave Server Eigen Value 000
  Details :
 	DataUnit :
@@ -29,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RNQEIC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -44,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RNQEIC1() code
+Resistance R_DEMO_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 343 ;
@@ -56,11 +59,14 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 BACKCOLOR {236,233,216} 
 
+@ -5 ,0 IMAGE image1;
+PICTURE "back.jpg";
+STRETCH ;
+WIDTH 360 HEIGHT 190
 @ 62 ,26 LABEL lbl1 ;
 VALUE "1234567890" ;
 WIDTH 281 ;
-HEIGHT 43 ;
-AUTOSIZE ;
+HEIGHT 33 ;
 FONT "3 of 9 Barcode" SIZE 36  ;
 BACKCOLOR {236,233,216} ;
 FONTCOLOR {0,0,0}
@@ -68,12 +74,15 @@ FONTCOLOR {0,0,0}
 ON CHANGE mychange()  ;
 HEIGHT 30 ;
 WIDTH 200 ;
-FONT "Arial" SIZE 9 ;
-NUMERIC ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} ;
+NUMERIC 
+
 @ 121 ,116 BUTTONEX btn1;
 CAPTION "Print";
+FONTCOLOR {0,0,0};
+BACKCOLOR {236,233,216};
 ON CLICK myprint()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
@@ -82,6 +91,7 @@ END WINDOW
 
 win1.text1.Value := 1234567890
 ACTIVATE WINDOW win1
+EndIF
 
 Proc mychange
 myvalue := win1.text1.Value
@@ -93,6 +103,7 @@ Proc myprint
 #include "winprint.ch"
 init printsys
 select by dialog Preview
+GET SELECTED PRINTER TO vPrinter
 Set Units MM
 Start Doc
 Set Orientation PORTRAIT
@@ -115,59 +126,47 @@ CHANGE font "pagefont" name "arial" size 72 width 36
 End Page
 End Doc
 release printsys
-Return Nil
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_DEMO
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",47)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,11)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",12,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",14,19)
-SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",20,20)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CHANGE",21,21)
-SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",22,27)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",28,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",31,33)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",34,35)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text1.Value := 1234567890",36,36)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",37,38)
-SS_ESASTEP("Circuits\Main\Main\Main","procedures",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mychange",39,39)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","myvalue = win1.text1.Value",40,40)
-SS_ESASTEP("Circuits\Main\Main\Main","myvalue = CONVERT myvalue TO STRING",41,41)
-SS_ESASTEP("Circuits\Main\Main\Main","myvalue = All Trim myvalue",42,42)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.lbl1.Value := myvalue",43,43)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",44,44)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myprint",45,45)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Init Print System",46,47)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Select Printer by Dialog , Preview",48,48)
-SS_ESASTEP("Circuits\Main\Main\Main","Set Units (MM)",49,49)
-SS_ESASTEP("Circuits\Main\Main\Main","Start Document",50,50)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Set Page Orientation (PORTRAIT)",51,51)
-SS_ESASTEP("Circuits\Main\Main\Main","Start Page",52,58)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","myvalue = win1.lbl1.Value",59,59)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Text myvalue , Y(50), X(10) , Font('3 of 9 Barcode',72,36) , Color ({0,0,0}) to Print",60,63)
-SS_ESASTEP("Circuits\Main\Main\Main","Draw Text myvalue , Y(70), X(10) , Font('arial',72,36) , Color ({0,0,0}) to Print",64,67)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Page",68,68)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Document",69,69)
-SS_ESASTEP("Circuits\Main\Main\Main","Release Print System",70,70)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",71,71)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Barcode Font'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image1 ) , Image : 'back.jpg'",13,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",15,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : '1234567890'",17,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",24,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CHANGE : Action mychange",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",26,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Print'",33,36)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myprint",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",38,40)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",41,42)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.text1.Value := 1234567890",43,43)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",44,46)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mychange",47,47)
+SS_ESASTEP("Circuits\Main\Main\Main","myvalue = win1.text1.Value",48,48)
+SS_ESASTEP("Circuits\Main\Main\Main","myvalue = CONVERT myvalue TO STRING",49,49)
+SS_ESASTEP("Circuits\Main\Main\Main","myvalue = All Trim myvalue",50,50)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.lbl1.Value := myvalue",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",52,52)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myprint",53,53)
+SS_ESASTEP("Circuits\Main\Main\Main","Init Print System",54,55)
+SS_ESASTEP("Circuits\Main\Main\Main","vPrinter = Select Printer by Dialog , Preview",56,57)
+SS_ESASTEP("Circuits\Main\Main\Main","Set Units (MM)",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","Start Document",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","Set Page Orientation (PORTRAIT)",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","Start Page",61,67)
+SS_ESASTEP("Circuits\Main\Main\Main","myvalue = win1.lbl1.Value",68,68)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Text myvalue , Y(50), X(10) , Font('3 of 9 Barcode',72,36) , Color ({0,0,0}) to Print",69,72)
+SS_ESASTEP("Circuits\Main\Main\Main","Draw Text myvalue , Y(70), X(10) , Font('arial',72,36) , Color ({0,0,0}) to Print",73,76)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Page",77,77)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Document",78,78)
+SS_ESASTEP("Circuits\Main\Main\Main","Release Print System",79,79)
 Return
 *-------------------------------------------------------------------*

@@ -1,20 +1,18 @@
+*---------------------------------------------------------------------------*
+* Time : 12:20:15    Date : 10/22/2011
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Visual Programming Language : HarbourPWCT 
+*---------------------------------------------------------------------------*
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
 Function Main
-*---------------------------------------------------------------------------*
-* Time : 01:42:43    Date : 07/31/2009
-*---------------------------------------------------------------------------*
-* Programming without coding technology 1.3 (Golden) [2006-2009]  
-* URL : http://www.sourceforge.net/projects/doublesvsoop   
-*---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
-*---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
-*---------------------------------------------------------------------------*
 Public True,False 
 True = .T. 
 False = .F. 
@@ -33,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R8555908324_1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_AMINE_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -48,7 +46,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R8555908324_1() code
+Resistance R_AMINE_18smart1() code
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 592 ;
@@ -253,49 +251,37 @@ End Of Resistance
 
 INIT PROCEDURE Init_AMINE
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",5,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Browse ( browse1 )",14,25)
-SS_ESASTEP("Circuits\Main\Main\Main","Browse Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Browse Properties",26,28)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnadd )",29,30)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",31,31)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",32,34)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btndel )",35,36)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",37,37)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",38,40)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",41,42)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",43,43)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",44,46)
 SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",47,49)
 SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX2 )",50,52)
 SS_ESASTEP("Circuits\Main\Main\Main","START OF MAIN MENU",53,53)
-SS_ESASTEP("Circuits\Main\Main\Main","MENU POPUPS",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP '„·›'",54,54)
-SS_ESASTEP("Circuits\Main\Main\Main","POPUP ITEMS",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Œ—ÊÃ' )",55,55)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",56,56)
 SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP '„⁄·Ê„« '",57,57)
-SS_ESASTEP("Circuits\Main\Main\Main","POPUP ITEMS",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'ÕÊ· «·»—‰«„Ã' )",58,58)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'ÕÊ· «·„»—„Ã' )",59,59)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",60,60)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF MAIN MENU",61,61)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( mybtn )",62,63)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",64,64)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",65,67)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",68,69)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",70,74)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",75,76)
 SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",77,78)
@@ -306,14 +292,10 @@ SS_ESASTEP("Circuits\Main\Main\Main","oactivex2.glass := .t.",82,82)
 SS_ESASTEP("Circuits\Main\Main\Main","oactivex2.autosize := .f.",83,83)
 SS_ESASTEP("Circuits\Main\Main\Main","Right-To-Left, Window 'Win1'",84,86)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",87,88)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure opendb",89,89)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File 'am.dbf'",90,90)
 SS_ESASTEP("Circuits\Main\Main\Main","IF ( checkfile = false )",91,91)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Table 'am'",92,92)
-SS_ESASTEP("Circuits\Main\Main\Main","Table Fields",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Field 'name'",93,97)
 SS_ESASTEP("Circuits\Main\Main\Main","Field 'address'",98,102)
 SS_ESASTEP("Circuits\Main\Main\Main","Field 'phone'",103,107)
@@ -324,7 +306,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",120,120)
 SS_ESASTEP("Circuits\Main\Main\Main","Open Table am",121,121)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",122,122)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myadd",123,123)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Select Area am",124,124)
 SS_ESASTEP("Circuits\Main\Main\Main","Add New Record",125,125)
 SS_ESASTEP("Circuits\Main\Main\Main","myrec = Get Record Number",126,126)
@@ -332,7 +313,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","win1.browse1.Value := myrec",127,127)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.browse1.SetFocus ( )",128,128)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",129,129)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mydel",130,130)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Select Area am",131,131)
 SS_ESASTEP("Circuits\Main\Main\Main","myrec = win1.browse1.Value",132,132)
 SS_ESASTEP("Circuits\Main\Main\Main","Goto Record Number myrec",133,133)
@@ -343,39 +323,28 @@ SS_ESASTEP("Circuits\Main\Main\Main","win1.browse1.Value := myrec",137,137)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.browse1.Refresh ( )",138,138)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",139,139)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myexit",140,140)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",141,141)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",142,142)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywin",143,143)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( mywin1 )",144,147)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",148,152)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( mybtn2 )",153,154)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",155,155)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",156,158)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image1 )",159,160)
-SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Properties",161,161)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( mylbl1 )",162,163)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",164,168)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( mylbl2 )",169,170)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",171,175)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( mylbl3 )",176,177)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",178,182)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl5 )",183,184)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",185,189)
 SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",190,191)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",192,193)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",194,194)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mytimer",195,195)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
 SS_ESASTEP("Circuits\Main\Main\Main","thetime = System Time",196,196)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.lbl1.Value := thetime",197,197)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",198,198)

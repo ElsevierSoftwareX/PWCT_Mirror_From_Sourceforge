@@ -1,19 +1,18 @@
-#include "SSXHB.ch"
-#include "MiniGUI.ch"
-Function Main
 *---------------------------------------------------------------------------*
-* Time : 19:23:57    Date : 05/03/2009
+* Time : 16:08:28    Date : 10/22/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.1 (Magic)   
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
 Public True,False 
 True = .T. 
 False = .F. 
@@ -32,7 +31,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance RUZSLC1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_TEST2_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -47,7 +46,8 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance RUZSLC1() code
+Resistance R_TEST2_18smart1() code
+if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 500 ;
@@ -61,6 +61,7 @@ BACKCOLOR {236,233,216}
 END WINDOW
 
 ACTIVATE WINDOW win1
+EndIF
 
 calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20,;
 NUMOR(calldll32("GetWindowLong","USER32.DLL", GetFormHandle ("Win1"),-20),0x800000))
@@ -70,9 +71,11 @@ calldll32("SetLayeredWindowAttributes","USER32.DLL",GetFormHandle ("Win1"), 0, 1
 
 
 Proc mystart
-calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20,;
-NUMOR(calldll32("GetWindowLong","USER32.DLL", GetFormHandle ("Win1"),-20),0x80000))
-calldll32("SetLayeredWindowAttributes","USER32.DLL",GetFormHandle ("Win1"), 0, 150, 2)
+myhandle := GetFormHandle("win1")
+p1 = CALLDLL32("GetWindowLong","USER32.DLL",myhandle,-20)
+p1 = NUMOR (p1 , 0x80000)
+p1 = CALLDLL32("SetWindowLong","USER32.DLL",myhandle,-20,p1)
+p2 = CALLDLL32("SetLayeredWindowAttributes","USER32.DLL",myhandle,0,150,2)
 Return Nil
 
 
@@ -80,20 +83,20 @@ End Of Resistance
 
 INIT PROCEDURE Init_TEST2
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",50)
+SS_ESARES("Circuits\Main\Main\Main",49)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",5,5)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",11,12)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",13,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Procedures",15,21)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart",22,22)
-SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
-SS_ESASTEP("Circuits\Main\Main\Main","Transparent",23,25)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Window Title'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action mystart",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",12,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Procedures",17,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart",24,24)
+SS_ESASTEP("Circuits\Main\Main\Main","myhandle = Get Window ('win1') Handle",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","p1 = Call DLL 'USER32.DLL' , Function 'GetWindowLong' , Parameters myhandle,-20",26,26)
+SS_ESASTEP("Circuits\Main\Main\Main","p1 = p1 OR 0x80000",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","p1 = Call DLL 'USER32.DLL' , Function 'SetWindowLong' , Parameters myhandle,-20,p1",28,28)
+SS_ESASTEP("Circuits\Main\Main\Main","p2 = Call DLL 'USER32.DLL' , Function 'SetLayeredWindowAttributes' , Parameters myhandle,0,150,2",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",30,30)
 Return
 *-------------------------------------------------------------------*

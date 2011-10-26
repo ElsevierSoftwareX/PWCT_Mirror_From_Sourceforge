@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 20:25:27    Date : 10/13/2011
+* Time : 03:13:25    Date : 10/21/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -64,7 +64,7 @@ WIDTH 300 ;
 HEIGHT 300 ;
 HEADERS {"Name","Address","Phone"};
 WIDTHS {100,100,100} ;
-FONT "Arial" SIZE 9 ;
+FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 EDIT INPLACE {} ;
 FONTCOLOR {0,0,0}
@@ -171,6 +171,7 @@ ENDIF
 Return Nil
 Proc myexit
 win1.Release ( )
+Return Nil
 
 
 End Of Resistance
@@ -271,5 +272,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",121,121)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",122,122)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myexit",123,123)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",124,124)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",125,125)
 Return
 *-------------------------------------------------------------------*
