@@ -1,0 +1,143 @@
+*---------------------------------------------------------------------------*
+* Time : 15:45:02    Date : 10/26/2011
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.7 (Sharp) [2006-2010]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Programming Language    : Mahmoud Programming Language 
+* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
+* Programming Paradigm    : DoubleS (Super Server)
+*---------------------------------------------------------------------------*
+* Compilers               : Borland C/C++ & Harbour/xHarbour
+* GUI Framework           : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function Main
+Public True,False 
+True = .T. 
+False = .F. 
+New Server Server1 Type Slave Server Eigen Value 000
+ Details :
+ * (Noun) *
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance Main                          
+	VetoUnit :
+End Of Server 
+
+	Resistance WIN32EVENTS() Address Code Unit : WIN32EVENTS
+
+  ADD RESISTANCE WIN32EVENTS 
+
+
+Resistance R_NUMBERS_15speed1() address Code Unit : Circuits\Main\Main\Main
+
+
+CALL RESISTANCE Circuits\Main\Main\Main
+Return 
+
+  FUNCTION STARTSERVER()
+   	Server FireON
+  RETURN
+
+  RESISTANCE WIN32EVENTS() CODE
+	   DO EVENTS
+  RETURN
+
+* Resistance Code Unit : Circuits\Main\Main\Main
+Resistance R_NUMBERS_15speed1() code
+if !iswindowdefined( win1 )
+DEFINE WINDOW win1 ;
+AT 10 ,10 ;
+WIDTH 500 ;
+HEIGHT 400 ;
+ICON "PWCTICON" ;
+TITLE "ÊÍÏíÏ ÃßÈÑ ÑÞã" ;
+MAIN ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+BACKCOLOR {128,128,255} 
+
+@ 48 ,339 LABEL lbl1 ;
+VALUE "ÇáÑÞã" ;
+WIDTH 47 ;
+HEIGHT 29 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+TRANSPARENT ;
+CENTERALIGN ;
+FONTCOLOR {0,64,0}
+@ 47 ,127 TEXTBOX text1;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,64,0} ;
+NUMERIC 
+
+@ 93 ,127 LISTBOX list1;
+WIDTH 200 ;
+HEIGHT 200 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,64,0}
+@ 48 ,10 BUTTONEX btnadd;
+CAPTION "ÇÖÇÝÉ";
+ON CLICK myadd()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "arial" SIZE 14 ;
+TOOLTIP ""
+@ 311 ,170 BUTTONEX btnmax;
+CAPTION "ÊÍÏíÏ ÃßÈÑ ÑÞã";
+ON CLICK mymax()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+END WINDOW
+
+calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20,;
+NUMOR(calldll32("GetWindowLong","USER32.DLL",;
+GetFormHandle ("Win1"), -20),0x400000,0x100000))
+ACTIVATE WINDOW win1
+EndIF
+
+Proc myadd()
+mytext := win1.text1.Value
+mytext = STR ( mytext )
+win1.list1.AddItem ( mytext )
+Return Nil
+Proc mymax
+mycount := win1.list1.ItemCount
+IF mycount=0
+MyOut := MSGBOX("ÇáÞÇÆãÉ ÊÎáæ ãä ÇáÃÚÏÇÏ","ÚÝæÇ")
+Return 0
+ENDIF
+mymax := win1.list1.item(1)
+IF mycount=1
+MyOut := MSGBOX(mymax,"ÃßÈÑ ÑÞã")
+Return 0
+ENDIF
+mymax = VAL ( mymax )
+FOR x = 2 TO mycount STEP 1
+myitem := win1.list1.item(x)
+myitem = VAL ( myitem )
+IF myitem > mymax
+mymax := myitem
+ENDIF
+Next
+mymax = STR ( mymax )
+MyOut := MSGBOX(mymax,"ÃßÈÑ ÑÞã")
+Return Nil
+
+
+End Of Resistance
+
+INIT PROCEDURE Init_NUMBERS
+START DOUBLES
+Return
+*-------------------------------------------------------------------*
