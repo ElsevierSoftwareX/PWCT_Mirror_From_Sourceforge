@@ -1,0 +1,1 @@
+CALL sscom2.bat  "SIMPLE WINDOW"  /X /l calldll  > _temp.txt
