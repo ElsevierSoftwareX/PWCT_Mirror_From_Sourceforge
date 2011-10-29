@@ -1,0 +1,1 @@
+CALL sscom2.bat  "MY_FIRST_STEP"  /X /l calldll  > _temp.txt
