@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:52:36    Date : 10/14/2011
+* Time : 08:11:39    Date : 10/30/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -78,16 +78,15 @@ FONTCOLOR {0,0,0}
 CAPTION "Close Window";
 ON CLICK myclose()  ;
 WIDTH 160 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
 ACTIVATE WINDOW win1
 EndIF
 
-Proc MyClose
+procedure myclose()
 win1.Release ( )
-Return Nil
 
 
 End Of Resistance
@@ -101,12 +100,11 @@ SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Welcome to PWCT'",11,12)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",13,17)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Close Window'",18,19)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose()",20,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",20,20)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",21,23)
 SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure MyClose",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
 Return
 *-------------------------------------------------------------------*
