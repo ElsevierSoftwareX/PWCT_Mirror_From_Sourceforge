@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:51:49    Date : 10/01/2011
+* Time : 00:17:50    Date : 11/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -61,17 +61,14 @@ myopproc = STRTRAN(myopproc,"«· ﬂ»Ì—","maximize")
 myopproc = STRTRAN(myopproc,"«· ’€Ì—","minimize")
 myopproc = STRTRAN(myopproc,"«·«‰Â«¡","release")
 myopproc = STRTRAN(myopproc,"«·≈‰Â«¡","release")
-ENDIF
-IF myOperations[R][3] = -1001
+ELSEIF myOperations[R][3] = -1001
 stacklen  = LEN(myopprocstack)
 myopproc := myopprocstack[stacklen]
 ADEL( myopprocstack , stacklen)
 ASIZE( myopprocstack , LEN( myopprocstack ) - 1 )
-ENDIF
-IF myOperations[R][3] = -1003
+ELSEIF myOperations[R][3] = -1003
 AADD( FilesList , mydata[1])
-ENDIF
-IF myOperations[R][3] = 3050
+ELSEIF myOperations[R][3] = 3050
 RT_LoopVars := RT_LoopVars + 1
 mytemparr := {}
 AADD( mytemparr , alltrim("sn_loopvar"+alltrim(str(RT_LoopVars))+"true"))
@@ -81,8 +78,7 @@ AADD( myopprocstack , myopproc)
 myopproc := alltrim("sn_loopvar"+alltrim(str(RT_LoopVars))+"true")
 AADD( RT_LoopCondition , mydata[1])
 AADD( RT_ActiveLoops , RT_LoopVars)
-ENDIF
-IF myOperations[R][3] = 3051
+ELSEIF myOperations[R][3] = 3051
 mytemparr := {}
 AADD( mytemparr , alltrim("[sn_loopvar"+alltrim(str(RT_ActiveLoops[len(RT_ActiveLoops)]))+"]"))
 AADD( mytemparr , RT_LoopCondition[len(RT_LoopCondition)])
@@ -97,8 +93,7 @@ ASIZE( myopprocstack , LEN( myopprocstack ) - 1 )
 stacklen  = LEN(RT_ActiveLoops)
 ADEL( RT_ActiveLoops , stacklen)
 ASIZE( RT_ActiveLoops , LEN( RT_ActiveLoops ) - 1 )
-ENDIF
-IF myOperations[R][3] = 3060
+ELSEIF myOperations[R][3] = 3060
 RT_LoopVars := RT_LoopVars + 1
 mytemparr := {}
 AADD( mytemparr , alltrim("sn_loopvar"+alltrim(str(RT_LoopVars))+"true"))
@@ -108,8 +103,7 @@ AADD( myopprocstack , myopproc)
 myopproc := alltrim("sn_loopvar"+alltrim(str(RT_LoopVars))+"true")
 AADD( RT_LoopCondition , mydata[1])
 AADD( RT_ActiveLoops , RT_LoopVars)
-ENDIF
-IF myOperations[R][3] = 3061
+ELSEIF myOperations[R][3] = 3061
 mytemparr := {}
 AADD( mytemparr , alltrim("[sn_loopvar"+alltrim(str(RT_ActiveLoops[len(RT_ActiveLoops)]))+"]"))
 AADD( mytemparr , RT_LoopCondition[len(RT_LoopCondition)])
@@ -202,23 +196,17 @@ lopcode = VAL ( lopcode )
 IF lopcode = 1
 AADD( myexecutable , {0,{},"","","",""})
 mylast := mylast + 1
-ENDIF
-IF lopcode = 2
+ELSEIF lopcode = 2
 myexecutable[mylast][1] := val(lopdata)
-ENDIF
-IF lopcode = 3
+ELSEIF lopcode = 3
 myexecutable[mylast][3] := alltrim(lopdata)
-ENDIF
-IF lopcode = 4
+ELSEIF lopcode = 4
 myexecutable[mylast][4] := val(lopdata)
-ENDIF
-IF lopcode = 5
+ELSEIF lopcode = 5
 myexecutable[mylast][5] := alltrim(lopdata)
-ENDIF
-IF lopcode = 6
+ELSEIF lopcode = 6
 myexecutable[mylast][6] := val(lopdata)
-ENDIF
-IF lopcode = 7
+ELSEIF lopcode = 7
 lopdata = RTRIM ( lopdata )
 Mytag = Right(lopdata,2)
 IF mytag = "\n"

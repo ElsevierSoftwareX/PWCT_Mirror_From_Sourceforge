@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 12:08:29    Date : 05/15/2010
+* Time : 22:34:46    Date : 11/04/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -28,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Syntax                        
 	VetoUnit :
 
-Resistance R_SYNTAX_15speed1() address Code Unit : Circuits\Main\Main\Syntax
+Resistance R_SYNTAX_18smart1() address Code Unit : Circuits\Main\Main\Syntax
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Syntax
-Resistance R_SYNTAX_15speed1() code
+Resistance R_SYNTAX_18smart1() code
 Proc mySyntax
 Local stackbackup
 stackbackup := mystack
@@ -57,8 +55,7 @@ myRealStack := ""
 GoodRes := True
 IF myTokens[T][3] = 1
 GOTRANSFORM1 := True
-ENDIF
-IF myTokens[T][3] = 2
+ELSEIF myTokens[T][3] = 2
 GOTRANSFORM2 := True
 ENDIF
 Exit
@@ -73,7 +70,8 @@ ENDIF
 Next
 IF mySwitches[6][2] = True .and. GOODRES = False
 vdone := false
-IF vdone = false .and. mydataflag = false .and. mychar = "."
+IF vdone = false .and. mydataflag = false
+IF mychar = "."
 GOODRES := True
 GoTransform1 := True
 myRule := myRule + "D"
@@ -83,16 +81,14 @@ AADD( mydata , mydatavar)
 myRealStack := ""
 myStack := ""
 vdone := True
-ENDIF
-IF vdone = false .and. mydataflag = false .and. mychar = '"'
+ELSEIF mychar = '"'
 mylen  = LEN(mystack)
 mystack = SUBSTR(mystack,1,mylen-1)
 mydataflag := True
 mydatachar := '"'
 vdone := true
 myRealStack := ""
-ENDIF
-IF vdone = false .and. mydataflag = false .and. mychar = "'"
+ELSEIF mychar = "'"
 mylen  = LEN(mystack)
 mystack = SUBSTR(mystack,1,mylen-1)
 mydataflag := True
@@ -100,7 +96,7 @@ mydatachar := "'"
 vdone := true
 myRealStack := ""
 ENDIF
-IF vdone = false .and. mydataflag = true .and. mychar = mydatachar
+ELSEIF vdone = false .and. mydataflag = true .and. mychar = mydatachar
 MyRule := MyRule + "D"
 MyLen  = LEN(MyRealStack)
 myDataVar = SUBSTR(myRealStack,1,mylen-1)
@@ -195,23 +191,19 @@ IF myrule = "SDI"
 myfetchopstart := rulesmap[1][2]
 myfetchopend := rulesmap[1][3]
 mygogen := true
-ENDIF
-IF myrule = "SDVD"
+ELSEIF myrule = "SDVD"
 myfetchopstart := rulesmap[2][2]
 myfetchopend := rulesmap[2][3]
 mygogen := true
-ENDIF
-IF myrule = "SCAVD"
+ELSEIF myrule = "SCAVD"
 myfetchopstart := rulesmap[3][2]
 myfetchopend := rulesmap[3][3]
 mygogen := true
-ENDIF
-IF myrule = "SPVC"
+ELSEIF myrule = "SPVC"
 myfetchopstart := rulesmap[4][2]
 myfetchopend := rulesmap[4][3]
 mygogen := true
-ENDIF
-IF myrule = "SI"
+ELSEIF myrule = "SI"
 myfetchopstart := rulesmap[5][2]
 myfetchopend := rulesmap[5][3]
 mygogen := true
@@ -233,72 +225,63 @@ mySwitches[3][2] := True
 mySwitches[4][2] := False
 mySwitches[5][2] := True
 mySwitches[6][2] := True
-ENDIF
-IF myOut = "P"
+ELSEIF myOut = "P"
 mySwitches[1][2] := False
 mySwitches[2][2] := True
 mySwitches[3][2] := False
 mySwitches[4][2] := False
 mySwitches[5][2] := False
 mySwitches[6][2] := True
-ENDIF
-IF myOut = "V"
+ELSEIF myOut = "V"
 mySwitches[1][2] := False
 mySwitches[2][2] := False
 mySwitches[3][2] := True
 mySwitches[4][2] := False
 mySwitches[5][2] := False
 mySwitches[6][2] := True
-ENDIF
-IF myOut = "C"
+ELSEIF myOut = "C"
 mySwitches[1][2] := False
 mySwitches[2][2] := False
 mySwitches[3][2] := False
 mySwitches[4][2] := True
 mySwitches[5][2] := False
 mySwitches[6][2] := False
-ENDIF
-IF myOut = "A"
+ELSEIF myOut = "A"
 mySwitches[1][2] := False
 mySwitches[2][2] := True
 mySwitches[3][2] := False
 mySwitches[4][2] := False
 mySwitches[5][2] := False
 mySwitches[6][2] := False
-ENDIF
-IF myOut = "D"
+ELSEIF myOut = "D"
 mySwitches[1][2] := False
 mySwitches[2][2] := True
 mySwitches[3][2] := False
 mySwitches[4][2] := False
 mySwitches[5][2] := True
 mySwitches[6][2] := False
-ENDIF
-IF myOut = "W" .or. myOut = "F" .or. myOut = "U" .or. myOut = "T" .or. myOut = "L"
+ELSEIF myOut = "W" .or. myOut = "F" .or. myOut = "U" .or. myOut = "T" .or. myOut = "L"
 mySwitches[1][2] := False
 mySwitches[2][2] := False
 mySwitches[3][2] := False
 mySwitches[4][2] := False
 mySwitches[5][2] := False
 mySwitches[6][2] := True
-ENDIF
-IF myOut = "PV"
+ELSEIF myOut = "PV"
 mySwitches[1][2] := False
 mySwitches[2][2] := False
 mySwitches[3][2] := True
 mySwitches[4][2] := False
 mySwitches[5][2] := False
 mySwitches[6][2] := False
-ENDIF
-IF myOut = "DV"
+ELSEIF myOut = "DV"
 mySwitches[1][2] := False
 mySwitches[2][2] := False
 mySwitches[3][2] := False
 mySwitches[4][2] := False
 mySwitches[5][2] := False
 mySwitches[6][2] := True
-ENDIF
-IF myOut = "CAV"
+ELSEIF myOut = "CAV"
 mySwitches[1][2] := False
 mySwitches[2][2] := False
 mySwitches[3][2] := False
@@ -314,7 +297,6 @@ mySwitches[4][2] := False
 mySwitches[5][2] := False
 mySwitches[6][2] := True
 ENDIF
-Return Nil
 
 
 End Of Resistance
