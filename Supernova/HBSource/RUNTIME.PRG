@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:42:34    Date : 10/01/2011
+* Time : 10:45:17    Date : 11/05/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -68,8 +68,7 @@ DO myRuntimeUrgent
 DO myRuntime
 myactiveproc := myoldproc
 Loop
-ENDIF
-IF myOpcode = -1002 .and. myactiveproc == myopdata[1]
+ELSEIF myOpcode = -1002 .and. myactiveproc == myopdata[1]
 RT_LoopSwitch := True
 ENDIF
 IF RT_LoopSwitch = True
@@ -79,14 +78,11 @@ Loop
 ENDIF
 IF myopcode > 0 .and. myopcode < 2000
 DO RT_GUI
-ENDIF
-IF myopcode >= 2000 .and. myopcode < 3000
+ELSEIF myopcode >= 2000 .and. myopcode < 3000
 DO RT_Data
-ENDIF
-IF myopcode >= 3000 .and. myopcode < 4000
+ELSEIF myopcode >= 3000 .and. myopcode < 4000
 DO RT_ControlStructure
-ENDIF
-IF myopcode >= 4000 .and. myopcode < 5000
+ELSEIF myopcode >= 4000 .and. myopcode < 5000
 DO RT_GeneralIns
 ENDIF
 IF programcounter < m
