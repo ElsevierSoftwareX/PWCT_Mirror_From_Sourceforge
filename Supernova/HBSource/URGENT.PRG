@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 08:13:00    Date : 05/10/2010
+* Time : 14:30:49    Date : 11/05/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -28,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance RT_Urgent                     
 	VetoUnit :
 
-Resistance R_URGENT_15speed1() address Code Unit : Circuits\Main\Main\RT_Urgent
+Resistance R_URGENT_18smart1() address Code Unit : Circuits\Main\Main\RT_Urgent
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\RT_Urgent
-Resistance R_URGENT_15speed1() code
+Resistance R_URGENT_18smart1() code
 Proc RT_Urgent
 IF myopcode = 1
 ObjsCount := ObjsCount+1
@@ -42,37 +40,28 @@ cobjscount = STR ( Objscount )
 cobjscount = ALLTRIM ( cobjscount )
 cwinname := "win_"+cobjscount
 MyOpWinName := cwinname
-Return 0
-ENDIF
-IF (myopcode >= 700 .and. myopcode <=712) .or. (myopcode >= 750 .and. myopcode <=755 )
+ELSEIF (myopcode >= 700 .and. myopcode <=712) .or. (myopcode >= 750 .and. myopcode <=755 )
 IF myopwinname = "NULL"
 DO RTE_AddError WITH 11
 DO RTE_Check
 ENDIF
-ENDIF
-IF myopcode = 700
+ELSEIF myopcode = 700
 AADD( RT_GUI_Statusbar , {myopwinname,"arial",10,false,false,false,false,{}})
-Return 0
-ENDIF
-IF myopcode = 701
+ELSEIF myopcode = 701
 mylast  = LEN(RT_GUI_Statusbar)
 IF mylast = 0
 DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Statusbar[mylast][2] := myopdata[1]
-Return 0
-ENDIF
-IF myopcode = 702
+ELSEIF myopcode = 702
 mylast  = LEN(RT_GUI_Statusbar)
 IF mylast = 0
 DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Statusbar[mylast][3] := myopdata[1]
-Return 0
-ENDIF
-IF myopcode = 703
+ELSEIF myopcode = 703
 mylast  = LEN(RT_GUI_Statusbar)
 avalue := myopdata[1]
 avalue := &avalue
@@ -81,9 +70,7 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Statusbar[mylast][4] := avalue
-Return 0
-ENDIF
-IF myopcode = 704
+ELSEIF myopcode = 704
 mylast  = LEN(RT_GUI_Statusbar)
 avalue := myopdata[1]
 avalue := &avalue
@@ -92,9 +79,7 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Statusbar[mylast][5] := avalue
-Return 0
-ENDIF
-IF myopcode = 705
+ELSEIF myopcode = 705
 mylast  = LEN(RT_GUI_Statusbar)
 avalue := myopdata[1]
 avalue := &avalue
@@ -103,9 +88,7 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Statusbar[mylast][6] := avalue
-Return 0
-ENDIF
-IF myopcode = 706
+ELSEIF myopcode = 706
 mylast  = LEN(RT_GUI_Statusbar)
 avalue := myopdata[1]
 avalue := &avalue
@@ -114,45 +97,35 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Statusbar[mylast][7] := avalue
-Return 0
-ENDIF
-IF myopcode = 707
+ELSEIF myopcode = 707
 mylast  = LEN(RT_GUI_Statusbar)
 IF mylast = 0
 DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 AADD( RT_GUI_Statusbar[mylast][8] , {1,"statusbar item",100})
-Return 0
-ENDIF
-IF myopcode = 708
+ELSEIF myopcode = 708
 mylast  = LEN(RT_GUI_Statusbar)
 IF mylast = 0
 DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 AADD( RT_GUI_Statusbar[mylast][8] , {2,"clock",100})
-Return 0
-ENDIF
-IF myopcode = 709
+ELSEIF myopcode = 709
 mylast  = LEN(RT_GUI_Statusbar)
 IF mylast = 0
 DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 AADD( RT_GUI_Statusbar[mylast][8] , {3,"date",100})
-Return 0
-ENDIF
-IF myopcode = 710
+ELSEIF myopcode = 710
 mylast  = LEN(RT_GUI_Statusbar)
 IF mylast = 0
 DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 AADD( RT_GUI_Statusbar[mylast][8] , {4,"keyboard",100})
-Return 0
-ENDIF
-IF myopcode = 711
+ELSEIF myopcode = 711
 mylast  = LEN(RT_GUI_Statusbar)
 IF mylast = 0
 DO RTE_AddError WITH 12
@@ -164,9 +137,7 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Statusbar[mylast][8][mylast2][2] := myopdata[1]
-Return 0
-ENDIF
-IF myopcode = 712
+ELSEIF myopcode = 712
 mylast  = LEN(RT_GUI_Statusbar)
 IF mylast = 0
 DO RTE_AddError WITH 12
@@ -178,22 +149,16 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Statusbar[mylast][8][mylast2][3] := myopdata[1]
-Return 0
-ENDIF
-IF myopcode = 750
+ELSEIF myopcode = 750
 AADD( RT_GUI_Menubar , {myopwinname,{}})
-Return 0
-ENDIF
-IF myopcode = 751
+ELSEIF myopcode = 751
 mylast  = LEN(RT_GUI_Menubar)
 IF mylast = 0
 DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 AADD( RT_GUI_Menubar[mylast][2] , {"popupcaption",{}})
-Return 0
-ENDIF
-IF myopcode = 752
+ELSEIF myopcode = 752
 mylast  = LEN(RT_GUI_menubar)
 IF mylast = 0
 DO RTE_AddError WITH 12
@@ -205,9 +170,7 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Menubar[mylast][2][mylast2][1] := myopdata[1]
-Return 0
-ENDIF
-IF myopcode = 753
+ELSEIF myopcode = 753
 mylast  = LEN(RT_GUI_Menubar)
 IF mylast = 0
 DO RTE_AddError WITH 12
@@ -219,9 +182,7 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 AADD( RT_GUI_Menubar[mylast][2][mylast2][2] , {"itemcaption","item"})
-Return 0
-ENDIF
-IF myopcode = 754
+ELSEIF myopcode = 754
 mylast  = LEN(RT_GUI_menubar)
 IF mylast = 0
 DO RTE_AddError WITH 12
@@ -238,9 +199,7 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Menubar[mylast][2][mylast2][2][mylast3][1] := myopdata[1]
-Return 0
-ENDIF
-IF myopcode = 755
+ELSEIF myopcode = 755
 mylast  = LEN(RT_GUI_menubar)
 IF mylast = 0
 DO RTE_AddError WITH 12
@@ -257,7 +216,6 @@ DO RTE_AddError WITH 12
 DO RTE_Check
 ENDIF
 RT_GUI_Menubar[mylast][2][mylast2][2][mylast3][2] := myopdata[1]
-Return 0
 ENDIF
 Return Nil
 

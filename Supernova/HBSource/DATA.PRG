@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:02:13    Date : 09/26/2011
+* Time : 03:55:59    Date : 11/08/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -51,8 +51,7 @@ IF RT_LS_DATA[x][1] == "Value"
 IF RT_LS_DATA[x-2][1] == "Variable"
 RT_LS_DATA[x-2][2] := alltrim(alltrim(RT_LS_DATA[x-2][2]) + "-" + alltrim(RT_LS_DATA[x][2]))
 ENDIF
-ENDIF
-IF RT_LS_DATA[x][1] == "Variable"
+ELSEIF RT_LS_DATA[x][1] == "Variable"
 myvalue = RT_VarValue ( RT_LS_DATA[x][2] )
 IF RT_LS_DATA[x-2][1] == "Variable"
 RT_LS_DATA[x-2][2] := alltrim(alltrim(RT_LS_DATA[x-2][2]) + "-" + alltrim(myvalue))
@@ -83,18 +82,13 @@ Return 0
 ENDIF
 Next
 ENDIF
-Return 0
-ENDIF
-IF myopcode = 2001
+ELSEIF myopcode = 2001
 DO RT_ReadExpr WITH myopdata[1],"RightSide"
 VARVALUE = RT_GetExprValue ( RT_RS_DATA )
-set decimals to &varvalue
-ENDIF
-IF myopcode = 2002
+Set decimals to &varvalue
+ELSEIF myopcode = 2002
 DO EVENTS
-Return 0
-ENDIF
-IF myopcode = 2003
+ELSEIF myopcode = 2003
 DO RT_ReadExpr WITH myopdata[1],"LeftSide"
 DO RT_ReadExpr WITH myopdata[2],"RightSide"
 Vmax1  = LEN(RT_LS_DATA)
@@ -110,8 +104,7 @@ IF RT_LS_DATA[x][1] == "Value"
 IF RT_LS_DATA[x-2][1] == "Variable"
 RT_LS_DATA[x-2][2] := alltrim(alltrim(RT_LS_DATA[x-2][2]) + "-" + alltrim(RT_LS_DATA[x][2]))
 ENDIF
-ENDIF
-IF RT_LS_DATA[x][1] == "Variable"
+ELSEIF RT_LS_DATA[x][1] == "Variable"
 myvalue = RT_VarValue ( RT_LS_DATA[x][2] )
 IF RT_LS_DATA[x-2][1] == "Variable"
 RT_LS_DATA[x-2][2] := alltrim(alltrim(RT_LS_DATA[x-2][2]) + "-" + alltrim(myvalue))
@@ -141,9 +134,7 @@ Return 0
 ENDIF
 Next
 ENDIF
-Return 0
-ENDIF
-IF myopcode = 2004
+ELSEIF myopcode = 2004
 VARVALUE = RT_VarValue ( alltrim(lower(MYOPDATA[1])) )
 VARPOS = RT_VARPOS ( alltrim(lower(MYOPDATA[1])) )
 RT_DATA[VarPos][2] := ALLTRIM(STR(VAL(VarValue) + 1))
@@ -152,9 +143,7 @@ VARVALUE = RT_VarValue ( "output" )
 VARPOS = RT_VARPOS ( "output" )
 RT_DATA[VarPos][2] := ALLTRIM(STR(VAL(VarValue) + 1))
 ENDIF
-Return 0
-ENDIF
-IF myopcode = 2005
+ELSEIF myopcode = 2005
 VARVALUE = RT_VarValue ( alltrim(lower(MYOPDATA[1])) )
 VARPOS = RT_VARPOS ( alltrim(lower(MYOPDATA[1])) )
 RT_DATA[VarPos][2] := ALLTRIM(STR(VAL(VarValue) - 1))
@@ -163,7 +152,6 @@ VARVALUE = RT_VarValue ( "output" )
 VARPOS = RT_VARPOS ( "output" )
 RT_DATA[VarPos][2] := ALLTRIM(STR(VAL(VarValue) - 1))
 ENDIF
-Return 0
 ENDIF
 Return Nil
 Function  RT_VARPOS ( P1 )
@@ -247,8 +235,7 @@ IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Variable"
 p1[x-2][2] := alltrim(p1[x-2][2]) + "-" + alltrim(p1[x][2])
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Variable"
 p1[x-2][2] := alltrim(p1[x-2][2]) + "-" + alltrim(myvalue)
@@ -274,18 +261,14 @@ set century on
 ExprValue = DATE()
 ExprValue = DTOC ( ExprValue )
 ExprValue = ALLTRIM ( ExprValue )
-ENDIF
-IF LastMark = "thetime"
+ELSEIF LastMark = "thetime"
 ExprValue = TIME()
 ExprValue = ALLTRIM ( ExprValue )
-ENDIF
-IF LastMark = "theseconds"
+ELSEIF LastMark = "theseconds"
 ExprValue := alltrim(str(Seconds()))
-ENDIF
-IF LastMark = "theday"
+ELSEIF LastMark = "theday"
 ExprValue := alltrim(cdow(date()))
-ENDIF
-IF LastMark = "themonth"
+ELSEIF LastMark = "themonth"
 ExprValue := alltrim(cmonth(date()))
 ENDIF
 p1[x][1] := "Value"
@@ -307,8 +290,7 @@ IF p1[x][1] == "Value"
 ExprValue := alltrim(p1[x][2])
 ExprValue = RT_VarValue ( ExprValue )
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := alltrim(myvalue)
 ExprValue = RT_VarValue ( ExprValue )
@@ -319,16 +301,14 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-1
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "dofunction"
+ELSEIF LastMark = "dofunction"
 DO RT_SetVarValue WITH "[output]","NULL"
 IF p1[x][1] == "Value"
 ExprValue := alltrim(p1[x][2])
 DO RT_CallInstructions WITH LOWER(ALLTRIM(ExprValue))
 ExprValue = RT_VarValue ( "output" )
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := alltrim(myvalue)
 DO RT_CallInstructions WITH LOWER(ALLTRIM(ExprValue))
@@ -356,8 +336,7 @@ IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) * val(p1[x][2])))
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 IF myvalue = "NULL"
 myvalue := "1"
@@ -366,8 +345,7 @@ ExprValue := alltrim(str(val(myvalue) * val(p1[x][2])))
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF myvalue = "NULL"
 myvalue := "1"
@@ -376,8 +354,7 @@ IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) * val(myvalue)))
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 IF myvalue2 = "NULL"
 myvalue2 := "1"
@@ -393,14 +370,12 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "/"
+ELSEIF LastMark = "/"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) / val(p1[x][2])))
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 IF myvalue = "NULL"
 myvalue := "1"
@@ -409,8 +384,7 @@ ExprValue := alltrim(str(val(myvalue) / val(p1[x][2])))
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF myvalue = "NULL"
 myvalue := "1"
@@ -419,8 +393,7 @@ IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) / val(myvalue)))
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 IF myvalue2 = "NULL"
 myvalue2 := "1"
@@ -430,7 +403,9 @@ p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 p1[x][2] := "ignore"
 p1[x-1][2] := "ignore"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
+ELSEIF p1[x][1] == "Variable"
 ENDIF
 ADEL( p1 , x)
 ASIZE( p1 , LEN( p1 ) - 1 )
@@ -438,28 +413,24 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "%"
+ELSEIF LastMark = "%"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) % val(p1[x][2])))
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 ExprValue := alltrim(str(val(myvalue) % val(p1[x][2])))
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) % val(myvalue)))
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 ExprValue := alltrim(str(val(myvalue2) % val(myvalue)))
 p1[x-2][2] := exprvalue
@@ -488,22 +459,20 @@ IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) + val(p1[x][2])))
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 ExprValue := alltrim(str(val(myvalue) + val(p1[x][2])))
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) + val(myvalue)))
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 ExprValue := alltrim(str(val(myvalue2) + val(myvalue)))
 p1[x-2][2] := exprvalue
@@ -516,28 +485,24 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "-"
+ELSEIF LastMark = "-"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) - val(p1[x][2])))
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 ExprValue := alltrim(str(val(myvalue) - val(p1[x][2])))
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 ExprValue := alltrim(str(val(p1[x-2][2]) - val(myvalue)))
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 ExprValue := alltrim(str(val(myvalue2) - val(myvalue)))
 p1[x-2][2] := exprvalue
@@ -570,8 +535,7 @@ ELSE
 ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 IF val(myvalue) > val(p1[x][2])
 ExprValue := "True"
@@ -581,8 +545,7 @@ ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 IF val(p1[x-2][2]) > val(myvalue)
@@ -592,8 +555,7 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 IF val(myvalue2) > val(myvalue)
 ExprValue := "True"
@@ -602,6 +564,7 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
 ENDIF
 ADEL( p1 , x)
@@ -610,8 +573,7 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark == "<"
+ELSEIF LastMark == "<"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 IF val(p1[x-2][2]) < val(p1[x][2])
@@ -620,8 +582,7 @@ ELSE
 ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 IF val(myvalue) < val(p1[x][2])
 ExprValue := "True"
@@ -631,8 +592,7 @@ ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 IF val(p1[x-2][2]) < val(myvalue)
@@ -642,8 +602,7 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 IF val(myvalue2) < val(myvalue)
 ExprValue := "True"
@@ -653,6 +612,7 @@ ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
+ELSEIF p1[x][1] == "Variable"
 ENDIF
 ADEL( p1 , x)
 ASIZE( p1 , LEN( p1 ) - 1 )
@@ -660,8 +620,7 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark == ">="
+ELSEIF LastMark == ">="
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 IF val(p1[x-2][2]) >= val(p1[x][2])
@@ -670,8 +629,7 @@ ELSE
 ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 IF val(myvalue) >= val(p1[x][2])
 ExprValue := "True"
@@ -681,8 +639,7 @@ ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 IF val(p1[x-2][2]) >= val(myvalue)
@@ -692,8 +649,7 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 IF val(myvalue2) >= val(myvalue)
 ExprValue := "True"
@@ -710,8 +666,7 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark == "<="
+ELSEIF LastMark == "<="
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 IF val(p1[x-2][2]) <= val(p1[x][2])
@@ -720,8 +675,7 @@ ELSE
 ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 IF val(myvalue) <= val(p1[x][2])
 ExprValue := "True"
@@ -730,9 +684,9 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 IF val(p1[x-2][2]) <= val(myvalue)
@@ -742,8 +696,7 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 IF val(myvalue2) <= val(myvalue)
 ExprValue := "True"
@@ -780,8 +733,7 @@ ELSE
 ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 IF myvalue == p1[x][2]
 ExprValue := "True"
@@ -791,8 +743,7 @@ ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 IF p1[x-2][2] == myvalue
@@ -820,8 +771,7 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark == "!="
+ELSEIF LastMark == "!="
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 IF p1[x-2][2] != p1[x][2]
@@ -830,8 +780,7 @@ ELSE
 ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 IF myvalue != p1[x][2]
 ExprValue := "True"
@@ -840,9 +789,9 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 IF p1[x-2][2] != myvalue
@@ -852,8 +801,7 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 IF myvalue2 != myvalue
 ExprValue := "True"
@@ -862,6 +810,7 @@ ExprValue := "False"
 ENDIF
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
 ENDIF
 ADEL( p1 , x)
@@ -889,8 +838,7 @@ ELSE
 ExprValue := "False"
 ENDIF
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF myvalue = "False"
 ExprValue := "True"
@@ -944,8 +892,7 @@ IF alltrim(lower(exprvalue)) = "0"
 exprvalue := "False"
 ENDIF
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 logicvar := false
 IF alltrim(lower(exprvalue)) = "true"
@@ -976,23 +923,20 @@ exprvalue := "False"
 ENDIF
 ENDIF
 ENDIF
-ENDIF
-IF LastMark = "or"
+ELSEIF LastMark = "or"
 IF p1[x][1] == "Value"
 logicvar := false
 IF alltrim(lower(exprvalue)) = "true"
 exprvalue := "1"
 logicvar := true
-ENDIF
-IF alltrim(lower(exprvalue)) = "false"
+ELSEIF alltrim(lower(exprvalue)) = "false"
 exprvalue := "0"
 logicvar := true
 ENDIF
 IF alltrim(lower(p1[x][2])) = "true"
 p1[x][2] := "1"
 logicvar := true
-ENDIF
-IF alltrim(lower(p1[x][2])) = "false"
+ELSEIF alltrim(lower(p1[x][2])) = "false"
 p1[x][2] := "0"
 logicvar := true
 ENDIF
@@ -1002,13 +946,11 @@ exprvalue = ALLTRIM ( myorres )
 IF logicvar = true
 IF alltrim(lower(exprvalue)) = "1"
 exprvalue := "True"
-ENDIF
-IF alltrim(lower(exprvalue)) = "0"
+ELSEIF alltrim(lower(exprvalue)) = "0"
 exprvalue := "False"
 ENDIF
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 logicvar := false
 IF alltrim(lower(exprvalue)) = "true"
@@ -1039,8 +981,7 @@ exprvalue := "False"
 ENDIF
 ENDIF
 ENDIF
-ENDIF
-IF LastMark = "SumString"
+ELSEIF LastMark = "SumString"
 IF p1[x][1] == "Value"
 ExprValue := ExprValue + p1[x][2]
 IF .not. x = 1
@@ -1053,8 +994,7 @@ p1[x][1] := "Value"
 p1[x][2] := exprvalue
 ENDIF
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := ExprValue + myvalue
 IF .not. x = 1
@@ -1080,8 +1020,7 @@ IF LastMark = "len"
 IF p1[x][1] == "Value"
 ExprValue := alltrim(str(len(p1[x][2]) ))
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := alltrim(str(len(myvalue)))
 p1[x][2] := exprvalue
@@ -1091,28 +1030,24 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-1
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "left"
+ELSEIF LastMark = "left"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 Exprvalue = Left(p1[x][2],val(p1[x-2][2]))
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 Exprvalue = Left(p1[x][2],val(myvalue))
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 Exprvalue = Left(myvalue,val(p1[x-2][2]))
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 Exprvalue = Left(myvalue,val(myvalue2))
 p1[x-2][2] := exprvalue
@@ -1125,28 +1060,24 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "right"
+ELSEIF LastMark = "right"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 Exprvalue = Right(p1[x][2],val(p1[x-2][2]))
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 Exprvalue = Right(p1[x][2],val(myvalue))
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 Exprvalue = Right(myvalue,val(p1[x-2][2]))
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 Exprvalue = Right(myvalue,val(myvalue2))
 p1[x-2][2] := exprvalue
@@ -1159,13 +1090,11 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "alltrim"
+ELSEIF LastMark = "alltrim"
 IF p1[x][1] == "Value"
 ExprValue := alltrim(p1[x][2] )
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := alltrim(myvalue)
 p1[x][2] := exprvalue
@@ -1175,13 +1104,11 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-1
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "rtrim"
+ELSEIF LastMark = "rtrim"
 IF p1[x][1] == "Value"
 ExprValue := rtrim(p1[x][2] )
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := rtrim(myvalue)
 p1[x][2] := exprvalue
@@ -1191,13 +1118,11 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-1
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "ltrim"
+ELSEIF LastMark = "ltrim"
 IF p1[x][1] == "Value"
 ExprValue := ltrim(p1[x][2] )
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := ltrim(myvalue)
 p1[x][2] := exprvalue
@@ -1207,13 +1132,11 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-1
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "upper"
+ELSEIF LastMark = "upper"
 IF p1[x][1] == "Value"
 ExprValue := upper(p1[x][2] )
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := upper(myvalue)
 p1[x][2] := exprvalue
@@ -1223,13 +1146,11 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-1
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "lower"
+ELSEIF LastMark = "lower"
 IF p1[x][1] == "Value"
 ExprValue := lower(p1[x][2] )
 p1[x][2] := exprvalue
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 ExprValue := lower(myvalue)
 p1[x][2] := exprvalue
@@ -1239,28 +1160,24 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-1
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "replicate"
+ELSEIF LastMark = "replicate"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 Exprvalue = REPLICATE( p1[x][2] , val(p1[x-2][2]) )
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 Exprvalue = REPLICATE( p1[x][2] , val(myvalue) )
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 Exprvalue = REPLICATE( myvalue , val(p1[x-2][2]) )
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 Exprvalue = REPLICATE( myvalue , val(myvalue2) )
 p1[x-2][2] := exprvalue
@@ -1273,33 +1190,31 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "inside"
+ELSEIF LastMark = "inside"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 ExprValue = SUBSTR(p1[x][2],val(p1[x-2][2]),1)
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 ExprValue = SUBSTR(p1[x][2],val(myvalue),1)
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 ExprValue = SUBSTR(myvalue,val(p1[x-2][2]),1)
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 ExprValue = SUBSTR(myvalue,val(myvalue2),1)
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
+ELSEIF p1[x][1] == "Variable"
 ENDIF
 ADEL( p1 , x)
 ASIZE( p1 , LEN( p1 ) - 1 )
@@ -1307,16 +1222,14 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "at"
+ELSEIF LastMark = "at"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 ExprValue = AT(p1[x-2][2],p1[x][2])
 ExprValue = STR ( ExprValue )
 ExprValue = ALLTRIM ( ExprValue )
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 ExprValue = AT(myvalue,p1[x][2])
 ExprValue = STR ( ExprValue )
@@ -1324,8 +1237,7 @@ ExprValue = ALLTRIM ( ExprValue )
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 ExprValue = AT(p1[x-2][2],myvalue)
@@ -1333,8 +1245,7 @@ ExprValue = STR ( ExprValue )
 ExprValue = ALLTRIM ( ExprValue )
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 ExprValue = AT(myvalue2,myvalue)
 ExprValue = STR ( ExprValue )
@@ -1349,8 +1260,7 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "substr"
+ELSEIF LastMark = "substr"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 mypara := p1[x-2][2]
@@ -1359,8 +1269,7 @@ mystr1 = Left(mypara,mypos-1)
 mystr2 = SUBSTR(mypara,mypos+1,len(mypara)-mypos)
 ExprValue = SUBSTR(p1[x][2],val(mystr1),val(mystr2))
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 mypara := myvalue
 mypos = AT(":",mypara)
@@ -1369,9 +1278,9 @@ mystr2 = SUBSTR(mypara,mypos+1,len(mypara)-mypos)
 ExprValue = SUBSTR(p1[x][2],val(mystr1),val(mystr2))
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 mypara := p1[x-2][2]
@@ -1381,8 +1290,7 @@ mystr2 = SUBSTR(mypara,mypos+1,len(mypara)-mypos)
 ExprValue = SUBSTR(myvalue,val(mystr1),val(mystr2))
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 mypara := myvalue2
 mypos = AT(":",mypara)
@@ -1399,8 +1307,7 @@ ADEL( p1 , x-1)
 ASIZE( p1 , LEN( p1 ) - 1 )
 x := x-2
 VMAX  = LEN(P1)
-ENDIF
-IF LastMark = "transform"
+ELSEIF LastMark = "transform"
 IF p1[x][1] == "Value"
 IF p1[x-2][1] == "Value"
 mypara := p1[x-2][2]
@@ -1409,8 +1316,7 @@ mystr1 = Left(mypara,mypos-1)
 mystr2 = SUBSTR(mypara,mypos+1,len(mypara)-mypos)
 ExprValue = STRTRAN(p1[x][2],mystr1,mystr2)
 p1[x-2][2] := exprvalue
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue = RT_VarValue ( p1[x-2][2] )
 mypara := myvalue
 mypos = AT(":",mypara)
@@ -1419,9 +1325,9 @@ mystr2 = SUBSTR(mypara,mypos+1,len(mypara)-mypos)
 ExprValue = STRTRAN(p1[x][2],mystr1,mystr2)
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
+ELSEIF p1[x-2][1] == "Variable"
 ENDIF
-ENDIF
-IF p1[x][1] == "Variable"
+ELSEIF p1[x][1] == "Variable"
 myvalue = RT_VarValue ( p1[x][2] )
 IF p1[x-2][1] == "Value"
 mypara := p1[x-2][2]
@@ -1431,8 +1337,7 @@ mystr2 = SUBSTR(mypara,mypos+1,len(mypara)-mypos)
 ExprValue = STRTRAN(myvalue,mystr1,mystr2)
 p1[x-2][2] := exprvalue
 p1[x][1] := "Value"
-ENDIF
-IF p1[x-2][1] == "Variable"
+ELSEIF p1[x-2][1] == "Variable"
 myvalue2 = RT_VarValue ( p1[x-2][2] )
 mypara := myvalue2
 mypos = AT(":",mypara)
@@ -1442,6 +1347,7 @@ ExprValue = STRTRAN(myvalue,mystr1,mystr2)
 p1[x-2][2] := exprvalue
 p1[x-2][1] := "Value"
 ENDIF
+ELSEIF p1[x][1] == "Variable"
 ENDIF
 ADEL( p1 , x)
 ASIZE( p1 , LEN( p1 ) - 1 )
@@ -1494,8 +1400,7 @@ IF RT_LS_DATA[x][1] == "Value"
 IF RT_LS_DATA[x-2][1] == "Variable"
 RT_LS_DATA[x-2][2] := alltrim(alltrim(RT_LS_DATA[x-2][2]) + "-" + alltrim(RT_LS_DATA[x][2]))
 ENDIF
-ENDIF
-IF RT_LS_DATA[x][1] == "Variable"
+ELSEIF RT_LS_DATA[x][1] == "Variable"
 myvalue = RT_VarValue ( RT_LS_DATA[x][2] )
 IF RT_LS_DATA[x-2][1] == "Variable"
 RT_LS_DATA[x-2][2] := alltrim(alltrim(RT_LS_DATA[x-2][2]) + "-" + alltrim(myvalue))
@@ -1536,8 +1441,7 @@ v2 := "" + RT_ExprParse[X][2][x2][2]
 AADD( RT_LS_DATA , {v1,v2})
 Next
 ENDIF
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 RT_RS_DATA := {}
 mymax2  = LEN(RT_ExprParse[x][2])
 IF mymax2 > 0
@@ -1561,8 +1465,7 @@ expmode := "normal"
 expstackend := "S"
 IF P2 = "LeftSide"
 RT_LS_DATA := {}
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 RT_RS_DATA := {}
 ENDIF
 FOR x = 1 TO mymax STEP 1
@@ -1599,74 +1502,51 @@ ENDIF
 exptoken := exptoken + expchar
 IF exptoken = "Çæ"
 exptoken := "or"
-ENDIF
-IF exptoken = "æ"
+ELSEIF exptoken = "æ"
 exptoken := "and"
-ENDIF
-IF exptoken = "ãÔ"
+ELSEIF exptoken = "ãÔ"
 exptoken := "not"
-ENDIF
-IF exptoken = "ÊÓÇæì"
+ELSEIF exptoken = "ÊÓÇæì"
 exptoken := "isequal"
-ENDIF
-IF exptoken = "Øæá"
+ELSEIF exptoken = "Øæá"
 exptoken := "len"
-ENDIF
-IF exptoken = "ÍÑæÝßÈíÑÉ"
+ELSEIF exptoken = "ÍÑæÝßÈíÑÉ"
 exptoken := "upper"
-ENDIF
-IF exptoken = "ÍÑæÝÕÛíÑÉ"
+ELSEIF exptoken = "ÍÑæÝÕÛíÑÉ"
 exptoken := "lower"
-ENDIF
-IF exptoken = "ãÑÇÊßÑÑ"
+ELSEIF exptoken = "ãÑÇÊßÑÑ"
 exptoken := "replicate"
-ENDIF
-IF exptoken = "ÍÑæÝíÓÇÑ"
+ELSEIF exptoken = "ÍÑæÝíÓÇÑ"
 exptoken := "left"
-ENDIF
-IF exptoken = "ÍÑæÝíãíä"
+ELSEIF exptoken = "ÍÑæÝíãíä"
 exptoken := "right"
-ENDIF
-IF exptoken = "ÍÑÝÏÇÎá"
+ELSEIF exptoken = "ÍÑÝÏÇÎá"
 exptoken := "inside"
-ENDIF
-IF exptoken = "ÞÕßáÇáãÓÇÝÇÊ"
+ELSEIF exptoken = "ÞÕßáÇáãÓÇÝÇÊ"
 exptoken := "alltrim"
-ENDIF
-IF exptoken = "ÞÕÇáãÓÇÝÇÊíãíä"
+ELSEIF exptoken = "ÞÕÇáãÓÇÝÇÊíãíä"
 exptoken := "rtrim"
-ENDIF
-IF exptoken = "ÞÕÇáãÓÇÝÇÊíÓÇÑ"
+ELSEIF exptoken = "ÞÕÇáãÓÇÝÇÊíÓÇÑ"
 exptoken := "ltrim"
-ENDIF
-IF exptoken = "ÍÑæÝÏÇÎá"
+ELSEIF exptoken = "ÍÑæÝÏÇÎá"
 exptoken := "substr"
-ENDIF
-IF exptoken = "ãÇåìÈÏÇíÊåÇÝì"
+ELSEIF exptoken = "ãÇåìÈÏÇíÊåÇÝì"
 exptoken := "at"
-ENDIF
-IF exptoken = "Íæá"
+ELSEIF exptoken = "Íæá"
 exptoken := "transform"
-ENDIF
-IF exptoken = "ÇáÊÇÑíÎ"
+ELSEIF exptoken = "ÇáÊÇÑíÎ"
 exptoken := "thedate"
-ENDIF
-IF exptoken = "ÇáæÞÊ"
+ELSEIF exptoken = "ÇáæÞÊ"
 exptoken := "thetime"
-ENDIF
-IF exptoken = "ÇáËæÇäì"
+ELSEIF exptoken = "ÇáËæÇäì"
 exptoken := "theseconds"
-ENDIF
-IF exptoken = "Çáíæã"
+ELSEIF exptoken = "Çáíæã"
 exptoken := "theday"
-ENDIF
-IF exptoken = "ÇáÔåÑ"
+ELSEIF exptoken = "ÇáÔåÑ"
 exptoken := "themonth"
-ENDIF
-IF exptoken = "äÝÐÇáÏÇáÉ"
+ELSEIF exptoken = "äÝÐÇáÏÇáÉ"
 exptoken := "dofunction"
-ENDIF
-IF exptoken = "ÇáãÊÛíÑ"
+ELSEIF exptoken = "ÇáãÊÛíÑ"
 exptoken := "getvariable"
 ENDIF
 IF lower(alltrim(ExpToken)) = "and" .or. lower(alltrim(ExpToken)) = "or"  .or. lower(alltrim(ExpToken)) = "not"
@@ -1674,8 +1554,7 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"LogicalOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"LogicalOperator",ExpToken})
 ENDIF
 exptoken := ""
@@ -1687,20 +1566,18 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"LogicalOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"LogicalOperator",ExpToken})
 ENDIF
 exptoken := ""
 Loop
 ENDIF
-IF tempvar = ">" .or. tempvar = "<"
+IF (tempvar = ">" .or. tempvar = "<") .and. substr(p1,x+1,1) != "="
 expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"LogicalOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"LogicalOperator",ExpToken})
 ENDIF
 exptoken := ""
@@ -1713,8 +1590,7 @@ IF P2 = "LeftSide"
 ADEL( RT_LS_DATA , LEN(RT_LS_DATA))
 ASIZE( RT_LS_DATA , LEN( RT_LS_DATA ) - 1 )
 AADD( RT_LS_DATA , {"LogicalOperator",Expstackend})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 ADEL( RT_RS_DATA , LEN(RT_RS_DATA))
 ASIZE( RT_RS_DATA , LEN( RT_RS_DATA ) - 1 )
 AADD( RT_RS_DATA , {"LogicalOperator",ExpStackEnd})
@@ -1727,8 +1603,7 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"StringOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"StringOperator",ExpToken})
 ENDIF
 exptoken := ""
@@ -1739,8 +1614,7 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"StringOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"StringOperator",ExpToken})
 ENDIF
 exptoken := ""
@@ -1751,8 +1625,7 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"StringOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"StringOperator",ExpToken})
 ENDIF
 exptoken := ""
@@ -1763,8 +1636,7 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"StringOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"StringOperator",ExpToken})
 ENDIF
 exptoken := ""
@@ -1775,8 +1647,7 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"DateOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"DateOperator",ExpToken})
 ENDIF
 exptoken := ""
@@ -1787,8 +1658,7 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"MacroOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"MacroOperator",ExpToken})
 ENDIF
 exptoken := ""
@@ -1799,23 +1669,20 @@ expstack := expstack + exptoken
 expstackend := lower(alltrim(Exptoken))
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"MergeOperator",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"MergeOperator",ExpToken})
 ENDIF
 exptoken := ""
 Loop
 ENDIF
-ENDIF
-IF expmode = "ListenToVariable"
+ELSEIF expmode = "ListenToVariable"
 IF ExpChar = "]"
 IF expstackend = "["
 expstack := expstack + "]"
 expstackend := "S"
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"Variable",alltrim(lower(ExpToken))})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"Variable",alltrim(lower(ExpToken))})
 ENDIF
 ExpToken := ""
@@ -1825,15 +1692,13 @@ ENDIF
 ENDIF
 exptoken := exptoken + expchar
 Loop
-ENDIF
-IF expmode = "ListenToValue"
+ELSEIF expmode = "ListenToValue"
 IF ( expstackend = "(" .and. expchar = ")" ) .or. (ExpStackEnd = "|" .and. ExpChar = "|" )
 expstack := expstack + ")"
 expstackend := "S"
 IF P2 = "LeftSide"
 AADD( RT_LS_DATA , {"Value",ExpToken})
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 AADD( RT_RS_DATA , {"Value",ExpToken})
 ENDIF
 ExpToken := ""
@@ -1848,8 +1713,7 @@ IF expmode = "ListenToVariable"
 DO RTE_AddError WITH 7
 AADD( RTE_Message , " Expression : " + p1)
 DO RTE_Check
-ENDIF
-IF expmode = "ListenToValue"
+ELSEIF expmode = "ListenToValue"
 DO RTE_AddError WITH 8
 AADD( RTE_Message , " Expression : " + p1)
 DO RTE_Check
@@ -1871,8 +1735,7 @@ v2 := "" + RT_LS_DATA[X][2]
 AADD( RT_ExprParse[mymax][2] , {v1,v2})
 Next
 ENDIF
-ENDIF
-IF P2 = "RightSide"
+ELSEIF P2 = "RightSide"
 mymax2  = LEN(RT_RS_DATA)
 IF mymax2 > 0
 FOR x = 1 TO Mymax2 STEP 1
@@ -1882,7 +1745,6 @@ AADD( RT_ExprParse[mymax][2] , {v1,v2})
 Next
 ENDIF
 ENDIF
-Return Nil
 
 
 End Of Resistance
