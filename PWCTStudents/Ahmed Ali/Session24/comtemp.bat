@@ -1,0 +1,1 @@
+CALL sscom2.bat  "SHOWREPORT"  /X /l calldll  > _temp.txt
