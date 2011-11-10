@@ -23,6 +23,7 @@ ENDIF
 noe_myinput = LOWER(ALLTRIM(noe_myinput))
 noe_oldinput = noe_myinput 
 
+noe_myinput = STRTRAN(noe_myinput,"substr","")
 noe_myinput = STRTRAN(noe_myinput,"this","thisobj")
 noe_myinput = STRTRAN(noe_myinput,"oop","")
 noe_myinput = STRTRAN(noe_myinput,"->","")
