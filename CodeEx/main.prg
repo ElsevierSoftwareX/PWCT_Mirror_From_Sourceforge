@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:47:54    Date : 11/15/2011
+* Time : 00:58:18    Date : 11/15/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -52,21 +52,21 @@ Resistance R_MAIN_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 599 ;
-HEIGHT 422 ;
+WIDTH 619 ;
+HEIGHT 502 ;
 ON INIT mycodeex()  ;
 ON SIZE myadjust()  ;
 ON MAXIMIZE myadjust()  ;
 ICON "PWCTICON" ;
 TITLE "Code Extractor Application" ;
 MAIN ;
-BACKCOLOR {255,255,255} 
+BACKCOLOR {238,239,237} 
 
 win1.Center ( )
 DEFINE TAB Tab1;
 AT 10 ,10;
 WIDTH 566;
-HEIGHT 330;
+HEIGHT 390;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
 PAGE "Code"
@@ -86,17 +86,17 @@ BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END PAGE
 END TAB
-@ 343 ,476 BUTTONEX btn1;
+@ 413 ,476 BUTTONEX btn1;
 CAPTION "Close";
 ON CLICK myclose()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "Arial" SIZE 9 ;
 TOOLTIP ""
-@ 343 ,10 BUTTONEX btn2;
-CAPTION "Save steps tree to c:\ssbuild\pwctshot\step.txt";
+@ 413 ,10 BUTTONEX btn2;
+CAPTION "Save steps tree to c:\ssbuild\pwctshots\steps.txt";
 ON CLICK savesteps()  ;
 WIDTH 420 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
 
@@ -129,6 +129,7 @@ win1.edit2.height := win1.tab1.height - 80
 return
 
 function mycodeex()
+myadjust()
 cDirName = getstartupfolder()
 file_1 =cDirName + "\t1.DBF"
 file_2 =cDirName + "\t2.DBF"
@@ -268,7 +269,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","End Tab",37,37)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Close'",38,39)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",40,40)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",41,43)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Save steps tree to c:\ssbuild\pwctshot\step.txt'",44,45)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Save steps tree to c:\ssbuild\pwctshots\steps.txt'",44,45)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action savesteps",46,46)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",47,49)
 SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",50,51)
@@ -281,6 +282,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","mydata = win1.edit2.Value",59,59)
 SS_ESASTEP("Circuits\Main\Main\Main","write String mydata to File 'c:\ssbuild\pwctshots\steps.txt'",60,62)
 SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Operation done' Title 'Ok' Type: Message Info",63,63)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",64,64)
-SS_ESASTEP("Circuits\Main\Main\Main","Source Code",65,191)
+SS_ESASTEP("Circuits\Main\Main\Main","Source Code",65,192)
 Return
 *-------------------------------------------------------------------*
