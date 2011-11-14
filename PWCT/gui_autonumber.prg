@@ -53,7 +53,7 @@ myalias = ALIAS()
 															  ENDIF
 															NEXT
 														endif
-														*exit
+														exit
 													ENDIF
 													
 												next

@@ -34,11 +34,6 @@ Lbl1["fg"] = tk_rgb
 tk_rgb = "#%02x%02x%02x" % (0,255,128)
 Lbl1["bg"] = tk_rgb
 Lbl1.place(x=6, y=96 , height=64, width=315)
-image1 = Label(frame_1)
-temp_image = Image.open("C:\USERS\MAHMOUD\DESKTOP\TEST.JPG")
-temp_photo = ImageTk.PhotoImage(temp_image)
-image1['image'] = temp_photo
-image1.place(  x=329, y=15 , height=307, width=315)
 Btn13 = Button(frame_1, text=" Test ", font=("Arial", 14))
 tk_rgb = "#%02x%02x%02x" % (0,0,0)
 Btn13["fg"] = tk_rgb

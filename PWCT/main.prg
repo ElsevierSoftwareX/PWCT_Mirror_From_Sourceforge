@@ -66,6 +66,10 @@ PUBLIC Sys_ShowDoubleS
 PUBLIC sys_soundobject
 PUBLIC sys_goalstimeframe
 
+PUBLIC SYS_TMUSESOUND
+SYS_TMUSESOUND = .T.
+
+
 DIMENSION sys_goalstimeframe(1,2)
 sys_goalstimeframe(1,1) = "" && Goal Name
 sys_goalstimeframe(1,2) = 0  && Interaction ID - The Time Machine
