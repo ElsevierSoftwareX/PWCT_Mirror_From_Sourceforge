@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:56:25    Date : 09/07/2011
+* Time : 00:47:54    Date : 11/15/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -92,6 +92,12 @@ ON CLICK myclose()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
+@ 343 ,10 BUTTONEX btn2;
+CAPTION "Save steps tree to c:\ssbuild\pwctshot\step.txt";
+ON CLICK savesteps()  ;
+WIDTH 420 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 ACTIVATE WINDOW win1
@@ -100,6 +106,13 @@ EndIF
 procedure myclose()
 win1.Release ( )
 return
+procedure savesteps()
+mydata := win1.edit2.Value
+RPWI_TH = FCREATE("c:\ssbuild\pwctshots\steps.txt",0)
+FWRITE(RPWI_TH,mydata)
+FCLOSE(RPWI_TH)
+MyOut := MSGINFO("Operation done","Ok")
+return
 
 function myadjust()
 declare window win1
@@ -107,6 +120,8 @@ win1.tab1.width := win1.width - 33
 win1.tab1.height := win1.height - 112
 win1.btn1.row := win1.height - 82
 win1.btn1.col := win1.width - 123
+win1.btn2.row := win1.height - 82
+win1.btn2.col := win1.tab1.col
 win1.edit1.width := win1.tab1.width - 70
 win1.edit2.width := win1.tab1.width - 70
 win1.edit1.height := win1.tab1.height - 80
@@ -231,5 +246,41 @@ End Of Resistance
 
 INIT PROCEDURE Init_MAIN
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Code Extractor Application'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action mycodeex",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON SIZE : Action myadjust",7,7)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON MAXIMIZE : Action myadjust",8,8)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",9,13)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",14,14)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Tab ( Tab1 )",15,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",19,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Page ( 'Code' )",21,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Editbox ( edit1 )",22,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Editbox Properties",23,27)
+SS_ESASTEP("Circuits\Main\Main\Main","End Page",28,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Page ( 'Steps Tree' )",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Editbox ( edit2 )",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Editbox Properties",31,35)
+SS_ESASTEP("Circuits\Main\Main\Main","End Page",36,36)
+SS_ESASTEP("Circuits\Main\Main\Main","End Tab",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Close'",38,39)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",40,40)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",41,43)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Save steps tree to c:\ssbuild\pwctshot\step.txt'",44,45)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action savesteps",46,46)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",47,49)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",50,51)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",52,54)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",55,55)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",56,56)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",57,57)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure savesteps ( Event : CLICK )",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","mydata = win1.edit2.Value",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","write String mydata to File 'c:\ssbuild\pwctshots\steps.txt'",60,62)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Operation done' Title 'Ok' Type: Message Info",63,63)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","Source Code",65,191)
 Return
 *-------------------------------------------------------------------*
