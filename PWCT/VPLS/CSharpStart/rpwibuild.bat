@@ -1,1 +1,1 @@
-C:\SSRPWI\CSharp\Batch\MyBuild "START"
+C:\SSRPWI\CSharp\Batch\MyBuild "START.cs"
