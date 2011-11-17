@@ -1,0 +1,1 @@
+CALL sscom2.bat  "MENU POP"  /X /l calldll  > _temp.txt
