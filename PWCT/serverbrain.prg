@@ -2425,7 +2425,11 @@ if s_menu == "1_2" .or. FILE(myfiletoopen)
 										GOTO bottom
 								ELSE
 										IF lmyfiletoopen = .f.
+										tv_dfp = application.DefaultFilePath 
+										application.DefaultFilePath = JUSTPATH(mysys_file)
+									
 												myfile = GETFILE("SuperServerFile:SSF","File Name","Save",1,"Save As")
+												application.DefaultFilePath = tv_dfp
 										ENDIF
 										IF .not. testfile(myfile,1111) = .t.
 												RETURN
@@ -2467,7 +2471,10 @@ if s_menu == "1_2" .or. FILE(myfiletoopen)
 				ENDIF
 				IF s_mem3 = .f. 
 						IF lmyfiletoopen = .f.
-								myfile = GETFILE("SuperServerFile:SSF","File Name ","Open",0,"Open Server")
+										tv_dfp = application.DefaultFilePath 
+										application.DefaultFilePath = JUSTPATH(mysys_file)
+										myfile = GETFILE("SuperServerFile:SSF","File Name ","Open",0,"Open Server")
+												application.DefaultFilePath = tv_dfp
 						ENDIF
 				ELSE
 								myfile = s_mem

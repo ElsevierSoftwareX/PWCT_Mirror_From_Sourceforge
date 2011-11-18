@@ -2425,7 +2425,11 @@ if s_menu == "1_2" .or. FILE(myfiletoopen)
 										GOTO bottom
 								ELSE
 										IF lmyfiletoopen = .f.
+										tv_dfp = application.DefaultFilePath 
+										application.DefaultFilePath = JUSTPATH(mysys_file)
+										MESSAGEBOX(application.DefaultFilePath ,0,"wow")
 												myfile = GETFILE("SuperServerFile:SSF","File Name","Save",1,"Save As")
+												application.DefaultFilePath = tv_dfp
 										ENDIF
 										IF .not. testfile(myfile,1111) = .t.
 												RETURN
@@ -3438,6 +3442,32 @@ ENDIF
 					ENDIF
 		********************** RPWI Only
 		ELSE
+		
+				IF FILE(APPLICATION.DefaultFilePath+"\chpath.txt")
+								
+								sys_CHFILE = FILETOSTR(APPLICATION.DefaultFilePath+"\chpath.txt")
+								sys_pkNAME = MLINE(sys_CHFILE,2)
+								sys_pkNAME = ALLTRIM(sys_pkNAME)
+								sys_pkEXT = MLINE(sys_CHFILE,3)
+								sys_pkEXT = ALLTRIM(sys_pkEXT)
+								sys_pkPATH = MLINE(sys_CHFILE,4)
+								sys_pkPATH = ALLTRIM(sys_pkPATH)
+			
+								v_file = myfile
+								v1 = application.DefaultFilePath + "\configbase.txt"
+								v2 = ALLTRIM(v_file)
+								v3 = JUSTPATH(v2)
+								v4 = v3 + "\" + "config.txt"
+								IF .not. FILE(v4)
+										COPY FILE (v1) TO (v4)
+										myconfig = FILETOSTR(v4)
+										mysrc = UPPER(JUSTFNAME(myfile))
+										mysrc = STRTRAN(MYSRC,".SSF","")
+										myconfig = myconfig + CHR(13) + CHR(10) + "output: " + mysrc +sys_pkEXT +CHR(13)+CHR(10)+;
+										SYS_PKPATH+ " " + CHR(34) + mysrc + sys_pkEXT +CHR(34) +CHR(13)+CHR(10)
+										STRTOFILE(myconfig,v4)
+								ENDIF
+				ENDIF
 		
 		ENDIF
 		***************
