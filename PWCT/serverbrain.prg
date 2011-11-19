@@ -3399,7 +3399,12 @@ IF s_lastactivewindow = 4 .or. application.ActiveForm.name = "IPWRITER"
 		RETURN
 	ENDIF
 FS_SW = 0
+
+
+	tv_dfp = application.DefaultFilePath 
+		application.DefaultFilePath = JUSTPATH(mysys_file)
 myfile = GETFILE("SuperServerFile:SSF","File Name","Save",1,"Save As")
+application.DefaultFilePath = tv_dfp
 IF .not. testfile(myfile,1111) = .t.
 RETURN
 ENDIF
