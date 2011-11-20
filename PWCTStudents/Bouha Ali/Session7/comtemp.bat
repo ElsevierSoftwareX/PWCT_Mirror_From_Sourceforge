@@ -1,0 +1,1 @@
+CALL sscom2.bat  "SHOW MESSAGE"  /X /l calldll  > _temp.txt
