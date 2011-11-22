@@ -1987,7 +1987,7 @@ ShellExecute(0,"open","HELP\DoubleSFAQ.TXT","","",1)
 ENDIF
 IF s_menu = "Supernova"
 s_menu = "1_0"
-ShellExecute(0,"open",APPLICATION.DefaultFilePath + "\supernova\Simple_IDE.exe","","",1)
+ShellExecute(0,"open","C:\SSRPWI\Supernova\nova.exe","","",1)
 ENDIF
 IF s_menu = "ArabicSupernova"
 s_menu = "1_0"
