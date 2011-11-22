@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:06:10    Date : 11/05/2011
+* Time : 11:19:19    Date : 11/22/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -12,6 +12,7 @@
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
+#include "xhb.ch"
 Function Main
 Public True,False 
 True = .T. 
@@ -235,13 +236,14 @@ DO EVENTS
 ENDDO
 DO myend
 ENDIF
+Return Nil
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_NOVA
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESARES("Circuits\Main\Main\Main",54)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Set Procedure to 'Details.PRG'",1,1)
 SS_ESASTEP("Circuits\Main\Main\Main","Set Procedure to 'Scanner.PRG'",2,2)
@@ -405,5 +407,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","DO Events",181,181)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF While Loop",182,182)
 SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure myend",183,183)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",184,184)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",185,185)
 Return
 *-------------------------------------------------------------------*

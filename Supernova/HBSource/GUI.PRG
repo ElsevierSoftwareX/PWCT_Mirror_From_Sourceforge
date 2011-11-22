@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:20:24    Date : 10/01/2011
+* Time : 11:17:39    Date : 11/22/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -12,6 +12,7 @@
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
+#include "xhb.ch"
 Function GUI
 Public True,False 
 True = .T. 
@@ -1081,7 +1082,8 @@ HEIGHT 30 ;
 WIDTH 200 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
+FONTCOLOR {0,0,0} 
+
 AADD( MyOpObjsMap , {"textbox",cobjname,"NULL","NOEVENTS",myopwinname})
 ObjSelArray[4] := MyOpObjectName
 Return 0
@@ -2104,6 +2106,7 @@ RANGE 1 , 100;
 ON GOTFOCUS &mygotfocusblock  ;
 ON LOSTFOCUS &mylostfocusblock  ;
 ON CHANGE &mychangeblock  ;
+VALUE 1 ;
 WIDTH 50 ;
 HEIGHT 30 ;
 FONT "arial" SIZE 14 ;
@@ -2498,56 +2501,43 @@ vready := True
 ENDIF
 IF p1 = "button"
 DO RT_SelectObjectGeneral WITH 1,"button",p2
-ENDIF
-IF p1 = "label"
+ELSEIF p1 = "label"
 DO RT_SelectObjectGeneral WITH 2,"label",p2
 vready := True
-ENDIF
-IF p1 = "picture"
+ELSEIF p1 = "picture"
 DO RT_SelectObjectGeneral WITH 3,"picture",p2
 vready := True
-ENDIF
-IF p1 = "textbox"
+ELSEIF p1 = "textbox"
 DO RT_SelectObjectGeneral WITH 4,"textbox",p2
 vready := True
-ENDIF
-IF p1 = "editbox"
+ELSEIF p1 = "editbox"
 DO RT_SelectObjectGeneral WITH 5,"editbox",p2
 vready := True
-ENDIF
-IF p1 = "listbox"
+ELSEIF p1 = "listbox"
 DO RT_SelectObjectGeneral WITH 6,"listbox",p2
 vready := True
-ENDIF
-IF p1 = "combobox"
+ELSEIF p1 = "combobox"
 DO RT_SelectObjectGeneral WITH 7,"combobox",p2
 vready := True
-ENDIF
-IF p1 = "checkbox"
+ELSEIF p1 = "checkbox"
 DO RT_SelectObjectGeneral WITH 8,"checkbox",p2
 vready := True
-ENDIF
-IF p1 = "progressbar"
+ELSEIF p1 = "progressbar"
 DO RT_SelectObjectGeneral WITH 9,"progressbar",p2
 vready := True
-ENDIF
-IF p1 = "slider"
+ELSEIF p1 = "slider"
 DO RT_SelectObjectGeneral WITH 10,"slider",p2
 vready := True
-ENDIF
-IF p1 = "datepicker"
+ELSEIF p1 = "datepicker"
 DO RT_SelectObjectGeneral WITH 11,"datepicker",p2
 vready := True
-ENDIF
-IF p1 = "spinner"
+ELSEIF p1 = "spinner"
 DO RT_SelectObjectGeneral WITH 12,"spinner",p2
 vready := True
-ENDIF
-IF p1 = "hyperlink"
+ELSEIF p1 = "hyperlink"
 DO RT_SelectObjectGeneral WITH 13,"hyperlink",p2
 vready := True
-ENDIF
-IF p1 = "statusbar"
+ELSEIF p1 = "statusbar"
 DO RT_SelectObjectGeneral WITH 14,"statusbar",p2
 vready := True
 ENDIF

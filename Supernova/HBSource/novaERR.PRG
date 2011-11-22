@@ -1,15 +1,13 @@
 *---------------------------------------------------------------------------*
-* Time : 08:13:25    Date : 05/10/2010
+* Time : 18:16:17    Date : 11/08/2011
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.6 (Ready) [2006-2010]  
+* Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Programming Language    : Mahmoud Programming Language 
-* Programming Environment : RPWI ( [R]eal [P]rogramming [W]ithout cod[I]ng)
-* Programming Paradigm    : DoubleS (Super Server)
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers               : Borland C/C++ & Harbour/xHarbour
-* GUI Framework           : HarbourMiniGUI Extended
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -28,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance RT_Error                      
 	VetoUnit :
 
-Resistance R_NOVAERR_15speed1() address Code Unit : Circuits\Main\Main\RT_Error
+Resistance R_NOVAERR_18smart1() address Code Unit : Circuits\Main\Main\RT_Error
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\RT_Error
-Resistance R_NOVAERR_15speed1() code
+Resistance R_NOVAERR_18smart1() code
 Proc RTE_Load
 Public RTE_Errors,RTE_ControlStructureStack,RTE_Message
 RTE_ControlStructureStack := "S"
@@ -60,8 +58,7 @@ Local myret
 myret := True
 IF p1 = 1
 RTE_ControlStructureStack := RTE_ControlStructureStack + "F"
-ENDIF
-IF P1 = 2
+ELSEIF P1 = 2
 MyOut = Right(RTE_ControlStructureStack,1)
 IF myout = "F"
 mylen  = LEN(RTE_ControlStructureStack)
@@ -72,11 +69,9 @@ AADD( RTE_Message , " Source code file : " + srccodefile)
 AADD( RTE_Message , " Source code line : " + alltrim(str(srccodeline)))
 AADD( RTE_Message , RTE_Errors[1])
 ENDIF
-ENDIF
-IF p1 = 3
+ELSEIF p1 = 3
 RTE_ControlStructureStack := RTE_ControlStructureStack + "W"
-ENDIF
-IF P1 = 4
+ELSEIF P1 = 4
 MyOut = Right(RTE_ControlStructureStack,1)
 IF myout = "W"
 mylen  = LEN(RTE_ControlStructureStack)
@@ -87,11 +82,9 @@ AADD( RTE_Message , " Source code file : " + srccodefile)
 AADD( RTE_Message , " Source code line : " + alltrim(str(srccodeline)))
 AADD( RTE_Message , RTE_Errors[3])
 ENDIF
-ENDIF
-IF p1 = 5
+ELSEIF p1 = 5
 RTE_ControlStructureStack := RTE_ControlStructureStack + "N"
-ENDIF
-IF P1 = 6
+ELSEIF P1 = 6
 MyOut = Right(RTE_ControlStructureStack,1)
 IF myout = "N"
 mylen  = LEN(RTE_ControlStructureStack)
@@ -126,19 +119,18 @@ IF mychar = "F"
 AADD( RTE_Message , " Source code file : " + srccodefile)
 AADD( RTE_Message , " Source code line : " + alltrim(str(srccodeline)))
 AADD( RTE_Message , RTE_Errors[2])
-ENDIF
-IF mychar = "W"
+ELSEIF mychar = "W"
 AADD( RTE_Message , " Source code file : " + srccodefile)
 AADD( RTE_Message , " Source code line : " + alltrim(str(srccodeline)))
 AADD( RTE_Message , RTE_Errors[4])
-ENDIF
-IF mychar = "N"
+ELSEIF mychar = "N"
 AADD( RTE_Message , " Source code file : " + srccodefile)
 AADD( RTE_Message , " Source code line : " + alltrim(str(srccodeline)))
 AADD( RTE_Message , RTE_Errors[14])
 ENDIF
 Next
 IF len(RTE_Message) > 0
+if !iswindowdefined( winerror )
 DEFINE WINDOW winerror ;
 AT 10 ,10 ;
 WIDTH 747 ;
@@ -169,6 +161,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,0,0} ;
 FONTCOLOR {255,255,255}
 END WINDOW
+EndIF
 
 mymax  = LEN(RTE_Message)
 FOR x = 1 TO mymax STEP 1
