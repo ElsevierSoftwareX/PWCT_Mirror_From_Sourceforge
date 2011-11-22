@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:13:44    Date : 11/18/2011
+* Time : 14:44:20    Date : 11/22/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -12,6 +12,7 @@
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
+#include "xhb.ch"
 Function Main
 Public True,False 
 True = .T. 
@@ -87,13 +88,14 @@ EndIF
 
 procedure myclose()
 win1.Release ( )
+return
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_START
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",59)
+SS_ESARES("Circuits\Main\Main\Main",60)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Welcome to PWCT'",1,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
@@ -106,5 +108,6 @@ SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
 Return
 *-------------------------------------------------------------------*
