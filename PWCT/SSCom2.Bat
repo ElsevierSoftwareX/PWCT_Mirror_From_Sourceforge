@@ -628,6 +628,7 @@ goto PARPARSE
   echo %MV_HRB%\lib\hbrtl.lib + >> _temp.rsp
   if %MV_MTHREAD%==N echo %MV_HRB%\lib\hbvm.lib + >> _temp.rsp
   if %MV_MTHREAD%==Y echo %MV_HRB%\lib\hbvmmt.lib + >> _temp.rsp
+  echo %MV_HRB%\lib\xhb.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hblang.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbcpage.lib + >> _temp.rsp
   echo %MV_HRB%\lib\hbmacro.lib + >> _temp.rsp
