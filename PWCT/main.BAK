@@ -6,7 +6,7 @@ ELSE
 myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
 ENDIF
 
-SYS_VFP_DEBUG = .F.
+SYS_VFP_DEBUG = .t.
 
 IF SYS_VFP_DEBUG = .F.
 application.DefaultFilePath = JUSTPATH(application.ServerName)
@@ -65,6 +65,10 @@ Sys_selsercaller = 1
 PUBLIC Sys_ShowDoubleS
 PUBLIC sys_soundobject
 PUBLIC sys_goalstimeframe
+
+PUBLIC SYS_TMUSESOUND
+SYS_TMUSESOUND = .T.
+
 
 DIMENSION sys_goalstimeframe(1,2)
 sys_goalstimeframe(1,1) = "" && Goal Name
