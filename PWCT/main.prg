@@ -74,6 +74,7 @@ DIMENSION sys_goalstimeframe(1,2)
 sys_goalstimeframe(1,1) = "" && Goal Name
 sys_goalstimeframe(1,2) = 0  && Interaction ID - The Time Machine
 
+
 IF FILE(application.DefaultFilePath + "\chpath.txt")
 
 Sys_ShowDoubleS = .f.
