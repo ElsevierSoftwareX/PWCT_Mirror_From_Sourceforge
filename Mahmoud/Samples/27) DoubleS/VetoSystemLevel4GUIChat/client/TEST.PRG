@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:39:38    Date : 08/16/2011
+* Time : 23:10:47    Date : 12/29/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -12,6 +12,7 @@
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
+#include "xhb.ch"
 Function Main
 Public True,False 
 True = .T. 
@@ -187,5 +188,58 @@ End Of Resistance
 
 INIT PROCEDURE Init_TEST
 START DOUBLES
+SS_ESARES("Circuits\Main\Main\Main",97)
+SS_ESARES("Circuits\Main\Main\myresistance",159)
+SS_ESARES("Circuits\Main\Main\acceptconnection",180)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESAGOAL("Circuits\Main\Main\myresistance","myresistance")
+SS_ESAGOAL("Circuits\Main\Main\acceptconnection","acceptconnection")
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 )",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT",6,6)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",12,12)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",13,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Editbox ( edit1 )",19,19)
+SS_ESASTEP("Circuits\Main\Main\Main","Editbox Properties",20,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",25,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mystart()",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",28,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",31,32)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",33,34)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",35,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Error Handling, Try",39,39)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := false",40,40)
+SS_ESASTEP("Circuits\Main\Main\Main","mydata = win1.text1.Value",41,41)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mydata)",42,42)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  myveto",43,43)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := true",44,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Catch",45,45)
+SS_ESASTEP("Circuits\Main\Main\Main","End Try",46,46)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",47,47)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myservice",48,48)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Check Veto Services",49,49)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",50,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure vetostart",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Set Veto System Level to 4",52,52)
+SS_ESASTEP("Circuits\Main\Main\Main","Declare server 'Server1' address '127.0.0.1' port 1200",53,53)
+SS_ESASTEP("Circuits\Main\Main\Main","SELECT CLIENT CONNECTION myatom:K:S:myelectron",54,54)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection CONNECT",55,55)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",56,56)
+SS_ESASTEP("Circuits\Main\Main\myresistance","code",1,1)
+SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Open Channel inchannel",2,2)
+SS_ESASTEP("Circuits\Main\Main\myresistance","GOTO FIRST ELECTRON",3,3)
+SS_ESASTEP("Circuits\Main\Main\myresistance","mymax := GET_ACTIVE_ELECTRONS_COUNT",4,4)
+SS_ESASTEP("Circuits\Main\Main\myresistance","FOR LOOP ( From x = 1 To mymax Step 1)",5,5)
+SS_ESASTEP("Circuits\Main\Main\myresistance","mydata := GET_ACTIVE_ELECTRON_VALUE",6,6)
+SS_ESASTEP("Circuits\Main\Main\myresistance","Print text (mydata) to Editbox (Edit1) of Window (Win1)",7,11)
+SS_ESASTEP("Circuits\Main\Main\myresistance","GOTO NEXT ELECTRON",12,12)
+SS_ESASTEP("Circuits\Main\Main\myresistance","End of For Loop",13,13)
+SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Clear Channel",14,14)
+SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Close Channel",15,15)
+SS_ESASTEP("Circuits\Main\Main\acceptconnection","mycheck := REQUEST_TYPE_CONNECTION",1,1)
+SS_ESASTEP("Circuits\Main\Main\acceptconnection","IF ( mycheck )",2,2)
+SS_ESASTEP("Circuits\Main\Main\acceptconnection","(DoubleS/Veto Unit) ACCEPT CONNECTION",3,3)
+SS_ESASTEP("Circuits\Main\Main\acceptconnection","END OF IF STATEMENT",4,4)
 Return
 *-------------------------------------------------------------------*
