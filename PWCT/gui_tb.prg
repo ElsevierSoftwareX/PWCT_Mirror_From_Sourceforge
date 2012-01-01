@@ -1,6 +1,30 @@
 DEFINE CLASS TR_TEXTBOX AS TextBox
 lAutoName = .f.
 tAutoName = ""
+lDefault = .f.
+
+PROCEDURE gotfocus
+	IF left(ALLTRIM(this.Value),1) == '"' .and. RIGHT(ALLTRIM(this.value),1) == '"'
+		this.SelStart = 1
+
+	ENDIF
+
+RETURN
+
+PROCEDURE keypress
+LPARAMETERS nKeyCode, nShiftAltCtrl
+IF nkeycode = 15 && ctrl+o
+		PUBLIC objfromlist 
+     objfromlist = ""
+    	DO FORM selobj.scx
+    	IF .not. EMPTY(objfromlist)
+    	this.value = objfromlist
+    	ENDIF
+ENDIF
+
+RETURN
+
+
 PROCEDURE LOSTFOCUS
 APPLICATION.ActiveForm.REFRESH
 RETURN

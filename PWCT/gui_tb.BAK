@@ -1,6 +1,30 @@
 DEFINE CLASS TR_TEXTBOX AS TextBox
 lAutoName = .f.
 tAutoName = ""
+lDefault = .f.
+
+PROCEDURE gotfocus
+	IF left(ALLTRIM(this.Value),1) == '"' .and. RIGHT(ALLTRIM(this.value),1) == '"'
+		this.SelStart = 1
+
+	ENDIF
+
+RETURN
+
+PROCEDURE keypress
+PARAMETERS nkeycode
+IF nkeycode = 15 && ctrl+o
+		PUBLIC objfromlist 
+     objfromlist = ""
+    	DO FORM selobj.scx
+    	IF .not. EMPTY(objfromlist)
+    	this.value = objfromlist
+    	ENDIF
+ENDIF
+
+RETURN
+
+
 PROCEDURE LOSTFOCUS
 APPLICATION.ActiveForm.REFRESH
 RETURN
@@ -26,10 +50,10 @@ DO case
    
    cStartColor = "{"
    cEndColor = "}"
-   IF .not. EMPTY(ALLTRIM(this.value)) 
+   IF .not. EMPTY(ALLTRIM(this.value))
    	IF LEN(ALLTRIM(this.value)) > 2
-   		cStartColor = LEFT(EMPTY(ALLTRIM(this.value)),1)
-   		cEndColor = Right(EMPTY(ALLTRIM(this.value)),1)
+   		cStartColor = LEFT(ALLTRIM(this.value),1)
+   		cEndColor = Right(ALLTRIM(this.value),1)
    	ENDIF
    endif
    
