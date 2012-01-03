@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:19:20    Date : 01/02/2012
+* Time : 23:05:30    Date : 01/03/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -104,7 +104,7 @@ TOOLTIP ""
 DO RightToLeft WITH "win1","list1"
 DO RightToLeft WITH "win1","combo1"
 @ 9 ,12 IMAGE 1;
-PICTURE "C:\USERS\T\DESKTOP\Õ«“„.JPG";
+PICTURE "Õ«“„.JPG";
 STRETCH ;
 WIDTH 252 HEIGHT 253
 @ 88 ,504 LABEL lbl2 ;
@@ -172,7 +172,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action Close",48,48)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",49,51)
 SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure RightToLeft Parameters 'win1','list1'",52,52)
 SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure RightToLeft Parameters 'win1','combo1'",53,53)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( 1 ) , Image : 'C:\USERS\T\DESKTOP\Õ«“„.JPG'",54,55)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( 1 ) , Image : 'Õ«“„.JPG'",54,55)
 SS_ESASTEP("Circuits\Main\Main\Main","Image Properties",56,57)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 ) , Caption : '«·Ã‰”Ì…'",58,59)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",60,64)
