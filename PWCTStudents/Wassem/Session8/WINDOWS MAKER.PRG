@@ -1,7 +1,7 @@
 *---------------------------------------------------------------------------*
-* Time : 21:42:22    Date : 01/07/2012
+* Time : 21:59:46    Date : 01/07/2012
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -53,19 +53,19 @@ Resistance R_WINDOWS_MAKER_18smart1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
-WIDTH 549 ;
-HEIGHT 260 ;
+WIDTH 559 ;
+HEIGHT 300 ;
 ICON "PWCTICON" ;
-TITLE "A quick calcolater" ;
+TITLE "A quick counter - by Waseem" ;
 MAIN ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {0,0,0} 
 
 DEFINE MAIN MENU of win1
-POPUP "Informations"
+POPUP "Information"
 MENUITEM "The programmer" Action MSGINFO( "The programmer is Waseem Mhammad Saaid from Syria" )
-MENUITEM "Wib site" Action MSGINFO( "www.nwsmgroup.allgoo.net" )
+MENUITEM "Web site" Action MSGINFO( "www.nwsmgroup.allgoo.net" )
 MENUITEM "E-mail" Action MSGINFO( "waseem_m_s@hotmail.com" )
 END POPUP
 POPUP "close"
@@ -86,7 +86,7 @@ WIDTH 51 HEIGHT 70 ;
 FONT "Arial" SIZE 12 ;
 TOOLTIP ""
 @ 122 ,79 BUTTONEX btn3;
-CAPTION "Doun";
+CAPTION "Down";
 ON CLICK numm()  ;
 WIDTH 52 HEIGHT 66 ;
 FONT "Arial" SIZE 12 ;
@@ -305,12 +305,12 @@ INIT PROCEDURE Init_WINDOWS_MAKER
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",52)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'A quick calcolater'",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'A quick counter - by Waseem'",1,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,12)
 SS_ESASTEP("Circuits\Main\Main\Main","START OF MAIN MENU : WINDOW (win1)",13,13)
-SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'Informations'",14,14)
+SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'Information'",14,14)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'The programmer' )",15,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Wib site' )",16,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Web site' )",16,16)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'E-mail' )",17,17)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",18,18)
 SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'close'",19,19)
@@ -322,7 +322,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",25,29)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'up'",30,31)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action num()",32,32)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",33,35)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3 ) , Caption : 'Doun'",36,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3 ) , Caption : 'Down'",36,37)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action numm()",38,38)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",39,41)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn4 ) , Caption : '*num'",42,43)
