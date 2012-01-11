@@ -1,0 +1,1 @@
+CALL sscom2.bat  "WINDOWS MAKER"  /X  > _temp.txt
