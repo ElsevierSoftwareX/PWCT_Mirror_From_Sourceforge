@@ -1,1 +1,1 @@
-CALL sscom2.bat  "START"  /mt /l hbnetio /l zlib /l ws2_32 /l calldll   > _temp.txt
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "D:\DOUBLESVSOOP\PWCT\STARTAPP\START.PRG"
