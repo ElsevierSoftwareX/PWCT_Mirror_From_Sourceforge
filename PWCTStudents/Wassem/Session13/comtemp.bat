@@ -1,0 +1,1 @@
+CALL sscom2.bat  "HELLO"  /X  > _temp.txt
