@@ -1,0 +1,1 @@
+CALL sscom2.bat  "WASEEM15"  /X  > _temp.txt
