@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "C:\USERS\SA\DESKTOP\SAISABAN\SAISABAN1999.PRG"
