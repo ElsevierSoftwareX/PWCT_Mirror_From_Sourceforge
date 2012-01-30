@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "C:\USERS\HEREAFTER\DESKTOP\APPLICATION 3\TEST 3.PRG"
