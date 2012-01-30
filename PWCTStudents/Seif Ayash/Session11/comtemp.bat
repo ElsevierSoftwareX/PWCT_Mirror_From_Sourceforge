@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "C:\USERS\MAHMOUD\DESKTOP\NEW FORM DESIGNING\NEW FORM DESIGNING\FORM DESIGN.PRG"

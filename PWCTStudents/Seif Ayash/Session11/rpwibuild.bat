@@ -1,0 +1,1 @@
+c:\ssrpwi\hmg\run.bat "FORM DESIGN.prg"
