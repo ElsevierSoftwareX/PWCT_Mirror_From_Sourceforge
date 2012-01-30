@@ -6,7 +6,7 @@ ELSE
 myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
 ENDIF
 
-SYS_VFP_DEBUG = .t.
+SYS_VFP_DEBUG = .T.
 
 IF SYS_VFP_DEBUG = .F.
 application.DefaultFilePath = JUSTPATH(application.ServerName)
@@ -65,6 +65,8 @@ Sys_selsercaller = 1
 PUBLIC Sys_ShowDoubleS
 PUBLIC sys_soundobject
 PUBLIC sys_goalstimeframe
+PUBLIC sys_rpwionlygenonly && rpwi only - generate source code only
+sys_rpwionlygenonly = .f.
 
 PUBLIC SYS_TMUSESOUND
 SYS_TMUSESOUND = .T.

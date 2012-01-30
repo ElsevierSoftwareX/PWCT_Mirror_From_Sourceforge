@@ -65,6 +65,8 @@ Sys_selsercaller = 1
 PUBLIC Sys_ShowDoubleS
 PUBLIC sys_soundobject
 PUBLIC sys_goalstimeframe
+PUBLIC sys_rpwionlygenonly && rpwi only - generate source code only
+sys_rpwionlygenonly = .f.
 
 PUBLIC SYS_TMUSESOUND
 SYS_TMUSESOUND = .T.

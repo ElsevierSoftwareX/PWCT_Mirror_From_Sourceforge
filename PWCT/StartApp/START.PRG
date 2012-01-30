@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:25:51    Date : 01/13/2012
+* Time : 12:33:16    Date : 01/30/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -21,14 +21,6 @@ New Server Server1 Type Slave Server Eigen Value 000
  Details :
  * Get parameters from command line Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 	DataUnit :
-			Atom Test                          
-				Shell K                             
-					SubShell P                             
-						Variable name Value "Mahmoud"
-						Variable Address
-						Variable Phone
-						Variable Fax
-						Variable Notes
 	CodeUnit :
 		Main Circuit    Main                          
 			Circuit        Main                          
@@ -95,7 +87,7 @@ End Of Resistance
 
 INIT PROCEDURE Init_START
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",60)
+SS_ESARES("Circuits\Main\Main\Main",52)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Welcome to PWCT'",1,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
