@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "E:\BOOKS\IWORK\PWCT\LESSON 15\LESSON 15.PRG"
