@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2con.bat  -target= "C:\USERS\HEREAFTER\DESKTOP\PWCT APPLICATIONS\HELLO WORLD\LESSON 6.PRG"
