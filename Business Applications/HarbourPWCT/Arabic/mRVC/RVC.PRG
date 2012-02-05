@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:42:43    Date : 02/05/2012
+* Time : 15:14:02    Date : 02/05/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -826,7 +826,7 @@ WIDTH 530 HEIGHT 336
 DEFINE TIMER Timer1 INTERVAL 1500 ;
 Action WINLOGOSTART.RELEASE()
 @ 13 ,270 LABEL lbl1 ;
-VALUE " «—ÌŒ «·«’œ«— :  2011/9/20" ;
+VALUE " «—ÌŒ «·«’œ«— :  2012/2/5" ;
 WIDTH 200 ;
 HEIGHT 20 ;
 FONT "Arial" SIZE 9  ;
@@ -1539,7 +1539,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",759,769)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image1 ) , Image : 'LOGO'",770,771)
 SS_ESASTEP("Circuits\Main\Main\Main","Properties",772,773)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",774,775)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : ' «—ÌŒ «·«’œ«— :  2011/9/20'",776,777)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : ' «—ÌŒ «·«’œ«— :  2012/2/5'",776,777)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",778,784)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 ) , Caption : '»—‰«„Ã „ «»⁄… «·„‘«—Ì⁄'",785,786)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",787,793)
