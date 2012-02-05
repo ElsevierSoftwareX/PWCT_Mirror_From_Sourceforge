@@ -1,7 +1,7 @@
 *---------------------------------------------------------------------------*
-* Time : 17:35:52    Date : 09/16/2011
+* Time : 14:42:31    Date : 02/05/2012
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -12,6 +12,7 @@
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
+#include "xhb.ch"
 Function DASH
 Public True,False 
 True = .T. 
@@ -79,6 +80,10 @@ Data PW_ReportName init "Projects"
 Data PW_ReportWindowName init "DashProjectsReportWindow"
 Data PW_PermissionID init 143
 Data PW_ReportName2 init "ListOfProjects"
+Data C9 init 0
+Data P9 init 0
+Data C10 init 0
+Data P10 init 0
 Method ShowWindow
 Method MyTimer
 Method DrawChart
@@ -107,7 +112,7 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {255,255,255}
 
-@ 335 ,759 IMAGE imagedownsel1;
+@ 335 ,829 IMAGE imagedownsel1;
 PICTURE GetStartUpFolder()+"\image\downsel.jpg";
 STRETCH ;
 WIDTH 55 HEIGHT 48
@@ -124,32 +129,32 @@ WIDTH 196 HEIGHT 34 ;
 FONT "Arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 438 ,740 IMAGE image1;
+@ 437 ,710 IMAGE image1;
 PICTURE GetStartUpFolder()+"\image\c1.jpg";
 ON CLICK self:openprojectswindow("3")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 438 ,359 IMAGE image2;
+@ 437 ,379 IMAGE image2;
 PICTURE GetStartUpFolder()+"\image\c2.jpg";
 ON CLICK self:openprojectswindow("6")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 438 ,613 IMAGE image3;
+@ 437 ,603 IMAGE image3;
 PICTURE GetStartUpFolder()+"\image\c3.jpg";
 ON CLICK self:openprojectswindow("4")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 438 ,486 IMAGE image4;
+@ 437 ,486 IMAGE image4;
 PICTURE GetStartUpFolder()+"\image\c4.jpg";
 ON CLICK self:openprojectswindow("5")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 438 ,232 IMAGE image5;
+@ 437 ,272 IMAGE image5;
 PICTURE GetStartUpFolder()+"\image\c5.jpg";
 ON CLICK self:openprojectswindow("7")  ;
 STRETCH ;
 WIDTH 100 HEIGHT 70
-@ 409 ,754 LABEL lbl1 ;
+@ 409 ,724 LABEL lbl1 ;
 VALUE "«· ﬁÌÌ„ «·›‰Ï" ;
 WIDTH 70 ;
 HEIGHT 30 ;
@@ -157,9 +162,9 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 409 ,613 LABEL lbl2 ;
+@ 410 ,598 LABEL lbl2 ;
 VALUE "«· ﬁÌÌ„ «·«” À„«—Ì" ;
-WIDTH 120 ;
+WIDTH 110 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -173,7 +178,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 409 ,369 LABEL lbl4 ;
+@ 409 ,389 LABEL lbl4 ;
 VALUE "„—Õ·…  ‰›Ì– 2" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -181,7 +186,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 409 ,241 LABEL lbl5 ;
+@ 409 ,281 LABEL lbl5 ;
 VALUE "„—Õ·…  ‰›Ì– 3" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -191,7 +196,7 @@ TRANSPARENT ;
 FONTCOLOR {0,0,0}
 self:oActiveX2 := TActiveX():New( self:cWindowName, "RMChart.RMChartX" , 10 , 802 , 370 , 282)
 self:oActiveX2:Load()
-@ 514 ,755 TEXTBOX text1;
+@ 514 ,725 TEXTBOX text1;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -199,7 +204,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 514 ,629 TEXTBOX text2;
+@ 514 ,619 TEXTBOX text2;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -207,7 +212,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 514 ,502 TEXTBOX text3;
+@ 513 ,502 TEXTBOX text3;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -215,7 +220,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 514 ,376 TEXTBOX text4;
+@ 514 ,396 TEXTBOX text4;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -223,7 +228,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 514 ,247 TEXTBOX text5;
+@ 514 ,287 TEXTBOX text5;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -231,7 +236,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 545 ,755 TEXTBOX ptext1;
+@ 545 ,725 TEXTBOX ptext1;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -239,7 +244,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 545 ,629 TEXTBOX ptext2;
+@ 545 ,619 TEXTBOX ptext2;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -247,7 +252,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 544 ,502 TEXTBOX ptext3;
+@ 548 ,502 TEXTBOX ptext3;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -255,7 +260,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 546 ,376 TEXTBOX ptext4;
+@ 546 ,396 TEXTBOX ptext4;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -263,7 +268,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 544 ,247 TEXTBOX ptext5;
+@ 544 ,287 TEXTBOX ptext5;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -286,14 +291,14 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 511 ,1074 LABEL tlbl1 ;
+@ 511 ,1094 LABEL tlbl1 ;
 VALUE "  ⁄œœ «·„‘«—Ì⁄" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
 FONTCOLOR {255,255,255}
-@ 549 ,1074 LABEL tlbl2 ;
+@ 549 ,1094 LABEL tlbl2 ;
 VALUE " ‰”»… «·„‘«—Ì⁄" ;
 WIDTH 100 ;
 HEIGHT 30 ;
@@ -308,7 +313,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 303 ,907 TEXTBOX ptext7;
+@ 303 ,27 TEXTBOX ptext7;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -316,9 +321,9 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 304 ,994 LABEL tlbl4 ;
-VALUE "⁄œœ «·„‘«—Ì⁄" ;
-WIDTH 100 ;
+@ 304 ,114 LABEL tlbl4 ;
+VALUE " ≈Ã„«·Ï ⁄œœ «·„‘«—Ì⁄" ;
+WIDTH 150 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
@@ -330,14 +335,14 @@ STRETCH ;
 WIDTH 270 HEIGHT 116
 DEFINE TIMER Timer2 INTERVAL 5000 ;
 Action self:UpdateDash()
-@ 378 ,230 LABEL tlblstages ;
+@ 378 ,270 LABEL tlblstages ;
 VALUE "                      «Õ ÷«‰ «· ÿÊÌ— ··„‰ Ã" ;
-WIDTH 360 ;
+WIDTH 320 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
 FONTCOLOR {255,255,255}
-@ 409 ,974 LABEL lblgetfirst ;
+@ 409 ,1014 LABEL lblgetfirst ;
 VALUE "≈” ·«„ √Ê·Ï" ;
 WIDTH 70 ;
 HEIGHT 30 ;
@@ -345,12 +350,12 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 438 ,968 IMAGE imagegetproject;
+@ 437 ,1008 IMAGE imagegetproject;
 PICTURE GetStartUpFolder()+"\image\c6.jpg";
 ON CLICK self:openprojectswindow("2")  ;
 STRETCH ;
 WIDTH 80 HEIGHT 70
-@ 514 ,970 TEXTBOX textfirstget;
+@ 514 ,1010 TEXTBOX textfirstget;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -358,7 +363,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 545 ,970 TEXTBOX textfirstgetper;
+@ 545 ,1010 TEXTBOX textfirstgetper;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -366,7 +371,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 409 ,874 LABEL lblrefuse ;
+@ 409 ,934 LABEL lblrefuse ;
 VALUE "„—›Ê÷" ;
 WIDTH 70 ;
 HEIGHT 30 ;
@@ -374,12 +379,12 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
-@ 438 ,859 IMAGE imagerefuseproject;
+@ 437 ,919 IMAGE imagerefuseproject;
 PICTURE GetStartUpFolder()+"\image\c7.jpg";
 ON CLICK self:openprojectswindow("9")  ;
 STRETCH ;
 WIDTH 80 HEIGHT 70
-@ 514 ,865 TEXTBOX textrefuse;
+@ 514 ,925 TEXTBOX textrefuse;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -387,7 +392,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 545 ,865 TEXTBOX textrefuseper;
+@ 545 ,925 TEXTBOX textrefuseper;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -395,19 +400,19 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 378 ,14 LABEL lblinvest ;
-VALUE "    «·«Õ ÷«‰ «·≈” À„«—Ì ··„‰ Ã" ;
-WIDTH 200 ;
+@ 377 ,114 LABEL lblinvest ;
+VALUE " «·«Õ ÷«‰ «·≈” À„«—Ì " ;
+WIDTH 150 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
 FONTCOLOR {255,255,255}
-@ 417 ,15 IMAGE imageinvest;
+@ 437 ,125 IMAGE imageinvest;
 PICTURE GetStartUpFolder()+"\image\c8.jpg";
 ON CLICK self:openprojectswindow("8")  ;
 STRETCH ;
-WIDTH 197 HEIGHT 96
-@ 514 ,75 TEXTBOX textinvest;
+WIDTH 137 HEIGHT 70
+@ 514 ,155 TEXTBOX textinvest;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -415,7 +420,7 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 545 ,75 TEXTBOX textinvestper;
+@ 545 ,155 TEXTBOX textinvestper;
 HEIGHT 30 ;
 WIDTH 70 ;
 READONLY ;
@@ -423,16 +428,16 @@ FONT "Arial" SIZE 14 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
-@ 378 ,1074 LABEL lblthestage ;
+@ 378 ,1094 LABEL lblthestage ;
 VALUE "     «·„—Õ·…" ;
 WIDTH 100 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
 FONTCOLOR {255,255,255}
-@ 378 ,614 LABEL lblgetandvalue ;
+@ 378 ,594 LABEL lblgetandvalue ;
 VALUE "                                    «·≈” ·«„ Ê«· ﬁÌÌ„" ;
-WIDTH 440 ;
+WIDTH 490 ;
 HEIGHT 30 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {64,0,64} ;
@@ -546,6 +551,63 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {0,255,128} ;
 FONTCOLOR {0,0,0}
 
+@ 410 ,812 LABEL lbl15 ;
+VALUE "„ﬁ»Ê· ··≈Õ ÷«‰ " ;
+WIDTH 110 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 377 ,4 LABEL lbl16 ;
+VALUE "„‘«—Ì⁄ „ Œ—Ã… " ;
+WIDTH 100 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {64,0,64} ;
+FONTCOLOR {255,255,255}
+@ 513 ,831 TEXTBOX text10;
+HEIGHT 30 ;
+WIDTH 70 ;
+READONLY ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
+@ 548 ,830 TEXTBOX ptext10;
+HEIGHT 30 ;
+WIDTH 70 ;
+READONLY ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
+@ 514 ,20 TEXTBOX text11;
+HEIGHT 25 ;
+WIDTH 68 ;
+READONLY ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
+@ 545 ,18 TEXTBOX ptext11;
+HEIGHT 30 ;
+WIDTH 70 ;
+READONLY ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {0,255,128} ;
+FONTCOLOR {0,0,0}
+
+@ 437 ,826 IMAGE image11;
+PICTURE GetStartUpFolder()+"\IMAGE\ACCEPTPROJECT.JPG";
+ON CLICK self:openprojectswindow("11")  ;
+STRETCH ;
+WIDTH 80 HEIGHT 70
+@ 437 ,5 IMAGE image12;
+PICTURE GetStartUpFolder()+"\IMAGE\COMPLETEPROJECT.JPG";
+ON CLICK self:openprojectswindow("10")  ;
+STRETCH ;
+WIDTH 100 HEIGHT 70
 END WINDOW
 
 &(self:cWindowName).timer1.Enabled := false
@@ -662,19 +724,23 @@ ELSEIF nStage = 8
 self:c7 := nCount
 ELSEIF nStage = 9
 self:c8 := nCount
+ELSEIF nStage = 10
+self:c9 := nCount
+ELSEIF nStage = 11
+self:c10 := nCount
 ENDIF
 self:oRS:MOVENEXT()
 Next
-self:TotalCount := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c6 + self:c7 + self:c8
-self:TotalCount2 := self:c2 + self:c3 + self:c4 + self:c5 + self:c7
-self:TotalCount3 := self:c3 + self:c4 + self:c5 + self:c7
-self:TotalCount4 := self:c4 + self:c5 + self:c7
+self:TotalCount := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c6 + self:c7 + self:c8 + self:c9 + self:c10
+self:TotalCount2 := self:c2 + self:c3 + self:c4 + self:c5 + self:c7 +self:c10 +self:c9
+self:TotalCount3 := self:c3 + self:c4 + self:c5 + self:c7 + self:c9
+self:TotalCount4 := self:c4 + self:c5 + self:c7 + self:c9
 self:Tp2 := (self:c2/self:totalcount2)*100
 self:Tp3 := (self:c3/self:totalcount3)*100
 self:Tp4 := (self:c4/self:totalcount4)*100
-self:TotalCount1 := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c7
+self:TotalCount1 := self:c1 + self:c2 + self:c3 + self:c4 + self:c5 + self:c7 + self:c10 + self:c9
 self:Tp1 := (self:c1/self:totalcount1)*100
-self:TotalCount5 := self:c5 + self:c7
+self:TotalCount5 := self:c5 + self:c7 + self:c9
 self:Tp5 := (self:c5/self:totalcount5)*100
 self:p1 := (self:c1/self:totalcount)*100
 self:p2 := (self:c2/self:totalcount)*100
@@ -716,6 +782,16 @@ self:C8 = STR ( self:c8 )
 self:P8 = STR ( self:P8 )
 SELF:C8 = ALLTRIM ( SELF:C8 )
 SELF:P8 = ALLTRIM ( SELF:P8 )
+self:p10 := (self:c10/self:totalcount)*100
+self:C10 = STR ( self:c10 )
+self:P10 = STR ( self:P10 )
+SELF:C10 = ALLTRIM ( SELF:C10 )
+SELF:P10 = ALLTRIM ( SELF:P10 )
+self:P9 := (self:c9/self:totalcount)*100
+self:C9 = STR ( self:c9 )
+self:P9 = STR ( self:P9 )
+SELF:C9 = ALLTRIM ( SELF:C9 )
+SELF:P9 = ALLTRIM ( SELF:P9 )
 oRS := TOLEAUTO():NEW( "ADODB.Recordset" )
 oRS:CursorType := 1
 oRS:ActiveConnection := self:oCon
@@ -748,7 +824,7 @@ num7 = ALLTRIM ( num7 )
 &(self:cWindowName).textDT24.Value := num6
 &(self:cWindowName).textDT34.Value := num7
 oldDataString := self:DataString
-self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5+"*"+self:c7+"*"+self:c6+"*"+self:c8
+self:DataString := SELF:C1 +"*"+ SELF:C2 +"*"+ SELF:C3 +"*"+ SELF:C4 +"*"+ SELF:C5
 IF self:DataString == OldDataString
 Return False
 ENDIF
@@ -770,6 +846,10 @@ self:TotalCount = STR ( self:TotalCount )
 &(self:cWindowName).textInvestPer.Value := self:p7
 &(self:cWindowName).textRefuse.Value := self:c8
 &(self:cWindowName).textRefusePer.Value := self:p8
+&(self:cWindowName).text10.Value := self:c10
+&(self:cWindowName).ptext10.Value := self:p10
+&(self:cWindowName).text11.Value := self:c9
+&(self:cWindowName).ptext11.Value := self:p9
 myout = self:Disconnect()
 Return True
 Method UpdateDash Class DashClass
@@ -838,6 +918,10 @@ self:C8 := 0
 self:P6 := 0
 self:P7 := 0
 self:P8 := 0
+self:c9 := 0
+self:p9 := 0
+self:c10 := 0
+self:p10 := 0
 Return 0
 Method OpenProjectsWindow(p1) Class DashClass
 Local mypwobj

@@ -1,7 +1,7 @@
 *---------------------------------------------------------------------------*
-* Time : 20:44:21    Date : 09/27/2011
+* Time : 14:42:43    Date : 02/05/2012
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -12,6 +12,7 @@
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
+#include "xhb.ch"
 Function Main
 Public True,False 
 True = .T. 
@@ -880,7 +881,7 @@ End Of Resistance
 
 INIT PROCEDURE Init_RVC
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESARES("Circuits\Main\Main\Main",52)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure datesettings",1,1)
 SS_ESASTEP("Circuits\Main\Main\Main","Set Menu Style EXTENDED",2,2)

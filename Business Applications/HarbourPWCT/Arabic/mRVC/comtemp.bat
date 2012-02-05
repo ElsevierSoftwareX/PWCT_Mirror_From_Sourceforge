@@ -1,1 +1,1 @@
-CALL sscom2.bat  "RVC"  /mt /l hbnetio /l zlib /l ws2_32 /l calldll   > _temp.txt
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "D:\DOUBLESVSOOP\BUSINESS APPLICATIONS\HARBOURPWCT\ARABIC\MRVC\RVC.PRG"
