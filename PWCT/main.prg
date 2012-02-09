@@ -1,9 +1,9 @@
 PARAMETERS pmyfile
 PUBLIC myfiletoopen
+myfiletoopen = ""
+
 IF PCOUNT() = 1
 myfiletoopen = pmyfile
-ELSE
-myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
 ENDIF
 
 SYS_VFP_DEBUG = .F.
@@ -77,12 +77,21 @@ sys_goalstimeframe(1,1) = "" && Goal Name
 sys_goalstimeframe(1,2) = 0  && Interaction ID - The Time Machine
 
 
+PUBLIC sys_filetopasstoanothervpl
+sys_filetopasstoanothervpl = ""
+
+
 IF FILE(application.DefaultFilePath + "\chpath.txt")
 
 Sys_ShowDoubleS = .f.
 ELSE
 
 Sys_ShowDoubleS = .T.
+
+IF EMPTY(ALLTRIM(myfiletoopen))
+myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
+endif
+
 ENDIF
 
 IF .not. FILE(application.DefaultFilePath + "\logo.off")

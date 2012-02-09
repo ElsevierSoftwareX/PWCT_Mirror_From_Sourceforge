@@ -2962,6 +2962,8 @@ next
 myswform.text1.value = "(File :" + mysys_file + " )"
 myswform.OLETREE.Visible = .T.
 
+sys_filetopasstoanothervpl = mysys_file
+
 
 IF win_rpwi = .f.
 DO FORM rpwi
@@ -3141,6 +3143,7 @@ ENDIF
 		* 3 - adding file name to window title
 		myswform.text1.value = "(File :" + vvar1 + " )"
 		mysys_file = vvar1
+		sys_filetopasstoanothervpl = vvar1
 		
 		v_file = ALLTRIM(UPPER(myswform.TEXt1.Value))
 		v_file = SUBSTR(v_file,2,LEN(v_file)-2)
