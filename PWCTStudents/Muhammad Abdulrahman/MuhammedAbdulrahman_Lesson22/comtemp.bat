@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "C:\USERS\MAHMOUD\DESKTOP\MUHAMMEDABDULRAHMAN_LESSON22\TEST.PRG"
