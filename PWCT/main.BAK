@@ -6,7 +6,7 @@ ELSE
 myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
 ENDIF
 
-SYS_VFP_DEBUG = .T.
+SYS_VFP_DEBUG = .t.
 
 IF SYS_VFP_DEBUG = .F.
 application.DefaultFilePath = JUSTPATH(application.ServerName)
@@ -75,6 +75,10 @@ SYS_TMUSESOUND = .T.
 DIMENSION sys_goalstimeframe(1,2)
 sys_goalstimeframe(1,1) = "" && Goal Name
 sys_goalstimeframe(1,2) = 0  && Interaction ID - The Time Machine
+
+PUBLIC sys_filetopasstoanothervpl
+sys_filetopasstoanothervpl = ""
+
 
 
 IF FILE(application.DefaultFilePath + "\chpath.txt")
