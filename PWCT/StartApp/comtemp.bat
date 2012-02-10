@@ -1,1 +1,1 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "D:\DOUBLESVSOOP\PWCT\STARTAPP\START.PRG"
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\START.PRG"
