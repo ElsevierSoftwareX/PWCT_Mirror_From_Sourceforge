@@ -645,60 +645,60 @@ RETURN
 ENDIF
 
 IF S_TOOL == "CLOSE"
-IF FS_SW = 1
-	MYMSG = MESSAGEBOX("Save Changes ?",4,"Save")
-	IF mymsg = 6
- 	if .not. mysys_file = "No Name"
-		do form upload
-		delete file (mySYS_FILE)
-		select 23
-		copy to (MYSYS_FILE)
-				GOTO bottom
-	else
-	  myfile = GETFILE("SuperServerFile:SSF","File Name","Save",1,"Save As")
-		IF .not. testfile(myfile,1111) = .t.
-		RETURN
-		ENDIF
-		if .not. empty(myfile)
-			myifile = LEFT(myfile,LEN(myfile)-4)+".trf"
-			IF FILE(myifile)
-				stmsg("Transporter File with the same name already exist in the same folder, it's not possible to have server file & transporter file in the same folder with the same name")
-				RETURN
-			ENDIF
-			myifile = LEFT(myfile,LEN(myfile)-4)+".idf"
-			IF FILE(myifile)
-			stmsg("Interaction Page File with the same name already exist in the same folder, it's not possible to have server file & Interaction Page file in the same folder with the same name")
-			RETURN
-			ENDIF
-			if file(myfile)
-				mymsg = messagebox(sysmsg(284),36,sysmsg(285))
-					if mymsg = 6
-					delete file (myfile)
-					do form upload
-					select 23
-					copy to (myfile)
-							GOTO bottom
-					MYSYS_FILE = MYFILE
-					myswform.text1.value =  "(File :" + mysys_file + " )"
-					endif
-			else
-				do form upload
-				select 23
-				copy to (myfile)
-						GOTO bottom
-				MYSYS_FILE = MYFILE
-				myswform.text1.value ="(File :" + mysys_file + " )"
-			endif
-		endif
-	endif
-	FS_SW = 0
-  eNDIF
-ENDIF
-S_TOOL = "0"
-mymsg = messagebox(sysmsg(263),36,sysmsg(264))
-if mymsg = 6
+*!*	IF FS_SW = 1
+*!*		MYMSG = MESSAGEBOX("Save Changes ?",4,"Save")
+*!*		IF mymsg = 6
+*!*	 	if .not. mysys_file = "No Name"
+*!*			do form upload
+*!*			delete file (mySYS_FILE)
+*!*			select 23
+*!*			copy to (MYSYS_FILE)
+*!*					GOTO bottom
+*!*		else
+*!*		  myfile = GETFILE("SuperServerFile:SSF","File Name","Save",1,"Save As")
+*!*			IF .not. testfile(myfile,1111) = .t.
+*!*			RETURN
+*!*			ENDIF
+*!*			if .not. empty(myfile)
+*!*				myifile = LEFT(myfile,LEN(myfile)-4)+".trf"
+*!*				IF FILE(myifile)
+*!*					stmsg("Transporter File with the same name already exist in the same folder, it's not possible to have server file & transporter file in the same folder with the same name")
+*!*					RETURN
+*!*				ENDIF
+*!*				myifile = LEFT(myfile,LEN(myfile)-4)+".idf"
+*!*				IF FILE(myifile)
+*!*				stmsg("Interaction Page File with the same name already exist in the same folder, it's not possible to have server file & Interaction Page file in the same folder with the same name")
+*!*				RETURN
+*!*				ENDIF
+*!*				if file(myfile)
+*!*					mymsg = messagebox(sysmsg(284),36,sysmsg(285))
+*!*						if mymsg = 6
+*!*						delete file (myfile)
+*!*						do form upload
+*!*						select 23
+*!*						copy to (myfile)
+*!*								GOTO bottom
+*!*						MYSYS_FILE = MYFILE
+*!*						myswform.text1.value =  "(File :" + mysys_file + " )"
+*!*						endif
+*!*				else
+*!*					do form upload
+*!*					select 23
+*!*					copy to (myfile)
+*!*							GOTO bottom
+*!*					MYSYS_FILE = MYFILE
+*!*					myswform.text1.value ="(File :" + mysys_file + " )"
+*!*				endif
+*!*			endif
+*!*		endif
+*!*		FS_SW = 0
+*!*	  eNDIF
+*!*	ENDIF
+*!*	S_TOOL = "0"
+*!*	mymsg = messagebox(sysmsg(263),36,sysmsg(264))
+*!*	if mymsg = 6
 myswform.release
-endif
+*!*	endif
 RETURN
 ENDIF
 

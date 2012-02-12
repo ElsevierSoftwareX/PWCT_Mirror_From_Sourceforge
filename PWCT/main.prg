@@ -16,7 +16,7 @@ DECLARE INTEGER ShellExecute IN shell32.dll ;
   INTEGER hndWin, STRING cAction, STRING cFileName, ; 
   STRING cParams, STRING cDir, INTEGER nShowWin
 
-ON SHUTDOWN quit
+ON SHUTDOWN myquit()
 SET ESCAPE OFF
 SET CENTURY on
 SET SYSMENU to
@@ -94,6 +94,10 @@ endif
 
 ENDIF
 
+PUBLIC S_TOOL
+S_TOOL = ""
+
+
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
 ELSE
@@ -102,5 +106,23 @@ ENDIF
 
 read events
 CANCEL
+
+FUNCTION myquit
+LOCAL mymsg
+
+IF FS_SW = 1
+	mymsg = MESSAGEBOX("Save Changes ? ",4+4096,"Question",150000)
+	IF mymsg = 6
+		S_TOOL = "SAVE"
+		serverbrain()
+	ENDIF
+ENDIF
+
+close database
+QUIT
+
+RETURN
+
+
 
 
