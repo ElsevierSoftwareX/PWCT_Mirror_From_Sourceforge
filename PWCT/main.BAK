@@ -6,7 +6,7 @@ IF PCOUNT() = 1
 myfiletoopen = pmyfile
 ENDIF
 
-SYS_VFP_DEBUG = .F.
+SYS_VFP_DEBUG = .T.
 
 IF SYS_VFP_DEBUG = .F.
 application.DefaultFilePath = JUSTPATH(application.ServerName)
@@ -110,22 +110,17 @@ CANCEL
 FUNCTION myquit
 LOCAL mymsg
 
-mymsg = MESSAGEBOX("Save Changes ? ",4+4096,"Question",150000)
-IF mymsg = 6
-*S_MENU = "0"
-S_TOOL = "SAVE"
-*myfiletoopen = ""
-*s_lastactivewindow = 1
-serverbrain()
+IF FS_SW = 1
+	mymsg = MESSAGEBOX("Save Changes ? ",4+4096,"Question",150000)
+	IF mymsg = 6
+		S_TOOL = "SAVE"
+		serverbrain()
+	ENDIF
 ENDIF
-*!*	RELEASE ALL
-*!*	FOR I = 1 TO APPLICATION.Forms.Count 
-*!*				APPLICATION.Forms.Item(I).CLOSE()
-*!*	NEXT
 
 close database
+QUIT
 
-quit
 RETURN
 
 
