@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 09:53:46    Date : 02/19/2012
+* Time : 22:59:21    Date : 02/19/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -80,7 +80,6 @@ EndIF
 
 procedure myclose()
 win1.Release ( )
-return
 
 
 End Of Resistance
@@ -100,6 +99,5 @@ SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
 Return
 *-------------------------------------------------------------------*
