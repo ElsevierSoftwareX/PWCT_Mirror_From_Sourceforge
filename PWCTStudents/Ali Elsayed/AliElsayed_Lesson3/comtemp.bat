@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\ALIELSAYED_LESSON3.PRG"
