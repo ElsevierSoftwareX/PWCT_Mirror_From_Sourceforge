@@ -55,7 +55,7 @@ AT 10 ,10 ;
 WIDTH 386 ;
 HEIGHT 245 ;
 ICON "PWCTICON" ;
-TITLE "NumGame by Ibrahim Abdelelah" ;
+TITLE "NumGame" ;
 MAIN ;
 BACKCOLOR {255,255,255} 
 

@@ -55,7 +55,7 @@ AT 10 ,10 ;
 WIDTH 392 ;
 HEIGHT 319 ;
 ICON "PWCTICON" ;
-TITLE "Age Calculation sample by Ibrahim Abdelelah " ;
+TITLE "Age Calculation sample" ;
 MAIN ;
 NOMINIMIZE ;
 NOMAXIMIZE ;

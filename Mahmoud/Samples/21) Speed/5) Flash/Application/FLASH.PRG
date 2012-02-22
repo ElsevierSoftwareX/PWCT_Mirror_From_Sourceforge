@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:42:18    Date : 10/22/2011
+* Time : 00:18:44    Date : 10/27/2011
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2011]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -62,19 +62,20 @@ NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64} 
 
+Public oActiveX
 oActiveX := TActiveX():New( "Win1", "ShockwaveFlash.ShockwaveFlash.1" , 11 , 10 , 473 , 339)
 oActiveX:Load()
 @ 361 ,153 BUTTONEX btn1;
 CAPTION "Play";
 ON CLICK mystart()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 @ 361 ,263 BUTTONEX btn2;
 CAPTION "Close";
-ON CLICK myclose  ;
+ON CLICK myclose()  ;
 WIDTH 100 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
 
@@ -87,6 +88,7 @@ oactivex:OOLE:LoadMovie ( 0,currentfolder+"\main.swf" )
 Return Nil
 Proc myclose
 win1.Release ( )
+Return Nil
 
 
 End Of Resistance
@@ -97,20 +99,21 @@ SS_ESARES("Circuits\Main\Main\Main",51)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'PWCT-Sample (Using Flash)'",1,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",14,15)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Play'",16,17)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mystart",18,18)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",19,21)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Close'",22,23)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",25,27)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",28,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",30,32)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart",33,33)
-SS_ESASTEP("Circuits\Main\Main\Main","CurrentFolder := Get Current Folder",34,34)
-SS_ESASTEP("Circuits\Main\Main\Main","oactivex.LoadMovie ( 0,currentfolder+'\main.swf' )",35,35)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",36,36)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Play'",17,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mystart",19,19)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",20,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Close'",23,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",26,28)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",29,30)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",31,33)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart",34,34)
+SS_ESASTEP("Circuits\Main\Main\Main","CurrentFolder := Get Current Folder",35,35)
+SS_ESASTEP("Circuits\Main\Main\Main","oactivex.LoadMovie ( 0,currentfolder+'\main.swf' )",36,36)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose",38,38)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",39,39)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",40,40)
 Return
 *-------------------------------------------------------------------*
