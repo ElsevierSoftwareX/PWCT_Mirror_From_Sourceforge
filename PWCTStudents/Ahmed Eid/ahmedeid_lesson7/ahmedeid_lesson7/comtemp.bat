@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\AHMEDEID_LESSON7.PRG"
