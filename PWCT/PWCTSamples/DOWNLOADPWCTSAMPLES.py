@@ -200,18 +200,18 @@ lastx = -1
 while cont == 1 :
 	cont = 0
 	for x in range ( mymax ):
-		mycheck = os.path.isfile("../samples/"+Samples[x])
+		mycheck = os.path.isfile(Samples[x])
 		if mycheck == 0 :
 			try:
-				vOutput = urllib.urlretrieve(WebLink+Samples[x]+LinkEnd,"../samples/"+Samples[x])
-				mycheck2 = os.path.isfile("../samples/"+Samples[x])
+				vOutput = urllib.urlretrieve(WebLink+Samples[x]+LinkEnd,Samples[x])
+				mycheck2 = os.path.isfile(Samples[x])
 				if mycheck2 == 1 :
 					print "[" + str(x+1) + "] File : " + Samples[x]
 					if lastx + 1 < x :
 						cont = 1
 					lastx = x
 			except BaseException:
-				mycheck3 = os.path.isfile("../samples/"+Samples[x])
+				mycheck3 = os.path.isfile( Samples[x])
 				if mycheck3 == 1 :
-					temp = os.remove("../samples/"+Samples[x])
+					temp = os.remove( Samples[x])
 print "Operation done..."
