@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\PROFMSAA_INTRO1.PRG"
