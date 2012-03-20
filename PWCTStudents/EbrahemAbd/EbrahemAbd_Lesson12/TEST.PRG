@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:39:47    Date : 03/18/2012
+* Time : 17:17:04    Date : 03/19/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -198,8 +198,8 @@ cname := oRS:fields:item(alltrim("name")):value
 caddress := oRS:fields:item(alltrim("address")):value
 cphone := oRS:fields:item(alltrim("phone")):value
 win1.text1.Value := CNAME
-win1.text2.Value := CPHONE
-win1.text3.Value := CADDRESS
+win1.text2.Value := CADDRESS
+win1.text3.Value := CPHONE
 Return Nil
 Proc MYCLOSE
 oRS:Close()
@@ -292,8 +292,8 @@ SS_ESASTEP("Circuits\Main\Main\Main","cname = ADODB RecordSet (oRS) Get Field ('
 SS_ESASTEP("Circuits\Main\Main\Main","caddress = ADODB RecordSet (oRS) Get Field ('address') Value",146,146)
 SS_ESASTEP("Circuits\Main\Main\Main","cphone = ADODB RecordSet (oRS) Get Field ('phone') Value",147,147)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.text1.Value := CNAME",148,148)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text2.Value := CPHONE",149,149)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.text3.Value := CADDRESS",150,150)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.text2.Value := CADDRESS",149,149)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.text3.Value := CPHONE",150,150)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",151,151)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure MYCLOSE",152,152)
 SS_ESASTEP("Circuits\Main\Main\Main","Close ADODB RecordSet oRS",153,153)
