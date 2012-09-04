@@ -72,15 +72,20 @@ function SS_VSL4STARTUP()
 	VSL4_feedback = .f.   		
 	VSL4_CONREQSTATUS = .f.
 	VSL4_CLICONSTATUS = 0
+	
+	public VSL4_PRINTMSGS
+	VSL4_PRINTMSGS = .f.
 
 	HB_INETInit()
 
 	VSL4_osocketclient = ""
 
-	SET COLOR TO W/B
-	CLEAR
-	? "Welcome To"
-	? "TCP/IP Server "
+	if VSL4_PRINTMSGS = .t.
+		SET COLOR TO W/B
+		CLEAR
+		? "Welcome To"
+		? "TCP/IP Server "
+	endif
 
 RETURN
 
@@ -91,22 +96,30 @@ FUNCTION SS_VSL4CONNECT(myaddress,myport)
 	VSL4_osocket = HB_INETConnect( myaddress,VAL(myport) )
 	HB_INETTIMEOUT( VSL4_osocket, 100 )
 
+	if VSL4_PRINTMSGS = .t.
 	? " Connect "
 	? " Address : " 	+ myaddress
 	? " Port         : " 	+ myport
+	endif
 
 	aadd(VSL4_cconsarr,VSL4_osocket)	&& Add socket object to client connections array
 
+	if VSL4_PRINTMSGS = .t.
 	? "Send Server Name : " + SS_SERVERS[SS_AS][1]
 	? "Send Server Type : " + SS_SERVERS[SS_AS][2]
 	? "Send Server Eigen Value : " + SS_SERVERS[SS_AS][3]
+	endif
 
 	HB_INETSend( VSL4_osocket, SS_SERVERS[SS_AS][1] + CHR(13) + CHR(10) + ;
 				   SS_SERVERS[SS_AS][2] + CHR(13) + CHR(10) + ;
 				   SS_SERVERS[SS_AS][3] + CHR(13) + CHR(10)  )
 
 	T_ConnectionStatus = HB_INETRecvLine( VSL4_osocket)
+
+	if VSL4_PRINTMSGS = .t.
 	? "Connection Status : " + T_ConnectionStatus
+	endif
+
 	IF UPPER(ALLTRIM(T_ConnectionStatus)) == "CONNECTION ACCEPTED"
 		VSL4_CLICONSTATUS = 2
 	ELSE
@@ -126,16 +139,20 @@ FUNCTION SS_VSL4SENDDATA(mydata)
 				for x = 1 to len(VSL4_sconsarr)
 					VSL4_osocketclient = VSL4_sconsarr[x]
 					HB_INETSend( VSL4_osocketclient, mydata  )
+					if VSL4_PRINTMSGS = .t.
 					? " Send Data :" + mydata
 					? " Error Code : "
 					?? HB_INETERRORCODE(VSL4_osocketCLIENT)
+					endif
 				next
 			endif
 		else
 			HB_INETSend( VSL4_osocketclient, mydata  )
+			if VSL4_PRINTMSGS = .t.
 			? " Send Data :" + mydata
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocketCLIENT)
+			endif
 		endif
 	Endif
 
@@ -143,11 +160,15 @@ FUNCTION SS_VSL4SENDDATA(mydata)
 	if VSL4_islisten = 0
 		IF VSL4_CLICONSTATUS = 2
 			HB_INETSend( VSL4_osocket, mydata )
+			if VSL4_PRINTMSGS = .t.
 			? " Send Data :" + mydata
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocket)
+			endif
 		ELSE
+			if VSL4_PRINTMSGS = .t.
 			? " No Connection To Send Data "
+			endif
 		ENDIF
 	endif
 RETURN
@@ -211,24 +232,28 @@ FUNCTION SS_VSL4ENGINE()
 
 		T_ServerName := space(50)
 		T_ServerName = HB_INETRecvLine( p_VSL4_osocketclient)
+		if VSL4_PRINTMSGS = .t.
 		? "Sender Server Name : " + T_ServerName
-
+		endif
 		T_ServerType := space(50)
 		T_ServerType = HB_INETRecvLine( p_VSL4_osocketclient)
+		if VSL4_PRINTMSGS = .t.
 		? "Sender Server Type : " + T_ServerType
-
+		endif
 		T_ServerEigenValue := space(50)
 		T_ServerEigenValue = HB_INETRecvLine( p_VSL4_osocketclient)
+		if VSL4_PRINTMSGS = .t.
 		? "Sender Server Eigen Value : " + T_ServerEigenValue
-
+		endif
 		SS_VSL4ConnectionRequest()
 		
 		if VSL4_CONREQSTATUS = .t.
 			HB_INETSend( p_VSL4_osocketclient, "Connection Accepted" + CHR(13) + CHR(10) )
 			VSL4_islisten = 2
 		else
+			if VSL4_PRINTMSGS = .t.
 			? "Connection Refused"
-			
+			endif
   			HB_INETSend( p_VSL4_osocketclient, "Connection Refused" + CHR(13) + CHR(10) )
 			HB_INETClose( p_VSL4_osocketclient )
 			p_VSL4_osocketclient = NIL
@@ -254,18 +279,22 @@ FUNCTION SS_VSL4ENGINE()
 					         mystr2 = substr(mystr,14,len(mystr)-13)
           					 SS_VSL4VetoCome(mystr2)
 				        ENDIF
+					if VSL4_PRINTMSGS = .t.
          				? " Data Arrival :" + mystr
 				        ? " Error Code : "
-				        ?? HB_INETERRORCODE(VSL4_osocketCLIENT)
+				        ?? HB_INETERRORCODE(VSL4_osocketCLIENT)	
+					endif		
         				if VSL4_feedback = .t.
 				            OLDSOCKET = VSL4_osocketCLIENT
 				            if .not. len(VSL4_sconsarr) = 0
 					              for y = 1 to len(VSL4_sconsarr)
 						                 VSL4_osocketclient = VSL4_sconsarr[y]
 						                 HB_INETSend( VSL4_osocketclient, mystr + CHR(13) + CHR(10) )
+								 if VSL4_PRINTMSGS = .t.
 						                 ? " Send Data :" + mystr
 						                 ? " Error Code : "
 						                 ?? HB_INETERRORCODE(VSL4_osocketCLIENT)
+								 endif
 					              next
 				            endif
 					    VSL4_osocketCLIENT = OLDSOCKET
@@ -290,9 +319,11 @@ FUNCTION SS_VSL4ENGINE()
 					          mystr2 = substr(mystr,14,len(mystr)-13)
           					  SS_VSL4VetoCome(mySTR2)
 					ENDIF
+					if VSL4_PRINTMSGS = .t.
 					? " Data Arrival :" + mystr
 					? " Error Code : "
 					?? HB_INETERRORCODE(VSL4_osocket)
+					endif
  				endif
 			next
 		endif	
@@ -302,9 +333,11 @@ RETURN
 Function SS_VSL4DataCome(mydata)
 
 	Local P1,X2,C_NAME,B_NAME,R_ADDRESS,ICH_NAME,X3,A_NAME,SH_NAME,SUB_NAME,X4,V_ATOMID,V_SHELLID,V_SUBSHELLID
-
-        ? "Data : " + mydata
 	
+	if VSL4_PRINTMSGS = .t.
+        ? "Data : " + mydata
+	endif
+
 	* Call Receiver Veto - REQUEST TYPE = SENDDATA
  	FOR X2 = 1 TO Len(SS_VETOS)
                   P1 = SS_SERVERS[SS_AS][23]
@@ -369,7 +402,9 @@ Return
 
 Function SS_VSL4VetoCome(myveto)
  	
+	if VSL4_PRINTMSGS = .t.
 	? "Veto : " + myveto
+	endif
 
  	* Call Receiver Veto
 	* GET RESISTANCE ADDRESS OF VETO
@@ -409,8 +444,10 @@ Return
 
 FUNCTION SS_VSL4BIND(myport)
 	VSL4_mysocket = HB_INETServer(VAL(myport))
+	if VSL4_PRINTMSGS = .t.
 	? " BIND "
 	? " Port         : " + myport
+	endif
 	VSL4_waitconnection = .t.
 	VSL4_islisten = 1
 RETURN
@@ -418,11 +455,17 @@ RETURN
 FUNCTION SS_VSL4ACCEPT()
 
 	parameters p_VSL4_mysocket,p_VSL4_osocketclient,p_VSL4_islisten,p_VSL4_sconsarr,p_VSL4_waitconnection
-	? "before accept"
+	 
+	// ? "before accept"
+	 
 	p_VSL4_osocketclient := HB_INETAccept( p_VSL4_mysocket )
-	? "after accept"
+	 
+	// ? "after accept"
+	 
 	HB_INETTIMEOUT( p_VSL4_osocketCLIENT, 100 )
-	? "Send welcome"
+	 
+	// ? "Send welcome"
+	 
 	p_VSL4_islisten = 3
 	aadd(p_VSL4_sconsarr,p_VSL4_osocketclient)
 	p_VSL4_waitconnection = .t.
@@ -458,16 +501,20 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 				for x = 1 to len(VSL4_sconsarr)
 					VSL4_osocketclient = VSL4_sconsarr[x]
 					HB_INETSend( VSL4_osocketclient, mydata )
+					if VSL4_PRINTMSGS = .t.
 					? " Send Data :" + mydata
 					? " Error Code : "
 					?? HB_INETERRORCODE(VSL4_osocketCLIENT)
+					endif
 				next
 			endif
 		else
 			HB_INETSend( VSL4_osocketclient, mydata )
+			if VSL4_PRINTMSGS = .t.
 			? " Send Data :" + mydata
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocketCLIENT)
+			endif
 		endif
 	Endif
 
@@ -475,11 +522,15 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 	if VSL4_islisten = 0
 		IF VSL4_CLICONSTATUS = 2
 			HB_INETSend( VSL4_osocket, mydata )
+			if VSL4_PRINTMSGS = .t.
 			? " Send Data :" + mydata
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocket)
+			endif
 		Else	
+			if VSL4_PRINTMSGS = .t.
 			? " No Connection To Send Veto "
+			endif
 		Endif
 	endif
 RETURN
