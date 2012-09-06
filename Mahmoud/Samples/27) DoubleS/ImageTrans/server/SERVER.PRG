@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:54:25    Date : 09/06/2012
+* Time : 22:05:01    Date : 09/06/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -172,6 +172,8 @@ Proc vetostart
 SET VETO SYSTEM LEVEL 4
 Declare server "Server1" address "127.0.0.1" port 1200
 Select Input Channel  inchannel
+DO SS_VSL4VSL4_feedbackON
+DO SS_VSL4VSL4_multisendON
 START BIND
 Return Nil
 
@@ -264,12 +266,12 @@ End Of Resistance
 INIT PROCEDURE Init_SERVER
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",118)
-SS_ESARES("Circuits\Main\Main\myresistance",182)
-SS_ESARES("Circuits\Main\Main\acceptconnection",202)
-SS_ESARES("Circuits\Main\Main\newfile",212)
-SS_ESARES("Circuits\Main\Main\savefile",221)
-SS_ESARES("Circuits\Main\Main\AcceptFileByte",235)
-SS_ESARES("Circuits\Main\Main\newline",253)
+SS_ESARES("Circuits\Main\Main\myresistance",184)
+SS_ESARES("Circuits\Main\Main\acceptconnection",204)
+SS_ESARES("Circuits\Main\Main\newfile",214)
+SS_ESARES("Circuits\Main\Main\savefile",223)
+SS_ESARES("Circuits\Main\Main\AcceptFileByte",237)
+SS_ESARES("Circuits\Main\Main\newline",255)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESAGOAL("Circuits\Main\Main\myresistance","myresistance")
 SS_ESAGOAL("Circuits\Main\Main\acceptconnection","acceptconnection")
@@ -309,8 +311,10 @@ SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure vetostart",53,53)
 SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Set Veto System Level to 4",54,54)
 SS_ESASTEP("Circuits\Main\Main\Main","Declare server 'Server1' address '127.0.0.1' port 1200",55,55)
 SS_ESASTEP("Circuits\Main\Main\Main","Select Input Channel ( inchannel )",56,56)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Start Bind",57,57)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure SS_VSL4VSL4_feedbackON",57,57)
+SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure SS_VSL4VSL4_multisendON",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Start Bind",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",60,60)
 SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Open Channel inchannel",1,1)
 SS_ESASTEP("Circuits\Main\Main\myresistance","GOTO FIRST ELECTRON",2,2)
 SS_ESASTEP("Circuits\Main\Main\myresistance","mymax := GET_ACTIVE_ELECTRONS_COUNT",3,3)
