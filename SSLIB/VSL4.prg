@@ -286,9 +286,7 @@ FUNCTION SS_VSL4ENGINE()
 		endif
 
 		VSL4_waitconnection = .t.
-		msginfo(" server name : " + T_SERVERNAME)
-		msginfo(" server type : " + T_SERVERTYPE)
-		msginfo(" server EIGEN Value : " + T_SERVEREigenValue)
+		 
 
 	endif
 
