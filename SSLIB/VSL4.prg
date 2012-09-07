@@ -118,17 +118,15 @@ FUNCTION SS_VSL4CONNECT(myaddress,myport)
 
 	T_ConnectionStatus = space(128)
 	T_ConnectionStatus = HB_INETRecvLine( VSL4_osocket)
-	 
 
 	if VSL4_PRINTMSGS = .t.
 	? "Connection Status : " + T_ConnectionStatus
 	endif
 
-	IF UPPER(ALLTRIM(T_ConnectionStatus)) == "CONNECTION ACCEPTED"
+	IF UPPER(ALLTRIM(T_ConnectionStatus)) == "[(*VETOSYS*)] CONNECTION ACCEPTED"
 		VSL4_CLICONSTATUS = 2
 	ELSE
 		VSL4_CLICONSTATUS = 0
-		 
 	ENDIF
 
 RETURN
@@ -263,7 +261,7 @@ FUNCTION SS_VSL4ENGINE()
 		
 		if VSL4_CONREQSTATUS = .t.
 
-			HB_INETSendAll( p_VSL4_osocketclient, "Connection Accepted" + CHR(13) + CHR(10) )
+			HB_INETSendAll( p_VSL4_osocketclient, "[(*VETOSYS*)] Connection Accepted" + CHR(13) + CHR(10) )
 			
 			VSL4_islisten = 2
 			
@@ -271,7 +269,7 @@ FUNCTION SS_VSL4ENGINE()
 			if VSL4_PRINTMSGS = .t.
 			? "Connection Refused"
 			endif
-  			HB_INETSendAll( p_VSL4_osocketclient, "Connection Refused" + CHR(13) + CHR(10) )
+  			HB_INETSendAll( p_VSL4_osocketclient, "[(*VETOSYS*)] Connection Refused" + CHR(13) + CHR(10) )
 			HB_INETClose( p_VSL4_osocketclient )
 			p_VSL4_osocketclient = NIL
 			
@@ -291,8 +289,8 @@ FUNCTION SS_VSL4ENGINE()
 	endif
 
 	if VSL4_islisten = 2  
-		if .not. len(VSL4_sconsarr) = 0
-			t_smax = len(VSL4_sconsarr)
+		t_smax = len(VSL4_sconsarr)
+		if .not. t_smax = 0
 			for x = 1 to t_smax
  
 				VSL4_osocketclient = VSL4_sconsarr[x]
@@ -336,8 +334,9 @@ FUNCTION SS_VSL4ENGINE()
 
 	*client side
 	if VSL4_islisten = 0  
-		if .not. len(VSL4_cconsarr) = 0
-			for x = 1 to len(VSL4_cconsarr)
+		t_cmax = len(VSL4_cconsarr)
+		if .not. t_cmax = 0
+			for x = 1 to t_cmax
 				VSL4_osocket = VSL4_cconsarr[x]
 			        MYSTR := space(128)
 		                MYSTR := HB_INETRecvLine( VSL4_osocket  )
@@ -346,8 +345,15 @@ FUNCTION SS_VSL4ENGINE()
 					if .NOT. upper(left(mystr,13)) == "[(*VETOSYS*)]"
 					          SS_VSL4DataCome(mystr)
 				        ELSE
-					          mystr2 = substr(mystr,14,len(mystr)-13)
-          					  SS_VSL4VetoCome(mySTR2)
+					          IF UPPER(ALLTRIM(MYSTR)) == "[(*VETOSYS*)] CONNECTION ACCEPTED"
+							VSL4_CLICONSTATUS = 2
+						  ELSEIF UPPER(ALLTRIM(MYSTR)) == "[(*VETOSYS*)] CONNECTION REFUSED"
+							VSL4_CLICONSTATUS = 0
+						  ELSE
+	 						mystr2 = substr(mystr,14,len(mystr)-13)
+          					  	SS_VSL4VetoCome(mySTR2)
+						  ENDIF
+						 
 					ENDIF
 					if VSL4_PRINTMSGS = .t.
 					? " Data Arrival :" + mystr
