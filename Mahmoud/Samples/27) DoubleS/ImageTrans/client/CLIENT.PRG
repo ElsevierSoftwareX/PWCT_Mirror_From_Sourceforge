@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 03:41:57    Date : 09/06/2012
+* Time : 06:35:41    Date : 09/10/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -168,7 +168,7 @@ TMP_M1 = 0
 TMP_M2 = 0
 myhandle = FOPEN( GetFile , TMP_M1 + TMP_M2 )
 myerror := 1
-mybuffer := space ( 1024*8 )
+mybuffer := space ( 1024*120 )
 mybuffer := ""
 mycounter := 0
 CON_SENDVETO newfile
@@ -193,7 +193,7 @@ mycounter := 0
 ENDIF
 LASTCHAR := MYDATA
 ENDIF
-IF mycounter = (1024*8)
+IF mycounter = (1024*120)
 CON_SENDDATA (mybuffer)
 CON_SENDVETO acceptfilebyte
 mybuffer := ""
@@ -206,6 +206,7 @@ CON_SENDVETO acceptfilebyte
 mybuffer := ""
 ENDIF
 CON_SENDVETO savefile
+MyOut := MSGINFO(str(totalcount),"Client - File Size ")
 Return Nil
 
 
@@ -245,8 +246,8 @@ End Of Resistance
 INIT PROCEDURE Init_CLIENT
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",97)
-SS_ESARES("Circuits\Main\Main\myresistance",215)
-SS_ESARES("Circuits\Main\Main\acceptconnection",236)
+SS_ESARES("Circuits\Main\Main\myresistance",216)
+SS_ESARES("Circuits\Main\Main\acceptconnection",237)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESAGOAL("Circuits\Main\Main\myresistance","myresistance")
 SS_ESAGOAL("Circuits\Main\Main\acceptconnection","acceptconnection")
@@ -290,7 +291,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","GetFile := Get File",64,68)
 SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File GetFile",69,69)
 SS_ESASTEP("Circuits\Main\Main\Main","Open file GetFile store handle in myhandle",70,72)
 SS_ESASTEP("Circuits\Main\Main\Main","myerror = 1",73,73)
-SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = String, length = 1024*8",74,74)
+SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = String, length = 1024*120",74,74)
 SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",75,75)
 SS_ESASTEP("Circuits\Main\Main\Main","mycounter = 0",76,76)
 SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  newfile",77,77)
@@ -315,7 +316,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","mycounter = 0",95,95)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",96,96)
 SS_ESASTEP("Circuits\Main\Main\Main","LASTCHAR = MYDATA",97,97)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",98,98)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( mycounter = (1024*8) )",99,99)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( mycounter = (1024*120) )",99,99)
 SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mybuffer)",100,100)
 SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  acceptfilebyte",101,101)
 SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",102,102)
@@ -328,7 +329,8 @@ SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto
 SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",109,109)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",110,110)
 SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  savefile",111,111)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",112,112)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message str(totalcount) Title 'Client - File Size ' Type: Message Info",112,112)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",113,113)
 SS_ESASTEP("Circuits\Main\Main\myresistance","code",1,1)
 SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Open Channel inchannel",2,2)
 SS_ESASTEP("Circuits\Main\Main\myresistance","GOTO FIRST ELECTRON",3,3)

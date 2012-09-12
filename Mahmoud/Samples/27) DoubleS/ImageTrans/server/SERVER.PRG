@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:05:01    Date : 09/06/2012
+* Time : 16:06:27    Date : 09/07/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -172,8 +172,6 @@ Proc vetostart
 SET VETO SYSTEM LEVEL 4
 Declare server "Server1" address "127.0.0.1" port 1200
 Select Input Channel  inchannel
-DO SS_VSL4VSL4_feedbackON
-DO SS_VSL4VSL4_multisendON
 START BIND
 Return Nil
 
@@ -215,12 +213,18 @@ Resistance R_SERVER_18smart4() code
 Select Address myatom:k:f
 Load Active SubShell From Memory
 myfile := ""
+if .not. empty(Win1.Edit1.VALUE)
+Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + "New File"
+else
+Win1.Edit1.VALUE := "New File"
+endif
 
 
 End Of Resistance
 
 * Resistance Code Unit : Circuits\Main\Main\savefile
 Resistance R_SERVER_18smart5() code
+MyOut := MSGBOX(str(len(myfile)),"Server : File Size")
 PutFile := PutFile ( { {"Text","*.txt"}, {"Image","*.JPG" } } , ;
 , ;
 , ;
@@ -229,6 +233,11 @@ PutFile := PutFile ( { {"Text","*.txt"}, {"Image","*.JPG" } } , ;
 RPWI_TH = FCREATE(PutFile,0)
 FWRITE(RPWI_TH,myfile)
 FCLOSE(RPWI_TH)
+if .not. empty(Win1.Edit1.VALUE)
+Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + "Save File"
+else
+Win1.Edit1.VALUE := "Save File"
+endif
 
 
 End Of Resistance
@@ -243,10 +252,30 @@ FOR x = 1 TO mymax STEP 1
 mydata := GET_ACTIVE_ELECTRON_VALUE
 newdata := newdata + mydata
 GOTO NEXT ELECTRON
+if .not. empty(Win1.Edit1.VALUE)
+Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + str(len(mydata))
+else
+Win1.Edit1.VALUE := str(len(mydata))
+endif
 Next
 CLEAR CHANNEL
 Close Channel
 myfile := myfile + newdata
+if .not. empty(Win1.Edit1.VALUE)
+Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + "Accept Data"
+else
+Win1.Edit1.VALUE := "Accept Data"
+endif
+if .not. empty(Win1.Edit1.VALUE)
+Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + "Data Size " + str(len(newdata))
+else
+Win1.Edit1.VALUE := "Data Size " + str(len(newdata))
+endif
+if .not. empty(Win1.Edit1.VALUE)
+Win1.Edit1.VALUE := Win1.Edit1.VALUE + CHR(13) + CHR(10) + "Current File Size " + str(len(myfile))
+else
+Win1.Edit1.VALUE := "Current File Size " + str(len(myfile))
+endif
 
 
 End Of Resistance
@@ -266,12 +295,12 @@ End Of Resistance
 INIT PROCEDURE Init_SERVER
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",118)
-SS_ESARES("Circuits\Main\Main\myresistance",184)
-SS_ESARES("Circuits\Main\Main\acceptconnection",204)
-SS_ESARES("Circuits\Main\Main\newfile",214)
-SS_ESARES("Circuits\Main\Main\savefile",223)
-SS_ESARES("Circuits\Main\Main\AcceptFileByte",237)
-SS_ESARES("Circuits\Main\Main\newline",255)
+SS_ESARES("Circuits\Main\Main\myresistance",182)
+SS_ESARES("Circuits\Main\Main\acceptconnection",202)
+SS_ESARES("Circuits\Main\Main\newfile",212)
+SS_ESARES("Circuits\Main\Main\savefile",226)
+SS_ESARES("Circuits\Main\Main\AcceptFileByte",246)
+SS_ESARES("Circuits\Main\Main\newline",284)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESAGOAL("Circuits\Main\Main\myresistance","myresistance")
 SS_ESAGOAL("Circuits\Main\Main\acceptconnection","acceptconnection")
@@ -311,10 +340,8 @@ SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure vetostart",53,53)
 SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Set Veto System Level to 4",54,54)
 SS_ESASTEP("Circuits\Main\Main\Main","Declare server 'Server1' address '127.0.0.1' port 1200",55,55)
 SS_ESASTEP("Circuits\Main\Main\Main","Select Input Channel ( inchannel )",56,56)
-SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure SS_VSL4VSL4_feedbackON",57,57)
-SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure SS_VSL4VSL4_multisendON",58,58)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Start Bind",59,59)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Start Bind",57,57)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",58,58)
 SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Open Channel inchannel",1,1)
 SS_ESASTEP("Circuits\Main\Main\myresistance","GOTO FIRST ELECTRON",2,2)
 SS_ESASTEP("Circuits\Main\Main\myresistance","mymax := GET_ACTIVE_ELECTRONS_COUNT",3,3)
@@ -332,8 +359,11 @@ SS_ESASTEP("Circuits\Main\Main\acceptconnection","END OF IF STATEMENT",4,4)
 SS_ESASTEP("Circuits\Main\Main\newfile","Select Address myatom:k:f",1,1)
 SS_ESASTEP("Circuits\Main\Main\newfile","Load Active SubShell From Memory",2,2)
 SS_ESASTEP("Circuits\Main\Main\newfile","myfile = ''",3,3)
-SS_ESASTEP("Circuits\Main\Main\savefile","PutFile := Put File",1,5)
-SS_ESASTEP("Circuits\Main\Main\savefile","write String myfile to File PutFile",6,8)
+SS_ESASTEP("Circuits\Main\Main\newfile","Print text ('New File') to Editbox (Edit1) of Window (Win1)",4,8)
+SS_ESASTEP("Circuits\Main\Main\savefile","Show Message str(len(myfile)) Title 'Server : File Size' Type: Message Box",1,1)
+SS_ESASTEP("Circuits\Main\Main\savefile","PutFile := Put File",2,6)
+SS_ESASTEP("Circuits\Main\Main\savefile","write String myfile to File PutFile",7,9)
+SS_ESASTEP("Circuits\Main\Main\savefile","Print text ('Save File') to Editbox (Edit1) of Window (Win1)",10,14)
 SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","newdata = ''",1,1)
 SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","(DoubleS/Veto Unit) Open Channel inchannel",2,2)
 SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","GOTO FIRST ELECTRON",3,3)
@@ -342,10 +372,14 @@ SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","FOR LOOP ( From x = 1 To mymax S
 SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","mydata := GET_ACTIVE_ELECTRON_VALUE",6,6)
 SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","newdata = newdata + mydata",7,7)
 SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","GOTO NEXT ELECTRON",8,8)
-SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","End of For Loop",9,9)
-SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","(DoubleS/Veto Unit) Clear Channel",10,10)
-SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","(DoubleS/Veto Unit) Close Channel",11,11)
-SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","myfile = myfile + newdata",12,12)
+SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","Print text (str(len(mydata))) to Editbox (Edit1) of Window (Win1)",9,13)
+SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","End of For Loop",14,14)
+SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","(DoubleS/Veto Unit) Clear Channel",15,15)
+SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","(DoubleS/Veto Unit) Close Channel",16,16)
+SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","myfile = myfile + newdata",17,17)
+SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","Print text ('Accept Data') to Editbox (Edit1) of Window (Win1)",18,22)
+SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","Print text ('Data Size ' + str(len(newdata))) to Editbox (Edit1) of Window (Win1)",23,27)
+SS_ESASTEP("Circuits\Main\Main\AcceptFileByte","Print text ('Current File Size ' + str(len(myfile))) to Editbox (Edit1) of Window (Win1)",28,32)
 SS_ESASTEP("Circuits\Main\Main\newline","(DoubleS/Veto Unit) Open Channel inchannel",1,1)
 SS_ESASTEP("Circuits\Main\Main\newline","Add new electron called : datablock",2,2)
 SS_ESASTEP("Circuits\Main\Main\newline","temp_c1 = Get character of ASCII Code 13",3,3)
