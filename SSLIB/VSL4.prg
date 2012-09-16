@@ -64,7 +64,8 @@ function SS_VSL4STARTUP()
 					&& 0 = No Connection - or Connection Refused
 					&& 1 = Waiting for accepting connection
 					&& 2 = Accepted Connection 
-
+	public VSL4_SActiveCliConID	&& Server Side - Active Client Connection ID
+	VSL4_SActiveCliConID = 0
 	VSL4_sconsarr = {}		
 	VSL4_cconsarr = {}		
 	VSL4_islisten = 0
@@ -147,6 +148,9 @@ FUNCTION SS_VSL4SENDDATA(mydata)
 					? " Error Code : "
 					?? HB_INETERRORCODE(VSL4_osocketCLIENT)
 					endif
+					if HB_INETERRORCODE(VSL4_osocketCLIENT) != 0 
+						SS_msginfo("error sending data" )
+					endif
 				next
 			endif
 		else
@@ -155,6 +159,9 @@ FUNCTION SS_VSL4SENDDATA(mydata)
 			? " Send Data :" + mydata
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocketCLIENT)
+			endif
+			if HB_INETERRORCODE(VSL4_osocketCLIENT) != 0 
+				SS_msginfo("error sending data" )
 			endif
 		endif
 	Endif
@@ -167,6 +174,9 @@ FUNCTION SS_VSL4SENDDATA(mydata)
 			? " Send Data :" + mydata
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocket)
+			endif
+			if HB_INETERRORCODE(VSL4_osocket) != 0 
+				SS_msginfo("error sending data" )
 			endif
 		ELSE
 			if VSL4_PRINTMSGS = .t.
@@ -294,11 +304,23 @@ FUNCTION SS_VSL4ENGINE()
 			for x = 1 to t_smax
  
 				VSL4_osocketclient = VSL4_sconsarr[x]
+				
+				VSL4_SActiveCliConID = X	
+
+				if hb_InetErrorCode( VSL4_osocketclient ) = 1 && connection closed
+					loop
+				endif
 
 				HB_INETTIMEOUT( VSL4_osocketclient, 100 )
 
 			        MYSTR := space(128)
-			        MYSTR = HB_INETRecvLine( VSL4_osocketclient)
+
+				if hb_InetDataReady(VSL4_osocketclient) = 1
+			        	MYSTR = HB_INETRecvLine( VSL4_osocketclient)
+					if HB_INETERRORCODE(VSL4_osocketCLIENT) != 0 
+						SS_msginfo("error RECEIVING data/VETO" )
+					endif
+				endif
 	
 			        if .not. empty(alltrim(mystr)) 
 				        if .NOT. upper(left(mystr,13)) == "[(*VETOSYS*)]"
@@ -317,6 +339,9 @@ FUNCTION SS_VSL4ENGINE()
 				            if .not. t_smax = 0
 					              for y = 1 to t_smax
 						                 VSL4_osocketclient = VSL4_sconsarr[y]
+								 if hb_InetErrorCode( VSL4_osocketclient ) = 1 && connection closed
+									loop
+								 endif
 						                 HB_INETSendAll( VSL4_osocketclient, mystr + CHR(13) + CHR(10) )
 								 if VSL4_PRINTMSGS = .t.
 						                 ? " Send Data :" + mystr
@@ -338,9 +363,18 @@ FUNCTION SS_VSL4ENGINE()
 		if .not. t_cmax = 0
 			for x = 1 to t_cmax
 				VSL4_osocket = VSL4_cconsarr[x]
+				if hb_InetErrorCode( VSL4_osocket ) = 1 && connection closed
+					loop
+				endif
 			        MYSTR := space(128)
-		                MYSTR := HB_INETRecvLine( VSL4_osocket  )
-				
+
+				if hb_InetDataReady(VSL4_osocket) = 1
+		                	MYSTR := HB_INETRecvLine( VSL4_osocket  )
+					if HB_INETERRORCODE(VSL4_osocket ) != 0 
+						SS_msginfo("error RECEVING data/VETO" )
+					endif
+				endif
+
 				if .not. empty(alltrim(mystr)) 
 					if .NOT. upper(left(mystr,13)) == "[(*VETOSYS*)]"
 					          SS_VSL4DataCome(mystr)
@@ -426,7 +460,7 @@ Function SS_VSL4DataCome(mydata)
                         * ADD DATABLOCK ELECTRON TO SUBSHELL
                         * {SERVER ID , ATOM ID , SHELL ID , SUBSHELL ID , ELECTRON ID , ELECTRON TYPE , ELECTRON NAME , VALUE}
                         SS_SERVERS[SS_AS][7] = SS_SERVERS[SS_AS][7] + 1
-                        AAdd(SS_VARS,{SS_AS,V_ATOMID,V_SHELLID,V_SUBSHELLID,SS_SERVERS[SS_AS][7],2,"DATA_BLOCK",P1})
+                        AAdd(SS_VARS,{SS_AS,V_ATOMID,V_SHELLID,V_SUBSHELLID,SS_SERVERS[SS_AS][7],2,"DATA_BLOCK",P1,VSL4_SActiveCliConID})
                         EXIT
                      ENDIF
                   NEXT
@@ -542,6 +576,10 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 					? " Error Code : "
 					?? HB_INETERRORCODE(VSL4_osocketCLIENT)
 					endif
+					if HB_INETERRORCODE(VSL4_osocketCLIENT) != 0 
+						SS_msginfo("error sending veto" + mydata )
+					endif
+					
 				next
 			endif
 		else
@@ -550,6 +588,9 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 			? " Send Data :" + mydata
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocketCLIENT)
+			endif
+			if HB_INETERRORCODE(VSL4_osocketCLIENT) != 0 
+				SS_msginfo("error sending veto" + mydata )
 			endif
 		endif
 	Endif
@@ -563,6 +604,9 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 			? " Error Code : "
 			?? HB_INETERRORCODE(VSL4_osocket)
 			endif
+			if HB_INETERRORCODE(VSL4_osocket) != 0 
+				SS_msginfo("error sending veto" + mydata )
+			endif
 		Else	
 			if VSL4_PRINTMSGS = .t.
 			? " No Connection To Send Veto "
@@ -571,4 +615,7 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 	endif
 RETURN
 
+Function SS_MSGINFO(P1)
+	// msginfo(p1)
+RETURN
 *-------------------------------------------------------------------*
