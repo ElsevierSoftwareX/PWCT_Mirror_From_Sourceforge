@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:06:27    Date : 09/07/2012
+* Time : 06:02:49    Date : 09/16/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -191,6 +191,9 @@ else
 Win1.Edit1.VALUE := mydata
 endif
 GOTO NEXT ELECTRON
+MYDATA := "Server get : " + mydata
+CON_SENDDATA (mydata)
+CON_SENDVETO myveto
 Next
 CLEAR CHANNEL
 Close Channel
@@ -296,11 +299,11 @@ INIT PROCEDURE Init_SERVER
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",118)
 SS_ESARES("Circuits\Main\Main\myresistance",182)
-SS_ESARES("Circuits\Main\Main\acceptconnection",202)
-SS_ESARES("Circuits\Main\Main\newfile",212)
-SS_ESARES("Circuits\Main\Main\savefile",226)
-SS_ESARES("Circuits\Main\Main\AcceptFileByte",246)
-SS_ESARES("Circuits\Main\Main\newline",284)
+SS_ESARES("Circuits\Main\Main\acceptconnection",205)
+SS_ESARES("Circuits\Main\Main\newfile",215)
+SS_ESARES("Circuits\Main\Main\savefile",229)
+SS_ESARES("Circuits\Main\Main\AcceptFileByte",249)
+SS_ESARES("Circuits\Main\Main\newline",287)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESAGOAL("Circuits\Main\Main\myresistance","myresistance")
 SS_ESAGOAL("Circuits\Main\Main\acceptconnection","acceptconnection")
@@ -349,9 +352,12 @@ SS_ESASTEP("Circuits\Main\Main\myresistance","FOR LOOP ( From x = 1 To mymax Ste
 SS_ESASTEP("Circuits\Main\Main\myresistance","mydata := GET_ACTIVE_ELECTRON_VALUE",5,5)
 SS_ESASTEP("Circuits\Main\Main\myresistance","Print text (mydata) to Editbox (Edit1) of Window (Win1)",6,10)
 SS_ESASTEP("Circuits\Main\Main\myresistance","GOTO NEXT ELECTRON",11,11)
-SS_ESASTEP("Circuits\Main\Main\myresistance","End of For Loop",12,12)
-SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Clear Channel",13,13)
-SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Close Channel",14,14)
+SS_ESASTEP("Circuits\Main\Main\myresistance","MYDATA = 'Server get : ' + mydata",12,12)
+SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Connection - Send Data  (mydata)",13,13)
+SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Connection - Send Veto  myveto",14,14)
+SS_ESASTEP("Circuits\Main\Main\myresistance","End of For Loop",15,15)
+SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Clear Channel",16,16)
+SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Close Channel",17,17)
 SS_ESASTEP("Circuits\Main\Main\acceptconnection","mycheck := REQUEST_TYPE_CONNECTION",1,1)
 SS_ESASTEP("Circuits\Main\Main\acceptconnection","IF ( mycheck )",2,2)
 SS_ESASTEP("Circuits\Main\Main\acceptconnection","(DoubleS/Veto Unit) ACCEPT CONNECTION",3,3)

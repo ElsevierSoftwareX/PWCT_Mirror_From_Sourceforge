@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:35:41    Date : 09/10/2012
+* Time : 04:48:23    Date : 09/16/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -127,9 +127,21 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 DEFINE TIMER Timer1 INTERVAL 10 ;
 Action myservice()
-@ 356 ,223 BUTTONEX btn2;
+@ 358 ,371 BUTTONEX btn2;
 CAPTION "Send file ";
 ON CLICK sendfile()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 9 ;
+TOOLTIP ""
+@ 361 ,21 BUTTONEX btn3;
+CAPTION " Send Data Only ";
+ON CLICK mystart2()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 9 ;
+TOOLTIP ""
+@ 361 ,127 BUTTONEX btn4;
+CAPTION " Send Veto Only ";
+ON CLICK mystart3()  ;
 WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
@@ -208,13 +220,30 @@ ENDIF
 CON_SENDVETO savefile
 MyOut := MSGINFO(str(totalcount),"Client - File Size ")
 Return Nil
+Proc mystart2
+BEGIN SEQUENCE WITH { |e| break(e) }
+win1.timer1.Enabled := false
+mydata := win1.text1.Value
+CON_SENDDATA (mydata)
+win1.timer1.Enabled := true
+RECOVER
+END SEQUENCE
+Return Nil
+Proc mystart3
+BEGIN SEQUENCE WITH { |e| break(e) }
+win1.timer1.Enabled := false
+CON_SENDVETO myveto
+win1.timer1.Enabled := true
+RECOVER
+END SEQUENCE
+Return Nil
 
 
 End Of Resistance
 
 * Resistance Code Unit : Circuits\Main\Main\myresistance
 Resistance R_CLIENT_18smart2() code
-select input channel inchannel
+Select Input Channel  inchannel
 Open Channel inchannel
 GOTO FIRST ELECTRON
 mymax := GET_ACTIVE_ELECTRONS_COUNT
@@ -246,8 +275,8 @@ End Of Resistance
 INIT PROCEDURE Init_CLIENT
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",97)
-SS_ESARES("Circuits\Main\Main\myresistance",216)
-SS_ESARES("Circuits\Main\Main\acceptconnection",237)
+SS_ESARES("Circuits\Main\Main\myresistance",245)
+SS_ESARES("Circuits\Main\Main\acceptconnection",266)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESAGOAL("Circuits\Main\Main\myresistance","myresistance")
 SS_ESAGOAL("Circuits\Main\Main\acceptconnection","acceptconnection")
@@ -265,73 +294,96 @@ SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",31,32)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 ) , Caption : 'Send file '",33,34)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action sendfile",35,35)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",36,38)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",39,40)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",41,43)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart",44,44)
-SS_ESASTEP("Circuits\Main\Main\Main","Error Handling, Try",45,45)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := false",46,46)
-SS_ESASTEP("Circuits\Main\Main\Main","mydata = win1.text1.Value",47,47)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mydata)",48,48)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  myveto",49,49)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := true",50,50)
-SS_ESASTEP("Circuits\Main\Main\Main","Catch",51,51)
-SS_ESASTEP("Circuits\Main\Main\Main","End Try",52,52)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",53,53)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myservice",54,54)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Check Veto Services",55,55)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",56,56)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure vetostart",57,57)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Set Veto System Level to 4",58,58)
-SS_ESASTEP("Circuits\Main\Main\Main","Declare server 'Server1' address '127.0.0.1' port 1200",59,59)
-SS_ESASTEP("Circuits\Main\Main\Main","SELECT CLIENT CONNECTION myatom:K:S:myelectron",60,60)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection CONNECT",61,61)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",62,62)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure SendFile",63,63)
-SS_ESASTEP("Circuits\Main\Main\Main","GetFile := Get File",64,68)
-SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File GetFile",69,69)
-SS_ESASTEP("Circuits\Main\Main\Main","Open file GetFile store handle in myhandle",70,72)
-SS_ESASTEP("Circuits\Main\Main\Main","myerror = 1",73,73)
-SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = String, length = 1024*120",74,74)
-SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",75,75)
-SS_ESASTEP("Circuits\Main\Main\Main","mycounter = 0",76,76)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  newfile",77,77)
-SS_ESASTEP("Circuits\Main\Main\Main","totalcount = 0",78,78)
-SS_ESASTEP("Circuits\Main\Main\Main","LASTCHAR = ' '",79,79)
-SS_ESASTEP("Circuits\Main\Main\Main","WHILE ( myerror = 1 )",80,80)
-SS_ESASTEP("Circuits\Main\Main\Main","mydata = String, length = 1",81,81)
-SS_ESASTEP("Circuits\Main\Main\Main","Read From file, handle myhandle , buffer mydata bytes 1 check myerror",82,82)
-SS_ESASTEP("Circuits\Main\Main\Main","realdata = ''",83,83)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( myerror = 1 )",84,84)
-SS_ESASTEP("Circuits\Main\Main\Main","realdata = mydata",85,85)
-SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = mybuffer + realdata",86,86)
-SS_ESASTEP("Circuits\Main\Main\Main","mycounter = mycounter+1",87,87)
-SS_ESASTEP("Circuits\Main\Main\Main","totalcount = totalcount + 1",88,88)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( REALDATA = CHR(10) .AND. LASTCHAR = CHR(13) )",89,89)
-SS_ESASTEP("Circuits\Main\Main\Main","MyBuffer = Sub String of MyBuffer From 1 Count len(MyBuffer)-2",90,90)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mybuffer)",91,91)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  acceptfilebyte",92,92)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  newline",93,93)
-SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",94,94)
-SS_ESASTEP("Circuits\Main\Main\Main","mycounter = 0",95,95)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",96,96)
-SS_ESASTEP("Circuits\Main\Main\Main","LASTCHAR = MYDATA",97,97)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",98,98)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( mycounter = (1024*120) )",99,99)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mybuffer)",100,100)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  acceptfilebyte",101,101)
-SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",102,102)
-SS_ESASTEP("Circuits\Main\Main\Main","mycounter = 0",103,103)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",104,104)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF While Loop",105,105)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( mycounter > 0 )",106,106)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mybuffer)",107,107)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  acceptfilebyte",108,108)
-SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",109,109)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3 ) , Caption : ' Send Data Only '",39,40)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mystart2",41,41)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",42,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn4 ) , Caption : ' Send Veto Only '",45,46)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action mystart3",47,47)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",48,50)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",51,52)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",53,55)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart",56,56)
+SS_ESASTEP("Circuits\Main\Main\Main","Error Handling, Try",57,57)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := false",58,58)
+SS_ESASTEP("Circuits\Main\Main\Main","mydata = win1.text1.Value",59,59)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mydata)",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  myveto",61,61)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := true",62,62)
+SS_ESASTEP("Circuits\Main\Main\Main","Catch",63,63)
+SS_ESASTEP("Circuits\Main\Main\Main","End Try",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",65,65)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myservice",66,66)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Check Veto Services",67,67)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",68,68)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure vetostart",69,69)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Set Veto System Level to 4",70,70)
+SS_ESASTEP("Circuits\Main\Main\Main","Declare server 'Server1' address '127.0.0.1' port 1200",71,71)
+SS_ESASTEP("Circuits\Main\Main\Main","SELECT CLIENT CONNECTION myatom:K:S:myelectron",72,72)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection CONNECT",73,73)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",74,74)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure SendFile",75,75)
+SS_ESASTEP("Circuits\Main\Main\Main","GetFile := Get File",76,80)
+SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File GetFile",81,81)
+SS_ESASTEP("Circuits\Main\Main\Main","Open file GetFile store handle in myhandle",82,84)
+SS_ESASTEP("Circuits\Main\Main\Main","myerror = 1",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = String, length = 1024*120",86,86)
+SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",87,87)
+SS_ESASTEP("Circuits\Main\Main\Main","mycounter = 0",88,88)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  newfile",89,89)
+SS_ESASTEP("Circuits\Main\Main\Main","totalcount = 0",90,90)
+SS_ESASTEP("Circuits\Main\Main\Main","LASTCHAR = ' '",91,91)
+SS_ESASTEP("Circuits\Main\Main\Main","WHILE ( myerror = 1 )",92,92)
+SS_ESASTEP("Circuits\Main\Main\Main","mydata = String, length = 1",93,93)
+SS_ESASTEP("Circuits\Main\Main\Main","Read From file, handle myhandle , buffer mydata bytes 1 check myerror",94,94)
+SS_ESASTEP("Circuits\Main\Main\Main","realdata = ''",95,95)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( myerror = 1 )",96,96)
+SS_ESASTEP("Circuits\Main\Main\Main","realdata = mydata",97,97)
+SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = mybuffer + realdata",98,98)
+SS_ESASTEP("Circuits\Main\Main\Main","mycounter = mycounter+1",99,99)
+SS_ESASTEP("Circuits\Main\Main\Main","totalcount = totalcount + 1",100,100)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( REALDATA = CHR(10) .AND. LASTCHAR = CHR(13) )",101,101)
+SS_ESASTEP("Circuits\Main\Main\Main","MyBuffer = Sub String of MyBuffer From 1 Count len(MyBuffer)-2",102,102)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mybuffer)",103,103)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  acceptfilebyte",104,104)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  newline",105,105)
+SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",106,106)
+SS_ESASTEP("Circuits\Main\Main\Main","mycounter = 0",107,107)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",108,108)
+SS_ESASTEP("Circuits\Main\Main\Main","LASTCHAR = MYDATA",109,109)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",110,110)
-SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  savefile",111,111)
-SS_ESASTEP("Circuits\Main\Main\Main","Show Message str(totalcount) Title 'Client - File Size ' Type: Message Info",112,112)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",113,113)
-SS_ESASTEP("Circuits\Main\Main\myresistance","code",1,1)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( mycounter = (1024*120) )",111,111)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mybuffer)",112,112)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  acceptfilebyte",113,113)
+SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",114,114)
+SS_ESASTEP("Circuits\Main\Main\Main","mycounter = 0",115,115)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",116,116)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF While Loop",117,117)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( mycounter > 0 )",118,118)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mybuffer)",119,119)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  acceptfilebyte",120,120)
+SS_ESASTEP("Circuits\Main\Main\Main","mybuffer = ''",121,121)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",122,122)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  savefile",123,123)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message str(totalcount) Title 'Client - File Size ' Type: Message Info",124,124)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",125,125)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart2",126,126)
+SS_ESASTEP("Circuits\Main\Main\Main","Error Handling, Try",127,127)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := false",128,128)
+SS_ESASTEP("Circuits\Main\Main\Main","mydata = win1.text1.Value",129,129)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Data  (mydata)",130,130)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := true",131,131)
+SS_ESASTEP("Circuits\Main\Main\Main","Catch",132,132)
+SS_ESASTEP("Circuits\Main\Main\Main","End Try",133,133)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",134,134)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart3",135,135)
+SS_ESASTEP("Circuits\Main\Main\Main","Error Handling, Try",136,136)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := false",137,137)
+SS_ESASTEP("Circuits\Main\Main\Main","(DoubleS/Veto Unit) Connection - Send Veto  myveto",138,138)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.timer1.Enabled := true",139,139)
+SS_ESASTEP("Circuits\Main\Main\Main","Catch",140,140)
+SS_ESASTEP("Circuits\Main\Main\Main","End Try",141,141)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",142,142)
+SS_ESASTEP("Circuits\Main\Main\myresistance","Select Input Channel ( inchannel )",1,1)
 SS_ESASTEP("Circuits\Main\Main\myresistance","(DoubleS/Veto Unit) Open Channel inchannel",2,2)
 SS_ESASTEP("Circuits\Main\Main\myresistance","GOTO FIRST ELECTRON",3,3)
 SS_ESASTEP("Circuits\Main\Main\myresistance","mymax := GET_ACTIVE_ELECTRONS_COUNT",4,4)
