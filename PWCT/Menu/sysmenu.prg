@@ -695,6 +695,10 @@ DEFINE POPUP (a_menupops[17]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[17]) PROMPT "PWCT on the Web";
 	KEY F1, "F1"
 DEFINE BAR 2 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 22 OF (a_menupops[17]) PROMPT "PWCT Samples Folder"
+DEFINE BAR 23 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 24 OF (a_menupops[17]) PROMPT "PWCT Tutorials Folder"
+DEFINE BAR 25 OF (a_menupops[17]) PROMPT "\-"
 *!*	DEFINE BAR 8 OF (a_menupops[17]) PROMPT sysmsg(1366)
 *!*	DEFINE BAR 15 OF (a_menupops[17]) PROMPT sysmsg(1332)
 *!*	DEFINE BAR 9 OF (a_menupops[17]) PROMPT "\-"
@@ -729,12 +733,29 @@ ON SELECTION BAR 14 OF (a_menupops[17]) ;
 	DO _25j0f6yvm in sysmenu.prg
 
 
+ON SELECTION BAR 22 OF (a_menupops[17]) ;
+	DO opensamfolder in sysmenu.prg
+
+ON SELECTION BAR 24 OF (a_menupops[17]) ;
+	DO opentutfolder in sysmenu.prg
+
+
+
+
 ACTIVATE MENU (m.cMenuName) NOWAIT
 
 IF m.cTypeParm2 = "C"
 	m.getMenuName = m.cMenuName
 	m.oFormRef.Name = m.cSaveFormName 
 ENDIF
+
+PROCEDURE opensamfolder()
+ShellExecute(0,"open",application.DefaultFilePath + "\PWCTSamples\","","",1)
+RETURN
+
+PROCEDURE opentutfolder()
+ShellExecute(0,"open",application.DefaultFilePath + "\PWCTTutorials\","","",1)
+return
 
 PROCEDURE projteam()
 DO FORM team.scx
