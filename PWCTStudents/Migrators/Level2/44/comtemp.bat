@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "G:\PWCT II\LEVLE2\44\44.PRG"
