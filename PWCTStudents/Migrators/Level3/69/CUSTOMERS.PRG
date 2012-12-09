@@ -1,0 +1,425 @@
+*---------------------------------------------------------------------------*
+* Time : 02:59:26    Date : 12/03/2012
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.8 (Smart) [2006-2012]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Visual Programming Language : HarbourPWCT 
+*---------------------------------------------------------------------------*
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+#include "xhb.ch"
+Function CUSTOMERS
+Public True,False 
+True = .T. 
+False = .F. 
+ Details :
+ * (Noun) *
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance Main                          
+	VetoUnit :
+
+Resistance R_CUSTOMERS_18smart1() address Code Unit : Circuits\Main\Main\Main
+
+
+Return 
+
+* Resistance Code Unit : Circuits\Main\Main\Main
+Resistance R_CUSTOMERS_18smart1() code
+class CustomersClass From SystemDatabase
+Data cWindowName init "DataWindowName"
+Data cName init ""
+Data cAddress init ""
+Data cPhone init ""
+Data dDateofBirth init Date()
+Data nBalance init 0
+Data TableName init "Customers"
+Data nCountryID init 0
+Data aCountryitems init {}
+Data aCountryitemsIDs init {}
+Method showwindow
+Method closewindow
+Method SetMode
+Method UserInterface2Class
+Method Class2ADO
+Method ADO2Class
+Method Class2UserInterface
+Method ClearRecord
+Method AutoGotoRecord
+Method CheckData
+Method TotalBalance
+EndClass
+Method showwindow Class CustomersClass
+IF UsersObject:CheckPermission(1) = False
+MyOut := MSGBOX("Access is denied ","Sorry ")
+Return 0
+ENDIF
+myout = self:connect()
+myout = self:AutoGotoRecord()
+if !iswindowdefined( &(self:cWindowName) )
+DEFINE WINDOW &(self:cWindowName) ;
+AT 10 ,10 ;
+WIDTH 770 ;
+HEIGHT 398 ;
+ICON "PWCTICON" ;
+TITLE "Customers Window" ;
+CHILD ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+BACKCOLOR {64,0,64}
+
+@ -72 ,-57 IMAGE image1;
+PICTURE "imag\Back.jpg";
+STRETCH ;
+WIDTH 823 HEIGHT 483
+@ 8 ,6 LABEL lblTitle ;
+VALUE "Customers Window" ;
+WIDTH 750 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {128,128,0}
+@ 316 ,326 BUTTONEX btnFirst;
+CAPTION "First";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:firstrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 316 ,389 BUTTONEX btnNext;
+CAPTION "Next";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:nextrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 316 ,518 BUTTONEX btnLast;
+CAPTION "Last";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:lastrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 316 ,673 BUTTONEX btnClose;
+CAPTION "Close";
+FONTCOLOR {0,0,0};
+BACKCOLOR {132,242,179};
+ON CLICK self:closewindow()  ;
+WIDTH 80 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 316 ,455 BUTTONEX btnPrev;
+CAPTION "Prev ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:prevrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 316 ,587 BUTTONEX btnDel;
+CAPTION "Delete";
+FONTCOLOR {255,255,255};
+BACKCOLOR {255,0,0};
+ON CLICK self:delrecord()  ;
+WIDTH 70 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 316 ,162 BUTTONEX btnsave;
+CAPTION "Save";
+ON CLICK self:saverecord()  ;
+WIDTH 70 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 316 ,234 BUTTONEX btncancel;
+CAPTION "Cancel";
+ON CLICK self:cancelrecord()  ;
+WIDTH 80 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 316 ,91 BUTTONEX btnedit;
+CAPTION "Edit";
+ON CLICK self:editrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 316 ,8 BUTTONEX btnadd;
+CAPTION "Add";
+ON CLICK self:addrecord()  ;
+WIDTH 70 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 58 ,23 LABEL lbl1 ;
+VALUE "Name " ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 16  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 97 ,23 LABEL lbl2 ;
+VALUE "Address " ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 16  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 136 ,23 LABEL lbl3 ;
+VALUE "Phone " ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 16  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 58 ,148 TEXTBOX textName;
+HEIGHT 30 ;
+WIDTH 420 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 97 ,148 TEXTBOX textAddress;
+HEIGHT 30 ;
+WIDTH 420 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 136 ,148 TEXTBOX textPhone;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+myout = self:LoadLookupTable("Country","Country",@self:aCountryitems,"ID",@self:aCountryitemsIDs)
+@ 175 ,23 LABEL lblCountry ;
+VALUE "Country" ;
+WIDTH 90 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 16  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 175 ,148 COMBOBOX comboCountry;
+WIDTH 180 ;
+HEIGHT 300;
+ITEMS self:aCountryitems ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 209 ,148 DATEPICKER DateofBirth;
+WIDTH 180 ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+@ 209 ,23 LABEL lbl5 ;
+VALUE "Date of Birth " ;
+WIDTH 120 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 15  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 245 ,21 LABEL lblBalance ;
+VALUE "Balance" ;
+WIDTH 120 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 245 ,148 TEXTBOX textBalance;
+HEIGHT 30 ;
+WIDTH 200 ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {0,0,0}
+
+@ 245 ,359 BUTTONEX btnTotalBalance;
+CAPTION "Total Balance";
+ON CLICK self:TotalBalance()  ;
+WIDTH 150 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+END WINDOW
+
+&(self:cWindowName).Center ( )
+myout = self:showrecord()
+myout = self:setmode(2)
+ACTIVATE WINDOW &(self:cWindowName)
+EndIF
+
+Return 0
+Method UserInterface2Class Class CustomersClass
+self:cName := &(self:cWindowName).textName.Value
+self:cAddress := &(self:cWindowName).textAddress.Value
+self:cPhone := &(self:cWindowName).textPhone.Value
+self:nCountryID := &(self:cWindowName).comboCountry.Value
+self:nCountryID := self:aCountryitemsIDs[self:nCountryID]
+self:dDateofBirth := &(self:cWindowName).DateofBirth.Value
+self:nBalance := &(self:cWindowName).textBalance.Value
+self:nBalance = VAL ( self:nBalance )
+Return 0
+Method Class2ADO Class CustomersClass
+self:oRS:fields:item("CustName"):value := self:cName
+self:oRS:fields:item("CustAddress"):value := self:cAddress
+self:oRS:fields:item("CustPhone"):value := self:cPhone
+self:oRS:fields:item("CountryID"):value := self:nCountryID
+self:oRS:fields:item("DateofBirth"):value := self:dDateofBirth
+self:oRS:fields:item("Balance"):value := self:nBalance
+Return 0
+Method ADO2Class Class CustomersClass
+self:cName := self:oRS:fields:item("CustName"):value
+self:cAddress := self:oRS:fields:item("CustAddress"):value
+self:cPhone := self:oRS:fields:item("CustPhone"):value
+self:nCountryID := self:oRS:fields:item("CountryID"):value
+self:dDateofBirth := self:oRS:fields:item("DateofBirth"):value
+self:nBalance := self:oRS:fields:item("Balance"):value
+Return 0
+Method Class2UserInterface Class CustomersClass
+&(self:cWindowName).textName.Value := self:cName
+&(self:cWindowName).textAddress.Value := self:cAddress
+&(self:cWindowName).textPhone.Value := self:cPhone
+nIndex = self:LookupIDToIndex(self:nCountryID,self:aCountryitemsIDs)
+&(self:cWindowName).comboCountry.Value := nIndex
+&(self:cWindowName).DateofBirth.Value := self:dDateofBirth
+cBalance = STR ( self:nBalance )
+cBalance = ALLTRIM ( cBalance )
+&(self:cWindowName).textBalance.Value := cBalance
+Return 0
+Method ClearRecord Class CustomersClass
+self:cName := ""
+self:cAddress := ""
+self:cPhone := ""
+self:nCountryID := 0
+self:dDateofBirth := Date()
+self:nBalance := 0
+Return 0
+Method setmode(p1) Class CustomersClass
+IF p1 = 1
+&(self:cWindowName).btnfirst.Enabled := false
+&(self:cWindowName).btnnext.Enabled := false
+&(self:cWindowName).btnprev.Enabled := false
+&(self:cWindowName).btnlast.Enabled := false
+&(self:cWindowName).btndel.Enabled := false
+&(self:cWindowName).btnclose.Enabled := false
+&(self:cWindowName).btnsave.Enabled := true
+&(self:cWindowName).btncancel.Enabled := true
+&(self:cWindowName).btnedit.Enabled := false
+&(self:cWindowName).btnadd.Enabled := false
+&(self:cWindowName).textName.Enabled := True
+&(self:cWindowName).textAddress.Enabled := True
+&(self:cWindowName).textPhone.Enabled := True
+&(self:cWindowName).comboCountry.Enabled := True
+&(self:cWindowName).DateofBirth.Enabled := True
+&(self:cWindowName).textBalance.Enabled := True
+ENDIF
+IF p1 = 2
+&(self:cWindowName).btnfirst.Enabled := true
+&(self:cWindowName).btnnext.Enabled := true
+&(self:cWindowName).btnprev.Enabled := true
+&(self:cWindowName).btnlast.Enabled := true
+&(self:cWindowName).btndel.Enabled := true
+&(self:cWindowName).btnclose.Enabled := true
+&(self:cWindowName).btnsave.Enabled := false
+&(self:cWindowName).btncancel.Enabled := false
+&(self:cWindowName).btnedit.Enabled := true
+&(self:cWindowName).btnadd.Enabled := true
+&(self:cWindowName).textName.Enabled := False
+&(self:cWindowName).textAddress.Enabled := False
+&(self:cWindowName).textPhone.Enabled := False
+&(self:cWindowName).comboCountry.Enabled := False
+&(self:cWindowName).DateofBirth.Enabled := False
+&(self:cWindowName).textBalance.Enabled := False
+ENDIF
+self:OperationMode := p1
+Return 0
+Method CheckData Class CustomersClass
+Local lRet
+lRet := True
+cName := &(self:cWindowName).textName.Value
+cName = ALLTRIM ( cName )
+IF cName == ""
+MyOut := MSGBOX("Please Enter Customer Name ","Sorry ")
+lRet := False
+ENDIF
+cCountry := &(self:cWindowName).comboCountry.Value
+IF cCountry = 0
+MyOut := MSGBOX("Please Select The Country ","Sorry ")
+lRet := False
+ENDIF
+Return lRet
+Method TotalBalance Class CustomersClass
+myoRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myoRS:CursorType := 1
+myoRS:ActiveConnection := self:oCon
+myoRS:open ( "Select * from TotalBalance",self:oCon,3,3 )
+myoRS:MOVEFIRST()
+nBalance := myoRS:fields:item("SumOfBalance"):value
+MyOut := MSGBOX(nBalance,"Total Balance")
+myoRS:Close()
+myoRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myoRS:CursorType := 1
+myoRS:ActiveConnection := self:oCon
+myoRS:open ( "SELECT Sum(Customers.Balance) AS SumOfBalance FROM Customers",self:oCon,3,3 )
+nBalance := myoRS:fields:item("SumOfBalance"):value
+MyOut := MSGBOX(nBalance,"Total Balance")
+myoRS:Close()
+myoRS := TOLEAUTO():NEW( "ADODB.Recordset" )
+myoRS:CursorType := 1
+myoRS:ActiveConnection := self:oCon
+myoRS:open ( "Select * from Customers",self:oCon,3,3 )
+nTotal := 0
+nMax := myoRS:RecordCount
+IF nMAx > 0
+myoRS:MOVEFIRST()
+FOR x = 1 TO nMAx STEP 1
+nCustBalance := myoRS:fields:item("Balance"):value
+nTotal := nTotal + nCustBalance
+myoRS:MOVENEXT()
+Next
+ENDIF
+MyOut := MSGBOX(nTotal,"Total Balance")
+myoRS:Close()
+Return 0
+Method closewindow Class CustomersClass
+myout = self:disconnect()
+&(self:cWindowName).Release ( )
+Return 0
+Method AutoGotoRecord Class CustomersClass
+IF self:LFindRecord = true .and. self:OperationMode = 2
+self:oRS:Find(self:CFindExpr)
+mycheck := self:oRS:EOF()
+IF mycheck = true
+self:oRS:MOVEPREVIOUS()
+ENDIF
+IF iswindowdefined( &(self:cWindowName) )
+myout = self:showrecord()
+&(self:cWindowName).SetFocus ( )
+ENDIF
+ENDIF
+self:LFindRecord := false
+self:CFindExpr := ""
+Return 0
+
+
+
+End Of Resistance
+
+*-------------------------------------------------------------------*
