@@ -1,0 +1,1 @@
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "G:\PWCT II\27\27.PRG"
