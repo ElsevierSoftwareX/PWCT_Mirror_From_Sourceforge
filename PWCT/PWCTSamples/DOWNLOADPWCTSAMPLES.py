@@ -194,6 +194,11 @@ Samples.append("HarbourPWCT_Colors_ConsoleApplication.zip")
 Samples.append("HarbourPWCT_Rectangles_ConsoleAppplication.zip")
 Samples.append("HarbourPWCT_SquareRoot.zip")
 Samples.append("HarbourPWCT_SwitchKeyboardLanguage.zip")
+Samples.append("HarbourPWCT_ColorForNegativeNumbers.zip")
+Samples.append("HarbourPWCT_ReadRecordsFromExcelFile.zip")
+Samples.append("HarbourPWCT_ButtonImage.zip")
+Samples.append("HarbourPWCT_UsingAccess2007.zip")
+Samples.append("HarbourPWCT_SerialCommunication.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
