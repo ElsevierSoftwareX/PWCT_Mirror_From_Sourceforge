@@ -1,1 +1,1 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "D:\DOUBLESVSOOP\BUSINESS APPLICATIONS\HARBOURPWCT\ARABIC\MRVC\RVC.PRG"
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\RVC.PRG"

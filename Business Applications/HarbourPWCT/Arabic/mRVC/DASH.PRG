@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 14:42:31    Date : 02/05/2012
+* Time : 18:23:29    Date : 02/20/2012
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -12,7 +12,6 @@
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
 #include "hbclass.ch"
-#include "xhb.ch"
 Function DASH
 Public True,False 
 True = .T. 

@@ -1,12 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 15:14:05    Date : 07/29/2011
+* Time : 13:00:51    Date : 02/12/2012
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* Programming without coding technology 1.8 (Smart) [2006-2012]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
-* Visual Programming Language : Mahmoud Programming Language (HarbourPWCT) 
+* Visual Programming Language : HarbourPWCT 
 *---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour/xHarbour
+* Compilers                   : Borland C/C++ & Harbour
 * GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
@@ -26,13 +26,13 @@ Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
 					Resistance Main                          
 	VetoUnit :
 
-Resistance R_PROJECTS_REPORT_15speed1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_PROJECTS_REPORT_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 Return 
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_PROJECTS_REPORT_15speed1() code
+Resistance R_PROJECTS_REPORT_18smart1() code
 class ProjectsReportClass From Report_Base
 Data ReportName init "Projects"
 Data cWindowName init "ProjectsReportWindow"
@@ -74,6 +74,12 @@ FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 self:oActiveX := TActiveX():New( self:cWindowName, "snpvw.Snapshot Viewer Control.1" , 18 , 32 , 659 , 417)
 self:oActiveX:Load()
+@ 453 ,586 BUTTONEX btn4;
+CAPTION " ’œÌ— ";
+ON CLICK self:exportreport()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
 END WINDOW
 
 &(self:cWindowName).Maximize ( )
@@ -93,6 +99,7 @@ self:oactivex:nHeight := tempvar2 - 125
 &(self:cWindowName).btn1.Row := tempvar2-88
 &(self:cWindowName).btn2.Row := tempvar2-88
 &(self:cWindowName).btn3.Row := tempvar2-88
+&(self:cWindowName).btn4.Row := tempvar2-88
 self:oactivex:Show ( )
 Return 0
 
