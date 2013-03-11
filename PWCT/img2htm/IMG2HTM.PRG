@@ -1,7 +1,7 @@
 *---------------------------------------------------------------------------*
-* Time : 14:13:43    Date : 11/15/2011
+* Time : 04:18:30    Date : 03/11/2013
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2011]  
+* Programming without coding technology 1.8 (Smart) [2006-2013]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -134,7 +134,7 @@ mytext := mytext + CHR(13) + CHR(10) + "<div>"
 cFolder := win1.text1.Value
 cFolder = ALLTRIM ( cFolder )
 mytext := mytext + CHR(13) + CHR(10) + htmline("               PWCT 1.8 Smart Documentation ( http://doublesvsoop.sourceforge.net )")
-mytext := mytext + CHR(13) + CHR(10) + htmline("               2006-2011, Mahmoud Fayed ( msfclipper@users.sourceforge.net )")
+mytext := mytext + CHR(13) + CHR(10) + htmline("               2006-2013, Mahmoud Fayed ( msfclipper@users.sourceforge.net )")
 mytext := mytext + CHR(13) + CHR(10) + htmline("_____________________________________________________________________________________")
 mytext := mytext + CHR(13) + CHR(10) + htmline3("Table of contents")
 mytext := mytext + CHR(13) + CHR(10) + htmline("1 - Introduction")
@@ -179,7 +179,7 @@ ENDIF
 IF f_type = 5
 ENDIF
 ENDIF
-mytext := mytext + CHR(13) + CHR(10) + '<p><img width=540 height=253 id="Picture'+ mynum +'"'
+mytext := mytext + CHR(13) + CHR(10) + '<p><img width=1080 height=506 id="Picture'+ mynum +'"'
 mytext := mytext + CHR(13) + CHR(10) + 'src="s'+ mynum + '.JPG" alt=s'+ mynum+ '.JPG></p>'
 IF file(cFolder + "\details.dbf")
 IF f_type = 1
@@ -319,7 +319,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Print text ('<div>') to string (mytext)",8
 SS_ESASTEP("Circuits\Main\Main\Main","cFolder = win1.text1.Value",83,83)
 SS_ESASTEP("Circuits\Main\Main\Main","cFolder = All Trim cFolder",84,84)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               PWCT 1.8 Smart Documentation ( http://doublesvsoop.sourceforge.net )')) to string (mytext)",85,85)
-SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               2006-2011, Mahmoud Fayed ( msfclipper@users.sourceforge.net )')) to string (mytext)",86,86)
+SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               2006-2013, Mahmoud Fayed ( msfclipper@users.sourceforge.net )')) to string (mytext)",86,86)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('_____________________________________________________________________________________')) to string (mytext)",87,87)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline3('Table of contents')) to string (mytext)",88,88)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('1 - Introduction')) to string (mytext)",89,89)
@@ -364,7 +364,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",127,127)
 SS_ESASTEP("Circuits\Main\Main\Main","IF ( f_type = 5 )",128,128)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",129,129)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",130,130)
-SS_ESASTEP("Circuits\Main\Main\Main","Print text ('<p><img width=540 height=253 id='Picture'+ mynum +''') to string (mytext)",131,131)
+SS_ESASTEP("Circuits\Main\Main\Main","Print text ('<p><img width=1080 height=506 id='Picture'+ mynum +''') to string (mytext)",131,131)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text ('src='s'+ mynum + '.JPG' alt=s'+ mynum+ '.JPG></p>') to string (mytext)",132,132)
 SS_ESASTEP("Circuits\Main\Main\Main","IF ( file(cFolder + '\details.dbf') )",133,133)
 SS_ESASTEP("Circuits\Main\Main\Main","IF ( f_type = 1 )",134,134)
