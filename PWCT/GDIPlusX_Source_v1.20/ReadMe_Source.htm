@@ -1,0 +1,187 @@
+<html xmlns:o>
+	<head>
+		<style type="text/css"> 
+		BODY { FONT-FAMILY: Arial;font-size:small; }
+	DIV PRE {background-color:eeeeff;border-bottom:solid 1px #bbbbbb;padding:10px;font-size:10pt;}
+.style2 {font-family: "Courier New", Courier, monospace}
+.new {font-size:12pt;color:red; font:italic;margin:5px;}
+        </style>
+	</head>
+	<body>
+		<H2>VFPX - GDIPlusX v1.20</H2>
+		<H3>Library and Source Code release</H3>
+		<P>This ZIP file contains the GDIPlusX library (as an APP) and the full source 
+			code.</P>
+		<P>For the associated samples and documentation, as well as a list of issues 
+			addressed in this build, please visit the <a href="http://www.codeplex.com/VFPX/Release/ProjectReleases.aspx?ReleaseId=15083">
+				official release page</a> in the VFPX section&nbsp;of CodePlex.</P>
+		<H3>About the library</H3>
+		<P>This library was intended to provide Visual FoxPro 9.0&nbsp;developers with an 
+			object based library to wrap the 600+ functions included with the GDI+ API. The 
+			intent is to mimic the <A href="http://msdn2.microsoft.com/en-us/library/system.drawing.aspx">
+				System.Drawing namespace</A> in the .NET Framework. All classes in the 
+			library are based on the classes included in the System.Drawing namespace and 
+			other classes that&nbsp;are&nbsp;dependencies for classes in the System.Drawing 
+			namespace. Some additional&nbsp;additional functionality has&nbsp;been added to 
+			take advantage of features built in to VFP 9.0</P>
+		<P>For more information about the goals and additional references to the library, 
+			please visit the <a href="http://www.codeplex.com/VFPX/Wiki/View.aspx?title=GDIPlusX">
+				GDIPlusX home page</a>.</P>
+		<H3>Distribution files</H3>
+		<P>
+			<table border="1" width="80%">
+				<colgroup>
+					<col vAlign="top">
+						<col>
+				</colgroup>
+				<tr>
+					<td>System.APP</td>
+					<td>This is a standalone APP which contains all the source files for the GDIPlusX 
+						library. This compiled version includes debug info and some _Membderdata 
+						attributes to assist with intellisense. If you distribute this file with your 
+						application, you only need to compile the GDIPlusX.vcx library into your 
+						application</td>
+				</tr>
+				<tr>
+					<td>System_Lean.APP</td>
+					<td>This is the same as above, but the debug info and intellisense functionality 
+						have been turned off. If you are concerned about your distribution size, this 
+						APP is for you. It is about 250KB smaller than the standard System.app and 
+						usually ZIPs up to about 140KB. Make sure you rename it to "System.APP" if you 
+						distribute this file instead of the standard System.app.</td>
+				</tr>
+				<tr>
+					<td>GDIPlusX.vcx</td>
+					<td>This visal class library contains the imgCanvas class and will need to be 
+						compiled into your application for distribution, if you utilize this class.</td>
+				</tr>
+			</table>
+		</P>
+		<H3>How to use the library</H3>
+		<P>To initialize the library execute the following command:</P>
+		<P>
+			<div><pre>DO system.app</pre>
+			</div>
+		<P></P>
+		<P>This will add a property to the&nbsp;_SCREEN system variable&nbsp;called SYSTEM. 
+			This SYSTEM object contains a property called DRAWING. This DRAWING object 
+			(referenced as _SCREEN.System.Drawing) can be thought of as an object factory 
+			and is designed to mimic the <a href="http://msdn2.microsoft.com/en-us/library/system.drawing.aspx">
+				System.Drawing namespace</a> in the .NET Framework.</P>
+		<P>The following sample fills a&nbsp;circle using a Blue brush and draws a 
+			rectangle using a Red pen,&nbsp;on the VFP desktop:</P>
+		<P>
+	<div><pre>DO system.app
+WITH _SCREEN.System.Drawing<BR>   * Create a Graphics object<BR>   gfx = .Graphics.FromHWnd(_SCREEN.HWnd)<BR><BR>   * Fill an ellipse using a Blue brush<BR>   gfx.FillEllipse(.Brushes.Blue,30,30,400,200)
+   * Create a Red pen<BR>   myPen = .Pen.New(.Color.Red,2)<BR>   * Draw a rectangle using the pen<BR>   gfx.DrawRectangle(myPen,20,20,400,200)
+ENDWITH</pre>
+	</div>
+	<P>If you will be doing any drawing to a VFP Form, we reccommend that you use the 
+			imgCanvas class. The class is based on the VFP Image class and allows your to 
+			draw directly to an Image object. There are several benefits to this, one of 
+			the most important is that by utilizing this class you do not have to write any 
+			code to handle Paint events to the VFP Form. You just draw to this Image object 
+			and VFP will handle this tedious task for you.</P>
+		<P>This class is located in the "source" folder and is part of the GDIPlusX.vcx 
+			class library. Just add this class to your Form and use the BeforeDraw method 
+			to call&nbsp;your drawing commands.</P>
+		<P>Here is the same sample above, but utilizing the imgCanvas class's BeforeDraw 
+			method. Note that the oGfx property represents the Graphics object for the 
+			imgCanvas class:</P>
+		<div><PRE>FUNCTION BeforeDraw
+WITH _SCREEN.System.Drawing<BR><BR>   * Fill an ellipse using a Blue brush<BR>   This.oGfx.FillEllipse(.Brushes.Blue,30,30,400,200)
+   * Create a Red pen<BR>   myPen = .Pen.New(.Color.Red,2)<BR>   * Draw a rectangle using the pen<BR>   This.oGfx.DrawRectangle(myPen,20,20,400,200)
+ENDWITH</PRE>
+		</div>
+        <p class="new">New</p>
+		<P>There are times that the BeforeDraw method could be called before the Init event. Therefore an extra method was created called Setup. It is recommended that you use this method instead of the Init event to run any setup code required by your imgCanvas subclass. If you do need to use the Init event, it is imperative that you issue a DODEFAULT. The imgCanvas class will not function properly if it's Init event code is not run.</P>
+		<div>
+		   <PRE>FUNCTION SetUp
+   * Initialization code goes here
+ENDFUNC
+
+FUNCTION BeforeDraw
+   WITH _SCREEN.System.Drawing<BR>      * Drawing commands go here<BR>   ENDWITH
+ENDFUNC</PRE>
+	</div>
+        
+        <p class="new">New</p>
+		<P><STRONG>Version Checking</STRONG></P>
+		<P>Hopefully, more and more features will be implemented into the GDIPlusX library. As this happens, your application may become dependent on a certain release of SYSTEM.APP. To make sure that your application has he version you need, you can pass a &quot;minimum version&quot; parameter when calling SYSTEM.APP.</P>
+		<div>
+        <pre>FUNCTION System ([oObject]|[cDirective][, nMinVersion])</pre>
+    </div>
+        <p>Parameters:<br>
+        oObject - (Optional) Object reference to attach the xfcSystem class to. Default value: _SCREEN<br>
+           nMinVersion - (Optional) Minimum version of the GDIPlusX library that your application requires. Default value: 0.00<br>
+        cDirective - (Optional) Specifies a special instruction for SYSTEM.APP to perform. Currently only &quot;FoxCode&quot; is supported</p>
+        <p>To make sure that you are getting a minimum version of the GDIPlusX library, pass the version number when calling SYSTEM.APP. If the version number of SYSTEM.APP is less than the minimum version specified, an error is generated with instructions on where to get the latest version of SYSTEM.APP / GDIPlusX.</p>
+        <div>
+   <pre>DO SYSTEM.APP WITH 1.20
+* or *
+DO SYSTEM.APP WITH oMyObject,1.20
+* or *
+DO SYSTEM.APP WITH ,1.20</pre>
+</div>
+        <p><strong>Intellisense Support</strong></p>
+    <P>Once you run SYSTEM.APP the <span class="style2">_SCREEN.System.Drawing</span> property should be available from the command window and all code windows. You should be able to drill down to all classes and PEMs within the library. All methods should show the parameters too.</P>
+        <p class="new">New</p>
+        
+
+		<P>The library includes extra helper scripts that can be added to the FoxCode table. To install the extra scripts, execute SYSTEM.APP with the &quot;FoxCode&quot; directive:</P>
+
+		<div>
+		   <PRE>DO SYSTEMP.APP WITH &quot;FoxCode&quot;</PRE>
+		</div>
+  
+		<P>This will add a few shortcuts for the classes    </P>
+	<table border="1">
+<tr>
+<td><b>Shortcut</b></td>
+<td><b>Expanded</b></td>
+<tr>
+<td>Draw,Drawing</td>
+<td>_SCREEN.System.Drawing</td></tr>                                                                                         
+<tr><td>Bmp,Bitmap</td><td>_SCREEN.System.Drawing.Bitmap.New</td></tr>                                                                                
+<tr><td>Brus,Brush</td><td>_SCREEN.System.Drawing.SolidBrush.New</td></tr>                                                                            
+<tr><td>Clr,Color</td><td>_SCREEN.System.Drawing.Color.FromRGB</td></tr>                                                                              
+<tr>
+   <td>Font</td>
+   <td>_SCREEN.System.Drawing.Font.New</td>
+</tr>                                                                                  
+<tr><td>Gfx,Graphics</td><td>_SCREEN.System.Drawing.Graphics.FromImage</td></tr>
+<tr><td>GfxH,GraphicsH</td><td>_SCREEN.System.Drawing.Graphics.FromHWnd</td></tr>
+<tr><td>GfxI,GraphicsI</td><td>_SCREEN.System.Drawing.Graphics.FromImage</td></tr>
+
+                                                                       
+<tr><td>Img,Image</td><td>_SCREEN.System.Drawing.Image.FromFile</td></tr>                                                                             
+<tr><td>Matr,Matrix</td><td>_SCREEN.System.Drawing.Drawing2D.Matrix.New</td></tr>                                                                     
+<tr><td>Path,GraphicsPath</td><td>_SCREEN.System.Drawing.Drawing2D.GraphicsPath.New</td></tr>                                                         
+<tr>
+   <td>Pen</td>
+   <td>_SCREEN.System.Drawing.Pen.New</td></tr>                                                                                      
+<tr><td>Pnt,Point</td><td>_SCREEN.System.Drawing.Point.New</td></tr>                                                                                  
+<tr><td>Rect,Rectangle</td><td>_SCREEN.System.Drawing.Rectangle.New</td></tr>                                                                         
+<tr><td>Stre,Stream</td><td>_SCREEN.System.IO.MemoryStream.New</td></tr>                                                                              
+<tr><td>ClrM,ColorMatrix</td><td>_SCREEN.System.Drawing.Imaging.ColorMatrix.New</td></tr>                                                             
+    </table>
+        <p>Note: The lean version of System.APP does not have the &quot;FoxCode&quot; table embedded</p>
+        <p class="new">New</p>
+        <p><STRONG>Embedded Help</STRONG></p>
+        <P>Each class in the library now has a quick way of accessing the online help for the .NET class equivilant using the &quot;Help&quot; method. Calling this method will invoke a browser window and automatically access the MSDN help page for the specified class. Note: This method is not available in the Lean version of SYSTEM.APP</P>
+<div><pre>
+* Example:
+_SCREEN.System.Drawing.Bitmap.Help()</pre></div>
+        <P>For more information, please download the samples and documentation 
+			from&nbsp;the <A href="http://www.codeplex.com/VFPX/Release/ProjectReleases.aspx?ReleaseId=15083">
+				official release page</A>.
+		</P>
+	<P><STRONG>Support</STRONG></P>
+		<P>If you have any questions of comments about the library or you would like to 
+			report an issue, please use the <a href="http://www.codeplex.com/VFPX/Thread/List.aspx">
+				discussion forums</a> at the VFPX site. The GDIPlusX team members as well 
+			as other GDIPlusX library users frequent the forums and should be able to 
+			assist you. If you would like to contact the project manager privately, use the <a href="https://www.codeplex.com/site/users/contact/binarybo?OriginalUrl=http://vfpx.codeplex.com/">CodePlex contact page</a> (preferred) or send an 
+			email to <A href="mailto:gdiplusx@moxiedata.com">gdiplusx@moxiedata.com</A>.</P>
+	</body>
+</html>
