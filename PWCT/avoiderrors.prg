@@ -25,46 +25,24 @@ ELSE
 ENDIF
 RETURN
 
-PROCEDURE DeleteStepsInTheSameInteraction(oGDWindow)
-LOCAL tv_interid,tv_max,myinterlist,tv_x,mydsrec,prec,mykeyrecarr,looprs,loopre,myid,myres,myend,x,myrecnum,mynewlooprs,myrec,t
+PROCEDURE TaskonStepsInTheSameInteraction(oGDWindow,cProcName)
+LOCAL prec,mykeyrecarr,looprs,loopre,myid,myres,myend,x,myrecnum,mynewlooprs,myrec,t
 LOCAL c_table,n_record
+LOCAL myiid
+
 c_table = ALIAS()
 n_record = RECNO()
 
-
-
-		* check history - if it's generated step 
-					SELECT t46
-					GOTO top
-					IF .not. EMPTY(t38->stepinterid)
-							locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-  						IF FOUND()
-  				
-										tv_interid = t38->stepinterid
-										SELECT t38
-										GOTO top
-										tv_max = 0
-										scan FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(tv_interid)) .and. UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle))
-										tv_max = tv_max + 1
-										DIMENSION myinterlist(tv_max)
-										myinterlist(tv_max) = UPPER(ALLTRIM(stepid))
-  									ENDSCAN
-  					
-  									SELECT t38
-  									GOTO top
-										FOR  tv_x = tv_max TO 1 STEP -1
-													
-													LOCATE FOR UPPER(ALLTRIM(stepid)) == UPPER(myinterlist(tv_x)) .and. UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle))
-													
-													IF FOUND()
-												
+  		 	 		SELECT t38
 																					
-									  			mydsrec = RECNO()
-	  											*********************************************************
+													*********************************************************
 				 								 prec = RECNO()
-												  DIMENSION mykeyrecarr(1,2)
+												  DIMENSION mykeyrecarr(1,4)
 												  mykeyrecarr(1,1) = t38->stepid
 												  mykeyrecarr(1,2) = prec
+												  mykeyrecarr(1,3) = t38->stepinterid
+												  mykeyrecarr(1,4) = t38->stepinternum
+												  
 			 						 		  looprs = ALEN(mykeyrecarr,1)
 		 	 								  loopre = 0
 				 				 			  SELECT t38
@@ -74,15 +52,24 @@ n_record = RECNO()
   	 															looprs = ALEN(mykeyrecarr,1)
  																	SELECT t38
   																 SCAN
-   																		* search if item is in select branch of tree 
+   																		* search if item is in select branch of tree or belong to the same interaction
   																			myid = t38->parentid
+  																			myiid = t38->stepinterid
   																			myres = .f.
   																			myend = ALEN(mykeyrecarr,1)
  																		 	FOR x = 1 TO myend
-  																						IF UPPER(ALLTRIM(mykeyrecarr(x,1))) == UPPER(ALLTRIM(myid))
+  																						IF UPPER(ALLTRIM(mykeyrecarr(x,1))) == UPPER(ALLTRIM(myid)) 
   																									myres = .t.
 	  																								EXIT
   																						ENDIF
+  																						IF .not. EMPTY(ALLTRIM(myiid))
+  																						if UPPER(ALLTRIM(mykeyrecarr(x,3))) == UPPER(ALLTRIM(myiid))
+  																									myres = .t.
+	  																								EXIT
+  																						ENDIF
+  																						
+  																						ENDIF
+  																						
   							  											NEXT
    																		 *******************************  	
    																		 * be sure that this record is not added before
@@ -96,9 +83,11 @@ n_record = RECNO()
 																		  	NEXT
    								 										IF myres = .t.
    																					 mynewlooprs = ALEN(mykeyrecarr,1) + 1
-   																					 DIMENSION mykeyrecarr(mynewlooprs,2)
+   																					 DIMENSION mykeyrecarr(mynewlooprs,4)
    																				   mykeyrecarr(mynewlooprs,1) = t38->stepid
    																					 mykeyrecarr(mynewlooprs,2) = myrecnum
+   																					 mykeyrecarr(mynewlooprs,3) = t38->stepinterid
+												 										 mykeyrecarr(mynewlooprs,4) = t38->stepinternum
   																		  ENDIF
   																 ENDSCAN
   																 GOTO bottom
@@ -112,40 +101,20 @@ n_record = RECNO()
 																	IF .not. myrec = 0
 																					SELECT t38
 																					GOTO myrec
-																				 IF DELETED() = .f.
-																								oGDWindow.oleTree.Nodes.Remove(UPPER(ALLTRIM(stepid)))
-  																		      		DELETE
-  																		   ENDIF
-  																		      		
-  																		   
+																			
+																			
+																		************** Task
+
+																		&cProcName(oGDWindow)
+																	
+																												  
+																		****************************
+																		   
   																		      		
 																	ENDIF
 													NEXT
-												 
-													
-												*	SELECT t38
-													*SET FILTER TO 
-													*GOTO top
-				  								*********************************************************
-													*GOTO mydsrec
-													
-													*DELETE
-												*	PACK
-				 								 *GOTO top
-				 								 
-													endif
-									next
-				 					
-				 			*		SET FILTER TO 
-				 					*GOTO top
-				 					*PACK
-				 					*GOTO top
-				 					*oGDWindow.timemachinestartup()
-				 					
-									  
-									 
-					 		ENDIF
-  				ENDIF
+					 
+											
   				*--------------------------*
   				
   				SELECT (c_table)
@@ -153,5 +122,34 @@ n_record = RECNO()
   				
 RETURN
 
+PROCEDURE IgnoreStep(oGDWindow)
+
+  		SELECT t38
+			replace stepdis WITH oGDWindow.check1.Value
+			oGDWindow.oletree.Nodes.item(ALLTRIM(stepid)).Selected = .T.
+			IF  oGDWindow.check1.Value = .t.
+				oGDWindow.container1.oletree.selectedItem.Image = "ignore"
+			ELSE
+
+				IF empty(ALLTRIM(stepinterid))
+			 	 oGDWindow.container1.oletree.selectedItem.image = "person"
+				else
+			 	 oGDWindow.container1.oletree.selectedItem.image = "cmd"
+				endif
+
+			ENDIF
+RETURN
+
+PROCEDURE DeleteStep(oGDWindow)
+ 		IF DELETED() = .f.
+						oGDWindow.oleTree.Nodes.Remove(UPPER(ALLTRIM(stepid)))
+  					DELETE
+     ENDIF
+RETURN
+
 
 ENDDEFINE
+
+
+			
+
