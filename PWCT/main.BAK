@@ -6,7 +6,7 @@ IF PCOUNT() = 1
 myfiletoopen = pmyfile
 ENDIF
 
-SYS_VFP_DEBUG = .T.
+SYS_VFP_DEBUG = .F.
 
 IF SYS_VFP_DEBUG = .F.
 application.DefaultFilePath = JUSTPATH(application.ServerName)
@@ -85,6 +85,9 @@ IF FILE(application.DefaultFilePath + "\chpath.txt")
 
 Sys_ShowDoubleS = .f.
 ELSE
+
+PUBLIC c_VPLRulesFile
+c_VPLRulesFile = application.DefaultFilePath + "\HarbourPWCTRules.txt"
 
 Sys_ShowDoubleS = .T.
 

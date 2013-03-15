@@ -8,6 +8,7 @@ DEFINE CLASS GD_AvoidErrors as Custom
 
 PROCEDURE AvoidGeneratedStepErrors(objGDWindow)
 LOCAL objgdwindow as Form
+LOCAL result
 IF .not. EMPTY(t38->stepinterid) .and. t38->stepinternum != 1
 		objgdwindow.command3.enabled = .f.
 		objgdwindow.command4.enabled = .f.
@@ -23,6 +24,26 @@ ELSE
 		objgdwindow.check1.enabled = .t.
 		objgdwindow.command2.enabled = .t.
 ENDIF
+
+IF .not. EMPTY(t38->stepinterid)
+  result = this.checknewstep()
+  
+	* new step
+	objgdwindow.command1.enabled = result
+	* Interact
+	objgdwindow.command5.enabled = result
+	* paste
+	objgdwindow.command9.enabled = result
+ELSE
+  * new step
+	objgdwindow.command1.enabled = .t.
+	* Interact
+	objgdwindow.command5.enabled = .t.
+	* paste
+	objgdwindow.command9.enabled = .t.
+ENDIF
+
+
 RETURN
 
 PROCEDURE TaskonStepsInTheSameInteraction(oGDWindow,cProcName)
@@ -147,7 +168,56 @@ PROCEDURE DeleteStep(oGDWindow)
      ENDIF
 RETURN
 
+PROCEDURE CheckNewStep()
 
+LOCAL cTable,nRecord
+LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule
+ 
+c_table = ALIAS()
+n_record = RECNO()
+ 
+myret = .f.
+	
+cInterNum = ALLTRIM(STR(t38->stepinternum))
+	
+SELECT t46
+GOTO top
+IF .not. EMPTY(t38->stepinterid)
+	locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+	
+  IF FOUND()
+  
+  	cHis = f_myhis
+  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
+  	IF FILE(cFile)
+  		cFile = STRTRAN(cFile,".TRF",".RULES")
+  		IF FILE(cFile)
+  			cRules = FILETOSTR(cFile)
+  			cRules = UPPER(cRules)
+  			
+  			nMax = MEMLINES(cRules)
+  			FOR X = 1 TO nMax
+  				cLine = MLINE(cRules,x)
+  				cLine = ALLTRIM(cLine)
+  				cRule = "AllowInteraction: " + cInterNum
+  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
+  			 		myret = .t.
+  			  ENDIF  
+  			NEXT
+  			
+  					
+  		ENDIF
+  	ENDIF
+  
+  ENDIF
+ENDIF
+	
+	SELECT (c_table)
+	GOTO n_record	
+	
+RETURN myret
+
+  
 ENDDEFINE
 
 
