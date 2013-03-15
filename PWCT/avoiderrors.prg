@@ -259,6 +259,16 @@ IF .not. EMPTY(t38->stepinterid)
 				  				cLine = MLINE(cRules,T)
 				  				cLine = UPPER(ALLTRIM(cLine))
 				  				
+				  				cRule = "SCOPE:"
+				  				IF LEFT(cLine,6) == cRule
+				  					cLine = SUBSTR(cLine,7)
+				  					cLine = ALLTRIM(cLine)
+				  					IF cLine == "GENERAL"
+				  						myret = .t.
+				  						EXIT
+				  					ENDIF
+				  				ENDIF
+				  				
 				  				cRule = "ALLOW:"
 				  				IF LEFT(cLine,6) == cRule
 				  				   cLine = SUBSTR(cLine,7)
