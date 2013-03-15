@@ -26,6 +26,7 @@ ELSE
 ENDIF
 
 IF .not. EMPTY(t38->stepinterid)
+
   result = this.checknewstep()
   
 	* new step
@@ -216,6 +217,87 @@ ENDIF
 	GOTO n_record	
 	
 RETURN myret
+
+
+PROCEDURE CheckSubComponent(cComponentFile)
+
+LOCAL cTable,nRecord
+LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
+ 
+c_table = ALIAS()
+n_record = RECNO()
+ 
+myret = .f.
+	
+cInterNum = ALLTRIM(STR(t38->stepinternum))
+	
+SELECT t46
+GOTO top
+IF .not. EMPTY(t38->stepinterid)
+	locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+	
+  IF FOUND()
+  
+  	cHis = f_myhis
+  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
+  	IF FILE(cFile)
+  		cFile = STRTRAN(cFile,".TRF",".RULES")
+  		IF FILE(cFile)
+  			cRules = FILETOSTR(cFile)
+  			cRules = UPPER(cRules)
+  			
+  			nMax = MEMLINES(cRules)
+  			FOR X = 1 TO nMax
+  				cLine = MLINE(cRules,x)
+  				cLine = ALLTRIM(cLine)
+  				cRule = "AllowInteraction: " + cInterNum
+  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
+  			 		
+  			 		
+  			 			FOR T = x TO nMax
+  			
+				  				cLine = MLINE(cRules,T)
+				  				cLine = UPPER(ALLTRIM(cLine))
+				  				
+				  				cRule = "ALLOW:"
+				  				IF LEFT(cLine,6) == cRule
+				  				   cLine = SUBSTR(cLine,7)
+				  				   cLine = ALLTRIM(cLine)
+				  				   cLine = cLine + ".TRF"
+				  				   IF RIGHT(UPPER(ALLTRIM(cComponentFile)),LEN(cLine)) == cLine
+				  					   myret = .t.
+				  			 			EXIT
+				  			 		ELSE
+				  			 	  	LOOP
+				  				   ENDIF
+				  			  ENDIF  
+				  			  
+				  			  cRule = "END"
+				  			  IF LEFT(cLine,3) == cRule
+				  			  	EXIT
+				  			  ENDIF
+				  			  	
+				  			NEXT
+  			 		
+  			 		EXIT
+  			 		
+  			  ENDIF  
+  			NEXT
+  			
+  		
+  			
+  					
+  		ENDIF
+  	ENDIF
+  
+  ENDIF
+ENDIF
+	
+	SELECT (c_table)
+	GOTO n_record	
+	
+RETURN myret
+
 
   
 ENDDEFINE
