@@ -1,0 +1,1 @@
+odbcconf configdsn "microsoft Access Driver (*.mdb)" "Dsn=SysData | Trusted_Connection = Yas | DBQ=%CD%\Data\sysData.mdb" 
