@@ -6,9 +6,17 @@
 * command2 : delete
 DEFINE CLASS GD_AvoidErrors as Custom
 
+lVisualCompiler = .f.
+
 PROCEDURE AvoidGeneratedStepErrors(objGDWindow)
 LOCAL objgdwindow as Form
 LOCAL result
+
+IF this.lVisualCompiler = .f.
+	RETURN
+ENDIF
+
+
 IF .not. EMPTY(t38->stepinterid) .and. t38->stepinternum != 1
 		objgdwindow.command3.enabled = .f.
 		objgdwindow.command4.enabled = .f.
@@ -173,6 +181,10 @@ PROCEDURE CheckNewStep()
 
 LOCAL cTable,nRecord
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule
+
+IF this.lVisualCompiler = .f.
+	RETURN .t.
+ENDIF
  
 c_table = ALIAS()
 n_record = RECNO()
@@ -223,6 +235,11 @@ PROCEDURE CheckSubComponent(cComponentFile)
 
 LOCAL cTable,nRecord
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
+
+IF this.lVisualCompiler = .f.
+	RETURN .t.
+ENDIF
+ 
  
 c_table = ALIAS()
 n_record = RECNO()
@@ -314,6 +331,11 @@ LOCAL cTable,nRecord
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
 LOCAL cComponentFile
 LOCAL lcont,cParent
+
+IF this.lVisualCompiler = .f.
+	RETURN .t.
+ENDIF
+ 
 
 cComponentFile = "NoComponentFile"
 
