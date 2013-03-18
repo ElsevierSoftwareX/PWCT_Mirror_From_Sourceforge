@@ -174,7 +174,7 @@ RETURN
 
 PROCEDURE CheckNewStep()
 
-LOCAL cTable,nRecord
+LOCAL c_Table,n_Record
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule
 
 IF this.lVisualCompiler = .f.
@@ -228,7 +228,7 @@ RETURN myret
 
 PROCEDURE CheckSubComponent(cComponentFile)
 
-LOCAL cTable,nRecord
+LOCAL c_Table,n_Record
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
 
 IF this.lVisualCompiler = .f.
@@ -322,7 +322,7 @@ RETURN myret
 
 PROCEDURE CheckParentComponent()
 
-LOCAL cTable,nRecord
+LOCAL c_Table,n_Record
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
 LOCAL cComponentFile
 LOCAL lcont,cParent
@@ -506,7 +506,47 @@ PROCEDURE MoveToStepInTheSameInteraction(oGDWindow,nStepsToMove)
 	
 RETURN
 
+PROCEDURE CheckMoveToStepInTheSameInteraction(oGDWindow,nStepsToMove)
+
+	LOCAL myret
+	LOCAL c_Table,n_Record,nRecord2
+	
+	myret = .f.
+	
+	c_Table = ALIAS()
+	n_Record = RECNO()
+	
+	
+  SELECT t38
+	
+	n_Record2 = RECNO()
+	
+	cInteractionID = t38->stepinterid
+	nInteractionNumber = t38->stepinternum
   
+  nInteractionNumber = nInteractionNumber + nStepsToMove
+   
+	IF .not. EMPTY(cInteractionID)
+
+		locate FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cInteractionID)) .and. t38->stepinternum = nInteractionNumber 
+
+		IF FOUND()
+
+			myret = .t.
+			
+		
+		ENDIF
+	
+		GOTO n_record2
+		
+	ENDIF
+	
+	
+	SELECT (c_table)
+	GOTO n_record	
+	
+RETURN myret
+
 ENDDEFINE
 
 
