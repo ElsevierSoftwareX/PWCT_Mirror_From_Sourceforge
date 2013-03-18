@@ -6,18 +6,13 @@
 * command2 : delete
 DEFINE CLASS GD_AvoidErrors as Custom
 
-lVisualCompiler = .f.
+lVisualCompiler = .t.
 
 PROCEDURE AvoidGeneratedStepErrors(objGDWindow)
 LOCAL objgdwindow as Form
 LOCAL result
 
-IF this.lVisualCompiler = .f.
-	RETURN
-ENDIF
-
-
-IF .not. EMPTY(t38->stepinterid) .and. t38->stepinternum != 1
+IF .not. EMPTY(t38->stepinterid) .and. t38->stepinternum != 1 .and. this.lVisualCompiler = .t.
 		objgdwindow.command3.enabled = .f.
 		objgdwindow.command4.enabled = .f.
 		objgdwindow.command10.enabled = .f.
@@ -33,7 +28,7 @@ ELSE
 		objgdwindow.command2.enabled = .t.
 ENDIF
 
-IF .not. EMPTY(t38->stepinterid)
+IF .not. EMPTY(t38->stepinterid) .and. this.lVisualCompiler = .t.
 
   result = this.checknewstep()
   
