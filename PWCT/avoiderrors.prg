@@ -469,6 +469,43 @@ ENDIF
 	
 RETURN myret
 
+*-----------------------------*
+* Navigation (Next/Previous)
+* Used to move from step to another step in the same interaction
+* Useful for moving from event step to event procedure step
+*-----------------------------*
+ 
+PROCEDURE MoveToStepInTheSameInteraction(oGDWindow,nStepsToMove)
+
+	LOCAL n_Record
+	LOCAL cInteractionID,nInteractionNumber
+
+	SELECT t38
+
+	n_record = RECNO()
+
+	cInteractionID = t38->stepinterid
+	nInteractionNumber = t38->stepinternum
+  
+  nInteractionNumber = nInteractionNumber + nStepsToMove
+   
+	IF .not. EMPTY(cInteractionID)
+
+		locate FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cInteractionID)) .and. t38->stepinternum = nInteractionNumber 
+
+		IF .not. FOUND()
+		
+			GOTO n_record	
+			
+		ENDIF
+	
+		oGDWindow.oletree.Nodes.item(ALLTRIM(t38->stepid)).Selected = .T.
+		
+	ENDIF
+	
+	
+RETURN
+
   
 ENDDEFINE
 

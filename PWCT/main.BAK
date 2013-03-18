@@ -6,7 +6,7 @@ IF PCOUNT() = 1
 myfiletoopen = pmyfile
 ENDIF
 
-SYS_VFP_DEBUG = .F.
+SYS_VFP_DEBUG = .T.
 
 IF SYS_VFP_DEBUG = .F.
 application.DefaultFilePath = JUSTPATH(application.ServerName)
@@ -97,6 +97,9 @@ ENDIF
 PUBLIC S_TOOL
 S_TOOL = ""
 
+PUBLIC obj_avoiderrors
+SET PROCEDURE TO avoiderrors.prg
+obj_avoiderrors = CREATEOBJECT("GD_AvoidErrors")
 
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
