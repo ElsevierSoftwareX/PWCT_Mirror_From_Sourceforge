@@ -560,6 +560,8 @@ PROCEDURE IsParentAllowedForComponent(cComponentFile)
 			* written to be called from the components browser
 		  * checking starts while the active step in the steps tree is the parent 
 		  * the child is not added yet, this check called before adding the child to be sure that it's allowed
+		  
+		  * called also from (Goal Designer - Paste button)
 			
 			myret = .f.
 			
