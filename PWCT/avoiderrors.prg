@@ -308,9 +308,6 @@ n_record = RECNO()
  
 myret = .f.
 
-*!*	IF this.IsThisStepIsTheRoot() = .t.
-*!*		myret = this.IsParentAllowedForComponent("THISSTEPISTHEROOT",cComponentFile)
-*!*	endif
 
 * Load the rules of the active component (will be the parent) and save the component file to variable cACFile 	
 
@@ -394,14 +391,6 @@ myret = .f.
 			SELECT (c_table)
 			GOTO n_record	
 	
-	* if the parent component allow this component as a child
-	* check the child to know if the child allow this component as a parent
-	
-*!*		IF myret = .t.
-*!*				myret = this.IsParentAllowedForComponent(cACFile,cComponentFile)
-*!*		endif
-*!*		
-	
 RETURN myret
 
 PROCEDURE CheckParentComponent()
@@ -412,6 +401,8 @@ LOCAL cComponentFile
 LOCAL lcont,cParent
 
 * Used by (Goal Designer - Ignore Step) to determine is this operation is allowed or not
+
+* Checking starts from the child 
 
 * If the syntax directed editor is disabled , return true
 
@@ -560,13 +551,42 @@ ENDIF
 	
 RETURN myret
 
-PROCEDURE IsParentAllowedForComponent(cParentComponentFile,cComponentFile)
+PROCEDURE IsParentAllowedForComponent(cComponentFile)
 
 			LOCAL cFile,cRules,myret,nMax,X,cLine,cRule
+			LOCAL c_Table,n_Record
+			LOCAL cParentComponentFile
+			
+			* written to be called from the components browser
+		  * checking starts while the active step in the steps tree is the parent 
+		  * the child is not added yet, this check called before adding the child to be sure that it's allowed
 			
 			myret = .f.
 			
+			c_table = ALIAS()
+			n_record = RECNO()
+			
+			* Get the parent
+			
+			cParentComponentFile = "NoComponent"
+			
+			SELECT t46
+			GOTO top
+			IF .not. EMPTY(t38->stepinterid)
+					locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+					IF FOUND()
+						cParentComponentFile = ALLTRIM(MLINE(f_myhis,9))
+					ENDIF
+			ENDIF
+			
+			
 			cFile = STRTRAN(cComponentFile,".TRF",".RULES")
+			
+      **** Written to avoid problem when the component is EXE file , not TRF File
+			IF cFile == cComponentFile
+					RETURN .f.
+			ENDIF
+			********************************
 			
   		IF FILE(cFile)
   		
@@ -592,10 +612,6 @@ PROCEDURE IsParentAllowedForComponent(cParentComponentFile,cComponentFile)
 				  					ELSE
 				  						myret = .F.
 				  					ENDIF
-				  		 
-										IF myret = .f. .and. cParentComponentFile = "THISSTEPISTHEROOT"
-												EXIT
-										ENDIF
 							
 										FOR T = x TO nMax
 		  			
@@ -629,6 +645,9 @@ PROCEDURE IsParentAllowedForComponent(cParentComponentFile,cComponentFile)
   			NEXT
   			
 			Endif
+
+			SELECT (c_table)
+			GOTO n_record	
 
 RETURN myret
 
