@@ -184,6 +184,14 @@ ENDIF
 c_table = ALIAS()
 n_record = RECNO()
  
+* Don't allow creating new step from a disabled component
+SELECT t38
+IF t38->stepdis = .t.
+ 	RETURN .f.
+ENDIF
+********************************************************* 
+ 
+ 
 myret = .f.
 	
 cInterNum = ALLTRIM(STR(t38->stepinternum))
@@ -409,27 +417,24 @@ IF .not. EMPTY(t38->stepinterid)
   			FOR X = 1 TO nMax
   				cLine = MLINE(cRules,x)
   				cLine = ALLTRIM(cLine)
-  				cRule = "ALLOWPARENT"
-  				IF  UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
+  				cRule = "ALLOWPARENT:"
+  				IF  left(UPPER(ALLTRIM(cLine)),12) == UPPER(ALLTRIM(cRule))
   			 		
-  			 		
-  			 			FOR T = x TO nMax
-  			
-				  				cLine = MLINE(cRules,T)
-				  				cLine = UPPER(ALLTRIM(cLine))
-				  				
-				  				cRule = "SCOPE:"
-				  				IF LEFT(cLine,6) == cRule
-				  					cLine = SUBSTR(cLine,7)
-				  					cLine = ALLTRIM(cLine)
+  			 		 			cLine = SUBSTR(cLine,13)
+				  					cLine = UPPER(ALLTRIM(cLine))
 				  					IF cLine == "GENERAL"
 				  						myret = .t.
 				  						EXIT
 				  					ELSE
 				  						myret = .F.
 				  					ENDIF
-				  				ENDIF
-				  				
+				  		 
+						
+						FOR T = x TO nMax
+  			
+				  				cLine = MLINE(cRules,T)
+				  				cLine = UPPER(ALLTRIM(cLine))
+				  								  				
 				  				cRule = "ALLOW:"
 				  				IF LEFT(cLine,6) == cRule
 				  				   cLine = SUBSTR(cLine,7)
