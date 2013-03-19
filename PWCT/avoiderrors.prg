@@ -293,7 +293,11 @@ PROCEDURE CheckSubComponent(cComponentFile)
 
 LOCAL c_Table,n_Record
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
+LOCAL cACFile
 
+* this procedure is called from the components browser window
+
+* if the syntax directed editor is disabled 
 IF this.lVisualCompiler = .f. .or. this.IsThisStepIsTheRoot() = .t.
 	RETURN .t.
 ENDIF
@@ -303,83 +307,100 @@ c_table = ALIAS()
 n_record = RECNO()
  
 myret = .f.
+
+*!*	IF this.IsThisStepIsTheRoot() = .t.
+*!*		myret = this.IsParentAllowedForComponent("THISSTEPISTHEROOT",cComponentFile)
+*!*	endif
+
+* Load the rules of the active component (will be the parent) and save the component file to variable cACFile 	
+
+			cInterNum = ALLTRIM(STR(t38->stepinternum))
+				
+			SELECT t46
+			GOTO top
+			IF .not. EMPTY(t38->stepinterid)
+				locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+				
+			  IF FOUND()
+			  
+			  	cHis = f_myhis
+			  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
+			  	cACFile = cFile
+			  	
+			  	IF FILE(cFile) 
+			  	
+			  		cFile = STRTRAN(cFile,".TRF",".RULES")
+			  		IF FILE(cFile)
+			  			cRules = FILETOSTR(cFile)
+			  			cRules = UPPER(cRules)
+			  			
+			  			nMax = MEMLINES(cRules)
+			  			FOR X = 1 TO nMax
+			  				cLine = MLINE(cRules,x)
+			  				cLine = ALLTRIM(cLine)
+			  				cRule = "AllowInteraction: " + cInterNum
+			  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
+			  			 		
+			  			 		
+			  			 			FOR T = x TO nMax
+			  			
+							  				cLine = MLINE(cRules,T)
+							  				cLine = UPPER(ALLTRIM(cLine))
+							  				
+							  				cRule = "SCOPE:"
+							  				IF LEFT(cLine,6) == cRule
+							  					cLine = SUBSTR(cLine,7)
+							  					cLine = ALLTRIM(cLine)
+							  					IF cLine == "GENERAL"
+							  						myret = .t.
+							  						EXIT
+							  					ENDIF
+							  				ENDIF
+							  				
+							  				cRule = "ALLOW:"
+							  				IF LEFT(cLine,6) == cRule
+							  				   cLine = SUBSTR(cLine,7)
+							  				   cLine = ALLTRIM(cLine)
+							  				   cLine = cLine + ".TRF"
+							  				   IF RIGHT(UPPER(ALLTRIM(cComponentFile)),LEN(cLine)) == cLine
+							  					   myret = .t.
+							  			 			EXIT
+							  			 		ELSE
+							  			 	  	LOOP
+							  				   ENDIF
+							  			  ENDIF  
+							  			  
+							  			  cRule = "END"
+							  			  IF LEFT(cLine,3) == cRule
+							  			  	EXIT
+							  			  ENDIF
+							  			  	
+							  			NEXT
+			  			 		
+			  			 		EXIT
+			  			 		
+			  			  ENDIF  
+			  			NEXT
+			  			
+			  		
+			  			
+			  					
+			  		ENDIF
+			  	ENDIF
+			  
+			  ENDIF
+			ENDIF
+				
+			SELECT (c_table)
+			GOTO n_record	
 	
-cInterNum = ALLTRIM(STR(t38->stepinternum))
+	* if the parent component allow this component as a child
+	* check the child to know if the child allow this component as a parent
 	
-SELECT t46
-GOTO top
-IF .not. EMPTY(t38->stepinterid)
-	locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-	
-  IF FOUND()
-  
-  	cHis = f_myhis
-  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
-  	IF FILE(cFile)
-  		cFile = STRTRAN(cFile,".TRF",".RULES")
-  		IF FILE(cFile)
-  			cRules = FILETOSTR(cFile)
-  			cRules = UPPER(cRules)
-  			
-  			nMax = MEMLINES(cRules)
-  			FOR X = 1 TO nMax
-  				cLine = MLINE(cRules,x)
-  				cLine = ALLTRIM(cLine)
-  				cRule = "AllowInteraction: " + cInterNum
-  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
-  			 		
-  			 		
-  			 			FOR T = x TO nMax
-  			
-				  				cLine = MLINE(cRules,T)
-				  				cLine = UPPER(ALLTRIM(cLine))
-				  				
-				  				cRule = "SCOPE:"
-				  				IF LEFT(cLine,6) == cRule
-				  					cLine = SUBSTR(cLine,7)
-				  					cLine = ALLTRIM(cLine)
-				  					IF cLine == "GENERAL"
-				  						myret = .t.
-				  						EXIT
-				  					ENDIF
-				  				ENDIF
-				  				
-				  				cRule = "ALLOW:"
-				  				IF LEFT(cLine,6) == cRule
-				  				   cLine = SUBSTR(cLine,7)
-				  				   cLine = ALLTRIM(cLine)
-				  				   cLine = cLine + ".TRF"
-				  				   IF RIGHT(UPPER(ALLTRIM(cComponentFile)),LEN(cLine)) == cLine
-				  					   myret = .t.
-				  			 			EXIT
-				  			 		ELSE
-				  			 	  	LOOP
-				  				   ENDIF
-				  			  ENDIF  
-				  			  
-				  			  cRule = "END"
-				  			  IF LEFT(cLine,3) == cRule
-				  			  	EXIT
-				  			  ENDIF
-				  			  	
-				  			NEXT
-  			 		
-  			 		EXIT
-  			 		
-  			  ENDIF  
-  			NEXT
-  			
-  		
-  			
-  					
-  		ENDIF
-  	ENDIF
-  
-  ENDIF
-ENDIF
-	
-	SELECT (c_table)
-	GOTO n_record	
+*!*		IF myret = .t.
+*!*				myret = this.IsParentAllowedForComponent(cACFile,cComponentFile)
+*!*		endif
+*!*		
 	
 RETURN myret
 
@@ -389,6 +410,10 @@ LOCAL c_Table,n_Record
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
 LOCAL cComponentFile
 LOCAL lcont,cParent
+
+* Used by (Goal Designer - Ignore Step) to determine is this operation is allowed or not
+
+* If the syntax directed editor is disabled , return true
 
 IF this.lVisualCompiler = .f.
 	RETURN .t.
@@ -401,6 +426,8 @@ c_table = ALIAS()
 n_record = RECNO()
  
 myret = .T.
+
+* Load the rules of the current component to the variable cRules
 	
 cInterNum = ALLTRIM(STR(t38->stepinternum))
 	
@@ -420,6 +447,9 @@ IF .not. EMPTY(t38->stepinterid)
   			cRules = UPPER(cRules)
   			
   			************* Determine component name
+  			* Get the file name of the parent component then load the parent component rules 
+  			* the parent component must be active (not disabled)
+  			* when you get the parent component store it in the variable : cComponentFile
   			
   			SELECT t38
   			
@@ -467,6 +497,10 @@ IF .not. EMPTY(t38->stepinterid)
   			GOTO n_Record
   			
   			*************
+  			* Now you have the component rules stored in the variable : cRules
+  			* And you have the parent component stored in the varaible : cComponentFile
+  			* Check the rules to know if this parent component is allowed or not
+  			
   			
   			nMax = MEMLINES(cRules)
   			FOR X = 1 TO nMax
@@ -515,9 +549,6 @@ IF .not. EMPTY(t38->stepinterid)
   			  ENDIF  
   			NEXT
   			
-  		
-  			
-  					
   		ENDIF
   	ENDIF
   
@@ -528,6 +559,80 @@ ENDIF
 	GOTO n_record	
 	
 RETURN myret
+
+PROCEDURE IsParentAllowedForComponent(cParentComponentFile,cComponentFile)
+
+			LOCAL cFile,cRules,myret,nMax,X,cLine,cRule
+			
+			myret = .f.
+			
+			cFile = STRTRAN(cComponentFile,".TRF",".RULES")
+			
+  		IF FILE(cFile)
+  		
+  			cRules = FILETOSTR(cFile)
+  			cRules = UPPER(cRules)
+  			
+  			nMax = MEMLINES(cRules)
+  			
+  			FOR X = 1 TO nMax
+  			
+  				cLine = MLINE(cRules,x)
+  				cLine = ALLTRIM(cLine)
+  				
+  				cRule = "ALLOWPARENT:"
+  				
+  				IF  left(UPPER(ALLTRIM(cLine)),12) == UPPER(ALLTRIM(cRule))
+  			 		
+  			 		 			cLine = SUBSTR(cLine,13)
+				  					cLine = UPPER(ALLTRIM(cLine))
+				  					IF cLine == "GENERAL"
+				  						myret = .t.
+				  						EXIT
+				  					ELSE
+				  						myret = .F.
+				  					ENDIF
+				  		 
+										IF myret = .f. .and. cParentComponentFile = "THISSTEPISTHEROOT"
+												EXIT
+										ENDIF
+							
+										FOR T = x TO nMax
+		  			
+						  				cLine = MLINE(cRules,T)
+						  				cLine = UPPER(ALLTRIM(cLine))
+						  								  				
+						  				cRule = "ALLOW:"
+						  				IF LEFT(cLine,6) == cRule
+						  				   cLine = SUBSTR(cLine,7)
+						  				   cLine = ALLTRIM(cLine)
+						  				   cLine = cLine + ".TRF"
+						  				   IF RIGHT(UPPER(ALLTRIM(cParentComponentFile)),LEN(cLine)) == cLine
+						  					   myret = .t.
+						  			 			EXIT
+						  			 		ELSE
+						  			 	  	LOOP
+						  				   ENDIF
+						  			  ENDIF  
+						  			  
+						  			  cRule = "END"
+						  			  IF LEFT(cLine,3) == cRule
+						  			  	EXIT
+						  			  ENDIF
+						  			  	
+						  			NEXT
+  			 		
+  			 					 EXIT
+  			 		
+  			 ENDIF  
+  			 
+  			NEXT
+  			
+			Endif
+
+RETURN myret
+
+
 
 *-----------------------------*
 * Navigation (Next/Previous)
