@@ -234,12 +234,67 @@ ENDIF
 RETURN myret
 
 
+PROCEDURE IsThisStepIsTheRoot()
+
+				LOCAL  c_Table,n_Record,n_Record2
+				LOCAL myret,lCont,cParent
+
+				myret = .f.
+
+  			c_table = ALIAS()
+				n_record = RECNO()
+			
+  			SELECT t38
+  			
+				n_record2 = RECNO()
+  			
+  			
+  			IF  EMPTY(t38->stepinterid)
+  			
+  				myret = .t.
+  			
+  				lCont = .T.
+  			  cParent = t38->ParentID
+  		  
+  				DO WHILE lCont = .t.
+  				  				
+  					LOCATE for UPPER(ALLTRIM(t38->stepid)) == UPPER(ALLTRIM(cParent))
+  					
+  						IF FOUND()
+  						
+  							IF .not. EMPTY(t38->stepinterid)
+  								myret = .f.
+  								lcont = .f.
+  							ELSE
+  								lcont = .t.
+  								cParent = t38->ParentID
+  							ENDIF
+  						ENDIF
+  					
+  						IF UPPER(ALLTRIM(cParent)) == "SP_"
+  							lcont = .f.
+  						ENDIF
+  					
+  					
+ 	 			ENDDO
+  			ENDIF
+  			
+				GOTO n_record2
+				
+				
+				SELECT (c_table)
+				GOTO n_record	
+	
+				
+RETURN myret
+
+
 PROCEDURE CheckSubComponent(cComponentFile)
 
 LOCAL c_Table,n_Record
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
 
-IF this.lVisualCompiler = .f.
+IF this.lVisualCompiler = .f. .or. this.IsThisStepIsTheRoot() = .t.
 	RETURN .t.
 ENDIF
  
