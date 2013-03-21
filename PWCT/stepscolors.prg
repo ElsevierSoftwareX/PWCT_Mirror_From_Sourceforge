@@ -1,3 +1,6 @@
+* #define SC_UserStep_BackColor RGB(0,0,255)
+* #define SC_UserStep_ForeColor RGB(255,255,255)
+
 DEFINE CLASS GD_StepsColors as Custom
 
 * 1 = All of the steps are Black & White (No more colors)
@@ -6,9 +9,78 @@ DEFINE CLASS GD_StepsColors as Custom
 
 nColorSystem = 1
 
+SC_Created_BackColor = RGB(184,134,11)
+SC_Created_ForeColor = RGB(255,255,255)
+
+SC_Generated_BackColor = RGB(255,255,255)
+SC_Generated_ForeColor = RGB(0,0,0)
+
+SC_GeneratedRoot_BackColor = RGB(0,0,255)
+SC_GeneratedRoot_ForeColor = RGB(255,255,255)
+
+SC_GeneratedAllowSub_BackColor = RGB(0,255,0)
+SC_GeneratedAllowSub_ForeColor = RGB(0,0,0)
+
 PROCEDURE SetStepColor(objGDWindow)
-	objGDWindow.container1.oletree.selectedItem.backcolor = RGB(255,0,0)
-  objGDWindow.container1.oletree.selectedItem.ForeColor = RGB(0,0,0)
+
+	LOCAL c_TableName,n_Record,nStepType,cOldKey
+	
+	c_TableName = ALIAS()
+	n_Record = RECNO()
+	
+	cOldKey =   objGDWindow.container1.oletree.SelectedItem.Key
+	
+	objGDWindow.container1.oletree.Nodes.item(ALLTRIM(T38->STEPID)).Selected = .T.
+	
+	nStepType = this.DetermineStepType()
+		
+	DO CASE
+		CASE nStepType = 1 && Created
+				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_Created_BackColor
+  			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_Created_ForeColor
+  	CASE nStepType = 2 && Generated
+				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_Generated_BackColor
+  			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_Generated_ForeColor
+  			
+  	CASE nStepType = 3 && Generated (Root)
+				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedRoot_BackColor
+  			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedRoot_ForeColor
+  			
+  	CASE nStepType = 4 && Generated (AllowSub)
+				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedAllowSub_BackColor
+  			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedAllowSub_ForeColor
+  ENDCASE
+  
+  SELECT (c_TableName)
+  GOTO n_record
+  
+  objGDWindow.container1.oletree.Nodes.item(ALLTRIM(cOldKey)).Selected = .T.
+  
 RETURN
+
+PROCEDURE DetermineStepType()
+	LOCAL myret
+	LOCAL c_TableName,n_Record 
+	
+	c_TableName = ALIAS()
+	n_Record = RECNO()
+	
+	
+	IF EMPTY(t38->stepinterid)
+		 myret = 1 && Created
+	ELSE
+		 myret = 2 && Generated
+		 IF t38->stepinternum = 1 && Root
+		 	myret = 3 && Generated (root)
+		 ENDIF
+		 IF obj_avoiderrors.CheckNewStep() = .t.
+		 	myret = 4 && Generated (Allow Sub)
+		 ENDIF
+	ENDIF
+	
+  SELECT (c_TableName)
+  GOTO n_record
+  		 
+RETURN myret
 
 ENDDEFINE
