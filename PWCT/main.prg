@@ -98,8 +98,11 @@ PUBLIC S_TOOL
 S_TOOL = ""
 
 PUBLIC obj_avoiderrors
-SET PROCEDURE TO avoiderrors.prg
+SET PROCEDURE TO avoiderrors.prg,stepscolors.prg
+
 obj_avoiderrors = CREATEOBJECT("GD_AvoidErrors")
+
+obj_StepsColors = CREATEOBJECT("GD_StepsColors")
 
 IF .not. FILE(application.DefaultFilePath + "\logo.off")
 DO FORM welcome 
