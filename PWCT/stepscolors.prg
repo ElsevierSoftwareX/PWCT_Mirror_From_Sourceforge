@@ -51,10 +51,12 @@ PROCEDURE SetStepColor(objGDWindow)
   			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedAllowSub_ForeColor
   ENDCASE
   
+  objGDWindow.container1.oletree.Nodes.item(ALLTRIM(cOldKey)).Selected = .T.
+  
   SELECT (c_TableName)
   GOTO n_record
   
-  objGDWindow.container1.oletree.Nodes.item(ALLTRIM(cOldKey)).Selected = .T.
+  
   
 RETURN
 
