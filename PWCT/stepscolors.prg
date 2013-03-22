@@ -21,6 +21,8 @@ SC_GeneratedRoot_ForeColor = RGB(255,255,255)
 SC_GeneratedAllowSub_BackColor = RGB(0,255,0)
 SC_GeneratedAllowSub_ForeColor = RGB(0,0,0)
 
+SC_GeneratedLeaf_BackColor = RGB(255,255,255)
+SC_GeneratedLeaf_ForeColor = RGB(0,0,0)
 
 PROCEDURE SetStepColor(objGDWindow)
 
@@ -53,6 +55,11 @@ PROCEDURE SetStepColor(objGDWindow)
   	CASE nStepType = 4 && Generated (AllowSub)
 				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedAllowSub_BackColor
   			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedAllowSub_ForeColor
+  			
+		CASE nStepType = 5 && Generated leaf
+				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedLeaf_BackColor
+				objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedLeaf_ForeColor
+		
   ENDCASE
   
   objGDWindow.container1.oletree.Nodes.item(ALLTRIM(cOldKey)).Selected = .T.
@@ -66,7 +73,8 @@ RETURN
 
 PROCEDURE DetermineStepType()
 	LOCAL myret
-	LOCAL c_TableName,n_Record 
+	LOCAL c_TableName,n_Record
+	LOCAL cStepID,nRecNum
 	
 	c_TableName = ALIAS()
 	n_Record = RECNO()
@@ -75,13 +83,37 @@ PROCEDURE DetermineStepType()
 	IF EMPTY(t38->stepinterid)
 		 myret = 1 && Created
 	ELSE
+
 		 myret = 2 && Generated
+		 
 		 IF t38->stepinternum = 1 && Root
 		 	myret = 3 && Generated (root)
 		 ENDIF
+		 
+		 SELECT t38
+		 	
+		 cStepID = t38->stepid
+		 nRecNum = RECNO()
+		 
 		 IF obj_avoiderrors.CheckNewStep() = .t.
 		 	myret = 4 && Generated (Allow Sub)
 		 ENDIF
+		 
+		 IF myret = 2 
+		 
+		 	SELECT t38
+		
+		 	GOTO top
+		 	
+		 	LOCATE FOR UPPER(ALLTRIM(t38->parentid)) == UPPER(ALLTRIM(cStepID))
+		 	IF .not. FOUND()
+		 		myret = 5 && Generated (Leaf)
+		 	ENDIF
+		 	
+		 	GOTO nRecNum
+		 	
+		 ENDIF
+		 
 	ENDIF
 	
   SELECT (c_TableName)
