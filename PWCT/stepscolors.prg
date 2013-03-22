@@ -98,7 +98,7 @@ PROCEDURE SetStepColor(objGDWindow)
   
   
   
-RETURN
+RETURN nStepType
 
 PROCEDURE DetermineStepType()
 	LOCAL myret
