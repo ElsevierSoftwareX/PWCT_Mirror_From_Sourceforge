@@ -11,24 +11,16 @@ nColorSystem = 1
 
 SC_Created_BackColor = RGB(184,134,11)
 SC_Created_ForeColor = RGB(255,255,255)
-SC_Created_FontName = "Arial"
-SC_Created_FontSize = 14
-
 
 SC_Generated_BackColor = RGB(255,255,255)
 SC_Generated_ForeColor = RGB(0,0,0)
-SC_Generated_FontName = "Arial"
-SC_Generated_FontSize = 14
 
 SC_GeneratedRoot_BackColor = RGB(0,0,255)
 SC_GeneratedRoot_ForeColor = RGB(255,255,255)
-SC_GeneratedRoot_FontName = "Arial"
-SC_GeneratedRoot_FontSize = 14
 
 SC_GeneratedAllowSub_BackColor = RGB(0,255,0)
 SC_GeneratedAllowSub_ForeColor = RGB(0,0,0)
-SC_GeneratedAllowSub_FontName = "Arial"
-SC_GeneratedAllowSub_FontSize = 14
+
 
 PROCEDURE SetStepColor(objGDWindow)
 
