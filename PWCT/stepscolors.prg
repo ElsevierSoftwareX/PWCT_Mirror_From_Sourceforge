@@ -57,12 +57,24 @@ PROCEDURE SetStepColor(objGDWindow)
   			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedAllowSub_ForeColor
   			
 		CASE nStepType = 5 && Generated leaf
+		
 				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedLeaf_BackColor
 				objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedLeaf_ForeColor
 		
+				* hide steps that uses that same font color and backcolor
+  			IF this.SC_GeneratedLeaf_BackColor = this.SC_GeneratedLeaf_ForeColor
+ 					o.Nodes.Remove(objGDWindow.container1.oletree.selectedItem.key)
+				ENDIF
+ 
+		
+		
   ENDCASE
   
-  objGDWindow.container1.oletree.Nodes.item(ALLTRIM(cOldKey)).Selected = .T.
+  TRY
+    objGDWindow.container1.oletree.Nodes.item(ALLTRIM(cOldKey)).Selected = .T.
+  CATCH
+  ENDTRY
+  
   
   SELECT (c_TableName)
   GOTO n_record
