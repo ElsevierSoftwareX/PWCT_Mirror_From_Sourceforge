@@ -68,7 +68,7 @@ PROCEDURE SetStepColor(objGDWindow)
 		
 				* hide steps that uses that same font color and backcolor
   			IF this.SC_GeneratedLeaf_BackColor = this.SC_GeneratedLeaf_ForeColor
- 					o.Nodes.Remove(objGDWindow.container1.oletree.selectedItem.key)
+ 					objGDWindow.container1.oletree.Nodes.Remove(objGDWindow.container1.oletree.selectedItem.key)
 				ENDIF
  
 		CASE nStepType = 6 && Generated Allow Sub & leaf
@@ -78,7 +78,7 @@ PROCEDURE SetStepColor(objGDWindow)
 		
 				* hide steps that uses that same font color and backcolor
   			IF this.SC_GeneratedAllowSubLeaf_BackColor = this.SC_GeneratedAllowSubLeaf_ForeColor
- 					o.Nodes.Remove(objGDWindow.container1.oletree.selectedItem.key)
+ 					objGDWindow.container1.oletree.Nodes.Remove(objGDWindow.container1.oletree.selectedItem.key)
 				ENDIF
  
 		

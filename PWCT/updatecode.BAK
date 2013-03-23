@@ -26,6 +26,7 @@ IF FOUND()
 * prepare t38
 SELECT t38
 mygdform.container1.oletree.Nodes.item(ALLTRIM(UPPER(ALLTRIM(t46->f_stepid)))).Selected = .T.
+mygdform.container1.oletree.Nodes.item(ALLTRIM(UPPER(ALLTRIM(t46->f_stepid)))).Expanded = .F.
 IF .not. UPPER(ALLTRIM(t46->f_stepid)) == "SP_"
 LOCATE FOR UPPER(STEPID) == UPPER(ALLTRIM(t46->f_stepid))
 ENDIF
@@ -506,6 +507,7 @@ FOR X = 1 TO MYLAST
 			upper(alltrim(STEPNAME)) = UPPER(ALLTRIM(MYVALUE))
 			if found()
 		   		mygstree.Nodes.item(UPPER(ALLTRIM(stepID))).Selected = .T.
+		   		mygstree.Nodes.item(UPPER(ALLTRIM(stepID))).Expanded = .F.
 				MYVAR = ""
 			endif
 	ENDIF
@@ -525,6 +527,7 @@ FOR X = 1 TO MYLAST
       MYMEMO2 = ""
      * goto the step that is determined by the mark 
    	mygstree.Nodes.item(MYMARK(MYVALUE)).Selected = .T.
+  mygstree.Nodes.item(MYMARK(MYVALUE)).expanded = .f.
      MYVAR = ""
      * goto the record where step is found
      SELECT t38
@@ -552,8 +555,10 @@ FOR X = 1 TO MYLAST
 			  mykey = mygdform.NewKey()
 		  	o.Nodes.Add(ALLTRIM(pkey), 4, ALLTRIM(mykey), mytxt,0)
   			o.Nodes.item(ALLTRIM(mykey)).Selected = .T.
+  			o.Nodes.item(ALLTRIM(mykey)).expanded = .f.
   			LASTSCODE = ALLTRIM(MYKEY)
   	  	o.Nodes.item(ALLTRIM(pkey)).Selected = .T.
+  	  		o.Nodes.item(ALLTRIM(pkey)).expanded = .f.
 				SELECT t38
 				APPEND BLANK
 	      IF LV_SEMILEVEL = 1
@@ -588,8 +593,10 @@ FOR X = 1 TO MYLAST
   					replace stepname WITH ALLTRIM(mytxt)
   					myoldkey = mygstree.SelectedItem.key
     				mygstree.nodes.Item(alltRIM(stepid)).selected = .t.
+    				mygstree.nodes.Item(alltRIM(stepid)).expanded = .f.
   		  		mygstree.SelectedItem.text = ALLTRIM(mytxt)
 	 	 			mygstree.nodes.Item(alltRIM(myoldkey)).selected = .t.
+	 	 			mygstree.nodes.Item(alltRIM(myoldkey)).expanded = .f.
   					v_found = .t.
  		 			exit
 					ENDIF
@@ -599,8 +606,10 @@ FOR X = 1 TO MYLAST
 					  mykey = mygdform.NewKey()
 				  	o.Nodes.Add(ALLTRIM(pkey), 4, ALLTRIM(mykey), mytxt,0)
 		  			o.Nodes.item(ALLTRIM(mykey)).Selected = .T.
+		  			o.Nodes.item(ALLTRIM(mykey)).expanded = .f.
 		  			LASTSCODE = ALLTRIM(MYKEY)
 		  	  	o.Nodes.item(ALLTRIM(pkey)).Selected = .T.
+		  	  	o.Nodes.item(ALLTRIM(pkey)).expanded = .f.
 						SELECT t38
 						APPEND BLANK
   		      IF LV_SEMILEVEL = 1

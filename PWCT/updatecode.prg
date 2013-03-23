@@ -572,6 +572,11 @@ FOR X = 1 TO MYLAST
 				replace stepname WITH ALLTRIM(mytxt)
 				replace stepinterid WITH t46->f_iid
 				replace stepinternum WITH mystepcounter
+				
+				* Set Step Colors
+  			obj_StepsColors.SetStepColor(mygdform)
+				****************************************************
+				
 				ELSE && modify
 				SELECT t38
 				v_myend = RECCOUNT()
@@ -623,6 +628,11 @@ FOR X = 1 TO MYLAST
 						replace stepname WITH mytxt
 						replace stepinterid WITH t46->f_iid
 						replace stepinternum WITH mystepcounter
+						
+						* Set Step Colors
+  					obj_StepsColors.SetStepColor(mygdform)
+						****************************************************
+						
 					ENDIF
 				ENDIF
   	ENDIF
