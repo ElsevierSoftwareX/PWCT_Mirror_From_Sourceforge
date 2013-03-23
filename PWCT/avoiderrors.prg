@@ -47,6 +47,22 @@ ELSE
 	objgdwindow.command9.enabled = .t.
 ENDIF
 
+* MOVE DOWN
+IF objgdwindow.command4.enabled = .T.
+	IF ISNULL( objgdwindow.CONtainer1.OLETREE.Nodes.ITEM(objgdwindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Next )
+	  		objgdwindow.command4.enabled = .f.
+	ENDIF
+ENDIF
+ 
+* MOVE UP
+IF objgdwindow.command3.enabled = .T.
+	IF ISNULL( objgdwindow.CONtainer1.OLETREE.Nodes.ITEM(objgdwindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Previous )
+			objgdwindow.command3.enabled = .f.
+	ENDIF
+ENDIF
+
+
+
 
 RETURN
 
@@ -756,6 +772,127 @@ PROCEDURE CheckMoveToStepInTheSameInteraction(oGDWindow,nStepsToMove)
 	GOTO n_record	
 	
 RETURN myret
+
+*******************************************
+
+PROCEDURE GetNodeChilds(oNode, objGDWindow)
+
+LOCAL n
+
+SELECT t38
+LOCATE FOR UPPER(ALLTRIM(stepid)) == UPPER(ALLTRIM(oNode.Key))
+IF FOUND()
+cTheStepsCode = cTheStepsCode + CHR(13) + CHR(10) + T38->STEPCODE
+ENDIF
+
+
+lcKeys = lcKeys + oNode.Key + [/]
+	nKeysCount = nKeysCount + 1
+IF oNode.Children > 0
+   n = oNode.Child.Index
+   DO WHILE n # oNode.LastSibling.Index
+      this.GetNodeChilds(objGDWindow.container1.oletree.Nodes(n),objGDWindow)
+      IF NOT ISNULL(objGDWindow.container1.oletree.Nodes(n).Next)
+         n = objGDWindow.container1.oleTree.Nodes(n).Next.Index
+      ELSE
+         EXIT
+      ENDIF
+   ENDDO
+ENDIF
+
+RETURN
+
+PROCEDURE AllNodesInOrder(oGDWindow)
+	LOCAL vfile
+	
+	PRIVATE lcKeys  , nKeysCount , cTheStepsCode
+	
+	nKeysCount = 0
+	cTheStepsCode = ""
+	lcKeys = []
+	
+	oGDWindow.container1.oletree.nodes.item("SP_").SELECTED = .T.
+
+	oNode = oGDWindow.container1.oletree.SELECTEDITEM
+
+	this.GetNodeChilds(oNode , oGDWindow)
+
+	vfile = GETFILE("*.prg")
+	STRTOFILE(cTheStepsCode,vFile)
+	
+	MESSAGEBOX(ALLTRIM(STR(nKeysCount)),0,"wow")
+	
+RETURN
+
+**********************************************************************
+
+
+PROCEDURE MoveStepUp(oGDWindow)
+
+		LOCAL X,PLIST
+		
+		* When you change the parent of the node to the same parent the node is moved to be the first node in the same level
+		* to move step up
+		* 1 - move the first previous node
+		* 2 - move the step that we want to move up
+		* 3 - move the second previous node (if found)
+		* 4 - move the third previous  node (if found) and so on 
+
+		IF .NOT. ISNULL( oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Previous )
+
+			oGDWindow.LockScreen = .t.
+			
+			DIMENSION PLIST(1)
+			PLIST(1) = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Previous.Key 
+
+			* CREATE LIST OF PREVIOUS NODES
+			
+			DO WHILE .NOT. ISNULL( oGDWindow.CONtainer1.OLETREE.Nodes.ITEM( PLIST(ALEN(PLIST,1)) ).Previous )
+
+				DIMENSION PLIST(ALEN(PLIST,1)+1)
+
+				PLIST(ALEN(PLIST,1)) = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM( PLIST(ALEN(PLIST,1)-1) ).Previous.Key
+			
+			ENDDO
+			
+			oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(PLIST(1)).parent = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(PLIST(1)).parent
+			oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).parent = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).parent
+			
+			IF ALEN(PLIST,1) > 1
+				FOR X = 2 TO ALEN(PLIST,1)
+					oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(PLIST(X)).parent = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(PLIST(X)).parent
+				NEXT
+			ENDIF
+			
+		  oGDWindow.LockScreen = .f.
+			
+		ENDIF
+
+
+RETURN
+
+PROCEDURE MoveStepDown(oGDWindow)
+
+	* instead of writing new algorithm from scratch to move the step down 
+	* we will move the next step up 
+	
+	LOCAL cKey
+	
+	IF .NOT. ISNULL( oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Next )
+
+		cKey = oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY
+
+		oGDWindow.CONtainer1.OLETREE.Nodes.ITEM( oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Next.KEY ).selected = .T.
+
+		THIS.MOVESTEPUP(oGDWindow)
+
+		oGDWindow.CONtainer1.OLETREE.Nodes.ITEM( cKey ).selected = .T.
+
+	ENDIF
+
+
+RETURN
+
 
 ENDDEFINE
 
