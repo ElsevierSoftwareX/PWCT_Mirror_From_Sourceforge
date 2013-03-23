@@ -1,5 +1,7 @@
 PARAMETERS P_IID,lRefreshsteps
 
+LOCAL cSelectedItem
+
 * The idea behind using lRefreshSteps is to fix a problem related to updating steps based on components updates
 * the problem is when the interaction page contains listbox and this listbox returns item instead of index
 * in this case the update code must open the interaction page file to map the listbox index to listbox item
@@ -573,9 +575,15 @@ FOR X = 1 TO MYLAST
 				replace stepinterid WITH t46->f_iid
 				replace stepinternum WITH mystepcounter
 				
-				* Set Step Colors
-  			obj_StepsColors.SetStepColor(mygdform)
-				****************************************************
+				
+				 	 * Set Step Colors
+					  cSelectedItem = mygdform.container1.oletree.selectedItem.Key
+					  mygdform.container1.oletree.Nodes.Item(ALLTRIM(mykey)).Selected = .T.
+					  obj_StepsColors.SetStepColor(mygdform)
+					  mygdform.container1.oletree.Nodes.Item(ALLTRIM(cSelectedItem)).Selected = .T.
+						****************************************************
+				
+				 
 				
 				ELSE && modify
 				SELECT t38
@@ -629,8 +637,11 @@ FOR X = 1 TO MYLAST
 						replace stepinterid WITH t46->f_iid
 						replace stepinternum WITH mystepcounter
 						
-						* Set Step Colors
-  					obj_StepsColors.SetStepColor(mygdform)
+						 * Set Step Colors
+					  cSelectedItem = mygdform.container1.oletree.selectedItem.Key
+					  mygdform.container1.oletree.Nodes.Item(ALLTRIM(mykey)).Selected = .T.
+					  obj_StepsColors.SetStepColor(mygdform)
+					  mygdform.container1.oletree.Nodes.Item(ALLTRIM(cSelectedItem)).Selected = .T.
 						****************************************************
 						
 					ENDIF

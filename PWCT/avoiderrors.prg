@@ -175,6 +175,7 @@ RETURN
 PROCEDURE CheckNewStep()
 
 LOCAL c_Table,n_Record
+
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule
 
 IF this.lVisualCompiler = .f.
@@ -187,46 +188,60 @@ n_record = RECNO()
 * Don't allow creating new step from a disabled component
 SELECT t38
 IF t38->stepdis = .t.
- 	RETURN .f.
+	 	SELECT (c_table)
+	 	GOTO n_record	
+ 		RETURN .f.
 ENDIF
 ********************************************************* 
  
- 
-myret = .f.
-	
-cInterNum = ALLTRIM(STR(t38->stepinternum))
-	
-SELECT t46
-GOTO top
-IF .not. EMPTY(t38->stepinterid)
-	locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-	
-  IF FOUND()
-  
-  	cHis = f_myhis
-  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
-  	IF FILE(cFile)
-  		cFile = STRTRAN(cFile,".TRF",".RULES")
-  		IF FILE(cFile)
-  			cRules = FILETOSTR(cFile)
-  			cRules = UPPER(cRules)
-  			
-  			nMax = MEMLINES(cRules)
-  			FOR X = 1 TO nMax
-  				cLine = MLINE(cRules,x)
-  				cLine = ALLTRIM(cLine)
-  				cRule = "AllowInteraction: " + cInterNum
-  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
-  			 		myret = .t.
-  			  ENDIF  
-  			NEXT
-  			
-  					
-  		ENDIF
-  	ENDIF
-  
-  ENDIF
-ENDIF
+		myret = .f.
+			
+		cInterNum = ALLTRIM(STR(t38->stepinternum))
+			
+		SELECT t46
+		
+		IF .not. EMPTY(t38->stepinterid)
+		
+		
+			locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			
+		  IF FOUND()
+		  
+		  	cHis = f_myhis
+		  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
+		  	
+		  	IF FILE(cFile)
+		  	
+		  		cFile = STRTRAN(cFile,".TRF",".RULES")
+		  		
+		  		IF FILE(cFile)
+		  		
+		  			cRules = FILETOSTR(cFile)
+		  			cRules = UPPER(cRules)
+		  			
+		  			nMax = MEMLINES(cRules)
+		  			
+		  			FOR X = 1 TO nMax
+		  			
+		  				cLine = MLINE(cRules,x)
+		  				cLine = ALLTRIM(cLine)
+		  				cRule = "AllowInteraction: " + cInterNum
+		  				
+		  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
+		  			 		myret = .t.
+		  			 		EXIT
+		  			  ENDIF  
+		  			  
+		  			NEXT
+		  					  					
+		  		ENDIF
+		  		
+		  	ENDIF
+		  
+		  ENDIF
+
+		  
+		ENDIF
 	
 	SELECT (c_table)
 	GOTO n_record	

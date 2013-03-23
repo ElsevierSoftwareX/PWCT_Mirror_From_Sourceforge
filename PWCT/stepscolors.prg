@@ -85,7 +85,7 @@ PROCEDURE SetStepColor(objGDWindow)
   ENDCASE
   
 
- IF nStepType < 5 && not leaf
+ IF .not. UPPER(ALLTRIM(cOldKey)) == UPPER(ALLTRIM(T38->STEPID))
  
     objGDWindow.container1.oletree.Nodes.item(ALLTRIM(cOldKey)).Selected = .T.
     
@@ -95,19 +95,21 @@ PROCEDURE SetStepColor(objGDWindow)
  SELECT (c_TableName)
  GOTO n_record
   
-  
-  
-  
 RETURN nStepType
 
+****************************************************************
+
 PROCEDURE DetermineStepType()
+
 	LOCAL myret
 	LOCAL c_TableName,n_Record
-	LOCAL cStepID,nRecNum
+	LOCAL cStepID
 	
 	c_TableName = ALIAS()
-	n_Record = RECNO()
 	
+	SELECT t38
+	cStepID = t38->stepid
+	n_Record = RECNO()
 	
 	IF EMPTY(t38->stepinterid)
 		 myret = 1 && Created
@@ -116,52 +118,50 @@ PROCEDURE DetermineStepType()
 		 myret = 2 && Generated
 		 
 		 IF t38->stepinternum = 1 && Root
+		 
 		 	myret = 3 && Generated (root)
+		 	SELECT (c_TableName)
+  		 GOTO n_record
+  		 RETURN myret
+  		 
 		 ENDIF
 		 
-		 SELECT t38
+	   IF obj_avoiderrors.CheckNewStep() = .t.
 		 	
-		 cStepID = t38->stepid
-		 nRecNum = RECNO()
-		 
-		 IF obj_avoiderrors.CheckNewStep() = .t.
 		 	myret = 4 && Generated (Allow Sub)
+		 	
+		 	SELECT t38
+  	 		 	
+		 	LOCATE FOR UPPER(ALLTRIM(t38->parentid)) == UPPER(ALLTRIM(cStepID))
+		 	
+		 	IF .not. FOUND()
+		 		myret = 6 && Generated Allow Sub & Leaf
+		 		SELECT (c_TableName)
+  		 	GOTO n_record
+  		 	RETURN myret
+		 	ENDIF
+		 	
+		 	
 		 ENDIF
 		 
 		 IF myret = 2 
 		 
 		 	SELECT t38
-		
-		 	GOTO top
-		 	
+			 	
 		 	LOCATE FOR UPPER(ALLTRIM(t38->parentid)) == UPPER(ALLTRIM(cStepID))
 		 	IF .not. FOUND()
 		 		myret = 5 && Generated (Leaf)
 		 	ENDIF
 		 	
-		 	GOTO nRecNum
-		 	
-		 ENDIF
-		 
-		 IF myret = 4
-		 
-		 	SELECT t38
-		
-		 	GOTO top
-		 	
-		 	LOCATE FOR UPPER(ALLTRIM(t38->parentid)) == UPPER(ALLTRIM(cStepID))
-		 	IF .not. FOUND()
-		 		myret = 6 && Generated Allow Sub & Leaf
-		 	ENDIF
-		 	
-		 	GOTO nRecNum
-		 	
 		 ENDIF
 		 
 	ENDIF
 	
+	SELECT t38
+	GOTO n_record
+	
   SELECT (c_TableName)
-  GOTO n_record
+  
   		 
 RETURN myret
 
