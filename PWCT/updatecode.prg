@@ -605,9 +605,14 @@ FOR X = 1 TO MYLAST
 		  	  	replace stepinf WITH ""
   					replace stepname WITH ALLTRIM(mytxt)
   					myoldkey = mygstree.SelectedItem.key
+  					
+  					TRY && AVOID ERROR WHEN CANN'T SELECT A REMOVED STEP (STEP REMOVED BY COLORS SYSTEM (READ MODE) )
     				mygstree.nodes.Item(alltRIM(stepid)).selected = .t.
     				mygstree.nodes.Item(alltRIM(stepid)).expanded = .f.
   		  		mygstree.SelectedItem.text = ALLTRIM(mytxt)
+  		  		CATCH
+  		  		ENDTRY
+  		  		
 	 	 			mygstree.nodes.Item(alltRIM(myoldkey)).selected = .t.
 	 	 			mygstree.nodes.Item(alltRIM(myoldkey)).expanded = .f.
   					v_found = .t.

@@ -151,23 +151,32 @@ PROCEDURE IgnoreStep(oGDWindow)
 
   		SELECT t38
 			replace stepdis WITH oGDWindow.check1.Value
-			oGDWindow.oletree.Nodes.item(ALLTRIM(stepid)).Selected = .T.
-			IF  oGDWindow.check1.Value = .t.
-				oGDWindow.container1.oletree.selectedItem.Image = "ignore"
-			ELSE
+			
+			TRY && AVOID ERROR WHEN CANN'T SELECT A REMOVED STEP (STEP REMOVED BY COLORS SYSTEM (READ MODE) )
+				oGDWindow.oletree.Nodes.item(ALLTRIM(stepid)).Selected = .T.
+				IF  oGDWindow.check1.Value = .t.
+					oGDWindow.container1.oletree.selectedItem.Image = "ignore"
+				ELSE
 
-				IF empty(ALLTRIM(stepinterid))
-			 	 oGDWindow.container1.oletree.selectedItem.image = "person"
-				else
-			 	 oGDWindow.container1.oletree.selectedItem.image = "cmd"
-				endif
-
-			ENDIF
+					IF empty(ALLTRIM(stepinterid))
+				 	 oGDWindow.container1.oletree.selectedItem.image = "person"
+					else
+				 	 oGDWindow.container1.oletree.selectedItem.image = "cmd"
+					endif
+				ENDIF
+			CATCH
+			ENDTRY
+			
 RETURN
 
 PROCEDURE DeleteStep(oGDWindow)
  		IF DELETED() = .f.
-						oGDWindow.oleTree.Nodes.Remove(UPPER(ALLTRIM(stepid)))
+ 					 
+ 					 TRY && AVOID ERROR WHEN CANN'T SELECT A REMOVED STEP (STEP REMOVED BY COLORS SYSTEM (READ MODE) )
+							oGDWindow.oleTree.Nodes.Remove(UPPER(ALLTRIM(stepid)))
+						CATCH
+						ENDTRY
+						
   					DELETE
      ENDIF
 RETURN
