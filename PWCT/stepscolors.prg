@@ -39,44 +39,49 @@ PROCEDURE SetStepColor(objGDWindow)
 	
 	objGDWindow.container1.oletree.Nodes.item(ALLTRIM(T38->STEPID)).Selected = .T.
 	
-	nStepType = this.DetermineStepType()
+	nStepType = this.DetermineStepType(objGDWindow)
 		
 	DO CASE
 	
 		CASE nStepType = 1 && Created
+			 
 				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_Created_BackColor
   			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_Created_ForeColor
-  			
-  			
+    			
   	CASE nStepType = 2 && Generated
+  	 
 				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_Generated_BackColor
   			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_Generated_ForeColor
-  			
+  	  			
   	CASE nStepType = 3 && Generated (Root)
+  		 
 				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedRoot_BackColor
   			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedRoot_ForeColor
-  			*objGDWindow.container1.oletree.selectedItem.bold = .t.
-  			
+    			
   	CASE nStepType = 4 && Generated (AllowSub)
+  		 
 				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedAllowSub_BackColor
   			objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedAllowSub_ForeColor
+  	 
+  			
   			
 		CASE nStepType = 5 && Generated leaf
-		
+				 
 				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedLeaf_BackColor
 				objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedLeaf_ForeColor
-		
+		 
+				
 				* hide steps that uses that same font color and backcolor
   			IF this.SC_GeneratedLeaf_BackColor = this.SC_GeneratedLeaf_ForeColor
  					objGDWindow.container1.oletree.Nodes.Remove(objGDWindow.container1.oletree.selectedItem.key)
 				ENDIF
  
 		CASE nStepType = 6 && Generated Allow Sub & leaf
-		
+			 
 				objGDWindow.container1.oletree.selectedItem.backcolor = this.SC_GeneratedAllowSubLeaf_BackColor
 				objGDWindow.container1.oletree.selectedItem.ForeColor = this.SC_GeneratedAllowSubLeaf_ForeColor
-		
-				* hide steps that uses that same font color and backcolor
+	 
+ 			* hide steps that uses that same font color and backcolor
   			IF this.SC_GeneratedAllowSubLeaf_BackColor = this.SC_GeneratedAllowSubLeaf_ForeColor
  					objGDWindow.container1.oletree.Nodes.Remove(objGDWindow.container1.oletree.selectedItem.key)
 				ENDIF
@@ -99,11 +104,13 @@ RETURN nStepType
 
 ****************************************************************
 
-PROCEDURE DetermineStepType()
+PROCEDURE DetermineStepType(objGDWindow)
 
 	LOCAL myret
 	LOCAL c_TableName,n_Record
 	LOCAL cStepID
+	
+	LOCAL cKey
 	
 	c_TableName = ALIAS()
 	
@@ -120,9 +127,6 @@ PROCEDURE DetermineStepType()
 		 IF t38->stepinternum = 1 && Root
 		 
 		 	myret = 3 && Generated (root)
-		 	SELECT (c_TableName)
-  		 GOTO n_record
-  		 RETURN myret
   		 
 		 ENDIF
 		 
@@ -153,6 +157,7 @@ PROCEDURE DetermineStepType()
 		 		myret = 5 && Generated (Leaf)
 		 	ENDIF
 		 	
+		 	
 		 ENDIF
 		 
 	ENDIF
@@ -172,7 +177,6 @@ LOCAL c_Table,n_Record
 
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule
 
- 
 c_table = ALIAS()
 n_record = RECNO()
  
