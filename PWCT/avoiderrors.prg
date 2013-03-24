@@ -367,7 +367,9 @@ myret = .f.
 			  	IF FILE(cFile) 
 			  	
 			  		cFile = STRTRAN(cFile,".TRF",".RULES")
+			  		
 			  		IF FILE(cFile)
+			  		
 			  			cRules = FILETOSTR(cFile)
 			  			cRules = UPPER(cRules)
 			  			
@@ -419,9 +421,10 @@ myret = .f.
 			  			  ENDIF  
 			  			NEXT
 			  			
-			  		
 			  			
-			  					
+			      ELSE
+			  	  		 STMSG( " (Check Sub Component) Cann't find the Rules file : " + cFile )
+			  	  		 myret = .t.			
 			  		ENDIF
 			  	ENDIF
 			  
@@ -686,6 +689,9 @@ PROCEDURE IsParentAllowedForComponent(cComponentFile)
   			 
   			NEXT
   			
+			ELSE
+			  	  		 STMSG( " (Check Parent Component) Cann't find the Rules file : " + cFile  )
+			  	  		 myret = .t.		
 			Endif
 
 			SELECT (c_table)

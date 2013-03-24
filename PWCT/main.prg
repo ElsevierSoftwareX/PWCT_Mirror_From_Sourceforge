@@ -110,6 +110,11 @@ ELSE
 do form DoubleS
 ENDIF
 
+PUBLIC pwct_StatusMsgs
+DIMENSION pwct_StatusMsgs(1)
+pwct_StatusMsgs(1) = "Start PWCT Environment"
+
+
 read events
 CANCEL
 
