@@ -759,7 +759,7 @@ ShellExecute(0,"open",application.DefaultFilePath + "\PWCTTutorials\","","",1)
 return
 
 PROCEDURE projteam()
-DO FORM team.scx
+*DO FORM team.scx
 RETURN
 
 PROCEDURE myalleg()
@@ -2048,16 +2048,16 @@ S_Menu = "Delete Connection"
 *       *********************************************************
 *
 PROCEDURE _25j0f6yuu
-IF win_gall = .f.
-DO FORM gall
-ELSE
-FOR I = 1 TO APPLICATION.Forms.Count
-	IF APPLICATION.Forms.Item(I).NAME = "GALFORM"
-		APPLICATION.Forms.Item(I).WINDOWSTATE = 2
-		EXIT
-	ENDIF
-NEXT
-ENDIF
+*!*	IF win_gall = .f.
+*!*	DO FORM gall
+*!*	ELSE
+*!*	FOR I = 1 TO APPLICATION.Forms.Count
+*!*		IF APPLICATION.Forms.Item(I).NAME = "GALFORM"
+*!*			APPLICATION.Forms.Item(I).WINDOWSTATE = 2
+*!*			EXIT
+*!*		ENDIF
+*!*	NEXT
+*!*	ENDIF
 
 
 
@@ -2236,16 +2236,16 @@ ENDIF
 *       *********************************************************
 *
 PROCEDURE _25j0f6yv3
-IF win_lL = .f.
-DO FORM LANGLIST
-ELSE
-FOR I = 1 TO APPLICATION.Forms.Count
-	IF APPLICATION.Forms.Item(I).NAME = "LLFORM"
-		APPLICATION.Forms.Item(I).WINDOWSTATE = 2
-		EXIT
-	ENDIF
-NEXT
-ENDIF
+*!*	IF win_lL = .f.
+*!*	DO FORM LANGLIST
+*!*	ELSE
+*!*	FOR I = 1 TO APPLICATION.Forms.Count
+*!*		IF APPLICATION.Forms.Item(I).NAME = "LLFORM"
+*!*			APPLICATION.Forms.Item(I).WINDOWSTATE = 2
+*!*			EXIT
+*!*		ENDIF
+*!*	NEXT
+*!*	ENDIF
 
 
 
@@ -2262,17 +2262,17 @@ ENDIF
 *       *                                                         
 *       *********************************************************
 *
-PROCEDURE _25j0f6yv4
-IF win_ls = .f.
-DO FORM syntax
-ELSE
-FOR I = 1 TO APPLICATION.Forms.Count
-	IF APPLICATION.Forms.Item(I).NAME = "LSFORM"
-		APPLICATION.Forms.Item(I).WINDOWSTATE = 2
-		EXIT
-	ENDIF
-NEXT
-ENDIF
+*!*	PROCEDURE _25j0f6yv4
+*!*	IF win_ls = .f.
+*!*	DO FORM syntax
+*!*	ELSE
+*!*	FOR I = 1 TO APPLICATION.Forms.Count
+*!*		IF APPLICATION.Forms.Item(I).NAME = "LSFORM"
+*!*			APPLICATION.Forms.Item(I).WINDOWSTATE = 2
+*!*			EXIT
+*!*		ENDIF
+*!*	NEXT
+*!*	ENDIF
 
 
 

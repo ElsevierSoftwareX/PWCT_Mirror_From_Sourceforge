@@ -37,14 +37,14 @@ IF .not. EMPTY(t38->stepinterid) .and. this.lVisualCompiler = .t.
 	* new step
 	objgdwindow.command1.enabled = result
 	* Interact
-	objgdwindow.command5.visible = result
+	objgdwindow.command5.enabled = result
 	* paste
 	objgdwindow.command9.enabled = result
 ELSE
   * new step
 	objgdwindow.command1.enabled = .t.
 	* Interact
-	objgdwindow.command5.visible = .t.
+	objgdwindow.command5.enabled = .t.
 	* paste
 	objgdwindow.command9.enabled = .t.
 ENDIF
