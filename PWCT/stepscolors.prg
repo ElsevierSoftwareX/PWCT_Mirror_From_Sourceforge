@@ -8,6 +8,7 @@ DEFINE CLASS GD_StepsColors as Custom
 * 3 = Custom (Colors based on component rules ) we advice the component designer to select the colors based on the component type
 
 nColorSystem = 1
+nHiddenSteps = 0
 
 SC_Created_BackColor = RGB(184,134,11)
 SC_Created_ForeColor = RGB(255,255,255)
@@ -95,6 +96,7 @@ PROCEDURE SetStepColor(objGDWindow)
 							* hide steps that uses that same font color and backcolor
 			  			IF this.SC_GeneratedLeaf_BackColor = this.SC_GeneratedLeaf_ForeColor
 			 					objGDWindow.container1.oletree.Nodes.Remove(cMyKEY)
+			 					this.nHiddenSteps = this.nHiddenSteps + 1
 							ENDIF
 			 
 					CASE nStepType = 6 && Generated Allow Sub & leaf
@@ -105,6 +107,7 @@ PROCEDURE SetStepColor(objGDWindow)
 			 			* hide steps that uses that same font color and backcolor
 			  			IF this.SC_GeneratedAllowSubLeaf_BackColor = this.SC_GeneratedAllowSubLeaf_ForeColor
 			 					objGDWindow.container1.oletree.Nodes.Remove(cMyKey)
+			 					this.nHiddenSteps = this.nHiddenSteps + 1
 							ENDIF
 			 
 					
@@ -153,27 +156,28 @@ PROCEDURE DetermineStepType(objGDWindow)
 		 	myret = 4 && Generated (Allow Sub)
 		 	
 		 	SELECT t38
-  	 		 	
-		 	LOCATE FOR UPPER(ALLTRIM(t38->parentid)) == UPPER(ALLTRIM(cStepID))
-		 	
-		 	IF .not. FOUND()
-		 		myret = 6 && Generated Allow Sub & Leaf
-		 		SELECT (c_TableName)
-  		 	GOTO n_record
-  		 	RETURN myret
-		 	ENDIF
-		 	
+  		 GOTO top
+  	
+  	   
+				 	LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cStepID)
+				 	
+				 	IF .not. FOUND()
+				 		myret = 6 && Generated Allow Sub & Leaf
+				 	ENDIF
+		
 		 	
 		 ENDIF
 		 
 		 IF myret = 2 
 		 
-		 	SELECT t38
-			 	
-		 	LOCATE FOR UPPER(ALLTRIM(t38->parentid)) == UPPER(ALLTRIM(cStepID))
-		 	IF .not. FOUND()
-		 		myret = 5 && Generated (Leaf)
-		 	ENDIF
+		
+		 
+		   	SELECT t38
+		 		GOTO TOP  	
+			 	LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cStepID)
+			 	IF .not. FOUND()
+			 		myret = 5 && Generated (Leaf)
+			 	ENDIF
 		 	
 		 	
 		 ENDIF
@@ -194,20 +198,23 @@ PROCEDURE CheckNewStep()
 LOCAL c_Table,n_Record
 
 LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule
+LOCAL cInterID
 
 c_table = ALIAS()
 n_record = RECNO()
  
 		myret = .f.
 			
-		cInterNum = ALLTRIM(STR(t38->stepinternum))
-			
-		SELECT t46
-		
 		IF .not. EMPTY(t38->stepinterid)
 		
-		
-			locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			cInterNum = ALLTRIM(STR(t38->stepinternum))
+			cInterID = ALLTRIM(t38->stepinterid)
+			
+			SELECT t46
+			
+		  GOTO top
+		  
+			locate FOR ALLTRIM(f_iid) == ALLTRIM(cInterID)
 			
 		  IF FOUND()
 		  

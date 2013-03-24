@@ -10,8 +10,8 @@ SELECT t38
       IF .NOT. RECCOUNT() = 0
         SCAN
       	    DIMENSION mytree(ALEN(mytree,1)+1,3)
-            mytree(ALEN(mytree,1),1) = PARENTID
-            mytree(ALEN(mytree,1),2) = STEPID
+            mytree(ALEN(mytree,1),1) = ALLTRIM(PARENTID)
+            mytree(ALEN(mytree,1),2) = ALLTRIM(STEPID)
             mytree(ALEN(mytree,1),3) = RECNO()
         ENDSCAN
         GOTO bottom
@@ -78,8 +78,8 @@ SELECT t34
       IF .NOT. RECCOUNT() = 0
         SCAN
       	    DIMENSION mytree(ALEN(mytree,1)+1,3)
-            mytree(ALEN(mytree,1),1) = PARENTID
-            mytree(ALEN(mytree,1),2) = CHILDID
+            mytree(ALEN(mytree,1),1) = ALLTRIM(PARENTID)
+            mytree(ALEN(mytree,1),2) = ALLTRIM(CHILDID)
             mytree(ALEN(mytree,1),3) = RECNO()
         ENDSCAN
         GOTO bottom
@@ -166,8 +166,8 @@ myfh = ""
       IF .NOT. RECCOUNT() = 0
         SCAN
       	    DIMENSION mytree(ALEN(mytree,1)+1,3)
-            mytree(ALEN(mytree,1),1) = PARENTID
-            mytree(ALEN(mytree,1),2) = STEPID
+            mytree(ALEN(mytree,1),1) = ALLTRIM(PARENTID)
+            mytree(ALEN(mytree,1),2) = ALLTRIM(STEPID)
             mytree(ALEN(mytree,1),3) = RECNO()
         ENDSCAN
         GOTO bottom
@@ -220,8 +220,8 @@ SCAN
       IF .NOT. RECCOUNT() = 0
         SCAN
       	  DIMENSION mytree(ALEN(mytree,1)+1,3)
-            mytree(ALEN(mytree,1),1) = PARENTID
-            mytree(ALEN(mytree,1),2) = STEPID
+            mytree(ALEN(mytree,1),1) = ALLTRIM(PARENTID)
+            mytree(ALEN(mytree,1),2) = ALLTRIM(STEPID)
             mytree(ALEN(mytree,1),3) = RECNO()
         ENDSCAN
         GOTO bottom
@@ -289,10 +289,10 @@ DO WHILE .t.
            MYDARR2(T,3) = MYDARR(T,3)
       NEXT                           
                                       
-      MYID = upper(alltrim(MYDARR(X,2)))
+      MYID = alltrim(MYDARR(X,2))
       * ADD SUCCESSOR
       FOR T = 2 TO ALEN(MYTREE,1)
-                  IF upper(alltrim(MYTREE(T,1))) == MYID
+                  IF MYTREE(T,1) == MYID
                         DIMENSION MYDARR2(ALEN(MYDARR2,1)+1,3) 
                         MYDARR2(ALEN(MYDARR2,1),1) = MYTREE(T,1)
                         MYDARR2(ALEN(MYDARR2,1),2) = MYTREE(T,2)

@@ -227,7 +227,8 @@ ENDIF
 		
 		IF .not. EMPTY(t38->stepinterid)
 		
-		
+		  GOTO top
+		  
 			locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 			
 		  IF FOUND()
@@ -259,6 +260,9 @@ ENDIF
 		  			  
 		  			NEXT
 		  					  					
+		  		ELSE
+			  	  		 STMSG( " (Check New Step) Cann't find the Rules file : " + cFile )
+			  	  		 myret = .t.	
 		  		ENDIF
 		  		
 		  	ENDIF
@@ -297,8 +301,10 @@ PROCEDURE IsThisStepIsTheRoot()
   			  cParent = t38->ParentID
   		  
   				DO WHILE lCont = .t.
-  				  				
-  					LOCATE for UPPER(ALLTRIM(t38->stepid)) == UPPER(ALLTRIM(cParent))
+  		
+  					GOTO top
+  							  				
+  					LOCATE for ALLTRIM(t38->stepid) == ALLTRIM(cParent)
   					
   						IF FOUND()
   						
@@ -355,6 +361,7 @@ myret = .f.
 				
 			SELECT t46
 			GOTO top
+			
 			IF .not. EMPTY(t38->stepinterid)
 				locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 				
@@ -491,6 +498,7 @@ IF .not. EMPTY(t38->stepinterid)
   		  cParent = t38->ParentID
   		  
   			DO WHILE lCont = .t.
+  				  GOTO top
   				  				
   					LOCATE for UPPER(ALLTRIM(t38->stepid)) == UPPER(ALLTRIM(cParent))
   					
@@ -583,6 +591,9 @@ IF .not. EMPTY(t38->stepinterid)
   			  ENDIF  
   			NEXT
   			
+  		ELSE
+			  	  		 STMSG( " (Check Parent Component) Cann't find the Rules file : " + cFile )
+			  	  		 myret = .t.	
   		ENDIF
   	ENDIF
   
@@ -722,7 +733,9 @@ PROCEDURE MoveToStepInTheSameInteraction(oGDWindow,nStepsToMove)
   nInteractionNumber = nInteractionNumber + nStepsToMove
    
 	IF .not. EMPTY(cInteractionID)
-
+		
+		GOTO top
+		
 		locate FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cInteractionID)) .and. t38->stepinternum = nInteractionNumber 
 
 		IF .not. FOUND()
@@ -760,6 +773,8 @@ PROCEDURE CheckMoveToStepInTheSameInteraction(oGDWindow,nStepsToMove)
    
 	IF .not. EMPTY(cInteractionID)
 
+		GOTO top
+		
 		locate FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cInteractionID)) .and. t38->stepinternum = nInteractionNumber 
 
 		IF FOUND()
@@ -786,6 +801,8 @@ PROCEDURE GetNodeChilds(oNode, objGDWindow)
 LOCAL n
 
 SELECT t38
+GOTO top
+
 LOCATE FOR UPPER(ALLTRIM(stepid)) == UPPER(ALLTRIM(oNode.Key))
 IF FOUND()
 cTheStepsCode = cTheStepsCode + CHR(13) + CHR(10) + T38->STEPCODE
