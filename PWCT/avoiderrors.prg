@@ -4,6 +4,8 @@
 * command8 : copy
 * check1 : ignore
 * command2 : delete
+* COMMAND5 : Interact
+
 DEFINE CLASS GD_AvoidErrors as Custom
 
 lVisualCompiler = .t.
@@ -35,14 +37,14 @@ IF .not. EMPTY(t38->stepinterid) .and. this.lVisualCompiler = .t.
 	* new step
 	objgdwindow.command1.enabled = result
 	* Interact
-	objgdwindow.command5.enabled = result
+	objgdwindow.command5.visible = result
 	* paste
 	objgdwindow.command9.enabled = result
 ELSE
   * new step
 	objgdwindow.command1.enabled = .t.
 	* Interact
-	objgdwindow.command5.enabled = .t.
+	objgdwindow.command5.visible = .t.
 	* paste
 	objgdwindow.command9.enabled = .t.
 ENDIF
