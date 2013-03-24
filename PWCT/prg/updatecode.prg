@@ -8,134 +8,171 @@ LOCAL cSelectedItem
 * then the listbox item is used for updating the code mask instead of listbox index to avoid bad code generation. 
 
 IF PCOUNT() > 1
-lRefreshSteps = .t.
+	lRefreshSteps = .t.
 ELSE
-lRefreshSteps = .f.
+	lRefreshSteps = .f.
 ENDIF
 
 PSTEPCODE = ""
 PINF = ""
 
 * prepare t46
+
 SELECT T46
+
 GOTO TOP
 
-LOCATE FOR UPPER(ALLTRIM(F_IID)) == UPPER(ALLTRIM(P_IID))
+LOCATE FOR ALLTRIM(F_IID) == ALLTRIM(P_IID)
+
 AX_MYHIS = F_MYHIS
 MYHIS = F_MYHIS
+
 IF FOUND()
-**** [Start of updating ] ********************************************************
-* prepare t38
-SELECT t38
-mygdform.container1.oletree.Nodes.item(ALLTRIM(UPPER(ALLTRIM(t46->f_stepid)))).Selected = .T.
-mygdform.container1.oletree.Nodes.item(ALLTRIM(UPPER(ALLTRIM(t46->f_stepid)))).Expanded = .F.
-IF .not. UPPER(ALLTRIM(t46->f_stepid)) == "SP_"
-LOCATE FOR UPPER(STEPID) == UPPER(ALLTRIM(t46->f_stepid))
-ENDIF
-* prepare masks
-run_trf = ALLTRIM(MLINE(t46->f_myhis,9))
-IF FILE(run_trf)
-SELECT 0
-USE (run_trf) ALIAS "t_trf"
-GOTO top
-m_mask = t_trf->f_mask
-m_pair1 = t_trf->f_pair1
-m_pair2 = t_trf->f_pair2
-IF lRefreshSteps = .t.
-m_pages = t_trf->f_pages
-m_files = t_trf->f_files
-endif
-USE
-ENDIF
+
+	**** [Start of updating ] ********************************************************
+
+	* prepare t38
+	SELECT t38
+	mygdform.container1.oletree.Nodes.item(ALLTRIM(UPPER(ALLTRIM(t46->f_stepid)))).Selected = .T.
+	mygdform.container1.oletree.Nodes.item(ALLTRIM(UPPER(ALLTRIM(t46->f_stepid)))).Expanded = .F.
+	IF .not. UPPER(ALLTRIM(t46->f_stepid)) == "SP_"
+		LOCATE FOR UPPER(STEPID) == UPPER(ALLTRIM(t46->f_stepid))
+	ENDIF
+	
+	* prepare masks
+	run_trf = ALLTRIM(MLINE(t46->f_myhis,9))
+	IF FILE(run_trf)
+	
+			SELECT 0
+			USE (run_trf) ALIAS "t_trf"
+			GOTO top
+			
+			m_mask = t_trf->f_mask
+			m_pair1 = t_trf->f_pair1
+			m_pair2 = t_trf->f_pair2
+			
+			IF lRefreshSteps = .t.
+					m_pages = t_trf->f_pages
+					m_files = t_trf->f_files
+			ENDIF
+			
+			USE
+			
+	ENDIF
 
 *****************************
 IF lRefreshSteps = .t.
-FOR tv_x1 = 1 TO MEMLINES(m_files)
-myfile = MLINE(m_files,tv_x1)
-mypstr = "[" + ALLTRIM(mLINE(m_pages,tv_x1)) + "] "
-IF FILE(myfile)
-	SELECT 0
-	USE (myfile) ALIAS "idf_open"
-	SCAN
-	  
-		IF rectype = 3
-		
 
-		IF idf_open->o_trans = 0
-
-		ELSE
-
-						tvar_vname = mypstr + ALLTRIM(idf_open->o_var)
-						tvar_options = idf_open->o_options
+			FOR tv_x1 = 1 TO MEMLINES(m_files)
+			
+						myfile = MLINE(m_files,tv_x1)
+						mypstr = "[" + ALLTRIM(mLINE(m_pages,tv_x1)) + "] "
 						
-						* update the history to replace list index with list item
-						ax_max = MEMLINES(ax_myhis)
-						FOR ax_x = 13 TO ax_max
-  						
-									  axline = MLINE(AX_MYHIS,ax_x)
-  									axline = UPPER(ALLTRIM(axline))
-									  axline = LEFT(axline,AT("=",axline)-1)
-									  
-							 	   IF UPPER(ALLTRIM(tvar_vname)) == UPPER(ALLTRIM(axline))
-							 	   
-											 	  axline = MLINE(AX_MYHIS,ax_x)
-									    	   myvalue = SUBSTR(axline,AT("=",axline)+1)
-									    	   mynewvalue = ALLTRIM(MLINE(tvar_options,VAL(myvalue)))
-									    	   mynewaxline = UPPER(ALLTRIM(tvar_vname)) +"=" + mynewvalue
-									    	   
-									    	   * MESSAGEBOX(MYNEWAXLINE,0,AXLINE)
-									    	   
-		 										  ax_myhis = STRTRAN(ax_myhis,axline,mynewaxline)
-		 										  
-		 										  exit
-									  ENDIF
-  							
-						NEXT
+						IF FILE(myfile)
 						
-						***********************************************************
-						
-		ENDIF
+								SELECT 0
+								USE (myfile) ALIAS "idf_open"
+							
+								SCAN
+							  
+									IF rectype = 3
+			
+			  							IF idf_open->o_trans = 0
 
-   ENDIF
+											ELSE
 
-  	SELECT idf_open
- 	ENDSCAN
- 	GOTO bottom
-	USE
-ENDIF
+															tvar_vname = mypstr + ALLTRIM(idf_open->o_var)
+															tvar_options = idf_open->o_options
+															
+															* update the history to replace list index with list item
+															
+															ax_max = MEMLINES(ax_myhis)
+															
+															FOR ax_x = 13 TO ax_max
+									  						
+																		  axline = MLINE(AX_MYHIS,ax_x)
+									  									axline = UPPER(ALLTRIM(axline))
+																		  axline = LEFT(axline,AT("=",axline)-1)
+																		  
+																 	   IF UPPER(ALLTRIM(tvar_vname)) == UPPER(ALLTRIM(axline))
+																 	   
+																				 	  axline = MLINE(AX_MYHIS,ax_x)
+																		    	   myvalue = SUBSTR(axline,AT("=",axline)+1)
+																		    	   mynewvalue = ALLTRIM(MLINE(tvar_options,VAL(myvalue)))
+																		    	   mynewaxline = UPPER(ALLTRIM(tvar_vname)) +"=" + mynewvalue
+																		    	   
+																		    	   
+											 										  ax_myhis = STRTRAN(ax_myhis,axline,mynewaxline)
+											 										  
+											 										  exit
+																		  ENDIF
+									  							
+															NEXT
+															
+															***********************************************************
+															
+											ENDIF
 
-NEXT
+								  ENDIF
+
+									SELECT idf_open
+									
+						 	ENDSCAN
+						 	
+						 	GOTO bottom
+						 	
+							 USE
+							 
+						ENDIF
+
+			NEXT
 ENDIF
 
 
 ************ LET MASK VARIABLES BE IN CAPITAL LETTERS
-LV_MYMAX = MEMLINES(M_MASK)
-LV_RES = ""
-LV_TEMP = 0
-FOR LV_X = 1 TO LV_MYMAX
-LV_LINE = MLINE(M_MASK,LV_X)
-LV_MYMAX2 = LEN(LV_LINE)
-  LV_STATUS = 0
-	FOR LV_X2 = 1 TO LV_MYMAX2
-		LV_MYLET = SUBSTR(LV_LINE,LV_X2,1)
-		IF LV_MYLET = "<"
-		LV_STATUS = 1
-		LV_TEMP = LV_X2
-		ENDIF
-		IF LV_STATUS = 0
-		LV_RES = LV_RES + LV_MYLET
-		ENDIF
-		IF LV_MYLET = ">" .AND.	LV_STATUS = 1
-		LV_WORD = UPPER(ALLTRIM(SUBSTR(LV_LINE,LV_TEMP,LV_X2-LV_TEMP+1)))
-		LV_RES = LV_RES + LV_WORD
-		LV_STATUS = 0
+
+		LV_MYMAX = MEMLINES(M_MASK)
+		LV_RES = ""
 		LV_TEMP = 0
-		ENDIF
-	NEXT
-	LV_RES  = LV_RES + CHR(13) + CHR(10)
-NEXT
-M_MASK = LV_RES
+
+		FOR LV_X = 1 TO LV_MYMAX
+
+			LV_LINE = MLINE(M_MASK,LV_X)
+			LV_MYMAX2 = LEN(LV_LINE)
+		  LV_STATUS = 0
+		  
+			FOR LV_X2 = 1 TO LV_MYMAX2
+			
+					LV_MYLET = SUBSTR(LV_LINE,LV_X2,1)
+					
+					IF LV_MYLET = "<"
+							LV_STATUS = 1
+							LV_TEMP = LV_X2
+					ENDIF
+					
+					IF LV_STATUS = 0
+							LV_RES = LV_RES + LV_MYLET
+					ENDIF
+					
+					IF LV_MYLET = ">" .AND.	LV_STATUS = 1
+							LV_WORD = UPPER(ALLTRIM(SUBSTR(LV_LINE,LV_TEMP,LV_X2-LV_TEMP+1)))
+							LV_RES = LV_RES + LV_WORD
+							LV_STATUS = 0
+							LV_TEMP = 0
+					ENDIF
+					
+			NEXT
+			
+			LV_RES  = LV_RES + CHR(13) + CHR(10)
+			
+		NEXT
+
+		M_MASK = LV_RES
+
+
 * run the code mask
+
+
 *------- RPWI TEMP VARIABLES 
 DIMENSION RPWI_VARS(1,2)
 RPWI_VARS(1,1) = "VARNAME_HERE"
@@ -143,254 +180,410 @@ RPWI_VARS(1,2) = "VARVALUE_HERE"
 RPWI_VARS_COUNT =  1
 RPWI_ACTIVE_VAR = 1
 *----------------------------------
+
 SELECT t38
+
 lv_delsemi = .F.
 LV_SEMICHAR = ""
 LV_SEMILEVEL = 1
 LV_LEVEL2CODE = STEPID
 LV_LEVEL3CODE = PARENTID
 mystepcounter = 0
+
 SELECT t46
+
 v_nowiid = f_iid
 STEPSNUM = STEPSNUM + 1
 v_myKey = ALLTRIM(STR(STEPSNUM) + "_")
 
 SELECT t38
 
-
 mylast = MEMLINES(m_pair1)
+
 old_mask = m_mask
+
 *-----------------------------------------* needed for error checkig
 * store m_mask into array , remove tabs
-tv_lines = MEMLINES(m_mask)
-IF tv_lines > 0
-DIMENSION tv_error(tv_lines)
-FOR tv_x = 1 TO tv_lines
-	tv_error(tv_x) = MLINE(m_mask,tv_x)
-	DO WHILE ASC(LEFT(tv_error(tv_x),1)) = 9
-		tv_error(tv_x) = SUBSTR(tv_error(tv_x),2)
-	ENDDO
-	tv_error(tv_x) = alltrim(tv_error(tv_x))
-NEXT
-ENDIF
+
+		tv_lines = MEMLINES(m_mask)
+		
+		IF tv_lines > 0
+		
+					DIMENSION tv_error(tv_lines)
+					
+					FOR tv_x = 1 TO tv_lines
+					
+								tv_error(tv_x) = MLINE(m_mask,tv_x)
+								
+								DO WHILE ASC(LEFT(tv_error(tv_x),1)) = 9
+								
+									tv_error(tv_x) = SUBSTR(tv_error(tv_x),2)
+									
+								ENDDO
+								
+								tv_error(tv_x) = alltrim(tv_error(tv_x))
+					NEXT
+		ENDIF
+		
 *-----------------------------------------*
 
 
 ax_max = MEMLINES(ax_myhis)
+
 FOR ax_x = 13 TO ax_max
+
   		ax_max2 = MEMLINES(m_pair1)
+  		
 			FOR ax_x2 = 1 TO ax_max2
-			  myvar = UPPER(ALLTRIM(MLINE(m_pair1,ax_x2)))
-		    axline = MLINE(AX_MYHIS,ax_x)
-  			axline = UPPER(ALLTRIM(axline))
-			  axline = LEFT(axline,AT("=",axline)-1)
-	 	  IF UPPER(ALLTRIM(myvar)) == UPPER(ALLTRIM(axline))
-				 	  axline = MLINE(AX_MYHIS,ax_x)
-		    	   myvalue = SUBSTR(axline,AT("=",axline)+1)
-			 		  myvar2 = UPPER(ALLTRIM(MLINE(m_pair2,ax_x2)))
-		 			  MYVALUEH = MYVALUE
-		 					  m_mask = STRTRAN(m_mask,myvar2,myvalue)
-							   *-------------------------------------------* needed for error checkig
-							   * replace test variables with corrosponding values
-							   FOR tv_x = 1 TO tv_lines
-								    IF UPPER(LEFT(tv_error(tv_x),11)) == "<RPWI:TEST>"
-							 		   tv_error(tv_x) = STRTRAN(tv_error(tv_x),myvar2,myvalue)
-							 	   ENDIF
-							   NEXT
-  		  ENDIF
+			
+							  myvar = UPPER(ALLTRIM(MLINE(m_pair1,ax_x2)))
+						    axline = MLINE(AX_MYHIS,ax_x)
+				  			axline = UPPER(ALLTRIM(axline))
+							  axline = LEFT(axline,AT("=",axline)-1)
+							  
+					 	   IF UPPER(ALLTRIM(myvar)) == UPPER(ALLTRIM(axline))
+					 	   
+								 	  axline = MLINE(AX_MYHIS,ax_x)
+						    	   myvalue = SUBSTR(axline,AT("=",axline)+1)
+							 		  myvar2 = UPPER(ALLTRIM(MLINE(m_pair2,ax_x2)))
+						 			  MYVALUEH = MYVALUE
+						 			  
+						 					  m_mask = STRTRAN(m_mask,myvar2,myvalue)
+						 					  
+											   *-------------------------------------------* needed for error checkig
+											   * replace test variables with corrosponding values
+											   
+											   FOR tv_x = 1 TO tv_lines
+											   
+												    IF UPPER(LEFT(tv_error(tv_x),11)) == "<RPWI:TEST>"
+												    
+											 		   tv_error(tv_x) = STRTRAN(tv_error(tv_x),myvar2,myvalue)
+											 		   
+											 	   ENDIF
+											 	   
+											   NEXT
+											   
+				  		  ENDIF
+				  		  
   		NEXT
 NEXT
 
 
-  
 
 *-------------------------------------------* needed for error checkig
 * restore array to memo, replace m_mask with this memo
-tv_testcode = ""
-FOR tv_x = 1 TO tv_lines
-tv_testcode = tv_testcode + tv_error(tv_x) + CHR(13) + CHR(10)
-NEXT
-tv_mask = m_mask
-m_mask = tv_testcode
+
+	tv_testcode = ""
+	
+	FOR tv_x = 1 TO tv_lines
+	
+		tv_testcode = tv_testcode + tv_error(tv_x) + CHR(13) + CHR(10)
+		
+	NEXT
+	
+	tv_mask = m_mask
+	m_mask = tv_testcode
+	
 *-------------------------------------------*
 
 ******************************* 
 * Determine total steps, and array determine for each step, it's used or not 
-MYV_STEPS = 0
-MYMEMO = M_MASK
-MYLAST = MEMLINES(MYMEMO)
-FOR X = 1 TO MYLAST
-	MYVAR = ALLTRIM(MLINE(MYMEMO,X))
-	DO WHILE ASC(LEFT(MYVAR,1)) = 9
-	MYVAR = SUBSTR(MYVAR,2)
-	ENDDO
-	IF UPPER(LEFT(MYVAR,14)) == "<RPWI:NEWSTEP>"
- 		MYV_STEPS  = MYV_STEPS  + 1
-  ENDIF
-NEXT
-DIMENSION MYV_STEPUSE[MYV_STEPS]
-FOR X = 1 TO MYV_STEPS
-MYV_STEPUSE[MYV_STEPS] = .F.
-NEXT
-*-------- <RPWI:TEST>
-MYTTYPE = 0 && NEGATIVE TEST TYPE
-ADDRES = .T.
-MYTVALUE = "0" && MYTESTVALUE
-mycont = .t.
-DO WHILE mycont = .t.
-mycont = .f.
-MYMEMO = M_MASK
-MYRES = ""
-MYINFRES = ""
-MYLAST = MEMLINES(MYMEMO)
-FOR X = 1 TO MYLAST
-	MYVAR = ALLTRIM(MLINE(MYMEMO,X))
-	DO WHILE ASC(LEFT(MYVAR,1)) = 9
-	MYVAR = SUBSTR(MYVAR,2)
-	ENDDO
-	IF UPPER(LEFT(MYVAR,15)) == "<RPWI:POSITIVE>"
-	MYTTYPE = 1
-					IF .NOT. EMPTY(MYVAR)
-							MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
-					ENDIF
-	LOOP
-  ENDIF
-	IF UPPER(LEFT(MYVAR,15)) == "<RPWI:NEGATIVE>"
-	MYTTYPE = 0
-					IF .NOT. EMPTY(MYVAR)
-							MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
-					ENDIF
-	LOOP
-  ENDIF
-	IF UPPER(LEFT(MYVAR,12)) == "<RPWI:VALUE>"
-	MYTVALUE = ALLTRIM(SUBSTR(MYVAR,13))
-					IF .NOT. EMPTY(MYVAR)
-							MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
-					ENDIF
-	LOOP
-  ENDIF
-	IF UPPER(LEFT(MYVAR,11)) == "<RPWI:TEST>"
-   mycount = 1
- 	MYVAR2 = SUBSTR(MYVAR,12)
-		IF AT(MYTVALUE,MYVAR2) >= 1
-		 IF MYTTYPE = 0
-		 ADDRES = .F.
-		 ELSE
-		 ADDRES = .T.
-		 ENDIF
-		ELSE
-		 IF MYTTYPE = 0
-		 ADDRES = .T.
-		 ELSE
-		 ADDRES = .F.
-		 ENDIF
-		ENDIF
-		MYSTART = X+1
-		FOR T = MYSTART TO MYLAST
-			MYVAR3 = ALLTRIM(MLINE(MYMEMO,T))
-			DO WHILE ASC(LEFT(MYVAR3,1)) = 9
-			MYVAR3 = SUBSTR(MYVAR3,2)
-			ENDDO
-			IF UPPER(LEFT(MYVAR3,11)) == "<RPWI:TEST>"
-				mycont = .t.
-  			mycount = mycount + 1
-			ENDIF
-  		IF UPPER(LEFT(MYVAR3,14)) == "<RPWI:ENDTEST>" 
-	 		if mycount = 1
-				IF ADDRES = .T.
-					FOR Y = X+1 TO T-1
-						MYVAR4 = ALLTRIM(MLINE(MYMEMO,Y))
-						DO WHILE ASC(LEFT(MYVAR4,1)) = 9
-							MYVAR4 = SUBSTR(MYVAR4,2)
-						ENDDO
-						MYRES = MYRES + MYVAR4 + CHR(13) + CHR(10)
-					NEXT
-			ELSE
-			* EACH STEP - ONE UNIQUE ID
-				FOR Y = X+1 TO T-1
-						MYVAR4 = ALLTRIM(MLINE(MYMEMO,Y))
-						DO WHILE ASC(LEFT(MYVAR4,1)) = 9
-							MYVAR4 = SUBSTR(MYVAR4,2)
-						ENDDO
-						IF UPPER(LEFT(MYVAR,14)) == "<RPWI:NEWSTEP>"
- 						mystepcounter = mystepcounter + 1
- 					 ENDIF
- 				NEXT
+
+		MYV_STEPS = 0
+		MYMEMO = M_MASK
+		MYLAST = MEMLINES(MYMEMO)
+		
+		FOR X = 1 TO MYLAST
+		
+					MYVAR = ALLTRIM(MLINE(MYMEMO,X))
 					
-			  ENDIF
-	  		X = T
-	 		 EXIT 
-			 ELSE
-				 IF .NOT. MYCOUNT = 1
-					 mycount = mycount - 1
-				 ENDIF
-			 endif
-		  ENDIF
+					DO WHILE ASC(LEFT(MYVAR,1)) = 9
+					
+							 MYVAR = SUBSTR(MYVAR,2)
+							 
+					ENDDO
+					
+					IF UPPER(LEFT(MYVAR,14)) == "<RPWI:NEWSTEP>"
+					
+				 			MYV_STEPS  = MYV_STEPS  + 1
+				 			
+				  ENDIF
+		  
 		NEXT
-	ELSE
-					IF .NOT. EMPTY(MYVAR)
-							MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
-					ENDIF
-	ENDIF
-NEXT
-m_mask = myres
-ENDDO
-MYMEMO = M_MASK
-MYRES = ""
-MYLAST = MEMLINES(MYMEMO)
-FOR X = 1 TO MYLAST
-	MYVAR = ALLTRIM(MLINE(MYMEMO,X))
-	DO WHILE ASC(LEFT(MYVAR,1)) = 9
-	MYVAR = SUBSTR(MYVAR,2)
-	ENDDO
-	IF UPPER(LEFT(MYVAR,15)) == "<RPWI:POSITIVE>"
-	MYTTYPE = 1
-	LOOP
-  ENDIF
-	IF UPPER(LEFT(MYVAR,15)) == "<RPWI:NEGATIVE>"
-	MYTTYPE = 0
-	LOOP
-  ENDIF
-	IF UPPER(LEFT(MYVAR,12)) == "<RPWI:VALUE>"
-	MYTVALUE = ALLTRIM(SUBSTR(MYVAR,13))
-	LOOP
-  ENDIF
-	IF .NOT. EMPTY(MYVAR)
-			MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
-	ENDIF
-NEXT
+		
+		DIMENSION MYV_STEPUSE[MYV_STEPS]
+		
+		FOR X = 1 TO MYV_STEPS
+		
+			MYV_STEPUSE[MYV_STEPS] = .F.
+			
+		NEXT
+		
+*-------- <RPWI:TEST>
+
+			MYTTYPE = 0 && NEGATIVE TEST TYPE
+			ADDRES = .T.
+			MYTVALUE = "0" && MYTESTVALUE
+			mycont = .t.
+
+			DO WHILE mycont = .t.
+
+							mycont = .f.
+							MYMEMO = M_MASK
+							MYRES = ""
+							MYINFRES = ""
+							MYLAST = MEMLINES(MYMEMO)
+
+
+							FOR X = 1 TO MYLAST
+							
+												MYVAR = ALLTRIM(MLINE(MYMEMO,X))
+												
+												DO WHILE ASC(LEFT(MYVAR,1)) = 9
+												
+													MYVAR = SUBSTR(MYVAR,2)
+													
+												ENDDO
+												
+												IF UPPER(LEFT(MYVAR,15)) == "<RPWI:POSITIVE>"
+												
+																MYTTYPE = 1
+																
+																IF .NOT. EMPTY(MYVAR)
+																
+																		MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
+																		
+																ENDIF
+																
+																LOOP
+																
+											  ENDIF
+											  
+												IF UPPER(LEFT(MYVAR,15)) == "<RPWI:NEGATIVE>"
+												
+																MYTTYPE = 0
+																
+																IF .NOT. EMPTY(MYVAR)
+																
+																		MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
+																		
+																ENDIF
+																
+																LOOP
+																
+											  ENDIF
+											  
+												IF UPPER(LEFT(MYVAR,12)) == "<RPWI:VALUE>"
+												
+																MYTVALUE = ALLTRIM(SUBSTR(MYVAR,13))
+																
+																IF .NOT. EMPTY(MYVAR)
+																
+																		MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
+																		
+																ENDIF
+																
+																LOOP
+																
+											  ENDIF
+											  
+												IF UPPER(LEFT(MYVAR,11)) == "<RPWI:TEST>"
+												
+											   			 mycount = 1
+											 				 MYVAR2 = SUBSTR(MYVAR,12)
+											 				 
+																IF AT(MYTVALUE,MYVAR2) >= 1
+																
+																				 IF MYTTYPE = 0
+																				 
+																							 ADDRES = .F.
+																							 
+																				 ELSE
+																				 
+																							 ADDRES = .T.
+																							 
+																				 ENDIF
+																ELSE
+																
+																				 IF MYTTYPE = 0
+																				 
+																							 ADDRES = .T.
+																							 
+																				 ELSE
+																				 
+																							 ADDRES = .F.
+																							 
+																				 ENDIF
+																ENDIF
+																
+																MYSTART = X+1
+																
+																FOR T = MYSTART TO MYLAST
+																
+																				MYVAR3 = ALLTRIM(MLINE(MYMEMO,T))
+																				
+																				DO WHILE ASC(LEFT(MYVAR3,1)) = 9
+																				
+																						MYVAR3 = SUBSTR(MYVAR3,2)
+																						
+																				ENDDO
+																				
+																				IF UPPER(LEFT(MYVAR3,11)) == "<RPWI:TEST>"
+																				
+																						mycont = .t.
+																					
+																	  				mycount = mycount + 1
+																	  			
+																				ENDIF
+																				
+																	  		IF UPPER(LEFT(MYVAR3,14)) == "<RPWI:ENDTEST>" 
+																	  		
+																		 				if mycount = 1
+																										IF ADDRES = .T.
+																														FOR Y = X+1 TO T-1
+																																	MYVAR4 = ALLTRIM(MLINE(MYMEMO,Y))
+																														
+																																	DO WHILE ASC(LEFT(MYVAR4,1)) = 9
+																																	
+																																		MYVAR4 = SUBSTR(MYVAR4,2)
+																																		
+																																	ENDDO
+																																	
+																																	MYRES = MYRES + MYVAR4 + CHR(13) + CHR(10)
+																														NEXT
+																										ELSE
+
+																														* EACH STEP - ONE UNIQUE ID
+																														FOR Y = X+1 TO T-1
+																														
+																																	MYVAR4 = ALLTRIM(MLINE(MYMEMO,Y))
+																																	
+																																	DO WHILE ASC(LEFT(MYVAR4,1)) = 9
+																																	
+																																				MYVAR4 = SUBSTR(MYVAR4,2)
+																																				
+																																	ENDDO
+																																	
+																																	IF UPPER(LEFT(MYVAR,14)) == "<RPWI:NEWSTEP>"
+																																	
+																											 								mystepcounter = mystepcounter + 1
+																											 								
+																											 					 ENDIF
+																											 					 
+																										 				NEXT
+																			
+																	  								ENDIF
+																	  								
+																				  		X = T
+																				 		 EXIT 
+																				 		 
+																						  ELSE
+
+																										 IF .NOT. MYCOUNT = 1
+																										 
+																											 mycount = mycount - 1
+																											 
+																										 ENDIF
+																						  ENDIF
+																						  
+																  			ENDIF
+																NEXT
+													ELSE
+																
+																				IF .NOT. EMPTY(MYVAR)
+																				
+																							MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
+																							
+																				ENDIF
+													ENDIF
+							NEXT
+							
+							m_mask = myres
+							
+			ENDDO
+			
+			MYMEMO = M_MASK
+			MYRES = ""
+			MYLAST = MEMLINES(MYMEMO)
+			
+			FOR X = 1 TO MYLAST
+			
+							MYVAR = ALLTRIM(MLINE(MYMEMO,X))
+							DO WHILE ASC(LEFT(MYVAR,1)) = 9
+							
+									MYVAR = SUBSTR(MYVAR,2)
+									
+							ENDDO
+							
+							IF UPPER(LEFT(MYVAR,15)) == "<RPWI:POSITIVE>"
+							
+									MYTTYPE = 1
+									LOOP
+									
+						  ENDIF
+						  
+							IF UPPER(LEFT(MYVAR,15)) == "<RPWI:NEGATIVE>"
+							
+									MYTTYPE = 0
+									LOOP
+									
+						  ENDIF
+						  
+							IF UPPER(LEFT(MYVAR,12)) == "<RPWI:VALUE>"
+							
+									MYTVALUE = ALLTRIM(SUBSTR(MYVAR,13))
+									LOOP
+									
+						  ENDIF
+						  
+							IF .NOT. EMPTY(MYVAR)
+							
+									MYRES = MYRES + MYVAR + CHR(13) + CHR(10)
+									
+							ENDIF
+				
+			NEXT
+			
 *-------------------------------------------* needed for error checkig
 * replace  the variables (not after test)
   
-ax_max = MEMLINES(ax_myhis)
-FOR ax_x = 13 TO ax_max
-  		ax_max2 = MEMLINES(m_pair1)
-			FOR ax_x2 = 1 TO ax_max2
-			  myvar = UPPER(ALLTRIM(MLINE(m_pair1,ax_x2)))
-			  axline = MLINE(AX_MYHIS,ax_x)
- 			 axline = UPPER(ALLTRIM(axline))
-			  axline = LEFT(axline,AT("=",axline)-1)
- 	 	  IF UPPER(ALLTRIM(myvar)) == UPPER(ALLTRIM(axline))
-				 	  axline = MLINE(AX_MYHIS,ax_x)
-		    	   myvalue = SUBSTR(axline,AT("=",axline)+1)
-			 		  myvar2 = UPPER(ALLTRIM(MLINE(m_pair2,ax_x2)))
-		 			  MYVALUEH = MYVALUE
-		 		    MYVALUET = MYVALUE
-					   myres = STRTRAN(myres,myvar2,myvalue)
-					   pstepcode = STRTRAN(pstepcode,myvar2,myvalue)
- 		  ENDIF
-  		NEXT
-NEXT
+			ax_max = MEMLINES(ax_myhis)
+
+			FOR ax_x = 13 TO ax_max
+
+					  		ax_max2 = MEMLINES(m_pair1)
+					  		
+								FOR ax_x2 = 1 TO ax_max2
+								
+												  myvar = UPPER(ALLTRIM(MLINE(m_pair1,ax_x2)))
+												  axline = MLINE(AX_MYHIS,ax_x)
+									 			 axline = UPPER(ALLTRIM(axline))
+												  axline = LEFT(axline,AT("=",axline)-1)
+												  
+									 	 	  IF UPPER(ALLTRIM(myvar)) == UPPER(ALLTRIM(axline))
+									 	 	  
+																	 	  axline = MLINE(AX_MYHIS,ax_x)
+															    	   myvalue = SUBSTR(axline,AT("=",axline)+1)
+																 		  myvar2 = UPPER(ALLTRIM(MLINE(m_pair2,ax_x2)))
+															 			  MYVALUEH = MYVALUE
+															 		    MYVALUET = MYVALUE
+																		   myres = STRTRAN(myres,myvar2,myvalue)
+																		   pstepcode = STRTRAN(pstepcode,myvar2,myvalue)
+														   
+									 		   ENDIF
+					 		  
+					  		NEXT
+					  		
+			NEXT
   
- 
- 
 
+			PSTEPCODE = PSTEPCODE + MYRES
+			PINF = PINF + MYINFRES
+			m_mask = old_mask
 
-PSTEPCODE = PSTEPCODE + MYRES
-PINF = PINF + MYINFRES
-m_mask = old_mask
 ********************************************
 *----------------------------------* RPWI STATEMENTS FOR GOAL DESIGNER
+
 DIMENSION STEPSARR(1)
 STEPSARRSIZE = 0
 LASTSCODE = mygstree.SelectedItem.Key && LAST STEP CODE
