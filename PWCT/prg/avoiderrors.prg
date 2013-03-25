@@ -1,3 +1,24 @@
+*:******************************************************************************
+*:
+*: Procedure File D:\PWCTSRC\PWCT\PRG\AVOIDERRORS.PRG
+*:
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	Mahmoud Fayed
+*:	Programming without coding technology 1.8 (Smart)
+*:	Free - Open Source
+*:	
+*:	Programming without coding technology 1.8 (Smart)
+*:
+*: Documented using Visual FoxPro Formatting wizard version  .05
+*:******************************************************************************
+*:   avoiderrors
 * command3 : move up
 * command4 : move down
 * command10 : cut
@@ -6,921 +27,926 @@
 * command2 : delete
 * COMMAND5 : Interact
 
-DEFINE CLASS GD_AvoidErrors as Custom
+*:******************************************************************************
+*:
+*: Class:gd_avoiderrors  BaseClass: CUSTOM
+*:
+*:******************************************************************************
+DEFINE CLASS gd_avoiderrors AS CUSTOM
 
-lVisualCompiler = .t.
+	lvisualcompiler = .T.
 
-PROCEDURE AvoidGeneratedStepErrors(objGDWindow)
-LOCAL objgdwindow as Form
-LOCAL result
+	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
+		LOCAL objgdwindow AS FORM
+		LOCAL result
 
-IF .not. EMPTY(t38->stepinterid) .and. t38->stepinternum != 1 .and. this.lVisualCompiler = .t.
-		objgdwindow.command3.enabled = .f.
-		objgdwindow.command4.enabled = .f.
-		objgdwindow.command10.enabled = .f.
-		objgdwindow.command8.enabled = .f.
-		objgdwindow.check1.enabled = .f.
-		objgdwindow.command2.enabled = .f.
-ELSE
-		objgdwindow.command3.enabled = .t.
-		objgdwindow.command4.enabled = .t.
-		objgdwindow.command10.enabled = .t.
-		objgdwindow.command8.enabled = .t.
-		objgdwindow.check1.enabled = .t.
-		objgdwindow.command2.enabled = .t.
-ENDIF
+		IF .NOT. EMPTY(t38->stepinterid) .AND. t38->stepinternum != 1 .AND. THIS.lvisualcompiler = .T.
+			objgdwindow.command3.ENABLED = .F.
+			objgdwindow.command4.ENABLED = .F.
+			objgdwindow.command10.ENABLED = .F.
+			objgdwindow.command8.ENABLED = .F.
+			objgdwindow.check1.ENABLED = .F.
+			objgdwindow.command2.ENABLED = .F.
+		ELSE
+			objgdwindow.command3.ENABLED = .T.
+			objgdwindow.command4.ENABLED = .T.
+			objgdwindow.command10.ENABLED = .T.
+			objgdwindow.command8.ENABLED = .T.
+			objgdwindow.check1.ENABLED = .T.
+			objgdwindow.command2.ENABLED = .T.
+		ENDIF
 
-IF .not. EMPTY(t38->stepinterid) .and. this.lVisualCompiler = .t.
+		IF .NOT. EMPTY(t38->stepinterid) .AND. THIS.lvisualcompiler = .T.
 
-  result = this.checknewstep()
-  
-	* new step
-	objgdwindow.command1.enabled = result
-	* Interact
-	objgdwindow.command5.enabled = result
-	* paste
-	objgdwindow.command9.enabled = result
-ELSE
-  * new step
-	objgdwindow.command1.enabled = .t.
-	* Interact
-	objgdwindow.command5.enabled = .t.
-	* paste
-	objgdwindow.command9.enabled = .t.
-ENDIF
+			result = THIS.checknewstep()
 
-* MOVE DOWN
-IF objgdwindow.command4.enabled = .T.
-	IF ISNULL( objgdwindow.CONtainer1.OLETREE.Nodes.ITEM(objgdwindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Next )
-	  		objgdwindow.command4.enabled = .f.
-	ENDIF
-ENDIF
- 
-* MOVE UP
-IF objgdwindow.command3.enabled = .T.
-	IF ISNULL( objgdwindow.CONtainer1.OLETREE.Nodes.ITEM(objgdwindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Previous )
-			objgdwindow.command3.enabled = .f.
-	ENDIF
-ENDIF
+			* new step
+			objgdwindow.command1.ENABLED = result
+			* Interact
+			objgdwindow.command5.ENABLED = result
+			* paste
+			objgdwindow.command9.ENABLED = result
+		ELSE
+			* new step
+			objgdwindow.command1.ENABLED = .T.
+			* Interact
+			objgdwindow.command5.ENABLED = .T.
+			* paste
+			objgdwindow.command9.ENABLED = .T.
+		ENDIF
 
+		* MOVE DOWN
+		IF objgdwindow.command4.ENABLED = .T.
+			IF ISNULL( objgdwindow.container1.oletree.nodes.ITEM(objgdwindow.container1.oletree.SELECTEDITEM.KEY).NEXT )
+				objgdwindow.command4.ENABLED = .F.
+			ENDIF
+		ENDIF
 
+		* MOVE UP
+		IF objgdwindow.command3.ENABLED = .T.
+			IF ISNULL( objgdwindow.container1.oletree.nodes.ITEM(objgdwindow.container1.oletree.SELECTEDITEM.KEY).previous )
+				objgdwindow.command3.ENABLED = .F.
+			ENDIF
+		ENDIF
 
 
-RETURN
 
-PROCEDURE TaskonStepsInTheSameInteraction(oGDWindow,cProcName)
-LOCAL prec,mykeyrecarr,looprs,loopre,myid,myres,myend,x,myrecnum,mynewlooprs,myrec,t
-LOCAL c_table,n_record
-LOCAL myiid
 
-c_table = ALIAS()
-n_record = RECNO()
+		RETURN
 
-  		 	 		SELECT t38
-																					
-													*********************************************************
-				 								 prec = RECNO()
-												  DIMENSION mykeyrecarr(1,4)
-												  mykeyrecarr(1,1) = t38->stepid
-												  mykeyrecarr(1,2) = prec
-												  mykeyrecarr(1,3) = t38->stepinterid
-												  mykeyrecarr(1,4) = t38->stepinternum
-												  
-			 						 		  looprs = ALEN(mykeyrecarr,1)
-		 	 								  loopre = 0
-				 				 			  SELECT t38
-												  SET FILTER TO UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle))
-												  GOTO top
-	    								    DO WHILE looprs != loopre
-  	 															looprs = ALEN(mykeyrecarr,1)
- 																	SELECT t38
-  																 SCAN
-   																		* search if item is in select branch of tree or belong to the same interaction
-  																			myid = t38->parentid
-  																			myiid = t38->stepinterid
-  																			myres = .f.
-  																			myend = ALEN(mykeyrecarr,1)
- 																		 	FOR x = 1 TO myend
-  																						IF UPPER(ALLTRIM(mykeyrecarr(x,1))) == UPPER(ALLTRIM(myid)) 
-  																									myres = .t.
-	  																								EXIT
-  																						ENDIF
-  																						IF .not. EMPTY(ALLTRIM(myiid))
-  																						if UPPER(ALLTRIM(mykeyrecarr(x,3))) == UPPER(ALLTRIM(myiid))
-  																									myres = .t.
-	  																								EXIT
-  																						ENDIF
-  																						
-  																						ENDIF
-  																						
-  							  											NEXT
-   																		 *******************************  	
-   																		 * be sure that this record is not added before
-    																		myrecnum = RECNO()
-    																		myend = ALEN(mykeyrecarr,1)
-    																		FOR x = 1 TO myend
-  																					IF mykeyrecarr(x,2) = myrecnum
-  																								myres = .f.
-	 																					 		EXIT
- 																			 		ENDIF
-																		  	NEXT
-   								 										IF myres = .t.
-   																					 mynewlooprs = ALEN(mykeyrecarr,1) + 1
-   																					 DIMENSION mykeyrecarr(mynewlooprs,4)
-   																				   mykeyrecarr(mynewlooprs,1) = t38->stepid
-   																					 mykeyrecarr(mynewlooprs,2) = myrecnum
-   																					 mykeyrecarr(mynewlooprs,3) = t38->stepinterid
-												 										 mykeyrecarr(mynewlooprs,4) = t38->stepinternum
-  																		  ENDIF
-  																 ENDSCAN
-  																 GOTO bottom
- 																 loopre = ALEN(mykeyrecarr,1)
- 				 								enddo 
-													MYEND = ALEN(mykeyrecarr,1)
-													
-											 
-													FOR t = MYEND TO 1 STEP -1
-																	myrec = mykeyrecarr(t,2)
-																	IF .not. myrec = 0
-																					SELECT t38
-																					GOTO myrec
-																			
-																			
-																		************** Task
+	PROCEDURE taskonstepsinthesameinteraction(ogdwindow,cprocname)
+		LOCAL PREC,mykeyrecarr,looprs,loopre,myid,myres,myend,x,myrecnum,mynewlooprs,myrec,T
+		LOCAL c_table,n_record
+		LOCAL myiid
 
-																		&cProcName(oGDWindow)
-																	
-																												  
-																		****************************
-																		   
-  																		      		
-																	ENDIF
-													NEXT
-					 
-											
-  				*--------------------------*
-  				
-  				SELECT (c_table)
-  				GOTO n_record
-  				
-RETURN
+		c_table = ALIAS()
+		n_record = RECNO()
 
-PROCEDURE IgnoreStep(oGDWindow)
+		SELECT t38
 
-  		SELECT t38
-			replace stepdis WITH oGDWindow.check1.Value
-			
-			TRY && AVOID ERROR WHEN CANN'T SELECT A REMOVED STEP (STEP REMOVED BY COLORS SYSTEM (READ MODE) )
-				oGDWindow.oletree.Nodes.item(ALLTRIM(stepid)).Selected = .T.
-				IF  oGDWindow.check1.Value = .t.
-					oGDWindow.container1.oletree.selectedItem.Image = "ignore"
-				ELSE
+		*********************************************************
+		PREC = RECNO()
+		DIMENSION mykeyrecarr(1,4)
+		mykeyrecarr(1,1) = t38->stepid
+		mykeyrecarr(1,2) = PREC
+		mykeyrecarr(1,3) = t38->stepinterid
+		mykeyrecarr(1,4) = t38->stepinternum
 
-					IF empty(ALLTRIM(stepinterid))
-				 	 oGDWindow.container1.oletree.selectedItem.image = "person"
-					else
-				 	 oGDWindow.container1.oletree.selectedItem.image = "cmd"
-					endif
+		looprs = ALEN(mykeyrecarr,1)
+		loopre = 0
+		SELECT t38
+		SET FILTER TO UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle))
+		GOTO TOP
+		DO WHILE looprs != loopre
+			looprs = ALEN(mykeyrecarr,1)
+			SELECT t38
+			SCAN
+				* search if item is in select branch of tree or belong to the same interaction
+				myid = t38->parentid
+				myiid = t38->stepinterid
+				myres = .F.
+				myend = ALEN(mykeyrecarr,1)
+				FOR x = 1 TO myend
+					IF UPPER(ALLTRIM(mykeyrecarr(x,1))) == UPPER(ALLTRIM(myid))
+						myres = .T.
+						EXIT
+					ENDIF
+					IF .NOT. EMPTY(ALLTRIM(myiid))
+						IF UPPER(ALLTRIM(mykeyrecarr(x,3))) == UPPER(ALLTRIM(myiid))
+							myres = .T.
+							EXIT
+						ENDIF
+
+					ENDIF
+
+				NEXT
+				*******************************
+				* be sure that this record is not added before
+				myrecnum = RECNO()
+				myend = ALEN(mykeyrecarr,1)
+				FOR x = 1 TO myend
+					IF mykeyrecarr(x,2) = myrecnum
+						myres = .F.
+						EXIT
+					ENDIF
+				NEXT
+				IF myres = .T.
+					mynewlooprs = ALEN(mykeyrecarr,1) + 1
+					DIMENSION mykeyrecarr(mynewlooprs,4)
+					mykeyrecarr(mynewlooprs,1) = t38->stepid
+					mykeyrecarr(mynewlooprs,2) = myrecnum
+					mykeyrecarr(mynewlooprs,3) = t38->stepinterid
+					mykeyrecarr(mynewlooprs,4) = t38->stepinternum
 				ENDIF
+			ENDSCAN
+			GOTO BOTTOM
+			loopre = ALEN(mykeyrecarr,1)
+		ENDDO
+		myend = ALEN(mykeyrecarr,1)
+
+
+		FOR T = myend TO 1 STEP -1
+			myrec = mykeyrecarr(T,2)
+			IF .NOT. myrec = 0
+				SELECT t38
+				GOTO myrec
+
+
+				************** Task
+
+				&cprocname(ogdwindow)
+
+
+				****************************
+
+
+			ENDIF
+		NEXT
+
+
+		*--------------------------*
+
+		SELECT (c_table)
+		GOTO n_record
+
+		RETURN
+
+	PROCEDURE ignorestep(ogdwindow)
+
+		SELECT t38
+		REPLACE stepdis WITH ogdwindow.check1.VALUE
+
+		TRY && AVOID ERROR WHEN CANN'T SELECT A REMOVED STEP (STEP REMOVED BY COLORS SYSTEM (READ MODE) )
+			ogdwindow.oletree.nodes.ITEM(ALLTRIM(stepid)).SELECTED = .T.
+			IF  ogdwindow.check1.VALUE = .T.
+				ogdwindow.container1.oletree.SELECTEDITEM.IMAGE = "ignore"
+			ELSE
+
+				IF EMPTY(ALLTRIM(stepinterid))
+					ogdwindow.container1.oletree.SELECTEDITEM.IMAGE = "person"
+				ELSE
+					ogdwindow.container1.oletree.SELECTEDITEM.IMAGE = "cmd"
+				ENDIF
+			ENDIF
+		CATCH
+		ENDTRY
+
+		RETURN
+
+	PROCEDURE deletestep(ogdwindow)
+		IF DELETED() = .F.
+
+			TRY && AVOID ERROR WHEN CANN'T SELECT A REMOVED STEP (STEP REMOVED BY COLORS SYSTEM (READ MODE) )
+				ogdwindow.oletree.nodes.REMOVE(UPPER(ALLTRIM(stepid)))
 			CATCH
 			ENDTRY
-			
-RETURN
 
-PROCEDURE DeleteStep(oGDWindow)
- 		IF DELETED() = .f.
- 					 
- 					 TRY && AVOID ERROR WHEN CANN'T SELECT A REMOVED STEP (STEP REMOVED BY COLORS SYSTEM (READ MODE) )
-							oGDWindow.oleTree.Nodes.Remove(UPPER(ALLTRIM(stepid)))
-						CATCH
-						ENDTRY
-						
-  					DELETE
-     ENDIF
-RETURN
+			DELETE
+		ENDIF
+		RETURN
 
-PROCEDURE CheckNewStep()
+	PROCEDURE checknewstep()
 
-LOCAL c_Table,n_Record
+		LOCAL c_table,n_record
 
-LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule
+		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule
 
-IF this.lVisualCompiler = .f.
-	RETURN .t.
-ENDIF
- 
-c_table = ALIAS()
-n_record = RECNO()
- 
-* Don't allow creating new step from a disabled component
-SELECT t38
-IF t38->stepdis = .t.
-	 	SELECT (c_table)
-	 	GOTO n_record	
- 		RETURN .f.
-ENDIF
-********************************************************* 
- 
-		myret = .f.
-			
-		cInterNum = ALLTRIM(STR(t38->stepinternum))
-			
+		IF THIS.lvisualcompiler = .F.
+			RETURN .T.
+		ENDIF
+
+		c_table = ALIAS()
+		n_record = RECNO()
+
+		* Don't allow creating new step from a disabled component
+		SELECT t38
+		IF t38->stepdis = .T.
+			SELECT (c_table)
+			GOTO n_record
+			RETURN .F.
+		ENDIF
+		*********************************************************
+
+		myret = .F.
+
+		cinternum = ALLTRIM(STR(t38->stepinternum))
+
 		SELECT t46
-		
-		IF .not. EMPTY(t38->stepinterid)
-		
-		  GOTO top
-		  
-			locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-			
-		  IF FOUND()
-		  
-		  	cHis = f_myhis
-		  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
-		  	
-		  	IF FILE(cFile)
-		  	
-		  		cFile = STRTRAN(cFile,".TRF",".RULES")
-		  		
-		  		IF FILE(cFile)
-		  		
-		  			cRules = FILETOSTR(cFile)
-		  			cRules = UPPER(cRules)
-		  			
-		  			nMax = MEMLINES(cRules)
-		  			
-		  			FOR X = 1 TO nMax
-		  			
-		  				cLine = MLINE(cRules,x)
-		  				cLine = ALLTRIM(cLine)
-		  				cRule = "AllowInteraction: " + cInterNum
-		  				
-		  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
-		  			 		myret = .t.
-		  			 		EXIT
-		  			  ENDIF  
-		  			  
-		  			NEXT
-		  					  					
-		  		ELSE
-			  	  		 STMSG( " (Check New Step) Cann't find the Rules file : " + cFile )
-			  	  		 myret = .t.	
-		  		ENDIF
-		  		
-		  	ENDIF
-		  
-		  ENDIF
 
-		  
-		ENDIF
-	
-	SELECT (c_table)
-	GOTO n_record	
-	
-RETURN myret
+		IF .NOT. EMPTY(t38->stepinterid)
 
+			GOTO TOP
 
-PROCEDURE IsThisStepIsTheRoot()
+			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 
-				LOCAL  c_Table,n_Record,n_Record2
-				LOCAL myret,lCont,cParent
+			IF FOUND()
 
-				myret = .f.
+				chis = f_myhis
+				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
 
-  			c_table = ALIAS()
-				n_record = RECNO()
-			
-  			SELECT t38
-  			
-				n_record2 = RECNO()
-  			
-  			
-  			IF  EMPTY(t38->stepinterid)
-  			
-  				myret = .t.
-  			
-  				lCont = .T.
-  			  cParent = t38->ParentID
-  		  
-  				DO WHILE lCont = .t.
-  		
-  					GOTO top
-  							  				
-  					LOCATE for ALLTRIM(t38->stepid) == ALLTRIM(cParent)
-  					
-  						IF FOUND()
-  						
-  							IF .not. EMPTY(t38->stepinterid)
-  								myret = .f.
-  								lcont = .f.
-  							ELSE
-  								lcont = .t.
-  								cParent = t38->ParentID
-  							ENDIF
-  						ENDIF
-  					
-  						IF UPPER(ALLTRIM(cParent)) == "SP_"
-  							lcont = .f.
-  						ENDIF
-  					
-  					
- 	 			ENDDO
-  			ENDIF
-  			
-				GOTO n_record2
-				
-				
-				SELECT (c_table)
-				GOTO n_record	
-	
-				
-RETURN myret
+				IF FILE(cfile)
 
+					cfile = STRTRAN(cfile,".TRF",".RULES")
 
-PROCEDURE CheckSubComponent(cComponentFile)
+					IF FILE(cfile)
 
-LOCAL c_Table,n_Record
-LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
-LOCAL cACFile
+						crules = FILETOSTR(cfile)
+						crules = UPPER(crules)
 
-* this procedure is called from the components browser window
+						nmax = MEMLINES(crules)
 
-* if the syntax directed editor is disabled 
-IF this.lVisualCompiler = .f. .or. this.IsThisStepIsTheRoot() = .t.
-	RETURN .t.
-ENDIF
- 
- 
-c_table = ALIAS()
-n_record = RECNO()
- 
-myret = .f.
+						FOR x = 1 TO nmax
 
+							cline = MLINE(crules,x)
+							cline = ALLTRIM(cline)
+							crule = "AllowInteraction: " + cinternum
 
-* Load the rules of the active component (will be the parent) and save the component file to variable cACFile 	
+							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+								myret = .T.
+								EXIT
+							ENDIF
 
-			cInterNum = ALLTRIM(STR(t38->stepinternum))
-				
-			SELECT t46
-			GOTO top
-			
-			IF .not. EMPTY(t38->stepinterid)
-				locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-				
-			  IF FOUND()
-			  
-			  	cHis = f_myhis
-			  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
-			  	cACFile = cFile
-			  	
-			  	IF FILE(cFile) 
-			  	
-			  		cFile = STRTRAN(cFile,".TRF",".RULES")
-			  		
-			  		IF FILE(cFile)
-			  		
-			  			cRules = FILETOSTR(cFile)
-			  			cRules = UPPER(cRules)
-			  			
-			  			nMax = MEMLINES(cRules)
-			  			FOR X = 1 TO nMax
-			  				cLine = MLINE(cRules,x)
-			  				cLine = ALLTRIM(cLine)
-			  				cRule = "AllowInteraction: " + cInterNum
-			  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
-			  			 		
-			  			 		
-			  			 			FOR T = x TO nMax
-			  			
-							  				cLine = MLINE(cRules,T)
-							  				cLine = UPPER(ALLTRIM(cLine))
-							  				
-							  				cRule = "SCOPE:"
-							  				IF LEFT(cLine,6) == cRule
-							  					cLine = SUBSTR(cLine,7)
-							  					cLine = ALLTRIM(cLine)
-							  					IF cLine == "GENERAL"
-							  						myret = .t.
-							  						EXIT
-							  					ENDIF
-							  				ENDIF
-							  				
-							  				cRule = "ALLOW:"
-							  				IF LEFT(cLine,6) == cRule
-							  				   cLine = SUBSTR(cLine,7)
-							  				   cLine = ALLTRIM(cLine)
-							  				   cLine = cLine + ".TRF"
-							  				   IF RIGHT(UPPER(ALLTRIM(cComponentFile)),LEN(cLine)) == cLine
-							  					   myret = .t.
-							  			 			EXIT
-							  			 		ELSE
-							  			 	  	LOOP
-							  				   ENDIF
-							  			  ENDIF  
-							  			  
-							  			  cRule = "END"
-							  			  IF LEFT(cLine,3) == cRule
-							  			  	EXIT
-							  			  ENDIF
-							  			  	
-							  			NEXT
-			  			 		
-			  			 		EXIT
-			  			 		
-			  			  ENDIF  
-			  			NEXT
-			  			
-			  			
-			      ELSE
-			  	  		 STMSG( " (Check Sub Component) Cann't find the Rules file : " + cFile )
-			  	  		 myret = .t.			
-			  		ENDIF
-			  	ENDIF
-			  
-			  ENDIF
-			ENDIF
-				
-			SELECT (c_table)
-			GOTO n_record	
-	
-RETURN myret
+						NEXT
 
-PROCEDURE CheckParentComponent()
-
-LOCAL c_Table,n_Record
-LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule,T
-LOCAL cComponentFile
-LOCAL lcont,cParent
-
-* Used by (Goal Designer - Ignore Step) to determine is this operation is allowed or not
-
-* Checking starts from the child 
-
-* If the syntax directed editor is disabled , return true
-
-IF this.lVisualCompiler = .f.
-	RETURN .t.
-ENDIF
- 
-
-cComponentFile = "NoComponentFile"
-
-c_table = ALIAS()
-n_record = RECNO()
- 
-myret = .T.
-
-* Load the rules of the current component to the variable cRules
-	
-cInterNum = ALLTRIM(STR(t38->stepinternum))
-	
-SELECT t46
-GOTO top
-IF .not. EMPTY(t38->stepinterid)
-	locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-	
-  IF FOUND()
-  
-  	cHis = f_myhis
-  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
-  	IF FILE(cFile)
-  		cFile = STRTRAN(cFile,".TRF",".RULES")
-  		IF FILE(cFile)
-  			cRules = FILETOSTR(cFile)
-  			cRules = UPPER(cRules)
-  			
-  			************* Determine component name
-  			* Get the file name of the parent component then load the parent component rules 
-  			* the parent component must be active (not disabled)
-  			* when you get the parent component store it in the variable : cComponentFile
-  			
-  			SELECT t38
-  			
-  			lCont = .T.
-  		  cParent = t38->ParentID
-  		  
-  			DO WHILE lCont = .t.
-  				  GOTO top
-  				  				
-  					LOCATE for UPPER(ALLTRIM(t38->stepid)) == UPPER(ALLTRIM(cParent))
-  					
-  						IF FOUND()
-  						
-  							IF t38->stepdis = .f.
-  								lcont = .f.
-  							ELSE
-  								lcont = .t.
-  								cParent = t38->ParentID
-  							ENDIF
-  						ENDIF
-  					
-  						IF UPPER(ALLTRIM(cParent)) == "SP_"
-  							lcont = .f.
-  						ENDIF
-  					
-  					
-  			ENDDO
-  			
-  			cParent = UPPER(ALLTRIM(cParent))
-  			IF .not. EMPTY(cParent) 
-  			IF .not. cParent == "SP_" 
-  				
-  				SELECT t46
-					GOTO top
-					IF .not. EMPTY(t38->stepinterid)
-							locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-  						IF FOUND()
-  							cComponentFile = ALLTRIM(MLINE(f_myhis,9))
-  						ENDIF
-  				ENDIF
-  						
-  	  	ENDIF 		
-  			ENDIF
-  			
-  			SELECT t38
-  			GOTO n_Record
-  			
-  			*************
-  			* Now you have the component rules stored in the variable : cRules
-  			* And you have the parent component stored in the varaible : cComponentFile
-  			* Check the rules to know if this parent component is allowed or not
-  			
-  			
-  			nMax = MEMLINES(cRules)
-  			FOR X = 1 TO nMax
-  				cLine = MLINE(cRules,x)
-  				cLine = ALLTRIM(cLine)
-  				cRule = "ALLOWPARENT:"
-  				IF  left(UPPER(ALLTRIM(cLine)),12) == UPPER(ALLTRIM(cRule))
-  			 		
-  			 		 			cLine = SUBSTR(cLine,13)
-				  					cLine = UPPER(ALLTRIM(cLine))
-				  					IF cLine == "GENERAL"
-				  						myret = .t.
-				  						EXIT
-				  					ELSE
-				  						myret = .F.
-				  					ENDIF
-				  		 
-						
-						FOR T = x TO nMax
-  			
-				  				cLine = MLINE(cRules,T)
-				  				cLine = UPPER(ALLTRIM(cLine))
-				  								  				
-				  				cRule = "ALLOW:"
-				  				IF LEFT(cLine,6) == cRule
-				  				   cLine = SUBSTR(cLine,7)
-				  				   cLine = ALLTRIM(cLine)
-				  				   cLine = cLine + ".TRF"
-				  				   IF RIGHT(UPPER(ALLTRIM(cComponentFile)),LEN(cLine)) == cLine
-				  					   myret = .t.
-				  			 			EXIT
-				  			 		ELSE
-				  			 	  	LOOP
-				  				   ENDIF
-				  			  ENDIF  
-				  			  
-				  			  cRule = "END"
-				  			  IF LEFT(cLine,3) == cRule
-				  			  	EXIT
-				  			  ENDIF
-				  			  	
-				  			NEXT
-  			 		
-  			 		EXIT
-  			 		
-  			  ENDIF  
-  			NEXT
-  			
-  		ELSE
-			  	  		 STMSG( " (Check Parent Component) Cann't find the Rules file : " + cFile )
-			  	  		 myret = .t.	
-  		ENDIF
-  	ENDIF
-  
-  ENDIF
-ENDIF
-	
-	SELECT (c_table)
-	GOTO n_record	
-	
-RETURN myret
-
-PROCEDURE IsParentAllowedForComponent(cComponentFile)
-
-			LOCAL cFile,cRules,myret,nMax,X,cLine,cRule
-			LOCAL c_Table,n_Record
-			LOCAL cParentComponentFile
-			
-			* written to be called from the components browser
-		  * checking starts while the active step in the steps tree is the parent 
-		  * the child is not added yet, this check called before adding the child to be sure that it's allowed
-		  
-		  * called also from (Goal Designer - Paste button)
-			
-			myret = .f.
-			
-			c_table = ALIAS()
-			n_record = RECNO()
-			
-			* Get the parent
-			
-			cParentComponentFile = "NoComponent"
-			
-			SELECT t46
-			GOTO top
-			IF .not. EMPTY(t38->stepinterid)
-					locate FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-					IF FOUND()
-						cParentComponentFile = ALLTRIM(MLINE(f_myhis,9))
+					ELSE
+						stmsg( " (Check New Step) Cann't find the Rules file : " + cfile )
+						myret = .T.
 					ENDIF
+
+				ENDIF
+
 			ENDIF
-			
-			
-			cFile = STRTRAN(cComponentFile,".TRF",".RULES")
-			
-      **** Written to avoid problem when the component is EXE file , not TRF File
-			IF cFile == cComponentFile
-					RETURN .f.
-			ENDIF
-			********************************
-			
-  		IF FILE(cFile)
-  		
-  			cRules = FILETOSTR(cFile)
-  			cRules = UPPER(cRules)
-  			
-  			nMax = MEMLINES(cRules)
-  			
-  			FOR X = 1 TO nMax
-  			
-  				cLine = MLINE(cRules,x)
-  				cLine = ALLTRIM(cLine)
-  				
-  				cRule = "ALLOWPARENT:"
-  				
-  				IF  left(UPPER(ALLTRIM(cLine)),12) == UPPER(ALLTRIM(cRule))
-  			 		
-  			 		 			cLine = SUBSTR(cLine,13)
-				  					cLine = UPPER(ALLTRIM(cLine))
-				  					IF cLine == "GENERAL"
-				  						myret = .t.
-				  						EXIT
-				  					ELSE
-				  						myret = .F.
-				  					ENDIF
-							
-										FOR T = x TO nMax
-		  			
-						  				cLine = MLINE(cRules,T)
-						  				cLine = UPPER(ALLTRIM(cLine))
-						  								  				
-						  				cRule = "ALLOW:"
-						  				IF LEFT(cLine,6) == cRule
-						  				   cLine = SUBSTR(cLine,7)
-						  				   cLine = ALLTRIM(cLine)
-						  				   cLine = cLine + ".TRF"
-						  				   IF RIGHT(UPPER(ALLTRIM(cParentComponentFile)),LEN(cLine)) == cLine
-						  					   myret = .t.
-						  			 			EXIT
-						  			 		ELSE
-						  			 	  	LOOP
-						  				   ENDIF
-						  			  ENDIF  
-						  			  
-						  			  cRule = "END"
-						  			  IF LEFT(cLine,3) == cRule
-						  			  	EXIT
-						  			  ENDIF
-						  			  	
-						  			NEXT
-  			 		
-  			 					 EXIT
-  			 		
-  			 ENDIF  
-  			 
-  			NEXT
-  			
-			ELSE
-			  	  		 STMSG( " (Check Parent Component) Cann't find the Rules file : " + cFile  )
-			  	  		 myret = .t.		
-			Endif
-
-			SELECT (c_table)
-			GOTO n_record	
-
-RETURN myret
 
 
-
-*-----------------------------*
-* Navigation (Next/Previous)
-* Used to move from step to another step in the same interaction
-* Useful for moving from event step to event procedure step
-*-----------------------------*
- 
-PROCEDURE MoveToStepInTheSameInteraction(oGDWindow,nStepsToMove)
-
-	LOCAL n_Record
-	LOCAL cInteractionID,nInteractionNumber
-
-	SELECT t38
-
-	n_record = RECNO()
-
-	cInteractionID = t38->stepinterid
-	nInteractionNumber = t38->stepinternum
-  
-  nInteractionNumber = nInteractionNumber + nStepsToMove
-   
-	IF .not. EMPTY(cInteractionID)
-		
-		GOTO top
-		
-		locate FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cInteractionID)) .and. t38->stepinternum = nInteractionNumber 
-
-		IF .not. FOUND()
-		
-			GOTO n_record	
-			
 		ENDIF
-	
-		oGDWindow.oletree.Nodes.item(ALLTRIM(t38->stepid)).Selected = .T.
-		
-	ENDIF
-	
-	
-RETURN
 
-PROCEDURE CheckMoveToStepInTheSameInteraction(oGDWindow,nStepsToMove)
+		SELECT (c_table)
+		GOTO n_record
 
-	LOCAL myret
-	LOCAL c_Table,n_Record,nRecord2
-	
-	myret = .f.
-	
-	c_Table = ALIAS()
-	n_Record = RECNO()
-	
-	
-  SELECT t38
-	
-	n_Record2 = RECNO()
-	
-	cInteractionID = t38->stepinterid
-	nInteractionNumber = t38->stepinternum
-  
-  nInteractionNumber = nInteractionNumber + nStepsToMove
-   
-	IF .not. EMPTY(cInteractionID)
+		RETURN myret
 
-		GOTO top
-		
-		locate FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cInteractionID)) .and. t38->stepinternum = nInteractionNumber 
 
-		IF FOUND()
+	PROCEDURE isthisstepistheroot()
 
-			myret = .t.
-			
-		
+		LOCAL  c_table,n_record,n_record2
+		LOCAL myret,lcont,cparent
+
+		myret = .F.
+
+		c_table = ALIAS()
+		n_record = RECNO()
+
+		SELECT t38
+
+		n_record2 = RECNO()
+
+
+		IF  EMPTY(t38->stepinterid)
+
+			myret = .T.
+
+			lcont = .T.
+			cparent = t38->parentid
+
+			DO WHILE lcont = .T.
+
+				GOTO TOP
+
+				LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+
+				IF FOUND()
+
+					IF .NOT. EMPTY(t38->stepinterid)
+						myret = .F.
+						lcont = .F.
+					ELSE
+						lcont = .T.
+						cparent = t38->parentid
+					ENDIF
+				ENDIF
+
+				IF UPPER(ALLTRIM(cparent)) == "SP_"
+					lcont = .F.
+				ENDIF
+
+
+			ENDDO
 		ENDIF
-	
+
 		GOTO n_record2
-		
-	ENDIF
-	
-	
-	SELECT (c_table)
-	GOTO n_record	
-	
-RETURN myret
-
-*******************************************
-
-PROCEDURE GetNodeChilds(oNode, objGDWindow)
-
-LOCAL n
-
-SELECT t38
-GOTO top
-
-LOCATE FOR UPPER(ALLTRIM(stepid)) == UPPER(ALLTRIM(oNode.Key))
-IF FOUND()
-cTheStepsCode = cTheStepsCode + CHR(13) + CHR(10) + T38->STEPCODE
-ENDIF
 
 
-lcKeys = lcKeys + oNode.Key + [/]
-	nKeysCount = nKeysCount + 1
-IF oNode.Children > 0
-   n = oNode.Child.Index
-   DO WHILE n # oNode.LastSibling.Index
-      this.GetNodeChilds(objGDWindow.container1.oletree.Nodes(n),objGDWindow)
-      IF NOT ISNULL(objGDWindow.container1.oletree.Nodes(n).Next)
-         n = objGDWindow.container1.oleTree.Nodes(n).Next.Index
-      ELSE
-         EXIT
-      ENDIF
-   ENDDO
-ENDIF
-
-RETURN
-
-PROCEDURE AllNodesInOrder(oGDWindow)
-	LOCAL vfile
-	
-	PRIVATE lcKeys  , nKeysCount , cTheStepsCode
-	
-	nKeysCount = 0
-	cTheStepsCode = ""
-	lcKeys = []
-	
-	oGDWindow.container1.oletree.nodes.item("SP_").SELECTED = .T.
-
-	oNode = oGDWindow.container1.oletree.SELECTEDITEM
-
-	this.GetNodeChilds(oNode , oGDWindow)
-
-	vfile = GETFILE("*.prg")
-	STRTOFILE(cTheStepsCode,vFile)
-	
-	MESSAGEBOX(ALLTRIM(STR(nKeysCount)),0,"wow")
-	
-RETURN
-
-**********************************************************************
+		SELECT (c_table)
+		GOTO n_record
 
 
-PROCEDURE MoveStepUp(oGDWindow)
+		RETURN myret
 
-		LOCAL X,PLIST
-		
+
+	PROCEDURE checksubcomponent(ccomponentfile)
+
+		LOCAL c_table,n_record
+		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule,T
+		LOCAL cacfile
+
+		* this procedure is called from the components browser window
+
+		* if the syntax directed editor is disabled
+		IF THIS.lvisualcompiler = .F. .OR. THIS.isthisstepistheroot() = .T.
+			RETURN .T.
+		ENDIF
+
+
+		c_table = ALIAS()
+		n_record = RECNO()
+
+		myret = .F.
+
+
+		* Load the rules of the active component (will be the parent) and save the component file to variable cACFile
+
+		cinternum = ALLTRIM(STR(t38->stepinternum))
+
+		SELECT t46
+		GOTO TOP
+
+		IF .NOT. EMPTY(t38->stepinterid)
+			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+
+			IF FOUND()
+
+				chis = f_myhis
+				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+				cacfile = cfile
+
+				IF FILE(cfile)
+
+					cfile = STRTRAN(cfile,".TRF",".RULES")
+
+					IF FILE(cfile)
+
+						crules = FILETOSTR(cfile)
+						crules = UPPER(crules)
+
+						nmax = MEMLINES(crules)
+						FOR x = 1 TO nmax
+							cline = MLINE(crules,x)
+							cline = ALLTRIM(cline)
+							crule = "AllowInteraction: " + cinternum
+							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+
+
+								FOR T = x TO nmax
+
+									cline = MLINE(crules,T)
+									cline = UPPER(ALLTRIM(cline))
+
+									crule = "SCOPE:"
+									IF LEFT(cline,6) == crule
+										cline = SUBSTR(cline,7)
+										cline = ALLTRIM(cline)
+										IF cline == "GENERAL"
+											myret = .T.
+											EXIT
+										ENDIF
+									ENDIF
+
+									crule = "ALLOW:"
+									IF LEFT(cline,6) == crule
+										cline = SUBSTR(cline,7)
+										cline = ALLTRIM(cline)
+										cline = cline + ".TRF"
+										IF RIGHT(UPPER(ALLTRIM(ccomponentfile)),LEN(cline)) == cline
+											myret = .T.
+											EXIT
+										ELSE
+											LOOP
+										ENDIF
+									ENDIF
+
+									crule = "END"
+									IF LEFT(cline,3) == crule
+										EXIT
+									ENDIF
+
+								NEXT
+
+								EXIT
+
+							ENDIF
+						NEXT
+
+
+					ELSE
+						stmsg( " (Check Sub Component) Cann't find the Rules file : " + cfile )
+						myret = .T.
+					ENDIF
+				ENDIF
+
+			ENDIF
+		ENDIF
+
+		SELECT (c_table)
+		GOTO n_record
+
+		RETURN myret
+
+	PROCEDURE checkparentcomponent()
+
+		LOCAL c_table,n_record
+		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule,T
+		LOCAL ccomponentfile
+		LOCAL lcont,cparent
+
+		* Used by (Goal Designer - Ignore Step) to determine is this operation is allowed or not
+
+		* Checking starts from the child
+
+		* If the syntax directed editor is disabled , return true
+
+		IF THIS.lvisualcompiler = .F.
+			RETURN .T.
+		ENDIF
+
+
+		ccomponentfile = "NoComponentFile"
+
+		c_table = ALIAS()
+		n_record = RECNO()
+
+		myret = .T.
+
+		* Load the rules of the current component to the variable cRules
+
+		cinternum = ALLTRIM(STR(t38->stepinternum))
+
+		SELECT t46
+		GOTO TOP
+		IF .NOT. EMPTY(t38->stepinterid)
+			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+
+			IF FOUND()
+
+				chis = f_myhis
+				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+				IF FILE(cfile)
+					cfile = STRTRAN(cfile,".TRF",".RULES")
+					IF FILE(cfile)
+						crules = FILETOSTR(cfile)
+						crules = UPPER(crules)
+
+						************* Determine component name
+						* Get the file name of the parent component then load the parent component rules
+						* the parent component must be active (not disabled)
+						* when you get the parent component store it in the variable : cComponentFile
+
+						SELECT t38
+
+						lcont = .T.
+						cparent = t38->parentid
+
+						DO WHILE lcont = .T.
+							GOTO TOP
+
+							LOCATE FOR UPPER(ALLTRIM(t38->stepid)) == UPPER(ALLTRIM(cparent))
+
+							IF FOUND()
+
+								IF t38->stepdis = .F.
+									lcont = .F.
+								ELSE
+									lcont = .T.
+									cparent = t38->parentid
+								ENDIF
+							ENDIF
+
+							IF UPPER(ALLTRIM(cparent)) == "SP_"
+								lcont = .F.
+							ENDIF
+
+
+						ENDDO
+
+						cparent = UPPER(ALLTRIM(cparent))
+						IF .NOT. EMPTY(cparent)
+							IF .NOT. cparent == "SP_"
+
+								SELECT t46
+								GOTO TOP
+								IF .NOT. EMPTY(t38->stepinterid)
+									LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+									IF FOUND()
+										ccomponentfile = ALLTRIM(MLINE(f_myhis,9))
+									ENDIF
+								ENDIF
+
+							ENDIF
+						ENDIF
+
+						SELECT t38
+						GOTO n_record
+
+						*************
+						* Now you have the component rules stored in the variable : cRules
+						* And you have the parent component stored in the varaible : cComponentFile
+						* Check the rules to know if this parent component is allowed or not
+
+
+						nmax = MEMLINES(crules)
+						FOR x = 1 TO nmax
+							cline = MLINE(crules,x)
+							cline = ALLTRIM(cline)
+							crule = "ALLOWPARENT:"
+							IF  LEFT(UPPER(ALLTRIM(cline)),12) == UPPER(ALLTRIM(crule))
+
+								cline = SUBSTR(cline,13)
+								cline = UPPER(ALLTRIM(cline))
+								IF cline == "GENERAL"
+									myret = .T.
+									EXIT
+								ELSE
+									myret = .F.
+								ENDIF
+
+
+								FOR T = x TO nmax
+
+									cline = MLINE(crules,T)
+									cline = UPPER(ALLTRIM(cline))
+
+									crule = "ALLOW:"
+									IF LEFT(cline,6) == crule
+										cline = SUBSTR(cline,7)
+										cline = ALLTRIM(cline)
+										cline = cline + ".TRF"
+										IF RIGHT(UPPER(ALLTRIM(ccomponentfile)),LEN(cline)) == cline
+											myret = .T.
+											EXIT
+										ELSE
+											LOOP
+										ENDIF
+									ENDIF
+
+									crule = "END"
+									IF LEFT(cline,3) == crule
+										EXIT
+									ENDIF
+
+								NEXT
+
+								EXIT
+
+							ENDIF
+						NEXT
+
+					ELSE
+						stmsg( " (Check Parent Component) Cann't find the Rules file : " + cfile )
+						myret = .T.
+					ENDIF
+				ENDIF
+
+			ENDIF
+		ENDIF
+
+		SELECT (c_table)
+		GOTO n_record
+
+		RETURN myret
+
+	PROCEDURE isparentallowedforcomponent(ccomponentfile)
+
+		LOCAL cfile,crules,myret,nmax,x,cline,crule
+		LOCAL c_table,n_record
+		LOCAL cparentcomponentfile
+
+		* written to be called from the components browser
+		* checking starts while the active step in the steps tree is the parent
+		* the child is not added yet, this check called before adding the child to be sure that it's allowed
+
+		* called also from (Goal Designer - Paste button)
+
+		myret = .F.
+
+		c_table = ALIAS()
+		n_record = RECNO()
+
+		* Get the parent
+
+		cparentcomponentfile = "NoComponent"
+
+		SELECT t46
+		GOTO TOP
+		IF .NOT. EMPTY(t38->stepinterid)
+			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			IF FOUND()
+				cparentcomponentfile = ALLTRIM(MLINE(f_myhis,9))
+			ENDIF
+		ENDIF
+
+
+		cfile = STRTRAN(ccomponentfile,".TRF",".RULES")
+
+		**** Written to avoid problem when the component is EXE file , not TRF File
+		IF cfile == ccomponentfile
+			RETURN .F.
+		ENDIF
+		********************************
+
+		IF FILE(cfile)
+
+			crules = FILETOSTR(cfile)
+			crules = UPPER(crules)
+
+			nmax = MEMLINES(crules)
+
+			FOR x = 1 TO nmax
+
+				cline = MLINE(crules,x)
+				cline = ALLTRIM(cline)
+
+				crule = "ALLOWPARENT:"
+
+				IF  LEFT(UPPER(ALLTRIM(cline)),12) == UPPER(ALLTRIM(crule))
+
+					cline = SUBSTR(cline,13)
+					cline = UPPER(ALLTRIM(cline))
+					IF cline == "GENERAL"
+						myret = .T.
+						EXIT
+					ELSE
+						myret = .F.
+					ENDIF
+
+					FOR T = x TO nmax
+
+						cline = MLINE(crules,T)
+						cline = UPPER(ALLTRIM(cline))
+
+						crule = "ALLOW:"
+						IF LEFT(cline,6) == crule
+							cline = SUBSTR(cline,7)
+							cline = ALLTRIM(cline)
+							cline = cline + ".TRF"
+							IF RIGHT(UPPER(ALLTRIM(cparentcomponentfile)),LEN(cline)) == cline
+								myret = .T.
+								EXIT
+							ELSE
+								LOOP
+							ENDIF
+						ENDIF
+
+						crule = "END"
+						IF LEFT(cline,3) == crule
+							EXIT
+						ENDIF
+
+					NEXT
+
+					EXIT
+
+				ENDIF
+
+			NEXT
+
+		ELSE
+			stmsg( " (Check Parent Component) Cann't find the Rules file : " + cfile  )
+			myret = .T.
+		ENDIF
+
+		SELECT (c_table)
+		GOTO n_record
+
+		RETURN myret
+
+
+
+		*-----------------------------*
+		* Navigation (Next/Previous)
+		* Used to move from step to another step in the same interaction
+		* Useful for moving from event step to event procedure step
+		*-----------------------------*
+
+	PROCEDURE movetostepinthesameinteraction(ogdwindow,nstepstomove)
+
+		LOCAL n_record
+		LOCAL cinteractionid,ninteractionnumber
+
+		SELECT t38
+
+		n_record = RECNO()
+
+		cinteractionid = t38->stepinterid
+		ninteractionnumber = t38->stepinternum
+
+		ninteractionnumber = ninteractionnumber + nstepstomove
+
+		IF .NOT. EMPTY(cinteractionid)
+
+			GOTO TOP
+
+			LOCATE FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cinteractionid)) .AND. t38->stepinternum = ninteractionnumber
+
+			IF .NOT. FOUND()
+
+				GOTO n_record
+
+			ENDIF
+
+			ogdwindow.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).SELECTED = .T.
+
+		ENDIF
+
+
+		RETURN
+
+	PROCEDURE checkmovetostepinthesameinteraction(ogdwindow,nstepstomove)
+
+		LOCAL myret
+		LOCAL c_table,n_record,nrecord2
+
+		myret = .F.
+
+		c_table = ALIAS()
+		n_record = RECNO()
+
+
+		SELECT t38
+
+		n_record2 = RECNO()
+
+		cinteractionid = t38->stepinterid
+		ninteractionnumber = t38->stepinternum
+
+		ninteractionnumber = ninteractionnumber + nstepstomove
+
+		IF .NOT. EMPTY(cinteractionid)
+
+			GOTO TOP
+
+			LOCATE FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cinteractionid)) .AND. t38->stepinternum = ninteractionnumber
+
+			IF FOUND()
+
+				myret = .T.
+
+
+			ENDIF
+
+			GOTO n_record2
+
+		ENDIF
+
+
+		SELECT (c_table)
+		GOTO n_record
+
+		RETURN myret
+
+		*******************************************
+
+	PROCEDURE getnodechilds(onode, objgdwindow)
+
+		LOCAL N
+
+		SELECT t38
+		GOTO TOP
+
+		LOCATE FOR UPPER(ALLTRIM(stepid)) == UPPER(ALLTRIM(onode.KEY))
+		IF FOUND()
+			cthestepscode = cthestepscode + CHR(13) + CHR(10) + t38->stepcode
+		ENDIF
+
+
+		lckeys = lckeys + onode.KEY + [/]
+		nkeyscount = nkeyscount + 1
+		IF onode.children > 0
+			N = onode.CHILD.INDEX
+			DO WHILE N # onode.lastsibling.INDEX
+				THIS.getnodechilds(objgdwindow.container1.oletree.nodes(N),objgdwindow)
+				IF NOT ISNULL(objgdwindow.container1.oletree.nodes(N).NEXT)
+					N = objgdwindow.container1.oletree.nodes(N).NEXT.INDEX
+				ELSE
+					EXIT
+				ENDIF
+			ENDDO
+		ENDIF
+
+		RETURN
+
+	PROCEDURE allnodesinorder(ogdwindow)
+		LOCAL vfile
+
+		PRIVATE lckeys  , nkeyscount , cthestepscode
+
+		nkeyscount = 0
+		cthestepscode = ""
+		lckeys = []
+
+		ogdwindow.container1.oletree.nodes.ITEM("SP_").SELECTED = .T.
+
+		onode = ogdwindow.container1.oletree.SELECTEDITEM
+
+		THIS.getnodechilds(onode , ogdwindow)
+
+		vfile = GETFILE("*.prg")
+		STRTOFILE(cthestepscode,vfile)
+
+		MESSAGEBOX(ALLTRIM(STR(nkeyscount)),0,"wow")
+
+		RETURN
+
+		**********************************************************************
+
+
+	PROCEDURE movestepup(ogdwindow)
+
+		LOCAL x,plist
+
 		* When you change the parent of the node to the same parent the node is moved to be the first node in the same level
 		* to move step up
 		* 1 - move the first previous node
 		* 2 - move the step that we want to move up
 		* 3 - move the second previous node (if found)
-		* 4 - move the third previous  node (if found) and so on 
+		* 4 - move the third previous  node (if found) and so on
 
-		IF .NOT. ISNULL( oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Previous )
+		IF .NOT. ISNULL( ogdwindow.container1.oletree.nodes.ITEM(ogdwindow.container1.oletree.SELECTEDITEM.KEY).previous )
 
-			oGDWindow.LockScreen = .t.
-			
-			DIMENSION PLIST(1)
-			PLIST(1) = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Previous.Key 
+			ogdwindow.LOCKSCREEN = .T.
+
+			DIMENSION plist(1)
+			plist(1) = ogdwindow.container1.oletree.nodes.ITEM(ogdwindow.container1.oletree.SELECTEDITEM.KEY).previous.KEY
 
 			* CREATE LIST OF PREVIOUS NODES
-			
-			DO WHILE .NOT. ISNULL( oGDWindow.CONtainer1.OLETREE.Nodes.ITEM( PLIST(ALEN(PLIST,1)) ).Previous )
 
-				DIMENSION PLIST(ALEN(PLIST,1)+1)
+			DO WHILE .NOT. ISNULL( ogdwindow.container1.oletree.nodes.ITEM( plist(ALEN(plist,1)) ).previous )
 
-				PLIST(ALEN(PLIST,1)) = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM( PLIST(ALEN(PLIST,1)-1) ).Previous.Key
-			
+				DIMENSION plist(ALEN(plist,1)+1)
+
+				plist(ALEN(plist,1)) = ogdwindow.container1.oletree.nodes.ITEM( plist(ALEN(plist,1)-1) ).previous.KEY
+
 			ENDDO
-			
-			oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(PLIST(1)).parent = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(PLIST(1)).parent
-			oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).parent = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).parent
-			
-			IF ALEN(PLIST,1) > 1
-				FOR X = 2 TO ALEN(PLIST,1)
-					oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(PLIST(X)).parent = oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(PLIST(X)).parent
+
+			ogdwindow.container1.oletree.nodes.ITEM(plist(1)).PARENT = ogdwindow.container1.oletree.nodes.ITEM(plist(1)).PARENT
+			ogdwindow.container1.oletree.nodes.ITEM(ogdwindow.container1.oletree.SELECTEDITEM.KEY).PARENT = ogdwindow.container1.oletree.nodes.ITEM(ogdwindow.container1.oletree.SELECTEDITEM.KEY).PARENT
+
+			IF ALEN(plist,1) > 1
+				FOR x = 2 TO ALEN(plist,1)
+					ogdwindow.container1.oletree.nodes.ITEM(plist(x)).PARENT = ogdwindow.container1.oletree.nodes.ITEM(plist(x)).PARENT
 				NEXT
 			ENDIF
-			
-		  oGDWindow.LockScreen = .f.
-			
+
+			ogdwindow.LOCKSCREEN = .F.
+
 		ENDIF
 
 
-RETURN
+		RETURN
 
-PROCEDURE MoveStepDown(oGDWindow)
+	PROCEDURE movestepdown(ogdwindow)
 
-	* instead of writing new algorithm from scratch to move the step down 
-	* we will move the next step up 
-	
-	LOCAL cKey
-	
-	IF .NOT. ISNULL( oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Next )
+		* instead of writing new algorithm from scratch to move the step down
+		* we will move the next step up
 
-		cKey = oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY
+		LOCAL ckey
 
-		oGDWindow.CONtainer1.OLETREE.Nodes.ITEM( oGDWindow.CONtainer1.OLETREE.Nodes.ITEM(oGDWindow.CONTAINER1.OLETREE.SELECTEDItem.KEY).Next.KEY ).selected = .T.
+		IF .NOT. ISNULL( ogdwindow.container1.oletree.nodes.ITEM(ogdwindow.container1.oletree.SELECTEDITEM.KEY).NEXT )
 
-		THIS.MOVESTEPUP(oGDWindow)
+			ckey = ogdwindow.container1.oletree.SELECTEDITEM.KEY
 
-		oGDWindow.CONtainer1.OLETREE.Nodes.ITEM( cKey ).selected = .T.
+			ogdwindow.container1.oletree.nodes.ITEM( ogdwindow.container1.oletree.nodes.ITEM(ogdwindow.container1.oletree.SELECTEDITEM.KEY).NEXT.KEY ).SELECTED = .T.
 
-	ENDIF
+			THIS.movestepup(ogdwindow)
+
+			ogdwindow.container1.oletree.nodes.ITEM( ckey ).SELECTED = .T.
+
+		ENDIF
 
 
-RETURN
+		RETURN
 
 
 ENDDEFINE
 
 
-			
+
 

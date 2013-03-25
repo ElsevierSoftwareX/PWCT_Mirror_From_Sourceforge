@@ -1,477 +1,499 @@
+*:******************************************************************************
+*:
+*: Procedure File D:\PWCTSRC\PWCT\PRG\RUNPRO.PRG
+*:
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	Mahmoud Fayed
+*:	Programming without coding technology 1.8 (Smart)
+*:	Free - Open Source
+*:	
+*:	Programming without coding technology 1.8 (Smart)
+*:
+*: Documented using Visual FoxPro Formatting wizard version  .05
+*:******************************************************************************
+*:   runpro
 PARAMETERS myruncmd,cshowwindow
 
 mypath = JUSTPATH(myruncmd)
-myapppath = application.DefaultFilePath 
-application.DefaultFilePath = mypath
+myapppath = APPLICATION.DEFAULTFILEPATH
+APPLICATION.DEFAULTFILEPATH = mypath
 
-oProcess = CREATEOBJECT("Process")
+oprocess = CREATEOBJECT("Process")
 IF TYPE("oProcess") # 'O'
 	MESSAGEBOX( "Cannot create Process object.",0,"Error")
-	return
+	RETURN
 ENDIF
 
-oProcess.cCommandLine = myruncmd
-oProcess.cshowwindow = cshowwindow
+oprocess.ccommandline = myruncmd
+oprocess.cshowwindow = cshowwindow
 
-LOCAL lnRet
-IF !oProcess.Start() 
-	MESSAGEBOX( oProcess.cError,0,"Error")
+LOCAL lnret
+IF !oprocess.START()
+	MESSAGEBOX( oprocess.cerror,0,"Error")
 ELSE
-	lnRet = oProcess.WaitForExit(13333000)
-	IF lnRet # 0
-	MESSAGEBOX(oProcess.cError,0,"Error")
+	lnret = oprocess.waitforexit(13333000)
+	IF lnret # 0
+		MESSAGEBOX(oprocess.cerror,0,"Error")
 	ENDIF
-*	? "Wait is finished.", lnRet
-*	? "Exit code: ", oProcess.GetExitCode()
+	*	? "Wait is finished.", lnRet
+	*	? "Exit code: ", oProcess.GetExitCode()
 ENDIF
 
-oProcess = NULL
+oprocess = NULL
 SET LIBRARY TO
-application.DefaultFilePath = myapppath
+APPLICATION.DEFAULTFILEPATH = myapppath
 
 RETURN
 
 
-DEFINE CLASS Process AS Custom
-	cError = ""
-	cApplicationName = NULL
-	cCommandLine = NULL
-	oProcessAttributes = NULL
-	oThreadAttributes = NULL
-	bInheritHandles = .T.
-	nCreationFlags = 0
-	oEnvironment = NULL
-	cCurrentDirectory = NULL
-*	oStartupInfo = NULL
-	oProcessInformation = NULL
-  cShowWindow = "1"
- 
-	PROCEDURE Init
-	LOCAL llRet
-	THIS.oProcessInformation  = CREATEOBJECT("Struct", "PROCESS_INFORMATION",;
-														"HANDLE hProcess,"+ ;
-														"HANDLE hThread,"+ ;
-														"DWORD dwProcessId,"+ ;
-														"DWORD dwThreadId")
-	llRet = IIF(TYPE("THIS.oProcessInformation")='O',.T.,.F.)
-	RETURN llRet
+*:******************************************************************************
+*:
+*: Class:process  BaseClass: CUSTOM
+*:
+*:******************************************************************************
+DEFINE CLASS PROCESS AS CUSTOM
+	cerror = ""
+	capplicationname = NULL
+	ccommandline = NULL
+	oprocessattributes = NULL
+	othreadattributes = NULL
+	binherithandles = .T.
+	ncreationflags = 0
+	oenvironment = NULL
+	ccurrentdirectory = NULL
+	*	oStartupInfo = NULL
+	oprocessinformation = NULL
+	cshowwindow = "1"
+
+	PROCEDURE INIT
+		LOCAL llret
+		THIS.oprocessinformation  = CREATEOBJECT("Struct", "PROCESS_INFORMATION",;
+			"HANDLE hProcess,"+ ;
+			"HANDLE hThread,"+ ;
+			"DWORD dwProcessId,"+ ;
+			"DWORD dwThreadId")
+		llret = IIF(TYPE("THIS.oProcessInformation")='O',.T.,.F.)
+		RETURN llret
 
 
-	PROCEDURE Destroy
-	THIS.Close()
-	
-	PROCEDURE Close
-	DECLARE INTEGER CloseHandle IN Kernel32 INTEGER
-	CloseHandle( THIS.oProcessInformation.hThread.Val )
-	CloseHandle( THIS.oProcessInformation.hProcess.Val )
-	THIS.oProcessInformation = NULL
-	
-	
-	PROCEDURE Start
-	LPARAMETERS toStartupInfo
-	LOCAL llRet
-	
-	llRet = .F.
-	IF PCOUNT() = 0
-		toStartupInfo = CREATEOBJECT("Struct", "STARTUPINFO",;
-												"DWORD cb,"+ ;
-												"LPTSTR lpReserved,"+ ;
-												"LPTSTR lpDesktop,"+ ;
-												"LPTSTR lpTitle,"+ ;
-												"DWORD dwX,"+ ;
-												"DWORD dwY,"+ ;
-												"DWORD dwXSize,"+ ;
-												"DWORD dwYSize,"+ ;
-												"DWORD dwXCountChars,"+ ;
-												"DWORD dwYCountChars,"+ ;
-												"DWORD dwFillAttribute,"+ ;
-												"DWORD dwFlags,"+ ;
-												"WORD wShowWindow,"+ ;
-												"WORD cbReserved2,"+ ;
-												"LPBYTE lpReserved2,"+ ;
-												"HANDLE hStdInput,"+ ;
-												"HANDLE hStdOutput,"+ ;
-												"HANDLE hStdError")
+	PROCEDURE DESTROY
+		THIS.CLOSE()
+
+	PROCEDURE CLOSE
+		DECLARE INTEGER CloseHandle IN Kernel32 INTEGER
+		closehandle( THIS.oprocessinformation.hthread.VAL )
+		closehandle( THIS.oprocessinformation.hprocess.VAL )
+		THIS.oprocessinformation = NULL
+
+
+	PROCEDURE START
+		LPARAMETERS tostartupinfo
+		LOCAL llret
+
+		llret = .F.
+		IF PCOUNT() = 0
+			tostartupinfo = CREATEOBJECT("Struct", "STARTUPINFO",;
+				"DWORD cb,"+ ;
+				"LPTSTR lpReserved,"+ ;
+				"LPTSTR lpDesktop,"+ ;
+				"LPTSTR lpTitle,"+ ;
+				"DWORD dwX,"+ ;
+				"DWORD dwY,"+ ;
+				"DWORD dwXSize,"+ ;
+				"DWORD dwYSize,"+ ;
+				"DWORD dwXCountChars,"+ ;
+				"DWORD dwYCountChars,"+ ;
+				"DWORD dwFillAttribute,"+ ;
+				"DWORD dwFlags,"+ ;
+				"WORD wShowWindow,"+ ;
+				"WORD cbReserved2,"+ ;
+				"LPBYTE lpReserved2,"+ ;
+				"HANDLE hStdInput,"+ ;
+				"HANDLE hStdOutput,"+ ;
+				"HANDLE hStdError")
+			IF TYPE("toStartupInfo") # 'O'
+				THIS.cerror = "Cannot create structure. Unknown data type."
+			ENDIF
+		ENDIF
+
 		IF TYPE("toStartupInfo") # 'O'
-			THIS.cError = "Cannot create structure. Unknown data type."
+			IF EMPTY(THIS.cerror)
+				THIS.cerror = "First parameter is not object."
+			ENDIF
+			RETURN llret
 		ENDIF
-	ENDIF
-	
-	IF TYPE("toStartupInfo") # 'O'
-		IF EMPTY(THIS.cError)
-			THIS.cError = "First parameter is not object."
+
+		IF THIS.oprocessinformation.hprocess.VAL # 0
+			THIS.CLOSE()
 		ENDIF
-		RETURN llRet
-	ENDIF
-	
-	IF THIS.oProcessInformation.hProcess.Val # 0
-		THIS.Close()
-	ENDIF
-	
-	DECLARE INTEGER GetLastError IN Kernel32
-	DECLARE INTEGER CreateProcess IN Kernel32 ;
-	STRING @, STRING @, STRING @, STRING @, INTEGER, INTEGER, STRING @, STRING @, STRING @, STRING @
-	
-	LOCAL lnRet, lcStart, lcInfo
-	lcStart = toStartupInfo.GetBuffer()
-	lcInfo = THIS.oProcessInformation.GetBuffer()
 
-	lnRet = CreateProcess(	THIS.cApplicationName, ;
-							THIS.cCommandLine, ;
-							THIS.oProcessAttributes, ;
-							THIS.oThreadAttributes, ;
-							THIS.bInheritHandles, ;
-							THIS.nCreationFlags, ;
-							THIS.oEnvironment, ;
-							THIS.cCurrentDirectory, ;
-							@lcStart, ;
-							@lcInfo )
-	IF lnRet # 0
-		llRet = .T.
-		toStartupInfo.SetBuffer(lcStart)
-		THIS.oProcessInformation.SetBuffer(lcInfo)
-	ELSE
-		THIS.cError = ALLTRIM(STR(GetLastError()))
-	ENDIF
-	
-	RETURN llRet
-	
-	
-	PROCEDURE WaitForExit
-	LPARAMETERS lnTimeout
-	LOCAL lnRet
-	DECLARE INTEGER GetLastError IN Kernel32
-	DECLARE INTEGER WaitForSingleObject IN Kernel32 INTEGER, INTEGER
-	IF PCOUNT() = 0
-		lnTimeout = 0xFFFF
-	ENDIF
-	lnRet = WaitForSingleObject(THIS.oProcessInformation.hProcess.Val,lnTimeout)
-	IF lnRet = 0xFFFFFFFF
-		lnRet = GetLastError()
-	ENDIF
+		DECLARE INTEGER GetLastError IN Kernel32
+		DECLARE INTEGER CreateProcess IN Kernel32 ;
+			STRING @, STRING @, STRING @, STRING @, INTEGER, INTEGER, STRING @, STRING @, STRING @, STRING @
 
-	RETURN lnRet
+		LOCAL lnret, lcstart, lcinfo
+		lcstart = tostartupinfo.getbuffer()
+		lcinfo = THIS.oprocessinformation.getbuffer()
 
-	
-	PROCEDURE IsTimeout
-	LPARAMETERS tnRetCode
-	RETURN (tnRetCode = 258)
-
-
-	PROCEDURE IsStill_Running
-	LPARAMETERS tnExitCode
-	RETURN (tnExitCode = 259)
-
-
-	PROCEDURE GetExitCode
-	LOCAL lnRet
-	lnRet = -1
-	DECLARE INTEGER GetExitCodeProcess IN Kernel32 INTEGER, INTEGER @
-	GetExitCodeProcess(THIS.oProcessInformation.hProcess.Val, @lnRet)
-	
-	RETURN lnRet
-
-
-	PROCEDURE Kill
-	LOCAL lnRet
-	DECLARE INTEGER GetLastError IN Kernel32
-	DECLARE INTEGER TerminateProcess IN Kernel32 INTEGER, INTEGER
-	
-	lnRet = TerminateProcess(THIS.oProcessInformation.hProcess.Val, 1)
-	IF lnRet = 0
-		THIS.cError = ALLTRIM(STR(GetLastError()))
-	ENDIF
-	
-	RETURN	(lnRet # 0)
-
-	PROCEDURE CloseMainWindow
-	LOCAL lnRet, lhWnd
-	llRet = .F.
-	DECLARE INTEGER SendMessage IN User32 INTEGER, INTEGER, INTEGER, INTEGER
-	lhWnd = THIS.FindProcessWindow(THIS.oProcessInformation.dwProcessId.Val)
-	IF lhWnd # 0
-		SendMessage(lhWnd, 0x0010,0,0)
-		llRet = .T.
-	ENDIF
-	RETURN llRet
-
-	PROCEDURE FindProcessWindow
-	LPARAMETERS thProcess
-	LOCAL lnProcessId, lhWnd, llFound, lnRet
-	lnProcessId = 0
-	lnRet = 0
-	DECLARE INTEGER GetWindow IN User32 INTEGER, INTEGER
-	DECLARE INTEGER GetWindowThreadProcessId IN User32 INTEGER, INTEGER @
-	DECLARE INTEGER GetTopWindow IN User32 INTEGER
-
-	llFound = .F.
-	lhWnd = GetTopWindow(0)
-	DO WHILE lhWnd != 0
-		GetWindowThreadProcessId(lhWnd, @lnProcessId)
-		IF lnProcessId = thProcess
-			llFound = .T.
-			lnRet = lhWnd
-			EXIT
+		lnret = createprocess(	THIS.capplicationname, ;
+			THIS.ccommandline, ;
+			THIS.oprocessattributes, ;
+			THIS.othreadattributes, ;
+			THIS.binherithandles, ;
+			THIS.ncreationflags, ;
+			THIS.oenvironment, ;
+			THIS.ccurrentdirectory, ;
+			@lcstart, ;
+			@lcinfo )
+		IF lnret # 0
+			llret = .T.
+			tostartupinfo.setbuffer(lcstart)
+			THIS.oprocessinformation.setbuffer(lcinfo)
+		ELSE
+			THIS.cerror = ALLTRIM(STR(getlasterror()))
 		ENDIF
-		lhWnd = GetWindow(lhWnd, 2) && next window
-	ENDDO
-	
-	RETURN lnRet
 
-ENDDEFINE
+		RETURN llret
 
 
-DEFINE CLASS Struct AS custom 
-	cListObjects = ""
+	PROCEDURE waitforexit
+		LPARAMETERS lntimeout
+		LOCAL lnret
+		DECLARE INTEGER GetLastError IN Kernel32
+		DECLARE INTEGER WaitForSingleObject IN Kernel32 INTEGER, INTEGER
+		IF PCOUNT() = 0
+			lntimeout = 0xffff
+		ENDIF
+		lnret = waitforsingleobject(THIS.oprocessinformation.hprocess.VAL,lntimeout)
+		IF lnret = 0xffffffff
+			lnret = getlasterror()
+		ENDIF
 
-	PROCEDURE Init
-	LPARAMETERS tcName, tcStruct
-	LOCAL lcBuffRow, loParser, loRowParser
-	LOCAL lcType, lcField, llRet, lcClassType, lnSize
-	
-	llRet = .T.
-	THIS.Name = tcName
-	lcBuffRow = ""
-	lcType = ""
-	lcField = ""
-	
-	loParser = CREATEOBJECT("Parser",tcStruct,",")
-	
-	DO WHILE loParser.GetNext(@lcBuffRow)
-		loRowParser = CREATEOBJECT("Parser",lcBuffRow, " ")
-		loRowParser.GetNext(@lcType)
-		loRowParser.GetNext(@lcField)
-		loRowParser = NULL
-		THIS.cListObjects = THIS.cListObjects + lcField + " "
-		DO CASE
-			CASE INLIST(lcType, "LPCTSTR", "LPTSTR", "LPSECURITY_ATTRIBUTES", "LPVOID", "LPSTARTUPINFO",;
-				"LPPROCESS_INFORMATION", "LPBYTE")
-				lcClassType = "p"
-				lnSize = 4
-				
-			CASE INLIST(lcType, "DWORD", "HANDLE")
-				lcClassType = "u"
-				lnSize = 4
-				
-			CASE INLIST(lcType, "WORD")
-				lcClassType = "u"
-				lnSize = 2
-				
-			OTHERWISE
-				llRet = .F.
+		RETURN lnret
+
+
+	PROCEDURE istimeout
+		LPARAMETERS tnretcode
+		RETURN (tnretcode = 258)
+
+
+	PROCEDURE isstill_running
+		LPARAMETERS tnexitcode
+		RETURN (tnexitcode = 259)
+
+
+	PROCEDURE getexitcode
+		LOCAL lnret
+		lnret = -1
+		DECLARE INTEGER GetExitCodeProcess IN Kernel32 INTEGER, INTEGER @
+		getexitcodeprocess(THIS.oprocessinformation.hprocess.VAL, @lnret)
+
+		RETURN lnret
+
+
+	PROCEDURE kill
+		LOCAL lnret
+		DECLARE INTEGER GetLastError IN Kernel32
+		DECLARE INTEGER TerminateProcess IN Kernel32 INTEGER, INTEGER
+
+		lnret = terminateprocess(THIS.oprocessinformation.hprocess.VAL, 1)
+		IF lnret = 0
+			THIS.cerror = ALLTRIM(STR(getlasterror()))
+		ENDIF
+
+		RETURN	(lnret # 0)
+
+	PROCEDURE closemainwindow
+		LOCAL lnret, lhwnd
+		llret = .F.
+		DECLARE INTEGER SendMessage IN User32 INTEGER, INTEGER, INTEGER, INTEGER
+		lhwnd = THIS.findprocesswindow(THIS.oprocessinformation.dwprocessid.VAL)
+		IF lhwnd # 0
+			sendmessage(lhwnd, 0x0010,0,0)
+			llret = .T.
+		ENDIF
+		RETURN llret
+
+	PROCEDURE findprocesswindow
+		LPARAMETERS thprocess
+		LOCAL lnprocessid, lhwnd, llfound, lnret
+		lnprocessid = 0
+		lnret = 0
+		DECLARE INTEGER GetWindow IN User32 INTEGER, INTEGER
+		DECLARE INTEGER GetWindowThreadProcessId IN User32 INTEGER, INTEGER @
+		DECLARE INTEGER GetTopWindow IN User32 INTEGER
+
+		llfound = .F.
+		lhwnd = gettopwindow(0)
+		DO WHILE lhwnd != 0
+			getwindowthreadprocessid(lhwnd, @lnprocessid)
+			IF lnprocessid = thprocess
+				llfound = .T.
+				lnret = lhwnd
 				EXIT
-		ENDCASE
-		THIS.AddObject(lcField, "struct_element", lcClassType, lnSize)
-	ENDDO 
-	loParser = NULL
-	
-	LOCAL i
-	lnSize = 0
-	FOR i = 1 TO THIS.ControlCount
-		lnSize = lnSize + THIS.Controls(i).GetSize()
-	ENDFOR
-	THIS.Width = lnSize
-	
-	RETURN llRet
-	
+			ENDIF
+			lhwnd = getwindow(lhwnd, 2) && next window
+		ENDDO
 
-	PROCEDURE Destroy
-	LOCAL loParser, lcName
-	lcName=""
-	loParser = CREATEOBJECT("Parser",THIS.cListObjects, " ")
-	DO WHILE loParser.GetNext(@lcName)
-		IF !EMPTY(lcName)
-			THIS.RemoveObject(lcName)
-		ENDIF
-	ENDDO	
- 
- 
-	PROCEDURE GetBuffer
- 	LOCAL i, lcRet
-	lcRet = ""
-	FOR i = 1 TO THIS.ControlCount
-				lcRet = lcRet + THIS.Controls(i).GetBuffer()
-	ENDFOR
+		RETURN lnret
 
-	RETURN lcRet
-	
+ENDDEFINE
 
-	PROCEDURE SetBuffer
-	LPARAMETERS tcBuffer
- 	LOCAL i
-	FOR i = 1 TO THIS.ControlCount
-		THIS.Controls(i).SetBuffer(tcBuffer)
-		tcBuffer = SUBSTR(tcBuffer, THIS.Controls(i).Width+1)
-	ENDFOR
+
+*:******************************************************************************
+*:
+*: Class:struct  BaseClass: CUSTOM
+*:
+*:******************************************************************************
+DEFINE CLASS STRUCT AS CUSTOM
+	clistobjects = ""
+
+	PROCEDURE INIT
+		LPARAMETERS tcname, tcstruct
+		LOCAL lcbuffrow, loparser, lorowparser
+		LOCAL lctype, lcfield, llret, lcclasstype, lnsize
+
+		llret = .T.
+		THIS.NAME = tcname
+		lcbuffrow = ""
+		lctype = ""
+		lcfield = ""
+
+		loparser = CREATEOBJECT("Parser",tcstruct,",")
+
+		DO WHILE loparser.GETNEXT(@lcbuffrow)
+			lorowparser = CREATEOBJECT("Parser",lcbuffrow, " ")
+			lorowparser.GETNEXT(@lctype)
+			lorowparser.GETNEXT(@lcfield)
+			lorowparser = NULL
+			THIS.clistobjects = THIS.clistobjects + lcfield + " "
+			DO CASE
+			CASE INLIST(lctype, "LPCTSTR", "LPTSTR", "LPSECURITY_ATTRIBUTES", "LPVOID", "LPSTARTUPINFO",;
+					"LPPROCESS_INFORMATION", "LPBYTE")
+				lcclasstype = "p"
+				lnsize = 4
+
+			CASE INLIST(lctype, "DWORD", "HANDLE")
+				lcclasstype = "u"
+				lnsize = 4
+
+			CASE INLIST(lctype, "WORD")
+				lcclasstype = "u"
+				lnsize = 2
+
+			OTHERWISE
+				llret = .F.
+				EXIT
+			ENDCASE
+			THIS.ADDOBJECT(lcfield, "struct_element", lcclasstype, lnsize)
+		ENDDO
+		loparser = NULL
+
+		LOCAL i
+		lnsize = 0
+		FOR i = 1 TO THIS.CONTROLCOUNT
+			lnsize = lnsize + THIS.CONTROLS(i).getsize()
+		ENDFOR
+		THIS.WIDTH = lnsize
+
+		RETURN llret
+
+
+	PROCEDURE DESTROY
+		LOCAL loparser, lcname
+		lcname=""
+		loparser = CREATEOBJECT("Parser",THIS.clistobjects, " ")
+		DO WHILE loparser.GETNEXT(@lcname)
+			IF !EMPTY(lcname)
+				THIS.REMOVEOBJECT(lcname)
+			ENDIF
+		ENDDO
+
+
+	PROCEDURE getbuffer
+		LOCAL i, lcret
+		lcret = ""
+		FOR i = 1 TO THIS.CONTROLCOUNT
+			lcret = lcret + THIS.CONTROLS(i).getbuffer()
+		ENDFOR
+
+		RETURN lcret
+
+
+	PROCEDURE setbuffer
+		LPARAMETERS tcbuffer
+		LOCAL i
+		FOR i = 1 TO THIS.CONTROLCOUNT
+			THIS.CONTROLS(i).setbuffer(tcbuffer)
+			tcbuffer = SUBSTR(tcbuffer, THIS.CONTROLS(i).WIDTH+1)
+		ENDFOR
 
 
 ENDDEFINE
 
 
-DEFINE CLASS Parser AS Custom
-	Del = " "
-	Offset = 1
-	
-	PROCEDURE Init
-	LPARAMETERS tcBuffer, tcDel
-	IF PCOUNT() > 1
-		THIS.Del = tcDel
-	ENDIF
-	THIS.Tag = tcBuffer
-	 
-	PROCEDURE GetNext
-	LPARAMETERS tcData
-	LOCAL llRet, lnNext, lcBuff
-	llRet = .F.
-	IF LEN(THIS.Tag) > THIS.Offset
-		llRet = .T.
-		lcBuff = SUBSTR(THIS.Tag,THIS.Offset)
-		lnNext = AT(THIS.Del,lcBuff)
-		IF lnNext > 0
-			THIS.Offset = THIS.Offset + lnNext
-			tcData = LEFT(lcBuff, lnNext -1)
-		ELSE		
-			THIS.Offset = LEN(THIS.Tag)
-			tcData = lcBuff
+*:******************************************************************************
+*:
+*: Class:parser  BaseClass: CUSTOM
+*:
+*:******************************************************************************
+DEFINE CLASS parser AS CUSTOM
+	del = " "
+	offset = 1
+
+	PROCEDURE INIT
+		LPARAMETERS tcbuffer, tcdel
+		IF PCOUNT() > 1
+			THIS.del = tcdel
 		ENDIF
-	ELSE
-		tcData = ""
-	ENDIF
-	RETURN llRet
-	
-	PROCEDURE GetFirst
-	LPARAMETERS tcData
-	THIS.Offset = 1
-	RETURN THIS.GetNext(@tcData)
-	
+		THIS.TAG = tcbuffer
+
+	PROCEDURE GETNEXT
+		LPARAMETERS tcdata
+		LOCAL llret, lnnext, lcbuff
+		llret = .F.
+		IF LEN(THIS.TAG) > THIS.offset
+			llret = .T.
+			lcbuff = SUBSTR(THIS.TAG,THIS.offset)
+			lnnext = AT(THIS.del,lcbuff)
+			IF lnnext > 0
+				THIS.offset = THIS.offset + lnnext
+				tcdata = LEFT(lcbuff, lnnext -1)
+			ELSE
+				THIS.offset = LEN(THIS.TAG)
+				tcdata = lcbuff
+			ENDIF
+		ELSE
+			tcdata = ""
+		ENDIF
+		RETURN llret
+
+	PROCEDURE getfirst
+		LPARAMETERS tcdata
+		THIS.offset = 1
+		RETURN THIS.GETNEXT(@tcdata)
+
 ENDDEFINE
 
 
- 
-DEFINE CLASS struct_element AS custom
-	Val = 0
-	Pointer = 0
-	Width = 0
-	cType = ""
-	
-	PROCEDURE Init
-	LPARAMETERS tcType, tnSize
-	THIS.cType=tcType
-	THIS.Width = tnSize
-	
-	PROCEDURE AllocateElement
-	LPARAMETERS tnSize
-	DECLARE INTEGER GlobalAlloc IN Kernel32 INTEGER, INTEGER
-	DECLARE RtlZeroMemory IN Kernel32 STRING @, INTEGER
-	THIS.Pointer = GlobalAlloc(0, tnSize)
-	IF THIS.Pointer # 0
-		RtlZeroMemory(THIS.Pointer, tnSize)
-	ENDIF
-	
-	PROCEDURE FreeElement
-	IF THIS.Pointer # 0
-		DECLARE INTEGER GlobalFree IN Kernel32 INTEGER
-		=GlobalFree(THIS.Pointer)
-		THIS.Pointer=0
-	ENDIF
-	
-	PROCEDURE Destroy
-	THIS.FreeElement()
-	
-	PROCEDURE GetSize
-	LOCAL lnRet
-	lnRet = 0
-	IF THIS.Pointer # 0
-		DECLARE INTEGER GlobalSize IN Kernel32 INTEGER
-		lnRet = GlobalSize(THIS.Pointer)
-	ELSE
-		lnRet = THIS.Width
-	ENDIF
-	RETURN lnRet
-	
-*!*		PROCEDURE SetVal
-*!*		LPARAMETERS tcVal
-*!*		DECLARE RtlMoveMemory IN Kernel32 INTEGER, STRING @, INTEGER
-*!*		IF THIS.Pointer # 0
-*!*			RtlMoveMemory(THIS.Pointer, @tcVal, LEN(tcVal))
-*!*		ELSE
-*!*			RtlMoveMemory(THIS.Val, @tcVal, THIS.Width)
-*!*		ENDIF
-*!*	*	THIS.Val = tcVal
 
-*!*		PROCEDURE GetVal
-*!*		LOCAL lcVal, lnSize
-*!*		IF THIS.Pointer # 0
-*!*			DECLARE RtlMoveMemory IN Kernel32 INTEGER, STRING @, INTEGER
-*!*			lnSize = THIS.GetSize()
-*!*			lcVal=REPLICATE(CHR(0),lnSize)
-*!*			RtlMoveMemory(@tcVal, THIS.Pointer, lnSize)
-*!*			THIS.Val = tcVal
-*!*		ENDIF
-*!*		RETURN THIS.Val
+*:******************************************************************************
+*:
+*: Class:struct_element  BaseClass: CUSTOM
+*:
+*:******************************************************************************
+DEFINE CLASS struct_element AS CUSTOM
+	VAL = 0
+	pointer = 0
+	WIDTH = 0
+	ctype = ""
 
-	PROCEDURE GetBuffer()
-	LOCAL lcRet, i, lnTmp
-	lcRet = ""
-	DO CASE
-		CASE INLIST(THIS.cType, "p", "u")
-			lnTmp = THIS.Val
-			FOR i = 1 TO THIS.Width
-				lcRet = lcRet +CHR(INT(lnTmp/(256^(THIS.Width-1))))
-				lnTmp = MOD(lnTmp,(256^(THIS.Width-1)))
+	PROCEDURE INIT
+		LPARAMETERS tctype, tnsize
+		THIS.ctype=tctype
+		THIS.WIDTH = tnsize
+
+	PROCEDURE allocateelement
+		LPARAMETERS tnsize
+		DECLARE INTEGER GlobalAlloc IN Kernel32 INTEGER, INTEGER
+		DECLARE RtlZeroMemory IN Kernel32 STRING @, INTEGER
+		THIS.pointer = globalalloc(0, tnsize)
+		IF THIS.pointer # 0
+			rtlzeromemory(THIS.pointer, tnsize)
+		ENDIF
+
+	PROCEDURE freeelement
+		IF THIS.pointer # 0
+			DECLARE INTEGER GlobalFree IN Kernel32 INTEGER
+			=globalfree(THIS.pointer)
+			THIS.pointer=0
+		ENDIF
+
+	PROCEDURE DESTROY
+		THIS.freeelement()
+
+	PROCEDURE getsize
+		LOCAL lnret
+		lnret = 0
+		IF THIS.pointer # 0
+			DECLARE INTEGER GlobalSize IN Kernel32 INTEGER
+			lnret = globalsize(THIS.pointer)
+		ELSE
+			lnret = THIS.WIDTH
+		ENDIF
+		RETURN lnret
+
+
+
+	PROCEDURE getbuffer()
+		LOCAL lcret, i, lntmp
+		lcret = ""
+		DO CASE
+		CASE INLIST(THIS.ctype, "p", "u")
+			lntmp = THIS.VAL
+			FOR i = 1 TO THIS.WIDTH
+				lcret = lcret +CHR(INT(lntmp/(256^(THIS.WIDTH-1))))
+				lntmp = MOD(lntmp,(256^(THIS.WIDTH-1)))
 			ENDFOR
-			
-		CASE INLIST(THIS.cType, "s")
-			lcRet = BINTOC(THIS.Val, ALLTRIM(STR(THIS.Width))+"SR")
-			
+
+		CASE INLIST(THIS.ctype, "s")
+			lcret = BINTOC(THIS.VAL, ALLTRIM(STR(THIS.WIDTH))+"SR")
+
 		OTHERWISE
-			lcRet = REPLICATE(CHR(0),THIS.Width)
-	ENDCASE
-	
-	RETURN lcRet
+			lcret = REPLICATE(CHR(0),THIS.WIDTH)
+		ENDCASE
+
+		RETURN lcret
 
 
-	PROCEDURE SetBuffer
-	LPARAMETERS lcBuffer
-	LOCAL llRet, i, lnTmp
-	llRet = .T.
-	DO CASE
-*		CASE THIS.cType = "p"
-*			THIS.Pointer = THIS.NumFromStr(lcBuffer,THIS.Width)
-			
-		CASE THIS.cType = "u"
-			THIS.Val = THIS.NumFromStr(lcBuffer,THIS.Width)
-			
-		CASE INLIST(THIS.cType, "s")
-			THIS.Val = CTOBIN(LEFT(lcBuffer,THIS.Width), ALLTRIM(STR(THIS.Width))+"SR")
-			
+	PROCEDURE setbuffer
+		LPARAMETERS lcbuffer
+		LOCAL llret, i, lntmp
+		llret = .T.
+		DO CASE
+			*		CASE THIS.cType = "p"
+			*			THIS.Pointer = THIS.NumFromStr(lcBuffer,THIS.Width)
+
+		CASE THIS.ctype = "u"
+			THIS.VAL = THIS.numfromstr(lcbuffer,THIS.WIDTH)
+
+		CASE INLIST(THIS.ctype, "s")
+			THIS.VAL = CTOBIN(LEFT(lcbuffer,THIS.WIDTH), ALLTRIM(STR(THIS.WIDTH))+"SR")
+
 		OTHERWISE
-			llRet = .F.
-	ENDCASE
-	
-	RETURN llRet
+			llret = .F.
+		ENDCASE
+
+		RETURN llret
 
 
-	PROCEDURE NumFromStr
-	LPARAMETERS tcVal, tnSize
-	LOCAL lnRet, i
-	lnRet = 0
-	FOR i = 1 TO tnSize
-		lnRet = lnRet + 256^(i-1)*ASC(SUBSTR(tcVal,i))
-	ENDFOR
-	
-	RETURN lnRet
+	PROCEDURE numfromstr
+		LPARAMETERS tcval, tnsize
+		LOCAL lnret, i
+		lnret = 0
+		FOR i = 1 TO tnsize
+			lnret = lnret + 256^(i-1)*ASC(SUBSTR(tcval,i))
+		ENDFOR
+
+		RETURN lnret
 
 
-	PROCEDURE DataFromPointer
-	LPARAMETERS tnPointer, tnSize
-	LOCAL lcRet
-	lcRet = REPLICATE(CHR(0), tnSize)
-	DECLARE RtlCopyMemory IN Kernel32 INTEGER, STRING @, INTEGER
-	RtlCopyMemory(@lcRet, tnPointer, tnSize)
-	
-	RETURN lcRet
-	
+	PROCEDURE datafrompointer
+		LPARAMETERS tnpointer, tnsize
+		LOCAL lcret
+		lcret = REPLICATE(CHR(0), tnsize)
+		DECLARE RtlCopyMemory IN Kernel32 INTEGER, STRING @, INTEGER
+		rtlcopymemory(@lcret, tnpointer, tnsize)
+
+		RETURN lcret
+
 ENDDEFINE
- 
+
 

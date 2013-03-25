@@ -1,119 +1,138 @@
+*:******************************************************************************
+*:
+*: Procedure File D:\PWCTSRC\PWCT\PRG\SETOBJRF.PRG
+*:
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	Mahmoud Fayed
+*:	Programming without coding technology 1.8 (Smart)
+*:	Free - Open Source
+*:	
+*:	Programming without coding technology 1.8 (Smart)
+*:
+*: Documented using Visual FoxPro Formatting wizard version  .05
+*:******************************************************************************
+*:   setobjrf
 * SetObjRf.PRG - Set Object Referece.
-*
 * Copyright (c) 1997 Microsoft Corp.
 * 1 Microsoft Way
 * Redmond, WA 98052
-*
 * Description:
 * Set an object reference to a specified property based on a specified class.
 * Return new instance of specified class if name is an empty string.
 
-LPARAMETERS toObject,tcName,tvClass,tvClassLibrary
-LOCAL lcName,lcClass,lcClassLibrary,oObject,lnCount
-LOCAL lnObjectRefIndex,lnObjectRefCount,oExistingObject
+LPARAMETERS toobject,tcname,tvclass,tvclasslibrary
+LOCAL lcname,lcclass,lcclasslibrary,oobject,lncount
+LOCAL lnobjectrefindex,lnobjectrefcount,oexistingobject
 
-IF TYPE("toObject")#"O" OR ISNULL(toObject)
+IF TYPE("toObject")#"O" OR ISNULL(toobject)
 	RETURN .NULL.
 ENDIF
-lcName=IIF(TYPE("tcName")=="C",ALLTRIM(tcName),LOWER(SYS(2015)))
-oExistingObject=.NULL.
-oObject=.NULL.
-lcClassLibrary=""
+lcname=IIF(TYPE("tcName")=="C",ALLTRIM(tcname),LOWER(SYS(2015)))
+oexistingobject=.NULL.
+oobject=.NULL.
+lcclasslibrary=""
 DO CASE
-	CASE TYPE("tvClass")=="O"
-		oObject=tvClass
-		lcClass=LOWER(oObject.Class)
-		lcClassLibrary=LOWER(oObject.ClassLibrary)
-		IF NOT ISNULL(oExistingObject) AND LOWER(oExistingObject.Class)==lcClass AND ;
-				LOWER(oExistingObject.ClassLibrary)==lcClassLibrary
-			toObject.vResult=oExistingObject
-			RETURN toObject.vResult
-		ENDIF
-	CASE EMPTY(tvClass)
-		oObject=toObject
-		lcClass=LOWER(oObject.Class)
-		lcClassLibrary=LOWER(oObject.ClassLibrary)
-		IF NOT ISNULL(oExistingObject) AND LOWER(oExistingObject.Class)==lcClass AND ;
-				LOWER(oExistingObject.ClassLibrary)==lcClassLibrary
-			toObject.vResult=oExistingObject
-			RETURN toObject.vResult
-		ENDIF
-	OTHERWISE
-		lcClass=LOWER(ALLTRIM(tvClass))
-		DO CASE
-			CASE TYPE("tvClassLibrary")=="O"
-				lcClassLibrary=LOWER(tvClassLibrary.ClassLibrary)
-			CASE TYPE("tvClassLibrary")=="C"
-				IF EMPTY(tvClassLibrary)
-					lcClassLibrary=LOWER(toObject.ClassLibrary)
-				ELSE
-					lcClassLibrary=LOWER(ALLTRIM(tvClassLibrary))
-					IF EMPTY(JUSTEXT(lcClassLibrary))
-						lcClassLibrary=LOWER(FORCEEXT(lcClassLibrary,"vcx"))
-					ENDIF
-					llClassLib=(JUSTEXT(lcClassLibrary)=="vcx")
-					IF NOT "\"$lcClassLibrary
-						lcClassLibrary=LOWER(FORCEPATH(lcClassLibrary,JUSTPATH(toObject.ClassLibrary)))
-						IF NOT FILE(lcClassLibrary) AND VERSION(2)#0
-							lcClassLibrary=LOWER(FORCEPATH(lcClassLibrary,HOME()+"ffc\"))
-							IF NOT FILE(lcClassLibrary)
-								lcClassLibrary=LOWER(FULLPATH(JUSTFNAME(lcClassLibrary)))
-							ENDIF
-						ENDIF
-					ENDIF
-					IF NOT FILE(lcClassLibrary)
-						toObject.vResult=.NULL.
-						RETURN toObject.vResult
+CASE TYPE("tvClass")=="O"
+	oobject=tvclass
+	lcclass=LOWER(oobject.CLASS)
+	lcclasslibrary=LOWER(oobject.CLASSLIBRARY)
+	IF NOT ISNULL(oexistingobject) AND LOWER(oexistingobject.CLASS)==lcclass AND ;
+			LOWER(oexistingobject.CLASSLIBRARY)==lcclasslibrary
+		toobject.vresult=oexistingobject
+		RETURN toobject.vresult
+	ENDIF
+CASE EMPTY(tvclass)
+	oobject=toobject
+	lcclass=LOWER(oobject.CLASS)
+	lcclasslibrary=LOWER(oobject.CLASSLIBRARY)
+	IF NOT ISNULL(oexistingobject) AND LOWER(oexistingobject.CLASS)==lcclass AND ;
+			LOWER(oexistingobject.CLASSLIBRARY)==lcclasslibrary
+		toobject.vresult=oexistingobject
+		RETURN toobject.vresult
+	ENDIF
+OTHERWISE
+	lcclass=LOWER(ALLTRIM(tvclass))
+	DO CASE
+	CASE TYPE("tvClassLibrary")=="O"
+		lcclasslibrary=LOWER(tvclasslibrary.CLASSLIBRARY)
+	CASE TYPE("tvClassLibrary")=="C"
+		IF EMPTY(tvclasslibrary)
+			lcclasslibrary=LOWER(toobject.CLASSLIBRARY)
+		ELSE
+			lcclasslibrary=LOWER(ALLTRIM(tvclasslibrary))
+			IF EMPTY(JUSTEXT(lcclasslibrary))
+				lcclasslibrary=LOWER(FORCEEXT(lcclasslibrary,"vcx"))
+			ENDIF
+			llclasslib=(JUSTEXT(lcclasslibrary)=="vcx")
+			IF NOT "\"$lcclasslibrary
+				lcclasslibrary=LOWER(FORCEPATH(lcclasslibrary,JUSTPATH(toobject.CLASSLIBRARY)))
+				IF NOT FILE(lcclasslibrary) AND VERSION(2)#0
+					lcclasslibrary=LOWER(FORCEPATH(lcclasslibrary,HOME()+"ffc\"))
+					IF NOT FILE(lcclasslibrary)
+						lcclasslibrary=LOWER(FULLPATH(JUSTFNAME(lcclasslibrary)))
 					ENDIF
 				ENDIF
-			OTHERWISE
-				lcClassLibrary=""
-		ENDCASE
-		IF NOT ISNULL(oExistingObject) AND LOWER(oExistingObject.Class)==lcClass AND ;
-				LOWER(oExistingObject.ClassLibrary)==lcClassLibrary
-			toObject.vResult=oExistingObject
-			RETURN toObject.vResult
+			ENDIF
+			IF NOT FILE(lcclasslibrary)
+				toobject.vresult=.NULL.
+				RETURN toobject.vresult
+			ENDIF
 		ENDIF
-		oObject=NEWOBJECT(lcClass,lcClassLibrary)
-		IF TYPE("oObject")#"O" OR ISNULL(oObject)
-			toObject.vResult=.NULL.
-			RETURN toObject.vResult
-		ENDIF
+	OTHERWISE
+		lcclasslibrary=""
+	ENDCASE
+	IF NOT ISNULL(oexistingobject) AND LOWER(oexistingobject.CLASS)==lcclass AND ;
+			LOWER(oexistingobject.CLASSLIBRARY)==lcclasslibrary
+		toobject.vresult=oexistingobject
+		RETURN toobject.vresult
+	ENDIF
+	oobject=NEWOBJECT(lcclass,lcclasslibrary)
+	IF TYPE("oObject")#"O" OR ISNULL(oobject)
+		toobject.vresult=.NULL.
+		RETURN toobject.vresult
+	ENDIF
 ENDCASE
 DO CASE
-	CASE EMPTY(lcName)
-		toObject.vResult=oObject
-		RETURN toObject.vResult
-	OTHERWISE
-		IF NOT toObject.AddProperty(lcName,oObject)
-			oObject=.NULL.
-		ENDIF
+CASE EMPTY(lcname)
+	toobject.vresult=oobject
+	RETURN toobject.vresult
+OTHERWISE
+	IF NOT toobject.ADDPROPERTY(lcname,oobject)
+		oobject=.NULL.
+	ENDIF
 ENDCASE
-IF ISNULL(oObject)
-	toObject.vResult=.NULL.
-	RETURN toObject.vResult
+IF ISNULL(oobject)
+	toobject.vresult=.NULL.
+	RETURN toobject.vresult
 ENDIF
-IF PEMSTATUS(oObject,"oHost",5)
-	oObject.oHost=toObject.oHost
+IF PEMSTATUS(oobject,"oHost",5)
+	oobject.ohost=toobject.ohost
 ELSE
-	oObject.AddProperty("oHost",toObject.oHost)
+	oobject.ADDPROPERTY("oHost",toobject.ohost)
 ENDIF
-IF EMPTY(lcClassLibrary)
-	lcClassLibrary=LOWER(oObject.ClassLibrary)
+IF EMPTY(lcclasslibrary)
+	lcclasslibrary=LOWER(oobject.CLASSLIBRARY)
 ENDIF
-lnObjectRefCount=toObject.nObjectRefCount
-lnObjectRefIndex=lnObjectRefCount+1
-FOR lnCount = 1 TO lnObjectRefCount
-	IF toObject.aObjectRefs[lnCount,1]==LOWER(lcName)
-		lnObjectRefIndex=lnCount
+lnobjectrefcount=toobject.nobjectrefcount
+lnobjectrefindex=lnobjectrefcount+1
+FOR lncount = 1 TO lnobjectrefcount
+	IF toobject.aobjectrefs[lnCount,1]==LOWER(lcname)
+		lnobjectrefindex=lncount
 		EXIT
 	ENDIF
 ENDFOR
-IF lnObjectRefIndex>lnObjectRefCount
-	DIMENSION toObject.aObjectRefs[lnObjectRefIndex,3]
+IF lnobjectrefindex>lnobjectrefcount
+	DIMENSION toobject.aobjectrefs[lnObjectRefIndex,3]
 ENDIF
-toObject.aObjectRefs[lnObjectRefIndex,1]=LOWER(lcName)
-toObject.aObjectRefs[lnObjectRefIndex,2]=lcClass
-toObject.aObjectRefs[lnObjectRefIndex,3]=lcClassLibrary
-toObject.vResult=oObject
-RETURN toObject.vResult
+toobject.aobjectrefs[lnObjectRefIndex,1]=LOWER(lcname)
+toobject.aobjectrefs[lnObjectRefIndex,2]=lcclass
+toobject.aobjectrefs[lnObjectRefIndex,3]=lcclasslibrary
+toobject.vresult=oobject
+RETURN toobject.vresult

@@ -1,262 +1,288 @@
+*:******************************************************************************
+*:
+*: Procedure File D:\PWCTSRC\PWCT\PRG\STEPSCOLORS.PRG
+*:
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	Mahmoud Fayed
+*:	Programming without coding technology 1.8 (Smart)
+*:	Free - Open Source
+*:	
+*:	Programming without coding technology 1.8 (Smart)
+*:
+*: Documented using Visual FoxPro Formatting wizard version  .05
+*:******************************************************************************
+*:   stepscolors
 * #define SC_UserStep_BackColor RGB(0,0,255)
 * #define SC_UserStep_ForeColor RGB(255,255,255)
 
-DEFINE CLASS GD_StepsColors as Custom
+*:******************************************************************************
+*:
+*: Class:gd_stepscolors  BaseClass: CUSTOM
+*:
+*:******************************************************************************
+DEFINE CLASS gd_stepscolors AS CUSTOM
 
-* 1 = All of the steps are Black & White (No more colors)
-* 2 = Colors based on the step type (Created , Generated (Root) , Generated (Allow sub) , Generated )
-* 3 = Custom (Colors based on component rules ) we advice the component designer to select the colors based on the component type
+	* 1 = All of the steps are Black & White (No more colors)
+	* 2 = Colors based on the step type (Created , Generated (Root) , Generated (Allow sub) , Generated )
+	* 3 = Custom (Colors based on component rules ) we advice the component designer to select the colors based on the component type
 
-nColorSystem = 1
-nHiddenSteps = 0
+	ncolorsystem = 1
+	nhiddensteps = 0
 
-SC_Created_BackColor = RGB(184,134,11)
-SC_Created_ForeColor = RGB(255,255,255)
+	sc_created_backcolor = RGB(184,134,11)
+	sc_created_forecolor = RGB(255,255,255)
 
-SC_Generated_BackColor = RGB(255,255,255)
-SC_Generated_ForeColor = RGB(0,0,0)
+	sc_generated_backcolor = RGB(255,255,255)
+	sc_generated_forecolor = RGB(0,0,0)
 
-SC_GeneratedRoot_BackColor = RGB(0,0,255)
-SC_GeneratedRoot_ForeColor = RGB(255,255,255)
+	sc_generatedroot_backcolor = RGB(0,0,255)
+	sc_generatedroot_forecolor = RGB(255,255,255)
 
-SC_GeneratedAllowSub_BackColor = RGB(0,255,0)
-SC_GeneratedAllowSub_ForeColor = RGB(0,0,0)
+	sc_generatedallowsub_backcolor = RGB(0,255,0)
+	sc_generatedallowsub_forecolor = RGB(0,0,0)
 
-SC_GeneratedLeaf_BackColor = RGB(255,255,255)
-SC_GeneratedLeaf_ForeColor = RGB(0,0,0)
+	sc_generatedleaf_backcolor = RGB(255,255,255)
+	sc_generatedleaf_forecolor = RGB(0,0,0)
 
-SC_GeneratedAllowSubLeaf_BackColor = RGB(0,255,0)
-SC_GeneratedAllowSubLeaf_ForeColor = RGB(0,0,0)
+	sc_generatedallowsubleaf_backcolor = RGB(0,255,0)
+	sc_generatedallowsubleaf_forecolor = RGB(0,0,0)
 
-PROCEDURE CheckSameColor()
+	PROCEDURE checksamecolor()
 
-	LOCAL lRet
+		LOCAL lret
 
-	lRet = .f.
-	
-	IF this.SC_Created_BackColor = this.SC_Generated_BackColor .and. ;
-	this.SC_Generated_BackColor = this.SC_GeneratedRoot_BackColor .and. ;
-	this.SC_GeneratedRoot_BackColor = this.SC_GeneratedAllowSub_BackColor .and. ;
-	this.SC_GeneratedAllowSub_BackColor = this.SC_GeneratedLeaf_BackColor .and. ;
-	this.SC_GeneratedLeaf_BackColor = this.SC_GeneratedAllowSubLeaf_BackColor .and. ;
-	this.SC_Created_ForeColor = this.SC_Generated_ForeColor .and. ;
-	this.SC_Generated_ForeColor = this.SC_GeneratedRoot_ForeColor .and. ;
-	this.SC_GeneratedRoot_ForeColor = this.SC_GeneratedAllowSub_ForeColor .and. ;
-	this.SC_GeneratedAllowSub_ForeColor = this.SC_GeneratedLeaf_ForeColor .and. ;
-	this.SC_GeneratedLeaf_ForeColor= this.SC_GeneratedAllowSubLeaf_ForeColor
-	
-		lRet = .t.
-	
-	ENDIF
-	
-	
-RETURN lRet
+		lret = .F.
 
+		IF THIS.sc_created_backcolor = THIS.sc_generated_backcolor .AND. ;
+				THIS.sc_generated_backcolor = THIS.sc_generatedroot_backcolor .AND. ;
+				THIS.sc_generatedroot_backcolor = THIS.sc_generatedallowsub_backcolor .AND. ;
+				THIS.sc_generatedallowsub_backcolor = THIS.sc_generatedleaf_backcolor .AND. ;
+				THIS.sc_generatedleaf_backcolor = THIS.sc_generatedallowsubleaf_backcolor .AND. ;
+				THIS.sc_created_forecolor = THIS.sc_generated_forecolor .AND. ;
+				THIS.sc_generated_forecolor = THIS.sc_generatedroot_forecolor .AND. ;
+				THIS.sc_generatedroot_forecolor = THIS.sc_generatedallowsub_forecolor .AND. ;
+				THIS.sc_generatedallowsub_forecolor = THIS.sc_generatedleaf_forecolor .AND. ;
+				THIS.sc_generatedleaf_forecolor= THIS.sc_generatedallowsubleaf_forecolor
 
-PROCEDURE SetStepColor(objGDWindow)
+			lret = .T.
 
-	LOCAL nStepType
-	LOCAL cMyKey
-	
-	cMyKey = ALLTRIM(T38->STEPID)
-
-	IF this.checkSameColor() = .f.	
-	
-				nStepType = this.DetermineStepType(objGDWindow)
-					
-				DO CASE
-				
-					CASE nStepType = 1 && Created
-						 
-							objGDWindow.container1.oletree.Nodes.item(cMyKey).backcolor = this.SC_Created_BackColor
-			  			objGDWindow.container1.oletree.Nodes.item(cMyKey).ForeColor = this.SC_Created_ForeColor
-			    			
-			  	CASE nStepType = 2 && Generated
-			  	 
-							objGDWindow.container1.oletree.Nodes.item(cMyKey).backcolor = this.SC_Generated_BackColor
-			  			objGDWindow.container1.oletree.Nodes.item(cMyKey).ForeColor = this.SC_Generated_ForeColor
-			  	  			
-			  	CASE nStepType = 3 && Generated (Root)
-			  		 
-							objGDWindow.container1.oletree.Nodes.item(cMyKey).backcolor = this.SC_GeneratedRoot_BackColor
-			  			objGDWindow.container1.oletree.Nodes.item(cMyKey).ForeColor = this.SC_GeneratedRoot_ForeColor
-			    			
-			  	CASE nStepType = 4 && Generated (AllowSub)
-			  		 
-							objGDWindow.container1.oletree.Nodes.item(cMyKey).backcolor = this.SC_GeneratedAllowSub_BackColor
-			  			objGDWindow.container1.oletree.Nodes.item(cMyKey).ForeColor = this.SC_GeneratedAllowSub_ForeColor
-			  	 
-			  			
-					CASE nStepType = 5 && Generated leaf
-							 
-							objGDWindow.container1.oletree.Nodes.item(cMyKey).backcolor = this.SC_GeneratedLeaf_BackColor
-							objGDWindow.container1.oletree.Nodes.item(cMyKey).ForeColor = this.SC_GeneratedLeaf_ForeColor
-					 
-							
-							* hide steps that uses that same font color and backcolor
-			  			IF this.SC_GeneratedLeaf_BackColor = this.SC_GeneratedLeaf_ForeColor
-			 					objGDWindow.container1.oletree.Nodes.Remove(cMyKEY)
-			 					this.nHiddenSteps = this.nHiddenSteps + 1
-							ENDIF
-			 
-					CASE nStepType = 6 && Generated Allow Sub & leaf
-						 
-							objGDWindow.container1.oletree.Nodes.item(cMyKey).backcolor = this.SC_GeneratedAllowSubLeaf_BackColor
-							objGDWindow.container1.oletree.Nodes.item(cMyKey).ForeColor = this.SC_GeneratedAllowSubLeaf_ForeColor
-				 
-			 			* hide steps that uses that same font color and backcolor
-			  			IF this.SC_GeneratedAllowSubLeaf_BackColor = this.SC_GeneratedAllowSubLeaf_ForeColor
-			 					objGDWindow.container1.oletree.Nodes.Remove(cMyKey)
-			 					this.nHiddenSteps = this.nHiddenSteps + 1
-							ENDIF
-			 
-					
-			  ENDCASE
-
-	 ELSE
-
-			  	objGDWindow.container1.oletree.Nodes.item(cMyKey).backcolor = this.SC_Created_BackColor
-			  	objGDWindow.container1.oletree.Nodes.item(cMyKey).ForeColor = this.SC_Created_ForeColor
-			  	
- 	ENDIF
-  	
-  
-RETURN nStepType
-
-****************************************************************
-
-PROCEDURE DetermineStepType(objGDWindow)
-
-	LOCAL myret
-	LOCAL c_TableName,n_Record
-	LOCAL cStepID
-	
-	LOCAL cKey
-	
-	c_TableName = ALIAS()
-	
-	SELECT t38
-	cStepID = t38->stepid
-	n_Record = RECNO()
-	
-	IF EMPTY(t38->stepinterid)
-		 myret = 1 && Created
-	ELSE
-
-		 myret = 2 && Generated
-		 
-		 IF t38->stepinternum = 1 && Root
-		 
-		 	myret = 3 && Generated (root)
-  		 
-		 ENDIF
-		 
-	   IF THIS.CheckNewStep() = .t.
-		 	
-		 	myret = 4 && Generated (Allow Sub)
-		 	
-		 	SELECT t38
-  		 GOTO top
-  	
-  	   
-				 	LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cStepID)
-				 	
-				 	IF .not. FOUND()
-				 		myret = 6 && Generated Allow Sub & Leaf
-				 	ENDIF
-		
-		 	
-		 ENDIF
-		 
-		 IF myret = 2 
-		 
-		
-		 
-		   	SELECT t38
-		 		GOTO TOP  	
-			 	LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cStepID)
-			 	IF .not. FOUND()
-			 		myret = 5 && Generated (Leaf)
-			 	ENDIF
-		 	
-		 	
-		 ENDIF
-		 
-	ENDIF
-	
-	SELECT t38
-	GOTO n_record
-	
-  SELECT (c_TableName)
-  
-  		 
-RETURN myret
-
-
-PROCEDURE CheckNewStep()
-
-LOCAL c_Table,n_Record
-
-LOCAL myret,cHis,cFile,cRules,cInterNum,nMax,x,cLine,cRule
-LOCAL cInterID
-
-c_table = ALIAS()
-n_record = RECNO()
- 
-		myret = .f.
-			
-		IF .not. EMPTY(t38->stepinterid)
-		
-			cInterNum = ALLTRIM(STR(t38->stepinternum))
-			cInterID = ALLTRIM(t38->stepinterid)
-			
-			SELECT t46
-			
-		  GOTO top
-		  
-			locate FOR ALLTRIM(f_iid) == ALLTRIM(cInterID)
-			
-		  IF FOUND()
-		  
-		  	cHis = f_myhis
-		  	cFile = UPPER(ALLTRIM(MLINE(cHis,9)))
-		  	
-		  	IF FILE(cFile)
-		  	
-		  		cFile = STRTRAN(cFile,".TRF",".RULES")
-		  		
-		  		IF FILE(cFile)
-		  		
-		  			cRules = FILETOSTR(cFile)
-		  			cRules = UPPER(cRules)
-		  			
-		  			nMax = MEMLINES(cRules)
-		  			
-		  			FOR X = 1 TO nMax
-		  			
-		  				cLine = MLINE(cRules,x)
-		  				cLine = ALLTRIM(cLine)
-		  				cRule = "AllowInteraction: " + cInterNum
-		  				
-		  				IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cRule))
-		  			 		myret = .t.
-		  			 		EXIT
-		  			  ENDIF  
-		  			  
-		  			NEXT
-		  					  					
-		  		ENDIF
-		  		
-		  	ENDIF
-		  
-		  ENDIF
-
-		  
 		ENDIF
-	
-	SELECT (c_table)
-	GOTO n_record	
-	
-RETURN myret
+
+
+		RETURN lret
+
+
+	PROCEDURE setstepcolor(objgdwindow)
+
+		LOCAL nsteptype
+		LOCAL cmykey
+
+		cmykey = ALLTRIM(t38->stepid)
+
+		IF THIS.checksamecolor() = .F.
+
+			nsteptype = THIS.determinesteptype(objgdwindow)
+
+			DO CASE
+
+			CASE nsteptype = 1 && Created
+
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_created_backcolor
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_created_forecolor
+
+			CASE nsteptype = 2 && Generated
+
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_generated_backcolor
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_generated_forecolor
+
+			CASE nsteptype = 3 && Generated (Root)
+
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_generatedroot_backcolor
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_generatedroot_forecolor
+
+			CASE nsteptype = 4 && Generated (AllowSub)
+
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_generatedallowsub_backcolor
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_generatedallowsub_forecolor
+
+
+			CASE nsteptype = 5 && Generated leaf
+
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_generatedleaf_backcolor
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_generatedleaf_forecolor
+
+
+				* hide steps that uses that same font color and backcolor
+				IF THIS.sc_generatedleaf_backcolor = THIS.sc_generatedleaf_forecolor
+					objgdwindow.container1.oletree.nodes.REMOVE(cmykey)
+					THIS.nhiddensteps = THIS.nhiddensteps + 1
+				ENDIF
+
+			CASE nsteptype = 6 && Generated Allow Sub & leaf
+
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_generatedallowsubleaf_backcolor
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_generatedallowsubleaf_forecolor
+
+				* hide steps that uses that same font color and backcolor
+				IF THIS.sc_generatedallowsubleaf_backcolor = THIS.sc_generatedallowsubleaf_forecolor
+					objgdwindow.container1.oletree.nodes.REMOVE(cmykey)
+					THIS.nhiddensteps = THIS.nhiddensteps + 1
+				ENDIF
+
+
+			ENDCASE
+
+		ELSE
+
+			objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_created_backcolor
+			objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_created_forecolor
+
+		ENDIF
+
+
+		RETURN nsteptype
+
+		****************************************************************
+
+	PROCEDURE determinesteptype(objgdwindow)
+
+		LOCAL myret
+		LOCAL c_tablename,n_record
+		LOCAL cstepid
+
+		LOCAL ckey
+
+		c_tablename = ALIAS()
+
+		SELECT t38
+		cstepid = t38->stepid
+		n_record = RECNO()
+
+		IF EMPTY(t38->stepinterid)
+			myret = 1 && Created
+		ELSE
+
+			myret = 2 && Generated
+
+			IF t38->stepinternum = 1 && Root
+
+				myret = 3 && Generated (root)
+
+			ENDIF
+
+			IF THIS.checknewstep() = .T.
+
+				myret = 4 && Generated (Allow Sub)
+
+				SELECT t38
+				GOTO TOP
+
+
+				LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
+
+				IF .NOT. FOUND()
+					myret = 6 && Generated Allow Sub & Leaf
+				ENDIF
+
+
+			ENDIF
+
+			IF myret = 2
+
+
+
+				SELECT t38
+				GOTO TOP
+				LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
+				IF .NOT. FOUND()
+					myret = 5 && Generated (Leaf)
+				ENDIF
+
+
+			ENDIF
+
+		ENDIF
+
+		SELECT t38
+		GOTO n_record
+
+		SELECT (c_tablename)
+
+
+		RETURN myret
+
+
+	PROCEDURE checknewstep()
+
+		LOCAL c_table,n_record
+
+		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule
+		LOCAL cinterid
+
+		c_table = ALIAS()
+		n_record = RECNO()
+
+		myret = .F.
+
+		IF .NOT. EMPTY(t38->stepinterid)
+
+			cinternum = ALLTRIM(STR(t38->stepinternum))
+			cinterid = ALLTRIM(t38->stepinterid)
+
+			SELECT t46
+
+			GOTO TOP
+
+			LOCATE FOR ALLTRIM(f_iid) == ALLTRIM(cinterid)
+
+			IF FOUND()
+
+				chis = f_myhis
+				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+
+				IF FILE(cfile)
+
+					cfile = STRTRAN(cfile,".TRF",".RULES")
+
+					IF FILE(cfile)
+
+						crules = FILETOSTR(cfile)
+						crules = UPPER(crules)
+
+						nmax = MEMLINES(crules)
+
+						FOR x = 1 TO nmax
+
+							cline = MLINE(crules,x)
+							cline = ALLTRIM(cline)
+							crule = "AllowInteraction: " + cinternum
+
+							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+								myret = .T.
+								EXIT
+							ENDIF
+
+						NEXT
+
+					ENDIF
+
+				ENDIF
+
+			ENDIF
+
+
+		ENDIF
+
+		SELECT (c_table)
+		GOTO n_record
+
+		RETURN myret
 
 ENDDEFINE

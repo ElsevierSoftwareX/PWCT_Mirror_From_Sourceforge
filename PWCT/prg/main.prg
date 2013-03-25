@@ -1,75 +1,97 @@
+*:******************************************************************************
+*:
+*: Procedure File D:\PWCTSRC\PWCT\PRG\MAIN.PRG
+*:
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	Mahmoud Fayed
+*:	Programming without coding technology 1.8 (Smart)
+*:	Free - Open Source
+*:	
+*:	Programming without coding technology 1.8 (Smart)
+*:
+*: Documented using Visual FoxPro Formatting wizard version  .05
+*:******************************************************************************
+*:   main
+*:   myquit
 PARAMETERS pmyfile
 PUBLIC myfiletoopen
 myfiletoopen = ""
 
 IF PCOUNT() = 1
-myfiletoopen = pmyfile
+	myfiletoopen = pmyfile
 ENDIF
 
-SYS_VFP_DEBUG = .F.
+sys_vfp_debug = .F.
 
-IF SYS_VFP_DEBUG = .F.
-application.DefaultFilePath = JUSTPATH(application.ServerName)
+IF sys_vfp_debug = .F.
+	APPLICATION.DEFAULTFILEPATH = JUSTPATH(APPLICATION.SERVERNAME)
 ENDIF
 
-DECLARE INTEGER ShellExecute IN shell32.dll ; 
-  INTEGER hndWin, STRING cAction, STRING cFileName, ; 
-  STRING cParams, STRING cDir, INTEGER nShowWin
+DECLARE INTEGER ShellExecute IN shell32.DLL ;
+	INTEGER hndWin, STRING cAction, STRING cFileName, ;
+	STRING cParams, STRING cDir, INTEGER nShowWin
 
 ON SHUTDOWN myquit()
 SET ESCAPE OFF
-SET CENTURY on
-SET SYSMENU to
+SET CENTURY ON
+SET SYSMENU TO
 
-IF SYS_VFP_DEBUG = .F.
-_screen.visible = .F.
-_screen.Caption = "Programming Without Coding Technology"
-_SCREEN.Icon = '\BMP\SUN.ICO'
+IF sys_vfp_debug = .F.
+	_SCREEN.VISIBLE = .F.
+	_SCREEN.CAPTION = "Programming Without Coding Technology"
+	_SCREEN.ICON = '\BMP\SUN.ICO'
 ENDIF
 
-IF SYSMETRIC(2) = 480 .and. SYSMETRIC(1) = 640
-MESSAGEBOX("Sorry the application can't work in resoultion 640*480",0,"DoubleS")
-CANCEL
+IF SYSMETRIC(2) = 480 .AND. SYSMETRIC(1) = 640
+	MESSAGEBOX("Sorry the application can't work in resoultion 640*480",0,"DoubleS")
+	CANCEL
 ENDIF
 SET MEMOWIDTH TO 300
-SET SAFETY OFF 
-SET CPDIALOG OFF 
-SET RESOURCE OFF 
-SET BELL off
+SET SAFETY OFF
+SET CPDIALOG OFF
+SET RESOURCE OFF
+SET BELL OFF
 SET LOGERRORS OFF
 SET TYPEAHEAD TO 50
 SET TALK OFF
-SET ECHO OFF 
+SET ECHO OFF
 SET CONSOLE OFF
-IF FILE(APPLICATION.DefaultFilePath+"\langpath.txt")
-sys_lp = FILETOSTR(APPLICATION.DefaultFilePath+"\langpath.txt")
+IF FILE(APPLICATION.DEFAULTFILEPATH+"\langpath.txt")
+	sys_lp = FILETOSTR(APPLICATION.DEFAULTFILEPATH+"\langpath.txt")
 ELSE
-sys_lp = "\syslang.txt"
+	sys_lp = "\syslang.txt"
 ENDIF
-IF FILE(APPLICATION.DefaultFilePath+sys_lp)
-sys_msg = FILETOSTR(APPLICATION.DefaultFilePath+sys_lp)
+IF FILE(APPLICATION.DEFAULTFILEPATH+sys_lp)
+	sys_msg = FILETOSTR(APPLICATION.DEFAULTFILEPATH+sys_lp)
 ENDIF
-PUBLIC FS_ID,FS_TD,FS_SW
-FS_ID = 0
-FS_TD = 0
-FS_SW = 0
+PUBLIC fs_id,fs_td,fs_sw
+fs_id = 0
+fs_td = 0
+fs_sw = 0
 PUBLIC s_mem3
-s_mem3 = .f.
-ON KEY label F1 S_MENU = "DoubleS Framework"
+s_mem3 = .F.
+ON KEY LABEL f1 s_menu = "DoubleS Framework"
 
 PUBLIC s_lastactivewindow && used to help file-open,save,save as & close to know that active window
-			 s_lastactivewindow = 1 && Server Units Window
-PUBLIC Sys_selsercaller && 1 = goal designer 2 =  form designer
-Sys_selsercaller = 1
+s_lastactivewindow = 1 && Server Units Window
+PUBLIC sys_selsercaller && 1 = goal designer 2 =  form designer
+sys_selsercaller = 1
 
-PUBLIC Sys_ShowDoubleS
+PUBLIC sys_showdoubles
 PUBLIC sys_soundobject
 PUBLIC sys_goalstimeframe
 PUBLIC sys_rpwionlygenonly && rpwi only - generate source code only
-sys_rpwionlygenonly = .f.
+sys_rpwionlygenonly = .F.
 
-PUBLIC SYS_TMUSESOUND
-SYS_TMUSESOUND = .T.
+PUBLIC sys_tmusesound
+sys_tmusesound = .T.
 
 
 DIMENSION sys_goalstimeframe(1,2)
@@ -81,58 +103,73 @@ PUBLIC sys_filetopasstoanothervpl
 sys_filetopasstoanothervpl = ""
 
 
-IF FILE(application.DefaultFilePath + "\chpath.txt")
+IF FILE(APPLICATION.DEFAULTFILEPATH + "\chpath.txt")
 
-Sys_ShowDoubleS = .f.
+	sys_showdoubles = .F.
 ELSE
 
-Sys_ShowDoubleS = .T.
+	sys_showdoubles = .T.
 
-IF EMPTY(ALLTRIM(myfiletoopen))
-myfiletoopen = JUSTPATH(application.ServerName)+"\StartApp\Start.SSF"
-endif
+	IF EMPTY(ALLTRIM(myfiletoopen))
+		myfiletoopen = JUSTPATH(APPLICATION.SERVERNAME)+"\StartApp\Start.SSF"
+	ENDIF
 
 ENDIF
 
-PUBLIC S_TOOL
-S_TOOL = ""
+PUBLIC s_tool
+s_tool = ""
 
 PUBLIC obj_avoiderrors
-SET PROCEDURE TO avoiderrors.prg,stepscolors.prg
+
+SET PROCEDURE TO avoiderrors.prg,stepscolors.prg,VPLCompiler.prg
 
 obj_avoiderrors = CREATEOBJECT("GD_AvoidErrors")
 
-obj_StepsColors = CREATEOBJECT("GD_StepsColors")
+obj_stepscolors = CREATEOBJECT("GD_StepsColors")
 
-IF .not. FILE(application.DefaultFilePath + "\logo.off")
-DO FORM welcome 
+PUBLIC obj_VPLCompiler 
+
+obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
+
+IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
+	DO FORM welcome
 ELSE
-do form DoubleS
+	DO FORM doubles
 ENDIF
 
-PUBLIC pwct_StatusMsgs
-DIMENSION pwct_StatusMsgs(1)
-pwct_StatusMsgs(1) = "Start PWCT Environment"
+PUBLIC pwct_statusmsgs
+DIMENSION pwct_statusmsgs(1)
+pwct_statusmsgs(1) = "Start PWCT Environment"
 
 
-read events
+READ EVENTS
 CANCEL
 
+*!******************************************************************************
+*!
+*! Procedure MYQUIT
+*!
+*!  Calls
+*!      cpnums
+*!      errormsg
+*!      myquit
+*!
+*!******************************************************************************
 FUNCTION myquit
-LOCAL mymsg
+	LOCAL mymsg
 
-IF FS_SW = 1
-	mymsg = MESSAGEBOX("Save Changes ? ",4+4096,"Question",150000)
-	IF mymsg = 6
-		S_TOOL = "SAVE"
-		serverbrain()
+	IF fs_sw = 1
+		mymsg = MESSAGEBOX("Save Changes ? ",4+4096,"Question",150000)
+		IF mymsg = 6
+			s_tool = "SAVE"
+			serverbrain()
+		ENDIF
 	ENDIF
-ENDIF
 
-close database
-QUIT
+	CLOSE DATABASE
+	QUIT
 
-RETURN
+	RETURN
 
 
 

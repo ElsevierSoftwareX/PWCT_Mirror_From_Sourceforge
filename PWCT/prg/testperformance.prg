@@ -1,33 +1,63 @@
-TESTPERFORMANCE()
-FUNCTION TESTPERFORMANCE
+*:******************************************************************************
+*:
+*: Procedure File D:\PWCTSRC\PWCT\PRG\TESTPERFORMANCE.PRG
+*:
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	Mahmoud Fayed
+*:	Programming without coding technology 1.8 (Smart)
+*:	Free - Open Source
+*:	
+*:	Programming without coding technology 1.8 (Smart)
+*:
+*: Documented using Visual FoxPro Formatting wizard version  .05
+*:******************************************************************************
+*:   testperformance
+*:   testperformance
+testperformance()
+*!******************************************************************************
+*!
+*! Procedure TESTPERFORMANCE
+*!
+*!  Calls
+*!      myiid
+*!
+*!******************************************************************************
+FUNCTION testperformance
 
-S1 = SECONDS()
+	s1 = SECONDS()
 
 
-DIMENSION MYIID(1)
-MYIID(1) = "_10001"
+	DIMENSION myiid(1)
+	myiid(1) = "_10001"
 
-FOR X = 1 TO 1400
+	FOR x = 1 TO 1400
 
-NMAX = ALEN(MYIID,1)
+		nmax = ALEN(myiid,1)
 
-MYADD = .T.
+		myadd = .T.
 
-FOR T = 1 TO NMAX
-	IF MYIID(T) == ALLTRIM(STR(X))
-		MYADD = .F.
-	ENDIF
-NEXT
+		FOR T = 1 TO nmax
+			IF myiid(T) == ALLTRIM(STR(x))
+				myadd = .F.
+			ENDIF
+		NEXT
 
-IF MYADD = .T.
-DIMENSION MYIID(ALEN(MYIID,1)+1)
+		IF myadd = .T.
+			DIMENSION myiid(ALEN(myiid,1)+1)
 
-MYIID(ALEN(MYIID,1)) = "_1000" + ALLTRIM(STR(X))
-ENDIF
+			myiid(ALEN(myiid,1)) = "_1000" + ALLTRIM(STR(x))
+		ENDIF
 
 
 
-NEXT
+	NEXT
 
-S2 = SECONDS()
-? S2 - S1
+	s2 = SECONDS()
+	? s2 - s1

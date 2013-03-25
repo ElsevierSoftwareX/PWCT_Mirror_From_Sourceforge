@@ -1,17 +1,39 @@
+*:******************************************************************************
+*:
+*: Procedure File D:\PWCTSRC\PWCT\PRG\NOCERROR.PRG
+*:
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	
+*:	Mahmoud Fayed
+*:	Programming without coding technology 1.8 (Smart)
+*:	Free - Open Source
+*:	
+*:	Programming without coding technology 1.8 (Smart)
+*:
+*: Documented using Visual FoxPro Formatting wizard version  .05
+*:******************************************************************************
+*:   nocerror
+*:   mydf
 PARAMETERS noe_myinput
 LOCAL noe_mymsg
 
 **************** RPWI Only
 
-IF Sys_ShowDoubleS = .f.
+IF sys_showdoubles = .F.
 
-		IF EMPTY(noe_myinput)
-				STMSG(sysmsg(1546))
-				?? CHR(7)
-				RETURN .f.
-		ENDIF
+	IF EMPTY(noe_myinput)
+		stmsg(sysmsg(1546))
+		?? CHR(7)
+		RETURN .F.
+	ENDIF
 
-		RETURN .T.
+	RETURN .T.
 
 ENDIF
 
@@ -21,7 +43,7 @@ ENDIF
 
 
 noe_myinput = LOWER(ALLTRIM(noe_myinput))
-noe_oldinput = noe_myinput 
+noe_oldinput = noe_myinput
 
 noe_myinput = STRTRAN(noe_myinput,"substr","")
 noe_myinput = STRTRAN(noe_myinput,"this","thisobj")
@@ -37,53 +59,61 @@ noe_myinput = STRTRAN(noe_myinput,".t.","/t\")
 noe_myinput = STRTRAN(noe_myinput,"."," + ")
 noe_myinput = STRTRAN(noe_myinput,"/f\",".f.")
 noe_myinput = STRTRAN(noe_myinput,"/t\",".t.")
-* SUPPORTING Circuit Address { \ } 
+* SUPPORTING Circuit Address { \ }
 noe_myinput = STRTRAN(noe_myinput,"\"," + ")
-* SUPPORTING SubShell Address { : } 
+* SUPPORTING SubShell Address { : }
 noe_myinput = STRTRAN(noe_myinput,":"," + ")
-* SUPPORTING ARRAYS { , } 
+* SUPPORTING ARRAYS { , }
 IF .NOT. EMPTY(ALLTRIM(noe_myinput))
-noe_myinput = STRTRAN(noe_myinput,"{","mydf(")
-noe_myinput = STRTRAN(noe_myinput,"}",")")
-noe_myinput = STRTRAN(noe_myinput,",",") + mydf(")
-noe_myinput = "mydf(" + noe_myinput + ")"  && ALLOW PARAMETERS LIKE "NAME",4
+	noe_myinput = STRTRAN(noe_myinput,"{","mydf(")
+	noe_myinput = STRTRAN(noe_myinput,"}",")")
+	noe_myinput = STRTRAN(noe_myinput,",",") + mydf(")
+	noe_myinput = "mydf(" + noe_myinput + ")"  && ALLOW PARAMETERS LIKE "NAME",4
 ENDIF
 *-------------------------------------------*
 
 IF EMPTY(noe_myinput)
-STMSG(sysmsg(1546))
-?? CHR(7)
-RETURN .f.
+	stmsg(sysmsg(1546))
+	?? CHR(7)
+	RETURN .F.
 ENDIF
 
-noe_myret = .t.
+noe_myret = .T.
 
 TRY
-			noe_myinput = &noe_myinput
+	noe_myinput = &noe_myinput
 CATCH TO omyerror
-			noe_mymsg = omyerror.message 
-			noe_errorno = ALLTRIM(STR(omyerror.errorno))
-			IF omyerror.errorno = 1231 && missing operand
-					STMSG(sysmsg(1547) + " , Expression : " + noe_oldinput)
-					noe_myret = .f.
-					?? CHR(7)
+	noe_mymsg = omyerror.MESSAGE
+	noe_errorno = ALLTRIM(STR(omyerror.ERRORNO))
+	IF omyerror.ERRORNO = 1231 && missing operand
+		stmsg(sysmsg(1547) + " , Expression : " + noe_oldinput)
+		noe_myret = .F.
+		?? CHR(7)
+	ELSE
+		IF omyerror.ERRORNO = 12 && variable doesn't exist
+			noe_myret = .T.
+		ELSE
+			IF omyerror.ERRORNO = 1 && file doesn't exist (when calling function not defined)
+				noe_myret = .T.
 			ELSE
-					IF omyerror.errorno = 12 && variable doesn't exist
-							noe_myret = .T.
-					ELSE
-							IF omyerror.errorno = 1 && file doesn't exist (when calling function not defined)
-									noe_myret = .T.
-							ELSE
-								STMSG(sysmsg(1548) + " , Expression : " + noe_oldinput)
-								noe_myret = .f.
-								?? CHR(7)
-							ENDIF
-					ENDIF
+				stmsg(sysmsg(1548) + " , Expression : " + noe_oldinput)
+				noe_myret = .F.
+				?? CHR(7)
 			ENDIF
+		ENDIF
+	ENDIF
 
 ENDTRY
 
 RETURN noe_myret
 
-FUNCTION MYDF(P1) && DUMMY FUNCTION
-RETURN ""
+*!******************************************************************************
+*!
+*! Procedure MYDF
+*!
+*!  Calls
+*!      sysmsg
+*!
+*!******************************************************************************
+FUNCTION mydf(p1) && DUMMY FUNCTION
+	RETURN ""
