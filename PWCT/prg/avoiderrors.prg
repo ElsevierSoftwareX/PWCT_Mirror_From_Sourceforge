@@ -63,14 +63,14 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 			* new step
 			objgdwindow.command1.ENABLED = result
 			* Interact
-			objgdwindow.command5.ENABLED = result
+			objgdwindow.command5.Visible = result
 			* paste
 			objgdwindow.command9.ENABLED = result
 		ELSE
 			* new step
 			objgdwindow.command1.ENABLED = .T.
 			* Interact
-			objgdwindow.command5.ENABLED = .T.
+			objgdwindow.command5.Visible = .T.
 			* paste
 			objgdwindow.command9.ENABLED = .T.
 		ENDIF
