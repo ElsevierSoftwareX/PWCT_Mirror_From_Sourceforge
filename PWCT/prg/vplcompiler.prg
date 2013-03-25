@@ -29,7 +29,7 @@ DEFINE CLASS GD_VPLCompiler as Custom
 					
 						syslogmsg( " Compile Step : " + ALLTRIM(t38->stepname) )
 						
-						nsteptype = obj_stepscolors.determinesteptype(objgdwindow)
+						nsteptype = obj_stepscolors.determinesteptype()
 					
 						DO CASE
 

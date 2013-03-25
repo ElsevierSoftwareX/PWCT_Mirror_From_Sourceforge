@@ -88,7 +88,7 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 		IF THIS.checksamecolor() = .F.
 
-			nsteptype = THIS.determinesteptype(objgdwindow)
+			nsteptype = THIS.determinesteptype()
 
 			DO CASE
 
@@ -151,7 +151,7 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 		****************************************************************
 
-	PROCEDURE determinesteptype(objgdwindow)
+	PROCEDURE determinesteptype()
 
 		LOCAL myret
 		LOCAL c_tablename,n_record
