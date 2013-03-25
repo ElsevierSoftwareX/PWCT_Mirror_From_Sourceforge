@@ -13,6 +13,9 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		nErrors = 0 && Number of errors during the compiling process
 		
 		nSeconds = SECONDS() && to calculate the processing time
+	
+		objGDWindow.list1.Additem( " Compiling... " )
+		DOEVENTS
 		
 		SELECT T38
 		
@@ -23,10 +26,10 @@ DEFINE CLASS GD_VPLCompiler as Custom
 			
 			IF .not. ( EMPTY(ALLTRIM(t38->StepInterID)) .or. t38->StepDis = .t. )
 			
-					objGDWindow.list1.Additem( " Compiling Step : " + ALLTRIM(t38->stepname) )
-					DOEVENTS
 					
-					nsteptype = obj_stepscolors.determinesteptype(objgdwindow)
+						syslogmsg( " Compile Step : " + ALLTRIM(t38->stepname) )
+						
+						nsteptype = obj_stepscolors.determinesteptype(objgdwindow)
 					
 						DO CASE
 
@@ -62,7 +65,7 @@ DEFINE CLASS GD_VPLCompiler as Custom
 					
 	    ELSE
 	    
-	    	  objGDWindow.list1.Additem( " Ignore Step : " + ALLTRIM(t38->stepname) )
+	    	  syslogmsg( " Ignore Step : " + ALLTRIM(t38->stepname) )
 	    	  				
 			ENDIF
 					
@@ -70,8 +73,8 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		
 		* Operation done ... Display Number of Errors 
 		objGDWindow.list1.Additem( " =========================================" )
-	  objGDWindow.list1.Additem( " Done... " )
-		objGDWindow.list1.Additem( " Compiling TIME(Seconds) : " + ALLTRIM(STR(SECONDS()-nSeconds)) )
+		objGDWindow.list1.Additem( " Compiling Time (Seconds) : " + ALLTRIM(STR(SECONDS()-nSeconds)) )
+	  objGDWindow.list1.Additem( " Number of Steps : " + ALLTRIM(STR(RECCOUNT())) )
 		objGDWindow.list1.Additem( " Number of Errors : " + ALLTRIM(STR(nErrors)) )
 		DOEVENTS
 					
