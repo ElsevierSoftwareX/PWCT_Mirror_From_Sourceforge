@@ -1,8 +1,9 @@
 DEFINE CLASS GD_VPLCompiler as Custom
 
-	PROCEDURE CompileVisualSource(obj_GDWindow)
+	PROCEDURE CompileVisualSource(objGDWindow)
 	
 		LOCAL cAlias,nRecord
+		LOCAL nStepType
 		
 		cAlias = ALIAS()
 		nRecord = recno()
@@ -11,10 +12,18 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		
 		SCAN
 		
-			obj_GDWindow.list1.Additem( " Compiling Step : " + ALLTRIM(t38->stepname) )
-			DOEVENTS
+			* Don't work on created step (not generated) 
+			* Don't work on disabled step
 			
-		
+			IF .not. ( EMPTY(ALLTRIM(t38->StepInterID)) .or. t38->StepDis = .t. )
+					objGDWindow.list1.Additem( " Compiling Step : " + ALLTRIM(t38->stepname) )
+					DOEVENTS
+					
+					nsteptype = obj_stepscolors.determinesteptype(objgdwindow)
+	    ELSE
+	    	  objGDWindow.list1.Additem( " Ignore Step : " + ALLTRIM(t38->stepname) )				
+			ENDIF
+					
 		ENDSCAN
 		
 		
