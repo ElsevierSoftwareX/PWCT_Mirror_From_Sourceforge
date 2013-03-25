@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:25:05    Date : 03/25/2013
+* Time : 00:39:11    Date : 03/26/2013
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.8 (Smart) [2006-2013]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -72,14 +72,6 @@ ON CLICK myclose()  ;
 WIDTH 160 HEIGHT 30 ;
 FONT "arial" SIZE 14 ;
 TOOLTIP ""
-@ 111 ,127 LABEL lbl2 ;
-VALUE "Welcome to PWCT" ;
-ON CLICK nice()  ;
-WIDTH 170 ;
-HEIGHT 39 ;
-FONT "Arial" SIZE 14  ;
-BACKCOLOR {255,255,255} ;
-FONTCOLOR {0,0,0}
 END WINDOW
 
 ACTIVATE WINDOW win1
@@ -87,8 +79,6 @@ EndIF
 
 procedure myclose()
 win1.Release ( )
-return
-procedure nice()
 return
 
 
@@ -105,15 +95,10 @@ SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",13,17)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Close Window'",18,19)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",20,20)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",21,23)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 ) , Caption : 'Welcome to PWCT'",24,25)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action nice",26,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",27,31)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",32,33)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",34,36)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",38,38)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",39,39)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure nice - Event : CLICK",40,40)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",41,41)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
 Return
 *-------------------------------------------------------------------*

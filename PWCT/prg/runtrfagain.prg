@@ -513,9 +513,7 @@
 						REPLACE stepinterid WITH t46->f_iid
 						REPLACE stepinternum WITH mystepcounter
 
-						* Set Step Colors
-						obj_stepscolors.setstepcolor(mygdform)
-						****************************************************
+				
 
 					ELSE && modify
 						SELECT t38
@@ -566,10 +564,7 @@
 							REPLACE stepinterid WITH t46->f_iid
 							REPLACE stepinternum WITH mystepcounter
 
-							* Set Step Colors
-							obj_stepscolors.setstepcolor(mygdform)
-							****************************************************
-
+		 
 						ENDIF
 					ENDIF
 				ENDIF

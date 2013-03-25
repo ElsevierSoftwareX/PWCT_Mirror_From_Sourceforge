@@ -497,9 +497,7 @@
 							REPLACE stepinterid WITH t46->f_iid
 							REPLACE stepinternum WITH mystepcounter
 
-							* Set Step Colors
-							*obj_StepsColors.SetStepColor(mygdform)
-							****************************************************
+					
 
 						ELSE && modify
 							SELECT t38
@@ -521,8 +519,14 @@
 										REPLACE stepinf WITH ""
 										REPLACE stepname WITH ALLTRIM(mytxt)
 										myoldkey = mygstree.SELECTEDITEM.KEY
-										mygstree.nodes.ITEM(ALLTRIM(stepid)).SELECTED = .T.
-										mygstree.SELECTEDITEM.TEXT = SPACE(2) + ALLTRIM(mytxt) + SPACE(2)
+										
+										TRY && avoid error when we need to modify a step hidden by the Color System (Read Mode)
+																				mygstree.nodes.ITEM(ALLTRIM(stepid)).SELECTED = .T.
+																				mygstree.SELECTEDITEM.TEXT = SPACE(2) + ALLTRIM(mytxt) + SPACE(2)
+										CATCH
+										ENDTRY
+										
+										
 										mygstree.nodes.ITEM(ALLTRIM(myoldkey)).SELECTED = .T.
 										v_found = .T.
 										EXIT
@@ -550,9 +554,7 @@
 								REPLACE stepinterid WITH t46->f_iid
 								REPLACE stepinternum WITH mystepcounter
 
-								* Set Step Colors
-								*obj_StepsColors.SetStepColor(mygdform)
-								****************************************************
+								
 
 							ENDIF
 						ENDIF
