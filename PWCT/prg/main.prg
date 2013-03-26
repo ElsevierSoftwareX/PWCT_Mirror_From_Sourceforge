@@ -28,7 +28,7 @@ IF PCOUNT() = 1
 	myfiletoopen = pmyfile
 ENDIF
 
-sys_vfp_debug = .F.
+sys_vfp_debug = .f.
 
 IF sys_vfp_debug = .F.
 	APPLICATION.DEFAULTFILEPATH = JUSTPATH(APPLICATION.SERVERNAME)
@@ -99,6 +99,7 @@ sys_goalstimeframe(1,1) = "" && Goal Name
 sys_goalstimeframe(1,2) = 0  && Interaction ID - The Time Machine
 
 
+
 PUBLIC sys_filetopasstoanothervpl
 sys_filetopasstoanothervpl = ""
 
@@ -140,6 +141,14 @@ ENDIF
 PUBLIC pwct_statusmsgs
 DIMENSION pwct_statusmsgs(1)
 pwct_statusmsgs(1) = "Start PWCT Environment"
+
+PUBLIC aFilesData
+
+DIMENSION aFilesData(1,2)
+	
+aFilesData(1,1) = "File Name"
+aFilesData(1,2) = "File Content"
+ 
 
 
 READ EVENTS

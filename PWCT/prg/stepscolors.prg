@@ -34,6 +34,7 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 	* 3 = Custom (Colors based on component rules ) we advice the component designer to select the colors based on the component type
 
 	ncolorsystem = 1
+	
 	nhiddensteps = 0
 
 	sc_created_backcolor = RGB(184,134,11)
@@ -53,7 +54,7 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 	sc_generatedallowsubleaf_backcolor = RGB(0,255,0)
 	sc_generatedallowsubleaf_forecolor = RGB(0,0,0)
-
+	
 	PROCEDURE checksamecolor()
 
 		LOCAL lret
@@ -122,7 +123,8 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 				* hide steps that uses that same font color and backcolor
 				IF THIS.sc_generatedleaf_backcolor = THIS.sc_generatedleaf_forecolor
 					objgdwindow.container1.oletree.nodes.REMOVE(cmykey)
-					THIS.nhiddensteps = THIS.nhiddensteps + 1
+					* the next step commented because we can know hidden steps by Records count - Oletree nodescount and it's faster
+					* THIS.nhiddensteps = THIS.nhiddensteps + 1
 				ENDIF
 
 			CASE nsteptype = 6 && Generated Allow Sub & leaf
@@ -133,7 +135,7 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 				* hide steps that uses that same font color and backcolor
 				IF THIS.sc_generatedallowsubleaf_backcolor = THIS.sc_generatedallowsubleaf_forecolor
 					objgdwindow.container1.oletree.nodes.REMOVE(cmykey)
-					THIS.nhiddensteps = THIS.nhiddensteps + 1
+					* THIS.nhiddensteps = THIS.nhiddensteps + 1
 				ENDIF
 
 
@@ -141,8 +143,8 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 		ELSE
 
-			objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_created_backcolor
-			objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_created_forecolor
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).BACKCOLOR = THIS.sc_created_backcolor
+				objgdwindow.container1.oletree.nodes.ITEM(cmykey).FORECOLOR = THIS.sc_created_forecolor
 
 		ENDIF
 
@@ -225,7 +227,8 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule
 		LOCAL cinterid
-
+		LOCAL aRules 
+		
 		c_table = ALIAS()
 		n_record = RECNO()
 
@@ -244,8 +247,8 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 			IF FOUND()
 
-				chis = f_myhis
-				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+				*chis = f_myhis
+				cfile = UPPER(ALLTRIM(MLINE(f_myhis,9)))
 
 				IF FILE(cfile)
 
@@ -253,18 +256,21 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 					IF FILE(cfile)
 
-						crules = FILETOSTR(cfile)
+						crules = this.myFILETOSTR(cfile)
+						
 						crules = UPPER(crules)
 
-						nmax = MEMLINES(crules)
-
+						DIMENSION aRules(1)
+				
+						nMax = ALINES(aRules,cRules)
+						
 						FOR x = 1 TO nmax
 
-							cline = MLINE(crules,x)
+							cline = aRules(x)
 							cline = ALLTRIM(cline)
 							crule = "AllowInteraction: " + cinternum
 
-							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+							IF UPPER(cline) == UPPER(ALLTRIM(crule))
 								myret = .T.
 								EXIT
 							ENDIF
@@ -284,5 +290,32 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 		GOTO n_record
 
 		RETURN myret
+
+		PROCEDURE myfiletostr(cFileName)
+
+			LOCAL cJustName,x,nMax 
+	 	
+			cFileName = UPPER(ALLTRIM(cFileName))
+			cJustName = JUSTFNAME(cFileName)
+	 	 cJustName = LEFT(cJustName,LEN(cJustName)-6) && remove .Rules
+	 	 *cJustName = STRTRAN(cJustName,"TRF","")
+	 	 
+			nMax = ALEN( aFilesData , 1)
+  
+				FOR x = 1 TO nMax
+			
+					IF  aFilesData(x,1) == cJustName
+							return aFilesData(x,2)
+					ENDIF
+			 
+				NEXT
+
+				nMax = ALEN( aFilesData , 1) + 1
+				DIMENSION aFilesData(nMax,2)
+			
+				aFilesData(nMax,1) = cJustName
+				aFilesData(nMax,2) = FILETOSTR(cFileName)
+				
+		 return aFilesData(nMax,2)
 
 ENDDEFINE
