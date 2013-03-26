@@ -27,13 +27,10 @@
 *: Class:gd_stepscolors  BaseClass: CUSTOM
 *:
 *:******************************************************************************
+
 DEFINE CLASS gd_stepscolors AS CUSTOM
-
-	* 1 = All of the steps are Black & White (No more colors)
-	* 2 = Colors based on the step type (Created , Generated (Root) , Generated (Allow sub) , Generated )
-	* 3 = Custom (Colors based on component rules ) we advice the component designer to select the colors based on the component type
-
-	ncolorsystem = 1
+	
+	lFindUsingIndex = .f.
 	
 	nhiddensteps = 0
 
@@ -123,9 +120,7 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 				* hide steps that uses that same font color and backcolor
 				IF THIS.sc_generatedleaf_backcolor = THIS.sc_generatedleaf_forecolor
 					objgdwindow.container1.oletree.nodes.REMOVE(cmykey)
-					* the next step commented because we can know hidden steps by Records count - Oletree nodescount and it's faster
-					* THIS.nhiddensteps = THIS.nhiddensteps + 1
-				ENDIF
+  			ENDIF
 
 			CASE nsteptype = 6 && Generated Allow Sub & leaf
 
@@ -135,7 +130,6 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 				* hide steps that uses that same font color and backcolor
 				IF THIS.sc_generatedallowsubleaf_backcolor = THIS.sc_generatedallowsubleaf_forecolor
 					objgdwindow.container1.oletree.nodes.REMOVE(cmykey)
-					* THIS.nhiddensteps = THIS.nhiddensteps + 1
 				ENDIF
 
 
@@ -186,9 +180,12 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 				SELECT t38
 				GOTO TOP
 
-
-				LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
-
+			IF THIS.lFindUsingIndex = .f.
+					LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
+			ELSE
+			 			THIS.IndexFindParentID(ALLTRIM(cStepID))
+			ENDIF
+				
 				IF .NOT. FOUND()
 					myret = 6 && Generated Allow Sub & Leaf
 				ENDIF
@@ -202,7 +199,12 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 				SELECT t38
 				GOTO TOP
-				LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
+		 IF THIS.lFindUsingIndex = .f.
+								LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
+			 	ELSE
+						this.IndexFindParentID(ALLTRIM(cStepID))
+				ENDIF
+				
 				IF .NOT. FOUND()
 					myret = 5 && Generated (Leaf)
 				ENDIF
@@ -242,12 +244,16 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 			SELECT t46
 
 			GOTO TOP
-
-			LOCATE FOR ALLTRIM(f_iid) == ALLTRIM(cinterid)
+			
+		IF THIS.lFindUsingIndex = .f.
+						LOCATE FOR ALLTRIM(f_iid) == ALLTRIM(cinterid)
+			ELSE
+						This.IndexFindIID(cInterID)
+			ENDIF
 
 			IF FOUND()
 
-				*chis = f_myhis
+		 
 				cfile = UPPER(ALLTRIM(MLINE(f_myhis,9)))
 
 				IF FILE(cfile)
@@ -298,17 +304,13 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 			cFileName = UPPER(ALLTRIM(cFileName))
 			cJustName = JUSTFNAME(cFileName)
 	 	 cJustName = LEFT(cJustName,LEN(cJustName)-6) && remove .Rules
-	 	 *cJustName = STRTRAN(cJustName,"TRF","")
 	 	 
-			nMax = ALEN( aFilesData , 1)
-  
-				FOR x = 1 TO nMax
-			
-					IF  aFilesData(x,1) == cJustName
-							return aFilesData(x,2)
-					ENDIF
-			 
-				NEXT
+	 	 nMax = ASCAN( aFilesData, cJustName,-1,-1, 1, 8)
+	 	 
+ 		 IF .not. nMax = 0
+					return aFilesData(nMax,2)
+		  ENDIF
+	
 
 				nMax = ALEN( aFilesData , 1) + 1
 				DIMENSION aFilesData(nMax,2)
@@ -317,5 +319,74 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 				aFilesData(nMax,2) = FILETOSTR(cFileName)
 				
 		 return aFilesData(nMax,2)
+
+		PROCEDURE CreateMyIndex()
+		
+		 
+				
+				This.DeleteMyIndex() 
+				
+				SELECT t38
+				
+				INDEX on stepid TAG mystepid
+				INDEX on parentid TAG myparentid
+				
+				SELECT T46
+				
+				INDEX ON F_IID TAG myIID
+		 
+				
+		RETURN
+		
+		PROCEDURE  IndexFindStepID(cID)
+		  
+				SELECT t38
+				seek cID ORDER tag mystepid
+				
+		RETURN
+		
+		PROCEDURE IndexFindParentID(cID)
+	 
+				SELECT t38
+				seek cID ORDER tag myparentid
+				
+		RETURN
+		
+		PROCEDURE  IndexFindIID(cID)
+	 
+				SELECT t46
+				seek cID ORDER tag myIID
+				
+		RETURN
+		
+		PROCEDURE DeleteMyIndex()
+		
+				LOCAL cTableName,nRecord,nRecord2
+				
+ 
+			
+				
+				SELECT t38
+ 
+				
+				TRY 
+						DELETE TAG mystepid
+						DELETE TAG myparentid
+				CATCH 
+				ENDTRY 
+				
+		 
+				
+				SELECT t46
+		 
+				TRY
+					 DELETE TAG myIID
+				CATCH
+				ENDTRY
+				
+ 
+					
+		RETURN
+		
 
 ENDDEFINE
