@@ -32,7 +32,6 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 	
 	lFindUsingIndex = .f.
 	
-	nhiddensteps = 0
 
 	sc_created_backcolor = RGB(184,134,11)
 	sc_created_forecolor = RGB(255,255,255)
