@@ -16,7 +16,12 @@ DEFINE CLASS GD_VPLCompiler as Custom
 	
 		objGDWindow.list1.Additem( " Compiling... " )
 		DOEVENTS
-		
+	
+	
+	  obj_stepscolors.lFindUsingIndex = .t.
+  
+ 	 obj_stepscolors.createMyIndex()
+  
 		SELECT T38
 		
 		SCAN
@@ -28,6 +33,8 @@ DEFINE CLASS GD_VPLCompiler as Custom
 			
 					
 						syslogmsg( " Compile Step : " + ALLTRIM(t38->stepname) )
+						
+						
 						
 						nsteptype = obj_stepscolors.determinesteptype()
 					
@@ -70,6 +77,13 @@ DEFINE CLASS GD_VPLCompiler as Custom
 			ENDIF
 					
 		ENDSCAN
+
+			  
+		obj_stepscolors.DeleteMyIndex()
+			  
+	  obj_stepscolors.lFindUsingIndex = .f.
+		
+		SELECT t38
 		
 		* Operation done ... Display Number of Errors 
 		objGDWindow.list1.Additem( " =========================================" )
