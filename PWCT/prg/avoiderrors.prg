@@ -367,12 +367,84 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 
 		RETURN myret
 
+		PROCEDURE GetRealStepParent()
+		
+		* When we cut a step and paste it inside another step we need to check the parent step component
+		* if the parent is a created step we must go to it's parent until we find a generated step or we become sure that the step belong to the root
+		
+				LOCAL nParentRec && STEPID OF THE REAL PARENT
+				LOCAL cTableName,nRecord,nRecord2
+				LOCAL lCont,cParent
+				
+				cTableName = ALIAS()
+				nRecord = RECNO()
+				
+				nParentRec = 0
+				
+				SELECT t38
+
+				nRecord2 = RECNO()
+
+
+				IF  EMPTY(t38->stepinterid)
+
+					nParentRec = 0
+					
+					lcont = .T.
+					cparent = t38->parentid
+
+					DO WHILE lcont = .T.
+
+						GOTO TOP
+
+						LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+
+						IF FOUND()
+
+							IF .NOT. EMPTY(t38->stepinterid)
+
+								nParentRec = RECNO()
+								lcont = .F.
+								
+							ELSE
+							
+								lcont = .T.
+								cparent = t38->parentid
+								
+							ENDIF
+							
+						ENDIF
+
+						IF UPPER(ALLTRIM(cparent)) == "SP_"
+							lcont = .F.
+						ENDIF
+
+
+					ENDDO
+					
+			  ELSE
+			  			nParentRec = RECNO()
+				ENDIF
+
+				SELECT t38
+				GOTO nRecord2
+
+
+				SELECT (cTableName)
+				GOTO nRecord
+		
+		RETURN nParentRec
+		
+		PROCEDURE GetRealStepChild()
+		RETURN
+		
 
 	PROCEDURE checksubcomponent(ccomponentfile)
 
 		LOCAL c_table,n_record
 		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule,T
 		LOCAL cacfile
+		LOCAL nRecord2,lParentChanged
 
 		* this procedure is called from the components browser window
 		* Also called from Goal Designer - Paste button
@@ -389,14 +461,30 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 		myret = .F.
 
 
+	
+
+		lParentChanged = .f.
+		IF EMPTY(t38->stepinterid)
+				X = THIS.GetRealStepParent()
+				IF .NOT. X = 0
+					SELECT t38
+					nRecord2 = RECNO()
+					GOTO x 
+					lParentChanged = .t.
+					syslogmsg(" Check sub component - parent changed ")
+				ENDIF
+		ENDIF
+		
 		* Load the rules of the active component (will be the parent) and save the component file to variable cACFile
 
 		cinternum = ALLTRIM(STR(t38->stepinternum))
 
+		
 		SELECT t46
 		GOTO TOP
-
+		
 		IF .NOT. EMPTY(t38->stepinterid)
+		
 			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 
 			IF FOUND()
@@ -470,8 +558,15 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 				ENDIF
 
 			ENDIF
-		ENDIF
+			
+ 	ENDIF 		
 
+
+		IF  lParentChanged = .t.
+				SELECT t38
+				GOTO nRecord2
+		ENDIF
+		
 		SELECT (c_table)
 		GOTO n_record
 
@@ -644,7 +739,8 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 		LOCAL cfile,crules,myret,nmax,x,cline,crule
 		LOCAL c_table,n_record
 		LOCAL cparentcomponentfile
-
+		LOCAL lParentChanged,nRecord2
+		
 		* written to be called from the components browser
 		* checking starts while the active step in the steps tree is the parent
 		* the child is not added yet, this check called before adding the child to be sure that it's allowed
@@ -660,6 +756,20 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 
 		c_table = ALIAS()
 		n_record = RECNO()
+
+
+		 lParentChanged = .f.
+			IF EMPTY(t38->stepinterid)
+					X = THIS.GetRealStepParent()
+					IF .NOT. X = 0
+						SELECT t38
+						nRecord2 = RECNO()
+						GOTO x 
+						lParentChanged = .t.
+						syslogmsg(" Is parent allowed for component - parent changed ")
+					ENDIF
+			ENDIF
+
 
 		* Get the parent
 
@@ -743,6 +853,12 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 			stmsg( " (Check Parent Component) Cann't find the Rules file : " + cfile  )
 			myret = .T.
 		ENDIF
+
+		IF  lParentChanged = .t.
+				SELECT t38
+				GOTO nRecord2
+		ENDIF
+
 
 		SELECT (c_table)
 		GOTO n_record
