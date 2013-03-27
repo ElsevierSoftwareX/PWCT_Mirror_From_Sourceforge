@@ -28,7 +28,7 @@ IF PCOUNT() = 1
 	myfiletoopen = pmyfile
 ENDIF
 
-sys_vfp_debug = .f.
+sys_vfp_debug = .F.
 
 IF sys_vfp_debug = .F.
 	APPLICATION.DEFAULTFILEPATH = JUSTPATH(APPLICATION.SERVERNAME)
