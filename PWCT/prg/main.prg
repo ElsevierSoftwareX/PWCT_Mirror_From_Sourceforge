@@ -154,6 +154,10 @@ aFilesData(1,2) = "File Content"
 READ EVENTS
 CANCEL
 
+
+FUNCTION PWCTVERSION()
+
+RETURN 
 *!******************************************************************************
 *!
 *! Procedure MYQUIT

@@ -1,7 +1,7 @@
 *---------------------------------------------------------------------------*
-* Time : 01:33:31    Date : 03/26/2013
+* Time : 07:41:20    Date : 03/27/2013
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2013]  
+* Programming without coding technology 1.9 (Art) [2006-2013]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
