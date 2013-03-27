@@ -155,9 +155,6 @@ READ EVENTS
 CANCEL
 
 
-FUNCTION PWCTVERSION()
-
-RETURN 
 *!******************************************************************************
 *!
 *! Procedure MYQUIT
