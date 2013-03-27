@@ -45,23 +45,33 @@ DEFINE CLASS GD_VPLCompiler as Custom
 										 
 
 										CASE nsteptype = 2 && Generated
-							 		 * Nothing to do for this type of steps
-
+										
+										* check that the parent is correct
+										
+										* check that no child
+										
+							  
 										CASE nsteptype = 3 && Generated (Root)
 										
+										* Check That the parent is correct for this step
 									 
+									  * check that no child
 
 										CASE nsteptype = 4 && Generated (AllowSub)
-
+										
+										* Check That the child is correct for this step
 							 
-
+										* Check that the child is correct
 
 										CASE nsteptype = 5 && Generated leaf
-										* Nothing to do for this type of steps
+										
+							 		 * check 
 							 
 
 										CASE nsteptype = 6 && Generated Allow Sub & leaf
-										* Nothing to do for this type of steps
+										
+							 	 	* Check that the order is correct
+							 		 * check that the parent is correct 
 							 
 
 

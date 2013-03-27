@@ -51,6 +51,8 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 	sc_generatedallowsubleaf_backcolor = RGB(0,255,0)
 	sc_generatedallowsubleaf_forecolor = RGB(0,0,0)
 	
+	istate_reccount = 0
+	
 	PROCEDURE checksamecolor()
 
 		LOCAL lret
@@ -568,6 +570,70 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 				
 		RETURN
 		
+		PROCEDURE NewStepsBlockStart()
 		
+			LOCAL cTableName,nRecord
+			
+			cTableName = ALIAS()
+			nRecord = RECNO()
+			
+			SELECT t38
+			this.istate_reccount = RECCOUNT()
+		
+			SELECT (cTableName)
+			GOTO nRecord
+			
+		RETURN
+		
+		PROCEDURE NewStepsBlockEnd(objGDWindow)
+		
+			LOCAL istate_node,istate_recno,istate_max,istate_x
+		
+			LOCAL cTableName,nRecord
+			
+			cTableName = ALIAS()
+			nRecord = RECNO()
+			
+			* Set Colors for new steps
+
+			SELECT t38
+
+			IF RECCOUNT() > this.istate_reccount
+
+				istate_node = objGDWindow.container1.oletree.SELECTEDITEM.KEY
+
+				istate_recno = RECNO()
+				istate_max = RECCOUNT()
+
+				objGDWindow.LOCKSCREEN = .T.
+
+
+				FOR istate_x = this.istate_reccount + 1 TO istate_max
+				
+					SELECT t38
+					GOTO istate_x
+					TRY
+						objGDWindow.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).SELECTED = .T.
+						this.setstepcolor(objGDWindow)
+					CATCH
+					ENDTRY
+
+				NEXT
+
+				objGDWindow.LOCKSCREEN = .F.
+
+				TRY
+					GOTO istate_recno
+					objGDWindow.container1.oletree.nodes.ITEM(ALLTRIM(istate_node)).SELECTED = .T.
+				CATCH
+				ENDTRY
+
+			ENDIF
+	
+			SELECT (cTableName)
+			GOTO nRecord
+			
+	RETURN
+	
 
 ENDDEFINE
