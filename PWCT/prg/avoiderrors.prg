@@ -308,6 +308,11 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 
 	PROCEDURE isthisstepistheroot()
 
+	* is this step belong to SP_ (Start Point) without generated step between them
+	* for example when the user create a step called (The First Step) from the start point
+	* Then the step (The First Step) is considered (The Root) because this step belong to 
+	* the start point without any of the generated step between them
+	
 		LOCAL  c_table,n_record,n_record2
 		LOCAL myret,lcont,cparent
 
@@ -370,6 +375,7 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 		LOCAL cacfile
 
 		* this procedure is called from the components browser window
+		* Also called from Goal Designer - Paste button
 
 		* if the syntax directed editor is disabled
 		IF THIS.lvisualcompiler = .F. .OR. THIS.isthisstepistheroot() = .T.
@@ -644,6 +650,11 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 		* the child is not added yet, this check called before adding the child to be sure that it's allowed
 
 		* called also from (Goal Designer - Paste button)
+
+		IF THIS.lvisualcompiler = .F.
+				RETURN .T.
+		ENDIF
+		
 
 		myret = .F.
 
