@@ -362,19 +362,13 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 		
 				LOCAL cTableName,nRecord,nRecord2
 				
- 
-			
-				
 				SELECT t38
- 
-				
+ 				
 				TRY 
 						DELETE TAG mystepid
 						DELETE TAG myparentid
 				CATCH 
 				ENDTRY 
-				
-		 
 				
 				SELECT t46
 		 
@@ -382,10 +376,198 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 					 DELETE TAG myIID
 				CATCH
 				ENDTRY
-				
- 
 					
 		RETURN
+		
+		PROCEDURE SaveStyle(objgdwindow)
+				
+				LOCAL cStyle,cStyleFile
+				
+				cStyle = ""
+				
+				cStyle = cStyle + "StepsTreeFontName : " + objGDWindow.container1.oletree.font.name + CHR(13) + CHR(10)
+				cStyle = cStyle + "StepsTreeFontSize : " + ALLTRIM(STR(objGDWindow.container1.oletree.font.size)) + CHR(13) + CHR(10)
+				
+				cStyle = cStyle + "CreatedStepForeColor : " + ALLTRIM(STR(this.sc_created_forecolor)) + CHR(13) + CHR(10)
+				cStyle = cStyle + "CreatedStepBackColor : " + ALLTRIM(STR(this.sc_created_backcolor)) + CHR(13) + CHR(10)
+				
+				cStyle = cStyle + "GeneratedStepForeColor : " + ALLTRIM(STR(this.sc_generated_forecolor)) + CHR(13) + CHR(10)
+				cStyle = cStyle + "GeneratedStepBackColor : " + ALLTRIM(STR(this.sc_generated_backcolor)) + CHR(13) + CHR(10)
+				
+				cStyle = cStyle + "GeneratedRootStepForeColor : " + ALLTRIM(STR(this.sc_generatedroot_forecolor)) + CHR(13) + CHR(10)
+				cStyle = cStyle + "GeneratedRootStepBackColor : " + ALLTRIM(STR(this.sc_generatedroot_backcolor)) + CHR(13) + CHR(10)
+				
+				cStyle = cStyle + "GeneratedAllowSubStepForeColor : " + ALLTRIM(STR(this.sc_GeneratedAllowSub_forecolor)) + CHR(13) + CHR(10)
+				cStyle = cStyle + "GeneratedAllowSubStepBackColor : " + ALLTRIM(STR(this.sc_GeneratedAllowSub_backcolor)) + CHR(13) + CHR(10)
+					
+				cStyle = cStyle + "GeneratedAllowSubLeafStepForeColor : " + ALLTRIM(STR(this.sc_GeneratedAllowSubLeaf_forecolor)) + CHR(13) + CHR(10)
+				cStyle = cStyle + "GeneratedAllowSubLeafStepBackColor : " + ALLTRIM(STR(this.sc_GeneratedAllowSubLeaf_backcolor)) + CHR(13) + CHR(10)
+			
+			
+				cStyle = cStyle + "GeneratedLeafStepForeColor : " + ALLTRIM(STR(this.sc_GeneratedLeaf_forecolor)) + CHR(13) + CHR(10)
+				cStyle = cStyle + "GeneratedLeafStepBackColor : " + ALLTRIM(STR(this.sc_GeneratedLeaf_backcolor)) + CHR(13) + CHR(10) 
+						
+				cStyleFile = JUSTPATH(APPLICATION.SERVERNAME)+"\Style.txt"
+				
+				STRTOFILE(cStyle,cStyleFile)
+			
+				stmsg("Style Saved")
+				
+		RETURN
+		
+		PROCEDURE LoadStyle(objgdwindow)
+
+				LOCAL cStyle,cStyleFile
+				LOCAL x,nMax
+				LOCAL cLine,cAt,cCmd,cData
+				
+				cStyleFile = JUSTPATH(APPLICATION.SERVERNAME)+"\Style.txt"
+				
+				syslogmsg("Loading style file...")
+				
+				
+				IF FILE(cStyleFile)
+				
+						syslogmsg("Style file opened...")
+				
+						cStyle = FILETOSTR(cStyleFile)
+						
+						nMax = MEMLINES(cStyle)
+						
+						FOR x = 1 TO nMax
+								
+								cLine = MLINE(cStyle,X)
+								
+								nAt = AT(":",cLine)
+								cCmd = LEFT(cLine,nAt-1)
+								
+								cData = SUBSTR(cLine,nAt+1)
+								cData = ALLTRIM(cData)
+								
+								cCmd = UPPER(ALLTRIM(cCmd))
+								
+								IF cCmd = "STEPSTREEFONTNAME"
+								
+									syslogmsg("Style contains : Steps Tree Font Name")
+				
+									objGDWindow.container1.oletree.font.name = cData
+									LOOP
+								ENDIF
+								
+								IF cCmd = "STEPSTREEFONTSIZE"
+								
+									syslogmsg("Style contains : Steps Tree Font Size")
+									
+									objGDWindow.container1.oletree.font.size = VAL(cData)
+									LOOP
+								ENDIF
+								
+								
+								IF cCmd = "CREATEDSTEPFORECOLOR"
+								
+									syslogmsg("Style contains : Created Step ForeColor")
+									this.sc_created_forecolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "CREATEDSTEPBACKCOLOR"
+								
+									syslogmsg("Style contains : Created Step BackColor")
+									this.sc_created_backcolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDSTEPFORECOLOR"
+								
+									syslogmsg("Style contains : Generated Step ForeColor")
+									this.sc_GENERATED_forecolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDSTEPBACKCOLOR"
+								
+									syslogmsg("Style contains : Generated Step BackColor")
+									this.sc_GENERATED_backcolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDROOTSTEPFORECOLOR"
+								
+									syslogmsg("Style contains : GeneratedRoot Step ForeColor")
+									this.sc_GENERATEDROOT_forecolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDROOTSTEPBACKCOLOR"
+								
+									syslogmsg("Style contains : GeneratedRoot Step BackColor")
+									this.sc_GENERATEDROOT_backcolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDALLOWSUBSTEPFORECOLOR"
+								
+									syslogmsg("Style contains : GeneratedAllowSub Step ForeColor")
+									this.sc_GENERATEDALLOWSUB_forecolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDALLOWSUBSTEPBACKCOLOR"
+								
+									syslogmsg("Style contains : GeneratedAllowSub Step BackColor")
+									this.sc_GENERATEDALLOWSUB_backcolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDLEAFSTEPFORECOLOR"
+								
+									syslogmsg("Style contains : GeneratedLeaf Step ForeColor")
+									this.sc_GENERATEDLEAF_forecolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDLEAFSTEPBACKCOLOR"
+								
+									syslogmsg("Style contains : GeneratedLeaf Step BackColor")
+									this.sc_GENERATEDLEAF_backcolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDALLOWSUBLEAFSTEPFORECOLOR"
+								
+									syslogmsg("Style contains : GeneratedAllowSubLeaf Step ForeColor")
+									this.sc_GENERATEDALLOWSUBLEAF_forecolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								IF cCmd = "GENERATEDALLOWSUBLEAFSTEPBACKCOLOR"
+								
+									syslogmsg("Style contains : GeneratedAllowSubLeaf Step BackColor")
+									this.sc_GENERATEDALLOWSUBLEAF_backcolor = VAL(cData)
+									LOOP
+									
+								ENDIF
+								
+								
+						NEXT
+						
+						stmsg("Style Loaded")
+						
+				endif
+				
+		RETURN
+		
 		
 
 ENDDEFINE
