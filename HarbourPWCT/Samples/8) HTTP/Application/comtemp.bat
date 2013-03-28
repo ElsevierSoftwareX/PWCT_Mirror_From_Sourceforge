@@ -1,0 +1,1 @@
+CALL sscom2.bat  "DEMO"  /mt /l hbnetio /l zlib /l ws2_32 /l calldll   /CG > _temp.txt
