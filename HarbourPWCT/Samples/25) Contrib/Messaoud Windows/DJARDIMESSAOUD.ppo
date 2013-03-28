@@ -1,0 +1,846 @@
+#line 54 "c:\SSBUILD\minigui\include\i_var.ch"
+  MEMVAR _HMG_SYSDATA
+  MEMVAR _HMG_SCRSAVERDATA
+#line 109 "c:\SSBUILD\xharbour\include\hbclass.ch"
+   DYNAMIC DivertConstructorCall
+
+
+
+
+
+
+
+
+
+
+
+DECLARE HBClass  New( cName AS String, OPTIONAL SuperParams ) AS CLASS HBClass  Create() AS Object  Instance() AS Object  AddClsMethod( cName AS String, @MethodName(), nScope AS Numeric, n2 AS Numeric, n3 AS Numeric )  AddMultiClsData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String )  AddMultiData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String, x AS LOGICAL, lPer AS LOGICAL )  AddMethod( cName AS String, @MethodName(), nScope AS Numeric, lPersistent AS LOGICAL )  AddInLine( cName AS String, bBlock AS CodeBlock, nScope AS Numeric, lPersistent AS LOGICAL )  AddVirtual( cName AS String )
+#line 4 "DJARDIMESSAOUD.prg"
+Function Main
+
+
+
+
+
+
+
+
+
+
+
+
+
+Public True,False
+True = .T.
+False = .F.
+SS_NEWSERVER("Server1","Slave","000")
+
+
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+    SS_FLAG3 = 1 ; SS_FLAG = 1 ; SS_FLAG2 = 1
+    SS_FLAG = 4 ; SS_FLAG2 = 3 ; SS_FLAG3 = 2
+            SS_NEWCIRCUIT( "Main" )
+                SS_NEWBRANCH( "Main" )
+                    SS_NRESIS( "Main" )
+    SS_FLAG3 = 3
+
+
+    SS_NEWR( "WIN32EVENTS()" , "WIN32EVENTS" )
+
+  SS_ADDRES("WIN32EVENTS")
+
+
+SS_NEWR( "R4029206724_1()" , "Circuits\Main\Main\Main" )
+
+
+ss_callr( "Circuits\Main\Main\Main" )
+Return
+
+  FUNCTION STARTSERVER()
+       SS_FIREON()
+  RETURN
+
+  function WIN32EVENTS()
+       ProcessMessages()
+  RETURN
+
+
+function R4029206724_1()
+
+
+
+
+
+
+
+
+ _DefineWindow ( "win1",, 10, 10, 996, 535, .F., .F., .T., .F., .T., {,}, {,},, ,, , ,, {236,233,216} , , .F. , .F. , .T. , "PWCTICON" , .F. , ,, , , ,, , , , , , , , , , .F. , , , , .F. , , , , , .F. , .F. )
+
+DoMethod ( "win1", "Maximize" )
+
+
+
+
+
+
+_DefineLabel ( "lbl1",, 582, 178, "«”„ «·„” Œœ„", 100, 30, "Arial" , 12 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+
+
+
+
+
+
+_DefineLabel ( "lbl2",, 582, 270, "ﬂ·„… «·„—Ê—", 100, 30, "Arial" , 12 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+
+
+
+
+
+
+_DefineLabel ( "lbl3",, 238, 18, "√Â·« »ﬂ„ ›Ì ‰Ÿ«„  ‘€Ì· „”⁄Êœ", 465, 56, "Arial" , 28 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+
+
+
+
+
+_DefineOwnerButton ( "btn1",, 81, 401, "«·Œ—ÊÃ", {|| DoMethod ( "win1", "release" )}, 102, 34,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 18, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn2",, 560, 352, "œŒÊ·", {|| myentre()}, 100, 34,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 18, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineTextBox( "text1",, 263, 181, 292, 32,, "Arial", 12,,, .F., .F., .F., .F.,,,,, .F.,, .F. ,.F., .F., .F., .F. , , {255,255,255} , {0,0,0} , .F. , .F. ,)
+
+
+
+
+
+
+_DefineTextBox( "text2",, 264, 264, 293, 28,, "Arial", 12,,, .F., .F., .F., .T.,,,,, .F.,, .F. ,.F., .F., .F., .F. , , {255,255,255} , {0,0,0} , .F. , .F. ,)
+_EndWindow ()
+
+_ActivateWindow( {"win1"}, .F. )
+
+Proc myabout
+Return Nil
+Proc myentre
+name := "pwct"
+pass := "pwct"
+name2 := GetProperty ( "win1", "text1" , "Value" )
+pass2 := GetProperty ( "win1", "text2" , "Value" )
+IF name = name2
+
+
+
+
+
+
+
+ _DefineModalWindow ( "win2",, 10, 10, 993, 767, "" , .F., .F., .T., {,}, {,},, , , , ,, {236,233,216} , , "PWCTICON" , , ,, , , , , , , , , , .F. , , .F. , .F. , , , )
+
+DoMethod ( "win2", "Maximize" )
+
+
+
+_DefineImage ( "image1",, 30, 12, "NOTEPAD.ICO" ,65, 65, {|| mynote()} , , .F. , .F. , .F. ,)
+
+
+
+
+
+
+_DefineLabel ( "lblpad",, 31, 79, "»—‰«„Ã «·„›ﬂ—…", 59, 18, "Arial" , 9 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+
+
+
+_DefineImage ( "image2",, 29, 114, "nav.ico" ,59, 69, {|| myinternet()} , , .F. , .F. , .F. ,)
+
+
+
+
+
+
+_DefineLabel ( "lblnav",, 14, 192, "»—‰«„Ã „ ’›Õ «·≈‰ —‰ ", 101, 23, "Arial" , 9 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+
+
+
+_DefineImage ( "image3",, 22, 232, "exe.ico" ,72, 78, {|| myfile()} , , .F. , .F. , .F. ,)
+
+
+
+
+
+
+_DefineLabel ( "lblexe",, 16, 316, "»—‰«„Ã „‘€· «·„·›« ", 83, 17, "Arial" , 9 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+
+
+
+
+
+_DefineOwnerButton ( "btn1",, 831, 681, "Œ‹‹‹‹—ÊÃ", {|| myby()}, 118, 45,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 25, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+_BeginToolBar ( "Toolbar1",, , , 136, 28,,,, , , .T. , .T. , .F. , .F. , .T., .F., .F., .F. , .F. )
+
+
+
+
+
+
+_DefineToolButton ( "toolbarbtn1", _HMG_SYSDATA[27], , , «»œ√ , {|| mystart()} , , , "m.ico" , "" , , , .F. , .F. , .T. , .F. , .F. , .F. , .F. , .F., -1 )
+
+_EndToolBar ()
+
+
+
+
+
+
+
+_DefineLabel ( "lbltime",, 320, 601, "", 220, 47, "Arial" , 18 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+
+_DefineTimer ( "Timer1" , ,1000 , {|| mytimer()} )
+_EndWindow ()
+
+_ActivateWindow( {"win2"}, .F. )
+
+ELSE
+MyOut := MsgStop ( "«”„ «·„” Œœ„ «·–Ì √œŒ· Â Œ«ÿ∆ ° «·≈”„ «·’ÕÌÕ ÂÊ : pwct ", "Œÿ√", , .F. )
+ENDIF
+IF pass2 = pass
+ELSE
+MyOut := MsgStop ( "ﬂ·„… «·„—Ê— Œ«ÿ∆…°«·ﬂ·„… «·’ÕÌÕ… ÂÌ : pwct", "Oooops!!", , .F. )
+ENDIF
+DoMethod ( "win1", "Release" )
+Proc mynote
+
+
+
+
+
+
+
+ _DefineModalWindow ( "winpad", "PWCT Pad", 10, 10, 650, 400, "" , .T., .F., .F., {,}, {,},, , , , ,, {236,233,216} , , , , ,, , , , , , , , , , .F. , , .F. , .F. , , , )
+
+DoMethod ( "winpad", "Center" )
+
+
+
+
+
+_DefineEditBox ( "edit1",, 1, 1, 640, 308, ,"Arial",11 , , , , , , .F. , .F. ,, .F., .F. ,.F., .F., .F., .F. , , {255,255,255} , {0,0,0} , .F. , .F., )
+
+
+
+
+
+_DefineOwnerButton ( "btn1",, 15, 323, "Õ›Ÿ «·‰’", {|| mysave()}, 102, 31,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 18, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn2",, 136, 322, "› Õ ‰’", {|| myopen()}, 99, 33,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 18, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn3",, 535, 325, "Œ—ÊÃ", {|| DoMethod ( "winpad", "release" )}, 100, 34,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 18, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn4",, 246, 323, " ⁄œÌ· «·Œÿ", {|| myfont()}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 18, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+_EndWindow ()
+
+_ActivateWindow( {"winpad"}, .F. )
+
+Return Nil
+Proc myby
+MyOut := MsgYesNo("Â·  —Ìœ Õﬁ« ≈€·«ﬁ «·‰Ÿ«„ Ê «·Œ—ÊÃ ø", "≈€·«ﬁ", , , .F.)
+IF MyOut = true
+DoMethod ( "win1", "Release" )
+DoMethod ( "win2", "Release" )
+ENDIF
+IF MyOut = false
+Return 0
+ENDIF
+Return Nil
+Proc mystart
+
+
+
+
+
+
+
+
+ _DefineModalWindow ( "win4", "≈»œ√", 10, 10, 301, 348, "" , .T., .F., .F., {,}, {,},, , , , ,, {236,233,216} , , "PWCTICON" , , ,, , , , , , , , , , .F. , , .F. , .F. , , , )
+
+DoMethod ( "win4", "Center" )
+
+
+
+
+
+_DefineOwnerButton ( "btn1",, 7, 6, "»—‰«„Ã «·„›ﬂ—…", {|| mynote()}, 160, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn2",, 7, 62, "»—‰«„Ã «·„ ’›Õ", {|| myinternet()}, 160, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn3",, 7, 118, "»—‰«„Ã „‘€· «·„·›« ", {|| myfile()}, 160, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn4",, 125, 239, "«·Œ—ÊÃ „‰ «·‰Ÿ«„", {|| myby()}, 160, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn5",, 6, 174, "ÕÊ·...", {|| mymouse()}, 161, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 18, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+_EndWindow ()
+
+_ActivateWindow( {"win4"}, .F. )
+
+Return Nil
+Proc mysave
+Messaoud := GetProperty ( "winpad", "edit1" , "Value" )
+
+
+
+
+PutFile := PutFile ( { {"„·› ‰’","*.txt"} } , " PwctPad : Õ›Ÿ „·› " , , , )
+CheckFile := File(PutFile)
+IF CheckFile
+MyPad := MsgOkCancel( "«·„·› „ÊÃÊœ ”«»ﬁ«°Â·  —Ìœ «·ﬂ «»… ›ÊﬁÂ ø", "«·„·› „ÊÃÊœ ”«»ﬁ«", , .F. )
+IF MyPad = false
+Return 0
+ENDIF
+ENDIF
+RPWI_TH = FCREATE(PutFile,0)
+FWRITE(RPWI_TH,Messaoud)
+FCLOSE(RPWI_TH)
+Return Nil
+Proc myopen
+
+
+
+
+GetFile := GetFile ( { {"„·› ‰’","*.txt"} } , " PWCT Pad : › Õ „·› " , , , )
+dido = MEMOREAD ( GetFile )
+SetProperty ( "winpad", "edit1" , "Value" , dido )
+Return Nil
+Proc myfont
+
+
+
+
+
+
+
+GetFont := GetFont ( "arial" , 9 , .F. , .F. , {0,0,0} , .F. , .F. , )
+FontName      := getfont[1]
+FontSize      := getfont[2]
+Fontbold      := getfont[3]
+FontItalic    := getfont[4]
+FontColor     := getfont[5]
+FontUnderline := Getfont[6]
+FontStrickOut := getfont[7]
+FontCharset   := getfont[8]
+SetProperty ( "winpad", "edit1" , "FontName" , fontname )
+SetProperty ( "winpad", "edit1" , "FontSize" , fontsize )
+SetProperty ( "winpad", "edit1" , "FontColor" , fontcolor )
+Return Nil
+Proc myinternet
+
+
+
+
+
+
+
+ _DefineModalWindow ( "winnav", "PWCT Navigator", 10, 10, 766, 525, "" , .T., .F., .F., {,}, {,},, , , , ,, {236,233,216} , , , , ,, , , , , , , , , , .F. , , .F. , .F. , , , )
+
+DoMethod ( "winnav", "Center" )
+
+
+
+
+
+_DefineCharMaskTextBox ( "textnav",, 10, 10, "" , 200 , , , , , , , , 30 , , .F. , , .F., .F., .F., .F. , , {255,255,255} , {0,0,0} , .F. , .F. , .F. , .F. , )
+
+
+
+
+
+_DefineOwnerButton ( "btngo",, 224, 8, "«‰ÿ·ﬁ!!", {|| mygo()}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btnRef",, 440, 7, " ÕœÌÀ", {|| myref()}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btnStop",, 332, 8, " Êﬁ›", {|| mystop()}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btnexit",, 650, 6, "Œ‹‹—ÊÃ", {|| DoMethod ( "winnav", "release" )}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btnhome",, 544, 7, "«·—∆Ì”Ì…", {|| myhome()}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+Public oActiveX
+oActiveX := TActiveX():New( "Winnav", "Shell.Explorer.2" , 45 , 2 , 750 , 437)
+oActiveX:Load()
+_EndWindow ()
+
+_ActivateWindow( {"winnav"}, .F. )
+
+Return Nil
+Proc mygo
+didonav := GetProperty ( "winnav", "textnav" , "Value" )
+oActiveX:OOLE:navigate ( didonav )
+Return Nil
+Proc myref
+oActiveX:Refresh ( )
+Return Nil
+Proc mystop
+oActiveX:OOLE:stop ( )
+Return Nil
+Proc myhome
+oActiveX:OOLE:navigate ( "www.pwct.p2h.info/vb/index.php" )
+Return Nil
+Proc myfile
+
+
+
+
+
+
+
+ _DefineModalWindow ( "winfiles", "„‘€· «·„·›« ", 10, 10, 215, 400, "" , .T., .F., .F., {,}, {,},, , , , ,, {0,128,0} , , , , ,, , , , , , , , , , .F. , , .F. , .F. , , , )
+
+DoMethod ( "winfiles", "Center" )
+
+
+
+
+
+_DefineOwnerButton ( "btnchose",, 52, 57, "«Œ Ì«— «·„·›", {|| mychose()}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btnok",, 52, 165, " ‘€Ì· «·„·›", {|| myexe()}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btnby",, 52, 272, "Œ—ÊÃ", {|| MSGINFO( mywy() )}, 100, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 16, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+
+
+_DefineLabel ( "lblfile",, 10, 10, "", 192, 19, "Arial" , 9 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .T., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+_EndWindow ()
+
+_ActivateWindow( {"winfiles"}, .F. )
+
+Return Nil
+Proc mychose
+
+
+
+
+GetFile := GetFile ( { {"ﬂ· «·„·›« ","*.*"} } , " „‘€· «·„·›«  : «Œ Ì«— «·„·› " , , , )
+SetProperty ( "winfiles", "lblfile" , "Value" , GetFile )
+Return Nil
+Proc myexe
+file := GetProperty ( "winfiles", "lblfile" , "Value" )
+_Execute ( GetActiveWindow() , , file , , , 5 )
+Return Nil
+Proc mywy
+DoMethod ( "winfiles", "Release" )
+Return Nil
+Proc mytimer
+thetime = TIME()
+SetProperty ( "win2", "lbltime" , "Value" , thetime )
+Return Nil
+Proc mymouse
+
+
+
+
+
+
+
+ _DefineModalWindow ( "win7", "ÕÊ· pwct windows", 10, 10, 874, 156, "" , .T., .F., .F., {,}, {,},, , , , ,, {236,233,216} , , , , ,, , , , , , , , , , .F. , , .F. , .F. , , , )
+
+DoMethod ( "win7", "Center" )
+
+
+
+
+
+
+_DefineLabel ( "lbl1",, 10, 10, " „  «·»—„Ã… »Ê«”ÿ… Ã—œÌ „”⁄Êœ »«·Ã“«∆— Ê »Ê«”ÿ…  ﬁ‰Ì… «·»—„Ã… »œÊ‰ ﬂÊœ Ê «Âœ«¡ ≈·Ï ﬂ· ›—Ìﬁ «·⁄„· Ê √Ì÷« ≈·Ï ”‹Â‹Ì‹·‹…", 1013, 51, "Arial" , 16 , .F., .F. , .F. , .F. , .F. , .F. , {236,233,216}, {0,0,0},,,, .F., .F., .F., .F. , .F. , .F. , .F. , .F. , )
+_EndWindow ()
+
+_ActivateWindow( {"win7"}, .F. )
+
+Return Nil
+Return Nil
+
+
+return
+
+INIT PROCEDURE Init_DJARDIMESSAOUD
+SS_ON()
+SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",5,10)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Maximize ( )",11,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",12,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",14,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl2 )",19,20)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",21,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl3 )",26,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",28,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",33,34)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",35,35)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",36,38)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 )",39,40)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",41,41)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",42,44)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text1  )",45,45)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",46,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( text2  )",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",52,57)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",58,59)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",60,61)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myabout",62,62)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",63,63)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myentre",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","name = 'pwct'",65,65)
+SS_ESASTEP("Circuits\Main\Main\Main","pass = 'pwct'",66,66)
+SS_ESASTEP("Circuits\Main\Main\Main","name2 = win1.text1.Value",67,67)
+SS_ESASTEP("Circuits\Main\Main\Main","pass2 = win1.text2.Value",68,68)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( name = name2 )",69,69)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win2 )",70,73)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",74,78)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.Maximize ( )",79,79)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image1 )",80,81)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",82,82)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",83,83)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblpad )",84,85)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",86,90)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image2 )",91,92)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",93,93)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",94,94)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblnav )",95,96)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",97,101)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image3 )",102,103)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",104,104)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",105,105)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblexe )",106,107)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",108,112)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",113,114)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",115,115)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",116,118)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Toolbar ( Toolbar1 )",119,119)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",120,124)
+SS_ESASTEP("Circuits\Main\Main\Main","Buttons",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Button ( toolbarbtn1 )",125,127)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",128,128)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",129,131)
+SS_ESASTEP("Circuits\Main\Main\Main","End Toolbar",132,133)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbltime )",134,135)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",136,140)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Timer ( Timer1 )",141,142)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",143,144)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",145,146)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",147,147)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message '«”„ «·„” Œœ„ «·–Ì √œŒ· Â Œ«ÿ∆ ° «·≈”„ «·’ÕÌÕ ÂÊ : pwct ' Title 'Œÿ√' Type: Message Stop",148,148)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",149,149)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( pass2 = pass )",150,150)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",151,151)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'ﬂ·„… «·„—Ê— Œ«ÿ∆…°«·ﬂ·„… «·’ÕÌÕ… ÂÌ : pwct' Title 'Oooops!!' Type: Message Stop",152,152)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",153,153)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",154,154)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mynote",155,155)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( winpad )",156,159)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",160,164)
+SS_ESASTEP("Circuits\Main\Main\Main","winpad.Center ( )",165,165)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Editbox ( edit1 )",166,166)
+SS_ESASTEP("Circuits\Main\Main\Main","Editbox Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Editbox Properties",167,171)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",172,173)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",174,174)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",175,177)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 )",178,179)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",180,180)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",181,183)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3 )",184,185)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",186,186)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",187,189)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn4 )",190,191)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",192,192)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",193,195)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",196,197)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",198,199)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",200,200)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myby",201,201)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Â·  —Ìœ Õﬁ« ≈€·«ﬁ «·‰Ÿ«„ Ê «·Œ—ÊÃ ø' Title '≈€·«ﬁ' Type: Message Yes/No",202,202)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( MyOut = true )",203,203)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",204,204)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.Release ( )",205,205)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",206,206)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( MyOut = false )",207,207)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Return 0",208,208)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",209,209)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",210,210)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystart",211,211)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win4 )",212,215)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",216,221)
+SS_ESASTEP("Circuits\Main\Main\Main","win4.Center ( )",222,222)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",223,224)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",225,225)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",226,228)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 )",229,230)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",231,231)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",232,234)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn3 )",235,236)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",237,237)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",238,240)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn4 )",241,242)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",243,243)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",244,246)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn5 )",247,248)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",249,249)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",250,252)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",253,254)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",255,256)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",257,257)
+SS_ESASTEP("Circuits\Main\Main\Main","NotePad Procedures",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mysave",258,258)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Messaoud = winpad.edit1.Value",259,259)
+SS_ESASTEP("Circuits\Main\Main\Main","PutFile := Put File",260,264)
+SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File PutFile",265,265)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( CheckFile )",266,266)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message '«·„·› „ÊÃÊœ ”«»ﬁ«°Â·  —Ìœ «·ﬂ «»… ›ÊﬁÂ ø' Title '«·„·› „ÊÃÊœ ”«»ﬁ«' Type: Message Ok/Cancel",267,267)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( MyPad = false )",268,268)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Return 0",269,269)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",270,270)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",271,271)
+SS_ESASTEP("Circuits\Main\Main\Main","write String Messaoud to File PutFile",272,274)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",275,275)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myopen",276,276)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","GetFile := Get File",277,281)
+SS_ESASTEP("Circuits\Main\Main\Main","File GetFile To String dido",282,282)
+SS_ESASTEP("Circuits\Main\Main\Main","winpad.edit1.Value := dido",283,283)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",284,284)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myfont",285,285)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","GetFont := Get Font",286,293)
+SS_ESASTEP("Circuits\Main\Main\Main","Output: (FontName,FontSize,FontBold,FontItalic,FontColor,FontUnderLine,FontStrickOut,FontCharSet)",294,301)
+SS_ESASTEP("Circuits\Main\Main\Main","winpad.edit1.FontName := fontname",302,302)
+SS_ESASTEP("Circuits\Main\Main\Main","winpad.edit1.FontSize := fontsize",303,303)
+SS_ESASTEP("Circuits\Main\Main\Main","winpad.edit1.FontColor := fontcolor",304,304)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",305,305)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myinternet",306,306)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( winnav )",307,310)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",311,315)
+SS_ESASTEP("Circuits\Main\Main\Main","winnav.Center ( )",316,316)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( textnav  )",317,317)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox EVENTS",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",318,322)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btngo )",323,324)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",325,325)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",326,328)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnRef )",329,330)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",331,331)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",332,334)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnStop )",335,336)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",337,337)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",338,340)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnexit )",341,342)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",343,343)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",344,346)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnhome )",347,348)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",349,349)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",350,352)
+SS_ESASTEP("Circuits\Main\Main\Main","Active Control ( oActiveX )",353,355)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",356,357)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",358,359)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",360,360)
+SS_ESASTEP("Circuits\Main\Main\Main","Navigator Procedures",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mygo",361,361)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","didonav = winnav.textnav.Value",362,362)
+SS_ESASTEP("Circuits\Main\Main\Main","oActiveX.navigate ( didonav )",363,363)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",364,364)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myref",365,365)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","oActiveX.Refresh ( )",366,366)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",367,367)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mystop",368,368)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","oActiveX.stop ( )",369,369)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",370,370)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myhome",371,371)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","oActiveX.navigate ( 'www.pwct.p2h.info/vb/index.php' )",372,372)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",373,373)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myfile",374,374)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( winfiles )",375,378)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",379,383)
+SS_ESASTEP("Circuits\Main\Main\Main","winfiles.Center ( )",384,384)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnchose )",385,386)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",387,387)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",388,390)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnok )",391,392)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",393,393)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",394,396)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnby )",397,398)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",399,399)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",400,402)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblfile )",403,404)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",405,410)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",411,412)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",413,414)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",415,415)
+SS_ESASTEP("Circuits\Main\Main\Main","Exe Procedures",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mychose",416,416)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","GetFile := Get File",417,421)
+SS_ESASTEP("Circuits\Main\Main\Main","winfiles.lblfile.Value := GetFile",422,422)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",423,423)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myexe",424,424)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","file = winfiles.lblfile.Value",425,425)
+SS_ESASTEP("Circuits\Main\Main\Main","Execute File file",426,426)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",427,427)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mywy",428,428)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","winfiles.Release ( )",429,429)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",430,430)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mytimer",431,431)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","thetime = System Time",432,432)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.lbltime.Value := thetime",433,433)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",434,434)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mymouse",435,435)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win7 )",436,439)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",440,444)
+SS_ESASTEP("Circuits\Main\Main\Main","win7.Center ( )",445,445)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 )",446,447)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",448,452)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",453,454)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",455,456)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",457,457)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",458,458)
+Return
