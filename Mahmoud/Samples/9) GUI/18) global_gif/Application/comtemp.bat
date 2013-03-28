@@ -1,1 +1,0 @@
-CALL sscom2.bat  "GLOBAL"  /X /l calldll  > _temp.txt

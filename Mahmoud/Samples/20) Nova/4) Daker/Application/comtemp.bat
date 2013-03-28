@@ -1,1 +1,0 @@
-CALL sscom2.bat  "DAKER"  /X  /l calldll  > _temp.txt
