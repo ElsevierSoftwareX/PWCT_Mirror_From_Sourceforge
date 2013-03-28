@@ -1,1 +1,0 @@
-CALL sscom2.bat  "WASEEM"  /X  > _temp.txt

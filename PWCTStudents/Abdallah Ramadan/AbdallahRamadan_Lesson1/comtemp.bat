@@ -1,1 +1,0 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\TSET1.PRG"

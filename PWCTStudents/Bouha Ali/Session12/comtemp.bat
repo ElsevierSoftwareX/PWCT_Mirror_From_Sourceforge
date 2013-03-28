@@ -1,1 +1,0 @@
-CALL sscom2.bat  "HELLOW WORLD"  /X /l calldll  /C > _temp.txt

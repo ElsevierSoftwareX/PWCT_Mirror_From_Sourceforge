@@ -1,1 +1,0 @@
-CALL sscom2.bat  "SCOPEOFVARIABLES"  /X /l calldll  /C > _temp.txt

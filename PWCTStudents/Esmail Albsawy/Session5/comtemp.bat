@@ -1,1 +1,0 @@
-CALL sscom2.bat  "WHERE I"  /X /l calldll  > _temp.txt

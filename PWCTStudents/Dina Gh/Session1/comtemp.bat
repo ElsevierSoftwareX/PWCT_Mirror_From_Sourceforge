@@ -1,1 +1,0 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "D:\USERS\HEREAFTER\DESKTOP\PWCT\AAPPLICATION 1\HELLO WORLD.PRG"

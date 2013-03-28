@@ -1,1 +1,0 @@
-CALL sscom2.bat  "ALFEFE20"  /X /l calldll  > _temp.txt

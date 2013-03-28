@@ -1,1 +1,0 @@
-CALL sscom2.bat  "WASEEM MOHAMMAD SAAID"  /X  > _temp.txt

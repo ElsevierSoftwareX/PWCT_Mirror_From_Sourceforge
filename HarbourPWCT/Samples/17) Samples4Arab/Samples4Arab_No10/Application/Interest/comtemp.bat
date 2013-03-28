@@ -1,1 +1,0 @@
-CALL sscom2.bat  "INTERESTMONEY"  /mt /l hbnetio /l zlib /l ws2_32 /l calldll   > _temp.txt

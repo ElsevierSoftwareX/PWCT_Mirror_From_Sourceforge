@@ -1,1 +1,0 @@
-CALL sscom2.bat  "CALC VOLT"  /X /l calldll  > _temp.txt

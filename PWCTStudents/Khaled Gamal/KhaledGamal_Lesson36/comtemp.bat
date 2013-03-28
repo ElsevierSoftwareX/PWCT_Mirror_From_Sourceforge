@@ -1,1 +1,0 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "E:\BOOKS\IWORK\PWCT\LEVEL 3\MY PROJECT 2\MAIN.PRG"

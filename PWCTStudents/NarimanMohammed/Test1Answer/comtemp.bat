@@ -1,1 +1,0 @@
-CALL sscom2.bat  "TESTNARIMAN"  /X /l calldll  > _temp.txt

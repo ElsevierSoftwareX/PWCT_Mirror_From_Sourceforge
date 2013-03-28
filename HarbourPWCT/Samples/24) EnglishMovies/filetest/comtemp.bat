@@ -1,1 +1,0 @@
-CALL sscom2.bat  "FILETEST"  /X /l calldll  /C > _temp.txt

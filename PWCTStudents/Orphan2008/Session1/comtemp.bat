@@ -1,1 +1,0 @@
-CALL sscom2.bat  "1"  /X /l calldll  > _temp.txt

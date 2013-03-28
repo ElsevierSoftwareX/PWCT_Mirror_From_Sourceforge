@@ -1,1 +1,0 @@
-CALL sscom2.bat  "WERE I AM"  /X /l calldll  > _temp.txt

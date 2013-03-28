@@ -1,1 +1,0 @@
-CALL sscom2.bat  "PENERGYMRABN"  /X /l calldll  > _temp.txt

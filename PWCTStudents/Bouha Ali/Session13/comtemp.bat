@@ -1,1 +1,0 @@
-CALL sscom2.bat  "ZOUAGRI"  /X /l calldll  > _temp.txt

@@ -1,1 +1,0 @@
-CALL sscom2.bat  "LESSON3"  /X /l calldll  > _temp.txt

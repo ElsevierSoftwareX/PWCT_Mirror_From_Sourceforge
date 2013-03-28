@@ -1,1 +1,0 @@
-CALL sscom2.bat  "COMBO&LIST"  /X /l calldll  > _temp.txt

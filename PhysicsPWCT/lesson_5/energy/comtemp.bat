@@ -1,1 +1,0 @@
-CALL sscom2.bat  "PHYSPWCTLESS5"  /X /l calldll  > _temp.txt

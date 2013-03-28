@@ -1,1 +1,0 @@
-CALL sscom2.bat  "NOVA"   /l calldll  > _temp.txt

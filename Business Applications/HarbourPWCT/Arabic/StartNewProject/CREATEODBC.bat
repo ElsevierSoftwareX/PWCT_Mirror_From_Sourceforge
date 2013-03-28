@@ -1,1 +1,0 @@
-odbcconf CONFIGDSN "Microsoft Access Driver (*.mdb)" "DSN=PWCTRVCDATA | Trusted_Connection=Yes | DBQ=D:\doublesvsoop\Business Applications\HarbourPWCT\Arabic\RVC\data\sysdata.mdb"

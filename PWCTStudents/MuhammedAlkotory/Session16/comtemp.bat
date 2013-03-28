@@ -1,1 +1,0 @@
-CALL sscom2.bat  "MAX NUM"  /X /l calldll  > _temp.txt

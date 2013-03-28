@@ -1,1 +1,0 @@
-CALL sscom2.bat  "HIDE GAME"  /X /l calldll  > _temp.txt

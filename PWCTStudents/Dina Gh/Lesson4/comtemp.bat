@@ -1,1 +1,0 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "C:\USERS\HEREAFTER\DESKTOP\PWCT APPLICATIONS\LOGIN FORM 2\LOGIN.PRG"

@@ -1,1 +1,0 @@
-CALL sscom2.bat  "CUSTOMER DATABASE"  /X /l calldll  > _temp.txt

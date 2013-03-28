@@ -1,1 +1,0 @@
-CALL sscom2.bat  "GH2"  /X /l calldll  > _temp.txt

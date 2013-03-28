@@ -1,1 +1,0 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "C:\USERS\HEREAFTER\DESKTOP\PWCT APPLICATIONS\DINAGH_LESSON9\TEST.PRG"

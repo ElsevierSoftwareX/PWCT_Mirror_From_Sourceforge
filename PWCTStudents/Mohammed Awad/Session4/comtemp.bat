@@ -1,1 +1,0 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "E:\LEARN\PWCT\LEARN\4\PROJECT\CHANGE.PRG"

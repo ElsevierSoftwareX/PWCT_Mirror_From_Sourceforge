@@ -1,1 +1,0 @@
-CALL sscom2.bat  "PWCT_PHY_LESSON4"  /X /l calldll  > _temp.txt

@@ -1,1 +1,0 @@
-CALL sscom2.bat  "FIRST"  /X /l calldll  > _temp.txt

@@ -1,1 +1,0 @@
-C:\SSBUILD\Supernova\NovaRun.bat "ÇÐßÇÑ.nova"

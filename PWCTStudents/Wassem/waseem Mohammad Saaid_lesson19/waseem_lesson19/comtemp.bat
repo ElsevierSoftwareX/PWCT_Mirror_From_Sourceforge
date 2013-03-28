@@ -1,1 +1,0 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "C:\USERS\SA\DESKTOP\WASEEM 19 19\WASEEM 19.PRG"

@@ -1,1 +1,0 @@
-CALL sscom2.bat  "ALJABREEN"  /X /l calldll  > _temp.txt

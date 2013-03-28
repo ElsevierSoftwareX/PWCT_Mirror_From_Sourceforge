@@ -1,1 +1,0 @@
-CALL sscom2.bat  "TRANSLABEL"  /X /l calldll  > _temp.txt

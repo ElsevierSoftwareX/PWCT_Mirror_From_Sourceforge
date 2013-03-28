@@ -1,1 +1,0 @@
-c:\ssrpwi\supernova\nova.exe %1

@@ -1,1 +1,0 @@
-CALL sscom2.bat  "CHANGECPTION"  /X /l calldll  > _temp.txt

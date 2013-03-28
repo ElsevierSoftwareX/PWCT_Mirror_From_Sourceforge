@@ -1,1 +1,0 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "C:\SSBUILD\PWCT18\2-CONTROLS\CONTROLS.PRG"

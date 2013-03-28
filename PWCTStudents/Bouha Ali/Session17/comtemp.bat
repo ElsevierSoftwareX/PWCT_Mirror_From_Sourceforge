@@ -1,1 +1,0 @@
-CALL sscom2.bat  "PHONENOTE"  /X /l calldll  > _temp.txt

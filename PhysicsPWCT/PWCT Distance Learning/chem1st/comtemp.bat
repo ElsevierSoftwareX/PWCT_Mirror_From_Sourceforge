@@ -1,1 +1,0 @@
-CALL sscom2.bat  "CHEM1ST"  /X /l calldll  > _temp.txt

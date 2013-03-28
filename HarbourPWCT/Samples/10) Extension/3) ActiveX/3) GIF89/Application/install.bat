@@ -1,1 +1,0 @@
-regsvr32 gif89.dll

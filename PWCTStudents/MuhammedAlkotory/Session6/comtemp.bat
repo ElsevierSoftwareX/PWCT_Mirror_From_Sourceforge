@@ -1,1 +1,0 @@
-CALL sscom2.bat  "MIDO"  /X /l calldll  > _temp.txt

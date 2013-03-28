@@ -1,1 +1,0 @@
-CALL sscom2.bat  "MRABOELSOUD_3SEC"  /X /l calldll  > _temp.txt

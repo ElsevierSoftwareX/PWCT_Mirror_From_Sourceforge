@@ -1,1 +1,0 @@
-CALL sscom2.bat  "COUNIT"  /X /l calldll  > _temp.txt
