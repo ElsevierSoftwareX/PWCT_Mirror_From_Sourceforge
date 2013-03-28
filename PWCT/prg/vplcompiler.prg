@@ -34,8 +34,12 @@ DEFINE CLASS GD_VPLCompiler as Custom
 					
 						syslogmsg( " Compile Step : " + ALLTRIM(t38->stepname) )
 						
-						
-						
+*!*									IF obj_avoiderrors.checksubcomponent(serverexe) = .T. .OR. mygdform.docthisgoal = .T.
+
+*!*					IF obj_AvoidErrors.nParentScope = 0 .or.  obj_AvoidErrors.nParentScope = 1  && not determined or General  (Not Custom)
+*!*			
+*!*							IF obj_avoiderrors.isparentallowedforcomponent(serverexe) = .T. .OR. mygdform.docthisgoal = .T.
+*!*							
 						nsteptype = obj_stepscolors.determinesteptype()
 					
 						DO CASE
