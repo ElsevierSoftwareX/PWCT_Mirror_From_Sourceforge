@@ -1,1 +1,1 @@
-CALL sscom2.bat  "PWCTMULTICONVERTOR_V1"  /X /l calldll  > _temp.txt
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\PWCTMULTICONVERTOR_V1.PRG"
