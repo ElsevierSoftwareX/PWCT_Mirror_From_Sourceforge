@@ -1,0 +1,137 @@
+Project: Programming Without Coding Technology
+Author : Mahmoud Fayed <msfclipper@yahoo.com>
+
+This documentg contains some of VFP Tricks 
+
+
+======================================================================================
+Inside your function , in the start save the state, in the end restore it
+
+* Start
+local cTableName,nRecord
+cTableName = Alias()
+nRecord = Recno()
+
+* function code
+
+* end of function - restore state
+select (cTableName)
+goto nRecord
+
+======================================================================================
+
+When you use
+Scan/End Scan commands to do a process on all the records in the table
+after finishing the Scan the Recno() will give you a record number = records count + 1
+
+so when you use after that Alias() and Recno() to save the state 
+cTableName = Alias()
+nRecord = Recno()
+
+when you restore the state (select the same table and move to the same record)
+
+select (cTableName)
+goto nRecord
+
+you will get runtime error (Record out of range)
+example 
+records count = 132 records 
+after scan/end scan done, 
+nRecord = Recno() && will store 132 + 1 = 133 records
+
+So
+Goto nRecord && mean goto record 133 which is out of the range and gives runtime error
+
+Solution
+Afer each Scan/EndScan use the command 
+GOTO BOTTOM && to goto the last record in the table
+
+=====================================================================================
+
+Somtimes when you show a messagebox
+the current work area (open table) is changed 
+so when you try to access a feild in the database , you cann't and get runtime error
+after each messagebox you need to select the table again or you need to refer to the 
+table name when you access a field
+ tablename->fieldname
+
+=======================================================================================
+
+using ALINES() to get string lines is very very fast than using memlines() and mline()
+
+========================================================================================
+
+when you need to search in the database, create Index & use Seek 
+It's very fast than using ( Locate for )
+
+========================================================================================
+
+to use class
+write the class code in a PRG file
+then inside Main.PRG define public variable and create object from your class
+Then use this object in any location inside the program
+
+========================================================================================
+
+To create function write the function code in a PRG file and set the file name
+to be the function name and you can call this function from any location in the program
+
+========================================================================================
+
+Another way to create functions , create many functions inside PRG File
+then use the command (set procedure to) to call this PRG file 
+then you can access the PRG file functions
+
+========================================================================================
+
+When you use (Set procedure to) the other PRG files used before with this command is 
+removed and you cann't access their functions
+to get access to more than one file
+write the files names together after (set procedure to) separated by comma
+
+=========================================================================================
+
+before working on the tree use
+		thisform.LockScreen = .T.
+		ntreetop = THISFORM.container1.oletree.TOP
+		ntreeleft = THISFORM.container1.oletree.LEFT
+		THISFORM.container1.oletree.TOP = 15000
+		THISFORM.container1.oletree.LEFT = 15000
+and after working
+		THISFORM.container1.oletree.TOP = ntreetop
+		THISFORM.container1.oletree.LEFT = ntreeleft
+		thisform.LockScreen = .F.
+
+=========================================================================================
+
+Use local variables as much as you can (don't forget to declare them)
+so when you call sub procedures you don't get strange results because of using the same
+variable names
+
+=========================================================================================
+
+When you access the same data from more than one location in the program
+use class attributes instead of public variables
+
+=========================================================================================
+
+When you use nested levels of control strucutres check the variable name to be sure
+that you are not using the same variable name again
+
+=========================================================================================
+
+Before the search create the index
+After finishing the search delete the index
+
+========================================================================================= 
+
+Don't repeat yourself and don't write the same code agian Use Functions/Classes 
+
+=========================================================================================
+
+Testing strings require UPPER(ALLTRIM(cString1)) == Upper(Alltrim(cString2))
+but if the string contains numbers only you don't need to use UPPER
+just use Alltrim(cString1) == Alltrim(cString2)
+
+=========================================================================================
+

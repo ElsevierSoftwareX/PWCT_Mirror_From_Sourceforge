@@ -36,6 +36,8 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 
 	lvisualcompiler = .T.
 
+	nParentScope = 0 && 0 = not determined   1 = General   2 = Custom
+	
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
 		LOCAL objgdwindow AS FORM
 		LOCAL result
@@ -446,6 +448,8 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 		LOCAL cacfile
 		LOCAL nRecord2,lParentChanged
 
+		this.nParentScope = 0 && not determined
+		
 		* this procedure is called from the components browser window
 		* Also called from Goal Designer - Paste button
 
@@ -520,8 +524,13 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 										cline = SUBSTR(cline,7)
 										cline = ALLTRIM(cline)
 										IF cline == "GENERAL"
+										
+											this.nParentScope = 1 && General
+		
 											myret = .T.
 											EXIT
+										ELSE
+											this.nParentScope = 2 && Custom
 										ENDIF
 									ENDIF
 
