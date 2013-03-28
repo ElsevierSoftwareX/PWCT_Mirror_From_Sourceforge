@@ -1,0 +1,47 @@
+The First Step
+	Define Window  ( win1 )
+		Window Events
+		Window Properties
+		Window Controls
+			START OF MAIN MENU
+				MENU POPUPS
+					DEFINE POPUP "File"
+						POPUP ITEMS
+							Define ITEM ( "Exit" )
+						END OF POPUP
+				END OF MAIN MENU
+			Define New Statusbar
+				Items
+					Define New StatusItem ( "Text Here" )
+						Events
+						Properties
+					Keyboard
+						Events
+						Properties
+					Date
+						Events
+						Properties
+					Clock
+						Events
+						Properties
+				End Statusbar
+			Define New Toolbar ( Toolbar1 )
+				Events
+				Properties
+				Buttons
+					Button ( toolbarbtn1 )
+						Events
+							Event: ON CLICK
+						Properties
+				End Toolbar
+		End Of Window
+		Activate window
+Procedures
+	Define Procedure myexit
+		Code Block
+			win1.Release ( )
+		End of Procedure
+	Define Procedure mybtn
+		Code Block
+			Show Message "Text Here" Title "Text Here" Type: Message Box
+		End of Procedure
