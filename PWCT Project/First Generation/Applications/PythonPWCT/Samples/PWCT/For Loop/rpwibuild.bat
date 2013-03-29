@@ -1,1 +1,0 @@
-C:\SSRPWI\Python\Batch\mybuild.bat "..\..\For Loop.py"

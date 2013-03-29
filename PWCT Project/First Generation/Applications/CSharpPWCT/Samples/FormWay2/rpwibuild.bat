@@ -1,1 +1,0 @@
-..\..\Batch\MyBuild FormWay2

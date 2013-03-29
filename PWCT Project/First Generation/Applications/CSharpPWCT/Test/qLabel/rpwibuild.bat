@@ -1,1 +1,0 @@
-notepad qLabel.cs

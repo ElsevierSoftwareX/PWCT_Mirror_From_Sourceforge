@@ -1,1 +1,0 @@
-C:\SSRPWI\Supernova\NovaRun.bat "UP.nova"

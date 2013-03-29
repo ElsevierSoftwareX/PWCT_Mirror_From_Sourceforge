@@ -1,3 +1,0 @@
-Application.Run(  new test() );
-
-

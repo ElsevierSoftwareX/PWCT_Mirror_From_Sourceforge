@@ -1,1 +1,0 @@
-..\..\batch\mybuild.bat ForLoopCounter
