@@ -1,1 +1,0 @@
-C:\SSBUILD\CPWCT\batch\run.bat "STARTAPP.c"
