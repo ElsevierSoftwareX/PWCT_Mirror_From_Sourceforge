@@ -1,0 +1,1 @@
+..\..\batch\mybuild.bat SwitchTest
