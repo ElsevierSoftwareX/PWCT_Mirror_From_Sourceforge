@@ -1,0 +1,1 @@
+MODIFY COMMAND "d:\pwctsrc\pwct project\first generation\environment\designers\prg\avoiderrors.prg" AS 1256

@@ -39,36 +39,42 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 	nParentScope = 0 && 0 = not determined   1 = General   2 = Custom
 	
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
+	
 		LOCAL objgdwindow AS FORM
+		
 		LOCAL result
 
 		LOCAL lGenerated
 		
-		lGenerated = .F.
-		
-		IF .NOT. EMPTY(t38->stepinterid) .AND. t38->stepinternum != 1 .AND. THIS.lvisualcompiler = .T.
+		IF .NOT. EMPTY(t38->stepinterid)
+				lGenerated = .T.
+		ELSE
+				lGenerated = .F.
+		ENDIF
 				
-			lGenerated = .T.
-			
+		
+		IF lGenerated = .T. .AND. t38->stepinternum != 1 .AND. THIS.lvisualcompiler = .T.
+				
 			objgdwindow.command3.ENABLED = .F.
 			objgdwindow.command4.ENABLED = .F.
 			objgdwindow.command10.ENABLED = .F.
 			objgdwindow.command8.ENABLED = .F.
 			objgdwindow.check1.ENABLED = .F.
 			objgdwindow.command2.ENABLED = .F.
+			
 		ELSE
+		
 			objgdwindow.command3.ENABLED = .T.
 			objgdwindow.command4.ENABLED = .T.
 			objgdwindow.command10.ENABLED = .T.
 			objgdwindow.command8.ENABLED = .T.
 			objgdwindow.check1.ENABLED = .T.
 			objgdwindow.command2.ENABLED = .T.
+			
 		ENDIF
 
-		IF .NOT. EMPTY(t38->stepinterid) .AND. THIS.lvisualcompiler = .T.
+		IF lGenerated = .T. .AND. THIS.lvisualcompiler = .T.
 
-	    lGenerated = .T.
-	    
 			result = THIS.checknewstep()
 
 			* new step
@@ -86,6 +92,7 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 			objgdwindow.command5.Visible = .T.
 			* paste
 			objgdwindow.command9.ENABLED = .T.
+			
 			
 		ENDIF
 
