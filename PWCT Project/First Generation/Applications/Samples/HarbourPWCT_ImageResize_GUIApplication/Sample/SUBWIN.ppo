@@ -1,0 +1,193 @@
+#line 54 "c:\SSBUILD\minigui\include\i_var.ch"
+  MEMVAR _HMG_SYSDATA
+  MEMVAR _HMG_SCRSAVERDATA
+#line 109 "c:\SSBUILD\xharbour\include\hbclass.ch"
+   DYNAMIC DivertConstructorCall
+
+
+
+
+
+
+
+
+
+
+
+DECLARE HBClass  New( cName AS String, OPTIONAL SuperParams ) AS CLASS HBClass  Create() AS Object  Instance() AS Object  AddClsMethod( cName AS String, @MethodName(), nScope AS Numeric, n2 AS Numeric, n3 AS Numeric )  AddMultiClsData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String )  AddMultiData( cType AS String, uVal, nScope AS Numeric, aDatas AS Array OF String, x AS LOGICAL, lPer AS LOGICAL )  AddMethod( cName AS String, @MethodName(), nScope AS Numeric, lPersistent AS LOGICAL )  AddInLine( cName AS String, bBlock AS CodeBlock, nScope AS Numeric, lPersistent AS LOGICAL )  AddVirtual( cName AS String )
+#line 4 "SUBWIN.prg"
+Function Main
+
+
+
+
+
+
+
+
+
+
+
+
+
+Public True,False
+True = .T.
+False = .F.
+SS_NEWSERVER("Server1","Slave","000")
+
+
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+    SS_FLAG3 = 1 ; SS_FLAG = 1 ; SS_FLAG2 = 1
+    SS_FLAG = 4 ; SS_FLAG2 = 3 ; SS_FLAG3 = 2
+            SS_NEWCIRCUIT( "Main" )
+                SS_NEWBRANCH( "Main" )
+                    SS_NRESIS( "Main" )
+    SS_FLAG3 = 3
+
+
+    SS_NEWR( "WIN32EVENTS()" , "WIN32EVENTS" )
+
+  SS_ADDRES("WIN32EVENTS")
+
+
+SS_NEWR( "R739791686_1()" , "Circuits\Main\Main\Main" )
+
+
+ss_callr( "Circuits\Main\Main\Main" )
+Return
+
+  FUNCTION STARTSERVER()
+       SS_FIREON()
+  RETURN
+
+  function WIN32EVENTS()
+       ProcessMessages()
+  RETURN
+
+
+function R739791686_1()
+
+
+
+
+
+
+
+
+
+
+
+ _DefineWindow ( "win1", "Image Resize", 10, 10, 700, 450, .T., .T., .T., .F., .F., {,}, {,},, ,, , ,, {236,233,216} , , .F. , .F. , .T. , "PWCTICON" , .F. , ,, , , ,, , , , , , , , , , .F. , , , , .F. , , , {|| mymove()} , , .F. , .F. )
+
+
+
+
+
+
+_DefineOwnerButton ( "btn2",, 481, 20, "load Image", {|| loadimg()}, 130, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+
+
+
+
+
+_DefineOwnerButton ( "btn1",, 481, 80, "Save Image", {|| saveimg()}, 130, 30,, "",,, .F., .F.,, .F., .F., .F.,, "Arial", 14, .F., .F., .F., .F., .F., .F., .F.,,, .F., .F., .F. )
+_EndWindow ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+ _DefineWindow ( "win2", "Window Title", 50, 50, 400, 400, .T., .T., .T., .T., .T., {,}, {,},, ,, , ,, {255,255,255} , , .F. , .F. , .F. , "PWCTICON" , .T. , ,, , , ,, , , , , , , , , , .F. , , , , .F. , , , , , .F. , .F. )
+
+
+
+
+_DefineImage ( "image1",, 0, 0, "Imagename.jpg" ,400, 400, , , .F. , .T. , .F. ,)
+_EndWindow ()
+
+_ActivateWindow( {"win1"}, .T. )
+_ActivateWindow( {"win2"}, .F. )
+Proc mymove
+SetProperty ( "win2", "Row" , (GetProperty ( "win1", "row" ))+40 )
+SetProperty ( "win2", "Col" , (GetProperty ( "win1", "col" ))+40 )
+Return Nil
+Proc saveimg
+
+
+
+
+PutFile := PutFile ( { {"Image","*.JPG" } } , , , , )
+DoMethod ( "win2", "SetFocus" )
+WndCopy( GetFormHandle( "win2" ), .F., putfile )
+MyOut := MSGBOX("Process Done","Save Image")
+Return Nil
+Proc loadimg
+
+
+
+
+GetFile := GetFile ( { {"Image","*.JPG" } } , , , , )
+SetProperty ( "win2", "image1" , "Picture" , getfile )
+MyOut := MSGBOX("Process Done","Load Image")
+Return Nil
+
+
+return
+
+INIT PROCEDURE Init_SUBWIN
+SS_ON()
+SS_ESARES("Circuits\Main\Main\Main",53)
+SS_ESAGOAL("Circuits\Main\Main\Main","Main")
+SS_ESASTEP("Circuits\Main\Main\Main","The First Step",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win1 )",1,4)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON MOVE",5,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn2 )",14,15)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",16,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",17,19)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 )",20,21)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK",22,22)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",23,25)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",26,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Window  ( win2 )",28,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",32,41)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Controls",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image1 )",42,43)
+SS_ESASTEP("Circuits\Main\Main\Main","Events",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",44,45)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",46,47)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate Window/Form win1 No Wait",48,48)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate Window/Form win2",49,49)
+SS_ESASTEP("Circuits\Main\Main\Main","Procedures",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure mymove",50,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.Row := (win1.row)+40",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.Col := (win1.col)+40",52,52)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",53,53)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure saveimg",54,54)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","PutFile := Put File",55,59)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.SetFocus ( )",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.SaveAs ( putfile )",61,61)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Process Done' Title 'Save Image' Type: Message Box",62,62)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",63,63)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure loadimg",64,64)
+SS_ESASTEP("Circuits\Main\Main\Main","Code Block",0,0)
+SS_ESASTEP("Circuits\Main\Main\Main","GetFile := Get File",65,69)
+SS_ESASTEP("Circuits\Main\Main\Main","win2.image1.Picture := getfile",70,70)
+SS_ESASTEP("Circuits\Main\Main\Main","Show Message 'Process Done' Title 'Load Image' Type: Message Box",71,71)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",72,72)
+Return
