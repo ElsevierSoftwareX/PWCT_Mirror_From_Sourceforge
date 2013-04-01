@@ -1,0 +1,321 @@
+*---------------------------------------------------------------------------*
+* Time : 18:26:18    Date : 12/11/2012
+*---------------------------------------------------------------------------*
+* Programming without coding technology 1.8 (Smart) [2006-2012]  
+* URL : http://www.sourceforge.net/projects/doublesvsoop   
+*---------------------------------------------------------------------------*
+* Visual Programming Language : HarbourPWCT 
+*---------------------------------------------------------------------------*
+* Compilers                   : Borland C/C++ & Harbour
+* GUI Framework               : HarbourMiniGUI Extended
+*---------------------------------------------------------------------------*
+#include "SSXHB.ch"
+#include "MiniGUI.ch"
+#include "hbclass.ch"
+Function VALUEITEMS_DATA
+Public True,False 
+True = .T. 
+False = .F. 
+ Details :
+ * (Noun) *
+Parameters SP1,SP2,SP3,SP4,SP5,SP6,SP7,SP8
+	DataUnit :
+	CodeUnit :
+			Circuit        Main                          
+				Branch     Main                          
+					Resistance Main                          
+	VetoUnit :
+
+Resistance R_VALUEITEMS_DATA_18smart1() address Code Unit : Circuits\Main\Main\Main
+
+
+Return 
+
+* Resistance Code Unit : Circuits\Main\Main\Main
+Resistance R_VALUEITEMS_DATA_18smart1() code
+class ValueItemsClass From SYSTEMDATABASE
+Data TableName init "ValueItems"
+Data cid init ""
+Data cCountry init ""
+Data column init "ValueItem"
+Data PrimaryKey init "id"
+Data columns init {"ID","ValueItem"}
+Method showwindow
+Method closewindow
+Method SetMode
+Method UserInterface2Class
+Method Class2ADO
+Method ADO2Class
+Method Class2UserInterface
+Method ClearRecord
+Method AutoGotoRecord
+Method OpenDataWindow
+Method showdatawindow
+Method mytimer
+Method BeforeSearch
+Method SearchAdd
+Method settimer
+Method GetSearchValue
+EndClass
+Method showwindow Class ValueItemsClass
+myout = self:connect()
+myout = self:AutoGotoRecord()
+if !iswindowdefined( ValueItemsWindow )
+DEFINE WINDOW ValueItemsWindow ;
+AT 10 ,10 ;
+WIDTH 774 ;
+HEIGHT 426 ;
+ON INIT self:search()  ;
+ICON "PWCTICON" ;
+TITLE "ÚäÇÕÑ ÇáÊÞííã ÇáãÝÕá ááÏæÑÉ ãä ÞÈá ÇáãÊÏÑÈíä" ;
+CHILD ;
+NOMINIMIZE ;
+NOMAXIMIZE ;
+NOSIZE ;
+BACKCOLOR {64,0,64}
+
+@ 40 ,4 IMAGE image1;
+PICTURE GetStartUpFolder()+"\Image\BACK.jpg";
+STRETCH ;
+WIDTH 750 HEIGHT 296
+@ 350 ,370 BUTTONEX btnFirst;
+CAPTION "ÈÏÇíÉ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:firstrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 350 ,243 BUTTONEX btnNext;
+CAPTION "ÊÇáì";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:nextrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 350 ,180 BUTTONEX btnLast;
+CAPTION "äåÇíÉ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:lastrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 350 ,12 BUTTONEX btnClose;
+CAPTION "ÇÛáÇÞ";
+FONTCOLOR {0,0,0};
+BACKCOLOR {132,242,179};
+ON CLICK self:closewindow()  ;
+WIDTH 80 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 350 ,307 BUTTONEX btnPrev;
+CAPTION "ÓÇÈÞ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {64,0,64};
+ON CLICK self:prevrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 350 ,105 BUTTONEX btnDel;
+CAPTION "ÍÐÝ";
+FONTCOLOR {255,255,255};
+BACKCOLOR {255,0,0};
+ON CLICK self:delrecord()  ;
+WIDTH 70 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+NOXPSTYLE ;
+TOOLTIP ""
+@ 350 ,522 BUTTONEX btnsave;
+CAPTION "ÍÝÙ";
+ON CLICK self:saverecord()  ;
+WIDTH 70 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 350 ,435 BUTTONEX btncancel;
+CAPTION "ÇáÛÇÁ";
+ON CLICK self:cancelrecord()  ;
+WIDTH 80 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 350 ,602 BUTTONEX btnedit;
+CAPTION "ÊÚÏíá";
+ON CLICK self:editrecord()  ;
+WIDTH 60 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 350 ,677 BUTTONEX btnadd;
+CAPTION "ÅÖÇÝÉ";
+ON CLICK self:addrecord()  ;
+WIDTH 70 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 7 ,4 LABEL lblTitle ;
+VALUE "                                                             ÈäæÏ ÇáÊÞííã" ;
+WIDTH 750 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+FONTCOLOR {128,128,0}
+@ 281 ,458 LABEL lblCountry ;
+VALUE "ÇáÈäÏ" ;
+WIDTH 50 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 279 ,256 TEXTBOX textCountry;
+HEIGHT 30 ;
+WIDTH 190 ;
+BACKCOLOR {255,255,255} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
+@ 53 ,639 LABEL lbl1browse ;
+VALUE "ÇáÈäÏ" ;
+WIDTH 60 ;
+HEIGHT 30 ;
+FONT "Arial" SIZE 14  ;
+BACKCOLOR {255,255,255} ;
+TRANSPARENT ;
+FONTCOLOR {0,0,0}
+@ 53 ,173 TEXTBOX textNamebrowse;
+HEIGHT 30 ;
+WIDTH 450 ;
+BACKCOLOR {0,255,128} ;
+RIGHTALIGN ;
+FONTCOLOR {0,0,0}
+
+@ 51 ,64 BUTTONEX btn1browse;
+CAPTION "ÈÍË";
+ON CLICK self:search()  ;
+WIDTH 100 HEIGHT 30 ;
+FONT "Arial" SIZE 14 ;
+TOOLTIP ""
+@ 99 ,171 GRID Grid1browse;
+ON CHANGE self:OpenDataWindow  ;
+WIDTH 450 ;
+HEIGHT 160 ;
+HEADERS {"ÑÞã","ÇáÈäÏ"};
+WIDTHS {100,300} ;
+FONT "Arial" SIZE 14 ;
+BACKCOLOR {255,255,255} ;
+JUSTIFY {1,1} ;
+FONTCOLOR {0,0,0}
+DEFINE TIMER Timer1 INTERVAL 1000 ;
+Action self:mytimer()
+END WINDOW
+
+ValueItemsWindow.Center ( )
+myout = self:showrecord()
+myout = self:setmode(2)
+ValueItemsWindow.Timer1.Enabled := false
+ACTIVATE WINDOW ValueItemsWindow
+EndIF
+
+Return 0
+Method UserInterface2Class Class ValueItemsClass
+self:cCountry := ValueItemsWindow.textCountry.Value
+Return 0
+Method Class2ADO Class ValueItemsClass
+self:oRS:fields:item(alltrim("ValueItem")):value := self:cCountry
+Return 0
+Method ADO2Class Class ValueItemsClass
+self:cCountry := self:oRS:fields:item(alltrim("ValueItem")):value
+Return 0
+Method Class2UserInterface Class ValueItemsClass
+ValueItemsWindow.textCountry.Value := self:cCountry
+Return 0
+Method ClearRecord Class ValueItemsClass
+self:cCountry := ""
+Return 0
+Method OpenDataWindow Class ValueItemsClass
+Local nvalue,myout
+nvalue := ValueItemsWindow.grid1browse.Value
+IF nvalue > 0
+myout = self:ShowDataWindow(nvalue)
+ENDIF
+Return 0
+Method ShowDataWindow(nvalue) Class ValueItemsClass
+self:LFindRecord := true
+self:CFindExpr := self:primarykey+"= '"+self:resultprimarykeys[nvalue]+"' "
+myout = self:ShowWindow()
+Return 0
+Method mytimer Class ValueItemsClass
+myout = self:search()
+ValueItemsWindow.Timer1.Enabled := false
+Return 0
+Method closewindow Class ValueItemsClass
+myout = self:disconnect()
+ValueItemsWindow.Release ( )
+Return 0
+Method setmode(p1) Class ValueItemsClass
+IF p1 = 1
+ValueItemsWindow.btnfirst.Enabled := false
+ValueItemsWindow.btnnext.Enabled := false
+ValueItemsWindow.btnprev.Enabled := false
+ValueItemsWindow.btnlast.Enabled := false
+ValueItemsWindow.btndel.Enabled := false
+ValueItemsWindow.btnclose.Enabled := false
+ValueItemsWindow.btnsave.Enabled := true
+ValueItemsWindow.btncancel.Enabled := true
+ValueItemsWindow.btnedit.Enabled := false
+ValueItemsWindow.btnadd.Enabled := false
+ValueItemsWindow.textCountry.Enabled := true
+ENDIF
+IF p1 = 2
+ValueItemsWindow.btnfirst.Enabled := true
+ValueItemsWindow.btnnext.Enabled := true
+ValueItemsWindow.btnprev.Enabled := true
+ValueItemsWindow.btnlast.Enabled := true
+ValueItemsWindow.btndel.Enabled := true
+ValueItemsWindow.btnclose.Enabled := true
+ValueItemsWindow.btnsave.Enabled := false
+ValueItemsWindow.btncancel.Enabled := false
+ValueItemsWindow.btnedit.Enabled := true
+ValueItemsWindow.btnadd.Enabled := true
+ValueItemsWindow.textCountry.Enabled := false
+ENDIF
+self:OperationMode := p1
+Return 0
+Method AutoGotoRecord Class ValueItemsClass
+IF self:LFindRecord = true .and. self:OperationMode = 2
+self:oRS:Find(self:CFindExpr)
+mycheck := self:oRS:EOF()
+IF mycheck = true
+self:oRS:MOVEPREVIOUS()
+ENDIF
+IF iswindowdefined( ValueItemsWindow )
+myout = self:showrecord()
+ValueItemsWindow.SetFocus ( )
+ENDIF
+ENDIF
+self:LFindRecord := false
+self:CFindExpr := ""
+Return 0
+Method BeforeSearch Class ValueItemsClass
+ValueItemsWindow.grid1browse.DeleteAllItems ( )
+ValueItemsWindow.grid1browse.Value := 0
+Return 0
+Method SearchAdd(temp_array) Class ValueItemsClass
+ValueItemsWindow.grid1browse.AddItem ( temp_array )
+Return 0
+Method SetTimer(p1) Class ValueItemsClass
+ValueItemsWindow.Timer1.Enabled := p1
+Return 0
+Method GetSearchValue Class ValueItemsClass
+cName := ValueItemsWindow.textNamebrowse.Value
+Return cName
+
+
+
+End Of Resistance
+
+*-------------------------------------------------------------------*
