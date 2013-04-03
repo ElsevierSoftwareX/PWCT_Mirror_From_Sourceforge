@@ -1,4 +1,4 @@
-DEFINE CLASS GD_VPLCompiler as Custom
+DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 
 	UIObject = "" 
 	
@@ -8,6 +8,7 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		LOCAL nStepType
 		LOCAL nErrors
 		LOCAL nSeconds
+		LOCAL nInteractions
 		
 		cAlias = ALIAS()
 		nRecord = recno()
@@ -26,6 +27,17 @@ DEFINE CLASS GD_VPLCompiler as Custom
   
  	 obj_stepscolors.createMyIndex()
   
+  	this.deleteOLDInteractions()
+  
+  	SELECT t46
+  	
+  	nInteractions = RECCOUNT()
+  	
+  	SCAN
+  	
+  	ENDSCAN
+  	
+  
 		SELECT T38
 		
 		SCAN
@@ -38,12 +50,6 @@ DEFINE CLASS GD_VPLCompiler as Custom
 					
 						syslogmsg( " Compile Step : " + ALLTRIM(t38->stepname) )
 						
-*!*									IF obj_avoiderrors.checksubcomponent(serverexe) = .T. .OR. mygdform.docthisgoal = .T.
-
-*!*					IF obj_AvoidErrors.nParentScope = 0 .or.  obj_AvoidErrors.nParentScope = 1  && not determined or General  (Not Custom)
-*!*			
-*!*							IF obj_avoiderrors.isparentallowedforcomponent(serverexe) = .T. .OR. mygdform.docthisgoal = .T.
-*!*							
 						nsteptype = obj_stepscolors.determinesteptype()
 					
 						DO CASE
@@ -54,7 +60,7 @@ DEFINE CLASS GD_VPLCompiler as Custom
 
 										CASE nsteptype = 2 && Generated
 										 							
-										* Check now child
+										* Check child
 							  			IF this.checkchild() = .t.
 													THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
 													nErrors = nErrors + 1
@@ -85,12 +91,6 @@ DEFINE CLASS GD_VPLCompiler as Custom
 					 ENDCASE
 									
 									
-										* check that no child
-									IF .not. (nStepType = 4 .or. nStepType = 1 .or. nStepType = 3)
-									
-											
-									ENDIF
-									
 					
 	    ELSE
 	    
@@ -110,6 +110,7 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		* Operation done ... Display Number of Errors 
 		THIS.Additem( " =========================================" )
 		THIS.Additem( " Compiling Time (Seconds) : " + ALLTRIM(STR(SECONDS()-nSeconds)) )
+		THIS.Additem( " Number of Interactions : " + ALLTRIM(STR(nInteractions)) )
 	  THIS.Additem( " Number of Steps : " + ALLTRIM(STR(RECCOUNT())) )
 		THIS.Additem( " Number of Errors : " + ALLTRIM(STR(nErrors)) )
 		DOEVENTS
@@ -123,6 +124,7 @@ DEFINE CLASS GD_VPLCompiler as Custom
 	
 		LOCAL cTableName,nRecord,nRecord2,nID
 		LOCAL lRet
+		LOCAL cInterID,nStepInterNum
 		
 		cTableNAME = ALIAS()
 		nRecord = RECNO()
@@ -130,8 +132,10 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		SELECT t38
 		nRecord2 = RECNO()
 		nID = ALLTRIM(T38->StepID)
+		cInterID = ALLTRIM(T38->stepinterid)
+		nStepInterNum = T38->stepinternum
 		
-		LOCATE FOR ALLTRIM(t38->parentid) == nID
+		LOCATE FOR ALLTRIM(t38->parentid) == nID .and. .not. ( ALLTRIM(T38->stepinterid) = cInterID .and. T38->stepinternum = nStepInterNum + 1 )
 		
 		IF FOUND()
 			lRet = .T.
@@ -152,6 +156,39 @@ DEFINE CLASS GD_VPLCompiler as Custom
 	 
 		this.UIObject.edit1.value = this.UIObject.edit1.value + cItem + CHR(13) + CHR(10)
 		
+	RETURN
+	
+	
+	PROCEDURE deleteOLDInteractions()
+	
+		LOCAL cTableName,nRecord,cID
+		
+		cTableName = ALIAS()
+		nRecord = RECNO()
+			
+		SELECT t46
+		SCAN
+				
+			cID = ALLTRIM(t46->f_iid)
+			THIS.IndexFindStepInterID(cID)
+			
+			IF .NOT. FOUND()
+				 	SELECT t46
+	 				DELETE
+	 	 ELSE
+	 	 		 SELECT t46
+			ENDIF
+		 
+			
+		ENDSCAN
+		
+		PACK
+		
+		GOTO BOTTOM
+		
+  	SELECT (cTableName)
+		GOTO nRecord
+	
 	RETURN
 	
 	

@@ -72,4 +72,73 @@ DEFINE CLASS VPLRulesBase AS Custom
 		RETURN myret
 
 
+		PROCEDURE CreateMyIndex()
+		
+				This.DeleteMyIndex() 
+				
+				SELECT t38
+				
+				INDEX on stepid TAG mystepid
+				INDEX on parentid TAG myparentid
+				INDEX on stepinterid TAG myinterid
+				
+				SELECT T46
+				
+				INDEX ON F_IID TAG myIID
+		 
+				
+		RETURN
+		
+		PROCEDURE  IndexFindStepID(cID)
+		  
+				SELECT t38
+				seek cID ORDER tag mystepid
+				
+		RETURN
+		
+		PROCEDURE IndexFindParentID(cID)
+	 
+				SELECT t38
+				seek cID ORDER tag myparentid
+				
+		RETURN
+		
+		PROCEDURE  IndexFindIID(cID)
+	 
+				SELECT t46
+				seek cID ORDER tag myIID
+				
+		RETURN
+		
+				
+		PROCEDURE  IndexFindStepInterID(cID)
+		  
+				SELECT t38
+				seek cID ORDER tag myinterid
+				
+		RETURN
+		
+		PROCEDURE DeleteMyIndex()
+		
+				LOCAL cTableName,nRecord,nRecord2
+				
+				SELECT t38
+ 				
+				TRY 
+						DELETE TAG mystepid
+						DELETE TAG myparentid
+						DELETE TAG myinterid
+				CATCH 
+				ENDTRY 
+				
+				SELECT t46
+		 
+				TRY
+					 DELETE TAG myIID
+				CATCH
+				ENDTRY
+					
+		RETURN
+
+
 ENDDEFINE
