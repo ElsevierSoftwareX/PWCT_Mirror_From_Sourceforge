@@ -35,6 +35,47 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
   	
   	SCAN
   	
+  		SELECT t38
+  		
+  		nEnableDisable = 0
+  		nStepNumber = 0
+  		scan for ALLTRIM(t38->stepinterid) == ALLTRIM(t46->f_iid)
+  		
+  		IF nEnableDisable = 0
+  			IF t38->stepdis = .t.
+  				nEnableDisable = 1
+  			ELSE
+  				nEnableDisable = 2
+  			ENDIF
+			ELSE
+				IF ( nEnableDisable = 1 .and. t38->stepdis = .f. ) .or. ( nEnableDisable = 2 .and. t38->stepdis = .t. )
+						* Error in Enable/Disable a generated step without doing the same operation for other steps generated from the same interaction
+	  				THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Enable/Ignore status is not correct " )
+						nErrors = nErrors + 1
+				ENDIF
+  		ENDIF
+  		
+  		IF t38->stepinternum > nStepNumber
+  			IF t38->stepinternum = nStepNumber + 1
+	  			nStepNumber = t38->stepinternum
+	  		ELSE
+		  		* Error in steps order
+		  		nStepNumber = t38->stepinternum
+		  		THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) is not expected to be in this order " )
+					nErrors = nErrors + 1
+	  		ENDIF
+	  		
+	  	ELSE
+	  		* Error in steps order
+	  		THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) order is not correct " )
+				nErrors = nErrors + 1
+	  	endif		
+  		
+  		ENDSCAN
+  			
+  				
+  		SELECT t46
+  		
   	ENDSCAN
   	
   
