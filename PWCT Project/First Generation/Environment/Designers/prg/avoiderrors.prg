@@ -32,7 +32,10 @@
 *: Class:gd_avoiderrors  BaseClass: CUSTOM
 *:
 *:******************************************************************************
-DEFINE CLASS gd_avoiderrors AS CUSTOM
+
+ 
+
+DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 	lvisualcompiler = .T.
 
@@ -53,7 +56,7 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 		ENDIF
 				
 		
-		IF lGenerated = .T. .AND. t38->stepinternum != 1 .AND. THIS.lvisualcompiler = .T.
+		IF lGenerated = .T. .AND.  t38->stepinternum != 1  .AND. THIS.lvisualcompiler = .T. .and. this.checkAllowRoot() = .f.
 				
 			objgdwindow.command3.ENABLED = .F.
 			objgdwindow.command4.ENABLED = .F.
@@ -164,6 +167,10 @@ DEFINE CLASS gd_avoiderrors AS CUSTOM
 
 
 		RETURN
+
+
+	 
+
 
 	PROCEDURE taskonstepsinthesameinteraction(ogdwindow,cprocname)
 		LOCAL PREC,mykeyrecarr,looprs,loopre,myid,myres,myend,x,myrecnum,mynewlooprs,myrec,T

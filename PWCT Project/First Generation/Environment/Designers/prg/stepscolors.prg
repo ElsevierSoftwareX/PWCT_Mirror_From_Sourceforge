@@ -28,7 +28,9 @@
 *:
 *:******************************************************************************
 
-DEFINE CLASS gd_stepscolors AS CUSTOM
+ 
+
+DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg 
 	
 	lFindUsingIndex = .f.
 	
@@ -168,11 +170,12 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 			myret = 2 && Generated
 
-			IF t38->stepinternum = 1 && Root
+			IF t38->stepinternum = 1 .or. this.CheckAllowRoot() && Root
 
 				myret = 3 && Generated (root)
 
 			ENDIF
+
 
 			IF THIS.checknewstep() = .T.
 
@@ -181,11 +184,11 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 				SELECT t38
 				GOTO TOP
 
-			IF THIS.lFindUsingIndex = .f.
-					LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
-			ELSE
-			 			THIS.IndexFindParentID(ALLTRIM(cStepID))
-			ENDIF
+				IF THIS.lFindUsingIndex = .f.
+						LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
+				ELSE
+				 	 THIS.IndexFindParentID(ALLTRIM(cStepID))
+				ENDIF
 				
 				IF .NOT. FOUND()
 					myret = 6 && Generated Allow Sub & Leaf
@@ -199,16 +202,18 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 
 				SELECT t38
+				
 				GOTO TOP
-		 IF THIS.lFindUsingIndex = .f.
+				
+				 IF THIS.lFindUsingIndex = .f.
 								LOCATE FOR ALLTRIM(t38->parentid) == ALLTRIM(cstepid)
 			 	ELSE
-						this.IndexFindParentID(ALLTRIM(cStepID))
-				ENDIF
+								this.IndexFindParentID(ALLTRIM(cStepID))
+				 ENDIF
 				
-				IF .NOT. FOUND()
-					myret = 5 && Generated (Leaf)
-				ENDIF
+			 	IF .NOT. FOUND()
+						myret = 5 && Generated (Leaf)
+				 ENDIF
 
 
 			ENDIF
@@ -223,6 +228,8 @@ DEFINE CLASS gd_stepscolors AS CUSTOM
 
 		RETURN myret
 
+
+	
 
 	PROCEDURE checknewstep()
 

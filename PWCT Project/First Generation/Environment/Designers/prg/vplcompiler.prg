@@ -52,8 +52,6 @@ DEFINE CLASS GD_VPLCompiler as Custom
 										
 										* check that the parent is correct
 										
-										* check that no child
-										
 							  
 										CASE nsteptype = 3 && Generated (Root)
 										
@@ -75,14 +73,24 @@ DEFINE CLASS GD_VPLCompiler as Custom
 										CASE nsteptype = 6 && Generated Allow Sub & leaf
 										
 							 	 	* Check that the order is correct
+							 	 	
 							 		 * check that the parent is correct 
 							 
 
 
 					 ENDCASE
-												
+									
+									
+										* check that no child
+									IF .not. (nStepType = 4 .or. nStepType = 1 .or. nStepType = 3)
+									
+											IF this.checkchild() = .t.
+													objGDWindow.list1.Additem( " Error : Step ( " + t38->stepname + " ) has a child " )
+													nErrors = nErrors + 1
+											ENDIF			
 					
-					
+									ENDIF
+									
 					
 	    ELSE
 	    
@@ -111,5 +119,33 @@ DEFINE CLASS GD_VPLCompiler as Custom
 	
 	RETURN
 	
-
+	PROCEDURE CHECKCHILD()
+	
+		LOCAL cTableName,nRecord,nRecord2,nID
+		LOCAL lRet
+		
+		cTableNAME = ALIAS()
+		nRecord = RECNO()
+	
+		SELECT t38
+		nRecord2 = RECNO()
+		nID = ALLTRIM(T38->StepID)
+		
+		LOCATE FOR ALLTRIM(t38->parentid) == nID
+		
+		IF FOUND()
+			lRet = .T.
+		ELSE
+			lRet = .f.
+		ENDIF
+		
+		
+		GOTO nRecord2
+		
+	
+		SELECT (cTableName)
+		GOTO nRecord
+		
+	RETURN lRet
+	
 ENDDEFINE
