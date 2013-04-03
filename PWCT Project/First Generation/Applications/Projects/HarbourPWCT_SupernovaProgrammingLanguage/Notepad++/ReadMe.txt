@@ -1,0 +1,19 @@
+You can use Notepad++ to write Supernova programs 
+
+1 - Download Notepad++
+2 - Run Notepad++ Installer 
+	2.1 - Select a language (English for example)
+	2.2 - Click Next to continue
+	2.3 - Click "I Agree" button
+	2.4 - Determine Destination Folder then Click Next
+	***Important Step***
+	2.5 - Enable the option (Don't use %APPDATA%)
+	************************************************
+	2.6 - Click Install
+	2.7 - Click Finish
+3 - Put the file userDefineLang.XML in the folder Program Files\Notepad++	
+
+Have Fun!!
+	
+
+
