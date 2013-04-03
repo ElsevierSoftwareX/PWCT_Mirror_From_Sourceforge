@@ -1,5 +1,7 @@
 DEFINE CLASS GD_VPLCompiler as Custom
 
+	UIObject = "" 
+	
 	PROCEDURE CompileVisualSource(objGDWindow)
 	
 		LOCAL cAlias,nRecord
@@ -10,11 +12,13 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		cAlias = ALIAS()
 		nRecord = recno()
 
+		this.UIObject = objGDWindow
+		
 		nErrors = 0 && Number of errors during the compiling process
 		
 		nSeconds = SECONDS() && to calculate the processing time
 	
-		objGDWindow.list1.Additem( " Compiling... " )
+		THIS.Additem( " Compiling... " )
 		DOEVENTS
 	
 	
@@ -49,32 +53,32 @@ DEFINE CLASS GD_VPLCompiler as Custom
 										 
 
 										CASE nsteptype = 2 && Generated
-										
-										* check that the parent is correct
-										
+										 							
+										* Check now child
+							  			IF this.checkchild() = .t.
+													THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
+													nErrors = nErrors + 1
+											ENDIF			
+					
+							  
 							  
 										CASE nsteptype = 3 && Generated (Root)
 										
 										* Check That the parent is correct for this step
 									 
-									  * check that no child
+							 
 
 										CASE nsteptype = 4 && Generated (AllowSub)
 										
-										* Check That the child is correct for this step
-							 
-										* Check that the child is correct
+								 
 
 										CASE nsteptype = 5 && Generated leaf
 										
-							 		 * check 
+							 		 
 							 
 
 										CASE nsteptype = 6 && Generated Allow Sub & leaf
-										
-							 	 	* Check that the order is correct
-							 	 	
-							 		 * check that the parent is correct 
+						 
 							 
 
 
@@ -84,11 +88,7 @@ DEFINE CLASS GD_VPLCompiler as Custom
 										* check that no child
 									IF .not. (nStepType = 4 .or. nStepType = 1 .or. nStepType = 3)
 									
-											IF this.checkchild() = .t.
-													objGDWindow.list1.Additem( " Error : Step ( " + t38->stepname + " ) has a child " )
-													nErrors = nErrors + 1
-											ENDIF			
-					
+											
 									ENDIF
 									
 					
@@ -108,10 +108,10 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		SELECT t38
 		
 		* Operation done ... Display Number of Errors 
-		objGDWindow.list1.Additem( " =========================================" )
-		objGDWindow.list1.Additem( " Compiling Time (Seconds) : " + ALLTRIM(STR(SECONDS()-nSeconds)) )
-	  objGDWindow.list1.Additem( " Number of Steps : " + ALLTRIM(STR(RECCOUNT())) )
-		objGDWindow.list1.Additem( " Number of Errors : " + ALLTRIM(STR(nErrors)) )
+		THIS.Additem( " =========================================" )
+		THIS.Additem( " Compiling Time (Seconds) : " + ALLTRIM(STR(SECONDS()-nSeconds)) )
+	  THIS.Additem( " Number of Steps : " + ALLTRIM(STR(RECCOUNT())) )
+		THIS.Additem( " Number of Errors : " + ALLTRIM(STR(nErrors)) )
 		DOEVENTS
 					
 		SELECT (cAlias)
@@ -147,5 +147,12 @@ DEFINE CLASS GD_VPLCompiler as Custom
 		GOTO nRecord
 		
 	RETURN lRet
+	
+	PROCEDURE AddItem(cItem)
+	 
+		this.UIObject.edit1.value = this.UIObject.edit1.value + cItem + CHR(13) + CHR(10)
+		
+	RETURN
+	
 	
 ENDDEFINE
