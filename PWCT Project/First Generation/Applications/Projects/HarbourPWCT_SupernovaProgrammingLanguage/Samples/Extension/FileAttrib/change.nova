@@ -1,0 +1,62 @@
+[ATTRIBUTE]\(1). =  (1).
+[ATTRIBUTE]\(2). =  (2).
+[ATTRIBUTE]\(3). =  (4).
+[ATTRIBUTE]\(4). =  (32).
+[ATTRIBUTE]\(5). =  (128).
+[ATTRIBUTE]\(6). =  (256).
+
+Set window autoshow off
+Application title is "CFA"
+
+I want window
+window title is "Change File Attribute"
+window height = 250. window width = 780. 
+
+I want label
+Label caption = File.
+
+I want label and label top = 50.
+Label caption = Attribute.
+
+I want textbox and textbox name = text1.
+Textbox left = 100. textbox width = 500.
+
+I want listbox and listbox height = 100.
+Listbox top = 50. listbox left = 100.
+listbox must add item Read Only.
+listbox must add item Hidden.
+listbox must add item System.
+listbox must add item Archive.
+listbox must add item Normal.
+listbox must add item Temporary.
+listbox value is 1.
+
+I want button and button name = btn1.
+Button caption = "Browse"
+Button left = 650.
+Procedure btn1 mouse click.
+	[myfile]. file to open
+	textbox value from [myfile].
+End procedure
+
+I want button and button name = btn2.
+Button caption = "Set Attributes"
+Button left = 650. button top = 100.
+Procedure btn2 mouse click.
+	textbox value to [Input_File].
+	listbox value to [Input_Attribute].
+	[Input_Attribute]. = [ATTRIBUTE]\[Input_Attribute].
+	do procedure setfileattribute.
+End procedure
+
+You centre window and you show window 
+
+
+procedure setfileattribute.
+	[myarray]. = (2).
+	[myarray]\(1)\(1). = (string). [myarray]\(1)\(2). = [Input_File].
+	[myarray]\(2)\(1). = (number). [myarray]\(2)\(2). = [Input_Attribute].
+	"(Kernel32.dll)" Dll Library to use
+	"SetFileAttributes" dll function to call with parameters "myarray"
+	window title from [Input_File] (     )   [Input_Attribute].
+end procedure

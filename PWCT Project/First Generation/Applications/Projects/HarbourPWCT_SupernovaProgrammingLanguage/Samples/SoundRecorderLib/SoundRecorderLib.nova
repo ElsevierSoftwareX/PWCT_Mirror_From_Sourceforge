@@ -1,0 +1,31 @@
+Procedure MySoundrecord.
+
+	"(winmm.dll)" Dll Library to use
+
+	[temparray]. = (4).
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(open new Type waveaudio Alias recsound)'
+	[temparray]\(2)\(1). = (string). [temparray]\(2)\(2). = '()'
+	[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(0)'
+	[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+	"mciSendString" dll function to call with parameters "temparray"
+
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(record recsound)'
+	"mciSendString" dll function to call with parameters "temparray"
+
+End procedure
+
+Procedure MySoundSave.
+
+	"(winmm.dll)" Dll Library to use
+
+	[temparray]. = (4).
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(save recsound ) [input]'
+	[temparray]\(2)\(1). = (string). [temparray]\(2)\(2). = '()'
+	[temparray]\(3)\(1). = (number). [temparray]\(3)\(2). = '(0)'
+	[temparray]\(4)\(1). = (number). [temparray]\(4)\(2). = '(0)'
+	"mciSendString" dll function to call with parameters "temparray"
+
+	[temparray]\(1)\(1). = (string). [temparray]\(1)\(2). = '(close recsound)'
+	"mciSendString" dll function to call with parameters "temparray"
+
+End procedure
