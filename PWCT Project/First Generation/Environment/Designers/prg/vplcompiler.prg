@@ -22,6 +22,12 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		THIS.Additem( " Compiling... " )
 		DOEVENTS
 	
+		SELECT t38
+		SCAN
+				obj_stepscolors.setstepcolor(mygdform)
+		ENDSCAN
+		GOTO bottom
+	
 	
 	  obj_stepscolors.lFindUsingIndex = .t.
   
@@ -52,6 +58,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 						* Error in Enable/Disable a generated step without doing the same operation for other steps generated from the same interaction
 	  				THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Enable/Ignore status is not correct " )
 						nErrors = nErrors + 1
+						this.MarkError()
 				ENDIF
   		ENDIF
   		
@@ -63,12 +70,14 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		  		nStepNumber = t38->stepinternum
 		  		THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) is not expected to be in this order " )
 					nErrors = nErrors + 1
+					this.MarkError()
 	  		ENDIF
 	  		
 	  	ELSE
 	  		* Error in steps order
 	  		THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) order is not correct " )
 				nErrors = nErrors + 1
+				this.MarkError()
 	  	endif		
   		
   		ENDSCAN
@@ -77,12 +86,16 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
   		SELECT t46
   		
   	ENDSCAN
+  	GOTO bottom
   	
   
 		SELECT T38
 		
 		SCAN
 		
+		
+		
+			
 			* Don't work on created step (not generated) 
 			* Don't work on disabled step
 			
@@ -105,6 +118,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 							  			IF this.checkchild() = .t.
 													THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
 													nErrors = nErrors + 1
+													this.MarkError()
 											ENDIF			
 					
 							  
@@ -140,7 +154,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 			ENDIF
 					
 		ENDSCAN
-
+		GOTO bottom
 			  
 		obj_stepscolors.DeleteMyIndex()
 			  
@@ -229,6 +243,14 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		
   	SELECT (cTableName)
 		GOTO nRecord
+	
+	RETURN
+	
+	
+	PROCEDURE MarkError()
+	
+				mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).BACKCOLOR =  RGB(0,0,0)
+				mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).FORECOLOR =  RGB(255,255,255)
 	
 	RETURN
 	
