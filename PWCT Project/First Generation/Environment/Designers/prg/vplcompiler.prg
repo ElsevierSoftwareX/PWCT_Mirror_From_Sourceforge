@@ -27,7 +27,10 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 	
 		SELECT t38
 		SCAN
+				TRY 
 				obj_stepscolors.setstepcolor(mygdform)
+				CATCH
+				ENDTRY 
 		ENDSCAN
 		GOTO bottom
 	
@@ -171,9 +174,11 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 													
 														FOR x = 2 TO nMax
 														
-																													
+							 									try														&& avoid error when we are in the read mode (hidden steps)
 																mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).selected = .t.
 																mygdForm.container1.oletree.click
+																CATCH
+																ENDTRY
 																
 																lStatus = obj_avoiderrors.lVisualCompiler
 																obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
@@ -320,10 +325,13 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 	
 	
 	PROCEDURE MarkError()
-	
-				mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).BACKCOLOR =  RGB(255,0,0)
-				mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).FORECOLOR =  RGB(255,255,255)
-		 
+				
+				try
+					mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).BACKCOLOR =  RGB(255,0,0)
+					mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).FORECOLOR =  RGB(255,255,255)
+		 	 CATCH
+		 	 ENDTRY
+		 		
 	RETURN
 	
 	PROCEDURE StartErrorSystem()
