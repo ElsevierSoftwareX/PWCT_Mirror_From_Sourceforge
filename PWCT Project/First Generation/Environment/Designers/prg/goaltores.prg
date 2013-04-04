@@ -300,6 +300,8 @@ FUNCTION mygoalscode()
 			GOTO TOP
 			SELECT t33
 		ENDSCAN
+		GOTO bottom
+		
 	ENDIF
 	myfh2 = ""
 	mytabs = 0
@@ -488,6 +490,8 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 						t2 = t2+ 1
 
 					ENDSCAN
+					GOTO bottom
+					
 				ELSE && fix problem with the Time Machine when we run the program from a location
 				ENDIF
 
@@ -502,6 +506,8 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 			NEXT
 
 		ENDSCAN
+		GOTO bottom
+		
 	ENDIF
 	myfh2 = ""
 	mytabs = 0
@@ -599,6 +605,8 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 				t2 = t2+ 1
 
 			ENDSCAN
+			GOTO bottom
+			
 		ELSE && fix problem with the Time Machine when we run the program from a location
 			IF t2 = ALEN(mytree,1) .AND. .NOT. temp_tm_iid  = 0
 				mytree(t2,1) = ""
@@ -703,6 +711,8 @@ FUNCTION myfastcompress()
 						t2 = t2+ 1
 
 					ENDSCAN
+					GOTO bottom
+					
 				ENDIF
 
 			NEXT
@@ -732,5 +742,7 @@ FUNCTION myfastcompress()
 			SELECT t33
 
 		ENDSCAN
+		GOTO bottom
+		
 	ENDIF
 	RETURN myfh

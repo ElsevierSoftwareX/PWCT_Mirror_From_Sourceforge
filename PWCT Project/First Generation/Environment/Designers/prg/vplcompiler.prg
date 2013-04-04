@@ -216,6 +216,11 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		
 	RETURN
 	
+	PROCEDURE AddErrorToList(cItem)
+	 
+		this.UIObject.list1.additem(cItem)
+		
+	RETURN
 	
 	PROCEDURE deleteOLDInteractions()
 	
@@ -298,6 +303,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 			 
 			 		FOR x = 2 TO nMax
 			 					this.AddItem(aCompileErrors(x,2))
+			 					this.AddErrorToList(aCompileErrors(x,2))
 			 		NEXT
 			 		
 			 ENDIF
