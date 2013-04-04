@@ -251,7 +251,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 	
 				mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).BACKCOLOR =  RGB(0,0,0)
 				mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).FORECOLOR =  RGB(255,255,255)
-	
+		 
 	RETURN
 	
 	
