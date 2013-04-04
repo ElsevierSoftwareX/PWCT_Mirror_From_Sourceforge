@@ -17,6 +17,8 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		
 		nErrors = 0 && Number of errors during the compiling process
 		
+		this.startErrorSystem()
+		
 		nSeconds = SECONDS() && to calculate the processing time
 	
 		THIS.Additem( " Compiling... " )
@@ -56,7 +58,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 			ELSE
 				IF ( nEnableDisable = 1 .and. t38->stepdis = .f. ) .or. ( nEnableDisable = 2 .and. t38->stepdis = .t. )
 						* Error in Enable/Disable a generated step without doing the same operation for other steps generated from the same interaction
-	  				THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Enable/Ignore status is not correct " )
+	  				THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Enable/Ignore status is not correct " )
 						nErrors = nErrors + 1
 						this.MarkError()
 				ENDIF
@@ -68,21 +70,20 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 	  		ELSE
 		  		* Error in steps order
 		  		nStepNumber = t38->stepinternum
-		  		THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) is not expected to be in this order " )
+		  		THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) is not expected to be in this order " )
 					nErrors = nErrors + 1
 					this.MarkError()
 	  		ENDIF
 	  		
 	  	ELSE
 	  		* Error in steps order
-	  		THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) order is not correct " )
+	  		THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) order is not correct " )
 				nErrors = nErrors + 1
 				this.MarkError()
 	  	endif		
   		
   		ENDSCAN
   			
-  				
   		SELECT t46
   		
   	ENDSCAN
@@ -116,7 +117,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 										 							
 										* Check child
 							  			IF this.checkchild() = .t.
-													THIS.Additem( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
+													THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
 													nErrors = nErrors + 1
 													this.MarkError()
 											ENDIF			
@@ -159,6 +160,8 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		obj_stepscolors.DeleteMyIndex()
 			  
 	  obj_stepscolors.lFindUsingIndex = .f.
+		
+		this.ShowErrors()
 		
 		SELECT t38
 		
@@ -253,6 +256,55 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 				mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).FORECOLOR =  RGB(255,255,255)
 		 
 	RETURN
+	
+	PROCEDURE StartErrorSystem()
+	
+				PUBLIC aCompileErrors
+				DIMENSION aCompileErrors(1,2) && record number & error message
+				aCompileErrors(1,1) = 0   && record number 
+				aCompileErrors(1,2) = ""  && message 		
+				
+	RETURN
+	
+	
+	PROCEDURE addError(cMsg)
+	
+			 LOCAL nMax,cTableName
+			 
+			 cTableName = ALIAS()
+			 
+			 SELECT t38
+			 
+			 nMax = ALEN(aCompileErrors,1)
+			 nMax = nMax + 1
+			 DIMENSION aCompileErrors(nMax,2)
+			 aCompileErrors(nMax,1) = RECNO()   && record number 
+			 aCompileErrors(nMax,2) = cMsg  && message 
+			 
+			 SELECT (cTableName)
+			 
+	RETURN
+	
+	PROCEDURE ShowErrors()
+	
+			 LOCAL nMax,x
+			 
+			  
+			 ASORT(aCompileErrors,1)
+			 
+	 		nMax = ALEN(aCompileErrors,1)
+	 		
+			 IF nMax > 1
+			 
+			 		FOR x = 2 TO nMax
+			 					this.AddItem(aCompileErrors(x,2))
+			 		NEXT
+			 		
+			 ENDIF
+			 
+	RETURN
+	
+	
 	
 	
 ENDDEFINE
