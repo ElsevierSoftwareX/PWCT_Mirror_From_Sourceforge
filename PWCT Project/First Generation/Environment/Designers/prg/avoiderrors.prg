@@ -348,7 +348,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 					IF FILE(cfile)
 
-						crules = FILETOSTR(cfile)
+						crules = this.myFILETOSTR(cfile)
 						crules = UPPER(crules)
 
 						nmax = MEMLINES(crules)
@@ -579,7 +579,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 					IF FILE(cfile)
 
-						crules = FILETOSTR(cfile)
+						crules = this.myFILETOSTR(cfile)
 						crules = UPPER(crules)
 
 						nmax = MEMLINES(crules)
@@ -698,7 +698,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				IF FILE(cfile)
 					cfile = STRTRAN(cfile,".TRF",".RULES")
 					IF FILE(cfile)
-						crules = FILETOSTR(cfile)
+						crules = this.myFILETOSTR(cfile)
 						crules = UPPER(crules)
 
 						************* Determine component name
@@ -880,7 +880,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 		IF FILE(cfile)
 
-			crules = FILETOSTR(cfile)
+			crules = this.myFILETOSTR(cfile)
 			crules = UPPER(crules)
 
 			nmax = MEMLINES(crules)

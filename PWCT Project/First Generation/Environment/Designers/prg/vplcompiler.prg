@@ -128,6 +128,14 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 							  
 							  
 										CASE nsteptype = 3 && Generated (Root)
+								
+								
+										* Check child
+							  			IF this.checkchild() = .t.
+													THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
+											 
+													this.MarkError()
+											ENDIF	
 										
 										* Check That the parent is correct for this step
 									 

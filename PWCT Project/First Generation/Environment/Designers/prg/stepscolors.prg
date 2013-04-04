@@ -305,28 +305,7 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 
 		RETURN myret
 
-		PROCEDURE myfiletostr(cFileName)
-
-			LOCAL cJustName,x,nMax 
-	 	
-			cFileName = UPPER(ALLTRIM(cFileName))
-			cJustName = JUSTFNAME(cFileName)
-	 	 cJustName = LEFT(cJustName,LEN(cJustName)-6) && remove .Rules
-	 	 
-	 	 nMax = ASCAN( aFilesData, cJustName,-1,-1, 1, 8)
-	 	 
- 		 IF .not. nMax = 0
-					return aFilesData(nMax,2)
-		  ENDIF
-	
-
-				nMax = ALEN( aFilesData , 1) + 1
-				DIMENSION aFilesData(nMax,2)
-			
-				aFilesData(nMax,1) = cJustName
-				aFilesData(nMax,2) = FILETOSTR(cFileName)
-				
-		 return aFilesData(nMax,2)
+		
 
 		 
 		PROCEDURE SaveStyle(objgdwindow)
