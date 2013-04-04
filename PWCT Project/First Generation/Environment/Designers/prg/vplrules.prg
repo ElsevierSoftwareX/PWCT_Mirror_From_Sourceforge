@@ -1,5 +1,7 @@
 DEFINE CLASS VPLRulesBase AS Custom
 
+	lFindUsingIndex = .f.
+
 	PROCEDURE checkAllowRoot()
 		
 				LOCAL myret
@@ -18,9 +20,12 @@ DEFINE CLASS VPLRulesBase AS Custom
 				IF .NOT. EMPTY(t38->stepinterid)
 
 					GOTO TOP
-
-					LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-
+					IF this.lFindUsingIndex = .f.
+							LOCATE FOR  ALLTRIM(f_iid) == ALLTRIM(t38->stepinterid)
+					ELSE
+							this.IndexFindIID(ALLTRIM(t38->stepinterid))
+					ENDIF
+					
 					IF FOUND()
 
 						chis = f_myhis

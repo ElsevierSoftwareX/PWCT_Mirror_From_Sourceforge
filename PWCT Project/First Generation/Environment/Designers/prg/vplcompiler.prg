@@ -1,6 +1,7 @@
 DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 
 	UIObject = "" 
+	lMarkErrors = .f.
 	
 	PROCEDURE CompileVisualSource(objGDWindow)
 	
@@ -16,8 +17,6 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 
 		this.UIObject = objGDWindow
 		
-		nErrors = 0 && Number of errors during the compiling process
-		
 		this.startErrorSystem()
 		
 		nSeconds = SECONDS() && to calculate the processing time
@@ -25,16 +24,19 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		THIS.Additem( " Compiling... " )
 		DOEVENTS
 	
-		SELECT t38
-		SCAN
-				TRY 
-				obj_stepscolors.setstepcolor(mygdform)
-				CATCH
-				ENDTRY 
-		ENDSCAN
-		GOTO bottom
-	
-	
+		IF this.lMarkErrors = .t.
+		
+					SELECT t38
+					SCAN
+							TRY 
+							obj_stepscolors.setstepcolor(mygdform)
+							CATCH
+							ENDTRY 
+					ENDSCAN
+					GOTO bottom
+				
+		ENDIF
+		
 	  obj_stepscolors.lFindUsingIndex = .t.
   
  	 obj_stepscolors.createMyIndex()
@@ -63,7 +65,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 				IF ( nEnableDisable = 1 .and. t38->stepdis = .f. ) .or. ( nEnableDisable = 2 .and. t38->stepdis = .t. )
 						* Error in Enable/Disable a generated step without doing the same operation for other steps generated from the same interaction
 	  				THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Enable/Ignore status is not correct " )
-						nErrors = nErrors + 1
+						 
 						this.MarkError()
 				ENDIF
   		ENDIF
@@ -75,14 +77,14 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		  		* Error in steps order
 		  		nStepNumber = t38->stepinternum
 		  		THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) is not expected to be in this order " )
-					nErrors = nErrors + 1
+				 
 					this.MarkError()
 	  		ENDIF
 	  		
 	  	ELSE
 	  		* Error in steps order
 	  		THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) order is not correct " )
-				nErrors = nErrors + 1
+			 
 				this.MarkError()
 	  	endif		
   		
@@ -119,7 +121,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 										* Check child
 							  			IF this.checkchild() = .t.
 													THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
-													nErrors = nErrors + 1
+											 
 													this.MarkError()
 											ENDIF			
 					
@@ -146,8 +148,8 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 										 				IF .not. EMPTY(ALLTRIM(stepinterid))
 										 				
 										 					SELECT t46
-										 					LOCATE FOR ALLTRIM(F_IID) == ALLTRIM(t38->stepinterid)
-										 					
+										 					*LOCATE FOR ALLTRIM(F_IID) == ALLTRIM(t38->stepinterid)
+										 					this.IndexFindIID(ALLTRIM(t38->stepinterid))
 										 					IF FOUND()
 										 						
 														 				nMax = ALEN(aChilds,1)
@@ -174,12 +176,6 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 													
 														FOR x = 2 TO nMax
 														
-							 									try														&& avoid error when we are in the read mode (hidden steps)
-																mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).selected = .t.
-																mygdForm.container1.oletree.click
-																CATCH
-																ENDTRY
-																
 																lStatus = obj_avoiderrors.lVisualCompiler
 																obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
 																lCheck = obj_avoiderrors.CheckSubComponent( aChilds(x,1) ) 
@@ -188,7 +184,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 																IF lCheck = .f.
 															
 																	THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains bad Substep ( " + aChilds(x,2) + ")" )
-																	nErrors = nErrors + 1
+																 
 																	this.MarkError()
 																	
 																ENDIF
@@ -233,6 +229,8 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		this.ShowErrors()
 		
 		SELECT t38
+		
+		nErrors = ALEN(aCompileErrors,1) - 1
 		
 		* Operation done ... Display Number of Errors 
 		THIS.Additem( " =========================================" )
@@ -326,11 +324,18 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 	
 	PROCEDURE MarkError()
 				
-				try
-					mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).BACKCOLOR =  RGB(255,0,0)
-					mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).FORECOLOR =  RGB(255,255,255)
-		 	 CATCH
-		 	 ENDTRY
+			 
+				IF this.lMarkErrors = .t.
+				
+						TRY
+						
+							mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).BACKCOLOR =  RGB(255,0,0)
+							mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).FORECOLOR =  RGB(255,255,255)
+							
+				 	 CATCH
+				 	 ENDTRY
+				 	 
+				ENDIF 
 		 		
 	RETURN
 	
