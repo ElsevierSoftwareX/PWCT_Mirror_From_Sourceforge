@@ -9,6 +9,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		LOCAL nErrors
 		LOCAL nSeconds
 		LOCAL nInteractions
+		LOCAL nRecord2,cStepID,nMax,x,lCheck,lStatus
 		
 		cAlias = ALIAS()
 		nRecord = recno()
@@ -94,9 +95,6 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		
 		SCAN
 		
-		
-		
-			
 			* Don't work on created step (not generated) 
 			* Don't work on disabled step
 			
@@ -132,8 +130,74 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 
 										CASE nsteptype = 4 && Generated (AllowSub)
 										
-								 
-
+										* Check that the all of the child steps are correct
+										
+										 		nRecord2 = RECNO()
+										 		DIMENSION aChilds(1,2)
+										 		aChilds(1,1) = ""   && component file
+										 		aChilds(1,2) = ""	 && step name 
+										 		cStepID = ALLTRIM(t38->stepid)
+										 		
+										 		SCAN FOR ALLTRIM(t38->parentid) == cStepID
+										 		
+										 				IF .not. EMPTY(ALLTRIM(stepinterid))
+										 				
+										 					SELECT t46
+										 					LOCATE FOR ALLTRIM(F_IID) == ALLTRIM(t38->stepinterid)
+										 					
+										 					IF FOUND()
+										 						
+														 				nMax = ALEN(aChilds,1)
+														 				nMax = nMax + 1
+														 				DIMENSION aChilds(nMax,2)
+														 				aChilds(nMax,1) = ALLTRIM(MLINE(f_myhis,9))
+														 				aChilds(nMax,2) = ALLTRIM(t38->stepname)
+														 	ENDIF
+											 				
+											 				SELECT t38
+											 				
+											 			ENDIF
+										 				
+										 		
+										 		ENDSCAN
+										 		GOTO bottom
+										 		
+												 SELECT t38
+										 											 	
+										 		GOTO nRecord2
+								 	
+								 				 nMax = ALEN(aChilds,1)
+													IF nMax > 1
+													
+														FOR x = 2 TO nMax
+														
+																													
+																mygdForm.container1.oletree.nodes.ITEM(ALLTRIM(t38->stepid)).selected = .t.
+																mygdForm.container1.oletree.click
+																
+																lStatus = obj_avoiderrors.lVisualCompiler
+																obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
+																lCheck = obj_avoiderrors.CheckSubComponent( aChilds(x,1) ) 
+																obj_avoiderrors.lVisualCompiler = lStatus && return the status of the syntax directed editor
+																
+																IF lCheck = .f.
+															
+																	THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains bad Substep ( " + aChilds(x,2) + ")" )
+																	nErrors = nErrors + 1
+																	this.MarkError()
+																	
+																ENDIF
+																
+														NEXT
+														
+													
+													ENDIF
+													
+													SELECT t38
+										 											 	
+										 	 	GOTO nRecord2
+													
+													
 										CASE nsteptype = 5 && Generated leaf
 										
 							 		 
