@@ -42,12 +42,12 @@ DEFINE CLASS VPLRulesBase AS Custom
 								crules = this.myFILETOSTR(cfile)
 								crules = UPPER(crules)
 
-								*nmax = MEMLINES(crules)
+							 
 								nMax = ALINES(aRules,cRules)
 								
 								FOR x = 1 TO nmax
 
-									*cline = MLINE(crules,x)
+						 
 									cLine = aRules(x)
 									
 									cline = ALLTRIM(cline)

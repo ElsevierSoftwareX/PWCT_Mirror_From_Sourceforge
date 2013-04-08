@@ -362,13 +362,13 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 				
 						cStyle = FILETOSTR(cStyleFile)
 						
-						*nMax = MEMLINES(cStyle)
+						 
 						nMax = ALINES(aStyle,cStyle)
 						
 						
 						FOR x = 1 TO nMax
 								
-								*cLine = MLINE(cStyle,X)
+						 
 								cLine = aStyle(x)
 								
 								nAt = AT(":",cLine)

@@ -11,6 +11,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		LOCAL nSeconds
 		LOCAL nInteractions
 		LOCAL nRecord2,cStepID,nMax,x,lCheck,lStatus
+		LOCAL cChildData1,cChildData2,cStepName,nRecord3
 		
 		cAlias = ALIAS()
 		nRecord = recno()
@@ -151,13 +152,14 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 										 
 										   	IF obj_avoiderrors.checkIsScopeGeneral() = .f.		
 										  	
-														 		DIMENSION aChilds(1,2)
-														 		aChilds(1,1) = ""   && component file
-														 		aChilds(1,2) = ""	 && step name 
+ 		 		
 														 		cStepID = ALLTRIM(t38->stepid)
+														 		cStepName = ALLTRIM(t38->stepname)
 														 		
 														 		SCAN FOR ALLTRIM(t38->parentid) == cStepID
 														 		
+														 				nRecord3 = RECNO()
+														 				
 														 				IF .not. EMPTY(ALLTRIM(stepinterid))
 														 				
 														 					SELECT t46
@@ -165,16 +167,31 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 														 					this.IndexFindIID(ALLTRIM(t38->stepinterid))
 														 					
 														 					IF FOUND()
-														 						
-																		 				nMax = ALEN(aChilds,1)
-																		 				nMax = nMax + 1
-																		 				DIMENSION aChilds(nMax,2)
-																		 				aChilds(nMax,1) = ALLTRIM(MLINE(f_myhis,9))
-																		 				aChilds(nMax,2) = ALLTRIM(t38->stepname)
+														 						 
+																		 				cChildData1 = this.GETCOMPONENTFILE()
+																		 				cChildData2 = ALLTRIM(t38->stepname)
+																		 				
+											 											SELECT t38
+											 											GOTO nRecord2
+											 											
+																		 				lStatus = obj_avoiderrors.lVisualCompiler
+																						 obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
+																						 lCheck = obj_avoiderrors.CheckSubComponent( cChildData1 ) 
+																						 obj_avoiderrors.lVisualCompiler = lStatus && return the status of the syntax directed editor
+																				
+																							IF lCheck = .f.
+																						
+																								THIS.AddError( " Error : Step ( " + cStepName + " ) Contains bad Substep ( " + cChildData2 + ")" )
+																							 
+																								this.MarkError()
+																								
+																							ENDIF
+																		 				 
 																		 				
 																		 	ENDIF
 															 				
 															 				SELECT t38
+															 				GOTO nRecord3
 															 				
 															 			ENDIF
 														 				
@@ -185,37 +202,10 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 																 SELECT t38
 														 											 	
 														 		GOTO nRecord2
-												 	
-												 				 nMax = ALEN(aChilds,1)
-																	IF nMax > 1
-																	
-																		FOR x = 2 TO nMax
-																		
-																				lStatus = obj_avoiderrors.lVisualCompiler
-																				obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
-																				lCheck = obj_avoiderrors.CheckSubComponent( aChilds(x,1) ) 
-																				obj_avoiderrors.lVisualCompiler = lStatus && return the status of the syntax directed editor
-																				
-																				IF lCheck = .f.
-																			
-																					THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains bad Substep ( " + aChilds(x,2) + ")" )
-																				 
-																					this.MarkError()
-																					
-																				ENDIF
-																				
-																		NEXT
-																		
-																	
-																	ENDIF
-										
+ 
 									     	ENDIF
 									     		
-											
-													
-											 	SELECT t38
-									 											 	
-									 	  	GOTO nRecord2
+											 
 												
 										
 										CASE nsteptype = 5 && Generated leaf
