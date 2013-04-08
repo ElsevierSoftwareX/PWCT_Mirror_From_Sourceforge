@@ -1,7 +1,8 @@
 DEFINE CLASS VPLRulesBase AS Custom
 
 	lFindUsingIndex = .f.
-
+	lFileToStrBuffer = .t.
+	
 	PROCEDURE checkAllowRoot()
 		
 				LOCAL myret
@@ -149,6 +150,10 @@ DEFINE CLASS VPLRulesBase AS Custom
 
 			LOCAL cJustName,x,nMax 
 	 	
+			IF this.lFileToStrBuffer = .f.
+				RETURN FILETOSTR(cFileName)
+			ENDIF
+			
 			cFileName = UPPER(ALLTRIM(cFileName))
 			cJustName = JUSTFNAME(cFileName)
 	 	 cJustName = LEFT(cJustName,LEN(cJustName)-6) && remove .Rules

@@ -517,6 +517,88 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		RETURN
 		
 
+	* used to know if this component allow any child (general) or not
+	* used by the VPL Compiler to avoid doing unrequired checks when the scope is general
+	
+	PROCEDURE checkIsScopeGeneral()
+		
+		LOCAL c_table,n_record
+		LOCAL cInterNum,chis,cfile,cacfile,crules,cline,x,nmax,crule,t 
+		
+		c_table = ALIAS()
+		n_record = RECNO()
+		
+		cinternum = ALLTRIM(STR(t38->stepinternum))
+
+		SELECT t46
+		GOTO TOP
+		
+		IF .NOT. EMPTY(t38->stepinterid)
+		
+			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+
+			IF FOUND()
+
+				chis = f_myhis
+				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+				cacfile = cfile
+
+				IF FILE(cfile)
+
+					cfile = STRTRAN(cfile,".TRF",".RULES")
+
+					IF FILE(cfile)
+
+						crules = this.myFILETOSTR(cfile)
+						crules = UPPER(crules)
+
+						nmax = MEMLINES(crules)
+						
+						FOR x = 1 TO nmax
+						
+							cline = MLINE(crules,x)
+							cline = ALLTRIM(cline)
+							crule = "AllowInteraction: " + cinternum
+							
+							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+
+
+								FOR T = x TO nmax
+
+									cline = MLINE(crules,T)
+									cline = UPPER(ALLTRIM(cline))
+
+									crule = "SCOPE:"
+									
+									IF LEFT(cline,6) == crule
+									
+										cline = SUBSTR(cline,7)
+										cline = ALLTRIM(cline)
+										
+										IF cline == "GENERAL"
+												
+											RETURN .t.
+									 
+										ENDIF
+										
+									ENDIF
+									
+							 NEXT
+							 
+					 	ENDIF
+					 	
+				 NEXT
+				 ENDIF
+			ENDIF
+		ENDIF
+	ENDIF
+	
+	SELECT (c_table)
+  GOTO n_record
+  
+ RETURN .f.
+	
+
 	PROCEDURE checksubcomponent(ccomponentfile)
 
 		LOCAL c_table,n_record
@@ -528,8 +610,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 		* this procedure is called from the components browser window
 		* Also called from Goal Designer - Paste button
+		* Also called from the VPL Compiler
 
 		* if the syntax directed editor is disabled
+		
 		IF THIS.lvisualcompiler = .F. .OR. THIS.isthisstepistheroot() = .T.
 			RETURN .T.
 		ENDIF
@@ -540,10 +624,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 		myret = .F.
 
-
-	
-
-		lParentChanged = .f.
+  	lParentChanged = .f.
 		IF EMPTY(t38->stepinterid)
 				X = THIS.GetRealStepParent()
 				IF .NOT. X = 0

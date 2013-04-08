@@ -120,7 +120,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 										 							
 										* Check child
 							  			IF this.checkchild() = .t.
-													THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
+													THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Bad Substep " )
 											 
 													this.MarkError()
 											ENDIF			
@@ -132,7 +132,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 								
 										* Check child
 							  			IF this.checkchild() = .t.
-													THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Substeps " )
+													THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Bad Substep " )
 											 
 													this.MarkError()
 											ENDIF	
@@ -145,68 +145,79 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 										
 										* Check that the all of the child steps are correct
 										
+											
+										
 										 		nRecord2 = RECNO()
-										 		DIMENSION aChilds(1,2)
-										 		aChilds(1,1) = ""   && component file
-										 		aChilds(1,2) = ""	 && step name 
-										 		cStepID = ALLTRIM(t38->stepid)
-										 		
-										 		SCAN FOR ALLTRIM(t38->parentid) == cStepID
-										 		
-										 				IF .not. EMPTY(ALLTRIM(stepinterid))
-										 				
-										 					SELECT t46
-										 					*LOCATE FOR ALLTRIM(F_IID) == ALLTRIM(t38->stepinterid)
-										 					this.IndexFindIID(ALLTRIM(t38->stepinterid))
-										 					IF FOUND()
-										 						
-														 				nMax = ALEN(aChilds,1)
-														 				nMax = nMax + 1
-														 				DIMENSION aChilds(nMax,2)
-														 				aChilds(nMax,1) = ALLTRIM(MLINE(f_myhis,9))
-														 				aChilds(nMax,2) = ALLTRIM(t38->stepname)
-														 	ENDIF
-											 				
-											 				SELECT t38
-											 				
-											 			ENDIF
-										 				
-										 		
-										 		ENDSCAN
-										 		GOTO bottom
-										 		
-												 SELECT t38
-										 											 	
-										 		GOTO nRecord2
-								 	
-								 				 nMax = ALEN(aChilds,1)
-													IF nMax > 1
-													
-														FOR x = 2 TO nMax
-														
-																lStatus = obj_avoiderrors.lVisualCompiler
-																obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
-																lCheck = obj_avoiderrors.CheckSubComponent( aChilds(x,1) ) 
-																obj_avoiderrors.lVisualCompiler = lStatus && return the status of the syntax directed editor
-																
-																IF lCheck = .f.
-															
-																	THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains bad Substep ( " + aChilds(x,2) + ")" )
-																 
-																	this.MarkError()
+										 
+										   	IF obj_avoiderrors.checkIsScopeGeneral() = .f.		
+										  	
+														 		DIMENSION aChilds(1,2)
+														 		aChilds(1,1) = ""   && component file
+														 		aChilds(1,2) = ""	 && step name 
+														 		cStepID = ALLTRIM(t38->stepid)
+														 		
+														 		SCAN FOR ALLTRIM(t38->parentid) == cStepID
+														 		
+														 				IF .not. EMPTY(ALLTRIM(stepinterid))
+														 				
+														 					SELECT t46
+														 			
+														 					this.IndexFindIID(ALLTRIM(t38->stepinterid))
+														 					
+														 					IF FOUND()
+														 						
+																		 				nMax = ALEN(aChilds,1)
+																		 				nMax = nMax + 1
+																		 				DIMENSION aChilds(nMax,2)
+																		 				aChilds(nMax,1) = ALLTRIM(MLINE(f_myhis,9))
+																		 				aChilds(nMax,2) = ALLTRIM(t38->stepname)
+																		 				
+																		 	ENDIF
+															 				
+															 				SELECT t38
+															 				
+															 			ENDIF
+														 				
+														 		
+														 		ENDSCAN
+														 		GOTO bottom
+														 		
+																 SELECT t38
+														 											 	
+														 		GOTO nRecord2
+												 	
+												 				 nMax = ALEN(aChilds,1)
+																	IF nMax > 1
 																	
-																ENDIF
-																
-														NEXT
-														
+																		FOR x = 2 TO nMax
+																		
+																				lStatus = obj_avoiderrors.lVisualCompiler
+																				obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
+																				lCheck = obj_avoiderrors.CheckSubComponent( aChilds(x,1) ) 
+																				obj_avoiderrors.lVisualCompiler = lStatus && return the status of the syntax directed editor
+																				
+																				IF lCheck = .f.
+																			
+																					THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains bad Substep ( " + aChilds(x,2) + ")" )
+																				 
+																					this.MarkError()
+																					
+																				ENDIF
+																				
+																		NEXT
+																		
+																	
+																	ENDIF
+										
+									     	ENDIF
+									     		
+											
 													
-													ENDIF
-													
-													SELECT t38
-										 											 	
-										 	 	GOTO nRecord2
-													
-													
+											 	SELECT t38
+									 											 	
+									 	  	GOTO nRecord2
+												
+										
 										CASE nsteptype = 5 && Generated leaf
 										
 							 		 
@@ -268,7 +279,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		cInterID = ALLTRIM(T38->stepinterid)
 		nStepInterNum = T38->stepinternum
 		
-		LOCATE FOR ALLTRIM(t38->parentid) == nID .and. .not. ( ALLTRIM(T38->stepinterid) = cInterID .and. T38->stepinternum = nStepInterNum + 1 )
+		LOCATE FOR ALLTRIM(t38->parentid) == nID .and. .not. ( ALLTRIM(T38->stepinterid) == cInterID .and. T38->stepinternum != nStepInterNum )
 		
 		IF FOUND()
 			lRet = .T.
