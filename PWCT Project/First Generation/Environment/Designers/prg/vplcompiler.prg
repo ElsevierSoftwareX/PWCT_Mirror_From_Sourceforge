@@ -11,7 +11,7 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		LOCAL nSeconds
 		LOCAL nInteractions
 		LOCAL nRecord2,cStepID,nMax,x,lCheck,lStatus
-		LOCAL cChildData1,cChildData2,cStepName,nRecord3
+		LOCAL cChildData1,cChildData2,cStepName,nRecord3,cParentID
 		
 		cAlias = ALIAS()
 		nRecord = recno()
@@ -118,6 +118,10 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 										 
 
 										CASE nsteptype = 2 && Generated
+			
+											SELECT t38
+											nRecord2 = RECNO()
+											
 										 							
 										* Check child
 							  			IF this.checkchild() = .t.
@@ -126,11 +130,14 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 													this.MarkError()
 											ENDIF			
 					
-							  
+							   		SELECT t38
+										 GOTO nRecord2
 							  
 										CASE nsteptype = 3 && Generated (Root)
-								
-								
+											
+											SELECT t38
+											nRecord2 = RECNO()
+											
 										* Check child
 							  			IF this.checkchild() = .t.
 													THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) Contains Bad Substep " )
@@ -138,8 +145,58 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 													this.MarkError()
 											ENDIF	
 										
+										 SELECT t38
+										 GOTO nRecord2
+										
 										* Check That the parent is correct for this step
-									 
+											 
+											 
+											 cStepName = ALLTRIM(t38->stepname)
+											 cParentID  =  ALLTRIM(t38->parentid)
+											 
+											 IF t38->stepInterNum = 1 && Step type Root not Allow Root (AllowRoot like define procedure for button event)
+											 
+											 
+							 								SELECT t46
+										 			
+										 					this.IndexFindIID(ALLTRIM(t38->stepinterid))
+										 					
+										 					IF FOUND()
+										 						 
+														 				cChildData1 = this.GETCOMPONENTFILE()
+														 				
+													 					SELECT t38
+													 					
+											 							LOCATE FOR ALLTRIM(t38->stepid) == cParentID
+											 							
+											 							IF FOUND()
+											 							
+											 									lStatus = obj_avoiderrors.lVisualCompiler
+															 					obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
+															 
+																				 IF obj_avoiderrors.isparentallowedforcomponent(cChildData1) = .f.
+																				  			
+																				  			SELECT t38
+																				 			 GOTO nRecord2
+																				 			 
+																			 			 	THIS.AddError( " Error : Step ( " + cStepName + " ) Parent is not correct " )
+																															 
+																								this.MarkError()
+																			 			 
+																				 ENDIF
+																				 
+																				 obj_avoiderrors.lVisualCompiler = lStatus && return the status of the syntax directed editor
+																 							
+											 							ENDIF
+											 							
+											 							
+														 	ENDIF
+																		 				
+								 
+											 ENDIF
+											 
+											 SELECT t38
+											 GOTO nRecord2
 							 
 
 										CASE nsteptype = 4 && Generated (AllowSub)

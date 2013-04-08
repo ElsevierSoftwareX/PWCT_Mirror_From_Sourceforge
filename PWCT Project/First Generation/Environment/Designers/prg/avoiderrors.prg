@@ -790,8 +790,11 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		cinternum = ALLTRIM(STR(t38->stepinternum))
 
 		SELECT t46
+		
 		GOTO TOP
+		
 		IF .NOT. EMPTY(t38->stepinterid)
+		
 			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 
 			IF FOUND()
@@ -799,10 +802,15 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				chis = f_myhis
  
 				cFile = this.GETCOMPONENTFILE()
+				
 				IF FILE(cfile)
+				
 					cfile = STRTRAN(cfile,".TRF",".RULES")
+					
 					IF FILE(cfile)
+					
 						crules = this.myFILETOSTR(cfile)
+						
 						crules = UPPER(crules)
 
 						************* Determine component name
@@ -823,11 +831,16 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							IF FOUND()
 
 								IF t38->stepdis = .F.
+								
 									lcont = .F.
+									
 								ELSE
+								
 									lcont = .T.
 									cparent = t38->parentid
+									
 								ENDIF
+								
 							ENDIF
 
 							IF UPPER(ALLTRIM(cparent)) == "SP_"
@@ -838,20 +851,28 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						ENDDO
 
 						cparent = UPPER(ALLTRIM(cparent))
+						
 						IF .NOT. EMPTY(cparent)
+						
 							IF .NOT. cparent == "SP_"
 
 								SELECT t46
 								GOTO TOP
+								
 								IF .NOT. EMPTY(t38->stepinterid)
+								
 									LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+									
 									IF FOUND()
 								 
 										cComponentFile = this.GETCOMPONENTFILE()
+										
 									ENDIF
+									
 								ENDIF
 
 							ENDIF
+							
 						ENDIF
 
 						SELECT t38
@@ -872,20 +893,25 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							
 							cline = ALLTRIM(cline)
 							crule = "ALLOWPARENT:"
+							
 							IF  LEFT(UPPER(ALLTRIM(cline)),12) == UPPER(ALLTRIM(crule))
 
 								cline = SUBSTR(cline,13)
 								cline = UPPER(ALLTRIM(cline))
+								
 								IF cline == "GENERAL"
+								
 									myret = .T.
 									EXIT
+									
 								ELSE
+								
 									myret = .F.
+									
 								ENDIF
 
 
 								FOR T = x TO nmax
-
 								 
 									cLine = aRules(T)
 									cline = UPPER(ALLTRIM(cline))
@@ -976,7 +1002,6 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		IF .NOT. EMPTY(t38->stepinterid)
 			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 			IF FOUND()
-	 
 				cParentComponentFile = this.GETCOMPONENTFILE()
 			ENDIF
 		ENDIF
