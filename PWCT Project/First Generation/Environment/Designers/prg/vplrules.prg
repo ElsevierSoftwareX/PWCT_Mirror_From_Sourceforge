@@ -8,6 +8,7 @@ DEFINE CLASS VPLRulesBase AS Custom
 				LOCAL myret
 				LOCAL cTableName,nRecord
 				LOCAL cInterNum,cHis,cFile,cRules,nMax,X,cLine
+				LOCAL ARRAY aRules[1]
 				
 				myret = .f.
 				
@@ -41,11 +42,14 @@ DEFINE CLASS VPLRulesBase AS Custom
 								crules = this.myFILETOSTR(cfile)
 								crules = UPPER(crules)
 
-								nmax = MEMLINES(crules)
-
+								*nmax = MEMLINES(crules)
+								nMax = ALINES(aRules,cRules)
+								
 								FOR x = 1 TO nmax
 
-									cline = MLINE(crules,x)
+									*cline = MLINE(crules,x)
+									cLine = aRules(x)
+									
 									cline = ALLTRIM(cline)
 									crule = "AllowRoot: " + cinternum
 				
@@ -172,5 +176,17 @@ DEFINE CLASS VPLRulesBase AS Custom
 				aFilesData(nMax,2) = FILETOSTR(cFileName)
 				
 		 return aFilesData(nMax,2)
+		 
+		 
+		 
+			PROCEDURE GETCOMPONENTFILE()
+			
+			 
+				LOCAL ARRAY aRules[1]
+				
+				ALINES(aRules,f_myhis)
+				 
+				
+			RETURN UPPER(ALLTRIM(aRules(9)))
 		 
 ENDDEFINE

@@ -262,7 +262,7 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 			IF FOUND()
 
 		 
-				cfile = UPPER(ALLTRIM(MLINE(f_myhis,9)))
+				cfile = this.GETCOMPONENTFILE()
 
 				IF FILE(cfile)
 
@@ -349,6 +349,7 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 				LOCAL cStyle,cStyleFile
 				LOCAL x,nMax
 				LOCAL cLine,cAt,cCmd,cData
+				LOCAL ARRAY aStyle(1)
 				
 				cStyleFile = JUSTPATH(APPLICATION.SERVERNAME)+"\Style.txt"
 				
@@ -361,11 +362,14 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 				
 						cStyle = FILETOSTR(cStyleFile)
 						
-						nMax = MEMLINES(cStyle)
+						*nMax = MEMLINES(cStyle)
+						nMax = ALINES(aStyle,cStyle)
+						
 						
 						FOR x = 1 TO nMax
 								
-								cLine = MLINE(cStyle,X)
+								*cLine = MLINE(cStyle,X)
+								cLine = aStyle(x)
 								
 								nAt = AT(":",cLine)
 								cCmd = LEFT(cLine,nAt-1)

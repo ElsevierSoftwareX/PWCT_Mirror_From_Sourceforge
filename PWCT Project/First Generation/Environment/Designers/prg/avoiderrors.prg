@@ -308,7 +308,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		LOCAL c_table,n_record
 
 		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule
-
+		LOCAL ARRAY aRules[1]
+		
+		
 		IF THIS.lvisualcompiler = .F.
 			RETURN .T.
 		ENDIF
@@ -340,8 +342,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			IF FOUND()
 
 				chis = f_myhis
-				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
-
+		 
+				cFile = this.GETCOMPONENTFILE()
+				
 				IF FILE(cfile)
 
 					cfile = STRTRAN(cfile,".TRF",".RULES")
@@ -351,11 +354,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						crules = this.myFILETOSTR(cfile)
 						crules = UPPER(crules)
 
-						nmax = MEMLINES(crules)
-
+					 
+						nMax = ALINES(aRules,cRules)
+						
 						FOR x = 1 TO nmax
 
-							cline = MLINE(crules,x)
+						 
+							cLine = aRules(x)
+							
 							cline = ALLTRIM(cline)
 							crule = "AllowInteraction: " + cinternum
 
@@ -524,6 +530,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 		LOCAL c_table,n_record
 		LOCAL cInterNum,chis,cfile,cacfile,crules,cline,x,nmax,crule,t 
+		LOCAL ARRAY aRules[1]
 		
 		c_table = ALIAS()
 		n_record = RECNO()
@@ -540,7 +547,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			IF FOUND()
 
 				chis = f_myhis
-				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+		 
+				cFile = this.GETCOMPONENTFILE()
 				cacfile = cfile
 
 				IF FILE(cfile)
@@ -552,11 +560,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						crules = this.myFILETOSTR(cfile)
 						crules = UPPER(crules)
 
-						nmax = MEMLINES(crules)
+				 
+						
+						nmax = ALINES(aRules,cRules)
 						
 						FOR x = 1 TO nmax
 						
-							cline = MLINE(crules,x)
+					 
+							cLine = aRules(x)
 							cline = ALLTRIM(cline)
 							crule = "AllowInteraction: " + cinternum
 							
@@ -565,7 +576,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 								FOR T = x TO nmax
 
-									cline = MLINE(crules,T)
+					 
+									cline = aRules(T)
+									
 									cline = UPPER(ALLTRIM(cline))
 
 									crule = "SCOPE:"
@@ -605,7 +618,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule,T
 		LOCAL cacfile
 		LOCAL nRecord2,lParentChanged
-
+		LOCAL ARRAY aRules[1]
+		
 		this.nParentScope = 0 && not determined
 		
 		* this procedure is called from the components browser window
@@ -651,7 +665,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			IF FOUND()
 
 				chis = f_myhis
-				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+	 
+				cFile = this.GETCOMPONENTFILE()
 				cacfile = cfile
 
 				IF FILE(cfile)
@@ -663,9 +678,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						crules = this.myFILETOSTR(cfile)
 						crules = UPPER(crules)
 
-						nmax = MEMLINES(crules)
+				 
+						nMax = ALINES(aRules,cRules)
+						
 						FOR x = 1 TO nmax
-							cline = MLINE(crules,x)
+				 
+							cLine = aRules(x)
+							
 							cline = ALLTRIM(cline)
 							crule = "AllowInteraction: " + cinternum
 							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
@@ -673,7 +692,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 								FOR T = x TO nmax
 
-									cline = MLINE(crules,T)
+						 
+									cline = aRules(T)
+									
 									cline = UPPER(ALLTRIM(cline))
 
 									crule = "SCOPE:"
@@ -744,7 +765,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		LOCAL myret,chis,cfile,crules,cinternum,nmax,x,cline,crule,T
 		LOCAL ccomponentfile
 		LOCAL lcont,cparent
-
+		LOCAL ARRAY aRules[1]
+		
 		* Used by (Goal Designer - Ignore Step) to determine is this operation is allowed or not
 
 		* Checking starts from the child
@@ -775,7 +797,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			IF FOUND()
 
 				chis = f_myhis
-				cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+ 
+				cFile = this.GETCOMPONENTFILE()
 				IF FILE(cfile)
 					cfile = STRTRAN(cfile,".TRF",".RULES")
 					IF FILE(cfile)
@@ -823,7 +846,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 								IF .NOT. EMPTY(t38->stepinterid)
 									LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 									IF FOUND()
-										ccomponentfile = ALLTRIM(MLINE(f_myhis,9))
+								 
+										cComponentFile = this.GETCOMPONENTFILE()
 									ENDIF
 								ENDIF
 
@@ -839,9 +863,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						* Check the rules to know if this parent component is allowed or not
 
 
-						nmax = MEMLINES(crules)
+					 
+						nMax = ALINES(aRules,cRules)
+						
 						FOR x = 1 TO nmax
-							cline = MLINE(crules,x)
+					 
+							cLine = aRules(x)
+							
 							cline = ALLTRIM(cline)
 							crule = "ALLOWPARENT:"
 							IF  LEFT(UPPER(ALLTRIM(cline)),12) == UPPER(ALLTRIM(crule))
@@ -858,7 +886,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 								FOR T = x TO nmax
 
-									cline = MLINE(crules,T)
+								 
+									cLine = aRules(T)
 									cline = UPPER(ALLTRIM(cline))
 
 									crule = "ALLOW:"
@@ -906,6 +935,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		LOCAL c_table,n_record
 		LOCAL cparentcomponentfile
 		LOCAL lParentChanged,nRecord2
+		LOCAL ARRAY aRules[1]
 		
 		* written to be called from the components browser
 		* checking starts while the active step in the steps tree is the parent
@@ -946,7 +976,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		IF .NOT. EMPTY(t38->stepinterid)
 			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 			IF FOUND()
-				cparentcomponentfile = ALLTRIM(MLINE(f_myhis,9))
+	 
+				cParentComponentFile = this.GETCOMPONENTFILE()
 			ENDIF
 		ENDIF
 
@@ -964,11 +995,15 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			crules = this.myFILETOSTR(cfile)
 			crules = UPPER(crules)
 
-			nmax = MEMLINES(crules)
+			 
+			nMax = ALINES(aRules,cRules)
+			
 
 			FOR x = 1 TO nmax
 
-				cline = MLINE(crules,x)
+		 
+				cLine = aRules(x)
+				
 				cline = ALLTRIM(cline)
 
 				crule = "ALLOWPARENT:"
@@ -986,7 +1021,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 					FOR T = x TO nmax
 
-						cline = MLINE(crules,T)
+				 
+						cLine = aRules(T)
+						
 						cline = UPPER(ALLTRIM(cline))
 
 						crule = "ALLOW:"
@@ -1236,6 +1273,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 
 		RETURN
+
 
 
 ENDDEFINE
