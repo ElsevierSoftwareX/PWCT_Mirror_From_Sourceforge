@@ -336,8 +336,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		IF .NOT. EMPTY(t38->stepinterid)
 
 			GOTO TOP
-
-			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+				
+			IF THIS.lFindUsingIndex = .f.		
+					LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			ELSE
+				  This.IndexFindIID(UPPER(ALLTRIM(t38->stepinterid)))
+			ENDIF
+			
 
 			IF FOUND()
 
@@ -421,7 +426,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 				GOTO TOP
 
-				LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+				IF THIS.lFindUsingIndex = .f.		
+						LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+				ELSE
+						THIS.IndexFindStepID(ALLTRIM(cparent))
+				ENDIF
+				
 
 				IF FOUND()
 
@@ -481,7 +491,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 						GOTO TOP
 
-						LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+						IF THIS.lFindUsingIndex = .f.	
+								LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+						ELSE
+								THIS.IndexFindStepID(ALLTRIM(cparent))
+						ENDIF
+						
 
 						IF FOUND()
 
@@ -541,9 +556,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		GOTO TOP
 		
 		IF .NOT. EMPTY(t38->stepinterid)
-		
-			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
 
+			IF THIS.lFindUsingIndex = .f.	
+					LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			ELSE
+					this.IndexFindIID(UPPER(ALLTRIM(t38->stepinterid)))
+			ENDIF
+			
 			IF FOUND()
 
 				chis = f_myhis
@@ -659,9 +678,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		GOTO TOP
 		
 		IF .NOT. EMPTY(t38->stepinterid)
-		
-			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-
+			IF THIS.lFindUsingIndex = .f.	
+						LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			ELSE
+						This.IndexFindIID(UPPER(ALLTRIM(t38->stepinterid)))
+			ENDIF
+			
 			IF FOUND()
 
 				chis = f_myhis
@@ -795,8 +817,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 		IF .NOT. EMPTY(t38->stepinterid)
 		
-			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
-
+			IF THIS.lFindUsingIndex = .f.	
+					LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			ELSE
+					This.IndexFindIID(UPPER(ALLTRIM(t38->stepinterid)))
+			ENDIF
+			
 			IF FOUND()
 
 				chis = f_myhis
@@ -826,7 +852,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						DO WHILE lcont = .T.
 							GOTO TOP
 
-							LOCATE FOR UPPER(ALLTRIM(t38->stepid)) == UPPER(ALLTRIM(cparent))
+							IF THIS.lFindUsingIndex = .f.	
+									LOCATE FOR UPPER(ALLTRIM(t38->stepid)) == UPPER(ALLTRIM(cparent))
+							ELSE
+									This.IndexFindStepID(UPPER(ALLTRIM(cparent)))
+							ENDIF
+							
 
 							IF FOUND()
 
@@ -861,7 +892,11 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 								
 								IF .NOT. EMPTY(t38->stepinterid)
 								
-									LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+									IF THIS.lFindUsingIndex = .f.	
+											LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+									ELSE
+											This.IndexFindIID(UPPER(ALLTRIM(t38->stepinterid)))
+									ENDIF
 									
 									IF FOUND()
 								 
@@ -1000,7 +1035,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		SELECT t46
 		GOTO TOP
 		IF .NOT. EMPTY(t38->stepinterid)
-			LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			IF THIS.lFindUsingIndex = .f.	
+				LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+			ELSE
+				This.IndexFindIID(UPPER(ALLTRIM(t38->stepinterid)))
+			ENDIF
+			
+			
 			IF FOUND()
 				cParentComponentFile = this.GETCOMPONENTFILE()
 			ENDIF
@@ -1186,7 +1227,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		SELECT t38
 		GOTO TOP
 
-		LOCATE FOR UPPER(ALLTRIM(stepid)) == UPPER(ALLTRIM(onode.KEY))
+		IF THIS.lFindUsingIndex = .f.	
+			LOCATE FOR UPPER(ALLTRIM(stepid)) == UPPER(ALLTRIM(onode.KEY))
+		ELSE
+			This.IndexFindStepID(UPPER(ALLTRIM(onode.KEY)))
+		ENDIF
+		
 		IF FOUND()
 			cthestepscode = cthestepscode + CHR(13) + CHR(10) + t38->stepcode
 		ENDIF

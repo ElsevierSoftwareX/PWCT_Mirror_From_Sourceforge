@@ -1,7 +1,7 @@
 DEFINE CLASS VPLRulesBase AS Custom
 
 	lFindUsingIndex = .f.
-	lFileToStrBuffer = .t.
+	lFileToStrBuffer = .T.
 	
 	PROCEDURE checkAllowRoot()
 		
@@ -162,7 +162,7 @@ DEFINE CLASS VPLRulesBase AS Custom
 			cJustName = JUSTFNAME(cFileName)
 	 	 cJustName = LEFT(cJustName,LEN(cJustName)-6) && remove .Rules
 	 	 
-	 	 nMax = ASCAN( aFilesData, cJustName,-1,-1, 1, 8)
+	 	 nMax = ASCAN( aFilesData, cJustName,-1,-1, 1, 14) && Return Row Number & Exact ON
 	 	 
  		 IF .not. nMax = 0
 					return aFilesData(nMax,2)
@@ -181,12 +181,6 @@ DEFINE CLASS VPLRulesBase AS Custom
 		 
 			PROCEDURE GETCOMPONENTFILE()
 			
-			 
-				LOCAL ARRAY aRules[1]
-				
-				ALINES(aRules,f_myhis)
-				 
-				
-			RETURN UPPER(ALLTRIM(aRules(9)))
+			RETURN UPPER(ALLTRIM(MLINE(F_MYHIS,9)))
 		 
 ENDDEFINE

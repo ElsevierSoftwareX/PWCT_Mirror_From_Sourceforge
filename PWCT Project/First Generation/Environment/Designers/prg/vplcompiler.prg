@@ -39,7 +39,8 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		ENDIF
 		
 	  obj_stepscolors.lFindUsingIndex = .t.
-  
+  	obj_avoiderrors.lFindUsingIndex = .t.
+  	THIS.lFindUsingIndex = .t.
  	 obj_stepscolors.createMyIndex()
   
   	this.deleteOLDInteractions()
@@ -113,14 +114,13 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 					
 						DO CASE
 
-										CASE nsteptype = 1 && Created
-										* Nothing to do for this type of steps
-										 
+*!*											CASE nsteptype = 1 && Created
+*!*											* Nothing to do for this type of steps
+*!*											 
 
 										CASE nsteptype = 2 && Generated
 			
-											SELECT t38
-											nRecord2 = RECNO()
+										 
 											
 										 							
 										* Check child
@@ -130,13 +130,11 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 													this.MarkError()
 											ENDIF			
 					
-							   		SELECT t38
-										 GOTO nRecord2
+							   
 							  
 										CASE nsteptype = 3 && Generated (Root)
 											
-											SELECT t38
-											nRecord2 = RECNO()
+										 
 											
 										* Check child
 							  			IF this.checkchild() = .t.
@@ -145,14 +143,15 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 													this.MarkError()
 											ENDIF	
 										
-										 SELECT t38
-										 GOTO nRecord2
+									 
+										 
 										
 										* Check That the parent is correct for this step
 											 
 											 
 											 cStepName = ALLTRIM(t38->stepname)
 											 cParentID  =  ALLTRIM(t38->parentid)
+											 nRecord2 = RECNO()
 											 
 											 IF t38->stepInterNum = 1 && Step type Root not Allow Root (AllowRoot like define procedure for button event)
 											 
@@ -167,7 +166,12 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 														 				
 													 					SELECT t38
 													 					
-											 							LOCATE FOR ALLTRIM(t38->stepid) == cParentID
+													 					IF THIS.lFindUsingIndex = .F.
+											 								LOCATE FOR ALLTRIM(t38->stepid) == cParentID
+											 							ELSE
+											 								This.IndexFindStepID(cParentID)
+											 							ENDIF
+											 								
 											 							
 											 							IF FOUND()
 											 							
@@ -265,14 +269,14 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 											 
 												
 										
-										CASE nsteptype = 5 && Generated leaf
-										
-							 		 
-							 
+*!*											CASE nsteptype = 5 && Generated leaf
+*!*											
+*!*								 		 
+*!*								 
 
-										CASE nsteptype = 6 && Generated Allow Sub & leaf
-						 
-							 
+*!*											CASE nsteptype = 6 && Generated Allow Sub & leaf
+*!*							 
+*!*								 
 
 
 					 ENDCASE
@@ -291,7 +295,8 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		obj_stepscolors.DeleteMyIndex()
 			  
 	  obj_stepscolors.lFindUsingIndex = .f.
-		
+		obj_avoiderrors.lFindUsingIndex = .F.
+		THIS.lFindUsingIndex = .F.
 		this.ShowErrors()
 		
 		SELECT t38
