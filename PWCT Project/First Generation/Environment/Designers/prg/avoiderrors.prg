@@ -1139,7 +1139,6 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		RETURN myret
 
 		*------------------------------------*
-		*
 		* Duplication Errors
 		* Reasons
 		* (1) copy and paste step without changing the name of (control/procedure)
@@ -1247,7 +1246,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										cline = SUBSTR(cline,7)
 										cline = ALLTRIM(cline)
 										
-										  This.cDuplicationScope = cLine && store the duplication scope in the object state
+										  This.cDuplicationScope = UPPER(ALLTRIM(cLine)) && store the duplication scope in the object state
 										  
 											RETURN .F.
 									 
@@ -1313,6 +1312,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		PROCEDURE CheckDuplication(cValue)
 		
 				LOCAL cTableName,nRecord,nRecord2,cComponentFile
+				LOCAL cExpr,cParentID
+				LOCAL x
 				
 				LOCAL nCount
 				
@@ -1323,38 +1324,54 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 				SELECT t38
 				nRecord2 = RECNO()
+				cParentID = ALLTRIM(t38->ParentID)
+		
+				IF this.cDuplicationScope = "GENERAL"
+									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID))"
+				ELSE
+									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(t38->ParentID) == cParentID"
+				ENDIF
 				
-				SCAN FOR  t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID))
-							
-							SELECT t46
-							IF THIS.lFindUsingIndex = .f.
-									LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
-							ELSE
-									This.IndexFindIID(ALLTRIM(t38->StepInterID))
-							ENDIF
-							
-							IF FOUND()
-							
-										cComponentFile = this.GetComponentFile()
-										
-										IF this.cDuplicationComponent == cComponentFile
-										
-													IF UPPER(ALLTRIM(this.GetDuplicationValue())) == UPPER(ALLTRIM(cValue))
+				FOR x = nRecord2 TO 1 STEP -1
+				
+							GOTO x
 													
-														nCount = nCount + 1
-														
-													ENDIF
-													
+							if  &cExpr
 										
+										SELECT t46
+										IF THIS.lFindUsingIndex = .f.
+												LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+										ELSE
+												This.IndexFindIID(ALLTRIM(t38->StepInterID))
 										ENDIF
 										
+										IF FOUND()
+										
+													cComponentFile = this.GetComponentFile()
+													
+													IF this.cDuplicationComponent == cComponentFile
+													
+																IF UPPER(ALLTRIM(this.GetDuplicationValue())) == UPPER(ALLTRIM(cValue))
+																
+																	nCount = nCount + 1
+																	
+																	IF nCount > 1
+																			RETURN nCount
+																	ENDIF
+																	
+																	
+																ENDIF
+																
+													
+													ENDIF
+													
+										ENDIF
+										
+										SELECT t38
+										
 							ENDIF
 							
-							SELECT t38
-							
-				ENDSCAN
-				
-				GOTO Bottom
+			  NEXT 
 				
 				SELECT t38
 				GOTO nRecord2
