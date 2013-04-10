@@ -1168,7 +1168,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			nRecord = RECNO()
 			
 			SELECT t46
-			LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+			IF THIS.lFindUsingIndex = .f.		
+					LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+			ELSE
+					this.indexfindIID(ALLTRIM(t38->StepInterID))
+			ENDIF
+			
 			
 			IF FOUND()
 			
@@ -1271,7 +1276,11 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			nRecord = RECNO()
 			
 			SELECT t46
-			LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+			IF THIS.lFindUsingIndex = .f.	
+				LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+			ELSE
+				This.IndexFindIID(ALLTRIM(t38->StepInterID))
+			ENDIF
 			
 			IF FOUND()
 			
@@ -1318,7 +1327,11 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				SCAN FOR  t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID))
 							
 							SELECT t46
-							LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+							IF THIS.lFindUsingIndex = .f.
+									LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+							ELSE
+									This.IndexFindIID(ALLTRIM(t38->StepInterID))
+							ENDIF
 							
 							IF FOUND()
 							
