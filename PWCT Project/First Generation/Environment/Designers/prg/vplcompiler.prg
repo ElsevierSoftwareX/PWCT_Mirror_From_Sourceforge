@@ -143,9 +143,16 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 													this.MarkError()
 											ENDIF	
 										
-									 
+									 * Check Duplication
 										 
-										
+										  IF obj_avoiderrors.checkstepduplication() = .t.
+										  
+										 			THIS.AddError( " Error : Step ( " + ALLTRIM(t38->stepname) + " ) is duplicated " )
+											 
+													this.MarkError()
+													
+											ENDIF
+																					
 										* Check That the parent is correct for this step
 											 
 											 

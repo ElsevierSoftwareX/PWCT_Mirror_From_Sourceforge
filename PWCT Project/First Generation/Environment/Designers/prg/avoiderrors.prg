@@ -41,6 +41,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 	nParentScope = 0 && 0 = not determined   1 = General   2 = Custom
 	
+	cDuplicationComponent = "NoComponent" && component file (*.TRF)
+	cDuplicationVariable = "" 
+	cDuplicationScope = "NotDetermined"  && Not Determined  or General (All the content of the visual source file) or Parent (Parent step only)
+	
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
 	
 		LOCAL objgdwindow AS FORM
@@ -1134,6 +1138,219 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 		RETURN myret
 
+		*------------------------------------*
+		*
+		* Duplication Errors
+		* Reasons
+		* (1) copy and paste step without changing the name of (control/procedure)
+		* (2) copy and paste event without changing the event type
+		* (3) create new step with the same event or name(control/procedure)
+		* Operations
+		* (1) Interact (Ok/Again)
+		* (2) Modigy (OK)
+		* (3) Paste
+		* Goal
+		* (1) Detect
+		* (2) Prevent
+		* (3) Fix (Rename)
+		* Rules Syntax
+		* NoDuplication: VariableNameInsideTheInteractionPage
+		* Scope: <General/Parent>
+		* END
+		*------------------------------------*
+
+		PROCEDURE CheckStepDuplication()
+		
+			LOCAL cTableName,nRecord
+			LOCAL cComponentFile,cValue,nCount
+			
+			cTableName = ALIAS()
+			nRecord = RECNO()
+			
+			SELECT t46
+			LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+			
+			IF FOUND()
+			
+						cComponentFile =  this.GetComponentFile()
+						
+						IF this.IsComponentAllowDuplication(cComponentFile) = .F.
+						
+									cValue = this.GetDuplicationValue()
+									nCount = this.CheckDuplication(cValue)
+						
+									SELECT (cTableName)
+									GOTO nRecord
+									
+									IF nCount > 1
+											RETURN .T.
+									ELSE
+											RETURN .F.
+									ENDIF
+									
+						ENDIF
+						
+			
+			
+			ENDIF
+			
+			SELECT (cTableName)
+			GOTO nRecord
+							
+		
+		RETURN .F.
+		
+
+		PROCEDURE IsComponentAllowDuplication(cFile)
+		
+				LOCAL cRules,nMax,X,cLine,T,cRule
+				
+				IF FILE(cfile)
+
+					THIS.cDuplicationComponent = UPPER(ALLTRIM(cFile))
+					
+					cfile = STRTRAN(cfile,".TRF",".RULES")
+
+					IF FILE(cfile)
+
+						crules = this.myFILETOSTR(cfile)
+						crules = UPPER(crules)
+						
+						nmax = ALINES(aRules,cRules)
+						
+						FOR x = 1 TO nmax
+						
+							cLine = aRules(x)
+							cline = UPPER(ALLTRIM(cline))
+							crule = "NODUPLICATION:" 
+							
+							IF LEFT(cline,LEN(cRule)) == crule
+
+								this.cDuplicationVariable = SUBSTR(cLine,LEN(cRule)+1) && store the duplication variable in the object state
+
+								FOR T = x TO nmax
+
+					 
+									cline = aRules(T)
+									
+									cline = UPPER(ALLTRIM(cline))
+
+									crule = "SCOPE:"
+									
+									IF LEFT(cline,6) == crule
+									
+										cline = SUBSTR(cline,7)
+										cline = ALLTRIM(cline)
+										
+										  This.cDuplicationScope = cLine && store the duplication scope in the object state
+										  
+											RETURN .F.
+									 
+								 
+										
+									ENDIF
+									
+							 NEXT
+							 
+					 	ENDIF
+					 	
+				 	NEXT
+				 ENDIF
+			ENDIF
+		
+		RETURN .T.
+		
+		
+		PROCEDURE GetDuplicationValue() && procedure name or control name which we need to prevent it from duplication
+		
+			LOCAL cTableName,nRecord
+			LOCAL ARRAY aValues(1)
+			LOCAL x,nMax
+			
+			cTableName = ALIAS()
+			nRecord = RECNO()
+			
+			SELECT t46
+			LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+			
+			IF FOUND()
+			
+							nMax = ALINES(aValues,f_myhis)
+							
+							FOR x = 1 TO nMax
+							
+										IF AT(this.cDuplicationVariable,aValues(x)) > 0
+										
+												SELECT (cTableName)
+												GOTO nRecord
+												
+												RETURN SUBSTR(aValues(x),AT("=",aValues(x))+1)
+										
+										ENDIF
+										
+							
+							NEXT
+							
+			
+			ENDIF
+			
+		
+			SELECT (cTableName)
+			GOTO nRecord
+				
+		RETURN "NOTDETERMINED"
+		
+		
+		PROCEDURE CheckDuplication(cValue)
+		
+				LOCAL cTableName,nRecord,nRecord2,cComponentFile
+				
+				LOCAL nCount
+				
+				nCount = 0
+				
+				cTableName = ALIAS()
+				nRecord = RECNO()
+				
+				SELECT t38
+				nRecord2 = RECNO()
+				
+				SCAN FOR  t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID))
+							
+							SELECT t46
+							LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+							
+							IF FOUND()
+							
+										cComponentFile = this.GetComponentFile()
+										
+										IF this.cDuplicationComponent == cComponentFile
+										
+													IF UPPER(ALLTRIM(this.GetDuplicationValue())) == UPPER(ALLTRIM(cValue))
+													
+														nCount = nCount + 1
+														
+													ENDIF
+													
+										
+										ENDIF
+										
+							ENDIF
+							
+							SELECT t38
+							
+				ENDSCAN
+				
+				GOTO Bottom
+				
+				SELECT t38
+				GOTO nRecord2
+				
+				SELECT (cTableName)
+				GOTO nRecord
+				
+		RETURN nCount
+		
 
 
 		*-----------------------------*
