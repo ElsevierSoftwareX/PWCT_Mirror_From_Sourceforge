@@ -53,6 +53,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
   lNoFix = .f.
   lThereisDuplication = .f.
   
+  Dimension aDuplicationList(1,2)
+  
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
 	
 		LOCAL objgdwindow AS FORM
@@ -1336,10 +1338,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 				LOCAL cRules,nMax,X,cLine,T,cRule
 				LOCAL lRet
+				LOCAL cListFile,nListCount,nListStart,cListLine,nListCol,nArraySize
 				
 				this.lNoFix = .f.
 				
 				lRet = .T.
+				
+				
+				DIMENSION this.aDuplicationList(1,2)
 				
 				IF FILE(cfile)
 
@@ -1402,6 +1408,46 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									ENDIF
 									
 									
+									cRule = "LIST:"   && more than one component sharing the same scope for the name like labels & buttons names in the same window
+									
+									IF UPPER(LEFT(cLine,5)) == cRule
+										cline = SUBSTR(cline,6)
+										cline = ALLTRIM(cline)
+										cline = JUSTPATH(cFile) + "\" + cline
+										
+										IF FILE(cLine)
+										
+												clistfile = FILETOSTR(cLine)
+												nListCount = MEMLINES(cListFile)
+												
+												FOR nListStart = 1 TO nListCount
+												
+														cListLine = MLINE(cListFile,nListStart)
+														nListCol = AT(":",cListLine)
+														
+														IF  nListCol > 0
+														
+															nArraySize = ALEN(this.aDuplicationList,1)
+															nArraySize = nArraySize + 1
+															DIMENSION this.aDuplicationList(nArraySize,2)
+															this.aDuplicationList(nArraySize,1) = JUSTPATH(cFile) + "\" + LEFT(cListLine,nListCol - 1) + ".TRF"
+															this.aDuplicationList(nArraySize,2) = SUBSTR(cListLine,nListCol + 1)
+															STMSG("STORE : " +	this.aDuplicationList(nArraySize,1) )
+															
+														ENDIF					
+																	
+												NEXT
+												
+												
+												 
+												
+												
+										ENDIF
+										
+										
+									 
+									ENDIF
+									
 									crule = "END"
 									IF UPPER(LEFT(cline,3)) == crule
 										EXIT
@@ -1415,6 +1461,17 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				 	NEXT
 				 ENDIF
 			ENDIF
+		
+		
+			  nArraySize = ALEN(this.aDuplicationList,1)
+			  IF nArraySize = 1
+								this.aDuplicationList(1,1) = THIS.cDuplicationComponent
+								this.aDuplicationList(1,2) = this.cDuplicationVariable
+									STMSG("STORE : " +	this.aDuplicationList(nArraySize,1) )
+															
+				ENDIF
+				
+		
 		
 		RETURN lRet
 		
