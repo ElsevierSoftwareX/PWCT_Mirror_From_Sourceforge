@@ -1163,77 +1163,91 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 		PROCEDURE CheckNewDuplication(objForm)
 		
-			LOCAL nMax,x,oObj
+			LOCAL oObj
 		
-		  LOCAL lRet,cStepName
+		  LOCAL lRet,myrn,cValue
 		  
-		  LOCAL nCount,cValue,nRecord
-		  
-		  cStepName = t38->stepname
+		  LOCAL nCount,nRecord 
 		  
 		  lRet = .f. 
-						
-			nMax = objForm._scrollcontainer1.viewframe.clientarea.ControlCount 
 
 			this.lCheckNewDuplication = .t.
-
-			FOR x = 1 TO nMax
+	 
+			SELECT t38
+		  nRecord = RECNO()
 			
-					oObj = objForm._scrollcontainer1.viewframe.clientarea.Controls(x)
+	 
+
+					  IF this.IsComponentAllowDuplication(cActiveComponentFile) = .F.
 					
-					SELECT t38
-				  nRecord = RECNO()
-					
-					TRY
-					
-							IF oObj.lAutoName = .T.
-							
-  						  IF this.IsComponentAllowDuplication(cActiveComponentFile) = .F.
-							
-							
-											IF pv_his = .f.				&& Interact
-											
-															  this.cDuplicationParentID = ALLTRIM(t38->stepid)
-															  
-																nCount = this.CheckDuplication(ALLTRIM(oObj.value))
-														
-														  	
-														  	IF nCount > 0
-														  			lRet = .t.
-														  	ENDIF
-											
-											ELSE									 && Modify
-											
-												  		  SELECT t38
-												  		  nRecord = RECNO()
-												  		  GOTO nActiveStepRecord
-												  		  
-							  								this.cDuplicationParentID = ALLTRIM(t38->parentid)
-							  								
-														  	nCount = this.CheckDuplication(ALLTRIM(oObj.value))
-														
-														  	
-														  	IF nCount > 0
-														  			lRet = .t.
-														  	ENDIF
-												  		 
-												  		  SELECT t38
-												  		  GOTO nRecord
-											ENDIF
-											
-								ENDIF
-								
-							ENDIF
-							
-					CATCH
-					ENDTRY
-					
-					SELECT t38
-				  GOTO nRecord
-				  
-			NEXT
- 
-			this.lCheckNewDuplication = .f.
+									SELECT t42
+								 
+									
+									cValue = UPPER(ALLTRIM(this.cDuplicationVariable))
+									
+									LOCATE FOR RIGHT(UPPER(ALLTRIM(t42->o_var)),LEN(cValue)) == cValue
+							 
+									IF FOUND()
+																									 
+																 myrn = RECNO()
+										 						oObj = objForm._scrollcontainer1.viewframe.clientarea.CONTROLS(myrn)
+									 			 
+										 						 IF t42->rectype = 2 && textbox
+																		cValue = oObj.Value							
+																	ENDIF
+																	IF t42->rectype = 3 && listbox
+																		cValue = ALLTRIM(STR(oObj.ListIndex))
+																	ENDIF
+																	IF t42->rectype = 4 && checkbox
+																		cValue = ALLTRIM(STR(oObj.Value))
+																	ENDIF
+									 
+									 
+																 IF pv_his = .f.				&& Interact
+																	
+																					  this.cDuplicationParentID = ALLTRIM(t38->stepid)
+																					  
+																						nCount = this.CheckDuplication(ALLTRIM(cValue))
+																				
+																				  	
+																				  	IF nCount > 0
+																				  			lRet = .t.
+																				  	ENDIF
+																	
+																	ELSE									 && Modify
+																	
+																		  		  SELECT t38
+																		  		  nRecord = RECNO()
+																		  		  GOTO nActiveStepRecord
+																		  		  
+													  								this.cDuplicationParentID = ALLTRIM(t38->parentid)
+													  								
+																				  	nCount = this.CheckDuplication(ALLTRIM(cValue))
+																				
+																				  	
+																				  	IF nCount > 0
+																				  			lRet = .t.
+																				  	ENDIF
+																		  		 
+																		  		  SELECT t38
+																		  		  GOTO nRecord
+																	ENDIF
+											 
+								  ELSE
+								  			SELECT t42
+								  			GOTO top
+								  ENDIF
+										
+								 
+									
+									
+						ENDIF
+						
+
+			SELECT t38
+		  GOTO nRecord
+		  
+  		this.lCheckNewDuplication = .f.
 			
 		RETURN lRet
 		
