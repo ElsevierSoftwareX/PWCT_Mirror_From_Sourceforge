@@ -1,6 +1,11 @@
 	PARAMETERS objRunTrfForm
 	LOCAL myobj
 
+	IF obj_avoidErrors.CheckNewDuplication(objRunTrfForm) = .T.
+			stmsg("Sorry, name duplication is not allowed ")
+			RETURN
+	ENDIF
+
 	fs_sw = 1
 
 	* save the parent
