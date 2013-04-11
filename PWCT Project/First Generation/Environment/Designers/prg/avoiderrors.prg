@@ -1213,6 +1213,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																 IF pv_his = .f.				&& Interact
 																	
 																					  this.cDuplicationParentID = ALLTRIM(t38->stepid)
+																					 
 																					  
 																						nCount = this.CheckDuplication(ALLTRIM(cValue))
 																				
@@ -1667,7 +1668,6 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				IF this.cDuplicationScope = "GENERAL"
 									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID))"
 				ELSE
-									*cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(t38->ParentID) == cParentID"
 									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(this.GetParentIDForDuplicationCheck()) == cParentID"								 
 				ENDIF
 				
