@@ -1162,6 +1162,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		* (3) Fix (Rename)
 		* Rules Syntax
 		* NoDuplication: VariableNameInsideTheInteractionPage
+		* [NoFix]
 		* Scope: <General/Parent>
 		* END
 		*------------------------------------*
@@ -1666,7 +1667,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				IF this.cDuplicationScope = "GENERAL"
 									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID))"
 				ELSE
-									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(t38->ParentID) == cParentID"
+									*cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(t38->ParentID) == cParentID"
+									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(this.GetParentIDForDuplicationCheck()) == cParentID"								 
 				ENDIF
 				
 				FOR x = nRecord2 TO 1 STEP -1
@@ -1737,7 +1739,87 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 		RETURN nCount
 		
+		PROCEDURE GetParentIDForDuplicationCheck()
+			
+	
+				LOCAL nParentRec && STEPID OF THE REAL PARENT
+				LOCAL cTableName,nRecord,nRecord2
+				LOCAL lCont,cParent
+				
+				cTableName = ALIAS()
+				nRecord = RECNO()
+				
+				nParentRec = 0
+				
+				SELECT t38
 
+				nRecord2 = RECNO()
+
+				* GO TO THE PARENT
+				
+				cParent = t38->parentid
+				
+				IF THIS.lFindUsingIndex = .f.	
+						LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+				ELSE
+						THIS.IndexFindStepID(ALLTRIM(cparent))
+				ENDIF
+		
+
+				IF  EMPTY(t38->stepinterid)
+
+					nParentRec = 0
+					
+					lcont = .T.
+					cparent = t38->parentid
+
+					DO WHILE lcont = .T.
+
+						GOTO TOP
+
+						IF THIS.lFindUsingIndex = .f.	
+								LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+						ELSE
+								THIS.IndexFindStepID(ALLTRIM(cparent))
+						ENDIF
+						
+
+						IF FOUND()
+
+							IF .NOT. EMPTY(t38->stepinterid)
+
+								nParentRec = RECNO()
+								lcont = .F.
+								
+							ELSE
+							
+								lcont = .T.
+								cparent = t38->parentid
+								
+							ENDIF
+							
+						ENDIF
+
+						IF UPPER(ALLTRIM(cparent)) == "SP_"
+							lcont = .F.
+						ENDIF
+
+
+					ENDDO
+					
+			  ELSE
+			  			nParentRec = RECNO()
+				ENDIF
+
+				SELECT t38
+				GOTO nRecord2
+
+
+				SELECT (cTableName)
+				GOTO nRecord
+		
+		RETURN cParent
+		
 
 		*-----------------------------*
 		* Navigation (Next/Previous)
