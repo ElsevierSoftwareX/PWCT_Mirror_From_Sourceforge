@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 00:00:53    Date : 04/11/2013
+* Time : 20:02:15    Date : 04/11/2013
 *---------------------------------------------------------------------------*
 * Programming without coding technology 1.9 (Art) [2006-2013]  
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
@@ -72,14 +72,6 @@ HEIGHT 39 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
-DEFINE STATUSBAR 
-
-END STATUSBAR
-
-DEFINE STATUSBAR 
-
-END STATUSBAR
-
 END WINDOW
 
 ACTIVATE WINDOW win1
@@ -103,14 +95,10 @@ SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",13,13)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",14,16)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Welcome to PWCT'",17,18)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Statusbar",24,25)
-SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",26,27)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Statusbar",28,29)
-SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",30,31)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",32,33)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",34,36)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",37,37)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",38,38)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",39,39)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
 Return
 *-------------------------------------------------------------------*
