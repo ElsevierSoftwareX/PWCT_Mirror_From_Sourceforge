@@ -1260,9 +1260,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 			LOCAL cTableName,nRecord
 			LOCAL cComponentFile,cValue,nCount
+			LOCAL nRequiredCount
 			
 			cTableName = ALIAS()
 			nRecord = RECNO()
+
+			nRequiredCount = 1
 			
 			SELECT t46
 			
@@ -1279,13 +1282,24 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						
 						IF this.IsComponentAllowDuplication(cComponentFile) = .F.
 						
+									IF  this.lFixDuplication = .t.
+											this.cDuplicationParentID = ALLTRIM(t38->parentid)
+											nRequiredCount = 0
+											this.lCheckNewDuplication = .t.
+									ENDIF
+									
+						
 									cValue = this.GetDuplicationValue()
 									nCount = this.CheckDuplication(cValue)
 						
+									IF  this.lFixDuplication = .t.
+											this.lCheckNewDuplication = .f.
+									ENDIF
+									
 									SELECT (cTableName)
 									GOTO nRecord
 									
-									IF nCount > 1
+									IF nCount > nRequiredCount
 									
 											IF  this.lFixDuplication = .t.
 												this.FixDuplicationValue()
@@ -1371,6 +1385,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									
 									ENDIF
 									
+									crule = "END"
+									IF UPPER(LEFT(cline,3)) == crule
+										EXIT
+									ENDIF
 									
 									
 							 NEXT
