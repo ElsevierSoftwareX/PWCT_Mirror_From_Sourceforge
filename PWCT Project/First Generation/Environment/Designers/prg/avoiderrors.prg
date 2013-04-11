@@ -50,6 +50,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
   
   lFixDuplication = .f.
   cDuplicationName = "Name"
+  lNoFix = .f.
+  lThereisDuplication = .f.
   
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
 	
@@ -1265,6 +1267,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			cTableName = ALIAS()
 			nRecord = RECNO()
 
+			THIS.lNoFix = .F.
+			this.lThereisDuplication = .f.
+			
 			nRequiredCount = 1
 			
 			SELECT t46
@@ -1300,8 +1305,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									GOTO nRecord
 									
 									IF nCount > nRequiredCount
-									
-											IF  this.lFixDuplication = .t.
+											this.lThereisDuplication = .T.
+											IF  this.lFixDuplication = .t. .AND.  THIS.lNoFix = .F.
 												this.FixDuplicationValue()
 											ENDIF
 											
@@ -1328,6 +1333,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 				LOCAL cRules,nMax,X,cLine,T,cRule
 				LOCAL lRet
+				
+				this.lNoFix = .f.
 				
 				lRet = .T.
 				
@@ -1384,6 +1391,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										This.cDuplicationName = ALLTRIM(cLine) && store the default name 
 									
 									ENDIF
+									
+									cRule = "NOFIX"
+									
+									IF UPPER(LEFT(cLine,5)) == cRule
+									 THIS.lNoFix = .T.
+									ENDIF
+									
 									
 									crule = "END"
 									IF UPPER(LEFT(cline,3)) == crule
