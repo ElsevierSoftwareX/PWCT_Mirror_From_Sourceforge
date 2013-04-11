@@ -1212,8 +1212,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									 
 																 IF pv_his = .f.				&& Interact
 																	
-																					  this.cDuplicationParentID = ALLTRIM(t38->stepid)
-																					 
+																					  *this.cDuplicationParentID = ALLTRIM(t38->stepid)
+																					 this.cDuplicationParentID = this.GetParentIDForDuplicationCheck(.F.)
 																					  
 																						nCount = this.CheckDuplication(ALLTRIM(cValue))
 																				
@@ -1228,8 +1228,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																		  		  nRecord = RECNO()
 																		  		  GOTO nActiveStepRecord
 																		  		  
-													  								this.cDuplicationParentID = ALLTRIM(t38->parentid)
-													  								
+													  								*this.cDuplicationParentID = ALLTRIM(t38->parentid)
+													  								this.cDuplicationParentID = this.GetParentIDForDuplicationCheck(.T.)
 																				  	nCount = this.CheckDuplication(ALLTRIM(cValue))
 																				
 																				  	
@@ -1290,7 +1290,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						IF this.IsComponentAllowDuplication(cComponentFile) = .F.
 						
 									IF  this.lFixDuplication = .t.
-											this.cDuplicationParentID = ALLTRIM(t38->parentid)
+											*this.cDuplicationParentID = ALLTRIM(t38->parentid)
+											this.cDuplicationParentID = this.GetParentIDForDuplicationCheck(.T.)
 											nRequiredCount = 0
 											this.lCheckNewDuplication = .t.
 									ENDIF
@@ -1668,7 +1669,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				IF this.cDuplicationScope = "GENERAL"
 									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID))"
 				ELSE
-									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(this.GetParentIDForDuplicationCheck()) == cParentID"								 
+									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(this.GetParentIDForDuplicationCheck(.T.)) == cParentID"								 
 				ENDIF
 				
 				FOR x = nRecord2 TO 1 STEP -1
@@ -1739,12 +1740,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 		RETURN nCount
 		
-		PROCEDURE GetParentIDForDuplicationCheck()
+		PROCEDURE GetParentIDForDuplicationCheck(lGotoParent)
 			
 	
 				LOCAL nParentRec && STEPID OF THE REAL PARENT
 				LOCAL cTableName,nRecord,nRecord2
 				LOCAL lCont,cParent
+				
+			  
 				
 				cTableName = ALIAS()
 				nRecord = RECNO()
@@ -1756,15 +1759,22 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				nRecord2 = RECNO()
 
 				* GO TO THE PARENT
+				IF lGotoParent = .t.
 				
-				cParent = t38->parentid
-				
-				IF THIS.lFindUsingIndex = .f.	
-						LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+							cParent = t38->parentid
+							
+							IF THIS.lFindUsingIndex = .f.	
+									LOCATE FOR ALLTRIM(t38->stepid) == ALLTRIM(cparent)
+							ELSE
+									THIS.IndexFindStepID(ALLTRIM(cparent))
+							ENDIF
+							
 				ELSE
-						THIS.IndexFindStepID(ALLTRIM(cparent))
+				
+							cParent = t38->StepID
+							
 				ENDIF
-		
+				
 
 				IF  EMPTY(t38->stepinterid)
 
@@ -1818,7 +1828,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				SELECT (cTableName)
 				GOTO nRecord
 		
-		RETURN cParent
+		RETURN ALLTRIM(cParent)
 		
 
 		*-----------------------------*
