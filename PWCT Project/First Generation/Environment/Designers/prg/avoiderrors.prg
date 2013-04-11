@@ -46,8 +46,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 	cDuplicationScope = "NotDetermined"  && Not Determined  or General (All the content of the visual source file) or Parent (Parent step only)
 	
 	lCheckNewDuplication = .f.
-	cDuplicationParentID = "NotDetermined"
-	
+
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
 	
 		LOCAL objgdwindow AS FORM
@@ -1185,33 +1184,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 					
 							IF oObj.lAutoName = .T.
 							
+  						  IF this.IsComponentAllowDuplication(cActiveComponentFile) = .F.
 							
-							 
-							  IF this.IsComponentAllowDuplication(cActiveComponentFile) = .F.
-							  
-							
-							  
-							  	IF pv_his = .F.
-							  	
-																	  	
-										  	this.cDuplicationParentID = ALLTRIM(T38->STEPID) 
-										  	
-										  	nCount = this.CheckDuplication(ALLTRIM(oObj.value))
-										
-										  	
-										  	IF nCount > 0
-										  			lRet = .t.
-										  	ENDIF
-										  	
-										  	
-							  	ELSE
-							  		  
 							  		  SELECT t38
 							  		  nRecord = RECNO()
 							  		  GOTO nActiveStepRecord
 							  		  
-						  		 	 this.cDuplicationParentID = ALLTRIM(T38->ParentID) 
-									  	
+		  	
 									  	nCount = this.CheckDuplication(ALLTRIM(oObj.value))
 									
 									  	
@@ -1219,12 +1198,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									  			lRet = .t.
 									  	ENDIF
 							  		 
+							  		  SELECT t38
 							  		  GOTO nRecord
-							  		  
-							  		  
-							  	ENDIF
-							  	
-							  
+
 								ENDIF
 								
 							ENDIF
@@ -1405,15 +1381,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 				SELECT t38
 				nRecord2 = RECNO()
-				nRecord3 = RECNO()
+				nRecord3 = nRecord2
 				
 				nAvoid = 0
 				
-				IF this.lCheckNewDuplication = .f.
-							cParentID = ALLTRIM(t38->ParentID)
-				ELSE
-							cParentID = this.cDuplicationParentID
-							nRecord2 = RECCOUNT()
+				cParentID = ALLTRIM(t38->ParentID)
+				
+				IF this.lCheckNewDuplication = .t.
+  						nRecord2 = RECCOUNT()
 							nAvoid = nRecord3
 				ENDIF
 				
