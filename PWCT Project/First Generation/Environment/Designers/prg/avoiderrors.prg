@@ -46,7 +46,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 	cDuplicationScope = "NotDetermined"  && Not Determined  or General (All the content of the visual source file) or Parent (Parent step only)
 	
 	lCheckNewDuplication = .f.
-
+  cDuplicationParentID = "NotDetermined"
+  
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
 	
 		LOCAL objgdwindow AS FORM
@@ -1180,27 +1181,46 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			
 					oObj = objForm._scrollcontainer1.viewframe.clientarea.Controls(x)
 					
+					SELECT t38
+				  nRecord = RECNO()
+					
 					TRY
 					
 							IF oObj.lAutoName = .T.
 							
   						  IF this.IsComponentAllowDuplication(cActiveComponentFile) = .F.
 							
-							  		  SELECT t38
-							  		  nRecord = RECNO()
-							  		  GOTO nActiveStepRecord
-							  		  
-		  	
-									  	nCount = this.CheckDuplication(ALLTRIM(oObj.value))
-									
-									  	
-									  	IF nCount > 0
-									  			lRet = .t.
-									  	ENDIF
-							  		 
-							  		  SELECT t38
-							  		  GOTO nRecord
-
+							
+											IF pv_his = .f.				&& Interact
+											
+															  this.cDuplicationParentID = ALLTRIM(t38->stepid)
+															  
+																nCount = this.CheckDuplication(ALLTRIM(oObj.value))
+														
+														  	
+														  	IF nCount > 0
+														  			lRet = .t.
+														  	ENDIF
+											
+											ELSE									 && Modify
+											
+												  		  SELECT t38
+												  		  nRecord = RECNO()
+												  		  GOTO nActiveStepRecord
+												  		  
+							  								this.cDuplicationParentID = ALLTRIM(t38->parentid)
+							  								
+														  	nCount = this.CheckDuplication(ALLTRIM(oObj.value))
+														
+														  	
+														  	IF nCount > 0
+														  			lRet = .t.
+														  	ENDIF
+												  		 
+												  		  SELECT t38
+												  		  GOTO nRecord
+											ENDIF
+											
 								ENDIF
 								
 							ENDIF
@@ -1208,6 +1228,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 					CATCH
 					ENDTRY
 					
+					SELECT t38
+				  GOTO nRecord
+				  
 			NEXT
  
 			this.lCheckNewDuplication = .f.
@@ -1368,7 +1391,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 		PROCEDURE CheckDuplication(cValue)
 		
-				LOCAL cTableName,nRecord,nRecord2,cComponentFile,nRecord3
+				LOCAL cTableName,nRecord,nRecord2,cComponentFile,nRecord3,nRecord4
 				LOCAL cExpr,cParentID
 				LOCAL x,nAvoid
 				
@@ -1385,11 +1408,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 				nAvoid = 0
 				
-				cParentID = ALLTRIM(t38->ParentID)
-				
+			
 				IF this.lCheckNewDuplication = .t.
+							cParentID = this.cDuplicationParentID
   						nRecord2 = RECCOUNT()
 							nAvoid = nRecord3
+				ELSE
+							cParentID = ALLTRIM(t38->ParentID)
 				ENDIF
 				
 		
@@ -1412,6 +1437,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							if  &cExpr
 										
 										SELECT t46
+										nRecord4 = RECNO()
+										
 										IF THIS.lFindUsingIndex = .f.
 												LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
 										ELSE
@@ -1447,6 +1474,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 													ENDIF
 													
 										ENDIF
+										
+										SELECT t46
+										GOTO nRecord4 
 										
 										SELECT t38
 										
