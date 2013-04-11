@@ -1167,7 +1167,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 		  LOCAL lRet,cStepName
 		  
-		  LOCAL nCount,cValue
+		  LOCAL nCount,cValue,nRecord
 		  
 		  cStepName = t38->stepname
 		  
@@ -1206,6 +1206,20 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										  	
 							  	ELSE
 							  		  
+							  		  SELECT t38
+							  		  nRecord = RECNO()
+							  		  GOTO nActiveStepRecord
+							  		  
+						  		 	 this.cDuplicationParentID = ALLTRIM(T38->ParentID) 
+									  	
+									  	nCount = this.CheckDuplication(ALLTRIM(oObj.value))
+									
+									  	
+									  	IF nCount > 0
+									  			lRet = .t.
+									  	ENDIF
+							  		 
+							  		  GOTO nRecord
 							  		  
 							  		  
 							  	ENDIF
@@ -1380,7 +1394,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 				LOCAL cTableName,nRecord,nRecord2,cComponentFile,nRecord3
 				LOCAL cExpr,cParentID
-				LOCAL x
+				LOCAL x,nAvoid
 				
 				LOCAL nCount
 				
@@ -1393,11 +1407,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				nRecord2 = RECNO()
 				nRecord3 = RECNO()
 				
+				nAvoid = 0
+				
 				IF this.lCheckNewDuplication = .f.
 							cParentID = ALLTRIM(t38->ParentID)
 				ELSE
 							cParentID = this.cDuplicationParentID
 							nRecord2 = RECCOUNT()
+							nAvoid = nRecord3
 				ENDIF
 				
 		
@@ -1409,6 +1426,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 				FOR x = nRecord2 TO 1 STEP -1
 				
+							IF x = nAvoid && don't count the current record (Interaction using transporter - Interact/Modify Process)
+							* in modify case we will avoid the active step 
+							* in interact case we will avoid the parent step - not necessary/required but not a problem at all when we do this
+										LOOP
+							ENDIF
+							
 							GOTO x
 													
 							if  &cExpr
