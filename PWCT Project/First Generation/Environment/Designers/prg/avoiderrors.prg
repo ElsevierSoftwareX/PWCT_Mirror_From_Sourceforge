@@ -49,6 +49,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
   cDuplicationParentID = "NotDetermined"
   
   lFixDuplication = .f.
+  cDuplicationName = "Name"
   
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
 	
@@ -1312,17 +1313,21 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		PROCEDURE IsComponentAllowDuplication(cFile)
 		
 				LOCAL cRules,nMax,X,cLine,T,cRule
+				LOCAL lRet
+				
+				lRet = .T.
 				
 				IF FILE(cfile)
 
 					THIS.cDuplicationComponent = UPPER(ALLTRIM(cFile))
+					This.cDuplicationName = "Name"
 					
 					cfile = STRTRAN(cfile,".TRF",".RULES")
 
 					IF FILE(cfile)
 
 						crules = this.myFILETOSTR(cfile)
-						crules = UPPER(crules)
+					 
 						
 						nmax = ALINES(aRules,cRules)
 						
@@ -1334,6 +1339,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							
 							IF LEFT(cline,LEN(cRule)) == crule
 
+								lRet = .F.
 								this.cDuplicationVariable = SUBSTR(cLine,LEN(cRule)+1) && store the duplication variable in the object state
 
 								FOR T = x TO nmax
@@ -1341,22 +1347,31 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 					 
 									cline = aRules(T)
 									
-									cline = UPPER(ALLTRIM(cline))
+									cline = ALLTRIM(cline)
 
 									crule = "SCOPE:"
 									
-									IF LEFT(cline,6) == crule
+									IF UPPER(LEFT(cline,6)) == crule
 									
 										cline = SUBSTR(cline,7)
 										cline = ALLTRIM(cline)
 										
 										  This.cDuplicationScope = UPPER(ALLTRIM(cLine)) && store the duplication scope in the object state
-										  
-											RETURN .F.
-									 
-								 
-										
+									
 									ENDIF
+									
+									crule = "NAME:"
+									
+									IF UPPER(LEFT(cline,5)) == crule
+									
+										cline = SUBSTR(cline,6)
+										cline = ALLTRIM(cline)
+										
+										This.cDuplicationName = ALLTRIM(cLine) && store the default name 
+									
+									ENDIF
+									
+									
 									
 							 NEXT
 							 
@@ -1366,7 +1381,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				 ENDIF
 			ENDIF
 		
-		RETURN .T.
+		RETURN lRet
 		
 		
 		PROCEDURE FixDuplicationValue()  
@@ -1397,7 +1412,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										 
 										 	 cComponentFile = this.GetComponentFile()
 												aValues(x) = LEFT(aValues(x),AT("=",aValues(x)) )
-												aValues(x) = aValues(x) + "NewName" + ALLTRIM(STR(THIS.GetAutoNumber(cComponentFile)))
+												aValues(x) = aValues(x) + this.cDuplicationName + ALLTRIM(STR(THIS.GetAutoNumber(cComponentFile)))
 												cNewHis = ""
 												
 												FOR t = 1 TO nMax
