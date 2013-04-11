@@ -48,6 +48,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 	lCheckNewDuplication = .f.
   cDuplicationParentID = "NotDetermined"
   
+  lFixDuplication = .f.
+  
 	PROCEDURE avoidgeneratedsteperrors(objgdwindow)
 	
 		LOCAL objgdwindow AS FORM
@@ -1163,6 +1165,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 		PROCEDURE CheckNewDuplication(objForm)
 		
+		* Called from Interaction using transporter window
+		* To prevent duplication when we using Interct/Modify buttons in the Goal Designer
+		
 			LOCAL oObj
 		
 		  LOCAL lRet,myrn,cValue
@@ -1176,8 +1181,6 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			SELECT t38
 		  nRecord = RECNO()
 			
-	 
-
 					  IF this.IsComponentAllowDuplication(cActiveComponentFile) = .F.
 					
 									SELECT t42
@@ -1261,6 +1264,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			nRecord = RECNO()
 			
 			SELECT t46
+			
 			IF THIS.lFindUsingIndex = .f.		
 					LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
 			ELSE
@@ -1281,6 +1285,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									GOTO nRecord
 									
 									IF nCount > 1
+									
+											IF  this.lFixDuplication = .t.
+												this.FixDuplicationValue()
+											ENDIF
+											
+									
 											RETURN .T.
 									ELSE
 											RETURN .F.
@@ -1357,6 +1367,68 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			ENDIF
 		
 		RETURN .T.
+		
+		
+		PROCEDURE FixDuplicationValue()  
+		
+			LOCAL cTableName,nRecord
+			LOCAL ARRAY aValues(1)
+			LOCAL x,nMax
+			LOCAL T,cNewHis
+			
+			cTableName = ALIAS()
+			nRecord = RECNO()
+			
+			SELECT t46
+			IF THIS.lFindUsingIndex = .f.	
+				LOCATE FOR ALLTRIM(f_IID) == ALLTRIM(t38->StepInterID)
+			ELSE
+				This.IndexFindIID(ALLTRIM(t38->StepInterID))
+			ENDIF
+			
+			IF FOUND()
+			
+							nMax = ALINES(aValues,f_myhis)
+							
+							FOR x = 1 TO nMax
+							
+										IF AT(this.cDuplicationVariable,aValues(x)) > 0
+										
+										 
+												aValues(x) = LEFT(aValues(x),AT("=",aValues(x)) )
+												aValues(x) = aValues(x) + "NewNameIsHere"
+												cNewHis = ""
+												
+												FOR t = 1 TO nMax
+												cNewHis = cNewHis + aValues(t) + CHR(13) + CHR(10)
+												NEXT
+												
+												
+												replace f_myhis WITH cNewHis
+												
+											 
+										    updatecode(t46->F_IID)
+										    
+												SELECT (cTableName)
+												GOTO nRecord
+												
+												RETURN  
+										
+										
+										
+										ENDIF
+										
+							
+							NEXT
+							
+			
+			ENDIF
+			
+		
+			SELECT (cTableName)
+			GOTO nRecord
+				
+		RETURN  
 		
 		
 		PROCEDURE GetDuplicationValue() && procedure name or control name which we need to prevent it from duplication
