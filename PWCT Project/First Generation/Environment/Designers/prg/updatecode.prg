@@ -769,7 +769,7 @@ IF FOUND()
 					pkey = o.SELECTEDITEM.KEY
 					IF myogroup.VALUE = 1 && add
 						mykey = mygdform.newkey()
-						o.nodes.ADD(ALLTRIM(pkey), 4, ALLTRIM(mykey), mytxt,0)
+						o.nodes.ADD(ALLTRIM(pkey), 4, ALLTRIM(mykey), SPACE(2) + mytxt + SPACE(2),0)
 						o.nodes.ITEM(ALLTRIM(mykey)).SELECTED = .T.
 						o.nodes.ITEM(ALLTRIM(mykey)).expanded = .F.
 						lastscode = ALLTRIM(mykey)
@@ -823,7 +823,7 @@ IF FOUND()
 									TRY && AVOID ERROR WHEN CANN'T SELECT A REMOVED STEP (STEP REMOVED BY COLORS SYSTEM (READ MODE) )
 										mygstree.nodes.ITEM(ALLTRIM(stepid)).SELECTED = .T.
 										mygstree.nodes.ITEM(ALLTRIM(stepid)).expanded = .F.
-										mygstree.SELECTEDITEM.TEXT = ALLTRIM(mytxt)
+										mygstree.SELECTEDITEM.TEXT = SPACE(2) + ALLTRIM(mytxt) + SPACE(2)
 									CATCH
 									ENDTRY
 
@@ -836,7 +836,7 @@ IF FOUND()
 						ENDIF
 						IF v_found = .F. && add operation
 							mykey = mygdform.newkey()
-							o.nodes.ADD(ALLTRIM(pkey), 4, ALLTRIM(mykey), mytxt,0)
+							o.nodes.ADD(ALLTRIM(pkey), 4, ALLTRIM(mykey), SPACE(2) + mytxt + SPACE(2),0)
 							o.nodes.ITEM(ALLTRIM(mykey)).SELECTED = .T.
 							o.nodes.ITEM(ALLTRIM(mykey)).expanded = .F.
 							lastscode = ALLTRIM(mykey)
