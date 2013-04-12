@@ -412,7 +412,7 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 
 			*********************** To support the Time Machine - i.e. to be able to run program from any time frame
 
-			temp_tm_iid = 0
+			temp_tm_iid = -1
 
 			DIMENSION sys_goalstimeframe(ALEN(sys_goalstimeframe,1),2)
 
@@ -430,7 +430,7 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 
 
 			SELECT t38
-			IF .NOT. temp_tm_iid  = 0
+			IF .NOT. temp_tm_iid  = -1
 				SET FILTER TO ALLTRIM(goalid) == ALLTRIM(t33->goalhandle) .AND. VAL(stepinterid) <= temp_tm_iid
 				GOTO TOP
 				COUNT FOR ( ALLTRIM(goalid) == ALLTRIM(t33->goalhandle) .AND. VAL(stepinterid) <= temp_tm_iid ) TO mysize
@@ -464,7 +464,7 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 				mystate = mytree(T,2) && STEPID
 				t2 = T+1  && PLACE TO INSERT BEFORE
 
-				IF .NOT. temp_tm_iid  = 0
+				IF .NOT. temp_tm_iid  = -1
 					SET FILTER TO ALLTRIM(t38->goalid) == ALLTRIM(t33->goalhandle) .AND. VAL(t38->stepinterid) <= temp_tm_iid .AND. ALLTRIM(t38->parentid) == ALLTRIM(mystate)
 					GOTO TOP
 					COUNT FOR ( ALLTRIM(t38->goalid) == ALLTRIM(t33->goalhandle) .AND. VAL(t38->stepinterid) <= temp_tm_iid .AND. ALLTRIM(t38->parentid) == ALLTRIM(mystate) ) TO mysize2
@@ -509,6 +509,8 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 		GOTO bottom
 		
 	ENDIF
+	
+	
 	myfh2 = ""
 	mytabs = 0
 	v_mymax = MEMLINES(myfh)
@@ -524,6 +526,7 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 			ENDIF
 		ENDIF
 	NEXT
+	
 	RETURN myfh2
 
 
@@ -543,7 +546,7 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 	*********************** To support the Time Machine - i.e. to be able to run program from any time frame
 
 
-	temp_tm_iid = 0
+	temp_tm_iid = -1 && Time Machine is not used
 
 	DIMENSION sys_goalstimeframe(ALEN(sys_goalstimeframe,1),2)
 
@@ -554,14 +557,15 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 		ENDIF
 	NEXT
 
+ 
 
-
+ 
 	***********************
 
 
 	SELECT t38
 
-	IF .NOT. temp_tm_iid  = 0
+	IF .NOT. temp_tm_iid  = -1
 		COUNT FOR ( ALLTRIM(goalid) == ALLTRIM(t33->goalhandle) .AND. VAL(stepinterid) <= temp_tm_iid ) TO mysize
 	ELSE
 		COUNT FOR ALLTRIM(goalid) == ALLTRIM(t33->goalhandle) TO mysize
@@ -577,7 +581,7 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 	FOR T = 1 TO mysize
 		mystate = mytree(T,2) && STEPID
 		t2 = T+1  && PLACE TO INSERT BEFORE
-		IF .NOT. temp_tm_iid  = 0
+		IF .NOT. temp_tm_iid  = -1
 			SET FILTER TO ALLTRIM(goalid) == ALLTRIM(t33->goalhandle) .AND. VAL(stepinterid) <= temp_tm_iid .AND. ALLTRIM(parentid) == ALLTRIM(mystate)
 			GOTO TOP
 			COUNT FOR ( ALLTRIM(goalid) == ALLTRIM(t33->goalhandle) .AND. VAL(stepinterid) <= temp_tm_iid .AND. ALLTRIM(parentid) == ALLTRIM(mystate) ) TO mysize2
@@ -608,12 +612,13 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 			GOTO bottom
 			
 		ELSE && fix problem with the Time Machine when we run the program from a location
-			IF t2 = ALEN(mytree,1) .AND. .NOT. temp_tm_iid  = 0
-				mytree(t2,1) = ""
-				mytree(t2,2) = ""
-				mytree(t2,3) = ""
-				mytree(t2,4) = ""
-			ENDIF
+*!*				IF t2 = ALEN(mytree,1) .AND. .NOT. temp_tm_iid  = 0
+*!*					mytree(t2,1) = ""
+*!*					mytree(t2,2) = ""
+*!*					mytree(t2,3) = ""
+*!*					mytree(t2,4) = ""
+*!*				ENDIF
+ 
 		ENDIF
 
 	NEXT
