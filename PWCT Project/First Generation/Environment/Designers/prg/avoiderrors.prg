@@ -2086,7 +2086,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		IF .NOT. ISNULL( ogdwindow.container1.oletree.nodes.ITEM(ogdwindow.container1.oletree.SELECTEDITEM.KEY).previous )
 
 			ogdwindow.LOCKSCREEN = .T.
-
+			ogdwindow.container1.oletree.VISIBLE = .F.
+			
 			DIMENSION plist(1)
 			plist(1) = ogdwindow.container1.oletree.nodes.ITEM(ogdwindow.container1.oletree.SELECTEDITEM.KEY).previous.KEY
 
@@ -2109,6 +2110,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				NEXT
 			ENDIF
 
+			ogdwindow.container1.oletree.VISIBLE = .T.
 			ogdwindow.LOCKSCREEN = .F.
 
 		ENDIF

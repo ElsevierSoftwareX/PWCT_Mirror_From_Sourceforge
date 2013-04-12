@@ -521,6 +521,7 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 			LOCAL istate_node,istate_recno,istate_max,istate_x
 		
 			LOCAL cTableName,nRecord
+			LOCAL lLockStatus
 			
 			cTableName = ALIAS()
 			nRecord = RECNO()
@@ -536,6 +537,7 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 				istate_recno = RECNO()
 				istate_max = RECCOUNT()
 
+				lLockStatus = objGDWindow.LOCKSCREEN
 				objGDWindow.LOCKSCREEN = .T.
 
 
@@ -551,7 +553,7 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 
 				NEXT
 
-				objGDWindow.LOCKSCREEN = .F.
+				objGDWindow.LOCKSCREEN = lLockStatus
 
 				TRY
 					GOTO istate_recno
