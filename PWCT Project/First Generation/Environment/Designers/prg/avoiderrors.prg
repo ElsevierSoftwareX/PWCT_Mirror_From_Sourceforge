@@ -1198,8 +1198,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							 
 									IF FOUND()
 																									 
-																 myrn = RECNO()
-										 						oObj = objForm._scrollcontainer1.viewframe.clientarea.CONTROLS(myrn)
+																  myrn = RECNO()
+										 						 oObj = objForm._scrollcontainer1.viewframe.clientarea.CONTROLS(myrn)
 									 			 
 										 						 IF t42->rectype = 2 && textbox
 																		cValue = oObj.Value							
@@ -1214,8 +1214,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									 
 																 IF pv_his = .f.				&& Interact
 																	
-																					  *this.cDuplicationParentID = ALLTRIM(t38->stepid)
-																					 this.cDuplicationParentID = this.GetParentIDForDuplicationCheck(.F.)
+														
+																					  this.cDuplicationParentID = this.GetParentIDForDuplicationCheck(.F.)
 																					  
 																						nCount = this.CheckDuplication(ALLTRIM(cValue))
 																				
@@ -1230,7 +1230,6 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																		  		  nRecord = RECNO()
 																		  		  GOTO nActiveStepRecord
 																		  		  
-													  								*this.cDuplicationParentID = ALLTRIM(t38->parentid)
 													  								this.cDuplicationParentID = this.GetParentIDForDuplicationCheck(.T.)
 																				  	nCount = this.CheckDuplication(ALLTRIM(cValue))
 																				
@@ -1292,10 +1291,11 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						IF this.IsComponentAllowDuplication(cComponentFile) = .F.
 						
 									IF  this.lFixDuplication = .t.
-											*this.cDuplicationParentID = ALLTRIM(t38->parentid)
+									
 											this.cDuplicationParentID = this.GetParentIDForDuplicationCheck(.T.)
 											nRequiredCount = 0
 											this.lCheckNewDuplication = .t.
+											
 									ENDIF
 									
 						
@@ -1303,22 +1303,31 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									nCount = this.CheckDuplication(cValue)
 						
 									IF  this.lFixDuplication = .t.
+									
 											this.lCheckNewDuplication = .f.
+											
 									ENDIF
 									
 									SELECT (cTableName)
 									GOTO nRecord
 									
 									IF nCount > nRequiredCount
+									
 											this.lThereisDuplication = .T.
+											
 											IF  this.lFixDuplication = .t. .AND.  THIS.lNoFix = .F.
+											
 												this.FixDuplicationValue()
+												
 											ENDIF
 											
 									
 											RETURN .T.
+											
 									ELSE
+									
 											RETURN .F.
+											
 									ENDIF
 									
 						ENDIF
@@ -1338,7 +1347,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 				LOCAL cRules,nMax,X,cLine,T,cRule
 				LOCAL lRet
-				LOCAL cListFile,nListCount,nListStart,cListLine,nListCol,nArraySize
+				LOCAL cListFile,nListCount,nListStart,cListLine,nListCol,nArraySize,lFirstTime
 				
 				this.lNoFix = .f.
 				
@@ -1346,6 +1355,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 				
 				DIMENSION this.aDuplicationList(1,2)
+		 
 				
 				IF FILE(cfile)
 
@@ -1419,6 +1429,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										
 												clistfile = FILETOSTR(cLine)
 												nListCount = MEMLINES(cListFile)
+												lFirstTime = .T.
 												
 												FOR nListStart = 1 TO nListCount
 												
@@ -1427,12 +1438,18 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 														
 														IF  nListCol > 0
 														
-															nArraySize = ALEN(this.aDuplicationList,1)
-															nArraySize = nArraySize + 1
+															IF lFirstTime = .F.
+																	nArraySize = ALEN(this.aDuplicationList,1)
+																	nArraySize = nArraySize + 1
+															ELSE
+																	nArraySize = 1
+																	lFirstTime = .F.
+															ENDIF
+															
 															DIMENSION this.aDuplicationList(nArraySize,2)
-															this.aDuplicationList(nArraySize,1) = JUSTPATH(cFile) + "\" + LEFT(cListLine,nListCol - 1) + ".TRF"
+															this.aDuplicationList(nArraySize,1) = JUSTPATH(cFile) + "\" + ALLTRIM(LEFT(cListLine,nListCol - 1)) + ".TRF"
 															this.aDuplicationList(nArraySize,2) = SUBSTR(cListLine,nListCol + 1)
-															STMSG("STORE : " +	this.aDuplicationList(nArraySize,1) )
+														 
 															
 														ENDIF					
 																	
@@ -1462,15 +1479,16 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				 ENDIF
 			ENDIF
 		
-		
-			  nArraySize = ALEN(this.aDuplicationList,1)
-			  IF nArraySize = 1
-								this.aDuplicationList(1,1) = THIS.cDuplicationComponent
-								this.aDuplicationList(1,2) = this.cDuplicationVariable
-									STMSG("STORE : " +	this.aDuplicationList(nArraySize,1) )
-															
-				ENDIF
-				
+	
+		  nArraySize = ALEN(this.aDuplicationList,1)
+		  
+		  IF nArraySize = 1
+		  
+							this.aDuplicationList(1,1) = THIS.cDuplicationComponent
+							this.aDuplicationList(1,2) = this.cDuplicationVariable
+														
+			ENDIF
+			
 		
 		
 		RETURN lRet
@@ -1677,6 +1695,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 												SELECT (cTableName)
 												GOTO nRecord
 												
+											 
 												RETURN SUBSTR(aValues(x),AT("=",aValues(x))+1)
 										
 										ENDIF
@@ -1699,6 +1718,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				LOCAL cTableName,nRecord,nRecord2,cComponentFile,nRecord3,nRecord4
 				LOCAL cExpr,cParentID
 				LOCAL x,nAvoid
+				LOCAL lFind,y,cOldDuplicationVariable
 				
 				LOCAL nCount
 				
@@ -1732,8 +1752,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				FOR x = nRecord2 TO 1 STEP -1
 				
 							IF x = nAvoid && don't count the current record (Interaction using transporter - Interact/Modify Process)
-							* in modify case we will avoid the active step 
-							* in interact case we will avoid the parent step - not necessary/required but not a problem at all when we do this
+										* in modify case we will avoid the active step 
+										* in interact case we will avoid the parent step - not necessary/required but not a problem at all when we do this
 										LOOP
 							ENDIF
 							
@@ -1753,8 +1773,23 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										IF FOUND()
 										
 													cComponentFile = this.GetComponentFile()
+													cOldDuplicationVariable = this.cDuplicationVariable
 													
-													IF this.cDuplicationComponent == cComponentFile
+													lFind = .f.
+													
+													FOR y = 1 TO ALEN(this.aDuplicationList,1)
+														 
+															IF UPPER(ALLTRIM(this.aDuplicationList(y,1))) == UPPER(ALLTRIM(cComponentFile))
+															
+																	lFind = .t.
+																	this.cDuplicationVariable = UPPER(ALLTRIM(this.aDuplicationList(y,2)))
+														 
+															ENDIF		
+																										
+													NEXT
+													
+													 
+													IF lFind = .t.
 													
 																IF UPPER(ALLTRIM(this.GetDuplicationValue())) == UPPER(ALLTRIM(cValue))
 																
@@ -1768,6 +1803,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																			SELECT (cTableName)
 																			GOTO nRecord
 																	
+																	    this.cDuplicationVariable = cOldDuplicationVariable
+																	    
 																			RETURN nCount
 																			
 																	ENDIF
@@ -1777,6 +1814,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																
 													
 													ENDIF
+													
+													
+													this.cDuplicationVariable = cOldDuplicationVariable
 													
 										ENDIF
 										
