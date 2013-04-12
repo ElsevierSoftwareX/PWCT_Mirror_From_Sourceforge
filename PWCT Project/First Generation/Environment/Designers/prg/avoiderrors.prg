@@ -1186,7 +1186,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 	 
 			SELECT t38
 		  nRecord = RECNO()
-			
+	 
 					  IF this.IsComponentAllowDuplication(cActiveComponentFile) = .F.
 					
 									SELECT t42
@@ -1254,6 +1254,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						
 
 			SELECT t38
+		 
 		  GOTO nRecord
 		  
   		this.lCheckNewDuplication = .f.
