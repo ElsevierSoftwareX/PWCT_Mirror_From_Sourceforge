@@ -1,13 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 00:50:15    Date : 04/13/2013
+* Time : 06:34:20    Date : 04/13/2013
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.9 (Art) [2006-2013]  
+* Programming Without Coding Technology (PWCT) 
+* 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 13/04/2013
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
-*---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour
-* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -78,44 +77,15 @@ ACTIVATE WINDOW win1
 EndIF
 
 procedure myclose()
-domethod("win1","release")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-return
+win1.Release ( )
+return
 
 
 End Of Resistance
 
 INIT PROCEDURE Init_START
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Welcome to PWCT'",1,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
@@ -127,7 +97,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
 SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,59)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",60,60)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
 Return
 *-------------------------------------------------------------------*

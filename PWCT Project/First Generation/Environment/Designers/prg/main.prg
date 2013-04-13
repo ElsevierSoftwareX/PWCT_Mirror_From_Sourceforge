@@ -132,6 +132,9 @@ PUBLIC obj_VPLCompiler
 
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
+PUBLIC sys_pwctversion
+sys_pwctversion = "PWCT 1.9 (Art) 13/04/2013"
+
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
 	DO FORM welcome
 ELSE
