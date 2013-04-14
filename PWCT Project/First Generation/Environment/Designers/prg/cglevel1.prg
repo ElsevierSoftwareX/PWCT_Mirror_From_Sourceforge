@@ -669,9 +669,12 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 							myrec = RECNO()
 							FOR x = 1 TO myv_steps
 								IF myv_stepuse[X] = .F.
-									LOCATE FOR stepinterid = t46->f_iid .AND. stepinternum = x
+									LOCATE FOR ALLTRIM(stepinterid) == ALLTRIM(t46->f_iid) .AND. stepinternum = x
 									IF FOUND()
+										TRY && avoid error when we try to delete the child after we deleted the root
 										mygstree.nodes.REMOVE(UPPER(ALLTRIM(stepid)))
+										CATCH
+										ENDTRY 
 										DELETE
 									ENDIF
 								ENDIF

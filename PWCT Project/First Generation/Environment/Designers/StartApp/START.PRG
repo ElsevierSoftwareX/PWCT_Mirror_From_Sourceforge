@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:53:08    Date : 04/14/2013
+* Time : 19:01:04    Date : 04/14/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -61,7 +61,7 @@ BACKCOLOR {255,255,255}
 CAPTION "Close Window";
 ON CLICK myclose()  ;
 WIDTH 160 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 @ 111 ,127 LABEL lbl1 ;
 VALUE "Welcome to PWCT" ;
