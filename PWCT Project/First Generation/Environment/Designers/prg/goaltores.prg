@@ -613,14 +613,7 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 			ENDSCAN
 			GOTO bottom
 			
-		ELSE && fix problem with the Time Machine when we run the program from a location
-*!*				IF t2 = ALEN(mytree,1) .AND. .NOT. temp_tm_iid  = 0
-*!*					mytree(t2,1) = ""
-*!*					mytree(t2,2) = ""
-*!*					mytree(t2,3) = ""
-*!*					mytree(t2,4) = ""
-*!*				ENDIF
- 
+
 		ENDIF
 
 	NEXT
@@ -634,9 +627,7 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 
 
 			IF .NOT. EMPTY(ALLTRIM(mytree(x2,3))) .and. .not. ALLTRIM(mytree(x2,3)) = CHR(13) + CHR(10)
-				* myfh= myfH + ALLTRIM(mytree(x2,3)) && commented because it's inside error system block of code
-
-
+		
 				***** Error System
 
 				errmap3(err3_t,1) = mypara1
