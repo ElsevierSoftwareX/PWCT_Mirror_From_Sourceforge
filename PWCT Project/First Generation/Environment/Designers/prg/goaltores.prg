@@ -502,7 +502,9 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 
 			myend = ALEN(mytree,1)
 			FOR x = 1 TO myend
-				myfh = myfh + ALLTRIM( mytree(x,3) )
+				IF .not. EMPTY(ALLTRIM( mytree(x,3) ) ) .AND. .NOT. ALLTRIM( mytree(x,3) ) = CHR(13) + CHR(10)
+					myfh = myfh + ALLTRIM( mytree(x,3) )
+				ENDIF 
 			NEXT
 
 		ENDSCAN
@@ -631,7 +633,7 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 		FOR x2 = 1 TO myend
 
 
-			IF .NOT. EMPTY(ALLTRIM(mytree(x2,3)))
+			IF .NOT. EMPTY(ALLTRIM(mytree(x2,3))) .and. .not. ALLTRIM(mytree(x2,3)) = CHR(13) + CHR(10)
 				* myfh= myfH + ALLTRIM(mytree(x2,3)) && commented because it's inside error system block of code
 
 

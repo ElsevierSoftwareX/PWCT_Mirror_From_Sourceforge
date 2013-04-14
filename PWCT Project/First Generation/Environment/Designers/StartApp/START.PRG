@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 07:01:56    Date : 04/13/2013
+* Time : 03:09:20    Date : 04/14/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -71,6 +71,49 @@ HEIGHT 39 ;
 FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
+DEFINE TOOLBAR Toolbar1;
+BUTTONSIZE 100 , 30 
+
+BUTTON toolbarbtn1;
+TOOLTIP "" 
+
+END TOOLBAR
+
+DEFINE STATUSBAR 
+
+STATUSITEM "Text Here" action msginfo("wow")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DATE
+
+KEYBOARD
+
+CLOCK
+
+END STATUSBAR
+
 END WINDOW
 
 ACTIVATE WINDOW win1
@@ -94,10 +137,21 @@ SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",13,13)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",14,16)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Welcome to PWCT'",17,18)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Toolbar ( Toolbar1 )",24,24)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",25,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Button ( toolbarbtn1 )",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",28,29)
+SS_ESASTEP("Circuits\Main\Main\Main","End Toolbar",30,31)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Statusbar",32,33)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New StatusItem ( 'Text Here' )",34,58)
+SS_ESASTEP("Circuits\Main\Main\Main","Date",59,60)
+SS_ESASTEP("Circuits\Main\Main\Main","Keyboard",62,63)
+SS_ESASTEP("Circuits\Main\Main\Main","Clock",64,65)
+SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",66,67)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",68,69)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",70,72)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",73,73)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",74,74)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",75,75)
 Return
 *-------------------------------------------------------------------*
