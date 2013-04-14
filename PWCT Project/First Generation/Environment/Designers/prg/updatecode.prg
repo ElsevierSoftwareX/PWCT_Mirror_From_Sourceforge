@@ -1,24 +1,4 @@
-*:******************************************************************************
-*:
-*: Procedure File D:\PWCTSRC\PWCT\PRG\UPDATECODE.PRG
-*:
-*:	
-*:	
-*:	
-*:	
-*:	
-*:	
-*:	
-*:	
-*:	Mahmoud Fayed
-*:	Programming without coding technology 1.8 (Smart)
-*:	Free - Open Source
-*:	
-*:	Programming without coding technology 1.8 (Smart)
-*:
-*: Documented using Visual FoxPro Formatting wizard version  .05
-*:******************************************************************************
-*:   updatecode
+ 
 PARAMETERS p_iid,lrefreshsteps
 
 LOCAL cselecteditem
