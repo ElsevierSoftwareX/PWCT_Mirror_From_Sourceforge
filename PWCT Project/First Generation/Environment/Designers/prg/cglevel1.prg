@@ -4,7 +4,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 
 	PROCEDURE RunTrfOk(objRunTrfForm)
 
-				LOCAL myobj,ncurrentactivesteprecord
+				LOCAL myobj 
 				
 				IF obj_avoidErrors.CheckNewDuplication(objRunTrfForm) = .T.
 						stmsg("Sorry, Duplication is not allowed ")
@@ -49,7 +49,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 				SELECT t42
 				mylast = MEMLINES(m_pair1)
 				old_mask = m_mask
-				*-----------------------------------------* needed for error checkig
+				*-----------------------------------------* needed for error checking
 				* store m_mask into array , remove tabs
 				tv_lines = MEMLINES(m_mask)
 				IF tv_lines > 0
