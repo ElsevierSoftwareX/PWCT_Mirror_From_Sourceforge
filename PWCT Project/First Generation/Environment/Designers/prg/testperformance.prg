@@ -61,3 +61,33 @@ FUNCTION testperformance
 
 	s2 = SECONDS()
 	? s2 - s1
+
+RETURN
+
+FUNCTION COUNTIF()
+
+	cFile = FILETOSTR(GETFILE())
+	nIF = 0
+	nEndIF = 0
+	nMax = MEMLINES(cFile)
+	CLEAR
+	
+	FOR x = 1 TO nMax
+		cLine = MLINE(cFile,x)
+		DO WHILE ASC(LEFT(cLine,1)) = 9
+					cLine = SUBSTR(cLine,2)
+		enddo
+		cLine = ALLTRIM(ClINE)
+		IF UPPER(LEFT(ClINE,2)) == "IF"
+			nIF = nIF + 1
+		ENDIF
+		IF UPPER(LEFT(CLINE,5)) == "ENDIF"
+			nEndIF = nEndIF + 1
+		ENDIF
+	NEXT
+	
+	CLEAR
+	? " IF : " + ALLTRIM(STR(NIF))
+	? " ENDIF : " + ALLTRIM(STR(NENDIF))
+
+RETURN
