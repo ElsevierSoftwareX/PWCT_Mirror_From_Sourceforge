@@ -4,7 +4,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 	
   lAgain = .F.
   
-  lUpdate = .F.
+  lStepsUpdate = .F.
 	p_iid = "Not Determined"
   lrefreshsteps = .F.
 	
@@ -16,7 +16,12 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 
 				LOCAL cselecteditem
 				
-				IF this.lUpdate = .t. && refresh steps based on latest components update
+				LOCAL p_iid,lrefreshsteps
+		
+				lrefreshsteps = this.lrefreshsteps
+				p_iid = this.p_iid
+				
+				IF this.lStepsUpdate = .t. && refresh steps based on latest components update
 				
 							pstepcode = ""
 							pinf = ""
@@ -424,6 +429,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 					myv_stepuse[MYV_STEPS] = .F.
 				NEXT
 				
+				syslogmsg(" myv_steps " + ALLTRIM(STR(myv_steps)))
 				
 				*-------- <RPWI:TEST>
 				myttype = 0 && NEGATIVE TEST TYPE
@@ -548,7 +554,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 				NEXT
 
 
-				IF this.lUpdate = .t.
+				IF this.lStepsUpdate = .t.
 				
 				
 								*-------------------------------------------* needed for error checkig
@@ -771,7 +777,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 										mygstree.nodes.ITEM(UPPER(ALLTRIM(stepid))).SELECTED = .T.
 										myvar = ""
 				
-										IF this.lUpdate = .t.
+										IF this.lStepsUpdate = .t.
 												mygstree.nodes.ITEM(UPPER(ALLTRIM(stepid))).expanded = .F.
 										ENDIF 
 
@@ -785,7 +791,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 											mygstree.nodes.ITEM(UPPER(ALLTRIM(stepid))).SELECTED = .T.
 											myvar = ""
 											
-											IF this.lUpdate = .t.
+											IF this.lStepsUpdate = .t.
 												mygstree.nodes.ITEM(UPPER(ALLTRIM(stepid))).expanded = .F.
 											ENDIF 
 											
@@ -814,7 +820,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 										* goto the step that is determined by the mark
 										mygstree.nodes.ITEM(mymark(myvalue)).SELECTED = .T.
 										
-										IF this.lUpdate = .t.
+										IF this.lStepsUpdate = .t.
 												mygstree.nodes.ITEM(mymark(myvalue)).expanded = .F.
 										ENDIF
 										
@@ -848,7 +854,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 												myadd.IMAGE = "cmd"
 												o.nodes.ITEM(ALLTRIM(mykey)).SELECTED = .T.
 												
-												IF this.lUpdate = .T.
+												IF this.lStepsUpdate = .T.
 														o.nodes.ITEM(ALLTRIM(mykey)).expanded = .F.
 												ENDIF
 										
@@ -857,7 +863,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 												lastscode = ALLTRIM(mykey)
 												o.nodes.ITEM(ALLTRIM(pkey)).SELECTED = .T.
 												
-												IF this.lUpdate = .T.
+												IF this.lStepsUpdate = .T.
 														o.nodes.ITEM(ALLTRIM(pkey)).expanded = .F.
 												ENDIF
 										
@@ -877,7 +883,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 												REPLACE stepinterid WITH t46->f_iid
 												REPLACE stepinternum WITH mystepcounter
 												
-												IF this.lUpdate = .T.
+												IF this.lStepsUpdate = .T.
 														* Set Step Colors
 														cselecteditem = mygdform.container1.oletree.SELECTEDITEM.KEY
 														mygdform.container1.oletree.nodes.ITEM(ALLTRIM(mykey)).SELECTED = .T.
@@ -913,7 +919,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 															
 																	mygstree.nodes.ITEM(ALLTRIM(stepid)).SELECTED = .T.
 																	
-																	IF this.lUpdate = .T.
+																	IF this.lStepsUpdate = .T.
 																				mygstree.nodes.ITEM(ALLTRIM(stepid)).expanded = .F.
 																	ENDIF
 												
@@ -926,7 +932,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 															
 															mygstree.nodes.ITEM(ALLTRIM(myoldkey)).SELECTED = .T.
 															
-															IF this.lUpdate = .T.
+															IF this.lStepsUpdate = .T.
 																	mygstree.nodes.ITEM(ALLTRIM(myoldkey)).expanded = .F.
 															ENDIF
 										
@@ -944,14 +950,14 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 													myadd.IMAGE = "cmd"
 													o.nodes.ITEM(ALLTRIM(mykey)).SELECTED = .T.
 													
-													IF This.lUpdate = .T.
+													IF This.lStepsUpdate = .T.
 														o.nodes.ITEM(ALLTRIM(mykey)).expanded = .F.
 													ENDIF
 													
 													lastscode = ALLTRIM(mykey)
 													o.nodes.ITEM(ALLTRIM(pkey)).SELECTED = .T.
 													
-													IF This.lUpdate = .T.
+													IF This.lStepsUpdate = .T.
 														o.nodes.ITEM(ALLTRIM(pkey)).expanded = .F.
 													ENDIF
 													
@@ -969,7 +975,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 													REPLACE stepinterid WITH t46->f_iid
 													REPLACE stepinternum WITH mystepcounter
 
-													IF This.lUpdate = .T.
+													IF This.lStepsUpdate = .T.
 																	* Set Step Colors
 																	cselecteditem = mygdform.container1.oletree.SELECTEDITEM.KEY
 																	mygdform.container1.oletree.nodes.ITEM(ALLTRIM(mykey)).SELECTED = .T.
@@ -1047,7 +1053,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 							********************************************
 							pstepcode = ""
 							
-							IF lUpdate = .F.
+							IF this.lStepsUpdate = .F.
 									IF this.lAgain = .T.
 											GOTO my38rec
 									ENDIF
@@ -1058,7 +1064,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 							myrec = RECNO()
 							FOR x = 1 TO myv_steps
 								IF myv_stepuse[X] = .F.
-									LOCATE FOR ALLTRIM(stepinterid) == ALLTRIM(t46->f_iid) .AND. stepinternum = x
+									LOCATE FOR t38->stepinterid == t46->f_iid .AND. t38->stepinternum = x
 									IF FOUND()
 										TRY && avoid error when we try to delete the child after we deleted the root
 										mygstree.nodes.REMOVE(UPPER(ALLTRIM(stepid)))
@@ -1089,7 +1095,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 				********************************************
 				
 			
-				IF this.lUpdate = .F.
+				IF this.lStepsUpdate = .F.
 			
 							IF this.lAgain = .T.
 							
@@ -1117,7 +1123,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 												
 							ENDIF
 							
-				ELSE && lUpdate = .T.
+				ELSE && lStepsUpdate = .T.
 				
 							**** [End of updating ]   ********************************************************
 							SELECT t46
@@ -1157,9 +1163,9 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 
 				this.p_iid = p_iid
 				this.lrefreshsteps = lrefreshsteps
-				this.lupdate = .t.
+				this.lStepsUpdate = .t.
 				this.runTRFScript()
-				this.lupdate = .f.
+				this.lStepsUpdate = .f.
 
 	
 	RETURN

@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 23:24:32    Date : 04/14/2013
+* Time : 04:50:21    Date : 04/15/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -53,7 +53,6 @@ DEFINE WINDOW win1 ;
 AT 10 ,10 ;
 WIDTH 434 ;
 HEIGHT 326 ;
-ON INIT MSGINFO( "wow" ) ;
 ICON "PWCTICON" ;
 TITLE "Welcome to PWCT" ;
 MAIN ;
@@ -72,6 +71,7 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
+EndIF
 ACTIVATE WINDOW win1
 EndIF
 procedure myclose()
@@ -85,14 +85,13 @@ START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Welcome to PWCT'",1,5)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON INIT : Action 'wow'",6,6)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",7,11)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Close Window'",12,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",14,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",15,17)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Welcome to PWCT'",18,19)
-SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",20,24)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",25,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Close Window'",11,12)
+SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",13,13)
+SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",14,16)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Welcome to PWCT'",17,18)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,26)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",27,29)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",30,30)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",31,31)
