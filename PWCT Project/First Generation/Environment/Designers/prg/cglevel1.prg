@@ -727,7 +727,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 							
 								myvar = ALLTRIM(MLINE(mymemo,x))
 								
-								IF UPPER(LEFT(myvar,6)) = "<RPWI:"
+								IF UPPER(LEFT(myvar,1)) = "<"
 								
 												IF UPPER(LEFT(myvar,11)) == "<RPWI:NOTE>"
 												
@@ -1231,6 +1231,14 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 					
 							ELSE
 							
+									IF pv_his = .t.  && Modify - then (OK)
+									
+											this.DeleteStepsNotInScope(ALLTRIM(T46->F_IID))
+									
+									ENDIF
+									
+							
+							
 									objRunTrfForm.RELEASE	&& Interaction using transporter window - Ok button - Close Window
 												
 							ENDIF
@@ -1239,7 +1247,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 				
 							**** [End of updating ]   ********************************************************
 							SELECT t46
-							LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(p_iid))
+							LOCATE FOR ALLTRIM(f_iid) == ALLTRIM(p_iid)
 							IF lrefreshsteps = .F. && history when refreshing steps is not changed , what changed is the components code mask
 								REPLACE f_myhis WITH ax_myhis
 							ENDIF
@@ -1252,11 +1260,84 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 								ENDIF
 							ENDIF
 
+							this.DeleteStepsNotInScope(P_IID)
+							
+							
+						 
 				ENDIF
-				
 	
 	RETURN
 
+
+	PROCEDURE DeleteStepsNotInScope(P_IID)
+	
+							* delete steps not in the scope of the generated steps
+							* for example in the past the progressbar component (HarbourPWCT) CONTAINS THE NEXT STRUCUTRE
+							*  Define progressbar
+							*         Events
+							*         Properties
+							* Then we modified the code mask to ignore generating the step (Events)
+							* using update will get the next results
+							* Define progressbar
+							*        Properties
+							*        Properties
+							* Now we want to delete the second properties step
+							* But before deleting it we must be sure that this step doesn't contains childs
+							* So we will check if no child - delete it
+							* If there are childs - delete the code behind it - change it's name to (Not used after update)
+							
+  						 LOCAL nRecord2,cMyStepID
+  						
+						   SELECT t38
+						  						 
+						  
+						   SCAN FOR ALLTRIM(stepinterid) == ALLTRIM(p_iid) .and. stepinternum > myv_steps
+						  
+						  
+						  		nRecord2 = RECNO()
+						  	 
+						  		
+						  		cMyStepID = ALLTRIM(t38->stepid)
+						  		
+						  		LOCATE FOR ALLTRIM(parentid) == cMyStepID
+						  		
+						  		IF FOUND()
+						  			 
+						  			 
+						  				GOTO nRecord2
+						  				
+						  				replace t38->stepname WITH "This step is not used after update"
+						  				replace t38->stepcode WITH ""
+						  				
+						  				mygstree.nodes.ITEM(ALLTRIM(t38->stepid)).text = ALLTRIM(t38->stepname)
+						  				
+						  			
+						  		ELSE
+						  			
+							  			GOTO nRecord2
+							  			
+							  			TRY 
+							  				mygstree.nodes.REMOVE(UPPER(ALLTRIM(t38->stepid)))
+							  			CATCH
+							  			ENDTRY
+							  			
+							  			DELETE 
+						  					
+						  					
+						  		ENDIF
+						  		
+						  
+							 ENDSCAN 
+							  
+							 GOTO top
+							  
+							 PACK
+							 
+							 GOTO top
+	
+	
+	RETURN
+	
 
 	PROCEDURE UpdateCode(p_iid,lrefreshsteps)
 
@@ -1281,6 +1362,8 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 
 	
 	RETURN
+	
+
 	
 
 
