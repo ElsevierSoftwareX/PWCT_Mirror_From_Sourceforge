@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:50:21    Date : 04/15/2013
+* Time : 07:13:35    Date : 04/16/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -71,7 +71,6 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
-EndIF
 ACTIVATE WINDOW win1
 EndIF
 procedure myclose()
@@ -91,10 +90,10 @@ SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action myclose",13,13)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",14,16)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Welcome to PWCT'",17,18)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",27,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",31,31)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",32,32)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
 Return
 *-------------------------------------------------------------------*
