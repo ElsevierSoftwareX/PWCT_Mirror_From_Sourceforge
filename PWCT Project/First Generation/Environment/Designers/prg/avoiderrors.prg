@@ -1190,7 +1190,6 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 					  IF this.IsComponentAllowDuplication(cActiveComponentFile) = .F.
 					
 									SELECT t42
-								 
 									
 									cValue = UPPER(ALLTRIM(this.cDuplicationVariable))
 									
@@ -1224,15 +1223,25 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																				  			lRet = .t.
 																				  	ENDIF
 																	
+																						SYSLOGMSG("Check Duplication - Interact Process")
+																	
 																	ELSE									 && Modify
 																	
+																						SYSLOGMSG("Check Duplication - Modify Process")
+																						
 																		  		  SELECT t38
 																		  		  nRecord = RECNO()
 																		  		  GOTO nActiveStepRecord
 																		  		  
+																		  		  SYSLOGMSG("Check Duplication - Step : " + ALLTRIM(t38->stepname) )
+																		  		 syslogmsg(" Record : " + ALLTRIM(STR(nActiveStepRecord)) )
+							
 													  								this.cDuplicationParentID = this.GetParentIDForDuplicationCheck(.T.)
+													  								
+													  								
 																				  	nCount = this.CheckDuplication(ALLTRIM(cValue))
 																				
+																						SYSLOGMSG("Check Duplication - Count : " + ALLTRIM(STR(nCount)) )
 																				  	
 																				  	IF nCount > 0
 																				  			lRet = .t.
@@ -1240,6 +1249,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																		  		 
 																		  		  SELECT t38
 																		  		  GOTO nRecord
+																		  		  
+																		  		  
+																		  		  
 																	ENDIF
 											 
 								  ELSE
@@ -1357,6 +1369,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 				DIMENSION this.aDuplicationList(1,2)
 		 
+ 			
+		
+														 
+				
 				
 				IF FILE(cfile)
 
@@ -1382,6 +1398,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 								lRet = .F.
 								this.cDuplicationVariable = SUBSTR(cLine,LEN(cRule)+1) && store the duplication variable in the object state
+								
+ 							 this.aDuplicationList(1,1) = THIS.cDuplicationComponent
+								this.aDuplicationList(1,2) = this.cDuplicationVariable
 
 								FOR T = x TO nmax
 
@@ -1718,7 +1737,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		
 				LOCAL cTableName,nRecord,nRecord2,cComponentFile,nRecord3,nRecord4
 				LOCAL cExpr,cParentID
-				LOCAL x,nAvoid
+				LOCAL x,nAvoid,cIIDAvoid
 				LOCAL lFind,y,cOldDuplicationVariable
 				
 				LOCAL nCount
@@ -1734,18 +1753,23 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				
 				nAvoid = 0
 				
+				cIIDAvoid = ""
+				
 			
 				IF this.lCheckNewDuplication = .t.
 							cParentID = this.cDuplicationParentID
   						nRecord2 = RECCOUNT()
 							nAvoid = nRecord3
+							syslogmsg(" Record to avoid : " + ALLTRIM(STR(nAvoid)) )
+							cIIDAvoid = ALLTRIM(t38->stepInterID)
 				ELSE
 							cParentID = ALLTRIM(t38->ParentID)
 				ENDIF
 				
 		
 				IF this.cDuplicationScope = "GENERAL"
-									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID))"
+									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .and. .not. ALLTRIM(t38->stepInterID) == cIIDAvoid "
+									syslogmsg(" Duplication Scope : General ")
 				ELSE
 									cExpr = "t38->StepInterNum = 1  .and. .not. EMPTY(ALLTRIM(t38->stepInterID)) .AND. ALLTRIM(this.GetParentIDForDuplicationCheck(.T.)) == cParentID"								 
 				ENDIF
