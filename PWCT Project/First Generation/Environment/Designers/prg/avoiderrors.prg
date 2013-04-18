@@ -456,6 +456,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						lcont = .T.
 						cparent = t38->parentid
 					ENDIF
+					
 				ENDIF
 
 				IF UPPER(ALLTRIM(cparent)) == "SP_"
@@ -593,7 +594,6 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						crules = this.myFILETOSTR(cfile)
 						crules = UPPER(crules)
 
-				 
 						
 						nmax = ALINES(aRules,cRules)
 						
@@ -1092,6 +1092,24 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 					cline = SUBSTR(cline,13)
 					cline = UPPER(ALLTRIM(cline))
+					
+					IF cLine == "ROOT"
+						
+								IF this.isthisstepistheroot()
+								
+									myret = .T.
+								
+								ELSE
+								
+									Myret = .F.
+									
+								ENDIF
+								
+								EXIT
+						
+					ENDIF
+					
+					
 					IF cline == "GENERAL"
 						myret = .T.
 						EXIT
