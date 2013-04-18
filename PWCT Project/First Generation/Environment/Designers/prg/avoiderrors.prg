@@ -456,7 +456,8 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						lcont = .T.
 						cparent = t38->parentid
 					ENDIF
-					
+				
+						
 				ENDIF
 
 				IF UPPER(ALLTRIM(cparent)) == "SP_"
@@ -465,6 +466,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 
 			ENDDO
+			
 		ENDIF
 
 		GOTO n_record2
@@ -802,6 +804,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		LOCAL ccomponentfile
 		LOCAL lcont,cparent
 		LOCAL ARRAY aRules[1]
+		LOCAL nRecord2
 		
 		* Used by (Goal Designer - Ignore Step) to determine is this operation is allowed or not
 
@@ -823,8 +826,12 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 		* Load the rules of the current component to the variable cRules
 
+		SELECT t38
+		
 		cinternum = ALLTRIM(STR(t38->stepinternum))
 
+		nRecord2 = RECNO()
+		
 		SELECT t46
 		
 		GOTO TOP
@@ -838,9 +845,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			ENDIF
 			
 			IF FOUND()
-
-				chis = f_myhis
- 
+		
 				cFile = this.GETCOMPONENTFILE()
 				
 				IF FILE(cfile)
@@ -864,12 +869,17 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						cparent = t38->parentid
 
 						DO WHILE lcont = .T.
+						
 							GOTO TOP
 
 							IF THIS.lFindUsingIndex = .f.	
+							
 									LOCATE FOR UPPER(ALLTRIM(t38->stepid)) == UPPER(ALLTRIM(cparent))
+									
 							ELSE
+							
 									This.IndexFindStepID(UPPER(ALLTRIM(cparent)))
+									
 							ENDIF
 							
 
@@ -886,6 +896,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									
 								ENDIF
 								
+							ELSE
+									
+									GOTO TOP
+									
 							ENDIF
 
 							IF UPPER(ALLTRIM(cparent)) == "SP_"
@@ -902,20 +916,29 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							IF .NOT. cparent == "SP_"
 
 								SELECT t46
+								
 								GOTO TOP
 								
 								IF .NOT. EMPTY(t38->stepinterid)
 								
 									IF THIS.lFindUsingIndex = .f.	
+									
 											LOCATE FOR UPPER(ALLTRIM(f_iid)) == UPPER(ALLTRIM(t38->stepinterid))
+											
 									ELSE
+									
 											This.IndexFindIID(UPPER(ALLTRIM(t38->stepinterid)))
+											
 									ENDIF
 									
 									IF FOUND()
 								 
 										cComponentFile = this.GETCOMPONENTFILE()
 										
+									ELSE
+										
+											GOTO TOP
+											
 									ENDIF
 									
 								ENDIF
@@ -925,14 +948,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						ENDIF
 
 						SELECT t38
-						GOTO n_record
+						GOTO nRecord2
 
 						*************
 						* Now you have the component rules stored in the variable : cRules
 						* And you have the parent component stored in the varaible : cComponentFile
 						* Check the rules to know if this parent component is allowed or not
 
-
+						syslogmsg( " Check parent using rules ")
 					 
 						nMax = ALINES(aRules,cRules)
 						
@@ -941,6 +964,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							cLine = aRules(x)
 							
 							cline = ALLTRIM(cline)
+							
 							crule = "ALLOWPARENT:"
 							
 							IF  LEFT(UPPER(ALLTRIM(cline)),12) == UPPER(ALLTRIM(crule))
@@ -948,6 +972,28 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 								cline = SUBSTR(cline,13)
 								cline = UPPER(ALLTRIM(cline))
 								
+						 
+								
+								IF cLine == "ROOT"
+							
+													IF cComponentfile = "NoComponentFile"
+													
+											 
+														myret = .T.
+													
+													ELSE
+													
+												 		Myret = .F.
+														
+													ENDIF
+													
+													SELECT t38
+													GOTO nRecord2
+													
+													EXIT
+											
+								ENDIF
+									
 								IF cline == "GENERAL"
 								
 									myret = .T.
@@ -996,6 +1042,11 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 					ENDIF
 				ENDIF
 
+			ELSE
+					
+					SELECT T46
+					GOTO TOP
+					
 			ENDIF
 		ENDIF
 
