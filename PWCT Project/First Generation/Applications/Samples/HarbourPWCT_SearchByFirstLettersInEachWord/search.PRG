@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 22:06:25    Date : 04/19/2013
+* Time : 22:32:56    Date : 04/19/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -32,7 +32,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_LESSON36_18smart1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_SEARCH_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -47,7 +47,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_LESSON36_18smart1() code
+Resistance R_SEARCH_18smart1() code
 odatabase = database()
 out = odatabase:showWindow()
 Class database
@@ -83,9 +83,9 @@ TOOLTIP ""
 @ 78 ,44 GRID Grid1;
 WIDTH 613 ;
 HEIGHT 233 ;
-HEADERS {"Name","Adress","Phone"};
+HEADERS {"Name","Address","Phone"};
 WIDTHS {300,100,100} ;
-FONT "arial" SIZE 9 ;
+FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 EDIT INPLACE {} ;
 FONTCOLOR {0,0,0}
@@ -181,7 +181,7 @@ Return 0
 
 End Of Resistance
 
-INIT PROCEDURE Init_LESSON36
+INIT PROCEDURE Init_SEARCH
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
@@ -207,7 +207,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",27,27)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btn1 ) , Caption : 'Close '",28,29)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action self:CloseApp",30,30)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",31,33)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 ) , HEADERS : {'Name','Adress','Phone'}",34,34)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 ) , HEADERS : {'Name','Address','Phone'}",34,34)
 SS_ESASTEP("Circuits\Main\Main\Main","Grid Properties",35,42)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl1 ) , Caption : 'Search by first letters in each word inside a Name : '",43,44)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",45,49)
