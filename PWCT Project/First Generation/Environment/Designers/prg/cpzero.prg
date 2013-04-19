@@ -116,6 +116,7 @@ PROCEDURE cleanup
 *!
 *!******************************************************************************
 PROCEDURE MAIN
+
 	PRIVATE m.fp_in, m.buf, m.found_one, m.i, m.outbyte
 
 	* Set up table of code pages and DBF bytes numbers
@@ -182,6 +183,7 @@ PROCEDURE MAIN
 	IF EMPTY(m.fname)
 		m.fname = GETFILE("DBF|SCX|VCX|FRX|LBX|MNX",c_opentable_loc)
 	ENDIF
+	
 	IF !EMPTY(m.fname)
 		CLOSE DATABASES
 		m.outbyte = m.cpbyte

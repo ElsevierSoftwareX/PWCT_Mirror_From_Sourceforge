@@ -47,6 +47,12 @@ IF sys_vfp_debug = .F.
 	_SCREEN.VISIBLE = .F.
 	_SCREEN.CAPTION = "Programming Without Coding Technology"
 	_SCREEN.ICON = '\BMP\SUN.ICO'
+	
+	
+ON ERROR DO errHandler WITH ;
+   ERROR( ), MESSAGE( ), MESSAGE(1), PROGRAM( ), LINENO( )
+
+	
 ENDIF
 
 IF SYSMETRIC(2) = 480 .AND. SYSMETRIC(1) = 640
@@ -133,7 +139,8 @@ PUBLIC obj_VPLCompiler
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 13/04/2013"
+sys_pwctversion = "PWCT 1.9 (Art) 18/04/2013"
+
 
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
 	DO FORM welcome
@@ -184,6 +191,26 @@ FUNCTION myquit
 
 	RETURN
 
+
+PROCEDURE errHandler
+
+   PARAMETER merror, mess, mess1, mprog, mlineno
+   
+   syslogmsg( 'Error number: ' + LTRIM(STR(merror)) )
+   syslogmsg( 'Error message: ' + mess )
+   syslogmsg( 'Line of code with error: ' + mess1 )
+   syslogmsg( 'Line number of error: ' + LTRIM(STR(mlineno)) )
+   syslogmsg( 'Program with error: ' + mprog )
+   
+   writelog()
+   
+   MESSAGEBOX(" Unexpected error happened - see the log file c:\ssbuild\pwct19\pwctlog.txt ",0,"Error")
+   
+   CLOSE DATABASES 
+   QUIT
+   
+   
+ENDPROC
 
 
 

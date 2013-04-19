@@ -20,6 +20,7 @@
 *:******************************************************************************
 *:   syslogmsg
 PARAMETERS mymsg
-
-DIMENSION pwct_statusmsgs(ALEN(pwct_statusmsgs,1)+1)
-pwct_statusmsgs(ALEN(pwct_statusmsgs,1)) = mymsg
+LOCAL nSize
+nSize = ALEN(pwct_statusmsgs,1)+1
+DIMENSION pwct_statusmsgs(nSize)
+pwct_statusmsgs(nSize) = mymsg
