@@ -101,10 +101,15 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 														
 														tvar_pname = ALLTRIM(idf_open->o_var)
 														
-														tvar_options2 = this.GetFromListFile(myfile,tvar_pname)
+														tvar_options2 = this.GetFromListFile(myfile,tvar_pname)												 
+														
+														ltemp_list = .f.
 														
 														IF .not. tvar_options2 = "NoThing"
+														 
 																tvar_options = tvar_options2
+																ltemp_list = .t.
+																
 														ENDIF
 														
 
@@ -123,7 +128,27 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 																axline = MLINE(ax_myhis,ax_x)
 																myvalue = SUBSTR(axline,AT("=",axline)+1)
 																mynewvalue = ALLTRIM(MLINE(tvar_options,VAL(myvalue)))
-																mynewaxline = UPPER(ALLTRIM(tvar_vname)) +"=" + mynewvalue
+																mynewaxline = UPPER(ALLTRIM(tvar_vname)) +"=" + mynewvalue	
+																
+																IF ltemp_list = .t.
+																
+																					 
+																								* support getting the list item name (for step name) 
+																								* for example when the list item name is arabic
+																								* we want the listbox varaible value to be from the list file to get correct code
+																								* but we want the step name to get the value from the listbox item
+																								
+																								cTempVarName = this.PageVarToCodeMaskVar(tvar_vname)
+																								m_mask = STRTRAN(m_mask,UPPER(ALLTRIM(cTempVarName))+":idflistboxitem",ALLTRIM(MLINE(idf_open->o_options,VAL(myvalue))))											
+																								m_mask = STRTRAN(m_mask,Lower(ALLTRIM(cTempVarName))+":idflistboxitem",ALLTRIM(MLINE(idf_open->o_options,VAL(myvalue))))											
+																								
+																						 
+																				 
+																								
+																								*************************************************************
+																
+																ENDIF
+																									
 
 
 																ax_myhis = STRTRAN(ax_myhis,axline,mynewaxline)
@@ -410,7 +435,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 													
 															IF ALLTRIM(MLINE(m_pages,tv_x)) == ALLTRIM(cPageVar)
 															
-																syslogmsg("Page Number " + STR(tv_x) )
+															 
 													
 																cPageVar = MLINE(m_files,tv_x)
 																cTemp_myvalue2 = this.GetFromListFile(cPageVar, SUBSTR(t42->o_var,AT("]",t42->o_var)+1  ))
@@ -418,7 +443,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 																IF .not. cTemp_myvalue2 = "NoThing"
 																
 																		myvalue = MLINE(cTemp_myvalue2,myid)
-																		syslogmsg( " MyValue : " + myvalue)
+																	 
 																		
 																ENDIF
 															
@@ -688,13 +713,18 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 								*-------------------------------------------* needed for error checkig
 								* replace  the variables (not after test)
 								mylast = MEMLINES(m_pair1)
+								
 								FOR x = 1 TO mylast
+								
 									myvar = UPPER(ALLTRIM(MLINE(m_pair1,x)))
 									myvar2 = UPPER(ALLTRIM(MLINE(m_pair2,x)))
+									
 									SELECT t42
 									GOTO TOP
 									LOCATE FOR UPPER(ALLTRIM(o_var)) == UPPER(ALLTRIM(myvar))
+									
 									IF FOUND()
+									
 										myrn = RECNO()
 										myobj = objRunTrfForm._scrollcontainer1.viewframe.clientarea.CONTROLS(myrn)
 										
@@ -728,15 +758,25 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 																			
 																					IF ALLTRIM(MLINE(m_pages,tv_x)) == ALLTRIM(cPageVar)
 																					
-																						syslogmsg("Page Number " + STR(tv_x) )
-																			
+																		 																			
 																						cPageVar = MLINE(m_files,tv_x)
 																						cTemp_myvalue2 = this.GetFromListFile(cPageVar, SUBSTR(t42->o_var,AT("]",t42->o_var)+1  ))
 																						
 																						IF .not. cTemp_myvalue2 = "NoThing"
 																						
+																								* support getting the list item name (for step name) 
+																								* for example when the list item name is arabic
+																								* we want the listbox varaible value to be from the list file to get correct code
+																								* but we want the step name to get the value from the listbox item
+																								* 
+																								myres = STRTRAN(myres,myvar2+":idflistboxitem",myvalue)											
+																								pstepcode = STRTRAN(pstepcode,myvar2+":idflistboxitem",myvalue)
+																								
+																								*************************************************************
+																						
+																						
 																								myvalue = MLINE(cTemp_myvalue2,myid)
-																								syslogmsg( " MyValue : " + myvalue)
+																						 
 																								
 																						ENDIF
 																					
@@ -758,21 +798,24 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 															myvalueh = myvalue
 															myvaluet = myvalueh
 								 
-										ENDCASE
+										 ENDCASE
 										
 
-										IF AT(myvar2,myres) > 0 .OR. AT(myvar2,pstepcode) > 0
-											tv_cont = nocerror(myvaluet)
-											IF tv_cont = .F.
-												RETURN
+											IF AT(myvar2,myres) > 0 .OR. AT(myvar2,pstepcode) > 0
+												tv_cont = nocerror(myvaluet)
+												IF tv_cont = .F.
+													RETURN
+												ENDIF
 											ENDIF
-										ENDIF
 
-										myres = STRTRAN(myres,myvar2,myvalue)
-										pstepcode = STRTRAN(pstepcode,myvar2,myvalue)
+											myres = STRTRAN(myres,myvar2,myvalue)
+											
+											pstepcode = STRTRAN(pstepcode,myvar2,myvalue)
 
 									ENDIF
+									
 								NEXT
+								
 								SELECT t42
 								GOTO TOP
 								*-------------------------------------------*
@@ -1474,6 +1517,30 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 				ENDIF
 	
 	RETURN cOutput
+
+
+	* the next procedure get varaible name in the interaction page and return the variable name in the code mask
+	
+	PROCEDURE PageVarToCodeMaskVar(cVariable)
+	
+				LOCAL x,nMax,cLine
+	
+							nMax = MEMLINES(m_pair1)
+
+							FOR x = 1 TO nMax
+
+								cLine = MLINE(m_pair1,x)
+							
+								IF UPPER(ALLTRIM(cLine)) == UPPER(ALLTRIM(cVariable))
+
+									RETURN UPPER(ALLTRIM(MLINE(m_pair2,x)))
+									
+								ENDIF
+								
+							NEXT
+	
+	RETURN cVariable
+	
 
 
 ENDDEFINE
