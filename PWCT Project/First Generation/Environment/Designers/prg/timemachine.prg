@@ -13,7 +13,7 @@ PROCEDURE  ChangeTime(oGDForm)
 					IF oGDForm.slider1.VALUE < oGDForm.slider1.MAX
 						oGDForm.command1.ENABLED = .F.
 						oGDForm.command2.ENABLED = .F.
-						oGDForm.command3.ENABLED = .F.
+						oGDForm.command3.ENABLED = .F. 
 						oGDForm.command4.ENABLED = .F.
 
 						oGDForm.command5.Visible = .F.
@@ -47,8 +47,13 @@ PROCEDURE  ChangeTime(oGDForm)
 					SELECT t46
 					GOTO TOP
 					SCAN
+					
 						SELECT t38
+						
 						LOCATE FOR UPPER(ALLTRIM(stepinterid)) == UPPER(ALLTRIM(t46->f_iid)) .AND. UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle))
+						
+				 
+						
 						IF FOUND()
 							hismax = hismax + 1
 							IF hismax = mypos
@@ -328,6 +333,9 @@ PROCEDURE  ChangeTime(oGDForm)
 
 							* select the step with the interaction id equal to the position in the interaction history
 							LOCATE FOR UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(stepinterid) = myiid
+							
+							
+					 
 							
 							IF FOUND()
 							
