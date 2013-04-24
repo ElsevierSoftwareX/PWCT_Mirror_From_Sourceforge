@@ -91,12 +91,19 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 
 												IF rectype = 3
 
-													IF idf_open->o_trans = 0
-
-													ELSE
+													IF .not. idf_open->o_trans = 0
 
 														tvar_vname = mypstr + ALLTRIM(idf_open->o_var)
 														tvar_options = idf_open->o_options
+														
+														tvar_pname = ALLTRIM(idf_open->o_var)
+														
+														tvar_options2 = this.GetFromListFile(myfile,tvar_pname)
+														
+														IF .not. tvar_options2 = "NoThing"
+																tvar_options = tvar_options2
+														ENDIF
+														
 
 														* update the history to replace list index with list item
 
@@ -119,6 +126,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 																ax_myhis = STRTRAN(ax_myhis,axline,mynewaxline)
 
 																EXIT
+																
 															ENDIF
 
 														NEXT
@@ -382,6 +390,10 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 												ELSE
 													myid = myobj.INDEXTOITEMID(myobj.LISTINDEX)
 													myvalue = ALLTRIM(myobj.LISTITEM(myid))
+													
+												*  myvalue = this.GetFromListFile(cIDFFile, t42->o_var , "NoThing" )
+													
+													
 													myvalueh = ALLTRIM(STR(myobj.LISTINDEX))
 												ENDIF
 											CASE  t42->rectype = 4 && checkbox
@@ -1364,7 +1376,38 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 	RETURN
 	
 
+	* The next procedure uses the list files comes with IDF Files
+	* the list file contains the item in the listbox (when the listbox return item instead of index)
+	* the idea is to get the item text from the list file instead of using the listbox
+	* By doing this we isolate the listbox items from the code 
+	* So we can change the names of the listbox items without any problems in the generated source code
+	* We need to change the listbox items names to support other languages like Arabic for example
 	
+	PROCEDURE GetFromListFile(cIDFFile, cVariableName )
+	
+				LOCAL cOutput,cFileName
+				
+				cOutput = ""
+					
+				cFileName = ALLTRIM(cIDFFile)
+				
+
+				cFileName = LEFT(cIDFFile,LEN(cIDFFile)-4) + "_" + ALLTRIM(cVariableName) + ".list"
+				
+			 
+				
+				IF FILE(cFileName)
+				
+					  syslogmsg(" List file : " + cFileName ) 
+						cOutput = FILETOSTR(cFileName)
+						
+				ELSE
+				
+						cOutput = "NoThing"
+						
+				ENDIF
+	
+	RETURN cOutput
 
 
 ENDDEFINE
