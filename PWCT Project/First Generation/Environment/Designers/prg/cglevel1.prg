@@ -18,6 +18,9 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 				
 				LOCAL p_iid,lrefreshsteps
 		
+				LOCAL myvalue
+				
+		
 				lrefreshsteps = this.lrefreshsteps
 				p_iid = this.p_iid
 				
@@ -381,26 +384,60 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 											DO CASE
 									 
 											CASE  t42->rectype = 2 && textbox
+											
 												myvalue = ALLTRIM(myobj.VALUE)
 												myvalueh = myvalue
+												
 											CASE  t42->rectype = 3 && listbox
+											
 												IF o_trans = 0
+												
 													myvalue = ALLTRIM(STR(myobj.LISTINDEX))
 													myvalueh = myvalue
+													
 												ELSE
+												
 													myid = myobj.INDEXTOITEMID(myobj.LISTINDEX)
 													myvalue = ALLTRIM(myobj.LISTITEM(myid))
 													
-												*  myvalue = this.GetFromListFile(cIDFFile, t42->o_var , "NoThing" )
 													
+													* Get the item from the list file instead of the listbox
+													
+													cPageVar = t42->o_var
+													cPageVar =  SUBSTR(cPageVar,AT("[",cPageVar)+1,AT("]",cPageVar)-AT("[",cPageVar)-1)   && page name
+													
+													FOR tv_x = 1 TO MEMLINES(m_pages)
+													
+															IF ALLTRIM(MLINE(m_pages,tv_x)) == ALLTRIM(cPageVar)
+															
+																syslogmsg("Page Number " + STR(tv_x) )
+													
+																cPageVar = MLINE(m_files,tv_x)
+																cTemp_myvalue2 = this.GetFromListFile(cPageVar, SUBSTR(t42->o_var,AT("]",t42->o_var)+1  ))
+																
+																IF .not. cTemp_myvalue2 = "NoThing"
+																
+																		myvalue = MLINE(cTemp_myvalue2,myid)
+																		syslogmsg( " MyValue : " + myvalue)
+																		
+																ENDIF
+															
+															ENDIF													
+													
+													NEXT							
+													
+													**********************************************************
+																			
 													
 													myvalueh = ALLTRIM(STR(myobj.LISTINDEX))
+													
 												ENDIF
 											CASE  t42->rectype = 4 && checkbox
 												myvalue = ALLTRIM(STR(myobj.VALUE))
 												myvalueh = myvalue
 										
 											ENDCASE 
+											
 											m_mask = STRTRAN(m_mask,myvar2,myvalue)
 
 											*-------------------------------------------* needed for error checking
@@ -681,6 +718,35 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 															
 																		myid = myobj.INDEXTOITEMID(myobj.LISTINDEX)
 																		myvalue = ALLTRIM(myobj.LISTITEM(myid))
+																		
+																	  * Get the item from the list file instead of the listbox
+													
+																			cPageVar = t42->o_var
+																			cPageVar =  SUBSTR(cPageVar,AT("[",cPageVar)+1,AT("]",cPageVar)-AT("[",cPageVar)-1)   && page name
+																			
+																			FOR tv_x = 1 TO MEMLINES(m_pages)
+																			
+																					IF ALLTRIM(MLINE(m_pages,tv_x)) == ALLTRIM(cPageVar)
+																					
+																						syslogmsg("Page Number " + STR(tv_x) )
+																			
+																						cPageVar = MLINE(m_files,tv_x)
+																						cTemp_myvalue2 = this.GetFromListFile(cPageVar, SUBSTR(t42->o_var,AT("]",t42->o_var)+1  ))
+																						
+																						IF .not. cTemp_myvalue2 = "NoThing"
+																						
+																								myvalue = MLINE(cTemp_myvalue2,myid)
+																								syslogmsg( " MyValue : " + myvalue)
+																								
+																						ENDIF
+																					
+																					ENDIF													
+																			
+																			NEXT							
+																			
+																			**********************************************************
+																		
+																		
 																		myvalueh = ALLTRIM(STR(myobj.LISTINDEX))
 																		myvaluet = "1"
 																		
@@ -1394,11 +1460,11 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 
 				cFileName = LEFT(cIDFFile,LEN(cIDFFile)-4) + "_" + ALLTRIM(cVariableName) + ".list"
 				
-			 
+			 	syslogmsg(" Check List file : " + cFileName ) 
 				
 				IF FILE(cFileName)
 				
-					  syslogmsg(" List file : " + cFileName ) 
+					  syslogmsg(" Open List file : " + cFileName ) 
 						cOutput = FILETOSTR(cFileName)
 						
 				ELSE
