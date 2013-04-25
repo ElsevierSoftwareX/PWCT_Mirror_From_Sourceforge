@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 13:39:01    Date : 04/24/2013
+* Time : 12:17:47    Date : 04/25/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -74,7 +74,7 @@ END WINDOW
 ACTIVATE WINDOW win1
 EndIF
 procedure myclose()
-win1.Maximize ( )
+win1.Release ( )
 return
 
 End Of Resistance
@@ -93,7 +93,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",19,23)
 SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",24,25)
 SS_ESASTEP("Circuits\Main\Main\Main","Activate window",26,28)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure myclose ( Event : CLICK )",29,29)
-SS_ESASTEP("Circuits\Main\Main\Main","win1. ﬂ»Ì— Ì«»«‘« Ì«ﬂ»Ì— ( )",30,30)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",30,30)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",31,31)
 Return
 *-------------------------------------------------------------------*
