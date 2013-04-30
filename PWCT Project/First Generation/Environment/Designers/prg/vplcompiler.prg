@@ -395,7 +395,9 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		GOTO BOTTOM
 		
   	SELECT (cTableName)
-		GOTO nRecord
+  	IF .not. nRecord = 0 .and. .not. nRecord > Reccount()
+			GOTO nRecord
+		ENDIF 
 	
 	RETURN
 	
