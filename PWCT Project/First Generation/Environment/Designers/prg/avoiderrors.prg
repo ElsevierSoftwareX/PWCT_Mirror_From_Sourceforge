@@ -469,12 +469,16 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			
 		ENDIF
 
-		GOTO n_record2
-
+		if .not. n_Record2 = 0 .and. .not. n_Record2 > Reccount()
+				GOTO n_record2
+		ENDIF
+		
 
 		SELECT (c_table)
-		GOTO n_record
-
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+				GOTO n_record
+		ENDIF
+		
 
 		RETURN myret
 
@@ -1915,7 +1919,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										ENDIF
 										
 										SELECT t46
-										GOTO nRecord4 
+										if .not. nRecord4 = 0 .and. .not. nRecord4 > Reccount()
+												GOTO nRecord4 
+										ENDIF
+										
 										
 										SELECT t38
 										
@@ -1924,10 +1931,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			  NEXT 
 				
 				SELECT t38
-				GOTO nRecord3
+				if .not. nRecord3 = 0 .and. .not. nRecord3 > Reccount()
+					GOTO nRecord3
+				ENDIF
 				
 				SELECT (cTableName)
-				GOTO nRecord
+				if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+						GOTO nRecord
+				ENDIF
 				
 		RETURN nCount
 		
