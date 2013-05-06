@@ -1,10 +1,11 @@
 DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 
 		lRemoveEmptyLines = .T.
-
+		cFileName = "" && the generated source file name
+		
 		PROCEDURE Process(cCode)
 
-					LOCAL nMax,cOutput,nListCount,x,lAdd,cLine,cRule
+					LOCAL nMax,cOutput,nListCount,x,lAdd,cLine,cRule,cFile
 					
 					DIMENSION aCode(1)
 					
@@ -21,6 +22,20 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 								lAdd = .T.
 								
 								cLine = aCode(x)
+								
+								IF LOWER(LEFT(cLine,13)) = "<pwct:tofile>"
+								
+											cFile = 	JUSTPATH(this.cFileName) + "\" + ALLTRIM(SUBSTR(cLine,14))
+											lAdd = .F.
+										
+								ENDIF
+								
+								IF LOWER(LEFT(cLine,14)) = "<pwct:endfile>"
+								
+											lAdd = .F.
+											STRTOFILE(cOutput,cFile)
+											cOutput = ""
+								ENDIF
 								
 								IF LOWER(LEFT(cLine,13)) = "<pwct:addvar>"
 								
