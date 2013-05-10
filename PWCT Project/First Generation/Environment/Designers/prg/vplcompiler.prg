@@ -188,7 +188,9 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 																				 IF obj_avoiderrors.isparentallowedforcomponent(cChildData1) = .f.
 																				  			
 																				  			SELECT t38
-																				 			 GOTO nRecord2
+																				  			if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+																				 			 	GOTO nRecord2
+																				 			 ENDIF 
 																				 			 
 																			 			 	THIS.AddError( " Error : Step ( " + cStepName + " ) Parent is not correct " )
 																															 
@@ -207,7 +209,9 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 											 ENDIF
 											 
 											 SELECT t38
-											 GOTO nRecord2
+											 if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+											 	GOTO nRecord2
+											 ENDIF 
 							 
 
 										CASE nsteptype = 4 && Generated (AllowSub)
@@ -240,7 +244,9 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 																		 				cChildData2 = ALLTRIM(t38->stepname)
 																		 				
 											 											SELECT t38
-											 											GOTO nRecord2
+											 											if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+											 													GOTO nRecord2
+											 											ENDIF 
 											 											
 																		 				lStatus = obj_avoiderrors.lVisualCompiler
 																						 obj_avoiderrors.lVisualCompiler = .t. && to avoid canceling the check because the syntax directed editor is off
@@ -259,7 +265,9 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 																		 	ENDIF
 															 				
 															 				SELECT t38
-															 				GOTO nRecord3
+															 				if .not. nRecord3 = 0 .and. .not. nRecord3 > Reccount()
+															 						GOTO nRecord3
+															 				ENDIF 
 															 				
 															 			ENDIF
 														 				
@@ -268,8 +276,10 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 														 		GOTO bottom
 														 		
 																 SELECT t38
-														 											 	
-														 		GOTO nRecord2
+									 							if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()		
+									 									GOTO nRecord2
+									 							ENDIF
+														 								
  
 									     	ENDIF
 									     		
@@ -319,7 +329,9 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 		DOEVENTS
 					
 		SELECT (cAlias)
-		GOTO nRecord
+		if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+				GOTO nRecord
+		ENDIF 
 	
 	RETURN
 	
@@ -346,12 +358,14 @@ DEFINE CLASS GD_VPLCompiler AS VPLRulesBase OF VPLRules.prg
 			lRet = .f.
 		ENDIF
 		
-		
-		GOTO nRecord2
-		
+		if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+			GOTO nRecord2
+		ENDIF 
 	
 		SELECT (cTableName)
-		GOTO nRecord
+		if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+			GOTO nRecord
+		ENDIF 
 		
 	RETURN lRet
 	

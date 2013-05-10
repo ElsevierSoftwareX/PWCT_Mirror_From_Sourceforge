@@ -221,7 +221,9 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 		ENDIF
 
 		SELECT t38
-		GOTO n_record
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+			GOTO n_record
+		ENDIF 
 
 		SELECT (c_tablename)
 
@@ -301,7 +303,9 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 		ENDIF
 
 		SELECT (c_table)
-		GOTO n_record
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+			GOTO n_record
+		ENDIF 
 
 		RETURN myret
 
@@ -512,7 +516,9 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 			this.istate_reccount = RECCOUNT()
 		
 			SELECT (cTableName)
-			GOTO nRecord
+			if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+					GOTO nRecord
+			ENDIF 
 			
 		RETURN
 		
@@ -564,7 +570,9 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 			ENDIF
 	
 			SELECT (cTableName)
-			GOTO nRecord
+			if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+					GOTO nRecord
+			ENDIF 
 			
 	RETURN
 	

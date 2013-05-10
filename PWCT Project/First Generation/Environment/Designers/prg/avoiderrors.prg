@@ -279,7 +279,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		*--------------------------*
 
 		SELECT (c_table)
-		GOTO n_record
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+				GOTO n_record
+		ENDIF 
 
 		RETURN
 
@@ -336,7 +338,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		SELECT t38
 		IF t38->stepdis = .T.
 			SELECT (c_table)
-			GOTO n_record
+			if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+				GOTO n_record
+			ENDIF 
 			RETURN .F.
 		ENDIF
 		*********************************************************
@@ -398,13 +402,21 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 				ENDIF
 
+			ELSE
+			
+					GOTO top
+					
 			ENDIF
 
 
 		ENDIF
 
 		SELECT (c_table)
-		GOTO n_record
+		
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+				GOTO n_record
+		ENDIF
+		
 
 		RETURN myret
 
@@ -458,6 +470,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 					ENDIF
 				
 						
+				ELSE
+				
+						GOTO top
+				
 				ENDIF
 
 				IF UPPER(ALLTRIM(cparent)) == "SP_"
@@ -547,11 +563,15 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				ENDIF
 
 				SELECT t38
-				GOTO nRecord2
-
+				if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+						GOTO nRecord2
+				ENDIF 
 
 				SELECT (cTableName)
-				GOTO nRecord
+				if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+						GOTO nRecord
+				ENDIF
+				
 		
 		RETURN nParentRec
 		
@@ -586,67 +606,73 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			
 			IF FOUND()
 
-				chis = f_myhis
-		 
-				cFile = this.GETCOMPONENTFILE()
-				cacfile = cfile
-
-				IF FILE(cfile)
-
-					cfile = STRTRAN(cfile,".TRF",".RULES")
-
-					IF FILE(cfile)
-
-						crules = this.myFILETOSTR(cfile)
-						crules = UPPER(crules)
-
-						
-						nmax = ALINES(aRules,cRules)
-						
-						FOR x = 1 TO nmax
-						
-					 
-							cLine = aRules(x)
-							cline = ALLTRIM(cline)
-							crule = "AllowInteraction: " + cinternum
-							
-							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
-
-
-								FOR T = x TO nmax
-
-					 
-									cline = aRules(T)
-									
-									cline = UPPER(ALLTRIM(cline))
-
-									crule = "SCOPE:"
-									
-									IF LEFT(cline,6) == crule
-									
-										cline = SUBSTR(cline,7)
-										cline = ALLTRIM(cline)
-										
-										IF cline == "GENERAL"
-												
-											RETURN .t.
-									 
-										ENDIF
-										
-									ENDIF
-									
-							 NEXT
+									chis = f_myhis
 							 
-					 	ENDIF
-					 	
-				 NEXT
-				 ENDIF
-			ENDIF
+									cFile = this.GETCOMPONENTFILE()
+									cacfile = cfile
+
+									IF FILE(cfile)
+
+										cfile = STRTRAN(cfile,".TRF",".RULES")
+
+													IF FILE(cfile)
+
+																		crules = this.myFILETOSTR(cfile)
+																		crules = UPPER(crules)
+
+																		
+																		nmax = ALINES(aRules,cRules)
+																		
+																		FOR x = 1 TO nmax
+																		
+																	 
+																							cLine = aRules(x)
+																							cline = ALLTRIM(cline)
+																							crule = "AllowInteraction: " + cinternum
+																							
+																							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+
+
+																												FOR T = x TO nmax
+
+																									 
+																																	cline = aRules(T)
+																																	
+																																	cline = UPPER(ALLTRIM(cline))
+
+																																	crule = "SCOPE:"
+																																	
+																																	IF LEFT(cline,6) == crule
+																																	
+																																						cline = SUBSTR(cline,7)
+																																						cline = ALLTRIM(cline)
+																																						
+																																						IF cline == "GENERAL"
+																																								
+																																							RETURN .t.
+																																					 
+																																						ENDIF
+																																		
+																																	ENDIF
+																													
+																											 NEXT
+																							 
+																					 	ENDIF
+																	 	
+																 	NEXT
+												 ENDIF
+								ENDIF
+		ELSE
+					GOTO TOP 
 		ENDIF
+		
 	ENDIF
 	
 	SELECT (c_table)
-  GOTO n_record
+	if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+  			GOTO n_record
+  ENDIF
+  
   
  RETURN .f.
 	
@@ -793,11 +819,16 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 		IF  lParentChanged = .t.
 				SELECT t38
-				GOTO nRecord2
+				if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+						GOTO nRecord2
+				ENDIF 
 		ENDIF
 		
 		SELECT (c_table)
-		GOTO n_record
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+					GOTO n_record
+		ENDIF
+		
 
 		RETURN myret
 
@@ -952,8 +983,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 						ENDIF
 
 						SELECT t38
-						GOTO nRecord2
-
+						if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+								GOTO nRecord2
+						ENDIF 
+						
 						*************
 						* Now you have the component rules stored in the variable : cRules
 						* And you have the parent component stored in the varaible : cComponentFile
@@ -992,7 +1025,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 													ENDIF
 													
 													SELECT t38
-													GOTO nRecord2
+													if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+															GOTO nRecord2
+													ENDIF
 													
 													EXIT
 											
@@ -1055,8 +1090,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		ENDIF
 
 		SELECT (c_table)
-		GOTO n_record
-
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+				GOTO n_record
+		ENDIF 
+		
 		RETURN myret
 
 	PROCEDURE isparentallowedforcomponent(ccomponentfile)
@@ -1212,12 +1249,16 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 		IF  lParentChanged = .t.
 				SELECT t38
-				GOTO nRecord2
+				if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+					GOTO nRecord2
+				ENDIF 
 		ENDIF
 
 
 		SELECT (c_table)
-		GOTO n_record
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+				GOTO n_record
+		ENDIF 
 
 		RETURN myret
 
@@ -1321,8 +1362,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																				  	ENDIF
 																		  		 
 																		  		  SELECT t38
-																		  		  GOTO nRecord
-																		  		  
+																		  		  if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+																		  		  		GOTO nRecord
+																		  		  ENDIF 
 																		  		  
 																		  		  
 																	ENDIF
@@ -1340,8 +1382,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 			SELECT t38
 		 
-		  GOTO nRecord
-		  
+	  	if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+		 			GOTO nRecord
+		  ENDIF 
   		this.lCheckNewDuplication = .f.
 			
 		RETURN lRet
@@ -1395,7 +1438,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 									ENDIF
 									
 									SELECT (cTableName)
-									GOTO nRecord
+									if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+											GOTO nRecord
+									ENDIF 
 									
 									IF nCount > nRequiredCount
 									
@@ -1423,7 +1468,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			ENDIF
 			
 			SELECT (cTableName)
-			GOTO nRecord
+			if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+						GOTO nRecord
+			ENDIF 
 							
 		
 		RETURN .F.
@@ -1629,7 +1676,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										    updatecode(t46->F_IID)
 										    
 												SELECT (cTableName)
-												GOTO nRecord
+												if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+														GOTO nRecord
+												ENDIF 
 												
 												RETURN  
 										
@@ -1645,8 +1694,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			
 		
 			SELECT (cTableName)
-			GOTO nRecord
-				
+			if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+					GOTO nRecord
+			ENDIF 		
 		RETURN  
 		
 		
@@ -1755,8 +1805,10 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		ENDIF
 		
 		SELECT (cTableName)
-		GOTO nRecord
-	
+		if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+					GOTO nRecord
+	  ENDIF 
+	  
 	RETURN mynum
 		
 		
@@ -1786,8 +1838,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 										IF AT(this.cDuplicationVariable,aValues(x)) > 0
 										
 												SELECT (cTableName)
-												GOTO nRecord
-												
+												if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+													GOTO nRecord
+												ENDIF 
 											 
 												RETURN SUBSTR(aValues(x),AT("=",aValues(x))+1)
 										
@@ -1801,7 +1854,9 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			
 		
 			SELECT (cTableName)
-			GOTO nRecord
+			if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+						GOTO nRecord
+			ENDIF 
 				
 		RETURN "NOTDETERMINED"
 		
@@ -1896,10 +1951,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																	IF nCount > 1
 																	
 																			SELECT t38
-																			GOTO nRecord3
+																			if .not. nRecord3 = 0 .and. .not. nRecord3 > Reccount()
+																				GOTO nRecord3
+																			ENDIF 
 																			
 																			SELECT (cTableName)
-																			GOTO nRecord
+																			if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+																					GOTO nRecord
+																			ENDIF 
 																	
 																	    this.cDuplicationVariable = cOldDuplicationVariable
 																	    
@@ -2024,11 +2083,14 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 				ENDIF
 
 				SELECT t38
-				GOTO nRecord2
-
+				if .not. nRecord2 = 0 .and. .not. nRecord2 > Reccount()
+						GOTO nRecord2
+				ENDIF 
 
 				SELECT (cTableName)
-				GOTO nRecord
+				if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+						GOTO nRecord
+				ENDIF 
 		
 		RETURN ALLTRIM(cParent)
 		
@@ -2060,8 +2122,13 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			LOCATE FOR UPPER(ALLTRIM(t38->stepinterid)) == UPPER(ALLTRIM(cinteractionid)) .AND. t38->stepinternum = ninteractionnumber
 
 			IF .NOT. FOUND()
+				
 
-				GOTO n_record
+				if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+					GOTO n_record
+				ELSE
+					GOTO TOP 
+				ENDIF 
 
 			ENDIF
 
@@ -2102,17 +2169,24 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 
 				myret = .T.
 
-
+			ELSE
+			
+				GOTO top
+				
 			ENDIF
 
-			GOTO n_record2
-
+			if .not. n_Record2 = 0 .and. .not. n_Record2 > Reccount()
+					GOTO n_record2
+			ENDIF
+			
 		ENDIF
 
 
 		SELECT (c_table)
-		GOTO n_record
-
+		if .not. n_Record = 0 .and. .not. n_Record > Reccount()
+				GOTO n_record
+		ENDIF
+		
 		RETURN myret
 
 		*******************************************

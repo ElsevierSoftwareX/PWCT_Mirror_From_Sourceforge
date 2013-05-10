@@ -77,7 +77,9 @@ DEFINE CLASS VPLRulesBase AS Custom
 				ENDIF
 
 				SELECT (cTableName)
-				GOTO nRecord
+				if .not. nRecord = 0 .and. .not. nRecord > Reccount()
+					GOTO nRecord
+				ENDIF 
 
 		RETURN myret
 

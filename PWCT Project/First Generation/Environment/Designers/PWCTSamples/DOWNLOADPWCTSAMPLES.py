@@ -202,7 +202,7 @@ Samples.append("HarbourPWCT_SerialCommunication.zip")
 Samples.append("HarbourPWCT_DrawGraph.zip")
 Samples.append("HarbourPWCT_DBFFields.zip")
 Samples.append("HarbourPWCT_SearchByFirstLettersInEachWord.zip")
-Samples.append("HarbourPWCT_HarbourPWCT_ShowPowerPointPresentationInsideApplicationWindow.zip")
+Samples.append("HarbourPWCT_ShowPowerPointPresentationInsideApplicationWindow.zip")
 Samples.append("HarbourPWCT_UsingMySQL.zip")
 mymax = len(Samples)
 cont = 1
