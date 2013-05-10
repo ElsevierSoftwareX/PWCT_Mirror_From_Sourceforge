@@ -1,9 +1,9 @@
 *---------------------------------------------------------------------------*
-* Time : 18:00:14    Date : 05/03/2013
+* Time : 21:00:30    Date : 05/10/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
-* Version : PWCT 1.9 (Art) 18/04/2013
+* Version : PWCT 1.9 (Art) 10/5/2013
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -61,7 +61,7 @@ BACKCOLOR {255,255,255}
 CAPTION "Close Window";
 ON CLICK myclose()  ;
 WIDTH 160 HEIGHT 30 ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 TOOLTIP ""
 @ 111 ,127 LABEL lbl1 ;
 VALUE "Welcome to PWCT" ;
