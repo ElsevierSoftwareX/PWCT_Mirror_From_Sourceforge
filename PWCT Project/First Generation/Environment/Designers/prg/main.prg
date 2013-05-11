@@ -139,7 +139,7 @@ PUBLIC obj_VPLCompiler
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 10/5/2013"
+sys_pwctversion = "PWCT 1.9 (Art) 2013.05.11"
 
 
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
