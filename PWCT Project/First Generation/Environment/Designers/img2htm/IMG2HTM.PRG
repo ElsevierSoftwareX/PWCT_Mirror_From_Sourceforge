@@ -1,13 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 04:18:30    Date : 03/11/2013
+* Time : 06:43:13    Date : 05/13/2013
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2013]  
+* Programming Without Coding Technology (PWCT) 
+* 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 2013.05.13
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
-*---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour
-* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -61,7 +60,6 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
-
 win1.Center ( )
 @ 62 ,10 LABEL lbl1 ;
 VALUE "Select Folder" ;
@@ -76,7 +74,6 @@ WIDTH 455 ;
 VALUE "C:\SSBUILD\PWCTSHOTS" ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 59 ,553 BUTTONEX btn1;
 CAPTION "Browse";
 ON CLICK myfolder()  ;
@@ -102,7 +99,6 @@ WIDTH 455 ;
 VALUE "In this lesson we are going to create " ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 8 ,553 BUTTONEX btn3;
 CAPTION "Save";
 ON CLICK aboutfile()  ;
@@ -116,10 +112,8 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
-
 ACTIVATE WINDOW win1
 EndIF
-
 Proc myfolder
 GetFolder := GetFolder ( ;
 ,  ;
@@ -133,7 +127,7 @@ mytext := mytext + CHR(13) + CHR(10) + "<body>"
 mytext := mytext + CHR(13) + CHR(10) + "<div>"
 cFolder := win1.text1.Value
 cFolder = ALLTRIM ( cFolder )
-mytext := mytext + CHR(13) + CHR(10) + htmline("               PWCT 1.8 Smart Documentation ( http://doublesvsoop.sourceforge.net )")
+mytext := mytext + CHR(13) + CHR(10) + htmline("               PWCT 1.9 Art Documentation ( http://doublesvsoop.sourceforge.net )")
 mytext := mytext + CHR(13) + CHR(10) + htmline("               2006-2013, Mahmoud Fayed ( msfclipper@users.sourceforge.net )")
 mytext := mytext + CHR(13) + CHR(10) + htmline("_____________________________________________________________________________________")
 mytext := mytext + CHR(13) + CHR(10) + htmline3("Table of contents")
@@ -275,12 +269,11 @@ procedure closeapp()
 win1.Release ( )
 return
 
-
 End Of Resistance
 
 INIT PROCEDURE Init_IMG2HTM
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'PWCT - Time Machine Documentation Generator '",1,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,13)
@@ -318,7 +311,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Print text ('<body>') to string (mytext)",
 SS_ESASTEP("Circuits\Main\Main\Main","Print text ('<div>') to string (mytext)",82,82)
 SS_ESASTEP("Circuits\Main\Main\Main","cFolder = win1.text1.Value",83,83)
 SS_ESASTEP("Circuits\Main\Main\Main","cFolder = All Trim cFolder",84,84)
-SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               PWCT 1.8 Smart Documentation ( http://doublesvsoop.sourceforge.net )')) to string (mytext)",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               PWCT 1.9 Art Documentation ( http://doublesvsoop.sourceforge.net )')) to string (mytext)",85,85)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               2006-2013, Mahmoud Fayed ( msfclipper@users.sourceforge.net )')) to string (mytext)",86,86)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('_____________________________________________________________________________________')) to string (mytext)",87,87)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline3('Table of contents')) to string (mytext)",88,88)
