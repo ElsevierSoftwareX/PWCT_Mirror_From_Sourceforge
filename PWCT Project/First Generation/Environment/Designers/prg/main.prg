@@ -204,10 +204,13 @@ PROCEDURE errHandler
    
    writelog()
    
-   MESSAGEBOX(" Unexpected error happened - see the log file c:\ssbuild\pwct19\pwctlog.txt ",0,"Error")
+   DO FORM pwcterror.scx
    
-   CLOSE DATABASES 
-   QUIT
+   
+  * MESSAGEBOX(" Unexpected error happened - see the log file c:\ssbuild\pwct19\pwctlog.txt ",0,"Error")
+   
+   *CLOSE DATABASES 
+   *QUIT
    
    
 ENDPROC
