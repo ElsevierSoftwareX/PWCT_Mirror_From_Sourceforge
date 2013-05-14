@@ -790,9 +790,9 @@ DEFINE POPUP (a_menupops[17]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[17]) PROMPT "PWCT on the Web";
 	KEY f1, "F1"
 DEFINE BAR 2 OF (a_menupops[17]) PROMPT "\-"
-DEFINE BAR 22 OF (a_menupops[17]) PROMPT "PWCT Samples Folder"
+DEFINE BAR 22 OF (a_menupops[17]) PROMPT "PWCT Samples Manager"
 DEFINE BAR 23 OF (a_menupops[17]) PROMPT "\-"
-DEFINE BAR 24 OF (a_menupops[17]) PROMPT "PWCT Tutorials Folder"
+DEFINE BAR 24 OF (a_menupops[17]) PROMPT "PWCT Tutorials Manager"
 DEFINE BAR 25 OF (a_menupops[17]) PROMPT "\-"
 
 *DEFINE BAR 17 OF (a_menupops[17]) PROMPT sysmsg(1488)
@@ -836,7 +836,7 @@ ENDIF
 *!
 *!******************************************************************************
 PROCEDURE opensamfolder()
-	shellexecute(0,"open",APPLICATION.DEFAULTFILEPATH + "\PWCTSamples\","","",1)
+	shellexecute(0,"open",APPLICATION.DEFAULTFILEPATH + "\PWCTSamples\SAMMAN.exe","","",1)
 	RETURN
 
 *!******************************************************************************
@@ -849,7 +849,7 @@ PROCEDURE opensamfolder()
 *!
 *!******************************************************************************
 PROCEDURE opentutfolder()
-	shellexecute(0,"open",APPLICATION.DEFAULTFILEPATH + "\PWCTTutorials\","","",1)
+	shellexecute(0,"open",APPLICATION.DEFAULTFILEPATH + "\PWCTTutorials\TUTMAN","","",1)
 	RETURN
 
 *!******************************************************************************
