@@ -1,9 +1,9 @@
 *---------------------------------------------------------------------------*
-* Time : 06:04:01    Date : 05/14/2013
+* Time : 12:01:59    Date : 05/14/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
-* Version : PWCT 1.9 (Art) 2013.05.13
+* Version : PWCT 1.9 (Art) 2013.05.14
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -145,7 +145,7 @@ Local x,nMax,cLine
 Public cStr
 win1.list1.DeleteAllItems ( )
 aItems := {}
-cStr := FILESTR( "index.txt" )
+cStr := FILESTR( "C:\SSBUILD\PWCT19\PWCTtutorials\" +"index.txt" )
 nMax = MLCOUNT( cStr , 254 )
 FOR x = 1 TO nMax STEP 1
 cLine = MEMOLINE( cStr , 254 , x )
@@ -207,7 +207,7 @@ cFile := aItems[nIndex]
 nPos = AT("-",cFile)
 cFile = Left(cFile,nPos-1)
 cFile = ALLTRIM ( cFile )
-cFile := cFile + ".pdf"
+cFile := "C:\SSBUILD\PWCT19\PWCTtutorials\" +cFile + ".pdf"
 CheckFile := File(cFile)
 IF CheckFile
 Execute File cFile
@@ -287,7 +287,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Local x,nMax,cLine",97,97)
 SS_ESASTEP("Circuits\Main\Main\Main","Public cStr",98,98)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.list1.DeleteAllItems ( )",99,99)
 SS_ESASTEP("Circuits\Main\Main\Main","Declare Array aItems",100,100)
-SS_ESASTEP("Circuits\Main\Main\Main","cStr := Read File 'index.txt'",101,101)
+SS_ESASTEP("Circuits\Main\Main\Main","cStr := Read File 'C:\SSBUILD\PWCT19\PWCTtutorials\' +'index.txt'",101,101)
 SS_ESASTEP("Circuits\Main\Main\Main","nMax = Lines count of cStr",102,102)
 SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To nMax Step 1)",103,103)
 SS_ESASTEP("Circuits\Main\Main\Main","cLine = LINE x FROM MEMO cStr",104,104)
@@ -349,7 +349,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","cFile = aItems[nIndex]",159,159)
 SS_ESASTEP("Circuits\Main\Main\Main","nPos = GET START POSITION OF '-' IN cFile",160,160)
 SS_ESASTEP("Circuits\Main\Main\Main","cFile =  Get SubString from left, String: cFile Count: nPos-1",161,161)
 SS_ESASTEP("Circuits\Main\Main\Main","cFile = All Trim cFile",162,162)
-SS_ESASTEP("Circuits\Main\Main\Main","cFile = cFile + '.pdf'",163,163)
+SS_ESASTEP("Circuits\Main\Main\Main","cFile = 'C:\SSBUILD\PWCT19\PWCTtutorials\' +cFile + '.pdf'",163,163)
 SS_ESASTEP("Circuits\Main\Main\Main","CheckFile := Check File cFile",164,164)
 SS_ESASTEP("Circuits\Main\Main\Main","IF ( CheckFile )",165,165)
 SS_ESASTEP("Circuits\Main\Main\Main","Execute File cFile",166,166)
