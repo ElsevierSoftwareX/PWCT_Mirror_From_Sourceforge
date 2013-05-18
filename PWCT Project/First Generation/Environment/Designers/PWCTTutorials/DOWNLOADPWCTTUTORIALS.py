@@ -1,9 +1,9 @@
 import urllib
 import time
 import os
-WebLink = "http://sourceforge.net/projects/doublesvsoop/files/PWCT%20For%20MS-Windows/PWCT%201.8%20%28Smart%29/Tutorials/"
+WebLink = "http://sourceforge.net/projects/doublesvsoop/files/PWCT%20For%20MS-Windows/PWCT%201.9%20%28Art%29/Tutorials/"
 LinkEnd = "/download"
-mymax = 218
+mymax = 220
 cFileName = "Index.txt"
 mycheck = os.path.isfile(cFileName)
 if mycheck == 0 :
