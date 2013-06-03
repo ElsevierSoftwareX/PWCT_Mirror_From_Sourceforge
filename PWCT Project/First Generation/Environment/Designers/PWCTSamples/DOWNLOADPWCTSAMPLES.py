@@ -1,7 +1,7 @@
 import urllib
 import time
 import os
-WebLink = "http://sourceforge.net/projects/doublesvsoop/files/PWCT%20For%20MS-Windows/PWCT%201.8%20%28Smart%29/Samples/"
+WebLink = "http://sourceforge.net/projects/doublesvsoop/files/PWCT%20For%20MS-Windows/PWCT%201.9%20%28Art%29/Samples/"
 LinkEnd = "/download"
 Samples = []
 Samples.append("HarbourPWCT_NumGame.zip")
