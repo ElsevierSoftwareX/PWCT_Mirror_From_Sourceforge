@@ -794,6 +794,8 @@ DEFINE BAR 22 OF (a_menupops[17]) PROMPT "PWCT Samples Manager"
 DEFINE BAR 23 OF (a_menupops[17]) PROMPT "\-"
 DEFINE BAR 24 OF (a_menupops[17]) PROMPT "PWCT Tutorials Manager"
 DEFINE BAR 25 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 26 OF (a_menupops[17]) PROMPT "PWCT Movies Manager"
+DEFINE BAR 27 OF (a_menupops[17]) PROMPT "\-"
 
 *DEFINE BAR 17 OF (a_menupops[17]) PROMPT sysmsg(1488)
 *DEFINE BAR 16 OF (a_menupops[17]) PROMPT "\-"
@@ -815,6 +817,9 @@ ON SELECTION BAR 22 OF (a_menupops[17]) ;
 
 ON SELECTION BAR 24 OF (a_menupops[17]) ;
 	DO opentutfolder IN SYSMENU.prg
+
+ON SELECTION BAR 26 OF (a_menupops[17]) ;
+	DO openmovfolder IN SYSMENU.prg
 
 
 
@@ -850,6 +855,11 @@ PROCEDURE opensamfolder()
 *!******************************************************************************
 PROCEDURE opentutfolder()
 	shellexecute(0,"open",APPLICATION.DEFAULTFILEPATH + "\PWCTTutorials\TUTMAN","","",1)
+	RETURN
+	
+	
+	PROCEDURE openmovfolder()
+	shellexecute(0,"open",APPLICATION.DEFAULTFILEPATH + "\PWCTMovies\MOVMAN","","",1)
 	RETURN
 
 *!******************************************************************************
