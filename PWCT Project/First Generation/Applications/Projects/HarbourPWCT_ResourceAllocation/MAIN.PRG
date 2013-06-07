@@ -1,13 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 14:52:12    Date : 03/05/2013
+* Time : 05:56:11    Date : 04/21/2013
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2013]  
+* Programming Without Coding Technology (PWCT) 
+* 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 18/04/2013
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
-*---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour
-* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -95,22 +94,16 @@ ICON "PWCTICON" ;
 TITLE "Resource Allocation for Cloud Applications  " ;
 MAIN ;
 BACKCOLOR {236,233,216} 
-
 DEFINE MAIN MENU
 POPUP "File "
 MENUITEM "Close " Action self:CloseWindow()
 END POPUP
 END MENU
 DEFINE STATUSBAR 
-
 DATE
-
 CLOCK
-
 KEYBOARD
-
 END STATUSBAR
-
 @ 195 ,12 LABEL lbl1 ;
 VALUE "SLA" ;
 WIDTH 40 ;
@@ -266,11 +259,9 @@ WIDTH 150 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
-
 winCloudApp.Maximize ( )
 ACTIVATE WINDOW winCloudApp
 EndIF
-
 Return 0
 Method CloseWindow Class CloudApp
 winCloudApp.Release ( )
@@ -626,12 +617,11 @@ Method AllResults Class CloudApp
 myout = oAll:ShowWindow()
 Return 0
 
-
 End Of Resistance
 
 INIT PROCEDURE Init_MAIN
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Set Procedure to 'RABase.PRG'",1,1)
 SS_ESASTEP("Circuits\Main\Main\Main","Set Procedure to 'LP.PRG'",2,2)

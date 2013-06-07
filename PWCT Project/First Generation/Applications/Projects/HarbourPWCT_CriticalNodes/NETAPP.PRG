@@ -1,13 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 20:55:26    Date : 03/30/2013
+* Time : 05:54:28    Date : 04/21/2013
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.9 (Art) [2006-2013]  
+* Programming Without Coding Technology (PWCT) 
+* 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 18/04/2013
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
-*---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour
-* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -69,7 +68,6 @@ ICON "PWCTICON" ;
 TITLE "NetApp  " ;
 MAIN ;
 BACKCOLOR {236,233,216} 
-
 DEFINE MAIN MENU
 POPUP "File "
 MENUITEM "New network settings " Action self:Settings()
@@ -78,21 +76,14 @@ MENUITEM "Exit " Action self:CloseWindow()
 END POPUP
 END MENU
 DEFINE STATUSBAR 
-
 DATE
-
 CLOCK
-
 KEYBOARD
-
 END STATUSBAR
-
 END WINDOW
-
 winNetApp.Maximize ( )
 ACTIVATE WINDOW winNetApp
 EndIF
-
 Return 0
 Method CloseWindow Class NetApp
 winNetApp.Release ( )
@@ -125,7 +116,6 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
-
 @ 19 ,25 LABEL lbl1 ;
 VALUE " Area " ;
 WIDTH 140 ;
@@ -169,7 +159,6 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC 
-
 @ 84 ,183 TEXTBOX textHeight;
 HEIGHT 30 ;
 WIDTH 80 ;
@@ -178,7 +167,6 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC 
-
 @ 141 ,183 TEXTBOX textNodes;
 HEIGHT 30 ;
 WIDTH 80 ;
@@ -187,7 +175,6 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC 
-
 @ 181 ,183 TEXTBOX textRange;
 HEIGHT 30 ;
 WIDTH 80 ;
@@ -196,7 +183,6 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC 
-
 @ 236 ,48 BUTTONEX btnSave;
 CAPTION "Run ";
 ON CLICK self:SaveData()  ;
@@ -210,11 +196,9 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
-
 winSettings.Center ( )
 ACTIVATE WINDOW winSettings
 EndIF
-
 Return 0
 Method CloseWindow Class Settings
 winSettings.Release ( )
@@ -269,7 +253,6 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
-
 @ 7 ,6 GRID Grid1;
 ON LOSTFOCUS Self:GridChange()  ;
 ON CHANGE Self:ShowNeighbors()  ;
@@ -393,56 +376,48 @@ WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 217 ,681 TEXTBOX textLeafNodes;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 283 ,681 TEXTBOX textCriticalGlobal;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 324 ,681 TEXTBOX textNonCriticalGlobal;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 283 ,798 TEXTBOX textCritical1Hop;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 324 ,798 TEXTBOX textNonCritical1Hop;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 362 ,681 TEXTBOX textIntermediateGlobal;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 362 ,798 TEXTBOX textIntermediate1Hop;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 402 ,487 LABEL lbl16 ;
 VALUE "Accuracy " ;
 WIDTH 180 ;
@@ -456,7 +431,6 @@ WIDTH 110 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 402 ,681 TEXTBOX textGlobalAccuracy;
 HEIGHT 30 ;
 WIDTH 110 ;
@@ -464,7 +438,6 @@ READONLY ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 441 ,586 BUTTONEX btnSaveToTXT;
 CAPTION "Save network to TXT file ";
 ON CLICK Self:SaveToTXT()  ;
@@ -490,28 +463,24 @@ WIDTH 110 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 324 ,918 TEXTBOX textNonCritical2Hop;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 362 ,918 TEXTBOX textIntermediate2Hop;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 402 ,918 TEXTBOX text2hopAccuracy;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 441 ,966 BUTTONEX btnExport2Excel;
 CAPTION "Export to Excel ";
 ON CLICK Self:Export2Excel()  ;
@@ -544,35 +513,29 @@ WIDTH 110 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 324 ,1038 TEXTBOX textNonCritical3Hop;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 362 ,1038 TEXTBOX textIntermediate3Hop;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 402 ,1038 TEXTBOX text3hopAccuracy;
 HEIGHT 30 ;
 WIDTH 110 ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 END WINDOW
-
 winNodesTable.Center ( )
 myout = Self:ShowNodesData()
 ACTIVATE WINDOW winNodesTable
 EndIF
-
 Return 0
 Method LoadNodesData Class NodesTable
 Local aNode,nMax,nMax2
@@ -635,9 +598,7 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {255,255,255} 
-
 END WINDOW
-
 winArea.Width := oSettings:nWidth
 winArea.Height := oSettings:nHeight
 nMax  = LEN(self:Nodes)
@@ -653,14 +614,12 @@ DRAW RECTANGLE IN WINDOW winArea;
 AT nY,nX;
 TO nY2,nX2;
 FILLCOLOR {128,0,255}
-
 nY2 := nY + 11
 cID := aNode[1]
 cID = STR ( cID )
 DRAW TEXT IN WINDOW winArea;
 AT nY2,nX;
 VALUE cID
-
 aNode[6] := 0
 aNode[8] := {}
 FOR t = 1 TO nMax STEP 1
@@ -678,7 +637,6 @@ DRAW RECTANGLE IN WINDOW winArea;
 AT nY,nX;
 TO nY2,nX2;
 FILLCOLOR {128,128,0}
-
 winNodesTable.Grid1.cell(x,5) := aNode[5]
 winNodesTable.Grid1.cell(x,6) := alltrim(str(aNode[6]))
 DRAW LINE IN WINDOW winArea;
@@ -686,7 +644,6 @@ AT nY,nX;
 TO n2Y,n2X;
 PENCOLOR {128,128,0};
 PENWIDTH 2
-
 AADD( aNode[8] , t)
 ENDIF
 ENDIF
@@ -705,7 +662,6 @@ myout = self:Find3HopUsingRules()
 myout = self:Statistics()
 ACTIVATE WINDOW winArea
 EndIF
-
 Return 0
 Method GridChange Class NodesTable
 Local nRow,cX,cY
@@ -1505,12 +1461,11 @@ Next
 ENDIF
 Return 0
 
-
 End Of Resistance
 
 INIT PROCEDURE Init_NETAPP
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Create Object oNetApp of Class NetApp",1,1)
 SS_ESASTEP("Circuits\Main\Main\Main","Create Object oSettings of Class Settings",2,2)
