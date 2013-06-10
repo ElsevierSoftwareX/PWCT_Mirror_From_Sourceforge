@@ -8,7 +8,7 @@ Movies = []
 Movies.append("PWCTMovie_DownloadPWCTSamplesAndTutorials.zip")
 Movies.append("PWCTMovie_CreateYourFirstGUIApplication.zip")
 Movies.append("PWCTMovie_AddControlsToYourApplicationWindow.zip")
-Movies.append("PWCTMovie_CenterTheApplicationWindow.zip ")
+Movies.append("PWCTMovie_CenterTheApplicationWindow.zip")
 Movies.append("PWCTMovie_RunTheProgramsInThePast.zip")
 Movies.append("PWCTMovie_MoveStepsUpOrDown.zip")
 Movies.append("PWCTMovie_EditTheStepName.zip")
