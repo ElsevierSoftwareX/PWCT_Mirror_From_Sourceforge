@@ -1,9 +1,9 @@
 *---------------------------------------------------------------------------*
-* Time : 05:54:28    Date : 04/21/2013
+* Time : 00:58:26    Date : 06/11/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
-* Version : PWCT 1.9 (Art) 18/04/2013
+* Version : PWCT 1.9 (Art) 2013.06.11
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
