@@ -204,6 +204,13 @@ Samples.append("HarbourPWCT_DBFFields.zip")
 Samples.append("HarbourPWCT_SearchByFirstLettersInEachWord.zip")
 Samples.append("HarbourPWCT_ShowPowerPointPresentationInsideApplicationWindow.zip")
 Samples.append("HarbourPWCT_UsingMySQL.zip")
+Samples.append("HarbourPWCT_ListboxSimulation_SetFontSizeColorAndBackColorPerItem.zip")
+Samples.append("HarbourPWCT_GridCellValue.zip")
+Samples.append("HarbourPWCT_CheckSerialPort.zip")
+Samples.append("HarbourPWCT_AttackMethods.zip")
+Samples.append("HarbourPWCT_ProductionFollowUpSystem.zip")
+Samples.append("HarbourPWCT_SineAndCosine.zip")
+
 mymax = len(Samples)
 cont = 1
 lastx = -1
