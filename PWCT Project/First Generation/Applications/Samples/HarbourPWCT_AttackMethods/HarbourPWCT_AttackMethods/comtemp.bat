@@ -1,1 +1,1 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\AttackMethods.PRG"
+ c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\ATTACKMETHODS.PRG"

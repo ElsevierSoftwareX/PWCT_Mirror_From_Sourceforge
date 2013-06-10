@@ -1,13 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 18:08:37    Date : 03/13/2013
+* Time : 02:52:42    Date : 06/10/2013
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.8 (Smart) [2006-2013]  
+* Programming Without Coding Technology (PWCT) 
+* 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 2013.06.04
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
-*---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour
-* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -33,7 +32,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_ATTACK_DEMO_18smart1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_ATTACKMETHODS_18smart1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -48,7 +47,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_ATTACK_DEMO_18smart1() code
+Resistance R_ATTACKMETHODS_18smart1() code
 aDictionary := {}
 AADD( aDictionary , {"Admin","System"})
 AADD( aDictionary , {"sa","sa"})
@@ -71,7 +70,6 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
-
 win1.Center ( )
 DEFINE MAIN MENU
 POPUP "File "
@@ -79,11 +77,8 @@ MENUITEM "Close Application " Action CloseApp()
 END POPUP
 END MENU
 DEFINE STATUSBAR 
-
 STATUSITEM "Ready"
-
 END STATUSBAR
-
 @ 409 ,13 BUTTONEX btn1;
 CAPTION "Backdoor Attack";
 ON CLICK BackDoor()  ;
@@ -141,7 +136,6 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC 
-
 @ 53 ,391 LABEL lbl2 ;
 VALUE "ASCII Code from 0 to (MAX) " ;
 WIDTH 160 ;
@@ -157,7 +151,6 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC 
-
 @ 12 ,769 GRID GridDictionary;
 WIDTH 240 ;
 HEIGHT 120 ;
@@ -190,7 +183,6 @@ VALUE "admin" ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 191 ,899 TEXTBOX textPassword;
 HEIGHT 30 ;
 WIDTH 230 ;
@@ -199,7 +191,6 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 PASSWORD 
-
 @ 12 ,1029 BUTTONEX btnAdd;
 CAPTION "Add ";
 ON CLICK AddToDictionary()  ;
@@ -227,7 +218,6 @@ FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 NUMERIC 
-
 @ 455 ,14 LABEL lbl6 ;
 VALUE "Command/Message from attacker : " ;
 WIDTH 200 ;
@@ -241,7 +231,6 @@ WIDTH 155 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 486 ,283 BUTTONEX btnSend;
 CAPTION "Send ";
 ON CLICK SendMsg()  ;
@@ -271,7 +260,6 @@ VALUE "127.0.0.1" ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 @ 486 ,218 TEXTBOX textVictimPort;
 HEIGHT 30 ;
 WIDTH 60 ;
@@ -279,12 +267,9 @@ VALUE "1500" ;
 FONT "Arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
-
 END WINDOW
-
 ACTIVATE WINDOW win1
 EndIF
-
 procedure CloseApp()
 win1.Release ( )
 return
@@ -393,12 +378,11 @@ cAttackerCommand := ""
 ENDIF
 Return Nil
 
-
 End Of Resistance
 
-INIT PROCEDURE Init_ATTACK_DEMO
+INIT PROCEDURE Init_ATTACKMETHODS
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Declare Array aDictionary",1,1)
 SS_ESASTEP("Circuits\Main\Main\Main","Add item {'Admin','System'} To Array aDictionary",2,2)
