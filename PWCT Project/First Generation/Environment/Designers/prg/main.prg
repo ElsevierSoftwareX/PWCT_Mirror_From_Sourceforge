@@ -142,11 +142,6 @@ PUBLIC sys_pwctversion
 sys_pwctversion = "PWCT 1.9 (Art) 2013.06.11"
 
 
-IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
-	DO FORM welcome
-ELSE
-	DO FORM doubles
-ENDIF
 
 PUBLIC pwct_statusmsgs
 DIMENSION pwct_statusmsgs(1)
@@ -158,6 +153,17 @@ DIMENSION aFilesData(1,2)
 	
 aFilesData(1,1) = "File Name"
 aFilesData(1,2) = "File Content"
+
+PUBLIC cIDFFileOpenNow
+cIDFFileOpenNow = ""
+
+
+IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
+	DO FORM welcome
+ELSE
+	DO FORM doubles
+ENDIF
+
  
 
 
