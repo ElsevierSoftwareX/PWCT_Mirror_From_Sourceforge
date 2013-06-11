@@ -157,6 +157,8 @@ aFilesData(1,2) = "File Content"
 PUBLIC cIDFFileOpenNow
 cIDFFileOpenNow = ""
 
+PUBLIC cTRFFileOpenNow
+cTRFFileOpenNow = ""
 
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
 	DO FORM welcome
