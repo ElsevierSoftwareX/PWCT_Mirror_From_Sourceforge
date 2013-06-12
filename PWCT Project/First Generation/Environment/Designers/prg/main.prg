@@ -39,6 +39,7 @@ DECLARE INTEGER ShellExecute IN shell32.DLL ;
 	STRING cParams, STRING cDir, INTEGER nShowWin
 
 ON SHUTDOWN myquit()
+
 SET ESCAPE OFF
 SET CENTURY ON
 SET SYSMENU TO
@@ -170,7 +171,9 @@ ENDIF
 
 
 READ EVENTS
-CANCEL
+ON SHUTDOWN 
+CLEAR EVENTS
+
 QUIT
 
 
@@ -196,6 +199,9 @@ FUNCTION myquit
 		ENDIF
 	ENDIF
 	
+	ON SHUTDOWN 
+  CLEAR EVENTS
+	
  	QUIT
 
 	RETURN
@@ -215,12 +221,7 @@ PROCEDURE errHandler
    
    DO FORM pwcterror.scx
    
-   
-  * MESSAGEBOX(" Unexpected error happened - see the log file c:\ssbuild\pwct19\pwctlog.txt ",0,"Error")
-   
-   *CLOSE DATABASES 
-   *QUIT
-   
+ 
    
 ENDPROC
 
