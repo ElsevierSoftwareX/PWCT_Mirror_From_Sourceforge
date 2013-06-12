@@ -210,6 +210,8 @@ Samples.append("HarbourPWCT_CheckSerialPort.zip")
 Samples.append("HarbourPWCT_AttackMethods.zip")
 Samples.append("HarbourPWCT_ProductionFollowUpSystem.zip")
 Samples.append("HarbourPWCT_SineAndCosine.zip")
+Samples.append("HarbourPWCT_SearchInRichEditbox.zip")
+
 
 mymax = len(Samples)
 cont = 1

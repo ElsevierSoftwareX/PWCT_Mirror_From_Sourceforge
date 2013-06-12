@@ -171,6 +171,8 @@ ENDIF
 
 READ EVENTS
 CANCEL
+QUIT
+
 
 
 *!******************************************************************************
@@ -193,9 +195,8 @@ FUNCTION myquit
 			serverbrain()
 		ENDIF
 	ENDIF
-
-	CLOSE DATABASE
-	QUIT
+	
+ 	QUIT
 
 	RETURN
 
