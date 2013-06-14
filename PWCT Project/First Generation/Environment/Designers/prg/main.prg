@@ -58,7 +58,7 @@ ENDIF
 
 IF SYSMETRIC(2) = 480 .AND. SYSMETRIC(1) = 640
 	MESSAGEBOX("Sorry the application can't work in resoultion 640*480",0,"DoubleS")
-	CANCEL
+	Quit
 ENDIF
 SET MEMOWIDTH TO 300
 SET SAFETY OFF
