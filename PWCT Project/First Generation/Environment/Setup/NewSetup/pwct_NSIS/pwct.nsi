@@ -19,6 +19,7 @@
 !include "${PACKAGENAME}_PageShortcuts.nsh"
 !include "${PACKAGENAME}_PageFileAssociations.nsh"
 !include "${PACKAGENAME}_PageInstallInfo.nsh"
+!include "FileAssociation.nsh"
 ;
 ;
 ; -----------------------------------------------------------------------------
@@ -18987,7 +18988,12 @@ Section "Installer Section"
   !endif
   ; ${EIT_ExecWait} '"$INSTDIR\SSBUILD\PWCT19\regcom.bat" ' 
   RegDLL "$INSTDIR\SSBUILD\PWCT19\comctl32.ocx" 
-  
+  ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".ssf" "PWCT Visual Source File"
+  ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".trf" "PWCT Transporter File"
+  ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".idf" "PWCT Interaction Designer File"
+  ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".isf" "PWCT Interaction Script File"
+
+
   !ifdef FEATURE_REBOOT_NEEDED
     SetRebootFlag true
   !endif
@@ -19045,6 +19051,11 @@ Section "un.Uninstaller Section"
   ${un.EIT_ExecuteUninstall} "$INSTDIR\"
   RMDir "$INSTDIR\SSBUILD"
   RMDir "$INSTDIR\SSRPWI"
+  ${unregisterExtension} ".ssf" "PWCT Visual Source File"
+  ${unregisterExtension} ".trf" "PWCT Transporter File"
+  ${unregisterExtension} ".idf" "PWCT Interaction Designer File"
+  ${unregisterExtension} ".isf" "PWCT Interaction Script File"
+
 SectionEnd ; Uninstaller Section
 ; -----------------------------------------------------------------------------
 ; Customization of uninstall NSIS callbacks
