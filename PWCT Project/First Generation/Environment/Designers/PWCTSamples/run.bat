@@ -1,5 +1,6 @@
 echo off
-c:\
+c:
+cd\
 cd ssbuild
 cd pwct19
 cd pwctsamples

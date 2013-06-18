@@ -211,7 +211,8 @@ Samples.append("HarbourPWCT_AttackMethods.zip")
 Samples.append("HarbourPWCT_ProductionFollowUpSystem.zip")
 Samples.append("HarbourPWCT_SineAndCosine.zip")
 Samples.append("HarbourPWCT_SearchInRichEditbox.zip")
-
+Samples.append("PWCT_NewVPL.zip")
+Samples.append("SmartPOS.zip")
 
 mymax = len(Samples)
 cont = 1
@@ -222,7 +223,10 @@ while cont == 1 :
 		mycheck = os.path.isfile(Samples[x])
 		if mycheck == 0 :
 			try:
-				vOutput = urllib.urlretrieve(WebLink+Samples[x]+LinkEnd,Samples[x])
+				if x == 208:
+					vOutput = urllib.urlretrieve("http://sourceforge.net/projects/pos-sys/files/Smart%20POS%20System%20%28PWCT%20Source%20code%29.zip/download",Samples[x])
+				else:
+					vOutput = urllib.urlretrieve(WebLink+Samples[x]+LinkEnd,Samples[x])
 				mycheck2 = os.path.isfile(Samples[x])
 				if mycheck2 == 1 :
 					print "[" + str(x+1) + "] File : " + Samples[x]
