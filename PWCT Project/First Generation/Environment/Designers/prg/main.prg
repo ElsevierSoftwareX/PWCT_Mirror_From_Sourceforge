@@ -21,11 +21,48 @@
 *:   main
 *:   myquit
 PARAMETERS pmyfile
+LOCAL cExtCheck
+
 PUBLIC myfiletoopen
 myfiletoopen = ""
 
+PUBLIC cIDFFileOpenNow
+cIDFFileOpenNow = ""
+
+PUBLIC cTRFFileOpenNow
+cTRFFileOpenNow = ""
+
+
+PUBLIC cISFFileOpenNow
+cISFFileOpenNow = ""
+
+
 IF PCOUNT() = 1
-	myfiletoopen = pmyfile
+
+  pmyfile = LOWER(ALLTRIM(pmyfile))
+  
+  IF LEN(pmyfile) > 4
+  
+    cExtCheck = RIGHT(pmyfile,4)
+    
+    DO CASE 
+    
+		  	CASE cExtCheck = ".ssf"
+		      	 myfiletoopen = pmyfile
+		      	
+		    CASE cExtCheck = ".trf"
+		      	 cTRFFileOpenNow = pmyfile
+		      	
+		    CASE cExtCheck = ".idf"
+		      	 cIDFFileOpenNow = pmyfile
+
+	    	CASE cExtCheck = ".isf"
+	    	 		cISFFileOpenNow = pmyfile
+      	
+    ENDCASE       
+    
+  ENDIF  
+  
 ENDIF
 
 sys_vfp_debug = .F.
@@ -140,7 +177,7 @@ PUBLIC obj_VPLCompiler
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2013.06.12"
+sys_pwctversion = "PWCT 1.9 (Art) 2013.06.18"
 
 
 
@@ -155,11 +192,7 @@ DIMENSION aFilesData(1,2)
 aFilesData(1,1) = "File Name"
 aFilesData(1,2) = "File Content"
 
-PUBLIC cIDFFileOpenNow
-cIDFFileOpenNow = ""
 
-PUBLIC cTRFFileOpenNow
-cTRFFileOpenNow = ""
 
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
 	DO FORM welcome
@@ -167,7 +200,7 @@ ELSE
 	DO FORM doubles
 ENDIF
 
- 
+
 
 
 READ EVENTS
