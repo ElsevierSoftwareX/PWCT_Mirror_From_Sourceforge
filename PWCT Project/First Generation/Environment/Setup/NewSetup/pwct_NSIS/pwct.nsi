@@ -7,7 +7,7 @@
 !define PACKAGENAME "pwct"
 !define EIT_LOG_FILENAME "nsis_install.log"
 !define DEF_SHORTCUTS_EXISTS
-!define PROJECT_ROOT_PATH "C:\Users\Mahmoud\Desktop\NewSetup"
+!define PROJECT_ROOT_PATH "D:\PWCTSRC\PWCT Project\First Generation\Environment\Setup\NewSetup"
 ; -----------------------------------------------------------------------------
 ; Include Modern UI, logic statements, file functions and EIT support
 !include "MUI2.nsh"
