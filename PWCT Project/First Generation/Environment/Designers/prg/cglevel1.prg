@@ -1,6 +1,6 @@
 * Code Generation Level 1
 * RPWI Statements
-DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
+DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 	
   lAgain = .F.
   
@@ -139,8 +139,8 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 																								* but we want the step name to get the value from the listbox item
 																								
 																								cTempVarName = this.PageVarToCodeMaskVar(tvar_vname)
-																								m_mask = STRTRAN(m_mask,UPPER(ALLTRIM(cTempVarName))+":idflistboxitem",ALLTRIM(MLINE(idf_open->o_options,VAL(myvalue))))											
-																								m_mask = STRTRAN(m_mask,Lower(ALLTRIM(cTempVarName))+":idflistboxitem",ALLTRIM(MLINE(idf_open->o_options,VAL(myvalue))))											
+																								*m_mask = STRTRAN(m_mask,UPPER(ALLTRIM(cTempVarName))+":idflistboxitem",ALLTRIM(MLINE(idf_open->o_options,VAL(myvalue))),1,1000,1)
+																								m_mask = STRTRAN(m_mask,Lower(ALLTRIM(cTempVarName))+":idflistboxitem",ALLTRIM(MLINE(idf_open->o_options,VAL(myvalue))),1,1000,1)
 																								
 																						 
 																				 
@@ -151,7 +151,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 																									
 
 
-																ax_myhis = STRTRAN(ax_myhis,axline,mynewaxline)
+																ax_myhis = STRTRAN(ax_myhis,axline,mynewaxline,1,1000,1)
 
 																EXIT
 																
@@ -179,46 +179,47 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 								ENDIF
 
 
-								************ LET MASK VARIABLES BE IN CAPITAL LETTERS
+								************ LET MASK VARIABLES BE IN CAPITAL LETTERS - THIS SECTION IS COMMENTED AND STRTRAN NOW TAKES 1,1000,-1 WHERE -1 MEANS NOT CASE SENSITIVE
 
-								lv_mymax = MEMLINES(m_mask)
-								lv_res = ""
-								lv_temp = 0
+*!*									lv_mymax = MEMLINES(m_mask)
+*!*									lv_res = ""
+*!*									lv_temp = 0
 
-								FOR lv_x = 1 TO lv_mymax
+*!*									FOR lv_x = 1 TO lv_mymax
 
-									lv_line = MLINE(m_mask,lv_x)
-									lv_mymax2 = LEN(lv_line)
-									lv_status = 0
+*!*										lv_line = MLINE(m_mask,lv_x)
+*!*										lv_mymax2 = LEN(lv_line)
+*!*										lv_status = 0
 
-									FOR lv_x2 = 1 TO lv_mymax2
+*!*										FOR lv_x2 = 1 TO lv_mymax2
 
-										lv_mylet = SUBSTR(lv_line,lv_x2,1)
+*!*											lv_mylet = SUBSTR(lv_line,lv_x2,1)
 
-										IF lv_mylet = "<"
-											lv_status = 1
-											lv_temp = lv_x2
-										ENDIF
+*!*											IF lv_mylet = "<"
+*!*												lv_status = 1
+*!*												lv_temp = lv_x2
+*!*											ENDIF
 
-										IF lv_status = 0
-											lv_res = lv_res + lv_mylet
-										ENDIF
+*!*											IF lv_status = 0
+*!*												lv_res = lv_res + lv_mylet
+*!*											ENDIF
 
-										IF lv_mylet = ">" .AND.	lv_status = 1
-											lv_word = UPPER(ALLTRIM(SUBSTR(lv_line,lv_temp,lv_x2-lv_temp+1)))
-											lv_res = lv_res + lv_word
-											lv_status = 0
-											lv_temp = 0
-										ENDIF
+*!*											IF lv_mylet = ">" .AND.	lv_status = 1
+*!*												lv_word = UPPER(ALLTRIM(SUBSTR(lv_line,lv_temp,lv_x2-lv_temp+1)))
+*!*												lv_res = lv_res + lv_word
+*!*												lv_status = 0
+*!*												lv_temp = 0
+*!*											ENDIF
 
-									NEXT
+*!*										NEXT
 
-									lv_res  = lv_res + CHR(13) + CHR(10)
+*!*										lv_res  = lv_res + CHR(13) + CHR(10)
 
-								NEXT
+*!*									NEXT
 
-								m_mask = lv_res
+*!*									m_mask = lv_res
 								
+				
 								* run the code mask
 
 
@@ -299,7 +300,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 											myvar2 = UPPER(ALLTRIM(MLINE(m_pair2,ax_x2)))
 											myvalueh = myvalue
 
-											m_mask = STRTRAN(m_mask,myvar2,myvalue)
+											m_mask = STRTRAN(m_mask,myvar2,myvalue,1,1000,1) && 1 = NOT CASE SENSITIVE
 
 											*-------------------------------------------* needed for error checkig
 											* replace test variables with corrosponding values
@@ -308,7 +309,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 
 												IF UPPER(LEFT(tv_error(tv_x),11)) == "<RPWI:TEST>"
 
-													tv_error(tv_x) = STRTRAN(tv_error(tv_x),myvar2,myvalue)
+													tv_error(tv_x) = STRTRAN(tv_error(tv_x),myvar2,myvalue,1,1000,1)
 
 												ENDIF
 
@@ -463,13 +464,13 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 										
 											ENDCASE 
 											
-											m_mask = STRTRAN(m_mask,myvar2,myvalue)
+											m_mask = STRTRAN(m_mask,myvar2,myvalue,1,1000,1)
 
 											*-------------------------------------------* needed for error checking
 											* replace test variables with corrosponding values
 											FOR tv_x = 1 TO tv_lines
 												IF UPPER(LEFT(tv_error(tv_x),11)) == "<RPWI:TEST>"
-													tv_error(tv_x) = STRTRAN(tv_error(tv_x),myvar2,myvalue)
+													tv_error(tv_x) = STRTRAN(tv_error(tv_x),myvar2,myvalue,1,1000,1)
 												ENDIF
 											NEXT
 											*-------------------------------------------*
@@ -697,8 +698,8 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 											myvar2 = UPPER(ALLTRIM(MLINE(m_pair2,ax_x2)))
 											myvalueh = myvalue
 											myvaluet = myvalue
-											myres = STRTRAN(myres,myvar2,myvalue)
-											pstepcode = STRTRAN(pstepcode,myvar2,myvalue)
+											myres = STRTRAN(myres,myvar2,myvalue,1,1000,1)
+											pstepcode = STRTRAN(pstepcode,myvar2,myvalue,1,1000,1)
 
 										ENDIF
 
@@ -769,8 +770,8 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 																								* we want the listbox varaible value to be from the list file to get correct code
 																								* but we want the step name to get the value from the listbox item
 																								* 
-																								myres = STRTRAN(myres,myvar2+":idflistboxitem",myvalue)											
-																								pstepcode = STRTRAN(pstepcode,myvar2+":idflistboxitem",myvalue)
+																								myres = STRTRAN(myres,myvar2+":idflistboxitem",myvalue,1,1000,1)
+																								pstepcode = STRTRAN(pstepcode,myvar2+":idflistboxitem",myvalue,1,1000,1)
 																								
 																								*************************************************************
 																						
@@ -808,9 +809,9 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 												ENDIF
 											ENDIF
 
-											myres = STRTRAN(myres,myvar2,myvalue)
+											myres = STRTRAN(myres,myvar2,myvalue,1,1000,1)
 											
-											pstepcode = STRTRAN(pstepcode,myvar2,myvalue)
+											pstepcode = STRTRAN(pstepcode,myvar2,myvalue,1,1000,1)
 
 									ENDIF
 									
@@ -944,7 +945,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level2
 													IF .NOT. rpwi_vars_count = 1
 														FOR tv_x = 2 TO rpwi_vars_count
 															myivalue = "<" + ALLTRIM(UPPER(rpwi_vars(tv_x,1))) + ">"
-															mymemo = STRTRAN(mymemo,myivalue,rpwi_vars(tv_x,2))
+															mymemo = STRTRAN(mymemo,myivalue,rpwi_vars(tv_x,2),1,1000,1)
 														NEXT
 													ENDIF
 												

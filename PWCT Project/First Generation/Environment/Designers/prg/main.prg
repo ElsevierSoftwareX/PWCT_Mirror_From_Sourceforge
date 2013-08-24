@@ -11,10 +11,10 @@
 *:	
 *:	
 *:	Mahmoud Fayed
-*:	Programming without coding technology 1.8 (Smart)
+*:	Programming without coding technology 1.9 (Art)
 *:	Free - Open Source
 *:	
-*:	Programming without coding technology 1.8 (Smart)
+*:	Programming without coding technology 1.9 (Art)
 *:
 *: Documented using Visual FoxPro Formatting wizard version  .05
 *:******************************************************************************
@@ -177,7 +177,7 @@ PUBLIC obj_VPLCompiler
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2013.06.18"
+sys_pwctversion = "PWCT 1.9 (Art) 2013.08.24"
 
 
 
