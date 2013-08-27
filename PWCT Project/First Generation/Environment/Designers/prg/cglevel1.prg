@@ -574,7 +574,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 						IF UPPER(LEFT(myvar,11)) == "<RPWI:TEST>"
 							mycount = 1
 							myvar2 = SUBSTR(myvar,12)
-							IF AT(mytvalue,myvar2) >= 1
+							IF ( AT(mytvalue,myvar2) >= 1 ) .or. ((mytvalue==myvar2) .and. (mytvalue=""))
 								IF myttype = 0
 									addres = .F.
 								ELSE
