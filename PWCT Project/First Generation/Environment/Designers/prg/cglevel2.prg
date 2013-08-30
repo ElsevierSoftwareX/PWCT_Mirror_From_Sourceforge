@@ -5,7 +5,7 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 		
 		PROCEDURE Process(cCode)
 
-					LOCAL nMax,cOutput,nListCount,x,lAdd,cLine,cRule,cFile
+					LOCAL nMax,cOutput,nListCount,x,lAdd,cLine,cRule,cFile,cLineCmd,cIgnore
 					
 					DIMENSION aCode(1)
 					
@@ -19,34 +19,36 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 
 					FOR x = 1 TO nMax
 
-								lAdd = .T.
+								lAdd = .T. 
 								
 								cLine = aCode(x)
 								
-								IF LOWER(LEFT(cLine,13)) = "<pwct:tofile>"
+								cLineCmd = THIS.RemoveTabsAndSpaces(cLine)
 								
-											cFile = 	JUSTPATH(this.cFileName) + "\" + ALLTRIM(SUBSTR(cLine,14))
+								IF LOWER(LEFT(cLineCmd,13)) = "<pwct:tofile>"
+								
+											cFile = 	JUSTPATH(this.cFileName) + "\" + ALLTRIM(SUBSTR(cLineCmd,14))
 											lAdd = .F.
 										
 								ENDIF
 								
-								IF LOWER(LEFT(cLine,14)) = "<pwct:endfile>"
+								IF LOWER(LEFT(cLineCmd,14)) = "<pwct:endfile>"
 								
 											lAdd = .F.
 											STRTOFILE(cOutput,cFile)
 											cOutput = ""
 								ENDIF
 								
-								IF LOWER(LEFT(cLine,13)) = "<pwct:addvar>"
+								IF LOWER(LEFT(cLineCmd,13)) = "<pwct:addvar>"
 								
-											cRule = ALLTRIM(SUBSTR(cLine,14))
+											cRule = ALLTRIM(SUBSTR(cLineCmd,14))
 											lAdd = .F.
 											
 								ENDIF
 								
-								IF LOWER(LEFT(cLine,13)) = "<pwct:setvar>"
+								IF LOWER(LEFT(cLineCmd,13)) = "<pwct:setvar>"
 								
-											cValue = ALLTRIM(SUBSTR(cLine,14))
+											cValue = ALLTRIM(SUBSTR(cLineCmd,14))
 											
 											nListCount = nListCount + 1
 											DIMENSION aTable(nListCount,2)
@@ -58,7 +60,28 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 									
 								ENDIF
 
-								IF LOWER(LEFT(cLine,22)) = "<pwct:mergenexttoprev>"
+
+								IF LOWER(LEFT(cLineCmd,17)) = "<pwct:ignorelast>"
+							
+									   
+											cIgnore = ALLTRIM(SUBSTR(cLineCmd,18))
+											
+											cOutput = LEFT(cOutput,LEN(cOutput)-2) && remove new line
+											
+											IF UPPER(RIGHT(cOutput,LEN(cIgnore))) == UPPER(cIgnore)
+												cOutput = LEFT(cOutput,LEN(cOutput)-LEN(cIgnore)) && remove bytes											
+											ENDIF
+											
+											
+											cOutput = cOutput + CHR(13) + CHR(10)
+									 
+											lAdd = .F.
+											
+								ENDIF
+								
+
+
+								IF LOWER(LEFT(cLineCmd,22)) = "<pwct:mergenexttoprev>"
 
 											cOutput = LEFT(cOutput,LEN(cOutput)-2) && remove new line
 											cOutput = cOutput + SPACE(1) + aCode(x+1) + CHR(13) + CHR(10)
