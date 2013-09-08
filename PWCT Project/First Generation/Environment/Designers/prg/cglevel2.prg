@@ -35,8 +35,13 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 								IF LOWER(LEFT(cLineCmd,14)) = "<pwct:endfile>"
 								
 											lAdd = .F.
+											
+											cOutput = this.TabPushAndTabPop(cOutput)
+											
 											STRTOFILE(cOutput,cFile)
 											cOutput = ""
+											
+											
 								ENDIF
 								
 								IF LOWER(LEFT(cLineCmd,13)) = "<pwct:addvar>"
@@ -141,5 +146,28 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 			cLine = ALLTRIM(cLine)
 		
 		RETURN cLine
+		
+		PROCEDURE TabPushAndTabPop(myfh)
+		
+			LOCAL myfh2,mytabs,v_mymax,v_ln,v_data
+			
+			myfh2 = ""
+			mytabs = 0
+			v_mymax = MEMLINES(myfh)
+			FOR  v_ln = 1 TO v_mymax
+				v_data = MLINE(myfh,v_ln)
+				IF UPPER(ALLTRIM(v_data)) == "<RPWI:TABPUSH>"
+					mytabs = mytabs+1
+				ELSE
+					IF UPPER(ALLTRIM(v_data)) == "<RPWI:TABPOP>"
+						mytabs = MAX(mytabs-1,0)
+					ELSE
+						myfh2 =  myfh2 + REPLICATE(CHR(9),mytabs)+ v_data + CHR(13) + CHR(10)
+					ENDIF
+				ENDIF
+			NEXT
+		
+		RETURN myfh2
+		
 
 ENDDEFINE
