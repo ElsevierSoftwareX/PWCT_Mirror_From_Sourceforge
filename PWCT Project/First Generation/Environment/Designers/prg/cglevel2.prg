@@ -16,6 +16,9 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 					cOutput = ""
 					
 					nListCount = 0
+					
+					DIMENSION aGeneratedFiles(1)
+					aGeneratedFiles(1) = this.cFileName
 
 					FOR x = 1 TO nMax
 
@@ -28,6 +31,11 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 								IF LOWER(LEFT(cLineCmd,13)) = "<pwct:tofile>"
 								
 											cFile = 	JUSTPATH(this.cFileName) + "\" + ALLTRIM(SUBSTR(cLineCmd,14))
+											
+											
+											DIMENSION aGeneratedFiles(ALEN(aGeneratedFiles,1)+1)
+											aGeneratedFiles(ALEN(aGeneratedFiles,1)) = cFile
+											
 											lAdd = .F.
 										
 								ENDIF

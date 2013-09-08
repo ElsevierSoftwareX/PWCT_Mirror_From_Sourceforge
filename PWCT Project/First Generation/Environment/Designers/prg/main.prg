@@ -177,7 +177,7 @@ PUBLIC obj_VPLCompiler
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2013.08.30"
+sys_pwctversion = "PWCT 1.9 (Art) 2013.09.08"
 
 
 
@@ -192,7 +192,8 @@ DIMENSION aFilesData(1,2)
 aFilesData(1,1) = "File Name"
 aFilesData(1,2) = "File Content"
 
-
+PUBLIC aGeneratedFiles
+DIMENSION aGeneratedFiles(1)
 
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
 	DO FORM welcome
