@@ -16,7 +16,13 @@ Movies.append("PWCTMovie_CommentOrEnableAStep.zip")
 Movies.append("PWCTMovie_SearchAndReplaceInTheStepsTree.zip")
 Movies.append("PWCTMovie_SetTheFontNameAndSizeOfTheStepsTree.zip")
 Movies.append("PWCTMovie_ReadAndWriteTheStepCode.zip")
-
+Movies.append("PWCTMovie_WorkingFasterUsingKeyboardShortcuts.zip")
+Movies.append("PWCTMovie_ConvertFromNumericToString.zip")
+Movies.append("PWCTMovie_TheAgainButton.zip")
+Movies.append("PWCTMovie_CreatingConsoleApplication.zip")
+Movies.append("PWCTMovie_SumTwoNumbers.zip")
+Movies.append("PWCTMovie_CreatingMoreThanOneWindow.zip")
+Movies.append("PWCTMovie_TheSyntaxDirectedEditorAndTheVPLCompiler.zip")
 
 mymax = len(Movies)
 cont = 1

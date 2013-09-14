@@ -213,7 +213,9 @@ Samples.append("HarbourPWCT_SineAndCosine.zip")
 Samples.append("HarbourPWCT_SearchInRichEditbox.zip")
 Samples.append("PWCT_NewVPL.zip")
 Samples.append("SmartPOS.zip")
-
+Samples.append("HarbourPWCT_Decimal.zip")
+Samples.append("HarbourPWCT_PrintWindow.zip")
+Samples.append("HarbourPWCT_ImagesInsideDatabase.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
