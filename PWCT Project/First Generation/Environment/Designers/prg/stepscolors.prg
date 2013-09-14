@@ -320,7 +320,13 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 				
 				cStyle = cStyle + "StepsTreeFontName : " + objGDWindow.container1.oletree.font.name + CHR(13) + CHR(10)
 				cStyle = cStyle + "StepsTreeFontSize : " + ALLTRIM(STR(objGDWindow.container1.oletree.font.size)) + CHR(13) + CHR(10)
-				
+		
+				IF objGDWindow.check3.value = .t.
+	  			cStyle = cStyle + "SyntaxDirectedEditor : True" + CHR(13) + CHR(10)
+				ELSE
+					cStyle = cStyle + "SyntaxDirectedEditor : False" + CHR(13) + CHR(10)
+				ENDIF
+					
 				cStyle = cStyle + "CreatedStepForeColor : " + ALLTRIM(STR(this.sc_created_forecolor)) + CHR(13) + CHR(10)
 				cStyle = cStyle + "CreatedStepBackColor : " + ALLTRIM(STR(this.sc_created_backcolor)) + CHR(13) + CHR(10)
 				
@@ -339,6 +345,8 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 			
 				cStyle = cStyle + "GeneratedLeafStepForeColor : " + ALLTRIM(STR(this.sc_GeneratedLeaf_forecolor)) + CHR(13) + CHR(10)
 				cStyle = cStyle + "GeneratedLeafStepBackColor : " + ALLTRIM(STR(this.sc_GeneratedLeaf_backcolor)) + CHR(13) + CHR(10) 
+		
+		   
 						
 				cStyleFile = JUSTPATH(APPLICATION.SERVERNAME)+"\Style.txt"
 				
@@ -399,6 +407,22 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 									LOOP
 								ENDIF
 								
+								
+								
+								IF cCmd = "SYNTAXDIRECTEDEDITOR"
+								
+									syslogmsg("Style contains : Syntex Directed Editor")
+									
+										IF UPPER(cData) == "TRUE"
+											objGDWindow.check3.value = .T.
+											obj_avoiderrors.lvisualcompiler = .T.
+										ELSE
+											objGDWindow.check3.value = .F.
+											obj_avoiderrors.lvisualcompiler = .F.
+										ENDIF
+											
+									LOOP
+								ENDIF
 								
 								IF cCmd = "CREATEDSTEPFORECOLOR"
 								
