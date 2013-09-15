@@ -11,7 +11,7 @@
 ; -----------------------------------------------------------------------------
 ; Include Modern UI, logic statements, file functions and EIT support
 
-!define MULTIUSER_EXECUTIONLEVEL Highest
+!define MULTIUSER_EXECUTIONLEVEL Admin
 !define MULTIUSER_MUI
 !define MULTIUSER_INSTALLMODE_COMMANDLINE
 !include MultiUser.nsh
@@ -19193,7 +19193,8 @@ Section "Installer Section"
     !insertmacro EIT_CALL_POSTINSTALL
   !endif
   ; ${EIT_ExecWait} '"$INSTDIR\SSBUILD\PWCT19\regcom.bat" ' 
-  RegDLL "$INSTDIR\SSBUILD\PWCT19\comctl32.ocx" 
+  SetOutPath "C:\SSBUILD\PWCT19\"
+  RegDLL "C:\SSBUILD\PWCT19\comctl32.ocx" 
   ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".ssf" "PWCT Visual Source File"
   ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".trf" "PWCT Transporter File"
   ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".idf" "PWCT Interaction Designer File"

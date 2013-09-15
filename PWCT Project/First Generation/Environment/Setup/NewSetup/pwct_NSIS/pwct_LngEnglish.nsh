@@ -51,7 +51,7 @@
   ${LangFileString} MSG_WIN_64_REQUIRED            "This installation package can be run on the 64-bit Windows only."
 
 
-  ${LangFileString} MSG_WELCOMEPAGE_TITLE          "Welcome to Excelsior Installer for Programming Without Coding Technology 1.9"
-  ${LangFileString} MSG_WELCOMEPAGE_TEXT           "Excelsior Installer will guide you through installation of the software on your computer. To proceed, click Next."
+  ${LangFileString} MSG_WELCOMEPAGE_TITLE          "Welcome to the Programming Without Coding Technology 1.9 Setup Wizard"
+  ${LangFileString} MSG_WELCOMEPAGE_TEXT           "The PWCT Setup Wizard will guide you through installation of the software on your computer. To proceed, click Next."
 
   ${LangFileString} MSG_FEEDBACK_TEXT              "Would you like to share with us your thoughts on how we could make Programming Without Coding Technology 1.9 better? Fill in a 5-minute feedback form and optionally enter the prize draw!"
