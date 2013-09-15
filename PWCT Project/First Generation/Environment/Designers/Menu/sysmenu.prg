@@ -790,12 +790,26 @@ DEFINE POPUP (a_menupops[17]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
 DEFINE BAR 1 OF (a_menupops[17]) PROMPT "PWCT on the Web";
 	KEY f1, "F1"
 DEFINE BAR 2 OF (a_menupops[17]) PROMPT "\-"
-DEFINE BAR 22 OF (a_menupops[17]) PROMPT "PWCT Samples Manager"
-DEFINE BAR 23 OF (a_menupops[17]) PROMPT "\-"
-DEFINE BAR 24 OF (a_menupops[17]) PROMPT "PWCT Tutorials Manager"
-DEFINE BAR 25 OF (a_menupops[17]) PROMPT "\-"
-DEFINE BAR 26 OF (a_menupops[17]) PROMPT "PWCT Movies Manager"
+DEFINE BAR 22 OF (a_menupops[17]) PROMPT "Samples Manager"
+*DEFINE BAR 23 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 24 OF (a_menupops[17]) PROMPT "Tutorials Manager"
+*DEFINE BAR 25 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 26 OF (a_menupops[17]) PROMPT "Movies Manager"
 DEFINE BAR 27 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 28 OF (a_menupops[17]) PROMPT "Forum"
+*DEFINE BAR 29 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 30 OF (a_menupops[17]) PROMPT "Blog"
+*DEFINE BAR 31 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 32 OF (a_menupops[17]) PROMPT "Page (Facebook)"
+*DEFINE BAR 33 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 34 OF (a_menupops[17]) PROMPT "Online Documentation"
+DEFINE BAR 35 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 36 OF (a_menupops[17]) PROMPT "Arabic Group (Facebook)"
+*DEFINE BAR 37 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 38 OF (a_menupops[17]) PROMPT "Arabic Offer"
+DEFINE BAR 39 OF (a_menupops[17]) PROMPT "\-"
+DEFINE BAR 40 OF (a_menupops[17]) PROMPT "Team"
+DEFINE BAR 41 OF (a_menupops[17]) PROMPT "\-"
 
 *DEFINE BAR 17 OF (a_menupops[17]) PROMPT sysmsg(1488)
 *DEFINE BAR 16 OF (a_menupops[17]) PROMPT "\-"
@@ -821,15 +835,61 @@ ON SELECTION BAR 24 OF (a_menupops[17]) ;
 ON SELECTION BAR 26 OF (a_menupops[17]) ;
 	DO openmovfolder IN SYSMENU.prg
 
+ON SELECTION BAR 28 OF (a_menupops[17]) ;
+	DO openpwctforum IN SYSMENU.prg
 
+ON SELECTION BAR 30 OF (a_menupops[17]) ;
+	DO openpwctblog IN SYSMENU.prg
+	
+ON SELECTION BAR 32 OF (a_menupops[17]) ;
+	DO openpwctpage IN SYSMENU.prg
+	
+ON SELECTION BAR 34 OF (a_menupops[17]) ;
+	DO openonlinedoc IN SYSMENU.prg
+	
+ON SELECTION BAR 36 OF (a_menupops[17]) ;
+	DO openpwctgroup IN SYSMENU.prg
 
-
+ON SELECTION BAR 38 OF (a_menupops[17]) ;
+	DO openpwctoffer IN SYSMENU.prg
+	
+ON SELECTION BAR 40 OF (a_menupops[17]) ;
+	DO openpwctteam IN SYSMENU.prg
+	
 ACTIVATE MENU (m.cmenuname) NOWAIT
 
 IF m.ctypeparm2 = "C"
 	m.getmenuname = m.cmenuname
 	m.oformref.NAME = m.csaveformname
 ENDIF
+
+PROCEDURE openpwctforum
+	shellexecute(0,"open","http://doublesvsoop.sourceforge.net/pwctforum","","",1)
+RETURN
+
+PROCEDURE openpwctblog
+	shellexecute(0,"open","http://doublesvsoop.sourceforge.net/pwctblog","","",1)
+RETURN
+
+PROCEDURE openpwctpage
+	shellexecute(0,"open","http://www.facebook.com/doublesvsoop","","",1)
+RETURN
+
+PROCEDURE openonlinedoc
+	shellexecute(0,"open","http://doublesvsoop.sourceforge.net/pwcthelp/main.htm","","",1)
+RETURN
+
+PROCEDURE openpwctgroup
+	shellexecute(0,"open","http://www.facebook.com/groups/doublesvsoop","","",1)
+RETURN
+
+PROCEDURE openpwctoffer
+	shellexecute(0,"open","http://doublesvsoop.sourceforge.net/giftphp/main.htm","","",1)
+RETURN
+
+PROCEDURE openpwctteam
+	shellexecute(0,"open","http://doublesvsoop.sourceforge.net/pwcthelp/team.htm","","",1)
+RETURN
 
 *!******************************************************************************
 *!
