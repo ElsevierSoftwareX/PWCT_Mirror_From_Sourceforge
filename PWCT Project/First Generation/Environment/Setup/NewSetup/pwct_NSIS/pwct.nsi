@@ -28,8 +28,8 @@
 !define DEFAULT_PROGRAM_FOLDER "Mahmoud Fayed\Programming Without Coding Technology 1.9"
 ; Valid values for installation type:  "auto" | "askuser" | "common" | "private"
 !define DESIRED_INSTALL_TYPE "auto"
-!define LICENSE_TEXT_FILE "C:\ooSSBUILD\license.txt"
-!define SPLASH_FILE "C:\ooSSBUILD\logo.bmp"
+!define LICENSE_TEXT_FILE "C:\SSBUILD\license.txt"
+!define SPLASH_FILE "C:\SSBUILD\logo.bmp"
 !define UNINSTALLER_RELPATH ""
 !define UNINSTALLER_FILE_NAME  "PWCT19_Uninstall.exe"
 !define UNINSTALLER_PATH       "c:\ssbuild\"
@@ -43,7 +43,7 @@ Var StartMenuFolder
 ; -----------------------------------------------------------------------------
 ; General Attributes
 Name    "Programming Without Coding Technology 1.9" "Programming Without Coding Technology 1.9"
-OutFile "\\?\${PROJECT_ROOT_PATH}\pwct_NSIS\pwct_distrib.exe"
+OutFile "\\?\${PROJECT_ROOT_PATH}\pwct_NSIS\Fayed_PWCT_1.9_Art.exe"
 
 ; Default installation folder
 InstallDir "C:"
@@ -54,7 +54,7 @@ VIAddVersionKey  "LegalCopyright"  "(c)Mahmoud Fayed"
 VIAddVersionKey  "ProductName"     "Programming Without Coding Technology 1.9"
 VIAddVersionKey  "ProductVersion"  "1.9"
 VIAddVersionKey  "FileDescription" "Programming Without Coding Technology 1.9"
-VIAddVersionKey  "FileVersion"     "1.9"
+VIAddVersionKey  "FileVersion"     "1.9.5600"
 VIProductVersion "1.9.0.0"
 
 ; The installer will perform a CRC on itself before allowing an install
@@ -71,17 +71,17 @@ BrandingText " "
 !define MUI_ABORTWARNING
 !define MUI_WELCOMEPAGE_TITLE_3LINES
 !define MUI_FINISHPAGE_TITLE_3LINES
-!define MUI_UNICON "C:\Program Files\Excelsior Installer 2.2\bin\xuninst.ico"
+!define MUI_UNICON "D:\PWCTSRC\PWCT Project\First Generation\Environment\Setup\NewSetup\pwct_NSIS\xuninst.ico"
 
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
 
-!define MUI_HEADERIMAGE_BITMAP   "C:\Program Files\Excelsior Installer 2.2\bin\xinst_header.bmp"
-!define MUI_HEADERIMAGE_UNBITMAP "C:\Program Files\Excelsior Installer 2.2\bin\xinst_header.bmp"
+!define MUI_HEADERIMAGE_BITMAP   "D:\PWCTSRC\PWCT Project\First Generation\Environment\Setup\NewSetup\pwct_NSIS\xinst_header.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "D:\PWCTSRC\PWCT Project\First Generation\Environment\Setup\NewSetup\pwct_NSIS\xinst_header.bmp"
 
-!define MUI_WELCOMEFINISHPAGE_BITMAP "C:\Program Files\Excelsior Installer 2.2\bin\xinst_page.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "D:\PWCTSRC\PWCT Project\First Generation\Environment\Setup\NewSetup\pwct_NSIS\xinst_page.bmp"
 
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "C:\Program Files\Excelsior Installer 2.2\bin\xuninst_page.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "D:\PWCTSRC\PWCT Project\First Generation\Environment\Setup\NewSetup\pwct_NSIS\xuninst_page.bmp"
 
 !define MUI_WELCOMEPAGE_TITLE "$(MSG_WELCOMEPAGE_TITLE)"
 !define MUI_WELCOMEPAGE_TEXT "$(MSG_WELCOMEPAGE_TEXT)"
