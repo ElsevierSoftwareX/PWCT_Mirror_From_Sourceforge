@@ -10,6 +10,12 @@
 !define PROJECT_ROOT_PATH "D:\PWCTSRC\PWCT Project\First Generation\Environment\Setup\NewSetup"
 ; -----------------------------------------------------------------------------
 ; Include Modern UI, logic statements, file functions and EIT support
+
+!define MULTIUSER_EXECUTIONLEVEL Highest
+!define MULTIUSER_MUI
+!define MULTIUSER_INSTALLMODE_COMMANDLINE
+!include MultiUser.nsh
+
 !include "MUI2.nsh"
 !include "x64.nsh"
 !include "LogicLib.nsh"
@@ -153,6 +159,9 @@ FunctionEnd ; AcceptInstallType
 !endif
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE  AcceptInstallType
 !insertmacro EIT_MUI_PAGE_INSTALLTYPE  $IsCommonInstallation
+
+!insertmacro MULTIUSER_PAGE_INSTALLMODE
+
 ; !insertmacro MUI_PAGE_DIRECTORY
  !define MUI_STARTMENUPAGE_DEFAULTFOLDER  "${DEFAULT_PROGRAM_FOLDER}"
   !insertmacro MUI_PAGE_STARTMENU  Application $StartMenuFolder
@@ -19200,6 +19209,9 @@ SectionEnd ; Installer Sections
 ; -----------------------------------------------------------------------------
 ; Customization of install NSIS callbacks
 Function .onInit
+
+ !insertmacro MULTIUSER_INIT
+ 
   StrCpy $InstlDirWasNotEdited 1
   StrCpy $LANGUAGE 1033
   !ifdef SPLASH_FILE
@@ -19257,5 +19269,8 @@ SectionEnd ; Uninstaller Section
 ; -----------------------------------------------------------------------------
 ; Customization of uninstall NSIS callbacks
 Function un.onInit
+
+ !insertmacro MULTIUSER_UNINIT
+ 
   StrCpy $LANGUAGE 1033
 FunctionEnd
