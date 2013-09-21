@@ -16,6 +16,8 @@
 !define MULTIUSER_INSTALLMODE_COMMANDLINE
 !include MultiUser.nsh
 
+!include Library.nsh
+
 !include "MUI2.nsh"
 !include "x64.nsh"
 !include "LogicLib.nsh"
@@ -160,7 +162,7 @@ FunctionEnd ; AcceptInstallType
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE  AcceptInstallType
 !insertmacro EIT_MUI_PAGE_INSTALLTYPE  $IsCommonInstallation
 
-!insertmacro MULTIUSER_PAGE_INSTALLMODE
+; !insertmacro MULTIUSER_PAGE_INSTALLMODE
 
 ; !insertmacro MUI_PAGE_DIRECTORY
  !define MUI_STARTMENUPAGE_DEFAULTFOLDER  "${DEFAULT_PROGRAM_FOLDER}"
@@ -15094,7 +15096,6 @@ Section "Installer Section"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\SSLib\SSLIB.PRG" "C:\SSBUILD\SSLib\SSLIB.PRG"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\SSLib\TAxPrg.prg" "C:\SSBUILD\SSLib\TAxPrg.prg"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\SSLib\VSL4.prg" "C:\SSBUILD\SSLib\VSL4.prg"
-  ${EIT_AddFile} "$INSTDIR\SSBUILD\SSLib\xHb_sslib.bat" "C:\SSBUILD\SSLib\xHb_sslib.bat"
   ${EIT_CreateDirectory} "$INSTDIR\SSBUILD\TCPIP"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\TCPIP\tcpip.exe" "C:\SSBUILD\TCPIP\tcpip.exe"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\TCPIP\tcpip.prg" "C:\SSBUILD\TCPIP\tcpip.prg"
@@ -19195,6 +19196,11 @@ Section "Installer Section"
   ; ${EIT_ExecWait} '"$INSTDIR\SSBUILD\PWCT19\regcom.bat" ' 
   SetOutPath "C:\SSBUILD\PWCT19\"
   RegDLL "C:\SSBUILD\PWCT19\comctl32.ocx" 
+  
+; !insertmacro InstallLib REGDLL NOTSHARED REBOOT_NOTPROTECTED "C:\SSBUILD\PWCT19\comctl32.ocx" "C:\SSBUILD\PWCT19\comctl32.ocx" "C:\SSBUILD\PWCT19\"
+ 
+ ; ExecWait '$SYSDIR\regsvr32.exe /s "C:\SSBUILD\PWCT19\comctl32.ocx"'
+ 
   ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".ssf" "PWCT Visual Source File"
   ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".trf" "PWCT Transporter File"
   ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".idf" "PWCT Interaction Designer File"
