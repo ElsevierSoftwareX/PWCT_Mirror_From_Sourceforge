@@ -65,6 +65,9 @@ function SS_VSL4STARTUP()
 					&& 1 = Waiting for accepting connection
 					&& 2 = Accepted Connection 
 	public VSL4_SActiveCliConID	&& Server Side - Active Client Connection ID
+
+	public VSL4_PThread		&& pointer to thread
+
 	VSL4_SActiveCliConID = 0
 	VSL4_sconsarr = {}		
 	VSL4_cconsarr = {}		
@@ -194,6 +197,22 @@ FUNCTION SS_VSL4ClientCLOSE()
 	HB_INETClose( VSL4_osocket )
 RETURN
 
+FUNCTION SS_VSL4ServerCLOSE()
+	local x
+	hb_threadQuitRequest( VSL4_PThread )
+	HB_INETClose( VSL4_mysocket )
+	VSL4_islisten = 0
+	VSL4_waitconnection = .f.
+	if .not. len(VSL4_sconsarr) = 0
+		for x = 1 to len(VSL4_sconsarr)
+			VSL4_osocketclient = VSL4_sconsarr[x]
+			HB_INETClose( VSL4_osocketclient )
+		next
+	endif
+	VSL4_SActiveCliConID = 0
+	VSL4_sconsarr = {}
+RETURN
+
 Function SS_VSL4AcceptConnection()
 	VSL4_CONREQSTATUS = .t.
 return
@@ -236,7 +255,7 @@ FUNCTION SS_VSL4ENGINE()
 
 	if VSL4_waitconnection = .t.
 			VSL4_waitconnection = .f.
-			hb_threadstart("SS_VSL4ACCEPT",@VSL4_mysocket,@VSL4_osocketclient,@VSL4_islisten,@VSL4_sconsarr)
+			VSL4_PThread = hb_threadstart("SS_VSL4ACCEPT",@VSL4_mysocket,@VSL4_osocketclient,@VSL4_islisten,@VSL4_sconsarr)
 			
 	endif
 
@@ -540,17 +559,19 @@ FUNCTION SS_VSL4ACCEPT()
 	 
 	// ? "after accept"
 	 
-	HB_INETTIMEOUT( p1_VSL4_osocketCLIENT, 100 )
-	hb_inetSetRcvBufSize( p1_VSL4_osocketCLIENT, 4194304 ) 
-	hb_inetSetSndBufSize( p1_VSL4_osocketCLIENT, 4194304 )
+	if .not. p1_VSL4_osocketCLIENT = NIL
+		HB_INETTIMEOUT( p1_VSL4_osocketCLIENT, 100 )
+		hb_inetSetRcvBufSize( p1_VSL4_osocketCLIENT, 4194304 ) 
+		hb_inetSetSndBufSize( p1_VSL4_osocketCLIENT, 4194304 )
 	 
-	// ? "Send welcome"
+		// ? "Send welcome"
 	 
 	
-	aadd(p1_VSL4_sconsarr,p1_VSL4_osocketclient)
+		aadd(p1_VSL4_sconsarr,p1_VSL4_osocketclient)
 	
-	p1_VSL4_islisten = 3
+		p1_VSL4_islisten = 3
 	
+	ENDIF
 
 RETURN
 

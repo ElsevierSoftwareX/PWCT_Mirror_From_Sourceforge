@@ -4318,7 +4318,21 @@ SS_IPCLI()
    RETURN
 
 FUNCTION SS_DSAP(P1,P2,P3)  && DECLARE SERVER ADDRESS PORT
-   AAdd(SS_SAP,{P1,P2,P3})
+	local x,nMax
+	nMax = len(SS_SAP)
+	if nMax > 0
+		for x = 1 to nMax
+			if UPPER(ALLTRIM(SS_SAP[X][1])) == UPPER(ALLTRIM(P1))
+				SS_SAP[X][1] = p1
+				SS_SAP[X][2] = p2
+				SS_SAP[X][3] = p3
+				return
+			endif
+		next
+	endif
+ 
+   	AAdd(SS_SAP,{P1,P2,P3})
+
    RETURN
 
 FUNCTION SS_SSAP(P1) && SELECT SERVER - ADDRESS - PORT
