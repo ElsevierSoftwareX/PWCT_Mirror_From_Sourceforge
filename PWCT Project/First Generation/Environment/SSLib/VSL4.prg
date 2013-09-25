@@ -127,8 +127,10 @@ FUNCTION SS_VSL4CONNECT(myaddress,myport)
 	endif
 
 	IF UPPER(ALLTRIM(T_ConnectionStatus)) == "[(*VETOSYS*)] CONNECTION ACCEPTED"
+		SS_SERVERS[SS_AS][22] = .T.
 		VSL4_CLICONSTATUS = 2
 	ELSE
+		SS_SERVERS[SS_AS][22] = .F.
 		VSL4_CLICONSTATUS = 0
 	ENDIF
 
@@ -382,8 +384,10 @@ FUNCTION SS_VSL4ENGINE()
 					          SS_VSL4DataCome(mystr)
 				        ELSE
 					          IF UPPER(ALLTRIM(MYSTR)) == "[(*VETOSYS*)] CONNECTION ACCEPTED"
+							SS_SERVERS[SS_AS][22] = .T.
 							VSL4_CLICONSTATUS = 2
 						  ELSEIF UPPER(ALLTRIM(MYSTR)) == "[(*VETOSYS*)] CONNECTION REFUSED"
+							SS_SERVERS[SS_AS][22] = .F.
 							VSL4_CLICONSTATUS = 0
 						  ELSE
 	 						mystr2 = substr(mystr,14,len(mystr)-13)
