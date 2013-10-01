@@ -1,0 +1,1 @@
+C:\SSBUILD\WebPWCT\batch\run.bat "PRINTPUTSNEWLINE.html"
