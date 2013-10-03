@@ -23,7 +23,9 @@ Movies.append("PWCTMovie_CreatingConsoleApplication.zip")
 Movies.append("PWCTMovie_SumTwoNumbers.zip")
 Movies.append("PWCTMovie_CreatingMoreThanOneWindow.zip")
 Movies.append("PWCTMovie_TheSyntaxDirectedEditorAndTheVPLCompiler.zip")
-
+Movies.append("PWCTMovie_ChangeVPL.zip")
+Movies.append("PWCTMovie_CreateNewStep.zip")
+Movies.append("PWCTMovie_PlayProgramsAsMovie.zip")
 mymax = len(Movies)
 cont = 1
 lastx = -1
