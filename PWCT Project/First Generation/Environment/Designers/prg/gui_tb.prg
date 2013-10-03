@@ -83,12 +83,30 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				ENDIF
 			ENDIF
 
+
 			mycolor = GETCOLOR()
 			myg = INT(BITAND(mycolor,RGB(0,255,0))/256)
 			myr = INT(BITAND(mycolor,RGB(255,0,0)))
 			myb = INT(BITAND(mycolor,RGB(0,0,255))/(256*256))
-			THIS.VALUE = cstartcolor+ALLTRIM(STR(myr)) + ;
-				"," + ALLTRIM(STR(myg)) + "," + ALLTRIM(STR(myb)) + cendcolor
+			
+			* Hex
+			IF LEN(ALLTRIM(this.value)) = 6
+			
+				myg = RIGHT(transform(myg,"@0X"),2)
+				myr = RIGHT(transform(myr,"@0X"),2)
+				myb = RIGHT(transform(myb,"@0X"),2)
+				THIS.VALUE = myr+myg+myb
+			
+			ELSE
+	
+				THIS.VALUE = cstartcolor+ALLTRIM(STR(myr)) + ;
+					"," + ALLTRIM(STR(myg)) + "," + ALLTRIM(STR(myb)) + cendcolor
+				
+			ENDIF
+			
+			
+		
+				
 		CASE _selec = 2
 			myfont = GETFONT("Times New Roman")
 			IF .NOT. EMPTY(myfont)

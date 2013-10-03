@@ -1724,8 +1724,6 @@ IF s_menu == "Code_Delete_Resistance"
 		LOCATE FOR ALLTRIM(resistancehandle) == ALLTRIM(myvar)
 		IF FOUND()
 
-
-
 			IF .NOT. RECCOUNT() = 0
 				mymsg = MESSAGEBOX(sysmsg(201),36,sysmsg(202))
 				IF .NOT. mymsg = 6
@@ -1739,9 +1737,6 @@ IF s_menu == "Code_Delete_Resistance"
 				GOTO TOP
 
 			ENDIF
-
-
-
 
 		ELSE
 			GOTO BOTTOM
@@ -1775,7 +1770,6 @@ IF s_menu == "Code_New_Resistance"
 	fs_sw = 1
 	s_menu = "1_0"
 
-
 	IF !ISNULL(myswform.oletree.SELECTEDITEM)
 		SELECT 14
 		LOCATE FOR ALLTRIM(branchhandle) = ALLTRIM(myswform.oletree.SELECTEDITEM.KEY)
@@ -1790,21 +1784,14 @@ IF s_menu == "Code_New_Resistance"
 		SELECT 14
 	ENDIF
 
-
-
-
 ENDIF
 
-IF s_menu ==  "Code_New_Resistance"
-	fs_sw = 1
-	s_menu = "1_0"
-	myswform.pageframe1.page6.deleteresistancebtn.CLICK()
-ENDIF
 IF s_menu == "Main Circuit"
 	fs_sw = 1
 	s_menu = "1_0"
 	DO FORM maincircuit.scx
 ENDIF
+
 IF s_menu == "Main Resistance"
 	fs_sw = 1
 	s_menu = "1_0"
