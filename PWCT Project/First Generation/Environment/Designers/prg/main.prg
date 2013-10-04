@@ -199,19 +199,19 @@ DIMENSION aGeneratedFiles(1)
 
 	IF PWCT_IsAdmin()
 	
-		IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom.off")
+		IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom2.off")
 			RUN /N Regsvr32 /s C:\SSBUILD\PWCT19\COMCTL32.OCX
 		
-	  	myhandle = FCREATE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom.off")
-			FCLOSE(myhandle)
+	  	tempv1_myhandle = FCREATE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom2.off")
+			FCLOSE(tempv1_myhandle)
 		ENDIF
 		
 	ELSE
 	
-		IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\regcom.off")
+		IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom.off")
 					MESSAGEBOX("You need to run PWCT as Admin (for one time) to register the Treeview ActiveX control",0,"Sorry")
-					myhandle = FCREATE(APPLICATION.DEFAULTFILEPATH + "\regcom.off")
-					FCLOSE(myhandle)
+					tempv2_myhandle = FCREATE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom.off")
+					FCLOSE(tempv2_myhandle)
 					myquit()
 		ENDIF
 		
