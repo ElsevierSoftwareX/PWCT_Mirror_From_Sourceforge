@@ -195,6 +195,29 @@ aFilesData(1,2) = "File Content"
 PUBLIC aGeneratedFiles
 DIMENSION aGeneratedFiles(1)
 
+
+
+	IF PWCT_IsAdmin()
+	
+		IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom.off")
+			RUN /N Regsvr32 /s C:\SSBUILD\PWCT19\COMCTL32.OCX
+		
+	  	myhandle = FCREATE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom.off")
+			FCLOSE(myhandle)
+		ENDIF
+		
+	ELSE
+	
+		IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom.off")
+				MESSAGEBOX("You need to run PWCT as Admin (for one time) to register the Treeview ActiveX control",0,"Sorry")
+				myquit()
+		ENDIF
+		
+	ENDIF
+	
+
+
+
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
 	DO FORM welcome
 ELSE
@@ -211,7 +234,38 @@ CLEAR EVENTS
 QUIT
 
 
+FUNCTION PWCT_IsAdmin()
+LOCAL loAPI, lcVal
 
+DECLARE INTEGER IsUserAnAdmin IN Shell32
+TRY
+    lnResult = IsUserAnAdmin()
+CATCH
+    *** OLD OLD Version of Windows assume .T.
+    lnResult = 1
+ENDTRY
+IF lnResult = 0
+   RETURN .F.
+ENDIF
+
+RETURN .T.  
+ENDFUNC
+
+FUNCTION PWCT_GETUSERNAME()
+
+
+DECLARE INTEGER GetUserName IN advapi32;
+    STRING @lpBuffer,;
+    INTEGER @nSize
+    
+    nSize = 250
+		cBuffer = REPLICATE(Chr(0), nSize)
+ 
+  	GetUserName(@cBuffer, @nSize)
+    
+    cBuffer = STRTRAN(cBuffer, CHR(0), "")
+
+RETURN ALLTRIM(cBuffer)
 *!******************************************************************************
 *!
 *! Procedure MYQUIT
