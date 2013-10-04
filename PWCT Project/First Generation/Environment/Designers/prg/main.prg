@@ -208,9 +208,11 @@ DIMENSION aGeneratedFiles(1)
 		
 	ELSE
 	
-		IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\" + PWCT_GETUSERNAME() + "_regcom.off")
-				MESSAGEBOX("You need to run PWCT as Admin (for one time) to register the Treeview ActiveX control",0,"Sorry")
-				myquit()
+		IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\regcom.off")
+					MESSAGEBOX("You need to run PWCT as Admin (for one time) to register the Treeview ActiveX control",0,"Sorry")
+					myhandle = FCREATE(APPLICATION.DEFAULTFILEPATH + "\regcom.off")
+					FCLOSE(myhandle)
+					myquit()
 		ENDIF
 		
 	ENDIF
