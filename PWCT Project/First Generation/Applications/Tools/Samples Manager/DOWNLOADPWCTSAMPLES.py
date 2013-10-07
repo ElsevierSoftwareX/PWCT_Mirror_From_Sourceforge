@@ -218,6 +218,13 @@ Samples.append("HarbourPWCT_PrintWindow.zip")
 Samples.append("HarbourPWCT_ImagesInsideDatabase.zip")
 Samples.append("CriticalNodes.zip")
 Samples.append("HarbourPWCT_TwoWindowsShowAndHide.zip")
+Samples.append("CPWCT_HelloWorld.zip")
+Samples.append("CPWCT_Loops.zip")
+Samples.append("CPWCT_Break.zip")
+Samples.append("CPWCT_Functions.zip")
+Samples.append("CPWCT_Structure.zip")
+Samples.append("CPWCT_Scanf.zip")
+Samples.append("CPWCT_SumTwoNumbers.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
