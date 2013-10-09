@@ -58,6 +58,8 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 
 								* prepare masks
 								run_trf = ALLTRIM(MLINE(t46->f_myhis,9))
+								run_trf = fixfolderpath(run_trf)
+								
 								IF FILE(run_trf)
 
 									SELECT 0
@@ -178,46 +180,6 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 									NEXT
 								ENDIF
 
-
-								************ LET MASK VARIABLES BE IN CAPITAL LETTERS - THIS SECTION IS COMMENTED AND STRTRAN NOW TAKES 1,1000,-1 WHERE -1 MEANS NOT CASE SENSITIVE
-
-*!*									lv_mymax = MEMLINES(m_mask)
-*!*									lv_res = ""
-*!*									lv_temp = 0
-
-*!*									FOR lv_x = 1 TO lv_mymax
-
-*!*										lv_line = MLINE(m_mask,lv_x)
-*!*										lv_mymax2 = LEN(lv_line)
-*!*										lv_status = 0
-
-*!*										FOR lv_x2 = 1 TO lv_mymax2
-
-*!*											lv_mylet = SUBSTR(lv_line,lv_x2,1)
-
-*!*											IF lv_mylet = "<"
-*!*												lv_status = 1
-*!*												lv_temp = lv_x2
-*!*											ENDIF
-
-*!*											IF lv_status = 0
-*!*												lv_res = lv_res + lv_mylet
-*!*											ENDIF
-
-*!*											IF lv_mylet = ">" .AND.	lv_status = 1
-*!*												lv_word = UPPER(ALLTRIM(SUBSTR(lv_line,lv_temp,lv_x2-lv_temp+1)))
-*!*												lv_res = lv_res + lv_word
-*!*												lv_status = 0
-*!*												lv_temp = 0
-*!*											ENDIF
-
-*!*										NEXT
-
-*!*										lv_res  = lv_res + CHR(13) + CHR(10)
-
-*!*									NEXT
-
-*!*									m_mask = lv_res
 								
 				
 								* run the code mask
