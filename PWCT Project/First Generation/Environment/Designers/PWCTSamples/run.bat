@@ -1,11 +1,7 @@
 echo off
-c:
-cd\
-cd ssbuild
-cd pwct19
 cd pwctsamples
-if not exist "c:\ssbuild\python27\python.exe" goto MYERROR
-c:\ssbuild\python27\python "c:\ssbuild\pwct19\pwctsamples\DOWNLOADPWCTSAMPLES.py"
+if not exist "%~dp0..\..\python27\python.exe" goto MYERROR
+%~dp0..\..\python27\python "%~dp0..\..\pwct19\pwctsamples\DOWNLOADPWCTSAMPLES.py"
 goto MYEND
 :MYERROR
 echo on
