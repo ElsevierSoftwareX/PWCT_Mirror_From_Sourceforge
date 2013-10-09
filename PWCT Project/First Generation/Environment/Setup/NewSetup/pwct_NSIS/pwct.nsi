@@ -164,7 +164,7 @@ FunctionEnd ; AcceptInstallType
 
 ; !insertmacro MULTIUSER_PAGE_INSTALLMODE
 
-; !insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_DIRECTORY
  !define MUI_STARTMENUPAGE_DEFAULTFOLDER  "${DEFAULT_PROGRAM_FOLDER}"
   !insertmacro MUI_PAGE_STARTMENU  Application $StartMenuFolder
 !insertmacro EIT_MUI_PAGE_SHORTCUTS  EIT_CreateShortCut
