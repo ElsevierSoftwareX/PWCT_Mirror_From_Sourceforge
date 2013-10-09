@@ -32,6 +32,7 @@ DEFINE CLASS VPLRulesBase AS Custom
 
 						chis = f_myhis
 						cfile = UPPER(ALLTRIM(MLINE(chis,9)))
+						cfile = fixfolderpath(cFile)
 
 						IF FILE(cfile)
 

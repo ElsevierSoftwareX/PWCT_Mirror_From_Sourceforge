@@ -99,7 +99,7 @@ FUNCTION writedoctable()
 
 	NEXT
 
-	COPY TO "c:\ssbuild\pwctshots\details.dbf"
+	COPY TO fixfolderpath("c:\ssbuild\pwctshots\details.dbf")
 	USE
 
 	IF .NOT. EMPTY(ALLTRIM(myalias))

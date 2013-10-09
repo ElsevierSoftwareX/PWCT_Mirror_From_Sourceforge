@@ -1,10 +1,12 @@
-PARAMETERS cFileName
+PARAMETERS cFolderAndFileName
 LOCAL cPath,x,nPos
-cFileName = UPPER(ALLTRIM(cFileName))
+cFolderAndFileName = UPPER(ALLTRIM(cFolderAndFileName))
+syslogmsg("Fix Path : " + cFolderAndFileName)
 
-IF FILE(cFileName)
-	RETURN cFileName
-ELSE
+*!*	IF FILE(cFolderAndFileName) = .T.
+*!*		syslogmsg("No fix is required, file is already exist")
+*!*		RETURN cFolderAndFileName
+*!*	ELSE
 
 	* get PWCT folder from pwct exe file name
 	cPath = application.ServerName 
@@ -31,18 +33,20 @@ ELSE
 	cPath = SUBSTR(cPath,1,x-1) 
   cSSRPWI = cPath+"\SSRPWI"
 	
-	nPos = AT("SSBUILD",cFileName)
+	nPos = AT("SSBUILD",cFolderAndFileName)
 	IF nPos > 0
-		cFilename = SUBSTR(cFileName,nPos+7) && get file without SSBUILD 
-		cFileName = cSSBUILD + cFileName
-		RETURN cFileName
+		cFolderAndFileName = SUBSTR(cFolderAndFileName,nPos+7) && get file without SSBUILD 
+		cFolderAndFileName = cSSBUILD + cFolderAndFileName
+		syslogmsg("Path fixed to " + cFolderAndFileName)
+		RETURN cFolderAndFileName
 	ENDIF
 	
-	nPos = AT("SSRPWI",cFileName)
+	nPos = AT("SSRPWI",cFolderAndFileName)
 	IF nPos > 0
-		cFilename = SUBSTR(cFileName,nPos+6) && get file without SSRPWI
-		cFileName = cSSRPWI + cFileName
-		RETURN cFileName
+		cFolderAndFileName = SUBSTR(cFolderAndFileName,nPos+6) && get file without SSRPWI
+		cFolderAndFileName = cSSRPWI + cFolderAndFileName
+		syslogmsg("Path fixed to " + cFolderAndFileName)
+		RETURN cFolderAndFileName
 	ENDIF
 	
-ENDIF
+*!*	ENDIF

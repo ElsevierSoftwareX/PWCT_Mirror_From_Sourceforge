@@ -85,6 +85,8 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 									FOR tv_x1 = 1 TO MEMLINES(m_files)
 
 										myfile = MLINE(m_files,tv_x1)
+										myfile = fixfolderpath(myfile)
+										
 										mypstr = "[" + ALLTRIM(MLINE(m_pages,tv_x1)) + "] "
 
 										IF FILE(myfile)

@@ -1734,6 +1734,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 			IF FOUND()
 			
 				myline1 = MLINE(f_myhis,9)
+				myline1 = fixfolderpath(myline1)
 
 				IF UPPER(ALLTRIM(myline1)) == UPPER(ALLTRIM(trf_file))
 

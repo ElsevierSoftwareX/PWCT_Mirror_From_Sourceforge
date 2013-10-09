@@ -37,6 +37,8 @@ FUNCTION sys_autonumber(p1)
 	
 		myfile = MLINE(m_files,apage)
 		
+		myfile = fixfolderpath(myfile)
+		
 		idf_file = ALLTRIM(myfile)
 		trf_file = STRTRAN(idf_file,"IDF","TRF")
 
@@ -63,6 +65,9 @@ FUNCTION sys_autonumber(p1)
 			IF FOUND()
 			
 				myline1 = MLINE(f_myhis,9)
+				
+				myline1 = fixfolderpath(myline1)
+				
 
 				IF UPPER(ALLTRIM(myline1)) == UPPER(ALLTRIM(trf_file))
 
