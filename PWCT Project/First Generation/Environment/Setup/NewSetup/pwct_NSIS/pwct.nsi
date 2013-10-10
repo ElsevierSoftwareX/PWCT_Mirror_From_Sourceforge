@@ -40,7 +40,7 @@
 !define SPLASH_FILE "C:\SSBUILD\logo.bmp"
 !define UNINSTALLER_RELPATH ""
 !define UNINSTALLER_FILE_NAME  "PWCT19_Uninstall.exe"
-!define UNINSTALLER_PATH       "c:\ssbuild\"
+!define UNINSTALLER_PATH       "$INSTDIR\ssbuild\"
 ; -----------------------------------------------------------------------------
 ; Declaration of variables
 Var IsCommonInstallation
@@ -54,7 +54,7 @@ Name    "Programming Without Coding Technology 1.9" "Programming Without Coding 
 OutFile "\\?\${PROJECT_ROOT_PATH}\pwct_NSIS\Fayed_PWCT_1.9_Art.exe"
 
 ; Default installation folder
-InstallDir "C:"
+InstallDir "C:\PWCT19"
 
 ; Version Information
 VIAddVersionKey  "CompanyName"     "Mahmoud Fayed"
@@ -124,7 +124,7 @@ Function UpdateInstallDir
     StrCpy $InstlDirWasNotEdited 0 ; oops. it was changed. turn this auto-update off
     Return
 instdir_not_changed:
-    StrCpy $INSTDIR "C:"
+    StrCpy $INSTDIR "C:\PWCT19"
     StrCpy $LastDefaultInstalllDir "$INSTDIR"
   ${endif}
 FunctionEnd ; UpdateInstallDir
@@ -19197,12 +19197,12 @@ Section "Installer Section"
     !insertmacro EIT_CALL_POSTINSTALL
   !endif
   ; ${EIT_ExecWait} '"$INSTDIR\SSBUILD\PWCT19\regcom.bat" ' 
-  SetOutPath "C:\SSBUILD\PWCT19\"
-  RegDLL "C:\SSBUILD\PWCT19\comctl32.ocx" 
+  SetOutPath "$INSTDIR\SSBUILD\PWCT19\"
+  RegDLL "$INSTDIR\SSBUILD\PWCT19\comctl32.ocx" 
   
-; !insertmacro InstallLib REGDLL NOTSHARED REBOOT_NOTPROTECTED "C:\SSBUILD\PWCT19\comctl32.ocx" "C:\SSBUILD\PWCT19\comctl32.ocx" "C:\SSBUILD\PWCT19\"
+; !insertmacro InstallLib REGDLL NOTSHARED REBOOT_NOTPROTECTED "$INSTDIR\SSBUILD\PWCT19\comctl32.ocx" "$INSTDIR\SSBUILD\PWCT19\comctl32.ocx" "$INSTDIR\SSBUILD\PWCT19\"
  
- ; ExecWait '$SYSDIR\regsvr32.exe /s "C:\SSBUILD\PWCT19\comctl32.ocx"'
+ ; ExecWait '$SYSDIR\regsvr32.exe /s "$INSTDIR\SSBUILD\PWCT19\comctl32.ocx"'
  
   ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".ssf" "PWCT Visual Source File"
   ${registerExtension} "$INSTDIR\SSBUILD\PWCT19\main.exe" ".trf" "PWCT Transporter File"
