@@ -1,9 +1,11 @@
 echo off
+
+if exist %~n1.exe del %~n1.exe
+
+set path=%path%;c:\mypwct\ssbuild\borland\bcc55\bin
+c:\mypwct\ssbuild\borland\bcc55\bin\bCC32 -tWM -d -6 -O2 -OS -Ov -Oi -Oc  %1 
+
+if not exist %~n1.exe pause
+
 cls
-echo This batch file will run the application
-echo source file is %1
-SET PATH=C:\HMG.4\harbour\comp\mingw\bin;%PATH%
-C:\hmg.4\HARBOUR\comp\mingw\bin\GCC %1 -o %~n1
-pause
-cls
-%~n1
+if exist %~n1.exe %~n1

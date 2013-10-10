@@ -1,1 +1,1 @@
-c:\ssrpwi\supernova\nova.exe %1
+%~dp0..\supernova\nova.exe %1
