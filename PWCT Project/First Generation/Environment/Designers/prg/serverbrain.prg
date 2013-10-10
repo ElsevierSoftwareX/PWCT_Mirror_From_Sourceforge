@@ -2202,7 +2202,10 @@ IF s_menu = "Delete Connection"
 ENDIF
 * open server
 IF s_menu == "1_2" .OR. FILE(myfiletoopen)
+
 	myfile = myfiletoopen
+
+	
 	IF FILE(myfiletoopen)
 		lmyfiletoopen = .T.
 		myfiletoopen = ""

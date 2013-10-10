@@ -1,5 +1,5 @@
 PARAMETERS cFolderAndFileName
-LOCAL cPath,x,nPos
+LOCAL cPath,x,nPos,cSSBUILD,cSSRPWI
 cFolderAndFileName = UPPER(ALLTRIM(cFolderAndFileName))
 syslogmsg("Fix Path : " + cFolderAndFileName)
 
