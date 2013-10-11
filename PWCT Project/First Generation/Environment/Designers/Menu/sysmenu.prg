@@ -765,14 +765,15 @@ ON SELECTION BAR 5 OF (a_menupops[15]) ;
 
 
 DEFINE POPUP (a_menupops[16]) MARGIN RELATIVE SHADOW COLOR SCHEME 4
-*DEFINE BAR 13 OF (a_menupops[16]) PROMPT "Supernova programming language - Arabic "
+
 DEFINE BAR 15 OF (a_menupops[16]) PROMPT "Supernova programming language"
+DEFINE BAR 13 OF (a_menupops[16]) PROMPT "Supernova Documentation "
 DEFINE BAR 14 OF (a_menupops[16]) PROMPT "\-"
 DEFINE BAR 10 OF (a_menupops[16]) PROMPT sysmsg(1358)
 DEFINE BAR 11 OF (a_menupops[16]) PROMPT sysmsg(1359)
 DEFINE BAR 12 OF (a_menupops[16]) PROMPT sysmsg(1360)
-*ON SELECTION BAR 13 OF (a_menupops[16]) ;
-*	DO mysysmenu_nova2 in sysmenu.prg
+ON SELECTION BAR 13 OF (a_menupops[16]) ;
+DO mysysmenu_nova2 in sysmenu.prg
 
 ON SELECTION BAR 15 OF (a_menupops[16]) ;
 	DO mysysmenu_nova IN SYSMENU.prg
@@ -3309,7 +3310,7 @@ PROCEDURE mysysmenu_nova
 *!
 *!******************************************************************************
 PROCEDURE mysysmenu_nova2
-	s_menu = "ArabicSupernova"
+	s_menu = "HelpSupernova"
 	RETURN
 
 *!******************************************************************************

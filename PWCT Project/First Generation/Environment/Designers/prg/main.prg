@@ -177,7 +177,7 @@ PUBLIC obj_VPLCompiler
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2013.10.10"
+sys_pwctversion = "PWCT 1.9 (Art) 2013.10.11"
 
 
 
@@ -199,10 +199,14 @@ DIMENSION aGeneratedFiles(1)
 
 	IF PWCT_IsAdmin()
 	
-		IF .NOT. FILE(fixfolderpath("C:\SSBUILD\PWCT19\") + PWCT_GETUSERNAME() + "_regcom2.off")
+		IF .NOT. FILE(fixfolderpath("C:\SSBUILD\PWCT19\"+ PWCT_GETUSERNAME() + "_regcom2.off") )
 		
 			cComFileToReg = "Regsvr32 /s " + fixfolderpath("C:\SSBUILD\PWCT19\COMCTL32.OCX")
 			RUN /N &cComFileToReg
+
+			cComFileToReg = "Regsvr32 /s " + fixfolderpath("C:\SSBUILD\PWCT19\MSCOMCTL.OCX") && VERSION 2.0 THAT WE USES IN PWCT
+			RUN /N &cComFileToReg
+
 	
 	  	tempv1_myhandle = FCREATE(fixfolderpath("C:\SSBUILD\PWCT19\") + PWCT_GETUSERNAME() + "_regcom2.off")
 			FCLOSE(tempv1_myhandle)
@@ -210,9 +214,9 @@ DIMENSION aGeneratedFiles(1)
 		
 	ELSE
 	
-		IF .NOT. FILE(fixfolderpath("C:\SSBUILD\PWCT19\") + PWCT_GETUSERNAME() + "_regcom.off")
+		IF .NOT. FILE(fixfolderpath("C:\SSBUILD\PWCT19\"+ PWCT_GETUSERNAME() + "_regcom.off") )
 					MESSAGEBOX("You need to run PWCT as Admin (for one time) to register the Treeview ActiveX control",0,"Sorry")
-					tempv2_myhandle = FCREATE(fixfolderpath("C:\SSBUILD\PWCT19\")+ PWCT_GETUSERNAME() + "_regcom.off")
+					tempv2_myhandle = FCREATE(fixfolderpath("C:\SSBUILD\PWCT19\"+ PWCT_GETUSERNAME() + "_regcom.off"))
 					FCLOSE(tempv2_myhandle)
 					myquit()
 		ENDIF
@@ -220,12 +224,6 @@ DIMENSION aGeneratedFiles(1)
 	ENDIF
 	
 
-try
-CREATEOBJECT("comctl.treectrl")
-catch
-MESSAGEBOX("The Treeview ActiveX control is missing",0,"Sorry")
-myquit()
-endtry
 
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
 	DO FORM welcome

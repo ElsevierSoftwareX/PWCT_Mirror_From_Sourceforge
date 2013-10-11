@@ -1851,11 +1851,11 @@ IF s_menu = "DoubleS FAQ"
 ENDIF
 IF s_menu = "Supernova"
 	s_menu = "1_0"
-	shellexecute(0,"open","C:\SSRPWI\Supernova\nova.exe","","",1)
+	shellexecute(0,"open",fixfolderpath("C:\SSRPWI\Supernova\nova.exe"),"","",1)
 ENDIF
-IF s_menu = "ArabicSupernova"
+IF s_menu = "HelpSupernova"
 	s_menu = "1_0"
-	shellexecute(0,"open",APPLICATION.DEFAULTFILEPATH + "\supernovaar\Simple_IDE.exe","","",1)
+	shellexecute(0,"open",fixfolderpath("C:\SSRPWI\Supernova\nova.chm"),"","",1)
 ENDIF
 IF s_menu = "Calculator"
 	s_menu = "1_0"
