@@ -28,6 +28,9 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 	lautoname = .F.
 	tautoname = ""
 	ldefault = .F.
+	IDFVarName = ""
+
+
 
 	PROCEDURE GOTFOCUS
 		IF LEFT(ALLTRIM(THIS.VALUE),1) == '"' .AND. RIGHT(ALLTRIM(THIS.VALUE),1) == '"'
@@ -55,6 +58,14 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		APPLICATION.ACTIVEFORM.REFRESH
 		RETURN
 	PROCEDURE RIGHTCLICK
+	
+		LOCAL cCustomList
+		
+		cCustomList =  obj_avoiderrors.customlist(fixfolderpath(run_trf),this.IDFVarName) 
+		stmsg("Component : " + run_trf + " Control : " + this.IDFVarName)
+		
+	
+	
 		DEFINE POPUP mencontex shortcut RELATIVE FROM MROW(),MCOL()
 		DEFINE BAR 1 OF mencontex PROMPT  sysmsg(1508)
 		DEFINE BAR 2 OF mencontex PROMPT  sysmsg(1509)
@@ -62,6 +73,29 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		DEFINE BAR 4 OF mencontex PROMPT  "Select Object"
 		DEFINE BAR 5 OF mencontex PROMPT  " = True "
 		DEFINE BAR 6 OF mencontex PROMPT  " = False "
+		
+		IF .not. EMPTY(ALLTRIM(cCustomList))
+		
+			FOR T = 1 TO MEMLINES(cCustomList)
+			
+			cLine = MLINE(cCustomList,t)
+			
+			IF .not. EMPTY(ALLTRIM(cLine))
+	
+				BarNum = 6 + t
+				
+				s = "DEFINE BAR " + ALLTRIM(STR(BarNum)) + " OF mencontex PROMPT  cLine "
+				&s
+				
+				s = "ON SELECTION BAR " + ALLTRIM(STR(BarNum)) + " OF mencontex _selec=" + ALLTRIM(STR(BarNum))
+				&s
+			
+			ENDIF
+			
+			NEXT
+			
+		ENDIF
+		
 
 		ON SELECTION BAR 1 OF mencontex _selec=1
 		ON SELECTION BAR 2 OF mencontex _selec=2
@@ -129,6 +163,13 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			THIS.VALUE = "True "
 		CASE _selec = 6
 			THIS.VALUE = "False "
+			
+		CASE _selec >= 7
+		
+		cItem = MLINE(cCustomList,_selec - 6)
+		
+		MESSAGEBOX(cItem,0,cItem)
+			
 		ENDCASE
 		RETURN
 ENDDEFINE

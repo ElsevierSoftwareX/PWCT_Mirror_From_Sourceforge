@@ -2320,6 +2320,73 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 		RETURN
 
 
+	PROCEDURE CustomList(cFile,cControlName)
+	
+		LOCAL cRules,nMax,x,cLine,cRule,T,myret
+	
+		myret = ""
+	
+		IF FILE(cfile)
+
+					cfile = STRTRAN(cfile,".TRF",".RULES")
+
+					IF FILE(cfile)
+
+						crules = this.myFILETOSTR(cfile)
+						crules = UPPER(crules)
+
+				 
+						nMax = ALINES(aRules,cRules)
+						
+						FOR x = 1 TO nmax
+				 
+							cLine = aRules(x)
+							
+							cline = ALLTRIM(cline)
+							crule = "ALLOWLIST: " + cControlName
+							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+
+
+								FOR T = x TO nmax
+
+						 
+									cline = aRules(T)
+									
+									cline = UPPER(ALLTRIM(cline))
+
+  								crule = "ALLOW:"
+									IF LEFT(cline,6) == crule
+										cline = SUBSTR(cline,7)
+										cline = ALLTRIM(cline)
+										
+										myret = myret + cLine + CHR(13) + CHR(10)
+										
+										
+									ENDIF
+ 
+ 								 crule = "END"
+									IF LEFT(cline,3) == crule
+										EXIT
+									ENDIF
+
+								NEXT
+
+								EXIT
+
+							ENDIF
+						NEXT
+
+
+					ELSE
+						stmsg( " (Check Sub Component) Cann't find the Rules file : " + cfile )
+						myret = ""
+					ENDIF
+		ENDIF
+	
+	
+	RETURN myret
+	
+
 
 ENDDEFINE
 
