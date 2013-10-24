@@ -62,7 +62,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		LOCAL cCustomList
 		
 		cCustomList =  obj_avoiderrors.customlist(fixfolderpath(run_trf),this.IDFVarName) 
-		stmsg("Component : " + run_trf + " Control : " + this.IDFVarName)
+		*stmsg("Component : " + run_trf + " Control : " + this.IDFVarName)
 		
 	
 	
@@ -74,7 +74,18 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		DEFINE BAR 5 OF mencontex PROMPT  " = True "
 		DEFINE BAR 6 OF mencontex PROMPT  " = False "
 		
-		IF .not. EMPTY(ALLTRIM(cCustomList))
+		IF  EMPTY(ALLTRIM(cCustomList))
+	 
+ 
+    	cCustomList = "Variable Name" + CHR(13) + CHR(10)
+    	cCustomList = cCustomList + "Array Name" + CHR(13) + CHR(10) 
+    	cCustomList = cCustomList + "Object Name" + CHR(13) + CHR(10) 
+    	cCustomList = cCustomList + "Procedure Name" + CHR(13) + CHR(10)
+    	cCustomList = cCustomList + "Class Name" + CHR(13) + CHR(10) 
+    	cCustomList = cCustomList + "Class Data Name" + CHR(13) + CHR(10)
+    	cCustomList = cCustomList + "Method Name" + CHR(13) + CHR(10) 
+ 			
+		ENDIF
 		
 			FOR T = 1 TO MEMLINES(cCustomList)
 			
@@ -93,8 +104,9 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			ENDIF
 			
 			NEXT
-			
-		ENDIF
+ 
+     
+   
 		
 
 		ON SELECTION BAR 1 OF mencontex _selec=1
