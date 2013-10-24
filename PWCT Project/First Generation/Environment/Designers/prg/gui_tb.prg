@@ -166,9 +166,17 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			
 		CASE _selec >= 7
 		
-		cItem = MLINE(cCustomList,_selec - 6)
+		 
+		  PUBLIC cCustomListType
+		  cCustomListType = MLINE(cCustomList,_selec - 6)
 		
-		MESSAGEBOX(cItem,0,cItem)
+			PUBLIC objfromlist
+			objfromlist = ""
+			DO FORM customlist.scx
+			IF .NOT. EMPTY(objfromlist)
+				THIS.VALUE = objfromlist
+			ENDIF
+
 			
 		ENDCASE
 		RETURN
