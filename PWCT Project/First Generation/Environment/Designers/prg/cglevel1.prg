@@ -1464,7 +1464,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 				cOutput = ""
 					
 				cFileName = ALLTRIM(cIDFFile)
-				
+				cFileName = fixfolderpath(cFileName)
 
 				cFileName = LEFT(cIDFFile,LEN(cIDFFile)-4) + "_" + ALLTRIM(cVariableName) + ".list"
 				
