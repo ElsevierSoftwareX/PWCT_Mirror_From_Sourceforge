@@ -1,1 +1,1 @@
-C:\SSBUILD\WebPWCT\batch\run.bat "START.html"
+C:\ssbuild\WEBPWCT\BATCH\RUN.BAT "START.HTML"
