@@ -100,9 +100,10 @@ FUNCTION SS_VSL4CONNECT(myaddress,myport)
 	VSL4_CLICONSTATUS = 1
 
 	VSL4_osocket = HB_INETConnect( myaddress,VAL(myport) )
-	HB_INETTIMEOUT( VSL4_osocket, 100 )
+	HB_INETTIMEOUT( VSL4_osocket, 1000 )
 	hb_inetSetRcvBufSize( VSL4_osocket, 4194304 ) 
 	hb_inetSetSndBufSize( VSL4_osocket, 4194304 )
+
 
 	if VSL4_PRINTMSGS = .t.
 	? " Connect "
@@ -122,7 +123,7 @@ FUNCTION SS_VSL4CONNECT(myaddress,myport)
 	 			      SS_SERVERS[SS_AS][2] + CHR(13) + CHR(10) + ;
 	 			      SS_SERVERS[SS_AS][3] + CHR(13) + CHR(10)  )	 
 
-	T_ConnectionStatus = space(128)
+	T_ConnectionStatus = space(122880)
 	T_ConnectionStatus = HB_INETRecvLine( VSL4_osocket)
 
 	if VSL4_PRINTMSGS = .t.
@@ -198,13 +199,14 @@ FUNCTION SS_VSL4ClientCLOSE()
 RETURN
 
 FUNCTION SS_VSL4ServerCLOSE()
-	local x
+	local x,nMax
 	hb_threadQuitRequest( VSL4_PThread )
 	HB_INETClose( VSL4_mysocket )
 	VSL4_islisten = 0
 	VSL4_waitconnection = .f.
-	if .not. len(VSL4_sconsarr) = 0
-		for x = 1 to len(VSL4_sconsarr)
+	nMax = len(VSL4_sconsarr)
+	if .not. nMax = 0
+		for x = 1 to nMax
 			VSL4_osocketclient = VSL4_sconsarr[x]
 			HB_INETClose( VSL4_osocketclient )
 		next
@@ -269,21 +271,21 @@ FUNCTION SS_VSL4ENGINE()
 			return
 		endif
 		 
-		T_ServerName := space(128)
+		T_ServerName := space(122880)
 		T_ServerName = HB_INETRecvLine( p_VSL4_osocketclient)
 		
 		if VSL4_PRINTMSGS = .t.
 		? "Sender Server Name : " + T_ServerName
 		endif
 
-		T_ServerType := space(128)
+		T_ServerType := space(122880)
 		T_ServerType = HB_INETRecvLine( p_VSL4_osocketclient)
 		
 		if VSL4_PRINTMSGS = .t.
 		? "Sender Server Type : " + T_ServerType
 		endif
 
-		T_ServerEigenValue := space(128)
+		T_ServerEigenValue := space(122880)
 		T_ServerEigenValue = HB_INETRecvLine( p_VSL4_osocketclient)
 		
 		if VSL4_PRINTMSGS = .t.
@@ -334,9 +336,9 @@ FUNCTION SS_VSL4ENGINE()
 					loop
 				endif
 
-				HB_INETTIMEOUT( VSL4_osocketclient, 100 )
+				HB_INETTIMEOUT( VSL4_osocketclient, 1000 )
 
-			        MYSTR := space(128)
+			        MYSTR := space(122880)
 
 				if hb_InetDataReady(VSL4_osocketclient) = 1
 			        	MYSTR = HB_INETRecvLine( VSL4_osocketclient)
@@ -389,7 +391,7 @@ FUNCTION SS_VSL4ENGINE()
 				if hb_InetErrorCode( VSL4_osocket ) = 1 && connection closed
 					loop
 				endif
-			        MYSTR := space(128)
+			        MYSTR := space(122880)
 
 				if hb_InetDataReady(VSL4_osocket) = 1
 		                	MYSTR := HB_INETRecvLine( VSL4_osocket  )
@@ -560,10 +562,10 @@ FUNCTION SS_VSL4ACCEPT()
 	// ? "after accept"
 	 
 	if .not. p1_VSL4_osocketCLIENT = NIL
-		HB_INETTIMEOUT( p1_VSL4_osocketCLIENT, 100 )
+		HB_INETTIMEOUT( p1_VSL4_osocketCLIENT, 1000 )
 		hb_inetSetRcvBufSize( p1_VSL4_osocketCLIENT, 4194304 ) 
 		hb_inetSetSndBufSize( p1_VSL4_osocketCLIENT, 4194304 )
-	 
+	  
 		// ? "Send welcome"
 	 
 	
@@ -647,6 +649,6 @@ FUNCTION SS_VSL4SENDVETO(myveto)
 RETURN
 
 Function SS_MSGINFO(P1)
-	// msginfo(p1)
+	//msginfo(p1)
 RETURN
 *-------------------------------------------------------------------*
