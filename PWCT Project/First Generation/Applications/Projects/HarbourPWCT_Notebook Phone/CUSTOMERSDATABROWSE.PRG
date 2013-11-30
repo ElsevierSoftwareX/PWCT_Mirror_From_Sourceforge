@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 16:42:17    Date : 11/25/2013
+* Time : 17:52:54    Date : 11/29/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -452,6 +452,7 @@ FONTCOLOR {0,0,0}
 WIDTH 490 ;
 FONT "Arial" SIZE 14 ;
 BACKCOLOR {255,255,255} ;
+DATEFORMAT "MM/dd/yyyy" ;
 FONTCOLOR {0,0,0}
 @ 541 ,211 BUTTONEX btnFirst;
 CAPTION "«·«Ê·";
@@ -763,6 +764,11 @@ Local myout
 myout = oCustomersRebort:ShowWindow()
 Return 0
 Method CheckText Class CustDataBrowseClass
+Local oo1
+IF self:addrec==False
+oo1 := Self:ORS
+VBM := Self:oRS:BookMark
+ENDIF
 Self:cName := &(self:cWindowName).textName.Value
 Self:cName = ALLTRIM ( Self:cName )
 IF Self:cName==""
@@ -805,8 +811,12 @@ MyOut := MSGBOX(" «·«”„ «·Õ«·Ì „ÊÃÊœ ”«»ﬁ« .«‰Ÿ— «·ÃœÊ·....⁄›Ê« ·«Ì„ﬂ‰ ﬁ»Ê· «· ﬂ
 Return 0
 ENDIF
 ENDIF
-MyOut = Self:saverecord()
 &(self:cWindowName).textNamebrowse.Value := ""
+IF self:addrec==False
+Self:ORS := oo1
+Self:oRS:BookMark := VBM
+ENDIF
+MyOut = Self:saverecord()
 ELSE
 MyOut := MSGBOX("ﬁ„ » ⁄»∆… Õﬁ· Ê«Õœ ⁄·Ï «·«ﬁ· „‰ ÕﬁÊ· «·«—ﬁ«„ ","⁄›Ê«")
 ENDIF

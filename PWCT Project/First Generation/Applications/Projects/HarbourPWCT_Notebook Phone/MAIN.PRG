@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 02:08:59    Date : 11/29/2013
+* Time : 18:04:48    Date : 11/29/2013
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -71,14 +71,16 @@ BACKCOLOR {236,233,216}
 DEFINE MAIN MENU
 POPUP "„·›"
 MENUITEM "ÕÊ· «·»—‰«„Ã" Action oAbout:ShowWindow()
-MENUITEM "⁄—÷ / «÷«›…/  ⁄œÌ· /ÿ»«⁄… «·»Ì«‰« " Action oCustDataBrowse:ShowWindow()
+MENUITEM "⁄—÷ /  «÷«›… /   ⁄œÌ· / ÿ»«⁄… " Action oCustDataBrowse:ShowWindow()
 MENUITEM "«€‹‹‹·«ﬁ" Action closesystem()
 END POPUP
 END MENU
 DEFINE STATUSBAR 
-STATUSITEM "Ready"
+STATUSITEM "Ã«Â“"
 KEYBOARD
 CLOCK
+DATE;
+TOOLTIP "«· «—ÌŒ" 
 END STATUSBAR
 END WINDOW
 calldll32("SetWindowLong","USER32.DLL",GetFormHandle ("Win1"),-20,;
@@ -117,25 +119,27 @@ SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",17,21)
 SS_ESASTEP("Circuits\Main\Main\Main","START OF MAIN MENU",22,22)
 SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP '„·›'",23,23)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'ÕÊ· «·»—‰«„Ã' )",24,24)
-SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( '⁄—÷ / «÷«›…/  ⁄œÌ· /ÿ»«⁄… «·»Ì«‰« ' )",25,25)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( '⁄—÷ /  «÷«›… /   ⁄œÌ· / ÿ»«⁄… ' )",25,25)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( '«€‹‹‹·«ﬁ' )",26,26)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",27,27)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF MAIN MENU",28,28)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Statusbar",29,30)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New StatusItem ( 'Ready' )",31,32)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New StatusItem ( 'Ã«Â“' )",31,32)
 SS_ESASTEP("Circuits\Main\Main\Main","Keyboard",33,34)
 SS_ESASTEP("Circuits\Main\Main\Main","Clock",35,36)
-SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",37,38)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",39,40)
-SS_ESASTEP("Circuits\Main\Main\Main","Right-To-Left, Window 'Win1'",41,43)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Maximize ( )",44,44)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",45,47)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure closesystem",48,48)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",49,49)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",50,50)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure SysStart - Event : INIT",51,51)
-SS_ESASTEP("Circuits\Main\Main\Main","Execute File 'InstallODBC.bat' , MINIMIZE",52,52)
-SS_ESASTEP("Circuits\Main\Main\Main","MyOut = oCustDataBrowse.ShowWindow()",53,53)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",54,54)
+SS_ESASTEP("Circuits\Main\Main\Main","Date",37,37)
+SS_ESASTEP("Circuits\Main\Main\Main","Properties",38,39)
+SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",40,41)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",42,43)
+SS_ESASTEP("Circuits\Main\Main\Main","Right-To-Left, Window 'Win1'",44,46)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Maximize ( )",47,47)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",48,50)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure closesystem",51,51)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",52,52)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",53,53)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure SysStart - Event : INIT",54,54)
+SS_ESASTEP("Circuits\Main\Main\Main","Execute File 'InstallODBC.bat' , MINIMIZE",55,55)
+SS_ESASTEP("Circuits\Main\Main\Main","MyOut = oCustDataBrowse.ShowWindow()",56,56)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",57,57)
 Return
 *-------------------------------------------------------------------*
