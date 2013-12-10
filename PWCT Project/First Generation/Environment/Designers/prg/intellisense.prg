@@ -98,6 +98,8 @@ DEFINE CLASS IntellisenseClass as Custom
 			this.additem(0,"oCustoemrs",3,"Customers")
 			this.additem(0,"win1",3,"window")
 			
+			cCode = 'this.additem(0,"win2",3,"window")'
+			cCode = &cCode
 			
 			nMax = ALEN(this.InfoTree,1)
 			
