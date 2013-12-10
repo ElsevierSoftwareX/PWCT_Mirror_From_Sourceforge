@@ -80,21 +80,21 @@ DEFINE CLASS IntellisenseClass as Custom
 		this.InfoTree(nMax,4) = nType
 		this.InfoTree(nMax,5) = cTypeText
 	
-	RETURN
+	RETURN nMax
 	
 
 	PROCEDURE BuildTree()
 	
-			LOCAL x,nMax,t,r
+			LOCAL nParent,x,nMax,t,r
 	
 			DIMENSION this.InfoTree(8,5)
 			
-			this.additem(0,"window",1)
-			this.additem(1,"row",2)
-			this.additem(1,"btn1",2)
-			this.additem(3,"col",2)
-			this.additem(0,"Customers",1)
-			this.additem(5,"cName",2)
+			nParent = this.additem(0,"window",1)
+			this.additem(nParent,"row",2)
+			nParent = this.additem(nParent,"btn1",2)
+			this.additem(nParent,"col",2)
+			nParent = this.additem(0,"Customers",1)
+			this.additem(nParent,"cName",2)
 			this.additem(0,"oCustoemrs",3,"Customers")
 			this.additem(0,"win1",3,"window")
 			
