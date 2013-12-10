@@ -6,6 +6,8 @@ DEFINE CLASS IntellisenseClass as Custom
 
 	cInfoData = ""
 	cList = ""
+	nListMax = 0
+	
 	
 	DIMENSION InfoTree(1,5) && Parent ID - Child ID - Name - Type (1 = New Type, 2 = No Type , 3 = Type Name) - Type Name Text
 	
@@ -59,7 +61,27 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	RETURN
 
-
+	PROCEDURE AddItem(nParentID,cName,nType,cTypeText)
+		
+		LOCAL nMax
+		
+		IF PCOUNT() < 4
+			cTypeText = ""
+		ENDIF 
+		
+		this.nListMax = this.nListMax + 1
+		nMax = this.nListMax
+		
+		DIMENSION this.InfoTree(nMax,5)
+		
+		this.InfoTree(nMax,1) = nParentID
+		this.InfoTree(nMax,2) = nMax
+		this.InfoTree(nMax,3) = cName
+		this.InfoTree(nMax,4) = nType
+		this.InfoTree(nMax,5) = cTypeText
+	
+	RETURN
+	
 
 	PROCEDURE BuildTree()
 	
@@ -67,54 +89,14 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 			DIMENSION this.InfoTree(8,5)
 			
-			this.InfoTree(1,1) = 0
-			this.InfoTree(1,2) = 1
-			this.InfoTree(1,3) = "window"
-			this.InfoTree(1,4) = 1
-			this.InfoTree(1,5) = ""
-			
-			this.InfoTree(2,1) = 1
-			this.InfoTree(2,2) = 2
-			this.InfoTree(2,3) = "row"
-			this.InfoTree(2,4) = 2
-			this.InfoTree(2,5) = ""
-			
-			this.InfoTree(3,1) = 1
-			this.InfoTree(3,2) = 3
-			this.InfoTree(3,3) = "btn1"
-			this.InfoTree(3,4) = 2
-			this.InfoTree(3,5) = ""
-			
-			this.InfoTree(4,1) = 3
-			this.InfoTree(4,2) = 4
-			this.InfoTree(4,3) = "col"
-			this.InfoTree(4,4) = 2
-			this.InfoTree(4,5) = ""
-			
-			this.InfoTree(5,1) = 0
-			this.InfoTree(5,2) = 5
-			this.InfoTree(5,3) = "Customers"
-			this.InfoTree(5,4) = 1
-			this.InfoTree(5,5) = ""
-			
-			this.InfoTree(6,1) = 5
-			this.InfoTree(6,2) = 6
-			this.InfoTree(6,3) = "cName"
-			this.InfoTree(6,4) = 2
-			this.InfoTree(6,5) = ""
-			
-			
-			this.InfoTree(7,1) = 0
-			this.InfoTree(7,2) = 7
-			this.InfoTree(7,3) = "oCustomers"
-			this.InfoTree(7,4) = 3
-			this.InfoTree(7,5) = "Customers"
-			
-			this.InfoTree(8,1) = 0
-			this.InfoTree(8,2) = 8
-			this.InfoTree(8,3) = "win1"
-			this.InfoTree(8,4) = 3
-			this.InfoTree(8,5) = "window"
+			this.additem(0,"window",1)
+			this.additem(1,"row",2)
+			this.additem(1,"btn1",2)
+			this.additem(3,"col",2)
+			this.additem(0,"Customers",1)
+			this.additem(5,"cName",2)
+			this.additem(0,"oCustoemrs",3,"Customers")
+			this.additem(0,"win1",3,"window")
 			
 			
 			nMax = ALEN(this.InfoTree,1)
