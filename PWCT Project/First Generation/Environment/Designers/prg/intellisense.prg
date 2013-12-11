@@ -82,9 +82,11 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	RETURN nMax
 	
+	
+	 
 	PROCEDURE LoadTreeFromString(cStr)
 	
-		LOCAL x,nMax,cLine,cItem,nParent
+		LOCAL x,nMax,cLine,cItem,nParent,cType
 
 		DIMENSION ParentQueue(1)
 		
@@ -92,11 +94,21 @@ DEFINE CLASS IntellisenseClass as Custom
 		
 		nParent = 0
 
+		cType = ""
+
 		nMax = MEMLINES(cStr)
 		
 		FOR x = 1 TO nMax
 		
-				cLine = ALLTRIM(MLINE(cStr,x))
+				cLine = MLINE(cStr,x)
+				
+								 
+				DO WHILE ASC(LEFT(cLine,1)) = 9			
+					cLine = SUBSTR(cLine,2)				
+				ENDDO
+				
+				cLine = ALLTRIM(cLine)
+				
 				
 				IF .not. EMPTY(cLine)
 				
@@ -104,7 +116,13 @@ DEFINE CLASS IntellisenseClass as Custom
 						
 							cItem = ALLTRIM(SUBSTR(cLine,8))
 							
-							nParent = this.additem(nParent,cItem,1)
+							IF cType == ""
+								nParent = this.additem(nParent,cItem,1)
+							ELSE
+								nParent = this.additem(nParent,cItem,3,cType)
+								cType = ""
+							ENDIF
+							
 							
 							DIMENSION ParentQueue(ALEN(ParentQueue,1) + 1)
 							ParentQueue(ALEN(ParentQueue,1)) = nParent
@@ -112,7 +130,7 @@ DEFINE CLASS IntellisenseClass as Custom
 							
 						ELSE 
 						
-							IF UPPER(cLine) = "END"
+							IF UPPER(cLine) = "END:"
 							
 									ADEL(ParentQueue,ALEN(ParentQueue,1))
 									
@@ -122,7 +140,21 @@ DEFINE CLASS IntellisenseClass as Custom
 										
 							ELSE
 							
-									this.additem(nParent,cLine,2)
+							
+									IF UPPER(LEFT(cLine,5)) = "TYPE:"
+							
+											cType = ALLTRIM(SUBSTR(cLine,6))
+							
+									ELSE
+									
+											IF cType == ""
+												this.additem(nParent,cLine,2)
+											ELSE
+												this.additem(nParent,cLine,3,cType)
+												cType = ""
+											ENDIF 
+										
+									ENDIF 
 									
 							ENDIF
 							
@@ -161,22 +193,9 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 			DIMENSION this.InfoTree(8,5)
 			
-			nParent = this.additem(0,"window",1)
-			this.additem(nParent,"row",2)
-			nParent = this.additem(nParent,"btn1",2)
-			this.additem(nParent,"col",2)
-			nParent = this.additem(0,"Customers",1)
-			this.additem(nParent,"cName",2)
-			this.additem(0,"oCustoemrs",3,"Customers")
-			this.additem(0,"win1",3,"window")
-			
-			cCode = 'this.additem(0,"win2",3,"window")'
-			cCode = &cCode
 			
 			this.LoadTreeFromFile("c:\users\mahmoud\desktop\test.txt")
-			
-			this.additem(0,"great",3,"Nice")
-			
+
 			
 			nMax = ALEN(this.InfoTree,1)
 			
@@ -238,7 +257,17 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 			NEXT
 			
-			MESSAGEBOX(this.cList,0,"wow")
+			DIMENSION aListArray(MEMLINES(this.cList))
+			ALINES(aListArray,this.cList)
+			
+			ASORT(aListArray)
+			
+			cNewStr = ""
+			FOR t = 1 TO ALEN(aListArray)
+				cNewStr = cNewStr + aListArray(t) + CHR(13) + CHR(10)
+			NEXT
+			
+			MESSAGEBOX(cNewStr,0,"wow")
 	
 	RETURN
 	
