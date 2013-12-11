@@ -38,7 +38,21 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 		ENDIF
 
+		runtrfref.list1.top = this.Top + this.height + 65  + this.Parent.top 
+		
+		runtrfref.list1.left = this.Left  
+		
+		runtrfref.list1.visible = .t.
+		
+
 		RETURN
+
+	PROCEDURE lostfocus
+	
+		runtrfref.list1.visible = .f.
+	
+		RETURN
+		
 
 	PROCEDURE KEYPRESS
 		LPARAMETERS nkeycode, nshiftaltctrl

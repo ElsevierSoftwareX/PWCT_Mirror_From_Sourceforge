@@ -166,7 +166,7 @@ s_tool = ""
 
 PUBLIC obj_avoiderrors
 
-SET PROCEDURE TO avoiderrors.prg,stepscolors.prg,VPLCompiler.prg
+SET PROCEDURE TO avoiderrors.prg,stepscolors.prg,VPLCompiler.prg,intellisense.prg
 
 obj_avoiderrors = CREATEOBJECT("GD_AvoidErrors")
 
@@ -175,6 +175,13 @@ obj_stepscolors = CREATEOBJECT("GD_StepsColors")
 PUBLIC obj_VPLCompiler 
 
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
+
+
+PUBLIC obj_intellisense
+
+obj_intellisense = CREATEOBJECT("IntellisenseClass")
+
+
 
 PUBLIC sys_pwctversion
 sys_pwctversion = "PWCT 1.9 (Art) 2013.10.15"

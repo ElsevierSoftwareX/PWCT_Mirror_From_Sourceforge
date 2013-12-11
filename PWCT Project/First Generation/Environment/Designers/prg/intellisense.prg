@@ -1,6 +1,6 @@
 
-myobj = CREATEOBJECT("IntellisenseClass")
-myobj.buildtree()
+*myobj = CREATEOBJECT("IntellisenseClass")
+*myobj.buildtree()
 
 DEFINE CLASS IntellisenseClass as Custom
 
@@ -10,6 +10,17 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	
 	DIMENSION InfoTree(1,5) && Parent ID - Child ID - Name - Type (1 = New Type, 2 = No Type , 3 = Type Name) - Type Name Text
+	
+	
+	PROCEDURE start()
+	
+		this.cInfoData = ""
+		this.cList = ""
+		this.nListMax = 0
+
+		DIMENSION this.InfoTree(1,5)
+	
+	RETURN
 	
 	
 	PROCEDURE ReadInformation()
@@ -281,7 +292,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 			NEXT
 			
-			MESSAGEBOX(this.cList,0,"wow")
+			*MESSAGEBOX(this.cList,0,"wow")
 	
 	RETURN
 	
