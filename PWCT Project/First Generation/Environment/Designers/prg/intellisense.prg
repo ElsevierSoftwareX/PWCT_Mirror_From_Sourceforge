@@ -86,7 +86,10 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 		LOCAL x,nMax,cLine,cItem,nParent
 
-
+		DIMENSION ParentQueue(1)
+		
+		ParentQueue(1) = 0
+		
 		nParent = 0
 
 		nMax = MEMLINES(cStr)
@@ -101,11 +104,28 @@ DEFINE CLASS IntellisenseClass as Custom
 						
 							cItem = ALLTRIM(SUBSTR(cLine,8))
 							
-							nParent = this.additem(0,cItem,1)
+							nParent = this.additem(nParent,cItem,1)
+							
+							DIMENSION ParentQueue(ALEN(ParentQueue,1) + 1)
+							ParentQueue(ALEN(ParentQueue,1)) = nParent
+		
 							
 						ELSE 
 						
-							this.additem(nParent,cLine,2)
+							IF UPPER(cLine) = "END"
+							
+									ADEL(ParentQueue,ALEN(ParentQueue,1))
+									
+									DIMENSION ParentQueue(ALEN(ParentQueue,1) - 1)
+									
+									nParent = ParentQueue(ALEN(ParentQueue,1))
+										
+							ELSE
+							
+									this.additem(nParent,cLine,2)
+									
+							ENDIF
+							
 						
 						ENDIF 
 						
