@@ -264,8 +264,12 @@ DEFINE CLASS IntellisenseClass as Custom
 							
 							IF left(cLine,nSize) == cTypeName
 							
-								cItemText =  this.InfoTree(x,3) + SUBSTR(cLine,nSize+1)
-								this.cList = this.cList + cParent + cItemText + CHR(13) + CHR(10)
+								IF .not. EMPTY(ALLTRIM(SUBSTR(cLine,nSize+1)))
+								
+									cItemText =  this.InfoTree(x,3) + SUBSTR(cLine,nSize+1)
+									this.cList = this.cList + cParent + cItemText + CHR(13) + CHR(10)
+									
+								ENDIF 
 								
 							ENDIF
 							
@@ -277,7 +281,15 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 			NEXT
 			
-			DIMENSION aListArray(MEMLINES(this.cList))
+			MESSAGEBOX(this.cList,0,"wow")
+	
+	RETURN
+	
+	PROCEDURE sortlist()
+	
+			LOCAL cNewStr
+	
+  		DIMENSION aListArray(MEMLINES(this.cList))
 			ALINES(aListArray,this.cList)
 			
 			ASORT(aListArray)
@@ -287,10 +299,9 @@ DEFINE CLASS IntellisenseClass as Custom
 				cNewStr = cNewStr + aListArray(t) + CHR(13) + CHR(10)
 			NEXT
 			
-			MESSAGEBOX(cNewStr,0,"wow")
+			this.cList = cNewStr
 	
 	RETURN
-	
 	
 
 ENDDEFINE 
