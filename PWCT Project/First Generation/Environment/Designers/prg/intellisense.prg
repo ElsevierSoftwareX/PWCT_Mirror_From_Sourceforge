@@ -61,7 +61,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	RETURN
 
-	PROCEDURE AddItem(nParentID,cName,nType,cTypeText)
+	PROCEDURE AddItem(nParentID,cName,nType,cTypeText) && nType (1 = New Type, 2 = No Type , 3 = Type Name)
 		
 		LOCAL nMax
 		
@@ -82,6 +82,58 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	RETURN nMax
 	
+	PROCEDURE LoadTreeFromString(cStr)
+	
+		LOCAL x,nMax,cLine,cItem,nParent
+
+
+		nParent = 0
+
+		nMax = MEMLINES(cStr)
+		
+		FOR x = 1 TO nMax
+		
+				cLine = ALLTRIM(MLINE(cStr,x))
+				
+				IF .not. EMPTY(cLine)
+				
+						IF UPPER(LEFT(cLine,7)) = "PARENT:"
+						
+							cItem = ALLTRIM(SUBSTR(cLine,8))
+							
+							nParent = this.additem(0,cItem,1)
+							
+						ELSE 
+						
+							this.additem(nParent,cLine,2)
+						
+						ENDIF 
+						
+				ENDIF 
+		
+		NEXT
+	
+	
+	RETURN
+	
+
+	PROCEDURE LoadTreeFromFile(cFileName)
+	
+		LOCAL cStr
+	
+	
+		IF FILE(cFileName)
+		
+				cStr = FILETOSTR(cFileName)
+			
+				this.LoadTreeFromString(cStr)
+				
+				
+		ENDIF
+		
+	
+	RETURN
+	
 
 	PROCEDURE BuildTree()
 	
@@ -100,6 +152,11 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 			cCode = 'this.additem(0,"win2",3,"window")'
 			cCode = &cCode
+			
+			this.LoadTreeFromFile("c:\users\mahmoud\desktop\test.txt")
+			
+			this.additem(0,"great",3,"Nice")
+			
 			
 			nMax = ALEN(this.InfoTree,1)
 			
