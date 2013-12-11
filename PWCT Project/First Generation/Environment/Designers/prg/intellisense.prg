@@ -233,6 +233,26 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 					IF this.InfoTree(x,4) = 3 && the item is a new object of a predefined type
 					
+					
+						cParent = ""
+					
+						IF .not. this.InfoTree(x,1) = 0 && The item is a child also
+					
+								r = x
+								DO WHILE .not. this.InfoTree(r,1) = 0
+									FOR t = 1 TO nMax
+										IF this.InfoTree(t,2) = this.InfoTree(r,1)
+											cParent = this.InfoTree(t,3) + "." + cParent
+											r = t
+											EXIT 
+										ENDIF
+									NEXT
+								ENDDO
+					
+						ENDIF
+					
+					
+					
 						cTypeName = this.InfoTree(x,5)
 						nSize = LEN(cTypeName)
 						
@@ -245,7 +265,7 @@ DEFINE CLASS IntellisenseClass as Custom
 							IF left(cLine,nSize) == cTypeName
 							
 								cItemText =  this.InfoTree(x,3) + SUBSTR(cLine,nSize+1)
-								this.cList = this.cList + cItemText + CHR(13) + CHR(10)
+								this.cList = this.cList + cParent + cItemText + CHR(13) + CHR(10)
 								
 							ENDIF
 							
