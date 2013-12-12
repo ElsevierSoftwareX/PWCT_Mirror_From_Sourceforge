@@ -26,6 +26,13 @@
 *:******************************************************************************
 DEFINE CLASS tr_checkbox AS CHECKBOX
 	lcbdefault = .F.
+	
+	PROCEDURE gotfocus
+		runtrfref.list1.visible = .f.
+		runtrfref.list1.refresh
+		RETURN 
+	
+	
 	PROCEDURE LOSTFOCUS
 		APPLICATION.ACTIVEFORM.REFRESH
 		RETURN

@@ -30,28 +30,66 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 	ldefault = .F.
 	IDFVarName = ""
 
-
-
 	PROCEDURE GOTFOCUS
 		IF LEFT(ALLTRIM(THIS.VALUE),1) == '"' .AND. RIGHT(ALLTRIM(THIS.VALUE),1) == '"'
 			THIS.SELSTART = 1
 
 		ENDIF
 
-		runtrfref.list1.top = this.Top + this.height + 65  + this.Parent.top 
-		
-		runtrfref.list1.left = this.Left  
-		
-		runtrfref.list1.visible = .t.
-		
-
-		RETURN
-
-	PROCEDURE lostfocus
 	
 		runtrfref.list1.visible = .f.
+		runtrfref.list1.refresh
 	
+		runtrflastactivetextbox = this
+		
+
 		RETURN
+
+	PROCEDURE InteractiveChange
+	
+			IF RIGHT(ALLTRIM(this.Value),1) = "." .and. runtrfref.list1.visible = .f.
+		
+				runtrfref.list1.top = this.Top + this.height + 65  + this.Parent.top 
+				
+				runtrfref.list1.left = this.Left  
+				
+				runtrfref.list1.visible = .t.
+				
+			
+			ENDIF 
+		
+			IF AT(".",this.Value) = 0
+					runtrfref.list1.visible = .f.
+					runtrfref.list1.refresh
+			ENDIF
+			
+		
+		RETURN 
+
+
+	PROCEDURE valid
+	
+		IF runtrfref.list1.visible = .t.
+		
+			IF LASTKEY() = 24  && .and. runtrfref.list1.listindex < runtrfref.list1.listcount
+					runtrfref.list1.listindex = runtrfref.list1.listindex + 1
+					CLEAR TYPEAHEAD 
+					RETURN .f.
+			ENDIF 
+			
+			IF LASTKEY() = 5  && .and. runtrfref.list1.listindex > 1
+					runtrfref.list1.listindex = runtrfref.list1.listindex - 1	
+					CLEAR TYPEAHEAD 
+					RETURN .f.
+			ENDIF 
+			
+			
+			
+		ENDIF 
+		
+
+	
+		RETURN .T. 
 		
 
 	PROCEDURE KEYPRESS
@@ -65,12 +103,26 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			ENDIF
 		ENDIF
 
+		IF nkeycode = 32 .and. runtrfref.list1.listindex != 0			
+					this.Value = ALLTRIM(this.Value) + ALLTRIM(runtrfref.list1.listitem(runtrfref.list1.listindex))
+					this.SelStart = LEN(ALLTRIM(this.Value))
+					runtrfref.list1.visible = .f.
+		ENDIF 
+			
+
+
 		RETURN
 
 
 	PROCEDURE LOSTFOCUS
-		APPLICATION.ACTIVEFORM.REFRESH
+	
+*!*				runtrfref.list1.visible = .f.
+*!*				runtrfref.list1.refresh
+	
+			APPLICATION.ACTIVEFORM.REFRESH
+			
 		RETURN
+		
 	PROCEDURE RIGHTCLICK
 	
 		LOCAL cCustomList
