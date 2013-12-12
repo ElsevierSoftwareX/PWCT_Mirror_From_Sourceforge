@@ -25,8 +25,9 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	PROCEDURE ReadInformation()
 	
-			LOCAL nRec,cCustomListType
 			LOCAL myalias,myrec,nMax,x,cLine,cLinex,nMax2,x2
+
+			this.cInfoData = ""
 						
 			myalias = ALIAS()
 		 
@@ -41,19 +42,11 @@ DEFINE CLASS IntellisenseClass as Custom
 			 
 			 cLine = ALLTRIM(MLINE(t38->stepinf,x))
 			 
-				 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"
-			
+				 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
 				 
 				 		cline = ALLTRIM(SUBSTR(cLine,13))
 				 		
-				 		clines = STRTRAN(cline,",",CHR(13)+CHR(10))
-				 		nMax2 = MEMLINES(cLines)
-				 		
-				 		FOR x2 = 1 TO nMax2
-				 			cLine2 = MLINE(cLines,x2)
-				 			this.cInfoData = this.cInfoData + cLine2 + CHR(13) + CHR(10)
-				 		NEXT
-		 	
+ 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)
 				 
 				 ENDIF
 			 
@@ -206,7 +199,11 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 			
 			this.LoadTreeFromFile("c:\users\mahmoud\desktop\test.txt")
-
+			this.readinformation()
+			IF .not. EMPTY(ALLTRIM(this.cInfoData))
+				 this.loadtreefromstring(this.cInfoData) 
+			ENDIF
+			
 			
 			nMax = ALEN(this.InfoTree,1)
 			
