@@ -48,6 +48,11 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 	PROCEDURE InteractiveChange
 	
  
+ 			 IF EMPTY(ALLTRIM(this.Value))
+ 			 		runtrfref.list1.visible = .f.
+ 			 		RETURN 
+ 			 ENDIF 
+ 
 				runtrfref.list1.top = this.Top + this.height + 65  + this.Parent.top 
 				
 				runtrfref.list1.left = this.Left  
@@ -73,7 +78,8 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				ELSE
 					runtrfref.list1.visible = .f.
 				ENDIF 
-			
+
+					
  
 		RETURN 
 
