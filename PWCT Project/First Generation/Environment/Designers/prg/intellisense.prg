@@ -7,7 +7,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	cInfoData = ""
 	cList = ""
 	nListMax = 0
-	
+	nRealStart = 1
 	
 	DIMENSION InfoTree(1,5) && Parent ID - Child ID - Name - Type (1 = New Type, 2 = No Type , 3 = Type Name) - Type Name Text
 	
@@ -199,6 +199,8 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 			
 			this.LoadTreeFromFile("c:\users\mahmoud\desktop\test.txt")
+			this.nRealStart = this.nListMax + 1
+			
 			this.readinformation()
 			IF .not. EMPTY(ALLTRIM(this.cInfoData))
 				 this.loadtreefromstring(this.cInfoData) 

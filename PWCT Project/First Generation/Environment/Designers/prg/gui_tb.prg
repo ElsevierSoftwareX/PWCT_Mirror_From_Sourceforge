@@ -47,23 +47,34 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 	PROCEDURE InteractiveChange
 	
-			IF RIGHT(ALLTRIM(this.Value),1) = "." .and. runtrfref.list1.visible = .f.
-		
+ 
 				runtrfref.list1.top = this.Top + this.height + 65  + this.Parent.top 
 				
 				runtrfref.list1.left = this.Left  
 				
-				runtrfref.list1.visible = .t.
+				runtrfref.list1.clear
+				ALINES(aInteractiveList,obj_intellisense.cList)
+				IF obj_intellisense.nRealStart <= ALEN(aInteractiveList)
+					FOR x = obj_intellisense.nRealStart TO ALEN(aInteractiveList)
+						IF UPPER(ALLTRIM(left(aInteractiveList(x),LEN(ALLTRIM(this.Value))))) == UPPER(ALLTRIM(this.Value ))
+							runtrfref.list1.AddItem(aInteractiveList(x))
+						endif
+					next
+				ENDIF
 				
-			
-			ENDIF 
-		
-			IF AT(".",this.Value) = 0
+				
+				IF runtrfref.list1.listcount > 0
+					runtrfref.list1.visible = .t.
+					
+					IF runtrfref.list1.listcount = 1 .and. UPPER(ALLTRIM(this.Value)) == UPPER(ALLTRIM(runtrfref.list1.listitem(1)))
+						runtrfref.list1.visible = .f.
+					ENDIF 
+					
+				ELSE
 					runtrfref.list1.visible = .f.
-					runtrfref.list1.refresh
-			ENDIF
+				ENDIF 
 			
-		
+ 
 		RETURN 
 
 
@@ -71,13 +82,13 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 	
 		IF runtrfref.list1.visible = .t.
 		
-			IF LASTKEY() = 24  && .and. runtrfref.list1.listindex < runtrfref.list1.listcount
+			IF LASTKEY() = 24  
 					runtrfref.list1.listindex = runtrfref.list1.listindex + 1
 					CLEAR TYPEAHEAD 
 					RETURN .f.
 			ENDIF 
 			
-			IF LASTKEY() = 5  && .and. runtrfref.list1.listindex > 1
+			IF LASTKEY() = 5   
 					runtrfref.list1.listindex = runtrfref.list1.listindex - 1	
 					CLEAR TYPEAHEAD 
 					RETURN .f.
@@ -104,7 +115,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		ENDIF
 
 		IF nkeycode = 32 .and. runtrfref.list1.listindex != 0			
-					this.Value = ALLTRIM(this.Value) + ALLTRIM(runtrfref.list1.listitem(runtrfref.list1.listindex))
+					this.Value = ALLTRIM(runtrfref.list1.listitem(runtrfref.list1.listindex))
 					this.SelStart = LEN(ALLTRIM(this.Value))
 					runtrfref.list1.visible = .f.
 		ENDIF 
@@ -116,8 +127,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 	PROCEDURE LOSTFOCUS
 	
-*!*				runtrfref.list1.visible = .f.
-*!*				runtrfref.list1.refresh
+ 
 	
 			APPLICATION.ACTIVEFORM.REFRESH
 			
