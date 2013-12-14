@@ -240,8 +240,9 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 					IF this.InfoTree(x,4) = 3 && the item is a new object of a predefined type
 					
-					
-			  		this.cList = this.cList + this.InfoTree(x,3) + CHR(13) + CHR(10)
+						IF this.InfoTree(x,1) = 0 && the item is a root
+			  			this.cList = this.cList + this.InfoTree(x,3) + CHR(13) + CHR(10)
+			    	ENDIF 
 			  		
 						cParent = ""
 					
