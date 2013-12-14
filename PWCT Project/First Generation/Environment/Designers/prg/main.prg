@@ -184,7 +184,7 @@ obj_intellisense = CREATEOBJECT("IntellisenseClass")
 
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2013.10.15"
+sys_pwctversion = "PWCT 1.9 (Art) 2013.12.14"
 
 
 

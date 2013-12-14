@@ -1,7 +1,4 @@
 
-*myobj = CREATEOBJECT("IntellisenseClass")
-*myobj.buildtree()
-
 DEFINE CLASS IntellisenseClass as Custom
 
 	cInfoData = ""
@@ -244,6 +241,8 @@ DEFINE CLASS IntellisenseClass as Custom
 					IF this.InfoTree(x,4) = 3 && the item is a new object of a predefined type
 					
 					
+			  		this.cList = this.cList + this.InfoTree(x,3) + CHR(13) + CHR(10)
+			  		
 						cParent = ""
 					
 						IF .not. this.InfoTree(x,1) = 0 && The item is a child also
@@ -291,7 +290,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 			NEXT
 			
-			*MESSAGEBOX(this.cList,0,"wow")
+			 
 	
 	RETURN
 	

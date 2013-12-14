@@ -70,7 +70,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				
 				IF runtrfref.list1.listcount > 0
 					runtrfref.list1.visible = .t.
-					
+					runtrfref.list1.listindex = 1
 					IF runtrfref.list1.listcount = 1 .and. UPPER(ALLTRIM(this.Value)) == UPPER(ALLTRIM(runtrfref.list1.listitem(1)))
 						runtrfref.list1.visible = .f.
 					ENDIF 
@@ -120,10 +120,13 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			ENDIF
 		ENDIF
 
-		IF nkeycode = 32 .and. runtrfref.list1.listindex != 0			
+		IF (nKeycode = 13 .or. nkeycode = 32 ) .and. runtrfref.list1.listindex != 0			
 					this.Value = ALLTRIM(runtrfref.list1.listitem(runtrfref.list1.listindex))
 					this.SelStart = LEN(ALLTRIM(this.Value))
 					runtrfref.list1.visible = .f.
+					IF nKeycode = 32 && space
+						KEYBOARD CHR(127) && backspace
+					ENDIF 
 		ENDIF 
 			
 
