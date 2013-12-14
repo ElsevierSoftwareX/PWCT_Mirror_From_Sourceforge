@@ -192,10 +192,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 			LOCAL nParent,x,nMax,t,r
 	
-			DIMENSION this.InfoTree(8,5)
-			
-			
-			this.LoadTreeFromFile("c:\users\mahmoud\desktop\test.txt")
+			this.LoadTreeFromFile(APPLICATION.DEFAULTFILEPATH+"\Intellisense\HarbourPWCT.txt")
 			this.nRealStart = this.nListMax + 1
 			
 			this.readinformation()
