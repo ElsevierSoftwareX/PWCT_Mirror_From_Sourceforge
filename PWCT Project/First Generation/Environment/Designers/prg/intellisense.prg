@@ -6,6 +6,9 @@ DEFINE CLASS IntellisenseClass as Custom
 	nListMax = 0
 	nRealStart = 1
 	
+	cAfterLoadList = ""
+	nAfterLoadMax = 0
+	
 	DIMENSION InfoTree(1,5) && Parent ID - Child ID - Name - Type (1 = New Type, 2 = No Type , 3 = Type Name) - Type Name Text
 	
 	
@@ -33,22 +36,26 @@ DEFINE CLASS IntellisenseClass as Custom
 			GOTO TOP
 			SCAN FOR UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(stepinterid) <= mygdform.timemachineiid
 
-			 nMax = MEMLINES(t38->stepinf)
-			 
-			 FOR x = 1 TO nMax
-			 
-			 cLine = ALLTRIM(MLINE(t38->stepinf,x))
-			 
-				 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
-				 
-				 		cline = ALLTRIM(SUBSTR(cLine,13))
-				 		
- 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)
-				 
-				 ENDIF
-			 
-			 NEXT
-		 
+
+				IF .not. EMPTY(ALLTRIM(t38->stepinf))
+				
+						 nMax = MEMLINES(t38->stepinf)
+						 
+						 FOR x = 1 TO nMax
+						 
+						 cLine = ALLTRIM(MLINE(t38->stepinf,x))
+						 
+							 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
+							 
+							 		cline = ALLTRIM(SUBSTR(cLine,13))
+							 		
+			 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)
+							 
+							 ENDIF
+						 
+						 NEXT
+						 
+		 	ENDIF 
 			
 			ENDSCAN
 			GOTO TOP
@@ -187,23 +194,50 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	RETURN
 	
-
-	PROCEDURE BuildTree()
 	
-			LOCAL nParent,x,nMax,t,r
+	PROCEDURE LoadIntellisenseData()
 	
 			this.LoadTreeFromFile(APPLICATION.DEFAULTFILEPATH+"\Intellisense\HarbourPWCT.txt")
+			obj_intellisense.buildtree(.T.)
+			this.cAfterloadList = this.cList 
+			this.nAfterloadMax = this.nListMax
+			
+						
+	RETURN 
+	
+	PROCEDURE Refresh()
+	
+			DIMENSION this.InfoTree(this.nAfterloadMax,5)
+			this.nListMax = this.nAfterloadMax
+			this.cList = this.cAfterloadList
+			
+	RETURN 
+
+	PROCEDURE BuildTree(lStartUp)
+	
+			LOCAL nParent,x,nMax,t,r,nStart
+	
 			this.nRealStart = this.nListMax + 1
 			
-			this.readinformation()
-			IF .not. EMPTY(ALLTRIM(this.cInfoData))
-				 this.loadtreefromstring(this.cInfoData) 
-			ENDIF
+			IF lStartUp = .f.
 			
+				nStart = this.nAfterloadMax + 1
 			
-			nMax = ALEN(this.InfoTree,1)
+				this.readinformation()
+				
+				IF .not. EMPTY(ALLTRIM(this.cInfoData))
+					 this.loadtreefromstring(this.cInfoData) 
+				ENDIF		 
+
+			ELSE 
 			
-			FOR x = 1 TO nMax
+				nStart = 1
+				
+			ENDIF 
+			
+			nMax = ALEN(this.InfoTree,1)			
+			
+			FOR x = nStart TO nMax
 			
 				IF this.InfoTree(x,1) = 0 && The item is a root
 				
@@ -217,7 +251,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					cParent = ""
 					r = x
 					DO WHILE .not. this.InfoTree(r,1) = 0
-						FOR t = 1 TO nMax
+						FOR t = nStart TO nMax
 							IF this.InfoTree(t,2) = this.InfoTree(r,1)
 								cParent = this.InfoTree(t,3) + "." + cParent
 								r = t
@@ -233,7 +267,7 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 			* When the item is releated to a type, copy and change the name
 			
-			FOR x = 1 TO nMax
+			FOR x = nStart TO nMax
 			
 					IF this.InfoTree(x,4) = 3 && the item is a new object of a predefined type
 					
@@ -247,7 +281,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 								r = x
 								DO WHILE .not. this.InfoTree(r,1) = 0
-									FOR t = 1 TO nMax
+									FOR t = nStart TO nMax
 										IF this.InfoTree(t,2) = this.InfoTree(r,1)
 											cParent = this.InfoTree(t,3) + "." + cParent
 											r = t
@@ -258,16 +292,15 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 						ENDIF
 					
-					
-					
 						cTypeName = this.InfoTree(x,5)
 						nSize = LEN(cTypeName)
 						
-						nMax2 = MEMLINES(this.cList)
+						ALINES(aTempList,this.cList)
+						nMax2 = ALEN(aTempList)
 						
 						FOR t = 1 TO nMax2
 						
-							cLine = MLINE(this.cList,t)
+  						cLine = aTempList(t)
 							
 							IF left(cLine,nSize) == cTypeName
 							

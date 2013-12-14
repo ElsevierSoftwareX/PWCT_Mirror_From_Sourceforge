@@ -120,7 +120,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			ENDIF
 		ENDIF
 
-		IF (nKeycode = 13 .or. nkeycode = 32 ) .and. runtrfref.list1.listindex != 0			
+	 IF runtrfref.list1.visible = .t. .and. (nKeycode = 13 .or. nkeycode = 32 ) .and. runtrfref.list1.listindex != 0			
 					this.Value = ALLTRIM(runtrfref.list1.listitem(runtrfref.list1.listindex))
 					this.SelStart = LEN(ALLTRIM(this.Value))
 					runtrfref.list1.visible = .f.
