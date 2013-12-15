@@ -1,4 +1,5 @@
 
+	
 DEFINE CLASS IntellisenseClass as Custom
 
 	cInfoData = ""
@@ -25,40 +26,84 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	PROCEDURE ReadInformation()
 	
-			LOCAL myalias,myrec,nMax,x,cLine,cLinex,nMax2,x2
+			LOCAL myalias,myrec,nMax,x,cLine,cLinex,nMax2,x2,myend
 
 			this.cInfoData = ""
 						
 			myalias = ALIAS()
 		 
 			SELECT t38
-			myrec = RECNO()
-			GOTO TOP
-			SCAN FOR UPPER(ALLTRIM(goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(stepinterid) <= mygdform.timemachineiid
-
-
-				IF .not. EMPTY(ALLTRIM(t38->stepinf))
-				
-						 nMax = MEMLINES(t38->stepinf)
-						 
-						 FOR x = 1 TO nMax
-						 
-						 cLine = ALLTRIM(MLINE(t38->stepinf,x))
-						 
-							 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
-							 
-							 		cline = ALLTRIM(SUBSTR(cLine,13))
-							 		
-			 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)
-							 
-							 ENDIF
-						 
-						 NEXT
-						 
-		 	ENDIF 
+			myrec = RECNO()			
+		
+		  PUBLIC ARRAY mytree(1,3)
+			mytree(1,1) = "SP_"
+			mytree(1,2) = "SP_"
+			mytree(1,3) = 0
 			
-			ENDSCAN
-			GOTO TOP
+			IF .NOT. RECCOUNT() = 0
+			
+				GOTO TOP 
+				
+				SCAN FOR UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(t38->stepinterid) <= mygdform.timemachineiid 
+			
+				
+					SELECT t38
+					DIMENSION mytree(ALEN(mytree,1)+1,3)
+					mytree(ALEN(mytree,1),1) = ALLTRIM(t38->parentid)
+					mytree(ALEN(mytree,1),2) = ALLTRIM(t38->stepid)
+					mytree(ALEN(mytree,1),3) = RECNO()
+					
+				ENDSCAN
+				
+				GOTO BOTTOM			
+ 
+				
+				IF .NOT. ALEN(mytree,1) = 0
+				
+					SET PROCEDURE TO goaltores.prg ADDITIVE 
+					ss_arrtree()
+					
+					myend = ALEN(mytree,1)					 
+					
+					SELECT t38
+					
+					FOR x2 = 1 TO myend
+					
+						IF .NOT. mytree(x2,3) == 0
+						
+							 SELECT t38
+							 
+							 GOTO mytree(x2,3)
+							
+							
+						   IF 		t38->stepinternum = 1 .and. .not. EMPTY(ALLTRIM(t38->stepinf))
+							
+										 nMax = MEMLINES(t38->stepinf)
+								 
+										 FOR x = 1 TO nMax
+										 
+										 cLine = ALLTRIM(MLINE(t38->stepinf,x))
+										 
+											 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
+											 
+											 		cline = ALLTRIM(SUBSTR(cLine,13))
+											 		
+							 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)							 	 	
+											 
+											 ENDIF
+										 
+										 NEXT
+										 
+							ENDIF 
+							
+						ENDIF
+						
+					NEXT
+					
+				ENDIF
+				
+			ENDIF 
+
 
 			IF .NOT. myrec = 0 .AND. .NOT. myrec > RECCOUNT()
 				GOTO myrec
