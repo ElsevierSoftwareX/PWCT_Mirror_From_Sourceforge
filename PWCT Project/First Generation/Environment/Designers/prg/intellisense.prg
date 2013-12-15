@@ -76,7 +76,7 @@ DEFINE CLASS IntellisenseClass as Custom
 							 GOTO mytree(x2,3)
 							
 							
-						   IF 		t38->stepinternum = 1 .and. .not. EMPTY(ALLTRIM(t38->stepinf))
+						   IF 		.not. EMPTY(ALLTRIM(t38->stepinf))
 							
 										 nMax = MEMLINES(t38->stepinf)
 								 

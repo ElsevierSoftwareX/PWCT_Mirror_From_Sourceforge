@@ -36,7 +36,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 		ENDIF
 
-	
+		runtrfref.list1.fontsize = this.FontSize 
 		runtrfref.list1.visible = .f.
 		runtrfref.list1.refresh
 	
