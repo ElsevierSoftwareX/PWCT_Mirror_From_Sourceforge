@@ -38,8 +38,8 @@ DEFINE CLASS IntellisenseClass as Custom
 		  PUBLIC ARRAY mytree(1,3)
 			mytree(1,1) = "SP_"
 			mytree(1,2) = "SP_"
-			mytree(1,3) = 0
-			
+			mytree(1,3) = ""
+				
 			IF .NOT. RECCOUNT() = 0
 			
 				GOTO TOP 
@@ -51,7 +51,11 @@ DEFINE CLASS IntellisenseClass as Custom
 					DIMENSION mytree(ALEN(mytree,1)+1,3)
 					mytree(ALEN(mytree,1),1) = ALLTRIM(t38->parentid)
 					mytree(ALEN(mytree,1),2) = ALLTRIM(t38->stepid)
-					mytree(ALEN(mytree,1),3) = RECNO()
+					IF EMPTY(ALLTRIM(t38->stepinf))
+						  mytree(ALEN(mytree,1),3) = ""
+					ELSE
+							mytree(ALEN(mytree,1),3) = t38->stepinf
+					ENDIF 
 					
 				ENDSCAN
 				
@@ -60,29 +64,23 @@ DEFINE CLASS IntellisenseClass as Custom
 				
 				IF .NOT. ALEN(mytree,1) = 0
 				
-					SET PROCEDURE TO goaltores.prg ADDITIVE 
-					ss_arrtree()
+					THIS.ArrangeTree()
 					
 					myend = ALEN(mytree,1)					 
 					
-					SELECT t38
-					
-					FOR x2 = 1 TO myend
-					
-						IF .NOT. mytree(x2,3) == 0
+			 
+					FOR x2 = 1 TO myend										 
 						
-							 SELECT t38
-							 
-							 GOTO mytree(x2,3)
+							 cStepInf = mytree(x2,3)
 							
-							
-						   IF 		.not. EMPTY(ALLTRIM(t38->stepinf))
-							
-										 nMax = MEMLINES(t38->stepinf)
+						   IF .not. EMPTY(ALLTRIM(cStepInf ))
+						   			
+						   			ALINES(aStepInf,cStepInf)
+						   			nMax = ALEN(aStepInf,1)										 
 								 
 										 FOR x = 1 TO nMax
 										 
-										 cLine = ALLTRIM(MLINE(t38->stepinf,x))
+										 	cLine = aStepInf(x)
 										 
 											 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
 											 
@@ -94,9 +92,8 @@ DEFINE CLASS IntellisenseClass as Custom
 										 
 										 NEXT
 										 
-							ENDIF 
-							
-						ENDIF
+							ENDIF 							
+					 
 						
 					NEXT
 					
@@ -135,6 +132,74 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	RETURN nMax
 	
+  PROCEDURE  ArrangeTree()
+		  
+			LOCAL x,T
+			&& MYTREE[N][1] = PARENT ID
+			&& MYTREE[N][2] = ITEM   ID
+			&& MYTREE[N][3] = StepInf
+			* mydarr is my arranged tree
+			DIMENSION mydarr(1,3)
+			* get first element , the root
+			mydarr(1,1) = mytree(1,1)
+			mydarr(1,2) = mytree(1,2)
+			mydarr(1,3) = mytree(1,3)
+
+
+			x = 1
+			DO WHILE .T.			
+				DIMENSION mydarr2(1,3)
+				* ADD ELEMENTS FROM TOP ELEMENT TO CURRENT ELEMENT
+				FOR T = 1 TO x
+					DIMENSION mydarr2(T,3)
+					mydarr2(T,1) = mydarr(T,1)
+					mydarr2(T,2) = mydarr(T,2)
+					mydarr2(T,3) = mydarr(T,3)
+				NEXT
+
+				myid = ALLTRIM(mydarr(x,2))
+				* ADD SUCCESSOR
+				FOR T = 2 TO ALEN(mytree,1)
+					IF mytree(T,1) == myid
+						DIMENSION mydarr2(ALEN(mydarr2,1)+1,3)
+						mydarr2(ALEN(mydarr2,1),1) = mytree(T,1)
+						mydarr2(ALEN(mydarr2,1),2) = mytree(T,2)
+						mydarr2(ALEN(mydarr2,1),3) = mytree(T,3)
+					ENDIF
+				NEXT
+
+				* ADD ELEMENTS THAT UNDER THE CURRENT ELEMENT
+				FOR T = x+1 TO ALEN(mydarr,1)
+					DIMENSION mydarr2(ALEN(mydarr2,1)+1,3)
+					mydarr2(ALEN(mydarr2,1),1) = mydarr(T,1)
+					mydarr2(ALEN(mydarr2,1),2) = mydarr(T,2)
+					mydarr2(ALEN(mydarr2,1),3) = mydarr(T,3)
+				NEXT
+
+				DIMENSION mydarr(ALEN(mydarr2,1),3)
+				FOR T = 1 TO ALEN(mydarr2,1)
+					mydarr(T,1) = mydarr2(T,1)
+					mydarr(T,2) = mydarr2(T,2)
+					mydarr(T,3) = mydarr2(T,3)
+				NEXT
+
+
+				x = x + 1
+				IF x > ALEN(mydarr,1)
+					EXIT
+				ENDIF
+			ENDDO
+			
+			DIMENSION mytree(ALEN(mydarr,1),3)
+			myend = ALEN(mydarr,1)
+			FOR x = 1 TO myend
+				mytree(x,1) = mydarr(x,1)
+				mytree(x,2) = mydarr(x,2)
+				mytree(x,3) = mydarr(x,3)
+			NEXT
+			
+	RETURN
+
 	
 	 
 	PROCEDURE LoadTreeFromString(cStr)
