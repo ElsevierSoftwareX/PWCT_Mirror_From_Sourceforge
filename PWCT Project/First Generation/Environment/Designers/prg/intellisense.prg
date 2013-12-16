@@ -44,19 +44,21 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 				GOTO TOP 
 				
-				SCAN FOR UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(t38->stepinterid) <= mygdform.timemachineiid 
-			
-				
+				COUNT FOR UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(t38->stepinterid) <= mygdform.timemachineiid  TO nArraySize
+				DIMENSION mytree(nArraySize,3)
+				x = 0
+				SCAN FOR UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(t38->stepinterid) <= mygdform.timemachineiid 	
+							
 					SELECT t38
-					DIMENSION mytree(ALEN(mytree,1)+1,3)
-					mytree(ALEN(mytree,1),1) = ALLTRIM(t38->parentid)
-					mytree(ALEN(mytree,1),2) = ALLTRIM(t38->stepid)
+					x = x+1
+					mytree(x,1) = ALLTRIM(t38->parentid)
+					mytree(x,2) = ALLTRIM(t38->stepid)
 					IF EMPTY(ALLTRIM(t38->stepinf))
-						  mytree(ALEN(mytree,1),3) = ""
+						  mytree(x,3) = ""
 					ELSE
-							mytree(ALEN(mytree,1),3) = t38->stepinf
-					ENDIF 
-					
+							mytree(x,3) = ALLTRIM(t38->stepinf)
+					ENDIF 					
+			
 				ENDSCAN
 				
 				GOTO BOTTOM			
@@ -145,9 +147,9 @@ DEFINE CLASS IntellisenseClass as Custom
 			mydarr(1,2) = mytree(1,2)
 			mydarr(1,3) = mytree(1,3)
 
-
 			x = 1
 			DO WHILE .T.			
+			
 				DIMENSION mydarr2(1,3)
 				* ADD ELEMENTS FROM TOP ELEMENT TO CURRENT ELEMENT
 				FOR T = 1 TO x
@@ -183,20 +185,14 @@ DEFINE CLASS IntellisenseClass as Custom
 					mydarr(T,3) = mydarr2(T,3)
 				NEXT
 
-
 				x = x + 1
 				IF x > ALEN(mydarr,1)
 					EXIT
 				ENDIF
 			ENDDO
 			
-			DIMENSION mytree(ALEN(mydarr,1),3)
-			myend = ALEN(mydarr,1)
-			FOR x = 1 TO myend
-				mytree(x,1) = mydarr(x,1)
-				mytree(x,2) = mydarr(x,2)
-				mytree(x,3) = mydarr(x,3)
-			NEXT
+			
+			ACOPY(mydarr,mytree)
 			
 	RETURN
 

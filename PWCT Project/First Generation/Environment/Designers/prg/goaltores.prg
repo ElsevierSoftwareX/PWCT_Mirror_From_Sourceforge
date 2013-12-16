@@ -389,13 +389,18 @@ FUNCTION ss_arrtree()
 			EXIT
 		ENDIF
 	ENDDO
-	DIMENSION mytree(ALEN(mydarr,1),3)
-	myend = ALEN(mydarr,1)
-	FOR x = 1 TO myend
-		mytree(x,1) = mydarr(x,1)
-		mytree(x,2) = mydarr(x,2)
-		mytree(x,3) = mydarr(x,3)
-	NEXT
+	
+	ACOPY(mydarr,mytree)
+	
+*!*		DIMENSION mytree(ALEN(mydarr,1),3)
+*!*		myend = ALEN(mydarr,1)
+*!*		FOR x = 1 TO myend
+*!*			mytree(x,1) = mydarr(x,1)
+*!*			mytree(x,2) = mydarr(x,2)
+*!*			mytree(x,3) = mydarr(x,3)
+*!*		NEXT
+	
+	
 	RETURN
 
 
