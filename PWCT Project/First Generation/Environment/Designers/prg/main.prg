@@ -185,7 +185,7 @@ obj_intellisense.start()
 obj_intellisense.loadintellisensedata()
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2013.12.14"
+sys_pwctversion = "PWCT 1.9 (Art) 2013.12.20"
 
 
 

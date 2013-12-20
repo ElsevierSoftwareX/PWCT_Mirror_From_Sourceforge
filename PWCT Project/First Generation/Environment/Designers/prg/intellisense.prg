@@ -165,7 +165,12 @@ DEFINE CLASS IntellisenseClass as Custom
 						
 								cItem = ALLTRIM(SUBSTR(cLine,8))							
 					 
-								nParent = this.additem(nParent,cItem,3,cType,cDot)
+					 		 IF cType == ""
+										nParent = this.additem(nParent,cItem,1,cType,cDot)
+								ELSE 
+										nParent = this.additem(nParent,cItem,3,cType,cDot)
+								ENDIF 
+								
 								cType = ""
 						    cDot = "." && default value							
 							
@@ -198,8 +203,12 @@ DEFINE CLASS IntellisenseClass as Custom
 									
 											ELSE
 											
-										 
-														this.additem(nParent,cLine,3,cType,cDot)
+										 			 IF cType == ""
+															this.additem(nParent,cLine,2,cType,cDot)
+														ELSE 
+															this.additem(nParent,cLine,3,cType,cDot)
+														ENDIF 
+														
 														cType = ""
 														cDot = "." && default value
 													 
