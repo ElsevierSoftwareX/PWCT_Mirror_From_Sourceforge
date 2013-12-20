@@ -10,7 +10,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	cAfterLoadList = ""
 	nAfterLoadMax = 0
 	
-	DIMENSION InfoTree(1,5) && Parent ID - Child ID - Name - Type (1 = New Type, 2 = No Type , 3 = Type Name) - Type Name Text
+	DIMENSION InfoTree(1,6) && Parent ID - Child ID - Name - Type (1 = New Type, 2 = No Type , 3 = Type Name) - Type Name Text  , "." or ":" 
 	
 	
 	PROCEDURE start()
@@ -19,7 +19,7 @@ DEFINE CLASS IntellisenseClass as Custom
 		this.cList = ""
 		this.nListMax = 0
 
-		DIMENSION this.InfoTree(1,5)
+		DIMENSION this.InfoTree(1,6)
 	
 	RETURN
 	
@@ -114,30 +114,27 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	RETURN
 
-	PROCEDURE AddItem(nParentID,cName,nType,cTypeText) && nType (1 = New Type, 2 = No Type , 3 = Type Name)
+	PROCEDURE AddItem(nParentID,cName,nType,cTypeText,cDotText) && nType (1 = New Type, 2 = No Type , 3 = Type Name)
 		
 		LOCAL nMax
-		
-		IF PCOUNT() < 4
-			cTypeText = ""
-		ENDIF 
 		
 		this.nListMax = this.nListMax + 1
 		nMax = this.nListMax
 		
-		DIMENSION this.InfoTree(nMax,5)
+		DIMENSION this.InfoTree(nMax,6)
 		
 		this.InfoTree(nMax,1) = nParentID
 		this.InfoTree(nMax,2) = nMax
 		this.InfoTree(nMax,3) = cName
 		this.InfoTree(nMax,4) = nType
 		this.InfoTree(nMax,5) = cTypeText
+		this.InfoTree(nMax,6) = cDotText
 	
 	RETURN nMax
 		 
 	PROCEDURE LoadTreeFromString(cStr)
 	
-		LOCAL x,nMax,cLine,cItem,nParent,cType
+		LOCAL x,nMax,cLine,cItem,nParent,cType,cDot
 
 		DIMENSION ParentQueue(1)
 		
@@ -146,13 +143,14 @@ DEFINE CLASS IntellisenseClass as Custom
 		nParent = 0
 
 		cType = ""
+		
+		cDot = "."
 
 		nMax = MEMLINES(cStr)
 		
 		FOR x = 1 TO nMax
 		
-				cLine = MLINE(cStr,x)
-				
+				cLine = MLINE(cStr,x)				
 								 
 				DO WHILE ASC(LEFT(cLine,1)) = 9			
 					cLine = SUBSTR(cLine,2)				
@@ -165,18 +163,14 @@ DEFINE CLASS IntellisenseClass as Custom
 				
 						IF UPPER(LEFT(cLine,7)) = "PARENT:"
 						
-							cItem = ALLTRIM(SUBSTR(cLine,8))
-							
-							IF cType == ""
-								nParent = this.additem(nParent,cItem,1)
-							ELSE
-								nParent = this.additem(nParent,cItem,3,cType)
+								cItem = ALLTRIM(SUBSTR(cLine,8))							
+					 
+								nParent = this.additem(nParent,cItem,3,cType,cDot)
 								cType = ""
-							ENDIF
+						    cDot = "." && default value							
 							
-							
-							DIMENSION ParentQueue(ALEN(ParentQueue,1) + 1)
-							ParentQueue(ALEN(ParentQueue,1)) = nParent
+								DIMENSION ParentQueue(ALEN(ParentQueue,1) + 1)
+								ParentQueue(ALEN(ParentQueue,1)) = nParent
 		
 							
 						ELSE 
@@ -192,20 +186,27 @@ DEFINE CLASS IntellisenseClass as Custom
 							ELSE
 							
 							
-									IF UPPER(LEFT(cLine,5)) = "TYPE:"
+								IF UPPER(LEFT(cLine,5)) = "MARK:"
 							
-											cType = ALLTRIM(SUBSTR(cLine,6))
+									cDot = ALLTRIM(SUBSTR(cLine,6))
 							
-									ELSE
+						    ELSE
+							
+											IF UPPER(LEFT(cLine,5)) = "TYPE:"
 									
-											IF cType == ""
-												this.additem(nParent,cLine,2)
+													cType = ALLTRIM(SUBSTR(cLine,6))
+									
 											ELSE
-												this.additem(nParent,cLine,3,cType)
-												cType = ""
+											
+										 
+														this.additem(nParent,cLine,3,cType,cDot)
+														cType = ""
+														cDot = "." && default value
+													 
+												
 											ENDIF 
-										
-									ENDIF 
+
+								ENDIF 
 									
 							ENDIF
 							
@@ -240,11 +241,12 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	PROCEDURE LoadIntellisenseData()
 	
-			this.LoadTreeFromFile(APPLICATION.DEFAULTFILEPATH+"\Intellisense\HarbourPWCT.txt")
-			obj_intellisense.buildtree(.T.)
-			this.cAfterloadList = this.cList 
-			this.nAfterloadMax = this.nListMax
-			
+			IF FILE(APPLICATION.DEFAULTFILEPATH+"\Intellisense\HarbourPWCT.txt")
+				this.LoadTreeFromFile(APPLICATION.DEFAULTFILEPATH+"\Intellisense\HarbourPWCT.txt")
+				obj_intellisense.buildtree(.T.)
+				this.cAfterloadList = this.cList 
+				this.nAfterloadMax = this.nListMax
+			ENDIF 
 						
 	RETURN 
 	
@@ -259,6 +261,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	PROCEDURE BuildTree(lStartUp)
 	
 			LOCAL nParent,x,nMax,t,r,nStart
+			LOCAL cParent,cTypeName,nSize,nMax2
 	
 			this.nRealStart = this.nListMax + 1
 			
