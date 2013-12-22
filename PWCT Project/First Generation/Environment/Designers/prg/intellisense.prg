@@ -308,7 +308,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					DO WHILE .not. this.InfoTree(r,1) = 0
 						FOR t = nStart TO nMax
 							IF this.InfoTree(t,2) = this.InfoTree(r,1)
-								cParent = this.InfoTree(t,3) + "." + cParent
+								cParent = this.InfoTree(t,3) + this.InfoTree(t,6) + cParent
 								r = t
 								EXIT 
 							ENDIF
@@ -338,7 +338,7 @@ DEFINE CLASS IntellisenseClass as Custom
 								DO WHILE .not. this.InfoTree(r,1) = 0
 									FOR t = nStart TO nMax
 										IF this.InfoTree(t,2) = this.InfoTree(r,1)
-											cParent = this.InfoTree(t,3) + "." + cParent
+											cParent = this.InfoTree(t,3) + this.InfoTree(t,6) + cParent
 											r = t
 											EXIT 
 										ENDIF
