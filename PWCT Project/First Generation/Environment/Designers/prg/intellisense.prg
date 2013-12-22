@@ -301,19 +301,8 @@ DEFINE CLASS IntellisenseClass as Custom
 					ENDIF
 					
 				ELSE && The item is a child
-				
-				
-					cParent = ""
-					r = x
-					DO WHILE .not. this.InfoTree(r,1) = 0
-						FOR t = nStart TO nMax
-							IF this.InfoTree(t,2) = this.InfoTree(r,1)
-								cParent = this.InfoTree(t,3) + this.InfoTree(t,6) + cParent
-								r = t
-								EXIT 
-							ENDIF
-						NEXT
-					ENDDO
+							
+					cParent = this.buildparentstring(x,nStart,nMax)				
 					
 					this.cList = this.cList + cParent + this.InfoTree(x,3) + CHR(13) + CHR(10)
 					
@@ -334,16 +323,9 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 						IF .not. this.InfoTree(x,1) = 0 && The item is a child also
 					
-								r = x
-								DO WHILE .not. this.InfoTree(r,1) = 0
-									FOR t = nStart TO nMax
-										IF this.InfoTree(t,2) = this.InfoTree(r,1)
-											cParent = this.InfoTree(t,3) + this.InfoTree(t,6) + cParent
-											r = t
-											EXIT 
-										ENDIF
-									NEXT
-								ENDDO
+					
+								cParent = this.buildparentstring(x,nStart,nMax)
+					
 					
 						ENDIF
 					
@@ -374,11 +356,35 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 					ENDIF
 					
-			NEXT
-			
-			 
+			NEXT			 
 	
 	RETURN
+	
+	PROCEDURE BuildParentString(r,nStart,nMax)
+	
+	
+		LOCAL cParent 
+		
+		cParent = ""
+		
+		DO WHILE .not. this.InfoTree(r,1) = 0
+		
+					FOR t = nStart TO nMax
+					
+						IF this.InfoTree(t,2) = this.InfoTree(r,1)
+						
+							cParent = this.InfoTree(t,3) + this.InfoTree(t,6) + cParent
+							r = t
+							EXIT 
+							
+						ENDIF
+						
+					NEXT
+									
+		ENDDO
+		
+	
+	RETURN cParent
 	
 	PROCEDURE sortlist()
 	
