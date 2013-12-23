@@ -337,7 +337,7 @@ FUNCTION mygoalscode()
 *!******************************************************************************
 FUNCTION ss_arrtree()
 
-	LOCAL x,T,nItem
+	LOCAL x,T,nItem,nMax
 	
 		&& MYTREE[N][1] = PARENT ID
 		&& MYTREE[N][2] = ITEM ID
@@ -350,8 +350,9 @@ FUNCTION ss_arrtree()
 		mydarr(1,2) = mytree(1,2)
 		mydarr(1,3) = mytree(1,3)
 		
-		x = 1
-		DO WHILE .T.
+		nMax = ALEN(mytree,1)
+		FOR x = 1 TO nMax
+		
 		
 				DIMENSION mydarr2(1,3)
 				* ADD ELEMENTS FROM TOP ELEMENT TO CURRENT ELEMENT
@@ -394,15 +395,8 @@ FUNCTION ss_arrtree()
 				DIMENSION mydarr(ALEN(mydarr2,1),3)
 			  ACOPY(mydarr2,mydarr)
 				
-				x = x + 1
-				IF x > ALEN(mydarr,1)
-				
-						EXIT
-						
-				ENDIF
-				
-		ENDDO
 		
+		NEXT 
 
 		ACOPY(mydarr,mytree)
 	
