@@ -56,13 +56,10 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 					IF EMPTY(ALLTRIM(t38->stepinf))
 						  mytree(x,3) = ""
-					ELSE
-						
-							 							 
-											 mytree(x,3) = ALLTRIM(t38->stepinf)										
-							
-					ENDIF 					
-			
+					ELSE					 							 
+											 mytree(x,3) = ALLTRIM(t38->stepinf)									
+					ENDIF 	
+								
 				ENDSCAN
 				
 				GOTO BOTTOM			
@@ -70,17 +67,17 @@ DEFINE CLASS IntellisenseClass as Custom
 				
 				IF .NOT. ALEN(mytree,1) = 1
 				
-					*syslogmsg(" Items count before arrange : " + STR(ALEN(mytree,1)) )
+					syslogmsg(" seconds before arrange : " + STR(SECONDS()) )
 				
 					SET PROCEDURE TO goaltores.prg
 					ss_arrtree()
 					
 					myend = ALEN(mytree,1)					 
 								 
-			 	 *syslogmsg(" Items count after arrange : " + STR(ALEN(mytree,1)) )
+			 	 syslogmsg(" seconds after arrange : " + STR(SECONDS()) )
 			 
-					FOR x2 = 1 TO myend										 
-						
+					FOR x2 = 1 TO myend										 						
+								
 							 cStepInf = mytree(x2,3)
 							
 							 *syslogmsg(" information (after) " + cStepInf )

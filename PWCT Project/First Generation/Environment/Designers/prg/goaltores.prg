@@ -336,73 +336,75 @@ FUNCTION mygoalscode()
 *!
 *!******************************************************************************
 FUNCTION ss_arrtree()
-	LOCAL x,T
-	&& MYTREE[N][1] = PARENT ID
-	&& MYTREE[N][2] = ITEM   ID
-	&& MYTREE[N][3] = VALUE
-	* mydarr is my arranged tree
-	DIMENSION mydarr(1,3)
-	* get first element , the root
-	mydarr(1,1) = mytree(1,1)
-	mydarr(1,2) = mytree(1,2)
-	mydarr(1,3) = mytree(1,3)
-	x = 1
-	DO WHILE .T.
-		DIMENSION mydarr2(1,3)
-		* ADD ELEMENTS FROM TOP ELEMENT TO CURRENT ELEMENT
-		FOR T = 1 TO x
-			DIMENSION mydarr2(T,3)
-			mydarr2(T,1) = mydarr(T,1)
-			mydarr2(T,2) = mydarr(T,2)
-			mydarr2(T,3) = mydarr(T,3)
-		NEXT
 
-		myid = ALLTRIM(mydarr(x,2))
-		* ADD SUCCESSOR
-		FOR T = 2 TO ALEN(mytree,1)
-			IF mytree(T,1) == myid
-				DIMENSION mydarr2(ALEN(mydarr2,1)+1,3)
-				mydarr2(ALEN(mydarr2,1),1) = mytree(T,1)
-				mydarr2(ALEN(mydarr2,1),2) = mytree(T,2)
-				mydarr2(ALEN(mydarr2,1),3) = mytree(T,3)
-			ENDIF
-		NEXT
-
-		* ADD ELEMENTS THAT UNDER THE CURRENT ELEMENT
-		FOR T = x+1 TO ALEN(mydarr,1)
-			DIMENSION mydarr2(ALEN(mydarr2,1)+1,3)
-			mydarr2(ALEN(mydarr2,1),1) = mydarr(T,1)
-			mydarr2(ALEN(mydarr2,1),2) = mydarr(T,2)
-			mydarr2(ALEN(mydarr2,1),3) = mydarr(T,3)
-		NEXT
-
-		DIMENSION mydarr(ALEN(mydarr2,1),3)
-		FOR T = 1 TO ALEN(mydarr2,1)
-			mydarr(T,1) = mydarr2(T,1)
-			mydarr(T,2) = mydarr2(T,2)
-			mydarr(T,3) = mydarr2(T,3)
-		NEXT
-
-
-		x = x + 1
-		IF x > ALEN(mydarr,1)
-			EXIT
-		ENDIF
-	ENDDO
+	LOCAL x,T,nItem
 	
- 
-	*DIMENSION mytree(1,3)
-	*DIMENSION mytree(ALEN(mydarr,1),3)
-	ACOPY(mydarr,mytree)
-	
-*!*		DIMENSION mytree(ALEN(mydarr,1),3)
-*!*		myend = ALEN(mydarr,1)
-*!*		FOR x = 1 TO myend
-*!*			mytree(x,1) = mydarr(x,1)
-*!*			mytree(x,2) = mydarr(x,2)
-*!*			mytree(x,3) = mydarr(x,3)
-*!*		NEXT
-	
+		&& MYTREE[N][1] = PARENT ID
+		&& MYTREE[N][2] = ITEM ID
+		&& MYTREE[N][3] = VALUE
+		* mydarr is my arranged tree
+		
+		DIMENSION mydarr(1,3)
+		* get first element , the root
+		mydarr(1,1) = mytree(1,1)
+		mydarr(1,2) = mytree(1,2)
+		mydarr(1,3) = mytree(1,3)
+		
+		x = 1
+		DO WHILE .T.
+		
+				DIMENSION mydarr2(1,3)
+				* ADD ELEMENTS FROM TOP ELEMENT TO CURRENT ELEMENT
+				FOR T = 1 TO x
+				
+						DIMENSION mydarr2(T,3)
+						mydarr2(T,1) = mydarr(T,1)
+						mydarr2(T,2) = mydarr(T,2)
+						mydarr2(T,3) = mydarr(T,3)
+						
+				NEXT
+				
+				myid = ALLTRIM(mydarr(x,2))
+				* ADD SUCCESSOR
+				FOR T = 2 TO ALEN(mytree,1)
+				
+						IF mytree(T,1) == myid
+						
+							DIMENSION mydarr2(ALEN(mydarr2,1)+1,3)
+							nItem = ALEN(mydarr2,1)
+							mydarr2(nItem,1) = mytree(T,1)
+							mydarr2(nItem,2) = mytree(T,2)
+							mydarr2(nItem,3) = mytree(T,3)
+							
+						ENDIF
+						
+				NEXT
+				
+				* ADD ELEMENTS THAT UNDER THE CURRENT ELEMENT
+				FOR T = x+1 TO ALEN(mydarr,1)
+				
+					DIMENSION mydarr2(ALEN(mydarr2,1)+1,3)
+					nItem = ALEN(mydarr2,1)
+					mydarr2(nItem,1) = mydarr(T,1)
+					mydarr2(nItem,2) = mydarr(T,2)
+					mydarr2(nItem,3) = mydarr(T,3)
+					
+				NEXT
+				
+				DIMENSION mydarr(ALEN(mydarr2,1),3)
+			  ACOPY(mydarr2,mydarr)
+				
+				x = x + 1
+				IF x > ALEN(mydarr,1)
+				
+						EXIT
+						
+				ENDIF
+				
+		ENDDO
+		
+
+		ACOPY(mydarr,mytree)
 	
 	RETURN
 
