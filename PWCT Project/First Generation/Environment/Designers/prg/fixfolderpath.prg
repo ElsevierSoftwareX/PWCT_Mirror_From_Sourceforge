@@ -1,12 +1,7 @@
 PARAMETERS cFolderAndFileName
 LOCAL cPath,x,nPos,cSSBUILD,cSSRPWI
 cFolderAndFileName = UPPER(ALLTRIM(cFolderAndFileName))
-syslogmsg("Fix Path : " + cFolderAndFileName)
-
-*!*	IF FILE(cFolderAndFileName) = .T.
-*!*		syslogmsg("No fix is required, file is already exist")
-*!*		RETURN cFolderAndFileName
-*!*	ELSE
+syslogmsg("Fix Path : " + cFolderAndFileName) 
 
 	* get PWCT folder from pwct exe file name
 	cPath = application.ServerName 

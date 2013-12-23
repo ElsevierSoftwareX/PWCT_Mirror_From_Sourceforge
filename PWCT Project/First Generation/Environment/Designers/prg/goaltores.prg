@@ -390,6 +390,9 @@ FUNCTION ss_arrtree()
 		ENDIF
 	ENDDO
 	
+	
+	DIMENSION mytree(1,3)
+	DIMENSION mytree(ALEN(mydarr,1),3)
 	ACOPY(mydarr,mytree)
 	
 *!*		DIMENSION mytree(ALEN(mydarr,1),3)

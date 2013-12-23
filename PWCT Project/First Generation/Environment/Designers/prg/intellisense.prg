@@ -57,6 +57,7 @@ DEFINE CLASS IntellisenseClass as Custom
 						  mytree(x,3) = ""
 					ELSE
 							mytree(x,3) = ALLTRIM(t38->stepinf)
+							syslogmsg(" information " + ALLTRIM(t38->stepinf) )
 					ENDIF 					
 			
 				ENDSCAN
@@ -66,15 +67,20 @@ DEFINE CLASS IntellisenseClass as Custom
 				
 				IF .NOT. ALEN(mytree,1) = 0
 				
+					syslogmsg(" Items count before arrange : " + STR(ALEN(mytree,1)) )
+				
 					SET PROCEDURE TO goaltores.prg
 					ss_arrtree()
 					
 					myend = ALEN(mytree,1)					 
-					
+								 
+			 	 syslogmsg(" Items count after arrange : " + STR(myend) )
 			 
 					FOR x2 = 1 TO myend										 
 						
 							 cStepInf = mytree(x2,3)
+							
+							 syslogmsg(" information (after) " + cStepInf )
 							
 						   IF .not. EMPTY(ALLTRIM(cStepInf ))
 						   			
@@ -147,6 +153,10 @@ DEFINE CLASS IntellisenseClass as Custom
 		cDot = "."
 
 		nMax = MEMLINES(cStr)
+		
+		syslogmsg(" Load Tree From String : ")
+		syslogmsg(cStr)
+		
 		
 		FOR x = 1 TO nMax
 		
@@ -281,7 +291,9 @@ DEFINE CLASS IntellisenseClass as Custom
 				this.readinformation()
 				
 				IF .not. EMPTY(ALLTRIM(this.cInfoData))
+				
 					 this.loadtreefromstring(this.cInfoData) 
+					 
 				ENDIF		 
 
 			ELSE 
@@ -292,7 +304,12 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 			nMax = ALEN(this.InfoTree,1)			
 			
+			
+			syslogmsg("Tree Data : ")
+			
 			FOR x = nStart TO nMax
+			
+				syslogmsg( STR( this.InfoTree(x,1) ) + " ; " + STR( this.InfoTree(x,2) ) + " ; " +  this.InfoTree(x,3) + " ; " +  STR(this.InfoTree(x,4)) + " ; " +  this.InfoTree(x,5) + " ; " +  this.InfoTree(x,6) )
 			
 				IF this.InfoTree(x,1) = 0 && The item is a root
 				
@@ -307,6 +324,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					this.cList = this.cList + cParent + this.InfoTree(x,3) + CHR(13) + CHR(10)
 					
     		ENDIF
+    		
 			NEXT
 			
 			* When the item is releated to a type, copy and change the name
@@ -318,14 +336,15 @@ DEFINE CLASS IntellisenseClass as Custom
 						IF this.InfoTree(x,1) = 0 && the item is a root
 			  			this.cList = this.cList + this.InfoTree(x,3) + CHR(13) + CHR(10)
 			    	ENDIF 
-			  		
-						cParent = ""
+			  								
 					
 						IF .not. this.InfoTree(x,1) = 0 && The item is a child also
-					
-					
+										
 								cParent = this.buildparentstring(x,nStart,nMax)
-					
+			 
+						ELSE
+			 					
+								cParent = ""
 					
 						ENDIF
 					
@@ -339,7 +358,7 @@ DEFINE CLASS IntellisenseClass as Custom
 						
   						cLine = aTempList(t)
 							
-							IF left(cLine,nSize) == cTypeName
+							IF ALLTRIM(left(cLine,nSize)) == ALLTRIM(cTypeName)
 							
 								IF .not. EMPTY(ALLTRIM(SUBSTR(cLine,nSize+1)))
 								
@@ -357,13 +376,16 @@ DEFINE CLASS IntellisenseClass as Custom
 					ENDIF
 					
 			NEXT			 
+			
+			syslogmsg(" Intellisense Data : ")
+			syslogmsg(this.cList)
 	
 	RETURN
 	
 	PROCEDURE BuildParentString(r,nStart,nMax)
 	
 	
-		LOCAL cParent 
+		LOCAL cParent,t
 		
 		cParent = ""
 		

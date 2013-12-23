@@ -177,15 +177,10 @@ PUBLIC obj_VPLCompiler
 obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 
-PUBLIC obj_intellisense
 
-obj_intellisense = CREATEOBJECT("IntellisenseClass")
-
-obj_intellisense.start()
-obj_intellisense.loadintellisensedata()
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2013.12.20"
+sys_pwctversion = "PWCT 1.9 (Art) 2013.12.23"
 
 
 
@@ -203,7 +198,12 @@ aFilesData(1,2) = "File Content"
 PUBLIC aGeneratedFiles
 DIMENSION aGeneratedFiles(1)
 
+PUBLIC obj_intellisense
 
+obj_intellisense = CREATEOBJECT("IntellisenseClass")
+
+obj_intellisense.start()
+obj_intellisense.loadintellisensedata()
 
 	IF PWCT_IsAdmin()
 	
@@ -231,6 +231,8 @@ DIMENSION aGeneratedFiles(1)
 		
 	ENDIF
 	
+
+
 
 
 IF .NOT. FILE(APPLICATION.DEFAULTFILEPATH + "\logo.off")
