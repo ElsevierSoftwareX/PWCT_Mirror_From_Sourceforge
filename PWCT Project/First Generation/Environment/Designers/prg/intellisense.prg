@@ -26,7 +26,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	PROCEDURE ReadInformation()
 	
-			LOCAL myalias,myrec,nMax,x,cLine,cLinex,nMax2,x2,myend
+			LOCAL myalias,myrec,nMax,x,cLine,cLinex,nMax2,x2,myend,cInfo
 
 			this.cInfoData = ""
 						
@@ -44,20 +44,23 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 				GOTO TOP 
 				
-				COUNT FOR UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(t38->stepinterid) <= mygdform.timemachineiid  TO nArraySize
-				DIMENSION mytree(nArraySize,3)
-				x = 0
-				SCAN FOR UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle)) .AND. VAL(t38->stepinterid) <= mygdform.timemachineiid 	
+				COUNT FOR UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle))  .AND. VAL(t38->stepinterid) <= mygdform.timemachineiid  TO nArraySize
+				DIMENSION mytree(nArraySize+1,3)
+				x = 1
+				SCAN FOR UPPER(ALLTRIM(t38->goalid)) == UPPER(ALLTRIM(t33->goalhandle))   .AND. VAL(t38->stepinterid) <= mygdform.timemachineiid 	
 							
 					SELECT t38
 					x = x+1
 					mytree(x,1) = ALLTRIM(t38->parentid)
 					mytree(x,2) = ALLTRIM(t38->stepid)
+					
 					IF EMPTY(ALLTRIM(t38->stepinf))
 						  mytree(x,3) = ""
 					ELSE
-							mytree(x,3) = ALLTRIM(t38->stepinf)
-							syslogmsg(" information " + ALLTRIM(t38->stepinf) )
+						
+							 							 
+											 mytree(x,3) = ALLTRIM(t38->stepinf)										
+							
 					ENDIF 					
 			
 				ENDSCAN
@@ -65,22 +68,22 @@ DEFINE CLASS IntellisenseClass as Custom
 				GOTO BOTTOM			
  
 				
-				IF .NOT. ALEN(mytree,1) = 0
+				IF .NOT. ALEN(mytree,1) = 1
 				
-					syslogmsg(" Items count before arrange : " + STR(ALEN(mytree,1)) )
+					*syslogmsg(" Items count before arrange : " + STR(ALEN(mytree,1)) )
 				
 					SET PROCEDURE TO goaltores.prg
 					ss_arrtree()
 					
 					myend = ALEN(mytree,1)					 
 								 
-			 	 syslogmsg(" Items count after arrange : " + STR(myend) )
+			 	 *syslogmsg(" Items count after arrange : " + STR(ALEN(mytree,1)) )
 			 
 					FOR x2 = 1 TO myend										 
 						
 							 cStepInf = mytree(x2,3)
 							
-							 syslogmsg(" information (after) " + cStepInf )
+							 *syslogmsg(" information (after) " + cStepInf )
 							
 						   IF .not. EMPTY(ALLTRIM(cStepInf ))
 						   			
@@ -152,15 +155,19 @@ DEFINE CLASS IntellisenseClass as Custom
 		
 		cDot = "."
 
-		nMax = MEMLINES(cStr)
+		*nMax = MEMLINES(cStr)
 		
-		syslogmsg(" Load Tree From String : ")
-		syslogmsg(cStr)
+		*syslogmsg(" Load Tree From String : ")
+		*syslogmsg(cStr)
+		
+		ALINES(aStr,cStr)
+		nMax = ALEN(aStr)
 		
 		
 		FOR x = 1 TO nMax
 		
-				cLine = MLINE(cStr,x)				
+*				cLine = MLINE(cStr,x)				
+			  cLine = aStr(x)
 								 
 				DO WHILE ASC(LEFT(cLine,1)) = 9			
 					cLine = SUBSTR(cLine,2)				
@@ -305,11 +312,11 @@ DEFINE CLASS IntellisenseClass as Custom
 			nMax = ALEN(this.InfoTree,1)			
 			
 			
-			syslogmsg("Tree Data : ")
+			*syslogmsg("Tree Data : ")
 			
 			FOR x = nStart TO nMax
 			
-				syslogmsg( STR( this.InfoTree(x,1) ) + " ; " + STR( this.InfoTree(x,2) ) + " ; " +  this.InfoTree(x,3) + " ; " +  STR(this.InfoTree(x,4)) + " ; " +  this.InfoTree(x,5) + " ; " +  this.InfoTree(x,6) )
+				*syslogmsg( STR( this.InfoTree(x,1) ) + " ; " + STR( this.InfoTree(x,2) ) + " ; " +  this.InfoTree(x,3) + " ; " +  STR(this.InfoTree(x,4)) + " ; " +  this.InfoTree(x,5) + " ; " +  this.InfoTree(x,6) )
 			
 				IF this.InfoTree(x,1) = 0 && The item is a root
 				
@@ -377,8 +384,8 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 			NEXT			 
 			
-			syslogmsg(" Intellisense Data : ")
-			syslogmsg(this.cList)
+			*syslogmsg(" Intellisense Data : ")
+			*syslogmsg(this.cList)
 	
 	RETURN
 	
