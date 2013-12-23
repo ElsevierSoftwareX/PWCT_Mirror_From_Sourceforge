@@ -383,7 +383,7 @@ FUNCTION ss_arrtree()
 				
 				* ADD ELEMENTS THAT UNDER THE CURRENT ELEMENT
 				FOR T = x+1 TO ALEN(mydarr,1)
-				
+			
 					DIMENSION mydarr2(ALEN(mydarr2,1)+1,3)
 					nItem = ALEN(mydarr2,1)
 					mydarr2(nItem,1) = mydarr(T,1)

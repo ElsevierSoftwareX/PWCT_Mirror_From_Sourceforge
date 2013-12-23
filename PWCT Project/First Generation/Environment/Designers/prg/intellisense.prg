@@ -67,44 +67,7 @@ DEFINE CLASS IntellisenseClass as Custom
 				
 				IF .NOT. ALEN(mytree,1) = 1
 				
-					syslogmsg(" seconds before arrange : " + STR(SECONDS()) )
-				
-					SET PROCEDURE TO goaltores.prg
-					ss_arrtree()
-					
-					myend = ALEN(mytree,1)					 
-								 
-			 	 syslogmsg(" seconds after arrange : " + STR(SECONDS()) )
-			 
-					FOR x2 = 1 TO myend										 						
-								
-							 cStepInf = mytree(x2,3)
-							
-							 *syslogmsg(" information (after) " + cStepInf )
-							
-						   IF .not. EMPTY(ALLTRIM(cStepInf ))
-						   			
-						   			ALINES(aStepInf,cStepInf)
-						   			nMax = ALEN(aStepInf,1)										 
-								 
-										 FOR x = 1 TO nMax
-										 
-										 	cLine = aStepInf(x)
-										 
-											 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
-											 
-											 		cline = ALLTRIM(SUBSTR(cLine,13))
-											 		
-							 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)							 	 	
-											 
-											 ENDIF
-										 
-										 NEXT
-										 
-							ENDIF 							
-					 
-						
-					NEXT
+					this.DepthFirst(1)			
 					
 				ENDIF
 				
@@ -117,8 +80,50 @@ DEFINE CLASS IntellisenseClass as Custom
 
 			SELECT (myalias)
 			
-	
 	RETURN
+
+
+	PROCEDURE DepthFirst(x)
+
+				LOCAL t,nMax
+
+				LOCAL x,cStepInf,x2,cLine,nMax2
+
+				IF .not. EMPTY(ALLTRIM(mytree(x,3)))
+			   			
+			   			ALINES(aStepInf,mytree(x,3))
+			   			nMax2 = ALEN(aStepInf,1)										 
+					 
+							 FOR x2 = 1 TO nMax2
+							 
+							 	cLine = aStepInf(x2)
+							 
+								 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
+								 
+								 		cline = ALLTRIM(SUBSTR(cLine,13))
+								 		
+				 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)							 	 	
+								 
+								 ENDIF
+							 
+							 NEXT
+							 
+				ENDIF 					
+
+				nMax = ALEN(mytree,1)
+
+				FOR t = x+1 TO nMax
+
+					IF ALLTRIM(mytree(t,1)) == ALLTRIM(mytree(x,2))
+					
+						this.DepthFirst(t)
+						
+					ENDIF
+
+				NEXT 
+
+	RETURN
+
 
 	PROCEDURE AddItem(nParentID,cName,nType,cTypeText,cDotText) && nType (1 = New Type, 2 = No Type , 3 = Type Name)
 		
