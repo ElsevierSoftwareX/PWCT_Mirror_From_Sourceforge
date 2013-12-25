@@ -25,15 +25,19 @@
 *:
 *:******************************************************************************
 DEFINE CLASS tr_textbox AS TEXTBOX
+
 	lautoname = .F.
 	tautoname = ""
 	ldefault = .F.
 	IDFVarName = ""
 
+	cTextValue = "" && the text that will be replaced with the item from the listbox 
+	nTextStart = 0 && the start of adding the selected item 
+
 	PROCEDURE GOTFOCUS
+	
 		IF LEFT(ALLTRIM(THIS.VALUE),1) == '"' .AND. RIGHT(ALLTRIM(THIS.VALUE),1) == '"'
 			THIS.SELSTART = 1
-
 		ENDIF
 
 		runtrfref.list1.fontsize = this.FontSize 
@@ -47,7 +51,8 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		RETURN
 
 	PROCEDURE InteractiveChange
-	
+				
+				LOCAL nMax,x,cLetter
  
  			 IF EMPTY(ALLTRIM(this.Value))
  			 		runtrfref.list1.visible = .f.
@@ -58,11 +63,45 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				
 				runtrfref.list1.left = this.Left  
 				
+				
+				this.cTextValue = this.Value 
+				this.nTextStart = 0
+				
+				nMax = LEN(this.cTextValue)
+				IF nMax > 0
+
+					FOR x = nMax TO 1 STEP -1
+					
+						cLetter = SUBSTR(this.cTextValue,x,1) 
+						
+						IF cLetter = "+" .or. cLetter = "-" .or. cLetter = "*" .or. cLetter = "/" .or. cLetter = "%" .or. ;
+						   cLetter = "=" .or. cLetter = "<" .or. cLetter = ">" .or. cLetter = "[" .or. cLetter = "("
+						   
+						   this.nTextStart = x			
+						   
+						   IF .not. x = nMax
+						   
+							   this.cTextValue = SUBSTR(this.Value,x+1)
+							   
+						 	ELSE 
+						 	
+						 		this.cTextValue = ""
+						 		
+						 	ENDIF
+						 		   
+						   EXIT
+						   
+						ENDIF						   
+					
+					NEXT 
+				
+				ENDIF 
+				
 				runtrfref.list1.clear
 				ALINES(aInteractiveList,obj_intellisense.cList)
 				IF obj_intellisense.nRealStart <= ALEN(aInteractiveList)
 					FOR x = obj_intellisense.nRealStart TO ALEN(aInteractiveList)
-						IF UPPER(ALLTRIM(left(aInteractiveList(x),LEN(ALLTRIM(this.Value))))) == UPPER(ALLTRIM(this.Value ))
+						IF UPPER(ALLTRIM(left(aInteractiveList(x),LEN(ALLTRIM(this.cTextValue))))) == UPPER(ALLTRIM(this.cTextValue))
 							runtrfref.list1.AddItem(aInteractiveList(x))
 						endif
 					next
@@ -72,7 +111,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				IF runtrfref.list1.listcount > 0
 					runtrfref.list1.visible = .t.
 					runtrfref.list1.listindex = 1
-					IF runtrfref.list1.listcount = 1 .and. UPPER(ALLTRIM(this.Value)) == UPPER(ALLTRIM(runtrfref.list1.listitem(1)))
+					IF runtrfref.list1.listcount = 1 .and. UPPER(ALLTRIM(this.cTextValue)) == UPPER(ALLTRIM(runtrfref.list1.listitem(1)))
 						runtrfref.list1.visible = .f.
 					ENDIF 
 					
@@ -112,6 +151,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 	PROCEDURE KEYPRESS
 		LPARAMETERS nkeycode, nshiftaltctrl
+		
 		IF nkeycode = 15 && ctrl+o
 			PUBLIC objfromlist
 			objfromlist = ""
@@ -122,7 +162,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		ENDIF
 
 	 IF runtrfref.list1.visible = .t. .and. (nKeycode = 13 .or. nkeycode = 32 ) .and. runtrfref.list1.listindex != 0			
-					this.Value = ALLTRIM(runtrfref.list1.listitem(runtrfref.list1.listindex))
+					this.Value = LEFT(this.Value,this.nTextStart) + ALLTRIM(runtrfref.list1.listitem(runtrfref.list1.listindex))
 					this.SelStart = LEN(ALLTRIM(this.Value))
 					runtrfref.list1.visible = .f.
 					IF nKeycode = 32 && space
@@ -137,9 +177,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 	PROCEDURE LOSTFOCUS
 	
- 
-	
-			APPLICATION.ACTIVEFORM.REFRESH
+  		APPLICATION.ACTIVEFORM.REFRESH
 			
 		RETURN
 		
