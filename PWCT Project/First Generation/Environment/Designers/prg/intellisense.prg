@@ -146,6 +146,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	PROCEDURE LoadTreeFromString(cStr)
 	
 		LOCAL x,nMax,cLine,cItem,nParent,cType,cDot
+		LOCAL x2,nMax2,alist
 
 		DIMENSION ParentQueue(1)
 		
@@ -223,7 +224,20 @@ DEFINE CLASS IntellisenseClass as Custom
 											ELSE
 											
 										 			 IF cType == ""
-															this.additem(nParent,cLine,2,cType,cDot)
+										 			 
+										 			 	DIMENSION aList(1)
+										 			   ALINES(aList,cLine,.f.,",")
+										 			   nMax2 = ALEN(aList)
+										 			   IF nMax2 >= 1
+											 			   FOR x2 = 1 TO nMax2										 			   
+																	this.additem(nParent,aList[x2],2,cType,cDot)
+																NEXT 
+															ELSE
+																this.additem(nParent,cLine,2,cType,cDot)
+															ENDIF
+
+																*this.additem(nParent,cLine,2,cType,cDot)
+															
 														ELSE 
 															this.additem(nParent,cLine,3,cType,cDot)
 														ENDIF 
@@ -322,7 +336,7 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 				IF this.InfoTree(x,1) = 0 && The item is a root
 				
-					IF this.InfoTree(x,4) = 1 && the item is a new type
+					IF this.InfoTree(x,4) = 1 .or. this.InfoTree(x,4) = 2  && the item is a new type or no type
 						this.cList = this.cList + this.InfoTree(x,3) + CHR(13) + CHR(10)
 					ENDIF
 					
