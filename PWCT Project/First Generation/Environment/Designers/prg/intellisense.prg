@@ -434,11 +434,43 @@ DEFINE CLASS IntellisenseClass as Custom
 	PROCEDURE sortlist()
 	
 			LOCAL cNewStr
+			LOCAL x,nMax,nCount
 	
   		DIMENSION aListArray(MEMLINES(this.cList))
 			ALINES(aListArray,this.cList)
 			
 			ASORT(aListArray)
+			
+			* Remove Duplications
+			nMax = ALEN(aListArray,1)
+			
+			IF nMax > 1
+					
+					nCount = 0
+					
+					FOR x = nMax TO 2 STEP -1
+					
+						IF ALLTRIM(aListArray[x]) == ALLTRIM(aListArray[x-1])
+						
+							ADEL(aListArray,x)
+							nCount = nCount + 1
+							
+						ENDIF 
+						
+					NEXT 
+					
+					IF nCount > 0
+					
+						DIMENSION aListArray(nMax - nCount)
+						syslogmsg("Intellisense - Duplication found - " + ALLTRIM(STR(nCount)) + " items removed")
+					
+					ENDIF 
+			
+			ENDIF 
+			
+			
+			
+		  *********************
 			
 			cNewStr = ""
 			FOR t = 1 TO ALEN(aListArray)
