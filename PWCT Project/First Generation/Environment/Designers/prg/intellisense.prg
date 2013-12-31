@@ -134,8 +134,10 @@ DEFINE CLASS IntellisenseClass as Custom
 								 
 								 		cline = ALLTRIM(SUBSTR(cLine,13))
 								 		
-								 		IF UPPER(LEFT(cLine,12)) == "SCOPE: CHILD"
-								 			cLine = "SCOPE: " + ALLTRIM(mytree(x,2))
+								 		lFound = .t.
+								 		
+								 		IF UPPER(LEFT(cLine,6)) == "SCOPE:"
+								 			cLine = ALLTRIM(SUBSTR(cLine,7))
 								 			
 								 			
 								 			* Avoid item when the scope is not allowed
@@ -150,12 +152,7 @@ DEFINE CLASS IntellisenseClass as Custom
 																	syslogmsg("IntelliSense - Scope - Found - StepID : " + ALLTRIM(T38->stepid))
 																	EXIT
 																ENDIF 
-															NEXT 
-															
-															IF lFound = .f.
-																RETURN 
-															ENDIF 
-								 			
+															NEXT 								 			
 								 			
 								 			******************************************
 								 			
@@ -163,7 +160,9 @@ DEFINE CLASS IntellisenseClass as Custom
 								 			
 								 		ENDIF 								 		
 								 		
-				 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)							 	 	
+								 		IF lFound = .t.
+				 	 					 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)	
+								 	  ENDIF 						 	 	
 								 
 								 ENDIF
 							 
