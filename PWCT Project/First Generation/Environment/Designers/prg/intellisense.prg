@@ -119,7 +119,7 @@ DEFINE CLASS IntellisenseClass as Custom
 
 				LOCAL x,cStepInf,x2,cLine,nMax2
 				
-				LOCAL lFound,x3,nMax3
+				LOCAL lFound,x3,nMax3,cValue
 
 				IF .not. EMPTY(ALLTRIM(mytree(x,3)))
 			   			
@@ -137,8 +137,15 @@ DEFINE CLASS IntellisenseClass as Custom
 								 		lFound = .t.
 								 		
 								 		IF UPPER(LEFT(cLine,6)) == "SCOPE:"
-								 			cLine = ALLTRIM(SUBSTR(cLine,7))
+								 		
+								 			cLine = ALLTRIM(SUBSTR(cLine,7))								 			
 								 			
+								 			IF UPPER(LEFT(cLine,7)) == "PARENT:"
+								 				cValue = mytree(x,1)
+								 				cLine = ALLTRIM(SUBSTR(cLine,8))	
+								 			ELSE
+								 				cValue = mytree(x,2)
+								 			ENDIF 
 								 			
 								 			* Avoid item when the scope is not allowed
 								 			
@@ -146,17 +153,13 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 															nMax3 = ALEN(this.parentlist)
 															FOR x3 = 1 TO nMax3
-																IF UPPER(alltrim(this.parentlist(x3))) == UPPER(ALLTRIM(mytree(x,2)))
+																IF UPPER(alltrim(this.parentlist(x3))) == UPPER(ALLTRIM(cValue))
 																	lFound = .T.
-																	syslogmsg("IntelliSense - Scope - Found - Step : " + ALLTRIM(t38->stepname))
-																	syslogmsg("IntelliSense - Scope - Found - StepID : " + ALLTRIM(T38->stepid))
 																	EXIT
 																ENDIF 
 															NEXT 								 			
 								 			
-								 			******************************************
-								 			
-								 			
+								 			******************************************								 			
 								 			
 								 		ENDIF 								 		
 								 		
