@@ -119,7 +119,7 @@ DEFINE CLASS IntellisenseClass as Custom
 
 				LOCAL x,cStepInf,x2,cLine,nMax2
 				
-				LOCAL lFound,x3,nMax3,cValue
+				LOCAL lFound,x3,nMax3,cValue,cIFileName,cIFolder
 
 				IF .not. EMPTY(ALLTRIM(mytree(x,3)))
 			   			
@@ -133,8 +133,30 @@ DEFINE CLASS IntellisenseClass as Custom
 								 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
 								 
 								 		cline = ALLTRIM(SUBSTR(cLine,13))
-								 		
+								 									 		
 								 		lFound = .t.
+								 		
+								 		IF UPPER(LEFT(cLine,5)) == "FILE:"								 		
+								 			
+								 			lFound = .f.
+								 			
+								 			cIFileName = ALLTRIM(SUBSTR(cLine,6)) + ".isense"
+								 			cIFileName = STRTRAN(cIFileName,'"',"")
+								 			
+								 			
+								 		  cIFolder = STRTRAN(UPPER(myswform.text1.VALUE),".SSF",".PRG")
+											 cIFolder = SUBSTR(cIFolder,2,LEN(cIFolder)-2)
+											 cIFolder = ALLTRIM(STRTRAN(cIFolder,"FILE :",""))
+											 cIFolder = STRTRAN(cIFolder,JUSTFNAME(cIFolder),"")								 			
+								 			
+								 			cIFileName = cIFolder + cIFileName								 			
+								 			
+								 			IF FILE(cIFileName)
+									 			syslogmsg(" Call intellisense file : "+ cIFileName)
+									 			this.cInfoData = this.cInfoData + FILETOSTR(cIFileName) + CHR(13) + CHR(10)
+								 			ENDIF 
+								 			
+								 		ENDIF 
 								 		
 								 		IF UPPER(LEFT(cLine,6)) == "SCOPE:"
 								 		
@@ -369,6 +391,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 			LOCAL nParent,x,nMax,t,r,nStart
 			LOCAL cParent,cTypeName,nSize,nMax2
+			LOCAL cLine,cItemText
 	
 			this.nRealStart = this.nListMax + 1
 			
@@ -393,13 +416,9 @@ DEFINE CLASS IntellisenseClass as Custom
 			nMax = ALEN(this.InfoTree,1)			
 			
 			
-			*syslogmsg("Tree Data : ")
-			
 			FOR x = nStart TO nMax
 			
-				*syslogmsg( STR( this.InfoTree(x,1) ) + " ; " + STR( this.InfoTree(x,2) ) + " ; " +  this.InfoTree(x,3) + " ; " +  STR(this.InfoTree(x,4)) + " ; " +  this.InfoTree(x,5) + " ; " +  this.InfoTree(x,6) )
-			
-				IF this.InfoTree(x,1) = 0 && The item is a root
+		  	IF this.InfoTree(x,1) = 0 && The item is a root
 				
 					IF this.InfoTree(x,4) = 1 .or. this.InfoTree(x,4) = 2  && the item is a new type or no type
 						this.cList = this.cList + this.InfoTree(x,3) + CHR(13) + CHR(10)
@@ -464,9 +483,6 @@ DEFINE CLASS IntellisenseClass as Custom
 					ENDIF
 					
 			NEXT			 
-			
-			*syslogmsg(" Intellisense Data : ")
-			*syslogmsg(this.cList)
 	
 	RETURN
 	
@@ -499,7 +515,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	PROCEDURE sortlist()
 	
 			LOCAL cNewStr
-			LOCAL x,nMax,nCount
+			LOCAL x,nMax,nCount,t
 	
   		DIMENSION aListArray(MEMLINES(this.cList))
 			ALINES(aListArray,this.cList)
