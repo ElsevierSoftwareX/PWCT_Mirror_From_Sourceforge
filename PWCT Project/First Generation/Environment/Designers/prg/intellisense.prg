@@ -10,23 +10,29 @@ DEFINE CLASS IntellisenseClass as Custom
 	cAfterLoadList = ""
 	nAfterLoadMax = 0
 	
-	DIMENSION InfoTree(1,6) && Parent ID - Child ID - Name - Type (1 = New Type, 2 = No Type , 3 = Type Name) - Type Name Text  , "." or ":" 
+	DIMENSION InfoTree(1,8) && Parent ID - Child ID - Name - Type (1 = New Type, 2 = No Type , 3 = Type Name) - Type Name Text  , "." or ":"  
+	nInfoTreeCols = 6
 	
+	DIMENSION ParentList(1) && array contains a list of the active step parents until the start point
 	
 	PROCEDURE start()
 	
+	 
+		
 		this.cInfoData = ""
 		this.cList = ""
 		this.nListMax = 0
 
-		DIMENSION this.InfoTree(1,6)
-	
+		DIMENSION this.InfoTree(1,this.nInfoTreeCols)
+		
+ 	
 	RETURN
 	
 	
 	PROCEDURE ReadInformation()
 	
 			LOCAL myalias,myrec,nMax,x,cLine,cLinex,nMax2,x2,myend,cInfo
+			LOCAL cParent
 
 			this.cInfoData = ""
 						
@@ -34,6 +40,25 @@ DEFINE CLASS IntellisenseClass as Custom
 		 
 			SELECT t38
 			myrec = RECNO()			
+		
+		
+			* Get information about parent list of the active step
+			cParent = t38->stepid
+			DIMENSION this.parentlist(1)
+			this.parentlist(1) = cParent			
+			
+			DO WHILE UPPER(ALLTRIM(cParent)) != "SP_"
+			
+				LOCATE FOR UPPER(ALLTRIM(stepid)) == UPPER(ALLTRIM(cParent))
+				IF FOUND()
+					cParent = t38->parentid
+					DIMENSION this.parentlist(ALEN(this.parentlist)+1)
+					this.parentlist(ALEN(this.parentlist)) = cParent
+				ENDIF 
+			
+			ENDDO
+			*****************************************************************
+		
 		
 		  PUBLIC ARRAY mytree(1,3)
 			mytree(1,1) = "SP_"
@@ -67,6 +92,11 @@ DEFINE CLASS IntellisenseClass as Custom
 				
 				IF .NOT. ALEN(mytree,1) = 1
 				
+				
+					IF .NOT. myrec = 0 .AND. .NOT. myrec > RECCOUNT()
+							GOTO myrec
+					ENDIF
+				
 					this.DepthFirst(1)			
 					
 				ENDIF
@@ -88,6 +118,8 @@ DEFINE CLASS IntellisenseClass as Custom
 				LOCAL t,nMax
 
 				LOCAL x,cStepInf,x2,cLine,nMax2
+				
+				LOCAL lFound,x3,nMax3
 
 				IF .not. EMPTY(ALLTRIM(mytree(x,3)))
 			   			
@@ -101,6 +133,35 @@ DEFINE CLASS IntellisenseClass as Custom
 								 IF UPPER(LEFT(cLine,12)) == "INTELLISENSE"			
 								 
 								 		cline = ALLTRIM(SUBSTR(cLine,13))
+								 		
+								 		IF UPPER(LEFT(cLine,12)) == "SCOPE: CHILD"
+								 			cLine = "SCOPE: " + ALLTRIM(mytree(x,2))
+								 			
+								 			
+								 			* Avoid item when the scope is not allowed
+								 			
+								 		 				lFound = .f.
+			
+															nMax3 = ALEN(this.parentlist)
+															FOR x3 = 1 TO nMax3
+																IF UPPER(alltrim(this.parentlist(x3))) == UPPER(ALLTRIM(mytree(x,2)))
+																	lFound = .T.
+																	syslogmsg("IntelliSense - Scope - Found - Step : " + ALLTRIM(t38->stepname))
+																	syslogmsg("IntelliSense - Scope - Found - StepID : " + ALLTRIM(T38->stepid))
+																	EXIT
+																ENDIF 
+															NEXT 
+															
+															IF lFound = .f.
+																RETURN 
+															ENDIF 
+								 			
+								 			
+								 			******************************************
+								 			
+								 			
+								 			
+								 		ENDIF 								 		
 								 		
 				 	 				 this.cInfoData = this.cInfoData + cLine + CHR(13) + CHR(10)							 	 	
 								 
@@ -132,7 +193,7 @@ DEFINE CLASS IntellisenseClass as Custom
 		this.nListMax = this.nListMax + 1
 		nMax = this.nListMax
 		
-		DIMENSION this.InfoTree(nMax,6)
+		DIMENSION this.InfoTree(nMax,this.nInfoTreeCols)
 		
 		this.InfoTree(nMax,1) = nParentID
 		this.InfoTree(nMax,2) = nMax
@@ -157,19 +218,14 @@ DEFINE CLASS IntellisenseClass as Custom
 		cType = ""
 		
 		cDot = "."
+		
 
-		*nMax = MEMLINES(cStr)
-		
-		*syslogmsg(" Load Tree From String : ")
-		*syslogmsg(cStr)
-		
 		ALINES(aStr,cStr)
 		nMax = ALEN(aStr)
 		
 		
 		FOR x = 1 TO nMax
 		
-*				cLine = MLINE(cStr,x)				
 			  cLine = aStr(x)
 								 
 				DO WHILE ASC(LEFT(cLine,1)) = 9			
@@ -192,7 +248,7 @@ DEFINE CLASS IntellisenseClass as Custom
 								ENDIF 
 								
 								cType = ""
-						    cDot = "." && default value							
+						    cDot = "." && default value						
 							
 								DIMENSION ParentQueue(ALEN(ParentQueue,1) + 1)
 								ParentQueue(ALEN(ParentQueue,1)) = nParent
@@ -217,6 +273,13 @@ DEFINE CLASS IntellisenseClass as Custom
 							
 						    ELSE
 							
+										IF UPPER(LEFT(cLine,6)) = "SCOPE:"
+										
+											cStepID = ALLTRIM(SUBSTR(cLine,7))
+											nScope = 2
+
+										ELSE
+										
 											IF UPPER(LEFT(cLine,5)) = "TYPE:"
 									
 													cType = ALLTRIM(SUBSTR(cLine,6))
@@ -234,9 +297,7 @@ DEFINE CLASS IntellisenseClass as Custom
 																NEXT 
 															ELSE
 																this.additem(nParent,cLine,2,cType,cDot)
-															ENDIF
-
-																*this.additem(nParent,cLine,2,cType,cDot)
+															ENDIF														
 															
 														ELSE 
 															this.additem(nParent,cLine,3,cType,cDot)
@@ -244,9 +305,11 @@ DEFINE CLASS IntellisenseClass as Custom
 														
 														cType = ""
 														cDot = "." && default value
-													 
+		
 												
 											ENDIF 
+											
+									 ENDIF 
 
 								ENDIF 
 									
@@ -294,7 +357,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	PROCEDURE Refresh()
 	
-			DIMENSION this.InfoTree(this.nAfterloadMax,5)
+			DIMENSION this.InfoTree(this.nAfterloadMax,this.nInfoTreeCols)
 			this.nListMax = this.nAfterloadMax
 			this.cList = this.cAfterloadList
 			
