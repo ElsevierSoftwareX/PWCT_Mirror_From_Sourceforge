@@ -197,7 +197,7 @@ DEFINE CLASS IntellisenseClass as Custom
 
 				nMax = ALEN(mytree,1)
 
-				FOR t = x+1 TO nMax
+				FOR t = 2 TO nMax
 
 					IF ALLTRIM(mytree(t,1)) == ALLTRIM(mytree(x,2))
 					

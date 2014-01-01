@@ -319,7 +319,55 @@ FUNCTION mygoalscode()
 *! Procedure SS_ARRTREE
 *!
 *!******************************************************************************
+
 FUNCTION ss_arrtree()
+
+	DIMENSION myda2(1,3)
+	myda2(1,1) = mytree(1,1)
+	myda2(1,2) = mytree(1,2)
+	myda2(1,3) = mytree(1,3)
+	
+	syslogmsg("order start")
+	syslogmsg("tree size : "+ ALLTRIM(STR(ALEN(mytree,1))))
+	
+	ss_depthfirst(1,.t.)
+
+  syslogmsg("order end")
+	
+	syslogmsg("tree2 size : "+ ALLTRIM(STR(ALEN(myda2,1))))
+	
+	DIMENSION mytree(ALEN(myda2,1),3)
+	ACOPY(myda2,mytree)
+	
+	syslogmsg("tree size : "+ ALLTRIM(STR(ALEN(mytree,1))))
+	
+Return
+
+FUNCTION ss_DepthFirst(x,lstart)
+
+	LOCAL t,nMax,nStart
+    
+  IF lstart = .f.
+  	DIMENSION myda2(ALEN(myda2,1)+1,3)
+  	nMax = ALEN(myda2,1)
+		myda2(nMax,1) = mytree(x,1)
+		myda2(nMax,2) = mytree(x,2)
+		myda2(nMax,3) = mytree(x,3)
+	ENDIF 
+	
+	nMax = ALEN(mytree,1)
+	
+	FOR t = 2 TO nMax
+
+		IF ALLTRIM(mytree(t,1)) == ALLTRIM(mytree(x,2))
+			ss_DepthFirst(t,.f.)
+		ENDIF
+
+	NEXT 
+
+RETURN
+
+FUNCTION old_ss_arrtree()
 
 	LOCAL x,T,nItem,nMax
 	
@@ -416,12 +464,8 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 					EXIT
 				ENDIF
 			NEXT
-
-
-
+			
 			***********************
-
-
 
 			SELECT t38
 			IF .NOT. temp_tm_iid  = -1
@@ -429,7 +473,6 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 				GOTO TOP
 				COUNT FOR ( ALLTRIM(goalid) == ALLTRIM(t33->goalhandle) .AND. VAL(stepinterid) <= temp_tm_iid ) TO mysize
 			ELSE
-
 				SET FILTER TO ALLTRIM(goalid) == ALLTRIM(t33->goalhandle)
 				GOTO TOP
 				COUNT FOR ALLTRIM(goalid) == ALLTRIM(t33->goalhandle) TO mysize
@@ -452,8 +495,6 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 			mytree(1,2) = "SP_"
 			mytree(1,3) = ""
 
-
-
 			FOR T = 1 TO mysize
 				mystate = mytree(T,2) && STEPID
 				t2 = T+1  && PLACE TO INSERT BEFORE
@@ -470,6 +511,7 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 				ENDIF
 
 				IF .NOT. mysize2 = 0
+				
 					SCAN
 
 						AINS(mytree,t2)
@@ -485,8 +527,6 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 
 					ENDSCAN
 					GOTO bottom
-					
-				ELSE && fix problem with the Time Machine when we run the program from a location
 				ENDIF
 
 			NEXT
@@ -632,10 +672,7 @@ FUNCTION myfastcodeex(mypara1) && MYPARA1 = CIRCUIT ADDRESS
 
 
 				*******************
-
-
-
-
+				
 			ENDIF
 
 		NEXT
