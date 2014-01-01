@@ -307,22 +307,6 @@ FUNCTION mygoalscode()
 	SET PROCEDURE TO CGLevel2 additive
 	oCGL2 = CREATEOBJECT("PWCT_CGLevel2")
 	myfh2 = oCGL2.TabPushAndTabPop(myfh)
-*!*		
-*!*		myfh2 = ""
-*!*		mytabs = 0
-*!*		v_mymax = MEMLINES(myfh)
-*!*		FOR  v_ln = 1 TO v_mymax
-*!*			v_data = MLINE(myfh,v_ln)
-*!*			IF UPPER(ALLTRIM(v_data)) == "<RPWI:TABPUSH>"
-*!*				mytabs = mytabs+1
-*!*			ELSE
-*!*				IF UPPER(ALLTRIM(v_data)) == "<RPWI:TABPOP>"
-*!*					mytabs = MAX(mytabs-1,0)
-*!*				ELSE
-*!*					myfh2 =  myfh2 + REPLICATE(CHR(9),mytabs)+ v_data + CHR(13) + CHR(10)
-*!*				ENDIF
-*!*			ENDIF
-*!*		NEXT
 	
 	RETURN myfh2
 
@@ -525,22 +509,6 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 	SET PROCEDURE TO CGLevel2 additive
 	oCGL2 = CREATEOBJECT("PWCT_CGLevel2")
 	myfh2 = oCGL2.TabPushAndTabPop(myfh)
-	
-*!*		myfh2 = ""
-*!*		mytabs = 0
-*!*		v_mymax = MEMLINES(myfh)
-*!*		FOR  v_ln = 1 TO v_mymax
-*!*			v_data = MLINE(myfh,v_ln)
-*!*			IF UPPER(ALLTRIM(v_data)) == "<RPWI:TABPUSH>"
-*!*				mytabs = mytabs+1
-*!*			ELSE
-*!*				IF UPPER(ALLTRIM(v_data)) == "<RPWI:TABPOP>"
-*!*					mytabs = MAX(mytabs-1,0)
-*!*				ELSE
-*!*					myfh2 =  myfh2 + REPLICATE(CHR(9),mytabs)+ v_data + CHR(13) + CHR(10)
-*!*				ENDIF
-*!*			ENDIF
-*!*		NEXT
 	
 	RETURN myfh2
 

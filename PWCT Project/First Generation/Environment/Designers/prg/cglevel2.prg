@@ -161,9 +161,10 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 			
 			myfh2 = ""
 			mytabs = 0
-			v_mymax = MEMLINES(myfh)
-			FOR  v_ln = 1 TO v_mymax
-				v_data = MLINE(myfh,v_ln)
+			ALINES(aMyFH,myfh)
+			v_mymax = ALEN(aMyFH) 
+			FOR  v_ln = 1 TO v_mymax		
+				v_data = aMyFh(v_ln)
 				IF UPPER(ALLTRIM(v_data)) == "<RPWI:TABPUSH>"
 					mytabs = mytabs+1
 				ELSE
