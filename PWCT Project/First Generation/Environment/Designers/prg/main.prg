@@ -151,6 +151,7 @@ sys_filetopasstoanothervpl = ""
 IF FILE(APPLICATION.DEFAULTFILEPATH + "\chpath.txt")
 
 	sys_showdoubles = .F.
+	
 ELSE
 
 	sys_showdoubles = .T.

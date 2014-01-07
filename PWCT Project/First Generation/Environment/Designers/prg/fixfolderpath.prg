@@ -1,7 +1,7 @@
 PARAMETERS cFolderAndFileName
 LOCAL cPath,x,nPos,cSSBUILD,cSSRPWI
 cFolderAndFileName = UPPER(ALLTRIM(cFolderAndFileName))
-syslogmsg("Fix Path : " + cFolderAndFileName) 
+*syslogmsg("Fix Path : " + cFolderAndFileName) 
 
 	* get PWCT folder from pwct exe file name
 	cPath = application.ServerName 
@@ -32,7 +32,7 @@ syslogmsg("Fix Path : " + cFolderAndFileName)
 	IF nPos > 0
 		cFolderAndFileName = SUBSTR(cFolderAndFileName,nPos+7) && get file without SSBUILD 
 		cFolderAndFileName = cSSBUILD + cFolderAndFileName
-		syslogmsg("Path fixed to " + cFolderAndFileName)
+		*syslogmsg("Path fixed to " + cFolderAndFileName)
 		RETURN cFolderAndFileName
 	ENDIF
 	
@@ -40,7 +40,7 @@ syslogmsg("Fix Path : " + cFolderAndFileName)
 	IF nPos > 0
 		cFolderAndFileName = SUBSTR(cFolderAndFileName,nPos+6) && get file without SSRPWI
 		cFolderAndFileName = cSSRPWI + cFolderAndFileName
-		syslogmsg("Path fixed to " + cFolderAndFileName)
+		*syslogmsg("Path fixed to " + cFolderAndFileName)
 		RETURN cFolderAndFileName
 	ENDIF
 	

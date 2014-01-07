@@ -370,13 +370,36 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	PROCEDURE LoadIntellisenseData()
 	
-			IF FILE(APPLICATION.DEFAULTFILEPATH+"\Intellisense\HarbourPWCT.txt")
-				this.LoadTreeFromFile(APPLICATION.DEFAULTFILEPATH+"\Intellisense\HarbourPWCT.txt")
-				obj_intellisense.buildtree(.T.)
-				this.cAfterloadList = this.cList 
-				this.nAfterloadMax = this.nListMax
-			ENDIF 
+		LOCAL cFile,myfilestr,myvplname
+	
+		IF sys_showdoubles = .T.
+			
+				cFile = "\Intellisense\HarbourPWCT.txt"			
+				
+		ELSE
+		
+				IF FILE(APPLICATION.DEFAULTFILEPATH + "\chpath.txt")
+				
+						myfilestr = FILETOSTR( APPLICATION.DEFAULTFILEPATH + "\chpath.txt" )
+						myvplname = UPPER(ALLTRIM( MLINE(myfilestr,2)))
 						
+						cFile = "\Intellisense\" + myvplname + ".txt"
+						
+				ENDIF 
+			
+		ENDIF 
+		
+		IF FILE(APPLICATION.DEFAULTFILEPATH+cFile)
+		
+			this.LoadTreeFromFile(APPLICATION.DEFAULTFILEPATH+cFile)
+			obj_intellisense.buildtree(.T.)
+			this.cAfterloadList = this.cList 
+			this.nAfterloadMax = this.nListMax
+			
+		ENDIF 
+		
+		syslogmsg("Load Intellisense file : " + APPLICATION.DEFAULTFILEPATH + cFile)
+	
 	RETURN 
 	
 	PROCEDURE Refresh()
