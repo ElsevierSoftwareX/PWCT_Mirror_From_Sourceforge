@@ -15,16 +15,13 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	DIMENSION ParentList(1) && array contains a list of the active step parents until the start point
 	
-	PROCEDURE start()
-	
-	 
+	PROCEDURE start()	 
 		
 		this.cInfoData = ""
 		this.cList = ""
 		this.nListMax = 0
 
-		DIMENSION this.InfoTree(1,this.nInfoTreeCols)
-		
+		DIMENSION this.InfoTree(1,this.nInfoTreeCols)		
  	
 	RETURN
 	
