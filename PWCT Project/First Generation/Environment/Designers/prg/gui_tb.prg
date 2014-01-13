@@ -52,7 +52,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 	PROCEDURE InteractiveChange
 				
-				LOCAL nMax,x,cLetter
+				LOCAL nMax,x,cLetter,nCount,nCount2
  
  			 IF EMPTY(ALLTRIM(this.Value))
  			 		runtrfref.list1.visible = .f.
@@ -98,12 +98,20 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				ENDIF 
 				
 				runtrfref.list1.clear
+				
 				ALINES(aInteractiveList,obj_intellisense.cList)
+				
+				nCount = this.countmark(this.cTextValue,".")
+				nCount2 = this.countmark(this.cTextValue,":")
+				
 				IF obj_intellisense.nRealStart <= ALEN(aInteractiveList)
 					FOR x = obj_intellisense.nRealStart TO ALEN(aInteractiveList)
-						IF UPPER(ALLTRIM(left(aInteractiveList(x),LEN(ALLTRIM(this.cTextValue))))) == UPPER(ALLTRIM(this.cTextValue))
+						IF UPPER(ALLTRIM(left(aInteractiveList(x),LEN(ALLTRIM(this.cTextValue))))) == UPPER(ALLTRIM(this.cTextValue)) .and. ;
+	 						this.countmark(aInteractiveList(x),".") = nCount .and. this.countmark(aInteractiveList(x),":") = nCount2
+	 						
 							runtrfref.list1.AddItem(aInteractiveList(x))
-						endif
+							
+						ENDIF 
 					next
 				ENDIF
 				
@@ -123,6 +131,24 @@ DEFINE CLASS tr_textbox AS TEXTBOX
  
 		RETURN 
 
+
+	PROCEDURE CountMark(cText,cMark) && Count "." and ":" in strings
+	
+			LOCAL nCount,nMax
+			
+			nMax = LEN(cText)
+			
+			FOR x = 1 TO nMax
+			
+				IF AT(cMark,cText,x) = 0 
+					EXIT 
+				ENDIF 
+			
+			NEXT 
+			
+		  nCount = x - 1
+			
+	RETURN nCount
 
 	PROCEDURE valid
 	
