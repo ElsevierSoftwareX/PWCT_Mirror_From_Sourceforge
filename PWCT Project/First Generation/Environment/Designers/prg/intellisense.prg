@@ -538,9 +538,13 @@ DEFINE CLASS IntellisenseClass as Custom
 			LOCAL x,nMax,nCount,t
 	
   		DIMENSION aListArray(MEMLINES(this.cList))
-			ALINES(aListArray,this.cList)
-			
-			ASORT(aListArray)
+			ALINES(aListArray,this.cList)			
+	 
+	 	 * When we use the sort on all of the array items, the items order will be changed, later when we filter the items to display in the list
+	 	 * some of the items will be missing, because the interactive filter uses a loop starts from this.nRealstart
+	 	 * the solution is to sort the items after this.nRealstart
+	 	 
+			ASORT(aListArray,this.nRealStart) 
 			
 			* Remove Duplications
 			nMax = ALEN(aListArray,1)
