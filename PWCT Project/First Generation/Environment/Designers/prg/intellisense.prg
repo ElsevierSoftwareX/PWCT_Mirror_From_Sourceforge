@@ -401,8 +401,11 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	PROCEDURE Refresh()
 	
-			DIMENSION this.InfoTree(MAX(this.nAfterloadMax,1),this.nInfoTreeCols)
-			this.nListMax = MAX(this.nAfterloadMax,1)
+			LOCAL nMax
+			
+			nMax = MAX(this.nAfterloadMax,1)
+			DIMENSION this.InfoTree(nMax,this.nInfoTreeCols)
+			this.nListMax = nMax
 			this.cList = this.cAfterloadList
 			
 	  	IF this.nAfterloadMax = 0
