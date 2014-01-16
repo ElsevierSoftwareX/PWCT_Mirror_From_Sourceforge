@@ -401,9 +401,19 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	PROCEDURE Refresh()
 	
-			DIMENSION this.InfoTree(this.nAfterloadMax,this.nInfoTreeCols)
-			this.nListMax = this.nAfterloadMax
+			DIMENSION this.InfoTree(MAX(this.nAfterloadMax,1),this.nInfoTreeCols)
+			this.nListMax = MAX(this.nAfterloadMax,1)
 			this.cList = this.cAfterloadList
+			
+	  	IF this.nAfterloadMax = 0
+  				this.nAfterloadMax = 1
+	  			this.InfoTree(1,1) = 0
+					this.InfoTree(1,2) = 1
+					this.InfoTree(1,3) = ""
+					this.InfoTree(1,4) = 0
+					this.InfoTree(1,5) = ""
+					this.InfoTree(1,6) = "" 	
+	  	ENDIF 
 			
 	RETURN 
 
@@ -537,6 +547,10 @@ DEFINE CLASS IntellisenseClass as Custom
 			LOCAL cNewStr
 			LOCAL x,nMax,nCount,t
 	
+			IF EMPTY(ALLTRIM(this.cList))
+				RETURN 
+			ENDIF 
+			
   		DIMENSION aListArray(MEMLINES(this.cList))
 			ALINES(aListArray,this.cList)			
 	 
