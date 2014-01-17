@@ -228,7 +228,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	PROCEDURE LoadTreeFromString(cStr)
 	
 		LOCAL x,nMax,cLine,cItem,nParent,cType,cDot
-		LOCAL x2,nMax2,alist
+		LOCAL x2,nMax2,alist,nQSize
 
 		DIMENSION ParentQueue(1)
 		
@@ -279,11 +279,16 @@ DEFINE CLASS IntellisenseClass as Custom
 						
 							IF UPPER(cLine) = "END:"
 							
-									ADEL(ParentQueue,ALEN(ParentQueue,1))
+									nQSize = ALEN(ParentQueue,1)
 									
-									DIMENSION ParentQueue(ALEN(ParentQueue,1) - 1)
+									IF nQSize > 1
 									
-									nParent = ParentQueue(ALEN(ParentQueue,1))
+										ADEL(ParentQueue,nQSize)									
+										DIMENSION ParentQueue(nQSize - 1)
+										
+										nParent = ParentQueue(ALEN(ParentQueue,1))
+										
+									ENDIF 
 										
 							ELSE
 							
