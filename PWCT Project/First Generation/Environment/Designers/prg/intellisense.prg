@@ -561,7 +561,9 @@ DEFINE CLASS IntellisenseClass as Custom
 	 	 * some of the items will be missing, because the interactive filter uses a loop starts from this.nRealstart
 	 	 * the solution is to sort the items after this.nRealstart
 	 	 
-			ASORT(aListArray,this.nRealStart) 
+	 	 IF this.nRealStart <= ALEN(aListArray,1)
+				ASORT(aListArray,this.nRealStart) 
+			ENDIF 
 			
 			* Remove Duplications
 			nMax = ALEN(aListArray,1)
