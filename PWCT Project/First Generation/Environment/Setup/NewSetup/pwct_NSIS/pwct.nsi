@@ -3560,6 +3560,10 @@ Section "Installer Section"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\img2htm\IMG2HTM.SSF" "C:\SSBUILD\img2htm\IMG2HTM.SSF"
   ${EIT_CreateDirectory} "$INSTDIR\SSBUILD\minigui"
   ${EIT_CreateDirectory} "$INSTDIR\SSBUILD\minigui\BATCH"
+  
+  ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\license.txt" "C:\SSBUILD\minigui\license.txt"
+  ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\readme.txt" "C:\SSBUILD\minigui\readme.txt"
+  
   ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\BATCH\build.log" "C:\SSBUILD\minigui\BATCH\build.log"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\BATCH\comtemp.bat" "C:\SSBUILD\minigui\BATCH\comtemp.bat"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\BATCH\error.log" "C:\SSBUILD\minigui\BATCH\error.log"
@@ -3573,6 +3577,11 @@ Section "Installer Section"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\BATCH\sscom2.bat" "C:\SSBUILD\minigui\BATCH\sscom2.bat"
   ${EIT_CreateDirectory} "$INSTDIR\SSBUILD\minigui\Harbour"
   ${EIT_CreateDirectory} "$INSTDIR\SSBUILD\minigui\Harbour\bin"
+  
+  ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\Harbour\COPYING" "C:\SSBUILD\minigui\Harbour\COPYING"
+  ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\Harbour\readme.txt" "C:\SSBUILD\minigui\Harbour\readme.txt"
+  
+  
   ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\Harbour\bin\harbour.exe" "C:\SSBUILD\minigui\Harbour\bin\harbour.exe"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\Harbour\bin\hbmk2.exe" "C:\SSBUILD\minigui\Harbour\bin\hbmk2.exe"
   ${EIT_AddFile} "$INSTDIR\SSBUILD\minigui\Harbour\bin\minigui.hbc" "C:\SSBUILD\minigui\Harbour\bin\minigui.hbc"
