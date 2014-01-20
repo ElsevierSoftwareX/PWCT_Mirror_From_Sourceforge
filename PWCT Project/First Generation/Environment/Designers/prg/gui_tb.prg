@@ -53,6 +53,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 	PROCEDURE InteractiveChange
 				
 				LOCAL nMax,x,cLetter,nCount,nCount2
+
  
  			 IF EMPTY(ALLTRIM(this.Value))
  			 		runtrfref.list1.visible = .f.
@@ -67,6 +68,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				this.cTextValue = this.Value 
 				this.nTextStart = 0
 				
+				
 				nMax = LEN(this.cTextValue)
 				IF nMax > 0
 
@@ -76,7 +78,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 						
 						IF cLetter = "+" .or. cLetter = "-" .or. cLetter = "*" .or. cLetter = "/" .or. cLetter = "%" .or. ;
 						   cLetter = "=" .or. cLetter = "<" .or. cLetter = ">" .or. cLetter = "[" .or. cLetter = "("
-						   
+						  					   
 						   this.nTextStart = x			
 						   
 						   IF .not. x = nMax
@@ -104,10 +106,10 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				nCount = this.countmark(this.cTextValue,".")
 				nCount2 = this.countmark(this.cTextValue,":")
 				
-				IF obj_intellisense.nRealStart <= ALEN(aInteractiveList)
+				IF obj_intellisense.nRealStart <= ALEN(aInteractiveList)  
 					FOR x = obj_intellisense.nRealStart TO ALEN(aInteractiveList)
 						IF UPPER(ALLTRIM(left(aInteractiveList(x),LEN(ALLTRIM(this.cTextValue))))) == UPPER(ALLTRIM(this.cTextValue)) .and. ;
-	 						this.countmark(aInteractiveList(x),".") = nCount .and. this.countmark(aInteractiveList(x),":") = nCount2
+ 		          this.countmark(aInteractiveList(x),".") = nCount .and. this.countmark(aInteractiveList(x),":") = nCount2
 	 						
 							runtrfref.list1.AddItem(aInteractiveList(x))
 							
