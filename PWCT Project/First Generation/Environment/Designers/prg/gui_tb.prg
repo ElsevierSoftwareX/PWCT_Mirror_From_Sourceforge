@@ -80,7 +80,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 						IF .not. SUBSTR(this.cTextValue,x-1,2) == "->" .and. .not. SUBSTR(this.cTextValue,x,2) == "->"
 						
 							IF cLetter == "+" .or. cLetter == "-" .or. cLetter == "*" .or. cLetter == "/" .or. cLetter == "%" .or. ;
-							   cLetter == "=" .or. cLetter == "<" .or. cLetter == ">" .or. cLetter == "[" .or. cLetter == "("
+							   cLetter == "=" .or. cLetter == "<" .or. cLetter == ">" .or. cLetter == "[" .or. cLetter == "(" .or. cLetter == ","
 							  					   
 							   this.nTextStart = x			
 							   
