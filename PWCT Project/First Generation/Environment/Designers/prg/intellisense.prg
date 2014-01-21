@@ -505,17 +505,20 @@ DEFINE CLASS IntellisenseClass as Custom
 							
 							IF ALLTRIM(left(cLine,nSize)) == ALLTRIM(cTypeName)
 							
-								IF .not. EMPTY(ALLTRIM(SUBSTR(cLine,nSize+1)))
+								IF .not. EMPTY(ALLTRIM(SUBSTR(cLine,nSize+1))) 
+									
+									IF SUBSTR(cLine,nSize+1,1) = "." .or. SUBSTR(cLine,nSize+1,1) = ":" .or. SUBSTR(cLine,nSize+1,1) = "-"
+
+										IF  this.InfoTree(x,6) = "." .or.  this.InfoTree(x,6) = ":"									
+											cItemText =  this.InfoTree(x,3) + SUBSTR(cLine,nSize+1)
+										ELSE && the mark is -> , i.e. two letters
+											cItemText =  this.InfoTree(x,3) + this.InfoTree(x,6) + SUBSTR(cLine,nSize+2)
+										ENDIF 
+										
+										this.cList = this.cList + cParent + cItemText + CHR(13) + CHR(10)
 								
-									
-									IF  this.InfoTree(x,6) = "." .or.  this.InfoTree(x,6) = ":"									
-										cItemText =  this.InfoTree(x,3) + SUBSTR(cLine,nSize+1)
-									ELSE && the mark is -> , i.e. two letters
-										cItemText =  this.InfoTree(x,3) + this.InfoTree(x,6) + SUBSTR(cLine,nSize+2)
 									ENDIF 
-									
-									this.cList = this.cList + cParent + cItemText + CHR(13) + CHR(10)
-									
+								
 								ENDIF 
 								
 							ENDIF
