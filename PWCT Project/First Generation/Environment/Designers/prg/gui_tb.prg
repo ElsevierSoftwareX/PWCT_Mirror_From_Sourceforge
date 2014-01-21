@@ -70,31 +70,35 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				
 				
 				nMax = LEN(this.cTextValue)
+				
 				IF nMax > 2
 
-					FOR x = nMax TO 1 STEP -2
+					FOR x = nMax TO 1 STEP -1
 					
-						cLetter = SUBSTR(this.cTextValue,x-1,2) 
+						cLetter = SUBSTR(this.cTextValue,x,1)
 						
+						IF .not. SUBSTR(this.cTextValue,x-1,2) == "->" .and. .not. SUBSTR(this.cTextValue,x,2) == "->"
 						
-						IF cLetter == "+ " .or. cLetter == "- " .or. cLetter == "* " .or. cLetter == "/ " .or. cLetter == "% " .or. ;
-						   cLetter == "= " .or. cLetter == "< " .or. cLetter == "> " .or. cLetter == "[ " .or. cLetter == "( "
-						  					   
-						   this.nTextStart = x			
-						   
-						   IF .not. x = nMax
-						   
-							   this.cTextValue = SUBSTR(this.Value,x+1)
+							IF cLetter == "+" .or. cLetter == "-" .or. cLetter == "*" .or. cLetter == "/" .or. cLetter == "%" .or. ;
+							   cLetter == "=" .or. cLetter == "<" .or. cLetter == ">" .or. cLetter == "[" .or. cLetter == "("
+							  					   
+							   this.nTextStart = x			
 							   
-						 	ELSE 
-						 	
-						 		this.cTextValue = ""
-						 		
-						 	ENDIF
-						 		   
-						   EXIT
-						   
-						ENDIF						   
+							   IF .not. x = nMax
+							   
+								   this.cTextValue = SUBSTR(this.Value,x+1)
+								   
+							 	ELSE 
+							 	
+							 		this.cTextValue = ""
+							 		
+							 	ENDIF
+							 		   
+							   EXIT
+							   
+							ENDIF		
+						
+						ENDIF 				   
 					
 					NEXT 
 				
@@ -122,8 +126,10 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				
 				
 				IF runtrfref.list1.listcount > 0
+				
 					runtrfref.list1.visible = .t.
 					runtrfref.list1.listindex = 1
+					
 					IF runtrfref.list1.listcount = 1 .and. UPPER(ALLTRIM(this.cTextValue)) == UPPER(ALLTRIM(runtrfref.list1.listitem(1)))
 						runtrfref.list1.visible = .f.
 					ENDIF 
