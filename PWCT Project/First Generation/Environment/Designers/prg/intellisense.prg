@@ -1,5 +1,8 @@
+***
+*** Main.prg : call Start() then LoadIntelliSenseData()
+*** Interaction page (runtrf.scx) : call Refresh() then BuildTree(.f.) then SortList()
+***
 
-	
 DEFINE CLASS IntellisenseClass as Custom
 
 	cInfoData = ""
@@ -418,9 +421,9 @@ DEFINE CLASS IntellisenseClass as Custom
 	  			this.InfoTree(1,1) = 0
 					this.InfoTree(1,2) = 1
 					this.InfoTree(1,3) = ""
-					this.InfoTree(1,4) = 0
+					this.InfoTree(1,4) = 3
 					this.InfoTree(1,5) = ""
-					this.InfoTree(1,6) = "" 	
+					this.InfoTree(1,6) = "." 	
 	  	ENDIF 
 			
 	RETURN 
@@ -431,12 +434,14 @@ DEFINE CLASS IntellisenseClass as Custom
 			LOCAL cParent,cTypeName,nSize,nMax2
 			LOCAL cLine,cItemText
 	
-			this.nRealStart = this.nListMax + 1
+			IF .not. this.nListMax = 1
+				this.nRealStart = this.nListMax + 1
+			ENDIF 
 			
-			IF lStartUp = .f.
-			
+			IF lStartUp = .f.			
+	
 				nStart = this.nAfterloadMax + 1
-			
+		 				
 				this.readinformation()
 				
 				IF .not. EMPTY(ALLTRIM(this.cInfoData))
@@ -453,6 +458,8 @@ DEFINE CLASS IntellisenseClass as Custom
 			
 			nMax = ALEN(this.InfoTree,1)			
 			
+*!*				syslogmsg(" Start : " + ALLTRIM(STR(nStart)))			
+*!*				syslogmsg(" Max : " + ALLTRIM(STR(nMax)))
 			
 			FOR x = nStart TO nMax
 			
@@ -475,6 +482,14 @@ DEFINE CLASS IntellisenseClass as Custom
 			* When the item is releated to a type, copy and change the name
 			
 			FOR x = nStart TO nMax
+*!*				
+*!*						syslogmsg(" process item : " + this.InfoTree(x,3)  )				
+*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 1 " + ALLTRIM(STR(this.InfoTree(x,1) )))
+*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 2 " + ALLTRIM(STR(this.InfoTree(x,2) )))
+*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 3 " + this.InfoTree(x,3) )
+*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 4 " + ALLTRIM(STR(this.InfoTree(x,4) )))
+*!*					  syslogmsg(" item"+ALLTRIM(STR(x))+" - 5 " + this.InfoTree(x,5) )
+*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 6 " + this.InfoTree(x,6) )					
 			
 					IF this.InfoTree(x,4) = 3 && the item is a new object of a predefined type
 					
@@ -530,6 +545,8 @@ DEFINE CLASS IntellisenseClass as Custom
 					ENDIF
 					
 			NEXT			 
+			
+			syslogmsg(" The List : " + this.cList )
 	
 	RETURN
 	
@@ -582,6 +599,9 @@ DEFINE CLASS IntellisenseClass as Custom
 			* Remove Duplications
 			nMax = ALEN(aListArray,1)
 			
+*!*				syslogmsg("remove duplications, size nMax = " + ALLTRIM(STR(nMax))) 
+*!*				syslogmsg("nRealStart = " + ALLTRIM(STR(this.nRealStart)))
+			
 			IF nMax > 1
 					
 					nCount = 0
@@ -600,7 +620,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					IF nCount > 0
 					
 						DIMENSION aListArray(nMax - nCount)
-						syslogmsg("Intellisense - Duplication found - " + ALLTRIM(STR(nCount)) + " items removed")
+*!*							syslogmsg("Intellisense - Duplication found - " + ALLTRIM(STR(nCount)) + " items removed")
 					
 					ENDIF 
 			
