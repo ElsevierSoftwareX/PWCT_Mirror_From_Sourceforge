@@ -388,7 +388,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							cline = ALLTRIM(cline)
 							crule = "AllowInteraction: " + cinternum
 
-							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+							IF STRTRAN(UPPER(ALLTRIM(cline))," ","") == STRTRAN(UPPER(ALLTRIM(crule))," ","")
 								myret = .T.
 								EXIT
 							ENDIF
@@ -630,7 +630,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 																							cline = ALLTRIM(cline)
 																							crule = "AllowInteraction: " + cinternum
 																							
-																							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+																							IF STRTRAN(UPPER(ALLTRIM(cline))," ","") == STRTRAN(UPPER(ALLTRIM(crule))," ","")
 
 
 																												FOR T = x TO nmax
@@ -755,7 +755,7 @@ DEFINE CLASS gd_avoiderrors AS VPLRulesBase OF VPLRules.prg
 							
 							cline = ALLTRIM(cline)
 							crule = "AllowInteraction: " + cinternum
-							IF UPPER(ALLTRIM(cline)) == UPPER(ALLTRIM(crule))
+							IF STRTRAN(UPPER(ALLTRIM(cline))," ","") == STRTRAN(UPPER(ALLTRIM(crule))," ","")
 
 
 								FOR T = x TO nmax

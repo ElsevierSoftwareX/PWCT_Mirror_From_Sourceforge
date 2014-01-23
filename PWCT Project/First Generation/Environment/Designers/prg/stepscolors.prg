@@ -286,7 +286,7 @@ DEFINE CLASS gd_stepscolors AS VPLRulesBase OF VPLRules.prg
 							cline = ALLTRIM(cline)
 							crule = "AllowInteraction: " + cinternum
 
-							IF UPPER(cline) == UPPER(ALLTRIM(crule))
+							IF STRTRAN(UPPER(cline)," ","") == STRTRAN(UPPER(ALLTRIM(crule))," ","")
 								myret = .T.
 								EXIT
 							ENDIF
