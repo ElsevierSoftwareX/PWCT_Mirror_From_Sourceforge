@@ -225,6 +225,10 @@ Samples.append("CPWCT_Functions.zip")
 Samples.append("CPWCT_Structure.zip")
 Samples.append("CPWCT_Scanf.zip")
 Samples.append("CPWCT_SumTwoNumbers.zip")
+Samples.append("HarbourPWCT_MultiLang.zip")
+Samples.append("HarbourPWCT_PrintManyLinesToFile.zip")
+Samples.append("HarbourPWCT_MD5.zip")
+Samples.append("HarbourPWCT_MultipleInheritance.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
