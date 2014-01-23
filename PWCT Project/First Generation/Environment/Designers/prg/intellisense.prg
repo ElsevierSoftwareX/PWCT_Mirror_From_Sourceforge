@@ -546,7 +546,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 			NEXT			 
 			
-			syslogmsg(" The List : " + this.cList )
+			*syslogmsg(" The List : " + this.cList )
 	
 	RETURN
 	
