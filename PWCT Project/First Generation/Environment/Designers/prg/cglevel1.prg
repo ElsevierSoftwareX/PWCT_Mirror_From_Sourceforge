@@ -734,8 +734,8 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 																								* we want the listbox varaible value to be from the list file to get correct code
 																								* but we want the step name to get the value from the listbox item
 																								* 
-																								myres = STRTRAN(myres,myvar2+":idflistboxitem",myvalue,1,1000,1)
-																								pstepcode = STRTRAN(pstepcode,myvar2+":idflistboxitem",myvalue,1,1000,1)
+																								myres = STRTRAN(myres,LOWER(ALLTRIM(myvar2))+":idflistboxitem",myvalue,1,1000,1)
+																								pstepcode = STRTRAN(pstepcode,LOWER(ALLTRIM(myvar2))+":idflistboxitem",myvalue,1,1000,1)
 																								
 																								*************************************************************
 																						
