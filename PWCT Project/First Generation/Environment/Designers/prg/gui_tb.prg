@@ -40,13 +40,18 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			THIS.SELSTART = 1
 		ENDIF
 
-		runtrfref.list1.fontsize = this.FontSize 
-		runtrfref.list1.width = this.Width 
-		runtrfref.list1.visible = .f.
-		runtrfref.list1.refresh
-	
-		runtrflastactivetextbox = this
+		TRY
 		
+			runtrfref.list1.fontsize = this.FontSize 
+			runtrfref.list1.width = this.Width 
+			runtrfref.list1.visible = .f.
+			runtrfref.list1.refresh
+		CATCH 
+			syslogmsg("Error : Object runtrfref is not found")
+		ENDTRY 
+		
+			runtrflastactivetextbox = this
+
 
 		RETURN
 
@@ -163,25 +168,29 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 	PROCEDURE valid
 	
-		IF runtrfref.list1.visible = .t.
-		
-			IF LASTKEY() = 24  
-					runtrfref.list1.listindex = runtrfref.list1.listindex + 1
-					CLEAR TYPEAHEAD 
-					RETURN .f.
+		TRY 
+	
+			IF runtrfref.list1.visible = .t.
+			
+				IF LASTKEY() = 24  
+						runtrfref.list1.listindex = runtrfref.list1.listindex + 1
+						CLEAR TYPEAHEAD 
+						RETURN .f.
+				ENDIF 
+				
+				IF LASTKEY() = 5   
+						runtrfref.list1.listindex = runtrfref.list1.listindex - 1	
+						CLEAR TYPEAHEAD 
+						RETURN .f.
+				ENDIF 
+				
+				
+				
 			ENDIF 
-			
-			IF LASTKEY() = 5   
-					runtrfref.list1.listindex = runtrfref.list1.listindex - 1	
-					CLEAR TYPEAHEAD 
-					RETURN .f.
-			ENDIF 
-			
-			
-			
-		ENDIF 
 		
-
+		CATCH 
+			syslogmsg("Error : Object runtrfref is not found")
+		ENDTRY 
 	
 		RETURN .T. 
 		
