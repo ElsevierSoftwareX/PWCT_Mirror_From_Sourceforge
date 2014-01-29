@@ -39,16 +39,11 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		IF LEFT(ALLTRIM(THIS.VALUE),1) == '"' .AND. RIGHT(ALLTRIM(THIS.VALUE),1) == '"'
 			THIS.SELSTART = 1
 		ENDIF
-
-		TRY
 		
-			runtrfref.list1.fontsize = this.FontSize 
-			runtrfref.list1.width = this.Width 
-			runtrfref.list1.visible = .f.
-			runtrfref.list1.refresh
-		CATCH 
-			syslogmsg("Error : Object runtrfref is not found")
-		ENDTRY 
+			runtrfref.sys_isList1.fontsize = this.FontSize 
+			runtrfref.sys_isList1.width = this.Width 
+			runtrfref.sys_isList1.visible = .f.
+		  runtrfref.sys_isList1.refresh
 		
 			runtrflastactivetextbox = this
 
@@ -61,13 +56,13 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
  
  			 IF EMPTY(ALLTRIM(this.Value))
- 			 		runtrfref.list1.visible = .f.
+ 			 		runtrfref.sys_isList1.visible = .f.
  			 		RETURN 
  			 ENDIF 
  
-				runtrfref.list1.top = this.Top + this.height + 65  + this.Parent.top 
+				runtrfref.sys_isList1.top = this.Top + this.height + 65  + this.Parent.top 
 				
-				runtrfref.list1.left = this.Left  
+				runtrfref.sys_isList1.left = this.Left  
 				
 				
 				this.cTextValue = this.Value 
@@ -109,7 +104,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				
 				ENDIF 
 				
-				runtrfref.list1.clear
+				runtrfref.sys_isList1.clear
 				
 				ALINES(aInteractiveList,obj_intellisense.cList)
 				
@@ -123,24 +118,24 @@ DEFINE CLASS tr_textbox AS TEXTBOX
  		          this.countmark(aInteractiveList(x),".") = nCount .and. this.countmark(aInteractiveList(x),":") = nCount2 
  		         
 	 						
-							runtrfref.list1.AddItem(aInteractiveList(x))
+							runtrfref.sys_isList1.AddItem(aInteractiveList(x))
 							
 						ENDIF 
 					next
 				ENDIF
 				
 				
-				IF runtrfref.list1.listcount > 0
+				IF runtrfref.sys_isList1.listcount > 0
 				
-					runtrfref.list1.visible = .t.
-					runtrfref.list1.listindex = 1
+					runtrfref.sys_isList1.visible = .t.
+					runtrfref.sys_isList1.listindex = 1
 					
-					IF runtrfref.list1.listcount = 1 .and. UPPER(ALLTRIM(this.cTextValue)) == UPPER(ALLTRIM(runtrfref.list1.listitem(1)))
-						runtrfref.list1.visible = .f.
+					IF runtrfref.sys_isList1.listcount = 1 .and. UPPER(ALLTRIM(this.cTextValue)) == UPPER(ALLTRIM(runtrfref.sys_isList1.listitem(1)))
+						runtrfref.sys_isList1.visible = .f.
 					ENDIF 
 					
 				ELSE
-					runtrfref.list1.visible = .f.
+					runtrfref.sys_isList1.visible = .f.
 				ENDIF 
 
 					
@@ -168,18 +163,16 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 
 	PROCEDURE valid
 	
-		TRY 
-	
-			IF runtrfref.list1.visible = .t.
+			IF runtrfref.sys_isList1.visible = .t.
 			
 				IF LASTKEY() = 24  
-						runtrfref.list1.listindex = runtrfref.list1.listindex + 1
+						runtrfref.sys_isList1.listindex = runtrfref.sys_isList1.listindex + 1
 						CLEAR TYPEAHEAD 
 						RETURN .f.
 				ENDIF 
 				
 				IF LASTKEY() = 5   
-						runtrfref.list1.listindex = runtrfref.list1.listindex - 1	
+						runtrfref.sys_isList1.listindex = runtrfref.sys_isList1.listindex - 1	
 						CLEAR TYPEAHEAD 
 						RETURN .f.
 				ENDIF 
@@ -188,10 +181,6 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				
 			ENDIF 
 		
-		CATCH 
-			syslogmsg("Error : Object runtrfref is not found")
-		ENDTRY 
-	
 		RETURN .T. 
 		
 
@@ -207,10 +196,10 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			ENDIF
 		ENDIF
 
-	 IF runtrfref.list1.visible = .t. .and. (nKeycode = 13 .or. nkeycode = 32 ) .and. runtrfref.list1.listindex != 0			
-					this.Value = LEFT(this.Value,this.nTextStart) + ALLTRIM(runtrfref.list1.listitem(runtrfref.list1.listindex))
+	 IF runtrfref.sys_isList1.visible = .t. .and. (nKeycode = 13 .or. nkeycode = 32 ) .and. runtrfref.sys_isList1.listindex != 0			
+					this.Value = LEFT(this.Value,this.nTextStart) + ALLTRIM(runtrfref.sys_isList1.listitem(runtrfref.sys_isList1.listindex))
 					this.SelStart = LEN(ALLTRIM(this.Value))
-					runtrfref.list1.visible = .f.
+					runtrfref.sys_isList1.visible = .f.
 					IF nKeycode = 32 && space
 						KEYBOARD CHR(127) && backspace
 					ENDIF 
