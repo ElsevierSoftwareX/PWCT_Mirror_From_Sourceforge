@@ -233,18 +233,18 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		DEFINE BAR 5 OF mencontex PROMPT  " = True "
 		DEFINE BAR 6 OF mencontex PROMPT  " = False "
 		
-		IF  EMPTY(ALLTRIM(cCustomList))
-	 
- 
-    	cCustomList = "Variable Name" + CHR(13) + CHR(10)
-    	cCustomList = cCustomList + "Array Name" + CHR(13) + CHR(10) 
-    	cCustomList = cCustomList + "Object Name" + CHR(13) + CHR(10) 
-    	cCustomList = cCustomList + "Procedure Name" + CHR(13) + CHR(10)
-    	cCustomList = cCustomList + "Class Name" + CHR(13) + CHR(10) 
-    	cCustomList = cCustomList + "Class Data Name" + CHR(13) + CHR(10)
-    	cCustomList = cCustomList + "Method Name" + CHR(13) + CHR(10) 
- 			
-		ENDIF
+*!*			IF  EMPTY(ALLTRIM(cCustomList))
+*!*		 
+*!*	 
+*!*	    	cCustomList = "Variable Name" + CHR(13) + CHR(10)
+*!*	    	cCustomList = cCustomList + "Array Name" + CHR(13) + CHR(10) 
+*!*	    	cCustomList = cCustomList + "Object Name" + CHR(13) + CHR(10) 
+*!*	    	cCustomList = cCustomList + "Procedure Name" + CHR(13) + CHR(10)
+*!*	    	cCustomList = cCustomList + "Class Name" + CHR(13) + CHR(10) 
+*!*	    	cCustomList = cCustomList + "Class Data Name" + CHR(13) + CHR(10)
+*!*	    	cCustomList = cCustomList + "Method Name" + CHR(13) + CHR(10) 
+*!*	 			
+*!*			ENDIF
 		
 			FOR T = 1 TO MEMLINES(cCustomList)
 			
