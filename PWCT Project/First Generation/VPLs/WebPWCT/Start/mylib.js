@@ -10,9 +10,8 @@ function welcome (  ) {
 	var oPerson ;
 	oPerson = {
 	name: "Mahmoud " ,
-	age: 27
+	age: 27 
 	} ;
 	alert ( "My name is " + oPerson["name"] ) ;
 	alert ( "My age is " + oPerson["age"] ) ;
 }
-
