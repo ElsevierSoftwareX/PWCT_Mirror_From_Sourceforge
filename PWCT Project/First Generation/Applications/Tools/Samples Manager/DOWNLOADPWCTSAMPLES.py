@@ -229,6 +229,11 @@ Samples.append("HarbourPWCT_MultiLang.zip")
 Samples.append("HarbourPWCT_PrintManyLinesToFile.zip")
 Samples.append("HarbourPWCT_MD5.zip")
 Samples.append("HarbourPWCT_MultipleInheritance.zip")
+Samples.append("HarbourPWCT_UpdateGrid.zip")
+Samples.append("HarbourPWCT_Threads1.zip")
+Samples.append("HarbourPWCT_Threads2.zip")
+Samples.append("HarbourPWCT_Threads3.zip")
+Samples.append("HarbourPWCT_Threads4.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
