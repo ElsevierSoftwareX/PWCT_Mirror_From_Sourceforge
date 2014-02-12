@@ -26,6 +26,7 @@ Movies.append("PWCTMovie_TheSyntaxDirectedEditorAndTheVPLCompiler.zip")
 Movies.append("PWCTMovie_ChangeVPL.zip")
 Movies.append("PWCTMovie_CreateNewStep.zip")
 Movies.append("PWCTMovie_PlayProgramsAsMovie.zip")
+Movies.append("PWCTMovie_CPWCT.zip")
 mymax = len(Movies)
 cont = 1
 lastx = -1
