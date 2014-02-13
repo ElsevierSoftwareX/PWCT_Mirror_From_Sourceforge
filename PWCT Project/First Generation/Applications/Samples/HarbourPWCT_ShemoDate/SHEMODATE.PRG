@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 21:33:41    Date : 02/11/2014
+* Time : 13:13:18    Date : 02/13/2014
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2014 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -69,8 +69,8 @@ Method ShowWindow Class ShemoDateClass
 if !iswindowdefined( winShemo )
 DEFINE WINDOW winShemo ;
 AT 10 ,10 ;
-WIDTH 939 ;
-HEIGHT 491 ;
+WIDTH 937 ;
+HEIGHT 547 ;
 ICON "PWCTICON" ;
 TITLE "ÊÍÏíÏ ÊÇÑÈÎ Ôã ÇáäÓíã" ;
 MAIN ;
@@ -86,7 +86,7 @@ WIDTH 1260 HEIGHT 1007
 @ 2 ,2 IMAGE image2;
 PICTURE "Images\Photo.jpg";
 STRETCH ;
-WIDTH 218 HEIGHT 450
+WIDTH 250 HEIGHT 505
 @ 56 ,829 LABEL lblYear ;
 VALUE "ÇáÓäÉ" ;
 WIDTH 49 ;
@@ -136,7 +136,7 @@ FONT "Times New Roman" SIZE 18  ;
 BACKCOLOR {0,255,128} ;
 TRANSPARENT ;
 FONTCOLOR {0,255,64}
-@ 18 ,256 LABEL lblMoonCycle ;
+@ 20 ,263 LABEL lblMoonCycle ;
 VALUE "Moon Cycle " ;
 WIDTH 140 ;
 HEIGHT 35 ;
@@ -144,7 +144,7 @@ FONT "Times New Roman" SIZE 18  ;
 BACKCOLOR {0,255,128} ;
 TRANSPARENT ;
 FONTCOLOR {0,255,64}
-@ 62 ,256 LABEL lblMoonEpotik ;
+@ 64 ,263 LABEL lblMoonEpotik ;
 VALUE "Moon Epotik" ;
 WIDTH 140 ;
 HEIGHT 35 ;
@@ -191,7 +191,7 @@ FONT "Times New Roman" SIZE 18 ;
 BACKCOLOR {0,128,255} ;
 FONTCOLOR {0,255,64} ;
 NUMERIC 
-@ 379 ,795 BUTTONEX btnExit;
+@ 443 ,795 BUTTONEX btnExit;
 CAPTION "Exit ";
 FONTCOLOR {0,255,64};
 BACKCOLOR {0,128,192};
@@ -200,7 +200,7 @@ WIDTH 102 HEIGHT 34 ;
 FONT "Times New Roman" SIZE 18 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 379 ,684 BUTTONEX btnCalc;
+@ 443 ,684 BUTTONEX btnCalc;
 CAPTION "Calc ";
 FONTCOLOR {0,255,64};
 BACKCOLOR {0,128,192};
@@ -209,7 +209,7 @@ WIDTH 102 HEIGHT 34 ;
 FONT "Arial" SIZE 18 ;
 NOXPSTYLE ;
 TOOLTIP ""
-@ 330 ,257 LABEL lbl13 ;
+@ 330 ,263 LABEL lbl13 ;
 VALUE "Easter Day " ;
 WIDTH 140 ;
 HEIGHT 35 ;
@@ -217,7 +217,7 @@ FONT "Times New Roman" SIZE 18  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,255,64}
-@ 140 ,256 LABEL lbl1EsterMonth ;
+@ 140 ,263 LABEL lbl1EsterMonth ;
 VALUE "Easter Month " ;
 WIDTH 140 ;
 HEIGHT 33 ;
@@ -233,7 +233,7 @@ FONT "Times New Roman" SIZE 18  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,255,64}
-@ 243 ,257 LABEL lbl18 ;
+@ 243 ,263 LABEL lbl18 ;
 VALUE "Day Index" ;
 WIDTH 140 ;
 HEIGHT 35 ;
@@ -250,7 +250,7 @@ FONT "Times New Roman" SIZE 18  ;
 BACKCOLOR {0,255,128} ;
 TRANSPARENT ;
 FONTCOLOR {0,255,64}
-@ 97 ,252 LABEL lbl5 ;
+@ 98 ,263 LABEL lbl5 ;
 VALUE "------------------ Jwish Easter  ------------------" ;
 WIDTH 483 ;
 HEIGHT 32 ;
@@ -258,7 +258,7 @@ FONT "Times New Roman" SIZE 18  ;
 BACKCOLOR {0,255,128} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,0}
-@ 287 ,258 LABEL lbl19 ;
+@ 287 ,263 LABEL lbl19 ;
 VALUE "------------------ Estern Chrristian Easter  ------------------" ;
 WIDTH 540 ;
 HEIGHT 29 ;
@@ -266,7 +266,7 @@ FONT "Times New Roman" SIZE 18  ;
 BACKCOLOR {0,255,128} ;
 TRANSPARENT ;
 FONTCOLOR {255,255,0}
-@ 191 ,256 LABEL lbl20 ;
+@ 191 ,263 LABEL lbl20 ;
 VALUE "Day Index" ;
 WIDTH 140 ;
 HEIGHT 34 ;
@@ -290,7 +290,7 @@ FONT "Times New Roman" SIZE 18  ;
 BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,255,64}
-@ 383 ,257 LABEL lbl22 ;
+@ 383 ,263 LABEL lbl22 ;
 VALUE "Sham El Neseem Date :" ;
 WIDTH 235 ;
 HEIGHT 38 ;
@@ -312,6 +312,38 @@ KEYBOARD
 DATE
 CLOCK
 END STATUSBAR
+@ 223 ,1190 LABEL lblJECDay ;
+VALUE "-------------" ;
+WIDTH 107 ;
+HEIGHT 34 ;
+FONT "Times New Roman" SIZE 16  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,255,64}
+@ 233 ,1096 LABEL lblJEastrCDay ;
+VALUE "Jwish Easter Coptic Day" ;
+WIDTH 231 ;
+HEIGHT 36 ;
+FONT "Times New Roman" SIZE 16  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,255,64}
+@ 436 ,257 LABEL lbl26 ;
+VALUE "Copyright@ Mohamed Nabeel Hassanein" ;
+WIDTH 267 ;
+HEIGHT 25 ;
+FONT "Times New Roman" SIZE 12  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,255,64}
+@ 463 ,254 LABEL lbl27 ;
+VALUE "Open Source for learning and not for sale either all or any part of it" ;
+WIDTH 410 ;
+HEIGHT 20 ;
+FONT "Times New Roman" SIZE 12  ;
+BACKCOLOR {236,233,216} ;
+TRANSPARENT ;
+FONTCOLOR {0,255,64}
 END WINDOW
 ACTIVATE WINDOW winShemo
 EndIF
@@ -349,15 +381,13 @@ winShemo.lblDayIndex.Value := cDayIndex
 ncDayIndex = self:pChristianEaster(nDayIndex, cDayIndex)
 IF ncDayIndex > 30
 ncDayIndex = ncDayIndex - 30
+cEasterMonth := "May"
 ENDIF
+ncDayIndex := int(ncDayIndex)
 cCDayIndex = STR ( ncDayIndex )
 cCDayIndex = ALLTRIM ( cCDayIndex )
 winShemo.lblEstDay.Value := cCDayIndex
 nShemoDate = ncDayIndex + 1
-IF nShemoDate > 30
-nShemoDate = nShemoDate - 30
-cEasterMonth := "May"
-ENDIF
 cShemoDate = STR ( nShemoDate )
 cShemoDate = ALLTRIM ( cShemoDate )
 cShemoDate := cShemoDate+"   "+cEasterMonth
@@ -380,6 +410,8 @@ ENDIF
 Return nMoonEpotik
 Method pJwishEaster(nMoonEpotik) Class ShemoDateClass
 nJwishEaster = 40 - nMoonEpotik
+nJwishEaster = MOD( nJwishEaster , 30 )
+winShemo.lblJECDay.Value := str(nJwishEaster)
 IF nJwishEaster >= 1 .AND. nJwishEaster <= 22
 nJwishEaster = nJwishEaster + 8
 ELSEIF nJwishEaster >= 25 .AND. nJwishEaster <= 30
@@ -497,95 +529,103 @@ SS_ESASTEP("Circuits\Main\Main\Main","Keyboard",265,266)
 SS_ESASTEP("Circuits\Main\Main\Main","Date",267,268)
 SS_ESASTEP("Circuits\Main\Main\Main","Clock",269,270)
 SS_ESASTEP("Circuits\Main\Main\Main","End Statusbar",271,272)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",273,274)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",275,277)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",278,278)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method pExit Class ShemoDateClass",279,279)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.Release( )",280,280)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",281,281)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method pCalc Class ShemoDateClass",282,282)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.Center( )",283,283)
-SS_ESASTEP("Circuits\Main\Main\Main","nYear = winShemo.txtYear.Value",284,284)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonCycle = self.pMoonCycle(nYear)",285,285)
-SS_ESASTEP("Circuits\Main\Main\Main","cMoonCycle = CONVERT nMoonCycle TO STRING",286,286)
-SS_ESASTEP("Circuits\Main\Main\Main","cMoonCycle = All Trim cMoonCycle",287,287)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblMCycle.Value := cMoonCycle",288,288)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = self.pMoonEpotik(nMoonCycle)",289,289)
-SS_ESASTEP("Circuits\Main\Main\Main","cMoonEpotik = CONVERT nMoonEpotik TO STRING",290,290)
-SS_ESASTEP("Circuits\Main\Main\Main","cMoonEpotik = All Trim cMoonEpotik",291,291)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblMEpotik.Value := cMoonEpotik",292,292)
-SS_ESASTEP("Circuits\Main\Main\Main","nEasterDay = self.pJwishEaster(nMoonEpotik)",293,293)
-SS_ESASTEP("Circuits\Main\Main\Main","cEasterMonth = self.pEasterMonth(nEasterDay)",294,294)
-SS_ESASTEP("Circuits\Main\Main\Main","cEasterDay = CONVERT nEasterDay TO STRING",295,295)
-SS_ESASTEP("Circuits\Main\Main\Main","cEasterDay = All Trim cEasterDay",296,296)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblEasterDay.Value := cEasterDay",297,297)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lbl1EasterMonth1.Value := cEasterMonth",298,298)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( nEasterDay = 1 )",299,299)
-SS_ESASTEP("Circuits\Main\Main\Main","nMonth = 5",300,300)
-SS_ESASTEP("Circuits\Main\Main\Main","ELSE",301,301)
-SS_ESASTEP("Circuits\Main\Main\Main","nMonth = 4",302,302)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",303,303)
-SS_ESASTEP("Circuits\Main\Main\Main","nDay = nEasterDay",304,304)
-SS_ESASTEP("Circuits\Main\Main\Main","nDayIndex = self.pDayIndex(nDay, nMonth, nYear)",305,305)
-SS_ESASTEP("Circuits\Main\Main\Main","cDayIndex = CONVERT nDayIndex TO STRING",306,306)
-SS_ESASTEP("Circuits\Main\Main\Main","cDayIndex = All Trim cDayIndex",307,307)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblDayIndex.Value := cDayIndex",308,308)
-SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = self.pChristianEaster(nDayIndex, cDayIndex)",309,309)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( ncDayIndex > 30 )",310,310)
-SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = ncDayIndex - 30",311,311)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",312,312)
-SS_ESASTEP("Circuits\Main\Main\Main","cCDayIndex = CONVERT ncDayIndex TO STRING",313,313)
-SS_ESASTEP("Circuits\Main\Main\Main","cCDayIndex = All Trim cCDayIndex",314,314)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblEstDay.Value := cCDayIndex",315,315)
-SS_ESASTEP("Circuits\Main\Main\Main","nShemoDate = ncDayIndex + 1",316,316)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( nShemoDate > 30 )",317,317)
-SS_ESASTEP("Circuits\Main\Main\Main","nShemoDate = nShemoDate - 30",318,318)
-SS_ESASTEP("Circuits\Main\Main\Main","cEasterMonth = 'May'",319,319)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",320,320)
-SS_ESASTEP("Circuits\Main\Main\Main","cShemoDate = CONVERT nShemoDate TO STRING",321,321)
-SS_ESASTEP("Circuits\Main\Main\Main","cShemoDate = All Trim cShemoDate",322,322)
-SS_ESASTEP("Circuits\Main\Main\Main","cShemoDate = cShemoDate+'   '+cEasterMonth",323,323)
-SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblShemo.Value := cShemoDate",324,324)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",325,325)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method pMoonCycle(nYear) Class ShemoDateClass",326,326)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonCycle = nYear % 19",327,327)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( nMoonCycle == 0 )",328,328)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonCycle = 19",329,329)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",330,330)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonCycle = Convert numeric value nMoonCycle to an integer",331,331)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return nMoonCycle)",332,332)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method pMoonEpotik(nMoonCycle) Class ShemoDateClass",333,333)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = nMoonCycle * 11",334,334)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = nMoonEpotik % 30",335,335)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = Convert numeric value nMoonEpotik to an integer",336,336)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( nMoonEpotik = 29 )",337,337)
-SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = 30",338,338)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",339,339)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return nMoonEpotik)",340,340)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method pJwishEaster(nMoonEpotik) Class ShemoDateClass",341,341)
-SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = 40 - nMoonEpotik",342,342)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( nJwishEaster >= 1 .AND. nJwishEaster <= 22 )",343,343)
-SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = nJwishEaster + 8",344,344)
-SS_ESASTEP("Circuits\Main\Main\Main","ELSEIF ( nJwishEaster >= 25 .AND. nJwishEaster <= 30 )",345,345)
-SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = nJwishEaster - 22",346,346)
-SS_ESASTEP("Circuits\Main\Main\Main","ELSE",347,347)
-SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = 1",348,348)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",349,349)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return nJwishEaster)",350,350)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method pEasterMonth(nEasterDay) Class ShemoDateClass",351,351)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( nEasterDay == 1 )",352,352)
-SS_ESASTEP("Circuits\Main\Main\Main","cEasterMonth = 'May'",353,353)
-SS_ESASTEP("Circuits\Main\Main\Main","ELSE",354,354)
-SS_ESASTEP("Circuits\Main\Main\Main","cEasterMonth = 'April'",355,355)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",356,356)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return cEasterMonth)",357,357)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method pDayIndex(nDay, nMonth, nYear) Class ShemoDateClass",358,358)
-SS_ESASTEP("Circuits\Main\Main\Main","nDayIndex = DOW.pCalc(nDay, nMonth,nYear)",359,359)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return nDayIndex)",360,360)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Method pChristianEaster(nDayIndex) Class ShemoDateClass",361,361)
-SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = nDayIndex",362,362)
-SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = 7 - nDayIndex",363,363)
-SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = ncDayIndex + nEasterDay",364,364)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return ncDayIndex)",365,365)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblJECDay ) , Caption : '-------------'",273,274)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",275,280)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblJEastrCDay ) , Caption : 'Jwish Easter Coptic Day'",281,282)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",283,288)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl26 ) , Caption : 'Copyright@ Mohamed Nabeel Hassanein'",289,290)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",291,296)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbl27 ) , Caption : 'Open Source for learning and not for sale either all or any part of it'",297,298)
+SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",299,304)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",305,306)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",307,309)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",310,310)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method pExit Class ShemoDateClass",311,311)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.Release( )",312,312)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",313,313)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method pCalc Class ShemoDateClass",314,314)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.Center( )",315,315)
+SS_ESASTEP("Circuits\Main\Main\Main","nYear = winShemo.txtYear.Value",316,316)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonCycle = self.pMoonCycle(nYear)",317,317)
+SS_ESASTEP("Circuits\Main\Main\Main","cMoonCycle = CONVERT nMoonCycle TO STRING",318,318)
+SS_ESASTEP("Circuits\Main\Main\Main","cMoonCycle = All Trim cMoonCycle",319,319)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblMCycle.Value := cMoonCycle",320,320)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = self.pMoonEpotik(nMoonCycle)",321,321)
+SS_ESASTEP("Circuits\Main\Main\Main","cMoonEpotik = CONVERT nMoonEpotik TO STRING",322,322)
+SS_ESASTEP("Circuits\Main\Main\Main","cMoonEpotik = All Trim cMoonEpotik",323,323)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblMEpotik.Value := cMoonEpotik",324,324)
+SS_ESASTEP("Circuits\Main\Main\Main","nEasterDay = self.pJwishEaster(nMoonEpotik)",325,325)
+SS_ESASTEP("Circuits\Main\Main\Main","cEasterMonth = self.pEasterMonth(nEasterDay)",326,326)
+SS_ESASTEP("Circuits\Main\Main\Main","cEasterDay = CONVERT nEasterDay TO STRING",327,327)
+SS_ESASTEP("Circuits\Main\Main\Main","cEasterDay = All Trim cEasterDay",328,328)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblEasterDay.Value := cEasterDay",329,329)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lbl1EasterMonth1.Value := cEasterMonth",330,330)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( nEasterDay = 1 )",331,331)
+SS_ESASTEP("Circuits\Main\Main\Main","nMonth = 5",332,332)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",333,333)
+SS_ESASTEP("Circuits\Main\Main\Main","nMonth = 4",334,334)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",335,335)
+SS_ESASTEP("Circuits\Main\Main\Main","nDay = nEasterDay",336,336)
+SS_ESASTEP("Circuits\Main\Main\Main","nDayIndex = self.pDayIndex(nDay, nMonth, nYear)",337,337)
+SS_ESASTEP("Circuits\Main\Main\Main","cDayIndex = CONVERT nDayIndex TO STRING",338,338)
+SS_ESASTEP("Circuits\Main\Main\Main","cDayIndex = All Trim cDayIndex",339,339)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblDayIndex.Value := cDayIndex",340,340)
+SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = self.pChristianEaster(nDayIndex, cDayIndex)",341,341)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( ncDayIndex > 30 )",342,342)
+SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = ncDayIndex - 30",343,343)
+SS_ESASTEP("Circuits\Main\Main\Main","cEasterMonth = 'May'",344,344)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",345,345)
+SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = int(ncDayIndex)",346,346)
+SS_ESASTEP("Circuits\Main\Main\Main","cCDayIndex = CONVERT ncDayIndex TO STRING",347,347)
+SS_ESASTEP("Circuits\Main\Main\Main","cCDayIndex = All Trim cCDayIndex",348,348)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblEstDay.Value := cCDayIndex",349,349)
+SS_ESASTEP("Circuits\Main\Main\Main","nShemoDate = ncDayIndex + 1",350,350)
+SS_ESASTEP("Circuits\Main\Main\Main","cShemoDate = CONVERT nShemoDate TO STRING",351,351)
+SS_ESASTEP("Circuits\Main\Main\Main","cShemoDate = All Trim cShemoDate",352,352)
+SS_ESASTEP("Circuits\Main\Main\Main","cShemoDate = cShemoDate+'   '+cEasterMonth",353,353)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblShemo.Value := cShemoDate",354,354)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",355,355)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method pMoonCycle(nYear) Class ShemoDateClass",356,356)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonCycle = nYear % 19",357,357)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( nMoonCycle == 0 )",358,358)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonCycle = 19",359,359)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",360,360)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonCycle = Convert numeric value nMoonCycle to an integer",361,361)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return nMoonCycle)",362,362)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method pMoonEpotik(nMoonCycle) Class ShemoDateClass",363,363)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = nMoonCycle * 11",364,364)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = nMoonEpotik % 30",365,365)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = Convert numeric value nMoonEpotik to an integer",366,366)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( nMoonEpotik = 29 )",367,367)
+SS_ESASTEP("Circuits\Main\Main\Main","nMoonEpotik = 30",368,368)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",369,369)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return nMoonEpotik)",370,370)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method pJwishEaster(nMoonEpotik) Class ShemoDateClass",371,371)
+SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = 40 - nMoonEpotik",372,372)
+SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = nJwishEaster % 30",373,373)
+SS_ESASTEP("Circuits\Main\Main\Main","winShemo.lblJECDay.Value := str(nJwishEaster)",374,374)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( nJwishEaster >= 1 .AND. nJwishEaster <= 22 )",375,375)
+SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = nJwishEaster + 8",376,376)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSEIF ( nJwishEaster >= 25 .AND. nJwishEaster <= 30 )",377,377)
+SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = nJwishEaster - 22",378,378)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",379,379)
+SS_ESASTEP("Circuits\Main\Main\Main","nJwishEaster = 1",380,380)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",381,381)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return nJwishEaster)",382,382)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method pEasterMonth(nEasterDay) Class ShemoDateClass",383,383)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( nEasterDay == 1 )",384,384)
+SS_ESASTEP("Circuits\Main\Main\Main","cEasterMonth = 'May'",385,385)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",386,386)
+SS_ESASTEP("Circuits\Main\Main\Main","cEasterMonth = 'April'",387,387)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",388,388)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return cEasterMonth)",389,389)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method pDayIndex(nDay, nMonth, nYear) Class ShemoDateClass",390,390)
+SS_ESASTEP("Circuits\Main\Main\Main","nDayIndex = DOW.pCalc(nDay, nMonth,nYear)",391,391)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return nDayIndex)",392,392)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Method pChristianEaster(nDayIndex) Class ShemoDateClass",393,393)
+SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = nDayIndex",394,394)
+SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = 7 - nDayIndex",395,395)
+SS_ESASTEP("Circuits\Main\Main\Main","ncDayIndex = ncDayIndex + nEasterDay",396,396)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return ncDayIndex)",397,397)
 Return
 *-------------------------------------------------------------------*
