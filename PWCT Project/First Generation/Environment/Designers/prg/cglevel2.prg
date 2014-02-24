@@ -1,6 +1,6 @@
 DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 
-		lRemoveEmptyLines = .T.
+		lRemoveEmptyLines = .F.
 		cFileName = "" && the generated source file name
 		
 		PROCEDURE Process(cCode)
