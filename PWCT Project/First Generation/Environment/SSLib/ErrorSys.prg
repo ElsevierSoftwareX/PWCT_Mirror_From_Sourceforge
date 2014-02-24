@@ -174,7 +174,7 @@ PROCEDURE ShowError( ErrorMessage, oError )
    dbcloseall()
 
    MsgStop( IIf( _lShowDetailError() .OR. oError==NIL, ErrorMessage, ;
-                ErrorMessage( oError ) ), 'Runtime Error', NIL, .F. )
+                ErrorMessage( oError ) ), 'HarbourPWCT - Runtime Error', NIL, .F. )
 
    ExitProcess(0)
 
@@ -208,7 +208,7 @@ LOCAL HtmArch := -1, cErrorLogFile := _GetErrorlogFile()
 
 IF IsErrorLogActive()
    If .Not. File(cErrorLogFile)
-        HtmArch := Html_Ini(cErrorLogFile,"Runtime Errorlog File<br>" )
+        HtmArch := Html_Ini(cErrorLogFile,"HarbourPWCT - Runtime Errorlog File<br>" )
 	if HtmArch > 0
 		Html_Line(HtmArch)
 	endif
