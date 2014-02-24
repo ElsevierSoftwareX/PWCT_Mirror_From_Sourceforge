@@ -94,7 +94,7 @@ ON ERROR DO errHandler WITH ;
 ENDIF
 
 IF SYSMETRIC(2) = 480 .AND. SYSMETRIC(1) = 640
-	MESSAGEBOX("Sorry the application can't work in resoultion 640*480",0,"DoubleS")
+	MESSAGEBOX("Sorry the application can't work in resoultion 640*480",0,"PWCT")
 	Quit
 ENDIF
 SET MEMOWIDTH TO 300
@@ -181,7 +181,7 @@ obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2014.02.12"
+sys_pwctversion = "PWCT 1.9 (Art) 2014.02.24"
 
 
 
