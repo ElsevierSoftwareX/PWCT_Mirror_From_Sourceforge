@@ -1,13 +1,12 @@
 *---------------------------------------------------------------------------*
-* Time : 00:44:24    Date : 04/13/2013
+* Time : 17:17:46    Date : 04/10/2014
 *---------------------------------------------------------------------------*
-* Programming without coding technology 1.9 (Art) [2006-2013]  
+* Programming Without Coding Technology (PWCT) 
+* 2006-2014 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 2014.02.24
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
-*---------------------------------------------------------------------------*
-* Compilers                   : Borland C/C++ & Harbour
-* GUI Framework               : HarbourMiniGUI Extended
 *---------------------------------------------------------------------------*
 #include "SSXHB.ch"
 #include "MiniGUI.ch"
@@ -33,7 +32,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_MAIN_18smart1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_MAIN_19art1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -48,7 +47,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_MAIN_18smart1() code
+Resistance R_MAIN_19art1() code
 DO datesettings
 Set MenuStyle EXTENDED
 SET PROGRAMMATICCHANGE OFF
@@ -316,7 +315,7 @@ BACKCOLOR {255,255,255}
 
 @ 8 ,353 IMAGE image1;
 PICTURE "LOGOALONE";
-WHITEBACKGROUND ;
+BACKGROUNDCOLOR {255,255,255}  ;
 WIDTH 196 HEIGHT 135
 @ 200 ,669 IMAGE image3;
 PICTURE "image\CUSTOMERS.JPG";
@@ -972,7 +971,7 @@ End Of Resistance
 
 INIT PROCEDURE Init_MAIN
 START DOUBLES
-SS_ESARES("Circuits\Main\Main\Main",51)
+SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
 SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure datesettings",1,1)
 SS_ESASTEP("Circuits\Main\Main\Main","Set Menu Style EXTENDED",2,2)
