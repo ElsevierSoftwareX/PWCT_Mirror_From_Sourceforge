@@ -1,9 +1,9 @@
 *---------------------------------------------------------------------------*
-* Time : 14:57:05    Date : 06/07/2013
+* Time : 17:16:03    Date : 04/10/2014
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
-* 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
-* Version : PWCT 1.9 (Art) 2013.05.15
+* 2006-2014 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 2014.02.24
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -32,7 +32,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_ALJABREEN_18smart1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_ALJABREEN_19art1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -47,7 +47,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_ALJABREEN_18smart1() code
+Resistance R_ALJABREEN_19art1() code
 DO datesettings
 Set MenuStyle EXTENDED
 SET PROGRAMMATICCHANGE OFF
@@ -198,31 +198,40 @@ TITLE "AL-JABREEN LEATHER IND. FACTORY - Production Follow up System" ;
 MAIN ;
 NOSHOW ;
 BACKCOLOR {255,255,255} 
+
 DEFINE STATUSBAR 
+
 STATUSITEM "Ready"
+
 KEYBOARD
+
 CLOCK;
 WIDTH 100;
 AMPM 
+
 END STATUSBAR
+
 DEFINE TOOLBAR Toolbar1;
 BUTTONSIZE 40 , 40 ;
 BOLD ;
 FLAT ;
 BORDER ;
 BREAK 
+
 BUTTON toolbaremployeebtn1;
 PICTURE "image\EmployeesIcon.bmp" ;
 ADJUST ;
 ON CLICK EmployeesDataObject:showwindow()  ;
 TOOLTIP "Employees" ;
 AUTOSIZE 
+
 BUTTON toolbaremployeebtn2;
 PICTURE "image\searchicon.bmp" ;
 ADJUST ;
 ON CLICK EmployeesBrowseObject:showwindow()  ;
 TOOLTIP "Search in Employees" ;
 AUTOSIZE 
+
 BUTTON toolbaremployeebtn3;
 PICTURE "image\reporticon.bmp" ;
 ADJUST ;
@@ -230,18 +239,21 @@ ON CLICK Employeesreport()  ;
 TOOLTIP "Employees  Report" ;
 SEPARATOR ;
 AUTOSIZE 
+
 BUTTON toolbarsupplierbtn1;
 PICTURE "image\suppliersicon.bmp" ;
 ADJUST ;
 ON CLICK SuppliersDataObject:showwindow()  ;
 TOOLTIP "Suppliers" ;
 AUTOSIZE 
+
 BUTTON toolbarSuppliersbtn2;
 PICTURE "image\searchicon.bmp" ;
 ADJUST ;
 ON CLICK SuppliersBrowseObject:showwindow()  ;
 TOOLTIP "Search in Suppliers" ;
 AUTOSIZE 
+
 BUTTON toolbarSuppliersbtn3;
 PICTURE "image\reporticon.bmp" ;
 ADJUST ;
@@ -249,18 +261,21 @@ ON CLICK Suppliersreport()  ;
 TOOLTIP "Suppliers Report" ;
 SEPARATOR ;
 AUTOSIZE 
+
 BUTTON toolbarcustomersbtn1;
 PICTURE "image\customersicon.bmp" ;
 ADJUST ;
 ON CLICK CustomersDataObject:showwindow()  ;
 TOOLTIP "Customers" ;
 AUTOSIZE 
+
 BUTTON toolbarcustomersbtn2;
 PICTURE "image\searchicon.bmp" ;
 ADJUST ;
 ON CLICK CustomersBrowseObject:showwindow()  ;
 TOOLTIP "Search in Customers" ;
 AUTOSIZE 
+
 BUTTON toolbarcustomersbtn3;
 PICTURE "image\reporticon.bmp" ;
 ADJUST ;
@@ -268,6 +283,7 @@ ON CLICK Customersreport()  ;
 TOOLTIP "Customers Report" ;
 SEPARATOR ;
 AUTOSIZE 
+
 BUTTON toolbarshutdown;
 PICTURE "image\shutdown.bmp" ;
 ADJUST ;
@@ -275,7 +291,9 @@ ON CLICK closesystem()  ;
 TOOLTIP "Close" ;
 SEPARATOR ;
 AUTOSIZE 
+
 END TOOLBAR
+
 @ 79 ,24 IMAGE image1;
 PICTURE "image\CUSTOMERS.JPG";
 ON CLICK customers()  ;
@@ -368,8 +386,10 @@ FONT "Arial" SIZE 14  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0}
 END WINDOW
+
 ACTIVATE WINDOW win1
 EndIF
+
 Proc closesystem
 win1.statusbar.item(1) := "Click Yes to Close the System or Click No to Cancel"
 MyOut := MSGYESNO("Are you sure ?","Close System")
@@ -393,10 +413,11 @@ NOSIZE ;
 NOSYSMENU ;
 NOCAPTION ;
 BACKCOLOR {255,255,255} 
+
 @ 83 ,96 IMAGE image1;
 PICTURE "LOGOALONE";
 STRETCH ;
-WHITEBACKGROUND ;
+BACKGROUNDCOLOR {255,255,255}  ;
 WIDTH 141 HEIGHT 153
 @ 262 ,23 LABEL lbl1 ;
 VALUE "AL-JABREEN Factory" ;
@@ -414,6 +435,7 @@ BACKCOLOR {64,0,64} ;
 FONTCOLOR {0,255,128}
 END WINDOW
 EndIF
+
 HPARENT := GetFormHandle("win1")
 HCHILD := GetFormHandle("winLOGO")
 myout = CALLDLL32("SetParent","USER32.DLL",HCHILD,HPARENT)
@@ -611,6 +633,7 @@ NOAUTORELEASE ;
 NOSIZE ;
 NOSYSMENU ;
 BACKCOLOR {255,255,255} 
+
 @ 40 ,0 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
@@ -636,6 +659,7 @@ HEIGHT 30 ;
 WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
+
 @ 91 ,232 TEXTBOX text2;
 ON ENTER OpenSystem()  ;
 HEIGHT 30 ;
@@ -643,6 +667,7 @@ WIDTH 200 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} ;
 PASSWORD 
+
 @ 182 ,153 BUTTONEX btn1;
 CAPTION "Ok";
 ON CLICK OpenSystem()  ;
@@ -657,9 +682,11 @@ WIDTH 100 HEIGHT 30 ;
 FONT "arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
+
 winlogin.Center ( )
 ACTIVATE WINDOW winlogin
 EndIF
+
 Return Nil
 Proc closelogin
 winlogin.Release ( )
@@ -744,6 +771,7 @@ NOSIZE ;
 NOSYSMENU ;
 NOCAPTION ;
 BACKCOLOR {236,233,216} 
+
 @ 0 ,0 IMAGE image1;
 PICTURE "LOGO";
 STRETCH ;
@@ -759,9 +787,11 @@ BACKCOLOR {236,233,216} ;
 TRANSPARENT ;
 FONTCOLOR {0,0,0}
 END WINDOW
+
 WINLOGOSTART.Center ( )
 ACTIVATE WINDOW winLOGOSTART
 EndIF
+
 Return Nil
 Proc listofcustomersreport
 ListofCustomersReportObject:filter := ""
@@ -788,6 +818,7 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
+
 @ -9 ,-8 IMAGE image1;
 PICTURE "Image\back.jpg";
 STRETCH ;
@@ -847,9 +878,11 @@ WIDTH 320 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
+
 winsysreports.Center ( )
 ACTIVATE WINDOW winsysreports
 EndIF
+
 Return Nil
 Proc aboutsystem
 if !iswindowdefined( winAbout )
@@ -864,6 +897,7 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
+
 winabout.Center ( )
 @ -10 ,-10 IMAGE image1;
 PICTURE getstartupfolder()+"\Image\back.jpg";
@@ -892,9 +926,12 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 14 ;
 TOOLTIP ""
 END WINDOW
+
 ACTIVATE WINDOW winAbout
 EndIF
+
 Return Nil
+
 
 End Of Resistance
 
