@@ -1,1 +1,2 @@
- c:\ssbuild\minigui\batch\hbmk2.bat  -target= "%cd%\MAIN.PRG"
+ Call C:\SSBUILD\MINIGUI\BATCH\HBMK2.BAT -target= "%cd%\MAIN.PRG"
+ echo End of compiling >> pwctdone.txt 

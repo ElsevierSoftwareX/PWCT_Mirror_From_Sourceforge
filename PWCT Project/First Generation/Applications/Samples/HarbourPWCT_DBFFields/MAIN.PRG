@@ -1,9 +1,9 @@
 *---------------------------------------------------------------------------*
-* Time : 22:25:21    Date : 04/15/2013
+* Time : 17:15:55    Date : 04/11/2014
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
-* 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
-* Version : PWCT 1.9 (Art) 13/04/2013
+* 2006-2014 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 2014.02.24
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -32,7 +32,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_MAIN_18smart1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_MAIN_19art1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -47,7 +47,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_MAIN_18smart1() code
+Resistance R_MAIN_19art1() code
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -61,6 +61,7 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {64,0,64} 
+
 @ 28 ,53 LABEL lbl1 ;
 VALUE "File " ;
 WIDTH 50 ;
@@ -74,6 +75,7 @@ WIDTH 470 ;
 FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
+
 @ 26 ,600 BUTTONEX btnBrowse;
 CAPTION "Browse ";
 ON CLICK pDBFData()  ;
@@ -100,8 +102,10 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
+
 ACTIVATE WINDOW win1
 EndIF
+
 procedure pDBFData()
 GetFile := GetFile ( { {"Database File (*.dbf)","*.dbf"} } , ;
 , ;
@@ -118,6 +122,7 @@ DO aFields WITH aColumns
 FOR x = 1 TO nCount STEP 1
 Win1.List1.Additem ( aColumns[x] )
 Next
+close
 ENDIF
 return
 procedure pWin1Init()
@@ -126,6 +131,7 @@ return
 procedure pCloseApplication()
 win1.Release ( )
 return
+
 
 End Of Resistance
 
@@ -164,13 +170,14 @@ SS_ESASTEP("Circuits\Main\Main\Main","Call Procedure aFields Parameters aColumns
 SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To nCount Step 1)",72,72)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (aColumns[x]) to Listbox (List1) of Window (Win1)",73,73)
 SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",74,74)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",75,75)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",76,76)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure pWin1Init - Event : INIT",77,77)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",78,78)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",79,79)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure pCloseApplication ( Event : CLICK )",80,80)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",81,81)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",82,82)
+SS_ESASTEP("Circuits\Main\Main\Main","Close Table",75,75)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",76,76)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",77,77)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure pWin1Init - Event : INIT",78,78)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Center ( )",79,79)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",80,80)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Procedure pCloseApplication ( Event : CLICK )",81,81)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Release ( )",82,82)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Procedure",83,83)
 Return
 *-------------------------------------------------------------------*
