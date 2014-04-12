@@ -2,6 +2,7 @@ FUNCTION sys_autovalue(p1)
 
 	LOCAL x,cData,nMax,t,cLine,ldone,cParent,cOldValue,nSize
 	LOCAL myalias,nrecord
+	LOCAL myrecordpos
 	
 	myalias = ALIAS()
 	nrecord = RECNO()
@@ -13,6 +14,7 @@ FUNCTION sys_autovalue(p1)
     cOldValue = p1
 
 		SELECT t38 
+		myrecordpos = RECNO()
 		
 		IF RECNO() > 1
 		
@@ -67,6 +69,9 @@ FUNCTION sys_autovalue(p1)
 			ENDDO		
 		
 		ENDIF 
+		
+		SELECT t38
+		GOTO myrecordpos 
 		
 		IF p1 = cOldValue && the value not found
 			p1 = ""
