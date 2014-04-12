@@ -26,20 +26,29 @@
 *:******************************************************************************
 DEFINE CLASS tr_checkbox AS CHECKBOX
 	lcbdefault = .F.
+	lrunfocus = .t.
 	
 	PROCEDURE gotfocus
-		runtrfref.sys_isList1.visible = .f.
-		runtrfref.sys_isList1.refresh
+			IF this.lrunfocus = .t.
+				TRY 
+				runtrfref.sys_isList1.visible = .f.
+				runtrfref.sys_isList1.refresh
+				CATCH 
+				ENDTRY 
+			ENDIF 
 		RETURN 
 	
 	
 	PROCEDURE LOSTFOCUS
-		APPLICATION.ACTIVEFORM.REFRESH
+			IF this.lrunfocus = .t.
+				APPLICATION.ACTIVEFORM.REFRESH
+			ENDIF 
 		RETURN
 
 	PROCEDURE KEYPRESS
 		LPARAMETERS nkeycode, nshiftaltctrl
 		IF nkeycode = 23 && CTRL+W
+			this.lrunfocus = .f.
 			THIS.PARENT.PARENT.PARENT.PARENT.KEYPRESS(nkeycode, nshiftaltctrl)
 		ENDIF
 		RETURN

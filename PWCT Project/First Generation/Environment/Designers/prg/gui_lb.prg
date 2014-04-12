@@ -1,8 +1,11 @@
 DEFINE CLASS tr_listbox AS ListBox 
 
 	PROCEDURE gotfocus
-		runtrfref.sys_isList1.visible = .f.
-		runtrfref.sys_isList1.refresh
+			TRY 
+				runtrfref.sys_isList1.visible = .f.
+				runtrfref.sys_isList1.refresh
+			CATCH
+			ENDTRY 
 		RETURN 
 		
 	PROCEDURE rightclick

@@ -40,13 +40,15 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 			THIS.SELSTART = 1
 		ENDIF
 		
+			TRY 
 			runtrfref.sys_isList1.fontsize = this.FontSize 
 			runtrfref.sys_isList1.width = this.Width 
 			runtrfref.sys_isList1.visible = .f.
 		  runtrfref.sys_isList1.refresh
 		
 			runtrflastactivetextbox = this
-
+			CATCH 
+			ENDTRY
 
 		RETURN
 
