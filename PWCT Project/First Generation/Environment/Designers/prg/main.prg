@@ -181,7 +181,7 @@ obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2014.02.24"
+sys_pwctversion = "PWCT 1.9 (Art) 2014.04.12"
 
 
 
