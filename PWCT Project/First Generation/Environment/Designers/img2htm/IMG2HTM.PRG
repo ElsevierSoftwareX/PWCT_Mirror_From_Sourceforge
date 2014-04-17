@@ -1,9 +1,9 @@
 *---------------------------------------------------------------------------*
-* Time : 21:13:23    Date : 10/11/2013
+* Time : 04:21:52    Date : 04/17/2014
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
-* 2006-2013 , Mahmoud Fayed <msfclipper@yahoo.com> 
-* Version : PWCT 1.9 (Art) 2013.10.11
+* 2006-2014 , Mahmoud Fayed <msfclipper@yahoo.com> 
+* Version : PWCT 1.9 (Art) 2014.04.15
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -64,6 +64,7 @@ NOMINIMIZE ;
 NOMAXIMIZE ;
 NOSIZE ;
 BACKCOLOR {236,233,216} 
+
 win1.Center ( )
 @ 62 ,10 LABEL lbl1 ;
 VALUE "Select Folder" ;
@@ -78,6 +79,7 @@ WIDTH 455 ;
 VALUE StartUpFolder+"\PWCTSHOTS" ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
+
 @ 59 ,553 BUTTONEX btn1;
 CAPTION "Browse";
 ON CLICK myfolder()  ;
@@ -103,6 +105,7 @@ WIDTH 455 ;
 VALUE "In this lesson we are going to create " ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {0,0,0} 
+
 @ 8 ,553 BUTTONEX btn3;
 CAPTION "Save";
 ON CLICK aboutfile()  ;
@@ -116,12 +119,14 @@ WIDTH 100 HEIGHT 30 ;
 FONT "Arial" SIZE 9 ;
 TOOLTIP ""
 END WINDOW
+
 ACTIVATE WINDOW win1
 EndIF
+
 Proc myfolder
 GetFolder := GetFolder ( ;
-,  ;
-)
+" Get Folder " ,  ;
+"c:\" )
 win1.text1.Value := GetFolder
 Return Nil
 Proc mywork
@@ -132,7 +137,7 @@ mytext := mytext + CHR(13) + CHR(10) + "<div>"
 cFolder := win1.text1.Value
 cFolder = ALLTRIM ( cFolder )
 mytext := mytext + CHR(13) + CHR(10) + htmline("               PWCT 1.9 Art Documentation ( http://doublesvsoop.sourceforge.net )")
-mytext := mytext + CHR(13) + CHR(10) + htmline("               2006-2013, Mahmoud Fayed ( msfclipper@users.sourceforge.net )")
+mytext := mytext + CHR(13) + CHR(10) + htmline("               2006-2014, Mahmoud Fayed ( msfclipper@users.sourceforge.net )")
 mytext := mytext + CHR(13) + CHR(10) + htmline("_____________________________________________________________________________________")
 mytext := mytext + CHR(13) + CHR(10) + htmline3("Table of contents")
 mytext := mytext + CHR(13) + CHR(10) + htmline("1 - Introduction")
@@ -273,6 +278,7 @@ procedure closeapp()
 win1.Release ( )
 return
 
+
 End Of Resistance
 
 INIT PROCEDURE Init_IMG2HTM
@@ -320,7 +326,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Print text ('<div>') to string (mytext)",8
 SS_ESASTEP("Circuits\Main\Main\Main","cFolder = win1.text1.Value",87,87)
 SS_ESASTEP("Circuits\Main\Main\Main","cFolder = All Trim cFolder",88,88)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               PWCT 1.9 Art Documentation ( http://doublesvsoop.sourceforge.net )')) to string (mytext)",89,89)
-SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               2006-2013, Mahmoud Fayed ( msfclipper@users.sourceforge.net )')) to string (mytext)",90,90)
+SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               2006-2014, Mahmoud Fayed ( msfclipper@users.sourceforge.net )')) to string (mytext)",90,90)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('_____________________________________________________________________________________')) to string (mytext)",91,91)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline3('Table of contents')) to string (mytext)",92,92)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('1 - Introduction')) to string (mytext)",93,93)
