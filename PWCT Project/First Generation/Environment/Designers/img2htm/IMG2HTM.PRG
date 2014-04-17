@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 04:21:52    Date : 04/17/2014
+* Time : 04:26:47    Date : 04/17/2014
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2014 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -125,8 +125,8 @@ EndIF
 
 Proc myfolder
 GetFolder := GetFolder ( ;
-" Get Folder " ,  ;
-"c:\" )
+"Get Folder" ,  ;
+"C:\" )
 win1.text1.Value := GetFolder
 Return Nil
 Proc mywork
