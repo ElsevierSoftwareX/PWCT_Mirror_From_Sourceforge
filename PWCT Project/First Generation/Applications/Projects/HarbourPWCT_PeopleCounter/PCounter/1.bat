@@ -1,0 +1,2 @@
+cd iplib
+test.exe

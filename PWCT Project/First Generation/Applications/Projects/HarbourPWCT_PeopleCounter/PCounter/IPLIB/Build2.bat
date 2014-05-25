@@ -1,0 +1,1 @@
+g++ -I"D:\opencv244\build\include" -L"D:\opencv244\build\x86\mingw\lib" test2.cpp -lopencv_calib3d244 -lopencv_contrib244 -lopencv_features2d244 -lopencv_flann244 -lopencv_gpu244 -lopencv_imgproc244 -lopencv_legacy244 -lopencv_ml244 -lopencv_nonfree244 -lopencv_objdetect244 -lopencv_core244 -lopencv_highgui244 -o test2
