@@ -1,1 +1,1 @@
-copy main.exe c:\ssbuild\pwct19\main.exe
+copy main.exe c:\pwct19\ssbuild\pwct19\main.exe

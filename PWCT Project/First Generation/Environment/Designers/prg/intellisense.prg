@@ -154,6 +154,17 @@ DEFINE CLASS IntellisenseClass as Custom
 								 			IF FILE(cIFileName)
 									 			syslogmsg(" Call intellisense file : "+ cIFileName)
 									 			this.cInfoData = this.cInfoData + FILETOSTR(cIFileName) + CHR(13) + CHR(10)
+ 									    ELSE 
+ 									    
+ 									    	 * fix a problem with CPWCT, when we include a header file (.h) but the intellisense is related to c file (.c)
+ 									    
+ 									       cIFileName = STRTRAN(cIFileName,".h",".c")
+ 									       IF FILE(cIFileName)
+									 					syslogmsg(" Call intellisense file : "+ cIFileName)
+									 					this.cInfoData = this.cInfoData + FILETOSTR(cIFileName) + CHR(13) + CHR(10)
+ 									    	 ENDIF
+ 									    	 
+ 									    	 
 								 			ENDIF 
 								 			
 								 		ENDIF 

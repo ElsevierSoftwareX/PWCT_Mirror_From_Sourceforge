@@ -81,6 +81,9 @@ SET ESCAPE OFF
 SET CENTURY ON
 SET SYSMENU TO
 
+ 
+
+
 IF sys_vfp_debug = .F.
 	_SCREEN.VISIBLE = .F.
 	_SCREEN.CAPTION = "Programming Without Coding Technology"
@@ -181,7 +184,7 @@ obj_VPLCompiler = CREATEOBJECT("GD_VPLCompiler")
 
 
 PUBLIC sys_pwctversion
-sys_pwctversion = "PWCT 1.9 (Art) 2014.04.15"
+sys_pwctversion = "PWCT 1.9 (Art) 2014.05.28"
 
 
 
