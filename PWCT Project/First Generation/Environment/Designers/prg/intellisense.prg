@@ -18,6 +18,8 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	DIMENSION ParentList(1) && array contains a list of the active step parents until the start point
 	
+	DIMENSION aIFiles(1) && array contains a list of the active intellisense files
+	
 	PROCEDURE start()	 
 		
 		this.cInfoData = ""
@@ -26,8 +28,30 @@ DEFINE CLASS IntellisenseClass as Custom
 
 		DIMENSION this.InfoTree(1,this.nInfoTreeCols)		
  	
+    DIMENSION this.aIFiles(1)
+    this.aIFiles(1) = "IntelliSenseFileName.isense"
+ 	
 	RETURN
 	
+	PROCEDURE CheckIntelliSenseFile(cFileName)
+	
+		LOCAL x,nMax
+		
+		nMax = ALEN(this.aIFiles,1)
+		
+		FOR x = 1 TO nMax
+		
+			IF UPPER(ALLTRIM(cFileName)) == UPPER(ALLTRIM(this.aIFiles(x)))
+				RETURN .f.
+			ENDIF
+				
+		NEXT 
+		
+		nMax = nMax + 1
+		DIMENSION this.aIFiles(nMax)
+		this.aIFiles(nMax) = cFileName
+	
+	RETURN .T.
 	
 	PROCEDURE ReadInformation()
 	
@@ -151,19 +175,12 @@ DEFINE CLASS IntellisenseClass as Custom
 								 			
 								 			cIFileName = cIFolder + cIFileName								 			
 								 			
-								 			IF FILE(cIFileName)
-									 			syslogmsg(" Call intellisense file : "+ cIFileName)
-									 			this.cInfoData = this.cInfoData + FILETOSTR(cIFileName) + CHR(13) + CHR(10)
- 									    ELSE 
- 									    
- 									    	 * fix a problem with CPWCT, when we include a header file (.h) but the intellisense is related to c file (.c)
- 									    
- 									       cIFileName = STRTRAN(cIFileName,".h",".c")
- 									       IF FILE(cIFileName)
-									 					syslogmsg(" Call intellisense file : "+ cIFileName)
-									 					this.cInfoData = this.cInfoData + FILETOSTR(cIFileName) + CHR(13) + CHR(10)
- 									    	 ENDIF
- 									    	 
+								 			IF FILE(cIFileName) 
+								 			
+								 				if this.CheckIntelliSenseFile(cIFileName) && don't merge with the previous if statement								 				
+									 				syslogmsg(" Call intellisense file : "+ cIFileName)
+									 				this.cInfoData = this.cInfoData + FILETOSTR(cIFileName) + CHR(13) + CHR(10)
+									 			ENDIF 	 
  									    	 
 								 			ENDIF 
 								 			
@@ -436,6 +453,10 @@ DEFINE CLASS IntellisenseClass as Custom
 					this.InfoTree(1,5) = ""
 					this.InfoTree(1,6) = "." 	
 	  	ENDIF 
+	  	
+	  	DIMENSION this.aIFiles(1)
+	    this.aIFiles(1) = "IntelliSenseFileName.isense"
+	  	
 			
 	RETURN 
 
