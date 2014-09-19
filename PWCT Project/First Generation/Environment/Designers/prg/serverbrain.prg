@@ -2979,9 +2979,9 @@ IF s_menu == "New Server"
 	mysys_file = vvar1
 	sys_filetopasstoanothervpl = vvar1
 
-	v_file = ALLTRIM(UPPER(myswform.text1.VALUE))
+	v_file = ALLTRIM(myswform.text1.VALUE)
 	v_file = SUBSTR(v_file,2,LEN(v_file)-2)
-	v_file = STRTRAN(v_file,"FILE :","")
+	v_file = STRTRAN(v_file,"FILE :","",1,1,1)
 	*************** Configuration FILE COPYING
 	myp = APPLICATION.DEFAULTFILEPATH
 	v1 = APPLICATION.DEFAULTFILEPATH + "\config.txt"
@@ -3271,9 +3271,9 @@ IF s_menu == "1_5"
 		GOTO BOTTOM
 		mysys_file = myfile
 		myswform.text1.VALUE ="(File :" + mysys_file + " )"
-		v_file = ALLTRIM(UPPER(myswform.text1.VALUE))
+		v_file = ALLTRIM(myswform.text1.VALUE)
 		v_file = SUBSTR(v_file,2,LEN(v_file)-2)
-		v_file = STRTRAN(v_file,"FILE :","")
+		v_file = STRTRAN(v_file,"FILE :","",1,1,1)
 
 		*************** Configuration FILE COPYING
 		IF sys_showdoubles = .T.
@@ -3306,8 +3306,8 @@ IF s_menu == "1_5"
 				IF .NOT. FILE(v4)
 					COPY FILE (v1) TO (v4)
 					myconfig = FILETOSTR(v4)
-					mysrc = UPPER(JUSTFNAME(myfile))
-					mysrc = STRTRAN(mysrc,".SSF","")
+					mysrc = JUSTFNAME(myfile)
+					mysrc = STRTRAN(mysrc,".SSF","",1,1,1)
 					myconfig = myconfig + CHR(13) + CHR(10) + "output: " + mysrc +sys_pkext +CHR(13)+CHR(10)+;
 						sys_pkpath+ " " + CHR(34) + mysrc + sys_pkext +CHR(34) +CHR(13)+CHR(10)
 					STRTOFILE(myconfig,v4)
