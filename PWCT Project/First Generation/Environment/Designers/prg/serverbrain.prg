@@ -2307,7 +2307,7 @@ IF s_menu == "1_2" .OR. FILE(myfiletoopen)
 		IF lmyfiletoopen = .F.
 			tv_dfp = APPLICATION.DEFAULTFILEPATH
 			APPLICATION.DEFAULTFILEPATH = JUSTPATH(mysys_file)
-			myfile = GETFILE("SuperServerFile:SSF","File Name ","Open",0,"Open Server")
+			myfile = LOWER(GETFILE("SuperServerFile:SSF","File Name ","Open",0,"Open Server"))
 			APPLICATION.DEFAULTFILEPATH = tv_dfp
 		ENDIF
 	ELSE
