@@ -209,6 +209,7 @@ obj_intellisense = CREATEOBJECT("IntellisenseClass")
 obj_intellisense.start()
 obj_intellisense.loadintellisensedata()
 
+
 	IF PWCT_IsAdmin()
 	
 		IF .NOT. FILE(fixfolderpath("C:\SSBUILD\PWCT19\"+ PWCT_GETUSERNAME() + "_regcom2.off") )
