@@ -248,6 +248,22 @@ Samples.append("HarbourPWCT_DesktopScreenShot.zip")
 Samples.append("HarbourPWCT_DrawAndMove.zip")
 Samples.append("HarbourPWCT_SendEMail.zip")
 Samples.append("HarbourPWCT_ComboboxDynamicItems.zip")
+Samples.append("HarbourPWCT_IDCardGenerator.zip")
+Samples.append("HarbourPWCT_MouseInformation.zip")
+Samples.append("Fayed_PeopleCounter.zip")
+Samples.append("HarbourPWCT_SumGridColumn.zip")
+Samples.append("HarbourPWCT_SimpleTranslator_1.0.zip")
+Samples.append("WebPWCT.zip")
+Samples.append("WebPWCT_Sample.zip")
+Samples.append("HarbourPWCT_PublicArray.zip")
+Samples.append("HarbourPWCT_TreeManager_ItemIDs.zip")
+Samples.append("HarbourPWCT_CheckInternet.zip")
+Samples.append("HarbourPWCT_ComboboxFromDBF.zip")
+Samples.append("HarbourPWCT_ComboboxFromDBF2.zip")
+Samples.append("HarbourPWCT_UsingHttp.zip")
+Samples.append("HarbourPWCT_SplitResize.zip")
+Samples.append("HarbourPWCT_Stars.zip")
+Samples.append("HarbourPWCT_CheckFiles.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
@@ -261,6 +277,8 @@ while cont == 1 :
 					vOutput = urllib.urlretrieve("http://sourceforge.net/projects/pos-sys/files/Smart%20POS%20System%20%28PWCT%20Source%20code%29.zip/download",Samples[x])
 				elif x == 212:
                                         vOutput = urllib.urlretrieve("http://sourceforge.net/projects/criticalnodes/files/Fayed_CriticalNodes_20130922.zip/download",Samples[x])
+				elif x == 246:
+                                        vOutput = urllib.urlretrieve("http://sourceforge.net/projects/peoplecounter/files/People%20Counter/Fayed_PeopleCounter.zip/download",Samples[x])										
 				else:
 					vOutput = urllib.urlretrieve(WebLink+Samples[x]+LinkEnd,Samples[x])
 				mycheck2 = os.path.isfile(Samples[x])
