@@ -47,7 +47,7 @@ FUNCTION area2jpg(p1,p2,p3,p4)
 
 	DO gdiplusx_source_v1.20\SYSTEM.APP
 	loimage = _SCREEN.SYSTEM.drawing.BITMAP.fromscreen(,p1,p2,p3-p1,p4-p2)
-	loimage.SAVE("c:\ssbuild\pwctshots\s"+ ALLTRIM(STR(sys_shotid)) + ".JPG", ;
+	loimage.SAVE(fixfolderpath("c:\ssbuild\pwctshots\s"+ ALLTRIM(STR(sys_shotid)) + ".JPG"), ;
 		_SCREEN.SYSTEM.drawing.imaging.imageformat.jpeg)
 
 	SYS(1104)
