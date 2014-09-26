@@ -8,8 +8,6 @@ rem Kevin Carmody - 2007.10.14
 rem
 rem Revised by Grigory Filatov
 rem
-rem changed for PWCT by Mahmoud Fayed 
-rem 
 rem ===========================================================================
 
 rem If no parameters, display command syntax.
@@ -124,11 +122,11 @@ goto PARPARSE
   set MV_ARG=
   rem Set default paths to BCC, Harbour, xHarbour, MiniGui
   if "%MG_CMP%"=="XHARBOUR" set MV_USEXHRB=Y
-  set MG_BCC=c:\SSBUILD\borland\bcc55
-  set MG_ROOT=c:\SSBUILD\minigui
+  set MG_BCC=c:\pwct19\SSBUILD\borland\bcc55
+  set MG_ROOT=c:\pwct19\SSBUILD\minigui
   set MG_HRB=%MG_ROOT%\harbour
   set MG_LIB=%MG_ROOT%\lib
-  set MG_XHRB=c:\SSBUILD\xharbour
+  set MG_XHRB=c:\pwct19\SSBUILD\xharbour
   set MG_XLIB=%MG_ROOT%\xlib
   rem Initialize local variables.
   if %MV_USEXHRB%==N set MV_HRB=%MG_HRB%
