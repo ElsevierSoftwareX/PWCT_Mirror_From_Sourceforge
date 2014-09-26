@@ -1,9 +1,9 @@
 *---------------------------------------------------------------------------*
-* Time : 04:26:47    Date : 04/17/2014
+* Time : 20:34:05    Date : 09/26/2014
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2014 , Mahmoud Fayed <msfclipper@yahoo.com> 
-* Version : PWCT 1.9 (Art) 2014.04.15
+* Version : PWCT 1.9 (Art) 2014.09.26
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -32,7 +32,7 @@ End Of Server
   ADD RESISTANCE WIN32EVENTS 
 
 
-Resistance R_IMG2HTM_19art1() address Code Unit : Circuits\Main\Main\Main
+Resistance R_img2htm_19art1() address Code Unit : Circuits\Main\Main\Main
 
 
 CALL RESISTANCE Circuits\Main\Main\Main
@@ -47,7 +47,7 @@ Return
   RETURN
 
 * Resistance Code Unit : Circuits\Main\Main\Main
-Resistance R_IMG2HTM_19art1() code
+Resistance R_img2htm_19art1() code
 StartUpFolder := GetStartUpFolder()
 StartUpFolder = UPPER ( StartUpFolder )
 nPos = AT("SSBUILD",StartUpFolder)
@@ -124,9 +124,9 @@ ACTIVATE WINDOW win1
 EndIF
 
 Proc myfolder
-GetFolder := GetFolder ( ;
-"Get Folder" ,  ;
-"C:\" )
+GetFolder := C_BrowseForFolder( NIL, ;
+,  NIL, NIL, ;
+, NIL )
 win1.text1.Value := GetFolder
 Return Nil
 Proc mywork
@@ -136,7 +136,7 @@ mytext := mytext + CHR(13) + CHR(10) + "<body>"
 mytext := mytext + CHR(13) + CHR(10) + "<div>"
 cFolder := win1.text1.Value
 cFolder = ALLTRIM ( cFolder )
-mytext := mytext + CHR(13) + CHR(10) + htmline("               PWCT 1.9 Art Documentation ( http://doublesvsoop.sourceforge.net )")
+mytext := mytext + CHR(13) + CHR(10) + htmline("               PWCT 1.9 Art - Automatic Documentation ( http://doublesvsoop.sourceforge.net )")
 mytext := mytext + CHR(13) + CHR(10) + htmline("               2006-2014, Mahmoud Fayed ( msfclipper@users.sourceforge.net )")
 mytext := mytext + CHR(13) + CHR(10) + htmline("_____________________________________________________________________________________")
 mytext := mytext + CHR(13) + CHR(10) + htmline3("Table of contents")
@@ -281,7 +281,7 @@ return
 
 End Of Resistance
 
-INIT PROCEDURE Init_IMG2HTM
+INIT PROCEDURE Init_img2htm
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
@@ -325,7 +325,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Print text ('<body>') to string (mytext)",
 SS_ESASTEP("Circuits\Main\Main\Main","Print text ('<div>') to string (mytext)",86,86)
 SS_ESASTEP("Circuits\Main\Main\Main","cFolder = win1.text1.Value",87,87)
 SS_ESASTEP("Circuits\Main\Main\Main","cFolder = All Trim cFolder",88,88)
-SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               PWCT 1.9 Art Documentation ( http://doublesvsoop.sourceforge.net )')) to string (mytext)",89,89)
+SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               PWCT 1.9 Art - Automatic Documentation ( http://doublesvsoop.sourceforge.net )')) to string (mytext)",89,89)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('               2006-2014, Mahmoud Fayed ( msfclipper@users.sourceforge.net )')) to string (mytext)",90,90)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline('_____________________________________________________________________________________')) to string (mytext)",91,91)
 SS_ESASTEP("Circuits\Main\Main\Main","Print text (htmline3('Table of contents')) to string (mytext)",92,92)

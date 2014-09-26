@@ -1,2 +1,2 @@
- Call C:\SSBUILD\MINIGUI\BATCH\HBMK2.BAT -target= "%cd%\IMG2HTM.PRG"
+ Call C:\PWCT19\ssbuild\MINIGUI\BATCH\HBMK2.BAT -target= "%cd%\img2htm.PRG"
  echo End of compiling >> pwctdone.txt 
