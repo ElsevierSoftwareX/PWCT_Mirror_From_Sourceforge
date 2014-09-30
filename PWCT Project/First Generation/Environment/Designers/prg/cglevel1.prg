@@ -1308,7 +1308,7 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 										TRY
 											IF objRunTrfForm._scrollcontainer1.viewframe.clientarea.CONTROLS(x).lautoname = .T.
 												temp_caption = objRunTrfForm._scrollcontainer1.viewframe.clientarea.CONTROLS(x).tautoname
-												temp_caption = sys_autonumber(temp_caption)
+												temp_caption = sys_autonumber(temp_caption)												
 												temp_caption = sys_autovalue(temp_caption)
 												objRunTrfForm._scrollcontainer1.viewframe.clientarea.CONTROLS(x).VALUE = temp_caption
 											ENDIF
