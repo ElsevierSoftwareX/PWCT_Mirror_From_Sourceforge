@@ -92,12 +92,18 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 											
 								ENDIF
 								
+								IF LOWER(LEFT(cLineCmd,14)) = "<pwct:newline>"
 
+											cOutput = cOutput  + CHR(13) + CHR(10)
+											lAdd = .F.
+											
+								ENDIF
+								
 
 								IF LOWER(LEFT(cLineCmd,22)) = "<pwct:mergenexttoprev>"
 
 											cOutput = LEFT(cOutput,LEN(cOutput)-2) && remove new line
-											cOutput = cOutput + SPACE(1) + aCode(x+1) + CHR(13) + CHR(10)
+											cOutput = cOutput + SPACE(1) + THIS.RemoveTabsAndSpaces(aCode(x+1)) + CHR(13) + CHR(10)
 											x = x + 1
 											lAdd = .F.
 											
