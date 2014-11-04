@@ -77,6 +77,11 @@ DEFINE CLASS PWCT_CGLevel1 as Custom  && Code Generation Level1
 
 									USE
 
+								ELSE
+								
+									stmsg("Error, the component file: " + run_trf +" is not found! ")
+									RETURN
+									
 								ENDIF
 
 								*****************************
