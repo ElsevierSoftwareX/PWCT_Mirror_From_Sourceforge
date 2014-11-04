@@ -99,6 +99,22 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 											
 								ENDIF
 								
+								
+								IF LOWER(LEFT(cLineCmd,35)) = "<pwct:mergenexttoprevbyspaceorstar>"
+
+											cOutput = LEFT(cOutput,LEN(cOutput)-2) && remove new line
+											IF RIGHT(cOutput,1) = "*"
+											cOutput = cOutput + THIS.RemoveTabsAndSpaces(aCode(x+1)) + CHR(13) + CHR(10)
+											ELSE
+											cOutput = cOutput + SPACE(1) + THIS.RemoveTabsAndSpaces(aCode(x+1)) + CHR(13) + CHR(10)
+											ENDIF
+											
+											
+											x = x + 1
+											lAdd = .F.
+											
+								ENDIF
+								
 
 								IF LOWER(LEFT(cLineCmd,22)) = "<pwct:mergenexttoprev>"
 
