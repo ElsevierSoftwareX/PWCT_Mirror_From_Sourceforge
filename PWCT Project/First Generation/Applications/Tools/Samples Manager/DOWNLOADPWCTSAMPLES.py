@@ -264,6 +264,12 @@ Samples.append("HarbourPWCT_UsingHttp.zip")
 Samples.append("HarbourPWCT_SplitResize.zip")
 Samples.append("HarbourPWCT_Stars.zip")
 Samples.append("HarbourPWCT_CheckFiles.zip")
+Samples.append("HarbourPWCT_NotifyMenu.zip")
+Samples.append("HarbourPWCT_TabEnableDisable.zip")
+Samples.append("HarbourPWCT_LongString.zip")
+Samples.append("HarbourPWCT_DiskSpace.zip")
+Samples.append("HarbourPWCT_Processes.zip")
+Samples.append("HarbourPWCT_ComboxFunctionArray2Combo.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
