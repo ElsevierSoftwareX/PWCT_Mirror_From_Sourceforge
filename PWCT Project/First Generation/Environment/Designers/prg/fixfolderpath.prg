@@ -1,7 +1,6 @@
 PARAMETERS cFolderAndFileName
 LOCAL cPath,x,nPos,cSSBUILD,cSSRPWI
 cFolderAndFileName = UPPER(ALLTRIM(cFolderAndFileName))
-*syslogmsg("Fix Path : " + cFolderAndFileName) 
 
 	* get PWCT folder from pwct exe file name
 	cPath = application.ServerName 
@@ -43,5 +42,8 @@ cFolderAndFileName = UPPER(ALLTRIM(cFolderAndFileName))
 		*syslogmsg("Path fixed to " + cFolderAndFileName)
 		RETURN cFolderAndFileName
 	ENDIF
+
+		RETURN cFolderAndFileName
+
 	
 *!*	ENDIF
