@@ -271,6 +271,7 @@ Samples.append("HarbourPWCT_DiskSpace.zip")
 Samples.append("HarbourPWCT_Processes.zip")
 Samples.append("HarbourPWCT_ComboxFunctionArray2Combo.zip")
 Samples.append("HarbourPWCT_SigningOutAndShutdown.zip")
+Samples.append("HarbourPWCT_CopyArray.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
