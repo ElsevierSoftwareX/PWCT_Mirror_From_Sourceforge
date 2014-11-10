@@ -20,6 +20,10 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	DIMENSION aIFiles(1) && array contains a list of the active intellisense files
 	
+	nIFLOADED = 0 && project intellisense files loaded ?
+	cIFSTRING = "" && string contains the content of the intellisense files
+	
+	
 	PROCEDURE start()	 
 		
 		this.cInfoData = ""
@@ -121,7 +125,10 @@ DEFINE CLASS IntellisenseClass as Custom
 							GOTO myrec
 					ENDIF
 				
+				 				  
 					this.DepthFirst(1)			
+					
+					* this.includeiffcd()
 					
 				ENDIF
 				
@@ -135,6 +142,49 @@ DEFINE CLASS IntellisenseClass as Custom
 			SELECT (myalias)
 			
 	RETURN
+
+	PROCEDURE includeiffcd()  && include intellisense files from current directory
+	
+		LOCAL cIFolder,tv_dfp
+		LOCAL nMax
+		LOCAL cFileName
+
+ 	STMSG("Loading project intellisense files, Please wait!")
+	
+   IF this.nIFLOADED = 0
+	
+		this.nIFLOADED = 1
+		
+
+	  cIFolder = UPPER(myswform.text1.VALUE)
+		cIFolder = SUBSTR(cIFolder,2,LEN(cIFolder)-2)
+	  cIFolder = ALLTRIM(STRTRAN(cIFolder,"FILE :",""))
+	  cIFolder = STRTRAN(cIFolder,JUSTFNAME(cIFolder),"")								 			
+
+
+		tv_dfp = APPLICATION.DEFAULTFILEPATH
+		APPLICATION.DEFAULTFILEPATH = cIFolder
+
+	  nMax = ADIR(amyIFiles, '*.isense')  && Create array
+
+		this.cIFSTRING = ""
+
+		FOR nCount = 1 TO nMax  && Loop for number of databases
+		
+				this.cIFSTRING = this.cIFSTRING + FILETOSTR(cIFolder + amyIFiles(nCount,1)) + CHR(13) + CHR(10)
+				   
+		ENDFOR
+	
+	
+		APPLICATION.DEFAULTFILEPATH = tv_dfp
+		
+ 
+	ENDIF
+	
+  this.cInfoData = this.cInfoData + this.cIFSTRING 	
+	
+	RETURN
+	
 
 
 	PROCEDURE DepthFirst(x)
