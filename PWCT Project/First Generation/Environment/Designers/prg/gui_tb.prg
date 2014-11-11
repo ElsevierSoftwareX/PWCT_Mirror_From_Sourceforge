@@ -128,7 +128,34 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				
 				
 				IF runtrfref.sys_isList1.listcount > 0
-				
+	
+	
+						**********************************************************
+				 
+						  IF runtrfref.sys_isList1.listcount < 10 && remove duplication
+						    IF runtrfref.sys_isList1.listcount > 1
+							  	FOR x = runtrfref.sys_isList1.listcount TO 2 STEP -1
+					         		  	
+							  		cItem = runtrfref.sys_isList1.list(x)
+									  	FOR y = x-1 TO 1 STEP -1
+										  	cItem2 = runtrfref.sys_isList1.list(y)
+										  	IF citem == citem2
+										  		runtrfref.sys_isList1.removeitem(x)
+											  	EXIT 
+										  	endif
+										  
+										  	
+									  	NEXT
+									  	
+							  	
+							  	
+							  	NEXT
+						  	ENDIF 						  	
+						  ENDIF 
+						  
+						**********************************************************
+			 
+				 
 					runtrfref.sys_isList1.visible = .t.
 					runtrfref.sys_isList1.listindex = 1
 					
@@ -235,18 +262,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 		DEFINE BAR 5 OF mencontex PROMPT  " = True "
 		DEFINE BAR 6 OF mencontex PROMPT  " = False "
 		
-*!*			IF  EMPTY(ALLTRIM(cCustomList))
-*!*		 
-*!*	 
-*!*	    	cCustomList = "Variable Name" + CHR(13) + CHR(10)
-*!*	    	cCustomList = cCustomList + "Array Name" + CHR(13) + CHR(10) 
-*!*	    	cCustomList = cCustomList + "Object Name" + CHR(13) + CHR(10) 
-*!*	    	cCustomList = cCustomList + "Procedure Name" + CHR(13) + CHR(10)
-*!*	    	cCustomList = cCustomList + "Class Name" + CHR(13) + CHR(10) 
-*!*	    	cCustomList = cCustomList + "Class Data Name" + CHR(13) + CHR(10)
-*!*	    	cCustomList = cCustomList + "Method Name" + CHR(13) + CHR(10) 
-*!*	 			
-*!*			ENDIF
+
 		
 			FOR T = 1 TO MEMLINES(cCustomList)
 			

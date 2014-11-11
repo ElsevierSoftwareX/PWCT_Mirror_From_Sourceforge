@@ -162,6 +162,10 @@ DEFINE CLASS IntellisenseClass as Custom
 		cIFolder = SUBSTR(cIFolder,2,LEN(cIFolder)-2)
 	  cIFolder = ALLTRIM(STRTRAN(cIFolder,"FILE :",""))
 	 
+	  cSkip = JUSTFNAME(cIFOLDER)
+	  cSkip = LEFT(cSkip,AT(".",cSkip,1))
+	  
+	 
 	  cIFolder = STRTRAN(cIFolder,JUSTFNAME(cIFolder),"")								 			
 	  
 	  IF FILE(cIFOLDER+"pwct_project.isense")
@@ -179,6 +183,11 @@ DEFINE CLASS IntellisenseClass as Custom
 		this.cIFSTRING = ""
 
 		FOR nCount = 1 TO nMax  && Loop for number of databases
+		
+      IF cSkip = LEFT(amyIFiles(nCount,1),LEN(cSkip))  && pass current file to avoid duplication
+		      LOOP
+      ENDIF
+        		
 		
 				this.cIFSTRING = this.cIFSTRING + FILETOSTR(cIFolder + amyIFiles(nCount,1)) + CHR(13) + CHR(10)
 				   
@@ -664,6 +673,9 @@ DEFINE CLASS IntellisenseClass as Custom
 				RETURN 
 			ENDIF 
 			
+  
+  
+  
   		DIMENSION aListArray(MEMLINES(this.cList))
 			ALINES(aListArray,this.cList)			
 	 
@@ -712,9 +724,16 @@ DEFINE CLASS IntellisenseClass as Custom
 			NEXT
 			
 			this.cList = cNewStr
-			
+	
+	
+	   **********************
+
+	*****************************
+  
 			IF this.nIFLOADED = 2
-					 this.cList = this.cLIST + CHR(13) + CHR(10) + this.cIFSTRING2
+			     IF .not. this.cList = this.cIFSTRING2
+						 this.cList = this.cLIST + CHR(13) + CHR(10) + this.cIFSTRING2
+					 ENDIF 
 			ENDIF 
 			
 			IF this.nIFLOADED = 1
@@ -723,34 +742,34 @@ DEFINE CLASS IntellisenseClass as Custom
 
 				  cIFolder = UPPER(myswform.text1.VALUE)
 					cIFolder = SUBSTR(cIFolder,2,LEN(cIFolder)-2)
-				  cIFolder = ALLTRIM(STRTRAN(cIFolder,"FILE :",""))
+				  cIFolder = ALLTRIM(STRTRAN(cIFolder,"FILE :",""))				 
+				  cIFolder = STRTRAN(cIFolder,JUSTFNAME(cIFolder),"")
 				 
-				  cIFolder = STRTRAN(cIFolder,JUSTFNAME(cIFolder),"")								 			
-
-
-				 
-				 lnew = .f.
-         IF FILE(cIFOLDER+"pwct_project.isense")
-	 		 	IF .NOT. ( FDATE(cIFOLDER+"pwct_project.isense") = DATE() )
-	 		 		lnew = .t.
-	        ENDIF
-	       ELSE
-	       	lnew = .t.
-	       ENDIF
-				 			 
-		 		
-		 	  IF  lnew = .t.
-		 	  		 		this.cIFSTRING2 = this.cList 			
-			 				 	STRTOFILE(this.cLIST,cIFOLDER+"pwct_project.isense")
-			 	ELSE					 			 		
-			 			 		this.cIFSTRING2 = FILETOSTR(cIFOLDER+"pwct_project.isense")			 			 		
-			 			 		
-				 ENDIF 
-
-		 		
+					 lnew = .f.
+	         IF FILE(cIFOLDER+"pwct_project.isense")
+		 		 	IF .NOT. ( FDATE(cIFOLDER+"pwct_project.isense") = DATE() )
+		 		 		lnew = .t.
+		        ENDIF
+		       ELSE
+		       	lnew = .t.
+		       ENDIF
+					 			 
+			 		
+			 	  IF  lnew = .t.
+			 	  		 		this.cIFSTRING2 = this.cList 			
+				 				 	STRTOFILE(this.cLIST,cIFOLDER+"pwct_project.isense")
+				 	ELSE					 			 		
+				 			 		this.cIFSTRING2 = FILETOSTR(cIFOLDER+"pwct_project.isense")			 			 					 			 		
+					 ENDIF 
 		 		
 			ENDIF
 				
+  
+  ***************************** 
+  
+
+	
+			
 	
 	RETURN
 	
