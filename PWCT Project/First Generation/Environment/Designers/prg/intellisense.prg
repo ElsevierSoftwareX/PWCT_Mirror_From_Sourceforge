@@ -247,8 +247,8 @@ DEFINE CLASS IntellisenseClass as Custom
 								 			IF FILE(cIFileName) 
 								 			
 								 				if this.CheckIntelliSenseFile(cIFileName) && don't merge with the previous if statement								 				
-									 				syslogmsg(" Call intellisense file : "+ cIFileName)
-									 				this.cInfoData = this.cInfoData + FILETOSTR(cIFileName) + CHR(13) + CHR(10)
+									 				syslogmsg(" Feature dropped, Ignore Call intellisense file : "+ cIFileName)
+									 				* this.cInfoData = this.cInfoData + FILETOSTR(cIFileName) + CHR(13) + CHR(10)
 									 			ENDIF 	 
  									    	 
 								 			ENDIF 
