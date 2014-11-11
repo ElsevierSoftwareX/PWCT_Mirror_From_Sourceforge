@@ -22,7 +22,7 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 	nIFLOADED = 0 && project intellisense files loaded ?
 	cIFSTRING = "" && string contains the content of the intellisense files
-	
+	cIFSTRING2 = "" && string contains the resulttree of the content intellisense files 
 	
 	PROCEDURE start()	 
 		
@@ -34,6 +34,9 @@ DEFINE CLASS IntellisenseClass as Custom
  	
     DIMENSION this.aIFiles(1)
     this.aIFiles(1) = "IntelliSenseFileName.isense"
+    
+		
+
  	
 	RETURN
 	
@@ -128,7 +131,7 @@ DEFINE CLASS IntellisenseClass as Custom
 				 				  
 					this.DepthFirst(1)			
 					
-					* this.includeiffcd()
+					this.includeiffcd()
 					
 				ENDIF
 				
@@ -155,13 +158,19 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 		this.nIFLOADED = 1
 		
-
 	  cIFolder = UPPER(myswform.text1.VALUE)
 		cIFolder = SUBSTR(cIFolder,2,LEN(cIFolder)-2)
 	  cIFolder = ALLTRIM(STRTRAN(cIFolder,"FILE :",""))
+	 
 	  cIFolder = STRTRAN(cIFolder,JUSTFNAME(cIFolder),"")								 			
-
-
+	  
+	  IF FILE(cIFOLDER+"pwct_project.isense")
+	  	IF FDATE(cIFOLDER+"pwct_project.isense") = DATE()
+	  		RETURN 
+	  	ENDIF
+	  ENDIF
+	  
+     
 		tv_dfp = APPLICATION.DEFAULTFILEPATH
 		APPLICATION.DEFAULTFILEPATH = cIFolder
 
@@ -178,11 +187,12 @@ DEFINE CLASS IntellisenseClass as Custom
 	
 		APPLICATION.DEFAULTFILEPATH = tv_dfp
 		
- 
+	  this.cInfoData = this.cInfoData + this.cIFSTRING 			
+	  
 	ENDIF
 	
-  this.cInfoData = this.cInfoData + this.cIFSTRING 	
-	
+
+ 	
 	RETURN
 	
 
@@ -539,10 +549,7 @@ DEFINE CLASS IntellisenseClass as Custom
 			ENDIF 
 			
 			nMax = ALEN(this.InfoTree,1)			
-			
-*!*				syslogmsg(" Start : " + ALLTRIM(STR(nStart)))			
-*!*				syslogmsg(" Max : " + ALLTRIM(STR(nMax)))
-			
+		
 			FOR x = nStart TO nMax
 			
 		  	IF this.InfoTree(x,1) = 0 && The item is a root
@@ -564,15 +571,7 @@ DEFINE CLASS IntellisenseClass as Custom
 			* When the item is releated to a type, copy and change the name
 			
 			FOR x = nStart TO nMax
-*!*				
-*!*						syslogmsg(" process item : " + this.InfoTree(x,3)  )				
-*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 1 " + ALLTRIM(STR(this.InfoTree(x,1) )))
-*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 2 " + ALLTRIM(STR(this.InfoTree(x,2) )))
-*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 3 " + this.InfoTree(x,3) )
-*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 4 " + ALLTRIM(STR(this.InfoTree(x,4) )))
-*!*					  syslogmsg(" item"+ALLTRIM(STR(x))+" - 5 " + this.InfoTree(x,5) )
-*!*						syslogmsg(" item"+ALLTRIM(STR(x))+" - 6 " + this.InfoTree(x,6) )					
-			
+		
 					IF this.InfoTree(x,4) = 3 && the item is a new object of a predefined type
 					
 						IF this.InfoTree(x,1) = 0 && the item is a root
@@ -628,8 +627,6 @@ DEFINE CLASS IntellisenseClass as Custom
 					
 			NEXT			 
 			
-			*syslogmsg(" The List : " + this.cList )
-	
 	RETURN
 	
 	PROCEDURE BuildParentString(r,nStart,nMax)
@@ -681,9 +678,7 @@ DEFINE CLASS IntellisenseClass as Custom
 			* Remove Duplications
 			nMax = ALEN(aListArray,1)
 			
-*!*				syslogmsg("remove duplications, size nMax = " + ALLTRIM(STR(nMax))) 
-*!*				syslogmsg("nRealStart = " + ALLTRIM(STR(this.nRealStart)))
-			
+		
 			IF nMax > 1
 					
 					nCount = 0
@@ -702,8 +697,7 @@ DEFINE CLASS IntellisenseClass as Custom
 					IF nCount > 0
 					
 						DIMENSION aListArray(nMax - nCount)
-*!*							syslogmsg("Intellisense - Duplication found - " + ALLTRIM(STR(nCount)) + " items removed")
-					
+		
 					ENDIF 
 			
 			ENDIF 
@@ -718,6 +712,45 @@ DEFINE CLASS IntellisenseClass as Custom
 			NEXT
 			
 			this.cList = cNewStr
+			
+			IF this.nIFLOADED = 2
+					 this.cList = this.cLIST + CHR(13) + CHR(10) + this.cIFSTRING2
+			ENDIF 
+			
+			IF this.nIFLOADED = 1
+				 this.nIFLOADED = 2
+
+
+				  cIFolder = UPPER(myswform.text1.VALUE)
+					cIFolder = SUBSTR(cIFolder,2,LEN(cIFolder)-2)
+				  cIFolder = ALLTRIM(STRTRAN(cIFolder,"FILE :",""))
+				 
+				  cIFolder = STRTRAN(cIFolder,JUSTFNAME(cIFolder),"")								 			
+
+
+				 
+				 lnew = .f.
+         IF FILE(cIFOLDER+"pwct_project.isense")
+	 		 	IF .NOT. ( FDATE(cIFOLDER+"pwct_project.isense") = DATE() )
+	 		 		lnew = .t.
+	        ENDIF
+	       ELSE
+	       	lnew = .t.
+	       ENDIF
+				 			 
+		 		
+		 	  IF  lnew = .t.
+		 	  		 		this.cIFSTRING2 = this.cList 			
+			 				 	STRTOFILE(this.cLIST,cIFOLDER+"pwct_project.isense")
+			 	ELSE					 			 		
+			 			 		this.cIFSTRING2 = FILETOSTR(cIFOLDER+"pwct_project.isense")			 			 		
+			 			 		
+				 ENDIF 
+
+		 		
+		 		
+			ENDIF
+				
 	
 	RETURN
 	
