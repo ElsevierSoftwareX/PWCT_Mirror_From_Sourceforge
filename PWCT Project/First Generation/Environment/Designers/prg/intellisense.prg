@@ -171,6 +171,8 @@ DEFINE CLASS IntellisenseClass as Custom
 	  IF FILE(cIFOLDER+"pwct_project.isense")
 	  	IF FDATE(cIFOLDER+"pwct_project.isense") = DATE()
 	  		RETURN 
+	  	ELSE
+	  		DELETE FILE (cIFOLDER+"pwct_project.isense")
 	  	ENDIF
 	  ENDIF
 	  
