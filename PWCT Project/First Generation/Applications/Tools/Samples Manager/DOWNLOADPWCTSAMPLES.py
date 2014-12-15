@@ -274,6 +274,8 @@ Samples.append("HarbourPWCT_SigningOutAndShutdown.zip")
 Samples.append("HarbourPWCT_CopyArray.zip")
 Samples.append("HarbourPWCT_GridAddColumn.zip")
 Samples.append("HarbourPWCT_ReturnToFirstDayofMonth.zip")
+Samples.append("HarbourPWCT_SaveArray.zip")
+Samples.append("HarbourPWCT_SocketApp1.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
