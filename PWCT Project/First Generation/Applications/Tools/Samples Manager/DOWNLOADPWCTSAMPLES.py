@@ -276,6 +276,13 @@ Samples.append("HarbourPWCT_GridAddColumn.zip")
 Samples.append("HarbourPWCT_ReturnToFirstDayofMonth.zip")
 Samples.append("HarbourPWCT_SaveArray.zip")
 Samples.append("HarbourPWCT_SocketApp1.zip")
+Samples.append("HarbourPWCT_SocketApp2.zip")
+Samples.append("HarbourPWCT_OneWindowTwoFiles.zip")
+Samples.append("HarbourPWCT_TabsWithManyControls.zip")
+Samples.append("HarbourPWCT_HardDiskSerial.zip")
+Samples.append("HarbourPWCT_TabsRightToLeft.zip")
+Samples.append("HarbourPWCT_TodayDate.zip")
+
 mymax = len(Samples)
 cont = 1
 lastx = -1
