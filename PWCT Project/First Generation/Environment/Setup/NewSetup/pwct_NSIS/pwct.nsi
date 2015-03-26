@@ -62,7 +62,7 @@ VIAddVersionKey  "LegalCopyright"  "(c)Mahmoud Fayed"
 VIAddVersionKey  "ProductName"     "Programming Without Coding Technology 1.9"
 VIAddVersionKey  "ProductVersion"  "1.9"
 VIAddVersionKey  "FileDescription" "Programming Without Coding Technology 1.9"
-VIAddVersionKey  "FileVersion"     "1.9.5935"
+VIAddVersionKey  "FileVersion"     "1.9.5954"
 VIProductVersion "1.9.0.0"
 
 ; The installer will perform a CRC on itself before allowing an install
