@@ -21,12 +21,12 @@
 *:   goaltores
 *:   arrstree
 *:   arrdtree
-*:   findgoals
+*:   findgoals - used by HarbourPWCT
 *:   mycodeex
 *:   mygoalscode
 *:   ss_arrtree
-*:   myfastgoalscode
-*:   myfastcodeex
+*:   myfastgoalscode - used by RPWI
+*:   myfastcodeex - CALLED By findgoals - HarbourPWCT
 *:   myfastcompress
 *!******************************************************************************
 *!
@@ -447,6 +447,24 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 
 	PRIVATE mytree
 
+  * Determin VPL Name
+  
+  	sys_pkname = ""
+  	
+  	IF FILE(APPLICATION.DEFAULTFILEPATH+"\chpath.txt")
+
+			sys_chfile = FILETOSTR(APPLICATION.DEFAULTFILEPATH+"\chpath.txt")
+
+			sys_pkname = MLINE(sys_chfile,2)
+			sys_pkname = ALLTRIM(sys_pkname)
+
+		
+    ENDIF 
+    
+
+
+
+
 	myfh = ""
 	SELECT t33
 	IF .NOT. RECCOUNT() = 0
@@ -519,6 +537,11 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 						mytree(t2,2) = stepid
 						IF stepdis = .F.
 							mytree(t2,3) = ALLTRIM(stepcode)
+							
+							IF EMPTY(ALLTRIM(stepinterid)) .and. UPPER(ALLTRIM(sys_pkname)) == "CPWCT"
+								mytree(t2,3) = "// " + ALLTRIM(stepname) + CHR(13) + CHR(10)
+							ENDIF 
+							
 						ELSE
 							mytree(t2,3) = ""
 						ENDIF
