@@ -37,6 +37,9 @@ DEFINE CLASS PWCT_CGLevel2 as Custom  && Code Generation Level2
 											aGeneratedFiles(ALEN(aGeneratedFiles,1)) = cFile
 											
 											lAdd = .F.
+											
+											cOutput = ""  && start file with empty content
+
 										
 								ENDIF
 								

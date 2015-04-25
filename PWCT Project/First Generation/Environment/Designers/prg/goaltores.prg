@@ -539,7 +539,7 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 							mytree(t2,3) = ALLTRIM(stepcode)
 							
 							IF EMPTY(ALLTRIM(stepinterid)) .and. UPPER(ALLTRIM(sys_pkname)) == "CPWCT"
-								mytree(t2,3) = "// " + ALLTRIM(stepname) + CHR(13) + CHR(10)
+								mytree(t2,3) = "/* " + ALLTRIM(stepname) + " */"+ CHR(13) + CHR(10)
 							ENDIF 
 							
 						ELSE
@@ -559,6 +559,29 @@ FUNCTION myfastgoalscode() && USED BY RPWI Unit Only
 
 			myend = ALEN(mytree,1)
 			FOR x = 1 TO myend
+			* we do this process in a separate loop before code generation because we may modify previous lines in the generated loops
+			* while the next loop do the generation process
+			
+								IF x-1 > 0
+									IF (len(mytree(x-1,3)) > 5) .and. LEN(mytree(x,3)) > 5
+										IF RIGHT(mytree(x-1,3),4) == "*/"+ CHR(13) + CHR(10)
+											IF LEFT(mytree(x,3),3) = "/* "
+												* merge the two comments in one comment
+												mytree(x-1,3) = LEFT(mytree(x-1,3),LEN(mytree(x-1,3))-4) 
+												mytree(x,3) = "** " + SUBSTR(mytree(x,3),3)
+												IF LEFT(mytree(x-1,3),3) = "/* "
+													mytree(x-1,3) = "/*"+CHR(13)+CHR(10)+"** "+SUBSTR(mytree(x-1,3),3)+CHR(13)+CHR(10)
+												ENDIF 
+												mytree(x,3) = LEFT(mytree(x,3),LEN(mytree(x,3))-4) + CHR(13) + CHR(10) + "*/"+CHR(13)+CHR(10)
+											ENDIF 
+										ENDIF 
+									ENDIF 
+								ENDIF 
+			
+			NEXT
+			
+	  	FOR x = 1 TO myend
+			
 				IF .not. EMPTY(ALLTRIM( mytree(x,3) ) ) .AND. .NOT. ALLTRIM( mytree(x,3) ) = CHR(13) + CHR(10)
 					myfh = myfh + ALLTRIM( mytree(x,3) )
 				ENDIF 
