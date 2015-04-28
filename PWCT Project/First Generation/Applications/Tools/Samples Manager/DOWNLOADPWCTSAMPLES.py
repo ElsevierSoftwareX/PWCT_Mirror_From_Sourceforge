@@ -282,6 +282,11 @@ Samples.append("HarbourPWCT_TabsWithManyControls.zip")
 Samples.append("HarbourPWCT_HardDiskSerial.zip")
 Samples.append("HarbourPWCT_TabsRightToLeft.zip")
 Samples.append("HarbourPWCT_TodayDate.zip")
+Samples.append("HarbourPWCT_CallProcFromString.zip")
+Samples.append("HarbourPWCT_ButtonsAsGridHeader.zip")
+Samples.append("HarbourPWCT_CGPA_Calculator.zip")
+Samples.append("HarbourPWCT_DayMonthText.zip")
+Samples.append("HarbourPWCT_SocketApp3.zip")
 
 mymax = len(Samples)
 cont = 1
