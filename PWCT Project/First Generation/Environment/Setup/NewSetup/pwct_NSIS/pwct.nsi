@@ -62,7 +62,7 @@ VIAddVersionKey  "LegalCopyright"  "(c)Mahmoud Fayed"
 VIAddVersionKey  "ProductName"     "Programming Without Coding Technology 1.9"
 VIAddVersionKey  "ProductVersion"  "1.9"
 VIAddVersionKey  "FileDescription" "Programming Without Coding Technology 1.9"
-VIAddVersionKey  "FileVersion"     "1.9.5954"
+VIAddVersionKey  "FileVersion"     "1.9.5966"
 VIProductVersion "1.9.0.0"
 
 ; The installer will perform a CRC on itself before allowing an install
@@ -1960,9 +1960,9 @@ Section "Installer Section"
   
   
   
-  ${EIT_AddFile} "$INSTDIR\SSBUILD\CPWCT\Components\TRF\DECLAREVARIABLE.FPT" "C:\PWCT19\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.FPT"
-  ${EIT_AddFile} "$INSTDIR\SSBUILD\CPWCT\Components\TRF\DECLAREVARIABLE.RULES" "C:\PWCT19\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.RULES"
-  ${EIT_AddFile} "$INSTDIR\SSBUILD\CPWCT\Components\TRF\DECLAREVARIABLE.TRF" "C:\PWCT19\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.TRF"
+  ${EIT_AddFile} "$INSTDIR\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.FPT" "C:\PWCT19\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.FPT"
+  ${EIT_AddFile} "$INSTDIR\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.RULES" "C:\PWCT19\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.RULES"
+  ${EIT_AddFile} "$INSTDIR\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.TRF" "C:\PWCT19\SSBUILD\CPWCT\Components\TRF\PRINTVARIABLE.TRF"
 	
   
   
