@@ -290,6 +290,7 @@ Samples.append("HarbourPWCT_SocketApp3.zip")
 Samples.append("HarbourPWCT_GridValue.zip")
 Samples.append("HarbourPWCT_RandomRange.zip")
 Samples.append("HarbourPWCT_ComboboxItems2Listbox.zip")
+Samples.append("HarbourPWCT_DynamicObjectsWithEvents.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
