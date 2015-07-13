@@ -1,9 +1,9 @@
 *---------------------------------------------------------------------------*
-* Time : 01:00:58    Date : 07/13/2015
+* Time : 04:09:55    Date : 07/13/2015
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2014 , Mahmoud Fayed <msfclipper@yahoo.com> 
-* Version : PWCT 1.9 (Art) 2015.04.28
+* Version : PWCT 1.9 (Art) 2015.06.20
 * URL : http://www.sourceforge.net/projects/doublesvsoop   
 *---------------------------------------------------------------------------*
 * Visual Programming Language : HarbourPWCT 
@@ -54,7 +54,7 @@ Class customers
 Data oRS init 0
 Data oCon init 0
 Data cName init 0
-Data cAdress init 0
+Data cAddress init 0
 Data cPhone init 0
 Data lAdd init False
 Method connect
@@ -124,7 +124,7 @@ END POPUP
 POPUP "control"
 MENUITEM "First Record " Action self:FirstRecord NAME First
 MENUITEM "Next Record" Action self:NextRecord NAME Next
-MENUITEM "previous Record" Action self:prevRecord NAME prev
+MENUITEM "Previous Record" Action self:prevRecord NAME prev
 MENUITEM "Last Record" Action self:LastRecord NAME Last
 END POPUP
 END MENU
@@ -137,9 +137,9 @@ ON DBLCLICK self:GotoRecord()  ;
 ON CHANGE self:GotoRecord()  ;
 WIDTH 688 ;
 HEIGHT 315 ;
-HEADERS {"Name","Adress","Phone"};
+HEADERS {"Name","Address","Phone"};
 WIDTHS {250,150,150} ;
-FONT "Arial" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 BACKCOLOR {221,238,255} ;
 FONTCOLOR {0,0,0}
 @ 44 ,42 LABEL lbl1 ;
@@ -165,8 +165,8 @@ HEIGHT 20 ;
 FONT "Arial" SIZE 12  ;
 BACKCOLOR {255,255,255} ;
 FONTCOLOR {255,0,128}
-@ 484 ,24 LABEL lbladress ;
-VALUE "Adress " ;
+@ 484 ,24 LABEL lbladdress ;
+VALUE "Address " ;
 WIDTH 53 ;
 HEIGHT 26 ;
 FONT "Arial" SIZE 12  ;
@@ -186,7 +186,7 @@ FONT "arial" SIZE 9 ;
 BACKCOLOR {255,255,234} ;
 FONTCOLOR {0,0,0} 
 
-@ 480 ,86 TEXTBOX textAdress;
+@ 480 ,86 TEXTBOX textAddress;
 HEIGHT 30 ;
 WIDTH 276 ;
 FONT "arial" SIZE 9 ;
@@ -219,12 +219,12 @@ FONT "Arial Rounded MT Bold" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 571 ,257 BUTTONEX btnprev;
-CAPTION "previous";
+CAPTION "Previous";
 FONTCOLOR {0,0,0};
 BACKCOLOR {151,203,255};
 ON CLICK self:prevRecord()  ;
 WIDTH 87 HEIGHT 29 ;
-FONT "Arial Rounded MT Bold" SIZE 14 ;
+FONT "arial" SIZE 14 ;
 NOXPSTYLE ;
 TOOLTIP ""
 @ 571 ,362 BUTTONEX btnlast;
@@ -301,9 +301,9 @@ IF nMax>0
 self:oRS:MOVEFIRST()
 FOR x = 1 TO nMax STEP 1
 cName := self:oRS:fields:item(alltrim("castName")):value
-cAdress := self:oRS:fields:item(alltrim("castAdress")):value
+cAddress := self:oRS:fields:item(alltrim("castAddress")):value
 cPhone := self:oRS:fields:item(alltrim("castPhone")):value
-win1.Grid1.AddItem ( {cName,cAdress,cPhone} )
+win1.Grid1.AddItem ( {cName,cAddress,cPhone} )
 self:oRS:MOVENEXT()
 Next
 self:oRS:MOVEFIRST()
@@ -321,12 +321,12 @@ out = self:ShowRecords()
 Return 0
 Method ADO2class Class customers
 self:cName := self:oRS:fields:item(alltrim("castName")):value
-self:cAdress := self:oRS:fields:item(alltrim("castAdress")):value
+self:cAddress := self:oRS:fields:item(alltrim("castAddress")):value
 self:cPhone := self:oRS:fields:item(alltrim("castPhone")):value
 Return 0
 Method class2interface Class customers
 win1.textName.Value := self:cName
-win1.textAdress.Value := self:cAdress
+win1.textAddress.Value := self:cAddress
 win1.textPhone.Value := self:cPhone
 Return 0
 Method ShowRecord Class customers
@@ -379,7 +379,7 @@ ENDIF
 Return 0
 Method clearRecord Class customers
 self:cName := ""
-self:cAdress := ""
+self:cAddress := ""
 self:cPhone := ""
 Return 0
 Method AddRecord Class customers
@@ -411,7 +411,7 @@ win1.save.Enabled := False
 win1.imageSave.Enabled := False
 win1.imagecancel.Enabled := False
 win1.textName.Enabled := False
-win1.textAdress.Enabled := False
+win1.textAddress.Enabled := False
 win1.textPhone.Enabled := False
 ELSEIF nMode=2
 win1.btnlast.Enabled := False
@@ -434,7 +434,7 @@ win1.save.Enabled := True
 win1.imageSave.Enabled := True
 win1.imagecancel.Enabled := True
 win1.textName.Enabled := True
-win1.textAdress.Enabled := True
+win1.textAddress.Enabled := True
 win1.textPhone.Enabled := True
 ENDIF
 Return 0
@@ -446,12 +446,12 @@ self:lAdd := False
 Return 0
 Method interface2class Class customers
 self:cName := win1.textName.Value
-self:cAdress := win1.textAdress.Value
+self:cAddress := win1.textAddress.Value
 self:cPhone := win1.textPhone.Value
 Return 0
 Method class2ADO Class customers
 self:oRS:fields:item(alltrim("castName")):value := self:cName
-self:oRS:fields:item(alltrim("castAdress")):value := self:cAdress
+self:oRS:fields:item(alltrim("castAddress")):value := self:cAddress
 self:oRS:fields:item(alltrim("castPhone")):value := self:cPhone
 Return 0
 Method SaveRecord Class customers
@@ -518,7 +518,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Define Class customers",3,3)
 SS_ESASTEP("Circuits\Main\Main\Main","Data oRS Init Value 0",4,4)
 SS_ESASTEP("Circuits\Main\Main\Main","Data oCon Init Value 0",5,5)
 SS_ESASTEP("Circuits\Main\Main\Main","Data cName Init Value 0",6,6)
-SS_ESASTEP("Circuits\Main\Main\Main","Data cAdress Init Value 0",7,7)
+SS_ESASTEP("Circuits\Main\Main\Main","Data cAddress Init Value 0",7,7)
 SS_ESASTEP("Circuits\Main\Main\Main","Data cPhone Init Value 0",8,8)
 SS_ESASTEP("Circuits\Main\Main\Main","Data lAdd Init Value False",9,9)
 SS_ESASTEP("Circuits\Main\Main\Main","Method connect",10,10)
@@ -575,13 +575,13 @@ SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",73,73)
 SS_ESASTEP("Circuits\Main\Main\Main","DEFINE POPUP 'control'",74,74)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'First Record ' ) NAME First",75,75)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Next Record' ) NAME Next",76,76)
-SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'previous Record' ) NAME prev",77,77)
+SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Previous Record' ) NAME prev",77,77)
 SS_ESASTEP("Circuits\Main\Main\Main","Define ITEM ( 'Last Record' ) NAME Last",78,78)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF POPUP",79,79)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF MAIN MENU",80,80)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Image ( image1 ) , Image : 'search.PNG'",81,82)
 SS_ESASTEP("Circuits\Main\Main\Main","Image Properties",83,84)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 ) , HEADERS : {'Name','Adress','Phone'}",85,85)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 ) , HEADERS : {'Name','Address','Phone'}",85,85)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON DBLCLICK : Action self:GotoRecord",86,86)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CHANGE : Action self:GotoRecord",87,87)
 SS_ESASTEP("Circuits\Main\Main\Main","Grid Properties",88,94)
@@ -592,13 +592,13 @@ SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CHANGE : Action self:Search",104
 SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",105,110)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblName ) , Caption : 'Name '",111,112)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",113,117)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbladress ) , Caption : 'Adress '",118,119)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lbladdress ) , Caption : 'Address '",118,119)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",120,124)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Label ( lblPhone ) , Caption : 'Phone '",125,126)
 SS_ESASTEP("Circuits\Main\Main\Main","Label Properties",127,131)
 SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( textName  )",132,132)
 SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",133,138)
-SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( textAdress  )",139,139)
+SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( textAddress  )",139,139)
 SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",140,145)
 SS_ESASTEP("Circuits\Main\Main\Main","Define TextBox  ( textPhone  )",146,146)
 SS_ESASTEP("Circuits\Main\Main\Main","TextBox Properties",147,152)
@@ -608,7 +608,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",158,161)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnNext ) , Caption : 'Next '",162,165)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action self:NextRecord",166,166)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",167,170)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnprev ) , Caption : 'previous'",171,174)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnprev ) , Caption : 'Previous'",171,174)
 SS_ESASTEP("Circuits\Main\Main\Main","Event: ON CLICK : Action self:prevRecord",175,175)
 SS_ESASTEP("Circuits\Main\Main\Main","Button Properties",176,179)
 SS_ESASTEP("Circuits\Main\Main\Main","Define New Button ( btnlast ) , Caption : 'last'",180,183)
@@ -657,9 +657,9 @@ SS_ESASTEP("Circuits\Main\Main\Main","IF ( nMax>0 )",251,251)
 SS_ESASTEP("Circuits\Main\Main\Main","ADODB RecordSet self:oRS - Goto First Record",252,252)
 SS_ESASTEP("Circuits\Main\Main\Main","FOR LOOP ( From x = 1 To nMax Step 1)",253,253)
 SS_ESASTEP("Circuits\Main\Main\Main","cName = ADODB RecordSet (self:oRS) Get Field ('castName') Value",254,254)
-SS_ESASTEP("Circuits\Main\Main\Main","cAdress = ADODB RecordSet (self:oRS) Get Field ('castAdress') Value",255,255)
+SS_ESASTEP("Circuits\Main\Main\Main","cAddress = ADODB RecordSet (self:oRS) Get Field ('castAddress') Value",255,255)
 SS_ESASTEP("Circuits\Main\Main\Main","cPhone = ADODB RecordSet (self:oRS) Get Field ('castPhone') Value",256,256)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.Grid1.AddItem ( {cName,cAdress,cPhone} )",257,257)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.Grid1.AddItem ( {cName,cAddress,cPhone} )",257,257)
 SS_ESASTEP("Circuits\Main\Main\Main","ADODB RecordSet self:oRS - Goto Next Record",258,258)
 SS_ESASTEP("Circuits\Main\Main\Main","End of For Loop",259,259)
 SS_ESASTEP("Circuits\Main\Main\Main","ADODB RecordSet self:oRS - Goto First Record",260,260)
@@ -675,12 +675,12 @@ SS_ESASTEP("Circuits\Main\Main\Main","out = self.ShowRecords()",271,271)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",272,272)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Method ADO2class Class customers",273,273)
 SS_ESASTEP("Circuits\Main\Main\Main","self:cName = ADODB RecordSet (self:oRS) Get Field ('castName') Value",274,274)
-SS_ESASTEP("Circuits\Main\Main\Main","self:cAdress = ADODB RecordSet (self:oRS) Get Field ('castAdress') Value",275,275)
+SS_ESASTEP("Circuits\Main\Main\Main","self:cAddress = ADODB RecordSet (self:oRS) Get Field ('castAddress') Value",275,275)
 SS_ESASTEP("Circuits\Main\Main\Main","self:cPhone = ADODB RecordSet (self:oRS) Get Field ('castPhone') Value",276,276)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",277,277)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Method class2interface Class customers",278,278)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.textName.Value := self:cName",279,279)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.textAdress.Value := self:cAdress",280,280)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.textAddress.Value := self:cAddress",280,280)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.textPhone.Value := self:cPhone",281,281)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",282,282)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Method ShowRecord Class customers",283,283)
@@ -733,7 +733,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",329,329)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",330,330)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Method clearRecord Class customers",331,331)
 SS_ESASTEP("Circuits\Main\Main\Main","self.cName = ''",332,332)
-SS_ESASTEP("Circuits\Main\Main\Main","self.cAdress = ''",333,333)
+SS_ESASTEP("Circuits\Main\Main\Main","self.cAddress = ''",333,333)
 SS_ESASTEP("Circuits\Main\Main\Main","self.cPhone = ''",334,334)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",335,335)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Method AddRecord Class customers",336,336)
@@ -765,7 +765,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","win1.save.Enabled := False",361,361)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.imageSave.Enabled := False",362,362)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.imagecancel.Enabled := False",363,363)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.textName.Enabled := False",364,364)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.textAdress.Enabled := False",365,365)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.textAddress.Enabled := False",365,365)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.textPhone.Enabled := False",366,366)
 SS_ESASTEP("Circuits\Main\Main\Main","ELSEIF ( nMode=2 )",367,367)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.btnlast.Enabled := False",368,368)
@@ -788,7 +788,7 @@ SS_ESASTEP("Circuits\Main\Main\Main","win1.save.Enabled := True",384,384)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.imageSave.Enabled := True",385,385)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.imagecancel.Enabled := True",386,386)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.textName.Enabled := True",387,387)
-SS_ESASTEP("Circuits\Main\Main\Main","win1.textAdress.Enabled := True",388,388)
+SS_ESASTEP("Circuits\Main\Main\Main","win1.textAddress.Enabled := True",388,388)
 SS_ESASTEP("Circuits\Main\Main\Main","win1.textPhone.Enabled := True",389,389)
 SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",390,390)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",391,391)
@@ -800,12 +800,12 @@ SS_ESASTEP("Circuits\Main\Main\Main","self.lAdd = False",396,396)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",397,397)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Method interface2class Class customers",398,398)
 SS_ESASTEP("Circuits\Main\Main\Main","self:cName = win1.textName.Value",399,399)
-SS_ESASTEP("Circuits\Main\Main\Main","self:cAdress = win1.textAdress.Value",400,400)
+SS_ESASTEP("Circuits\Main\Main\Main","self:cAddress = win1.textAddress.Value",400,400)
 SS_ESASTEP("Circuits\Main\Main\Main","self:cPhone = win1.textPhone.Value",401,401)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",402,402)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Method class2ADO Class customers",403,403)
 SS_ESASTEP("Circuits\Main\Main\Main","ADODB RecordSet (self:oRS) Set Field ('castName') Value To (self:cName)",404,404)
-SS_ESASTEP("Circuits\Main\Main\Main","ADODB RecordSet (self:oRS) Set Field ('castAdress') Value To (self:cAdress)",405,405)
+SS_ESASTEP("Circuits\Main\Main\Main","ADODB RecordSet (self:oRS) Set Field ('castAddress') Value To (self:cAddress)",405,405)
 SS_ESASTEP("Circuits\Main\Main\Main","ADODB RecordSet (self:oRS) Set Field ('castPhone') Value To (self:cPhone)",406,406)
 SS_ESASTEP("Circuits\Main\Main\Main","End of Method (Return 0)",407,407)
 SS_ESASTEP("Circuits\Main\Main\Main","Define Method SaveRecord Class customers",408,408)
