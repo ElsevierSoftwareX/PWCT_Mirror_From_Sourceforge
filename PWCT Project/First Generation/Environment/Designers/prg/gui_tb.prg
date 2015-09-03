@@ -57,7 +57,7 @@ DEFINE CLASS tr_textbox AS TEXTBOX
 				LOCAL nMax,x,cLetter,nCount,nCount2
 
  
- 			 IF EMPTY(ALLTRIM(this.Value))
+ 			 IF EMPTY(ALLTRIM(this.Value)) .or. (LEN(ALLTRIM(this.Value)) != this.SelStart)
  			 		runtrfref.sys_isList1.visible = .f.
  			 		RETURN 
  			 ENDIF 
