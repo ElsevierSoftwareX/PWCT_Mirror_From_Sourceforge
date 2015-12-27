@@ -1,6 +1,8 @@
 ***
 *** Main.prg : call Start() then LoadIntelliSenseData()
 *** Interaction page (runtrf.scx) : call Refresh() then BuildTree(.f.) then SortList()
+*** Goal Designer (rpwi.scx) - combo1 - interactive change : call refresh() then buildtree(.F.) then sortlist()
+*** buildtree(.f.) will call readinformation() that will call includeiffcd() that will load intellisense files
 ***
 
 DEFINE CLASS IntellisenseClass as Custom
@@ -23,6 +25,8 @@ DEFINE CLASS IntellisenseClass as Custom
 	nIFLOADED = 0 && project intellisense files loaded ?
 	cIFSTRING = "" && string contains the content of the intellisense files
 	cIFSTRING2 = "" && string contains the resulttree of the content intellisense files 
+	
+  dofolderrefresh = .f.   && refresh intellisense data file for the project 
 	
 	PROCEDURE start()	 
 		
@@ -169,9 +173,9 @@ DEFINE CLASS IntellisenseClass as Custom
 	  cIFolder = STRTRAN(cIFolder,JUSTFNAME(cIFolder),"")								 			
 	  
 	  IF FILE(cIFOLDER+"pwct_project.isense")
-	  	IF FDATE(cIFOLDER+"pwct_project.isense") = DATE()
+	  	IF (FDATE(cIFOLDER+"pwct_project.isense") = DATE()) .or. this.dofolderrefresh = .f.
 	  		RETURN 
-	  	ELSE
+	  	ELSE	  	
 	  		DELETE FILE (cIFOLDER+"pwct_project.isense")
 	  	ENDIF
 	  ENDIF
@@ -749,7 +753,7 @@ DEFINE CLASS IntellisenseClass as Custom
 				 
 					 lnew = .f.
 	         IF FILE(cIFOLDER+"pwct_project.isense")
-		 		 	IF .NOT. ( FDATE(cIFOLDER+"pwct_project.isense") = DATE() )
+		 		 	IF .NOT. ( (FDATE(cIFOLDER+"pwct_project.isense") = DATE()) .or. this.dofolderrefresh = .f. )
 		 		 		lnew = .t.
 		        ENDIF
 		       ELSE
@@ -768,9 +772,6 @@ DEFINE CLASS IntellisenseClass as Custom
 				
   
   ***************************** 
-  
-
-	
 			
 	
 	RETURN
