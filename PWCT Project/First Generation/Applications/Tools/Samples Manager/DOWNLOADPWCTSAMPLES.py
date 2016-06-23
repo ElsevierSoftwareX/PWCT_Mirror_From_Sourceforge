@@ -299,6 +299,9 @@ Samples.append("HarbourPWCT_Cursor.zip")
 Samples.append("HarbourPWCT_TableColumns.zip")
 Samples.append("HarbourPWCT_Clipboard.zip")
 Samples.append("HarbourPWCT_CreateAccessTable.zip")
+Samples.append("HarbourPWCT_AddDelTabPages.zip")
+Samples.append("HarbourPWCT_AddDelTabPages2.zip")
+Samples.append("HarbourPWCT_DynamicTable.zip")
 mymax = len(Samples)
 cont = 1
 lastx = -1
