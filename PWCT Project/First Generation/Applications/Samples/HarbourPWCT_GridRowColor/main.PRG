@@ -1,5 +1,5 @@
 *---------------------------------------------------------------------------*
-* Time : 06:15:43    Date : 09/10/2016
+* Time : 06:34:30    Date : 09/10/2016
 *---------------------------------------------------------------------------*
 * Programming Without Coding Technology (PWCT) 
 * 2006-2016 , Mahmoud Fayed <msfclipper@yahoo.com> 
@@ -48,9 +48,6 @@ Return
 
 * Resistance Code Unit : Circuits\Main\Main\Main
 Resistance R_main_19art1() code
-#include "hmg.ch"
-
-
 if !iswindowdefined( win1 )
 DEFINE WINDOW win1 ;
 AT 10 ,10 ;
@@ -255,24 +252,23 @@ INIT PROCEDURE Init_main
 START DOUBLES
 SS_ESARES("Circuits\Main\Main\Main",50)
 SS_ESAGOAL("Circuits\Main\Main\Main","Main")
-SS_ESASTEP("Circuits\Main\Main\Main","Block to control the color - See Step Code",1,2)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Grid Color  '",3,7)
-SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",9,13)
-SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 ) , HEADERS : {'Header1','Amount','Header3','Header4'}",14,14)
-SS_ESASTEP("Circuits\Main\Main\Main","Grid Properties",15,24)
-SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",25,26)
-SS_ESASTEP("Circuits\Main\Main\Main","Activate window",27,29)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Function ColorBlock",30,30)
-SS_ESASTEP("Circuits\Main\Main\Main","Color Block - see step code",31,188)
-SS_ESASTEP("Circuits\Main\Main\Main","Return pColor",189,189)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Function",191,191)
-SS_ESASTEP("Circuits\Main\Main\Main","Define Function CheckCell ( nRow,nCol )",192,192)
-SS_ESASTEP("Circuits\Main\Main\Main","cValue = win1.Grid1.cell(nRow,nCol)",193,193)
-SS_ESASTEP("Circuits\Main\Main\Main","IF ( val(cValue) = 0 )",194,194)
-SS_ESASTEP("Circuits\Main\Main\Main","Return true",195,195)
-SS_ESASTEP("Circuits\Main\Main\Main","ELSE",196,196)
-SS_ESASTEP("Circuits\Main\Main\Main","Return false",197,197)
-SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",198,198)
-SS_ESASTEP("Circuits\Main\Main\Main","End of Function",199,199)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Window  ( win1 ) , Title : 'Grid Color  '",1,5)
+SS_ESASTEP("Circuits\Main\Main\Main","Window Properties",6,10)
+SS_ESASTEP("Circuits\Main\Main\Main","Define New Grid ( Grid1 ) , HEADERS : {'Header1','Amount','Header3','Header4'}",11,11)
+SS_ESASTEP("Circuits\Main\Main\Main","Grid Properties",12,21)
+SS_ESASTEP("Circuits\Main\Main\Main","End Of Window",22,23)
+SS_ESASTEP("Circuits\Main\Main\Main","Activate window",24,26)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Function ColorBlock",27,27)
+SS_ESASTEP("Circuits\Main\Main\Main","Color Block - see step code",28,185)
+SS_ESASTEP("Circuits\Main\Main\Main","Return pColor",186,186)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Function",188,188)
+SS_ESASTEP("Circuits\Main\Main\Main","Define Function CheckCell ( nRow,nCol )",189,189)
+SS_ESASTEP("Circuits\Main\Main\Main","cValue = win1.Grid1.cell(nRow,nCol)",190,190)
+SS_ESASTEP("Circuits\Main\Main\Main","IF ( val(cValue) = 0 )",191,191)
+SS_ESASTEP("Circuits\Main\Main\Main","Return true",192,192)
+SS_ESASTEP("Circuits\Main\Main\Main","ELSE",193,193)
+SS_ESASTEP("Circuits\Main\Main\Main","Return false",194,194)
+SS_ESASTEP("Circuits\Main\Main\Main","END OF IF STATEMENT",195,195)
+SS_ESASTEP("Circuits\Main\Main\Main","End of Function",196,196)
 Return
 *-------------------------------------------------------------------*
